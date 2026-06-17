@@ -64,8 +64,9 @@
     {
       "course": "institucional",
       "role": "docente",
+      "group": "Institucional",
       "title": "Perfil Institucional",
-      "description": "Gestion multi-institucion. Cree, edite y acceda con contrasena. Docentes, asignaturas, horarios y calendario.",
+      "description": "Gestion multi-institucion con contrasena. Docentes, asignaturas, horarios y calendario.",
       "actions": [
         { "label": "Abrir perfil", "href": "panel_institucional.html", "variant": "primary" },
         { "label": "Asistencia", "href": "sistema_institucional_asistencia.html", "variant": "secondary" }
@@ -74,6 +75,7 @@
     {
       "course": "institucional",
       "role": "docente",
+      "group": "Institucional",
       "title": "Calendario Escolar",
       "description": "Feriados, eventos, recesos y conmemoraciones del calendario academico 2026.",
       "actions": [
@@ -83,6 +85,7 @@
     {
       "course": "institucional",
       "role": "docente",
+      "group": "Institucional",
       "title": "Perfil Docente",
       "description": "Panel protegido con cedula. Tareas, horarios, examenes sumativos y herramientas.",
       "actions": [
@@ -92,6 +95,7 @@
     {
       "course": "institucional",
       "role": "docente",
+      "group": "Institucional",
       "title": "Mapa Documental",
       "description": "Inventario de todos los documentos del 2.do curso por catedra.",
       "actions": [
@@ -101,8 +105,9 @@
     {
       "course": "institucional",
       "role": "docente",
+      "group": "Institucional",
       "title": "OBRATEC - Proyecto Institucional",
-      "description": "Proyecto Educativo de Competencia Integrada BTCC 2026-2031 del Colegio Nacional Defensores del Chaco.",
+      "description": "Proyecto Educativo de Competencia Integrada BTCC 2026-2031.",
       "actions": [
         { "label": "Ver proyecto", "href": "Documentos_Generales/OBRATEC/Proyecto_Educativo_Competencia_Integrada_BTCC_2026_2031.html", "variant": "primary" }
       ]
@@ -110,6 +115,7 @@
     {
       "course": "institucional",
       "role": "alumno-docente",
+      "group": "Institucional",
       "title": "Computo y Presupuesto",
       "description": "Plan de catedra del 3.er curso BTCC.",
       "actions": [
@@ -119,17 +125,19 @@
     {
       "course": "2_Curso",
       "role": "alumno-docente",
-      "title": "Tecnicas Instrumentales II - Portal",
-      "description": "Portal principal con todos los modulos: fichas, clases, evaluaciones y gestion.",
+      "group": "Tecnicas Instrumentales II",
+      "title": "Portal",
+      "description": "Portal principal con fichas, clases, evaluaciones y gestion.",
       "actions": [
-        { "label": "Portal", "href": "2_Curso/Tecnicas_Instrumentales_II/index.html", "variant": "primary" },
+        { "label": "Ir al portal", "href": "2_Curso/Tecnicas_Instrumentales_II/index.html", "variant": "primary" },
         { "label": "Fichas", "href": "2_Curso/Tecnicas_Instrumentales_II/fichas_estudiante_html/index_fichas_estudiante.html", "variant": "secondary" }
       ]
     },
     {
       "course": "2_Curso",
       "role": "docente",
-      "title": "Tecnicas Instrumentales II - Evaluacion",
+      "group": "Tecnicas Instrumentales II",
+      "title": "Evaluacion",
       "description": "RSA Individual, Registro de Clases, Planilla de Proceso y Examennes Sumativos.",
       "actions": [
         { "label": "RSA", "href": "2_Curso/Tecnicas_Instrumentales_II/12_rsa_individual_tecnicas.html", "variant": "primary" },
@@ -141,7 +149,8 @@
     {
       "course": "2_Curso",
       "role": "docente",
-      "title": "Tecnicas Instrumentales II - Planilla Final",
+      "group": "Tecnicas Instrumentales II",
+      "title": "Planilla Final",
       "description": "Planilla Integrada, Competencias Transversales y Perfil del Estudiante.",
       "actions": [
         { "label": "Integrada", "href": "2_Curso/Tecnicas_Instrumentales_II/18_planilla_integrada_tecnicas.html", "variant": "primary" },
@@ -152,17 +161,19 @@
     {
       "course": "2_Curso",
       "role": "alumno-docente",
-      "title": "Resistencia de Materiales - Portal",
-      "description": "Portal principal con todos los modulos: fichas, clases, evaluaciones y gestion.",
+      "group": "Resistencia de Materiales",
+      "title": "Portal",
+      "description": "Portal principal con fichas, clases, evaluaciones y gestion.",
       "actions": [
-        { "label": "Portal", "href": "2_Curso/Resistencia_Materiales/index.html", "variant": "primary" },
+        { "label": "Ir al portal", "href": "2_Curso/Resistencia_Materiales/index.html", "variant": "primary" },
         { "label": "Fichas", "href": "2_Curso/Resistencia_Materiales/fichas_estudiante_html/index_fichas_estudiante.html", "variant": "secondary" }
       ]
     },
     {
       "course": "2_Curso",
       "role": "docente",
-      "title": "Resistencia de Materiales - Evaluacion",
+      "group": "Resistencia de Materiales",
+      "title": "Evaluacion",
       "description": "RSA Individual, Registro de Clases, Planilla de Proceso y Examennes Sumativos.",
       "actions": [
         { "label": "RSA", "href": "2_Curso/Resistencia_Materiales/12_rsa_individual_resistencia.html", "variant": "primary" },
@@ -174,7 +185,8 @@
     {
       "course": "2_Curso",
       "role": "docente",
-      "title": "Resistencia de Materiales - Planilla Final",
+      "group": "Resistencia de Materiales",
+      "title": "Planilla Final",
       "description": "Planilla Integrada, Competencias Transversales y Perfil del Estudiante.",
       "actions": [
         { "label": "Integrada", "href": "2_Curso/Resistencia_Materiales/18_planilla_integrada_resistencia.html", "variant": "primary" },

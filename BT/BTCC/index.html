@@ -58,11 +58,19 @@ body.rol-alumno tr[data-role="alumno-docente"]{display:table-row}
 .link-btn.secondary{background:#fff;color:var(--primary);border-color:#b7c7dc}
 .link-btn.secondary:hover{background:#f6faff}
 
-/* SIDEBAR */
-.side-list{display:grid;gap:12px}
-.mini-card{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fcfdff}
-.mini-card h3{margin:0 0 6px;font-size:15px}
-.mini-card p{margin:0 0 10px;font-size:13px;color:var(--muted)}
+/* SIDEBAR - ACCORDION */
+.side-list{display:grid;gap:8px}
+.accordion-group{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fcfdff}
+.accordion-header{display:flex;align-items:center;justify-content:space-between;width:100%;padding:12px 14px;background:linear-gradient(135deg,#f0f6fe,#e8f1fb);border:none;cursor:pointer;font-size:14px;font-weight:700;color:var(--primary);text-align:left;transition:background .15s}
+.accordion-header:hover{background:#dce8f5}
+.accordion-header .arrow{font-size:12px;transition:transform .2s;color:var(--muted)}
+.accordion-header.open .arrow{transform:rotate(90deg)}
+.accordion-body{padding:10px 14px 14px;display:none}
+.accordion-body.open{display:block}
+.mini-card{border:1px solid var(--line);border-radius:10px;padding:12px;background:#fff;margin-bottom:8px}
+.mini-card:last-child{margin-bottom:0}
+.mini-card h3{margin:0 0 4px;font-size:14px}
+.mini-card p{margin:0 0 8px;font-size:12px;color:var(--muted)}
 
 .footer-note{margin-top:20px;font-size:13px;color:var(--muted)}
 
@@ -202,19 +210,61 @@ body.rol-alumno tr[data-role="alumno-docente"]{display:table-row}
     };
   }
 
+  var accordionState = {};
+
   function renderQuickCards() {
     const { role, course } = getActiveFilters();
-    quickCards.innerHTML = (DASH.quickCards || []).filter(card => {
+
+    // Filtrar
+    var visible = (DASH.quickCards || []).filter(function(card) {
       if(role === 'alumno' && card.role === 'docente') return false;
       if(course !== 'all' && card.course !== course) return false;
       return true;
-    }).map(card =>
-      '<div class="mini-card" data-course="' + (card.course || 'all') + '" data-role="' + (card.role || 'docente') + '">' +
-        '<h3>' + card.title + '</h3>' +
-        '<p>' + card.description + '</p>' +
-        renderActions(card.actions) +
-      '</div>'
-    ).join('') || '<p style="color:var(--muted);font-size:13px;padding:12px 0;">Sin accesos rapidos para esta seleccion.</p>';
+    });
+
+    if (visible.length === 0) {
+      quickCards.innerHTML = '<p style="color:var(--muted);font-size:13px;padding:12px 0;">Sin accesos rapidos para esta seleccion.</p>';
+      return;
+    }
+
+    // Agrupar por "group"
+    var groups = {};
+    visible.forEach(function(card) {
+      var g = card.group || 'General';
+      if (!groups[g]) groups[g] = [];
+      groups[g].push(card);
+    });
+
+    var order = ['Institucional','Tecnicas Instrumentales II','Resistencia de Materiales','General'];
+    var groupKeys = Object.keys(groups).sort(function(a,b) {
+      var ia = order.indexOf(a), ib = order.indexOf(b);
+      if (ia === -1) ia = 999;
+      if (ib === -1) ib = 999;
+      return ia - ib;
+    });
+
+    var html = '';
+    groupKeys.forEach(function(g) {
+      var isOpen = accordionState[g] !== false; // default abierto
+      var arrow = isOpen ? 'arrow open' : 'arrow';
+      var bodyOpen = isOpen ? 'open' : '';
+      html += '<div class="accordion-group" data-group="' + g.replace(/"/g,'&quot;') + '">';
+      html += '<button class="accordion-header' + (isOpen ? ' open' : '') + '">';
+      html += '<span>' + g + ' (' + groups[g].length + ')</span>';
+      html += '<span class="' + arrow + '">▶</span>';
+      html += '</button>';
+      html += '<div class="accordion-body ' + bodyOpen + '">';
+      groups[g].forEach(function(card) {
+        html += '<div class="mini-card">';
+        html += '<h3>' + card.title + '</h3>';
+        html += '<p>' + card.description + '</p>';
+        html += renderActions(card.actions);
+        html += '</div>';
+      });
+      html += '</div></div>';
+    });
+
+    quickCards.innerHTML = html;
   }
 
   function applyFilters(){
@@ -249,6 +299,17 @@ body.rol-alumno tr[data-role="alumno-docente"]{display:table-row}
       statusEl.textContent = statusText[role] || '';
       applyFilters();
     });
+  });
+
+  // Delegacion de eventos para acordeon
+  quickCards.addEventListener('click', function(e) {
+    var btn = e.target.closest('.accordion-header');
+    if (!btn) return;
+    var group = btn.closest('.accordion-group');
+    if (!group) return;
+    var g = group.getAttribute('data-group');
+    accordionState[g] = !accordionState[g];
+    renderQuickCards();
   });
 
   courseFilter.addEventListener('change', applyFilters);
