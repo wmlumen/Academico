@@ -258,6 +258,40 @@ var CALENDARIO = null;
 var DATA = {};
 var STUDENTS = [];
 
+function normalizarTexto(v) {
+  return String(v || '').trim().toLowerCase();
+}
+
+function coincideAlcanceCalendario(ev, institucion) {
+  var scope = ev && ev.scope ? ev.scope : 'global';
+  if (scope === 'global') return true;
+  if (scope === 'institucion') return institucion && ev.institutionId === institucion.id;
+  if (scope === 'departamento') {
+    return institucion && normalizarTexto(ev.departamento) && normalizarTexto(ev.departamento) === normalizarTexto(institucion.departamento);
+  }
+  if (scope === 'distrito') {
+    return institucion &&
+      normalizarTexto(ev.departamento) === normalizarTexto(institucion.departamento) &&
+      normalizarTexto(ev.distrito) &&
+      normalizarTexto(ev.distrito) === normalizarTexto(institucion.distrito);
+  }
+  return false;
+}
+
+function agregarEventoMes(monthsMap, day, month, tipo, name) {
+  if (!day || !month) return;
+  if (!monthsMap[month]) monthsMap[month] = { num: month, name: MESES[month - 1] || '', events: [] };
+  monthsMap[month].events.push({
+    day: day,
+    tipo: tipo || 'Jornada Normal',
+    name: name || 'Evento'
+  });
+}
+
+function esEventoBloqueante(ev) {
+  return !!ev && ['Feriado Nacional', 'Receso'].indexOf(ev.tipo) !== -1;
+}
+
 // ============================================================
 // Utilidades de almacenamiento
 // ============================================================
@@ -275,37 +309,48 @@ function guardarDatos() {
 
 function cargarCalendario() {
   if (CALENDARIO) return;
-
-  // Intentar cargar desde Perfil Institucional primero
-  try {
-    var pi = obtenerPanelData();
-    if (pi && pi.eventosCalendario && pi.eventosCalendario.length > 0) {
-      // Convertir eventos del panel al formato del calendario
-      var monthsMap = {};
-      pi.eventosCalendario.forEach(function(ev) {
-        var parts = ev.fecha.split('-');
-        if (parts.length !== 3) return;
-        var mNum = parseInt(parts[1]);
-        var dia = parseInt(parts[2]);
-        if (!monthsMap[mNum]) monthsMap[mNum] = { num: mNum, name: MESES[mNum - 1] || '', events: [] };
-        var tipoMap = { feriado: 'Feriado Nacional', evento: 'Conmemoración' };
-        monthsMap[mNum].events.push({
-          day: dia,
-          type: tipoMap[ev.tipo] || 'Conmemoración',
-          name: ev.desc || 'Evento'
-        });
-      });
-      CALENDARIO = { year: 2026, months: Object.values(monthsMap) };
-      return;
-    }
-  } catch(e) {}
-
-  // Fallback: archivo JSON
   try {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'data/calendario_2026.json', false);
     xhr.send();
-    if (xhr.status === 200) CALENDARIO = JSON.parse(xhr.responseText);
+    if (xhr.status !== 200) return;
+    var base = JSON.parse(xhr.responseText);
+    var monthsMap = {};
+    var pi = obtenerPanelData();
+
+    (base.months || []).forEach(function(m) {
+      (m.events || []).forEach(function(ev) {
+        agregarEventoMes(monthsMap, Number(ev.day), Number(m.num), ev.tipo || ev.type, ev.name);
+      });
+    });
+
+    (base.sharedEvents || []).forEach(function(ev) {
+      if (!coincideAlcanceCalendario(ev, pi)) return;
+      var day = Number(ev.day);
+      var month = Number(ev.month);
+      if ((!day || !month) && ev.fecha) {
+        var parts = String(ev.fecha).split('-');
+        if (parts.length === 3) {
+          month = Number(parts[1]);
+          day = Number(parts[2]);
+        }
+      }
+      agregarEventoMes(monthsMap, day, month, ev.tipo, ev.name);
+    });
+
+    if (pi && pi.eventosCalendario && pi.eventosCalendario.length > 0) {
+      pi.eventosCalendario.forEach(function(ev) {
+        var parts = String(ev.fecha || '').split('-');
+        if (parts.length !== 3) return;
+        var tipoMap = { feriado: 'Feriado Nacional', evento: 'Conmemoración' };
+        agregarEventoMes(monthsMap, Number(parts[2]), Number(parts[1]), tipoMap[ev.tipo] || 'Conmemoración', ev.desc || 'Evento');
+      });
+    }
+
+    CALENDARIO = {
+      year: base.year || 2026,
+      months: Object.keys(monthsMap).map(function(key) { return monthsMap[key]; }).sort(function(a, b) { return a.num - b.num; })
+    };
   } catch(e) { CALENDARIO = null; }
 }
 
@@ -506,6 +551,7 @@ function cambiarVista(vista, btn) {
 function renderizar() {
   cargarDatos();
   cargarCalendario();
+  var dataChanged = false;
   if (!getMateria() || STUDENTS.length === 0) {
     document.getElementById('vistaPlanilla').innerHTML = '<div class="no-students"><span class="emoji"></span>Cargue una materia con alumnos para ver la planilla.</div>';
     return;
@@ -536,7 +582,7 @@ function renderizar() {
     tblHtml += '<th class="stu-name" rowspan="2">N°</th><th class="stu-name" rowspan="2">Apellidos y Nombres</th>';
     fechasMes.forEach(function(f) {
       var ev = esFeriado(f.diaNum, f.mes);
-      var cls = ev && (ev.tipo === 'Feriado Nacional' || ev.tipo === 'Receso') ? ' class="feriado"' : '';
+      var cls = esEventoBloqueante(ev) ? ' class="feriado"' : '';
       tblHtml += '<th' + cls + ' title="' + f.dateStr + ' - ' + (ev ? ev.name : 'Clase normal') + '">' + f.diaSem + '<br>' + f.diaNum + '/' + String(f.mes).padStart(2,'0') + '</th>';
     });
     tblHtml += '<th rowspan="2">%<br>Logro</th>';
@@ -561,17 +607,25 @@ function renderizar() {
         if (!DATA[f.dateKey]) DATA[f.dateKey] = {};
         var val = DATA[f.dateKey][sid] || '';
         var ev = esFeriado(f.diaNum, f.mes);
-        var esFeriadoReal = ev && (ev.tipo === 'Feriado Nacional' || ev.tipo === 'Receso');
+        var esFeriadoReal = esEventoBloqueante(ev);
+
+        if (esFeriadoReal) {
+          if (val) {
+            DATA[f.dateKey][sid] = '';
+            val = '';
+            dataChanged = true;
+          }
+          tblHtml += '<td class="feriado"><span class="asis-select" style="background:#e3f2fd;border-color:#1e88e5;color:#0d47a1;display:inline-flex;align-items:center;justify-content:center;cursor:not-allowed">F</span></td>';
+          return;
+        }
 
         var cls = val ? 'val-' + val : '';
-        tblHtml += '<td' + (esFeriadoReal ? ' class="feriado"' : '') + '>';
-        tblHtml += '<select class="asis-select ' + cls + '" onchange="cambiarAsistencia(\'' + f.dateKey + '\',\'' + sid + '\',this)">';
-          ['','P','A','AJ','LT','SA'].forEach(function(opt) {
-            var sel = val === opt ? 'selected' : '';
-            tblHtml += '<option value="' + opt + '" ' + sel + '>' + (opt || '—') + '</option>';
-          });
-          tblHtml += '</select>';
-        tblHtml += '</td>';
+        tblHtml += '<td><select class="asis-select ' + cls + '" onchange="cambiarAsistencia(\'' + f.dateKey + '\',\'' + sid + '\',this)">';
+        ['','P','A','AJ','LT','SA'].forEach(function(opt) {
+          var sel = val === opt ? 'selected' : '';
+          tblHtml += '<option value="' + opt + '" ' + sel + '>' + (opt || '—') + '</option>';
+        });
+        tblHtml += '</select></td>';
 
         habiles++;
         if (val === 'P') logrados++;
@@ -598,8 +652,6 @@ function renderizar() {
       statsGlobal.AJ = (statsGlobal.AJ || 0) + enProceso;
       statsGlobal.total += habiles;
     });
-
-    guardarDatos();
 
     var pctMes = totalsRow.habiles > 0 ? Math.round((totalsRow.P || 0) / totalsRow.habiles * 100) : 0;
     tblHtml += '<tr class="resumen-row">';
@@ -638,6 +690,7 @@ function renderizar() {
 
   container.innerHTML = html;
   document.getElementById('filterMonth').innerHTML = filterOpts;
+  if (dataChanged) guardarDatos();
 
   var totalHabiles = statsGlobal.L + statsGlobal.EP + statsGlobal.NL;
   var pctGlobal = totalHabiles > 0 ? Math.round((statsGlobal.L + statsGlobal.EP) / totalHabiles * 100) : 0;
@@ -666,57 +719,30 @@ function cambiarAsistencia(dateKey, sid, el) {
   actualizarStats();
 }
 
-// ===== FERIADOS 2026 =====
-function obtenerFeriados() {
-  return {
-    3:  [{ d:1, t:'F' }],
-    4:  [{ d:2, t:'F' }, { d:3, t:'F' }],
-    5:  [{ d:1, t:'F' }, { d:14, t:'F' }, { d:15, t:'F' }],
-    6:  [{ d:12, t:'F' }],
-    7:  [{ d:13, t:'R' }, { d:14, t:'R' }, { d:15, t:'R' }, { d:16, t:'R' },
-         { d:17, t:'R' }, { d:18, t:'R' }, { d:19, t:'R' }, { d:20, t:'R' },
-         { d:21, t:'R' }, { d:22, t:'R' }, { d:23, t:'R' }, { d:24, t:'R' }],
-    8:  [{ d:15, t:'F' }, { d:16, t:'F' }],
-    9:  [{ d:29, t:'F' }],
-    12: [{ d:8, t:'F' }]
-  };
-}
-
-function esFeriado(dateObj) {
-  var m = dateObj.getMonth() + 1;
-  var d = dateObj.getDate();
-  var feriados = obtenerFeriados();
-  if (feriados[m]) {
-    for (var i = 0; i < feriados[m].length; i++) {
-      if (feriados[m][i].d === d) return feriados[m][i].t;
-    }
-  }
-  return null;
-}
-
 function marcarTodosPresentesHastaHoy() {
   var fechas = generarFechasClase();
   var hoy = new Date(CONFIG.year, 5, 17); // 17/06/2026
   hoy.setHours(23, 59, 59, 999);
   var cP = 0;
+  var cF = 0;
 
   fechas.forEach(function(f) {
     if (f.dateObj <= hoy) {
       if (!DATA[f.dateKey]) DATA[f.dateKey] = {};
+      var ev = esFeriado(f.diaNum, f.mes);
+      var marcaFeriado = esEventoBloqueante(ev);
       STUDENTS.forEach(function(s) {
         if (!DATA[f.dateKey]['s' + s.num]) {
-          DATA[f.dateKey]['s' + s.num] = 'P';
+          DATA[f.dateKey]['s' + s.num] = marcaFeriado ? 'F' : 'P';
+          if (marcaFeriado) cF++;
+          else cP++;
         }
       });
-      cP++;
     }
   });
 
   guardarDatos();
-  var msg = '';
-  if (cP > 0) msg += '✅ ' + cP + ' jornada(s) marcadas como Presente.\n';
-  msg += '\nLos alumnos que ya tenían otra marca no se modificaron.';
-  alert(msg);
+  alert('✅ ' + cP + ' presentes · 🔴 ' + cF + ' feriados/recesos\n\nLos alumnos que ya tenían otra marca no se modificaron.');
   cargarMateria();
 }
 
@@ -832,7 +858,7 @@ function renderCalendario() {
 
       var clases = [];
       if (ev) clases.push('cal-day');
-      if (ev && (ev.tipo === 'Feriado Nacional' || ev.tipo === 'Receso')) clases.push('feriado');
+      if (esEventoBloqueante(ev)) clases.push('feriado');
       else if (ev && ev.tipo === 'Conmemoración') clases.push('conmemoracion');
       if (esClase && !ev) clases.push('clase');
 

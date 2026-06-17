@@ -110,7 +110,7 @@ table.cal .del-btn:hover{opacity:1}
 <div class="inst-selector" id="instSelector">
   <label>Institución:</label>
   <select id="instSelect" onchange="cambiarInstitucion()"></select>
-  <span style="font-size:12px;color:#56657a">Cada institución tiene su propio calendario de feriados, asuetos y eventos.</span>
+  <span style="font-size:12px;color:#56657a">Las actividades institucionales y "Otro" solo aparecen en su institución. Los eventos globales, departamentales y distritales se leen desde <code>data/calendario_2026.json</code>.</span>
 </div>
 
 <div class="controls">
@@ -141,11 +141,13 @@ table.cal .del-btn:hover{opacity:1}
   </select>
   <input type="text" id="newEventName" placeholder="Nombre del evento" style="flex:2;min-width:120px">
   <select id="newEventTipo" onchange="mostrarOtroTipo(this)">
-    <option value="Conmemoracion">Tipo</option>
+    <option value="Conmemoración">Tipo</option>
     <option value="Feriado Nacional">Feriado Nacional</option>
     <option value="Asueto Departamental">Asueto Departamental</option>
     <option value="Asueto Distrital">Asueto Distrital</option>
-    <option value="Conmemoracion">Conmemoracion</option>
+    <option value="Apertura Institucional">Apertura Institucional</option>
+    <option value="Retorno Docente">Retorno Docente</option>
+    <option value="Conmemoración">Conmemoración</option>
     <option value="Actividad Institucional">Actividad Institucional</option>
     <option value="Actividad Gremial">Actividad Gremial</option>
     <option value="Jornada Normal">Jornada Normal</option>
@@ -159,50 +161,48 @@ table.cal .del-btn:hover{opacity:1}
 <div id="calendarContainer"></div>
 
 <p style="text-align:center;font-size:12px;color:#8899aa;margin-top:10px">
-  Los datos (eventos, lluvia, observaciones) se guardan en cada institucion. 
-  <button onclick="if(confirm('Limpiar TODOS los datos guardados del calendario de esta institucion?')){limpiarInstitucion();location.reload()}" style="background:none;border:none;color:#c62828;cursor:pointer;text-decoration:underline;font-size:12px">Limpiar datos de esta institucion</button>
+  Los eventos compartidos se leen desde <code>data/calendario_2026.json</code>. Los eventos propios de una institución se guardan aparte. 
+  <button onclick="if(confirm('¿Limpiar TODOS los datos guardados del calendario de esta institución?')){limpiarInstitucion();location.reload()}" style="background:none;border:none;color:#c62828;cursor:pointer;text-decoration:underline;font-size:12px">Limpiar datos de esta institución</button>
 </p>
 
 </div>
 
 <script>
-// ===== CARGA DE INSTITUCIONES =====
+var PERFIL_DATA = { instituciones: [], calendarScopeVersion: 0 };
 var INSTITUCIONES = [];
-var INST_ACTUAL = null; // { id, nombre, eventosCalendario }
+var INST_ACTUAL = null;
+var SEED_DATA = null;
+var VISTA_ACTUAL = 'grilla';
+var TIPOS_BASE = ['Feriado Nacional','Asueto Departamental','Asueto Distrital','Apertura Institucional','Retorno Docente','Conmemoración','Conmemoracion','Receso','Jornada Normal','Actividad Institucional','Actividad Gremial'];
+
+function normalizarTexto(v) {
+  return String(v || '').trim().toLowerCase();
+}
 
 function cargarInstituciones() {
   try {
     var raw = localStorage.getItem('perfil_institucional');
-    if (!raw) { INSTITUCIONES = []; return; }
-    var data = JSON.parse(raw);
-    INSTITUCIONES = (data.instituciones || []).slice();
-  } catch(e) { INSTITUCIONES = []; }
+    PERFIL_DATA = raw ? JSON.parse(raw) : { instituciones: [] };
+  } catch (e) {
+    PERFIL_DATA = { instituciones: [] };
+  }
+  if (!PERFIL_DATA || !Array.isArray(PERFIL_DATA.instituciones)) PERFIL_DATA = { instituciones: [] };
+  INSTITUCIONES = PERFIL_DATA.instituciones;
+  migrarCalendarioPorAlcance();
 }
 
 function guardarInstituciones() {
   try {
-    var raw = localStorage.getItem('perfil_institucional');
-    var data = raw ? JSON.parse(raw) : { instituciones: [] };
-    data.instituciones = INSTITUCIONES;
-    localStorage.setItem('perfil_institucional', JSON.stringify(data));
-  } catch(e) {}
+    PERFIL_DATA.instituciones = INSTITUCIONES;
+    localStorage.setItem('perfil_institucional', JSON.stringify(PERFIL_DATA));
+  } catch (e) {}
 }
-
-function getInst(eventosCalendario) {
-  return eventosCalendario || [];
-}
-
-function setInstEvents(eventos) {
-  if (!INST_ACTUAL) return;
-  INST_ACTUAL.eventosCalendario = eventos;
-  guardarInstituciones();
-}
-
-// ===== SEMILLA DESDE calendario_2026.json =====
-var SEED_DATA = null;
 
 function cargarSeed() {
   SEED_DATA = (window.BTCCRuntime && window.BTCCRuntime.loadJson('/data/calendario_2026.json', null));
+  if (!SEED_DATA) SEED_DATA = {};
+  if (!Array.isArray(SEED_DATA.months)) SEED_DATA.months = [];
+  if (!Array.isArray(SEED_DATA.sharedEvents)) SEED_DATA.sharedEvents = [];
 }
 
 function sembrarEventosBase() {
@@ -221,215 +221,227 @@ function sembrarEventosBase() {
         obs: '',
         color: '#e8f1fb',
         isSeed: true,
-        isCustom: false
+        scope: 'global'
       });
     });
   });
   return events;
 }
 
-// ===== ANOTACIONES Y EVENTOS POR INSTITUCION =====
+function inferScopeForTipo(tipo, esTipoPersonalizado) {
+  if (tipo === 'Asueto Departamental') return 'departamento';
+  if (tipo === 'Asueto Distrital') return 'distrito';
+  if (tipo === 'Actividad Institucional' || esTipoPersonalizado) return 'institucion';
+  return 'global';
+}
+
+function buildEvent(ev, sourceInst) {
+  var tipo = ev.tipo || 'Jornada Normal';
+  var esTipoPersonalizado = TIPOS_BASE.indexOf(tipo) === -1;
+  var scope = ev.scope || inferScopeForTipo(tipo, esTipoPersonalizado);
+  return {
+    id: ev.id || ('ev_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6)),
+    day: Number(ev.day),
+    month: Number(ev.month),
+    year: Number(ev.year || 2026),
+    name: ev.name || 'Evento',
+    tipo: tipo,
+    lluvia: !!ev.lluvia,
+    obs: ev.obs || '',
+    color: ev.color || '#f3e5f5',
+    isSeed: !!ev.isSeed,
+    isCustom: ev.isCustom !== false,
+    scope: scope,
+    ownerInstitutionId: ev.ownerInstitutionId || (sourceInst ? sourceInst.id : null),
+    institutionId: scope === 'institucion' ? (ev.institutionId || (sourceInst ? sourceInst.id : null)) : null,
+    departamento: scope === 'departamento' || scope === 'distrito' ? (ev.departamento || (sourceInst ? sourceInst.departamento || '' : '')) : '',
+    distrito: scope === 'distrito' ? (ev.distrito || (sourceInst ? sourceInst.distrito || '' : '')) : ''
+  };
+}
+
+function eventSignature(ev) {
+  return [ev.day, ev.month, ev.year, ev.name, ev.tipo, ev.scope, ev.institutionId || '', ev.departamento || '', ev.distrito || ''].join('|');
+}
+
+function getSharedSeedEvents() {
+  if (!SEED_DATA || !Array.isArray(SEED_DATA.sharedEvents)) return [];
+  var events = [];
+  SEED_DATA.sharedEvents.forEach(function(ev, idx) {
+    var copy = {};
+    Object.keys(ev || {}).forEach(function(key) {
+      copy[key] = ev[key];
+    });
+    if ((!copy.day || !copy.month) && copy.fecha) {
+      var parts = String(copy.fecha).split('-');
+      if (parts.length === 3) {
+        copy.year = Number(copy.year || parts[0]);
+        copy.month = Number(parts[1]);
+        copy.day = Number(parts[2]);
+      }
+    }
+    if (!copy.day || !copy.month) return;
+    copy.id = copy.id || ('shared_' + idx);
+    copy.year = Number(copy.year || 2026);
+    copy.isSeed = true;
+    copy.ownerInstitutionId = null;
+    events.push(buildEvent(copy, null));
+  });
+  return events;
+}
+
+function migrarCalendarioPorAlcance() {
+  var changed = false;
+  INSTITUCIONES.forEach(function(inst) {
+    inst.departamento = inst.departamento || '';
+    inst.distrito = inst.distrito || '';
+    var propios = [];
+    (inst.eventosCalendario || []).forEach(function(ev) {
+      if (ev && (ev.isSeed || String(ev.id || '').indexOf('seed_') === 0)) {
+        changed = true;
+        return;
+      }
+      var normalized = buildEvent(ev, inst);
+      if (normalized.scope !== 'institucion') {
+        normalized.scope = 'institucion';
+        normalized.institutionId = inst.id;
+        normalized.departamento = '';
+        normalized.distrito = '';
+        changed = true;
+      }
+      propios.push(normalized);
+      if (JSON.stringify(ev) !== JSON.stringify(normalized)) changed = true;
+    });
+    if (JSON.stringify(inst.eventosCalendario || []) !== JSON.stringify(propios)) {
+      inst.eventosCalendario = propios;
+      changed = true;
+    }
+  });
+  if (PERFIL_DATA.calendarScopeVersion !== 1) {
+    PERFIL_DATA.calendarScopeVersion = 1;
+    changed = true;
+  }
+  if (changed) guardarInstituciones();
+}
+
+function matchesScope(ev, inst) {
+  if (!ev || !inst) return false;
+  if (ev.scope === 'global') return true;
+  if (ev.scope === 'institucion') return ev.institutionId === inst.id;
+  if (ev.scope === 'departamento') return normalizarTexto(ev.departamento) && normalizarTexto(ev.departamento) === normalizarTexto(inst.departamento);
+  if (ev.scope === 'distrito') {
+    return normalizarTexto(ev.departamento) === normalizarTexto(inst.departamento) &&
+      normalizarTexto(ev.distrito) && normalizarTexto(ev.distrito) === normalizarTexto(inst.distrito);
+  }
+  return false;
+}
+
 function getInstEvents() {
-  if (!INST_ACTUAL || !INST_ACTUAL.eventosCalendario) return [];
+  if (!INST_ACTUAL || !Array.isArray(INST_ACTUAL.eventosCalendario)) return [];
   return INST_ACTUAL.eventosCalendario;
 }
 
-function getCustomEvents() {
-  return getInstEvents().filter(function(e) { return e.isCustom; });
+function getVisibleEvents() {
+  var all = sembrarEventosBase().slice();
+  getSharedSeedEvents().forEach(function(ev) {
+    if (matchesScope(ev, INST_ACTUAL)) all.push(ev);
+  });
+  getInstEvents().forEach(function(ev) { all.push(ev); });
+  var seen = {};
+  return all.filter(function(ev) {
+    var sig = eventSignature(ev);
+    if (seen[sig]) return false;
+    seen[sig] = true;
+    return true;
+  }).sort(function(a, b) {
+    if (a.month !== b.month) return a.month - b.month;
+    if (a.day !== b.day) return a.day - b.day;
+    return String(a.name).localeCompare(String(b.name));
+  });
 }
 
-function getSeedEvents() {
-  return getInstEvents().filter(function(e) { return !e.isCustom; });
+function canEditEvent(ev) {
+  return !!ev && !ev.isSeed && ev.ownerInstitutionId === (INST_ACTUAL && INST_ACTUAL.id);
 }
 
-// ===== RENDER =====
-function render() {
-  if (!INST_ACTUAL) {
-    document.getElementById('calendarContainer').innerHTML = 
-      '<div style="text-align:center;padding:40px;color:#8899aa">Seleccione una institucion para ver su calendario.</div>';
-    document.getElementById('totalEvents').textContent = '0';
-    document.getElementById('totalFeriados').textContent = '0';
-    document.getElementById('totalLluvia').textContent = '0';
-    document.getElementById('addForm').style.display = 'none';
+function scopeLabel(ev) {
+  if (!ev || ev.isSeed) return 'Oficial';
+  if (ev.scope === 'institucion') return 'Institución';
+  if (ev.scope === 'departamento') return 'Departamento';
+  if (ev.scope === 'distrito') return 'Distrito';
+  return 'Global';
+}
+
+function setInstEvents(eventos) {
+  if (!INST_ACTUAL) return;
+  INST_ACTUAL.eventosCalendario = eventos;
+  guardarInstituciones();
+}
+
+function saveEvent(ev) {
+  if (!ev || ev.isSeed) return;
+  if (ev.scope !== 'institucion') {
+    alert('Los eventos globales, departamentales y distritales se administran en data/calendario_2026.json para mostrarse en todas las instituciones.');
     return;
   }
-  document.getElementById('addForm').style.display = '';
-
-  var container = document.getElementById('calendarContainer');
-  var filterSelect = document.getElementById('filterMonth');
-  var grillaHtml = '';
-  var optHtml = '<option value="all">Todos los meses</option>';
-  var totalEvents = 0, totalFeriados = 0, totalLluvia = 0;
-
-  var events = getInstEvents();
-  var ANEC = cargarAnecdoticos();
-  var TAREAS = cargarTareasCalendario();
-
-  var meses = [
-    { num:1, name:'Enero' }, { num:2, name:'Febrero' }, { num:3, name:'Marzo' },
-    { num:4, name:'Abril' }, { num:5, name:'Mayo' }, { num:6, name:'Junio' },
-    { num:7, name:'Julio' }, { num:8, name:'Agosto' }, { num:9, name:'Setiembre' },
-    { num:10, name:'Octubre' }, { num:11, name:'Noviembre' }, { num:12, name:'Diciembre' }
-  ];
-
-  meses.forEach(function(month) {
-    var monthId = 'mes_' + month.num;
-    optHtml += '<option value="' + monthId + '">' + month.name + ' 2026</option>';
-
-    var tableHtml = '';
-
-    // 1) Eventos del calendario (seed + custom)
-    var evDelMes = events.filter(function(e) { return e.month === month.num; });
-    evDelMes.forEach(function(ev) {
-      var key = ev.id;
-      tableHtml += renderEventRow(ev, key, month.num, ev.isCustom);
-      totalEvents++;
-      var tipoVal = ev.tipo || '';
-      if (tipoVal === 'Feriado Nacional') totalFeriados++;
-      if (ev.lluvia) totalLluvia++;
-    });
-
-    // 2) Eventos anecdoticos
-    var anecDelMes = ANEC.filter(function(e) { return e.month === month.num; });
-    anecDelMes.forEach(function(ev) {
-      tableHtml += '<tr class="custom">';
-      var diaSemana = ['DO','LU','MA','MI','JU','VI','SA'][new Date(2026, month.num-1, ev.day).getDay()];
-      var dateStr = diaSemana + ' ' + String(ev.day).padStart(2,'0') + '/' + String(month.num).padStart(2,'0');
-      tableHtml += '<td class="fecha">' + dateStr + '</td>';
-      tableHtml += '<td><span class="event-name" style="color:' + (ev.color||'#0f4c81') + '">' + ev.name + '</span> <span style="font-size:10px;color:#8899aa">(Reg. Anecdotico)</span></td>';
-      var tipoLabel = ev.tipoOriginal || (ev.tipo === 'positiva' ? 'Positiva' : 'Negativa');
-      tableHtml += '<td><span style="font-size:11px;padding:2px 8px;border-radius:4px;background:' + (ev.color||'#e8f1fb') + '20;color:' + (ev.color||'#0f4c81') + '">' + tipoLabel + '</span></td>';
-      tableHtml += '<td style="text-align:center">—</td>';
-      tableHtml += '<td><span style="font-size:11px;color:#8899aa">Sincronizado del Registro Anecdotico</span></td>';
-      tableHtml += '</tr>';
-      totalEvents++;
-    });
-
-    // 3) Tareas
-    var tareasDelMes = TAREAS.filter(function(t) {
-      if (!t.date || t.date === 'Sin fecha') return false;
-      var parts = t.date.split('-');
-      if (parts.length !== 3) return false;
-      return parseInt(parts[1]) === month.num;
-    });
-    tareasDelMes.forEach(function(t) {
-      var parts = t.date.split('-');
-      var day = parseInt(parts[2]);
-      var diaSemana = ['DO','LU','MA','MI','JU','VI','SA'][new Date(2026, month.num-1, day).getDay()];
-      var dateStr = diaSemana + ' ' + String(day).padStart(2,'0') + '/' + String(month.num).padStart(2,'0');
-      var subjLabel = { tecnicas:'Tecnicas', resistencia:'Resistencia', ambas:'Ambas' }[t.subject] || 'Tarea';
-      tableHtml += '<tr style="background:#fff8e1">';
-      tableHtml += '<td class="fecha">' + dateStr + '</td>';
-      tableHtml += '<td><span class="event-name" style="color:#e65100"> ' + t.title + '</span><br><span style="font-size:10px;color:#5a687c">' + (t.desc || '') + '</span></td>';
-      tableHtml += '<td><span style="font-size:11px;padding:2px 8px;border-radius:4px;background:#fff3e0;color:#e65100;border:1px solid #ffe0b2">' + subjLabel + '</span></td>';
-      tableHtml += '<td style="text-align:center">—</td>';
-      tableHtml += '<td><span style="font-size:11px;color:#8899aa"> Pendiente</span></td>';
-      tableHtml += '</tr>';
-      totalEvents++;
-    });
-
-    grillaHtml += '<div class="mes-section" id="' + monthId + '">';
-    grillaHtml += '<div class="mes-header">' + month.name + ' 2026<span class="mes-count">' + (evDelMes.length + anecDelMes.length) + ' evento(s)</span></div>';
-    grillaHtml += '<table class="cal"><thead><tr>';
-    grillaHtml += '<th>Fecha</th><th>Evento</th><th>Tipo</th><th style="text-align:center">  Llovio</th><th>Observaciones</th>';
-    grillaHtml += '</tr></thead><tbody>' + tableHtml + '</tbody></table>';
-    grillaHtml += '</div>';
-  });
-
-  // ---- LISTA PLANA ----
-  var listaItems = generarListaPlana(ANEC, TAREAS);
-  var listaHtml = '';
-  if (listaItems.length === 0) {
-    listaHtml = '<div style="text-align:center;padding:40px 20px;color:#8899aa">No hay eventos registrados.</div>';
-  } else {
-    listaHtml = '<table class="lista-table"><thead><tr><th>Fecha</th><th>Evento / Tarea</th><th>Tipo / Materia</th><th>Estado / Obs.</th></tr></thead><tbody>';
-    listaItems.forEach(function(item) {
-      var diaSemana = ['DO','LU','MA','MI','JU','VI','SA'][new Date(2026, item.month-1, item.day).getDay()];
-      var dateStr = diaSemana + ' ' + String(item.day).padStart(2,'0') + '/' + String(item.month).padStart(2,'0');
-      var rowBg = '';
-      if (item.type === 'tarea') rowBg = ' style="background:#fff8e1"';
-      else if (item.type === 'anec' || item.type === 'custom') rowBg = ' class="custom"';
-      var tagLabel = item.tag ? '<span class="tag" style="background:#e8f1fb;color:#0f4c81">' + item.tag + '</span>' : '';
-      listaHtml += '<tr' + (rowBg || '') + '>';
-      listaHtml += '<td class="fecha">' + dateStr + '</td>';
-      listaHtml += '<td>' + item.name + ' ' + tagLabel + '</td>';
-      listaHtml += '<td><span class="tipo-badge">' + item.tipo + '</span></td>';
-      listaHtml += '<td style="font-size:12px;color:#5a687c">' + (item.lluvia ? ' ' : '') + item.obs + '</td>';
-      listaHtml += '</tr>';
-    });
-    listaHtml += '</tbody></table>';
-  }
-
-  container.innerHTML = '<div class="view-grilla">' + grillaHtml + '</div><div class="view-lista">' + listaHtml + '</div>';
-
-  filterSelect.innerHTML = optHtml;
-  document.getElementById('totalEvents').textContent = totalEvents;
-  document.getElementById('totalFeriados').textContent = totalFeriados;
-  document.getElementById('totalLluvia').textContent = totalLluvia;
-
-  document.body.className = 'view-mode-' + VISTA_ACTUAL;
-  filtrarMes();
+  var propios = getInstEvents().slice();
+  var idx = propios.findIndex(function(item) { return item.id === ev.id; });
+  if (idx >= 0) propios[idx] = ev;
+  else propios.push(ev);
+  setInstEvents(propios);
 }
 
-// ===== RENDER EVENT ROW =====
-function renderEventRow(ev, key, monthNum, isCustom) {
-  var diaSemana = ['DO','LU','MA','MI','JU','VI','SA'][new Date(2026, monthNum-1, ev.day).getDay()];
-  var dateStr = diaSemana + ' ' + String(ev.day).padStart(2,'0') + '/' + String(monthNum).padStart(2,'0');
+function removeEventById(id) {
+  var propios = getInstEvents().slice();
+  var pidx = propios.findIndex(function(item) { return item.id === id; });
+  if (pidx >= 0) {
+    propios.splice(pidx, 1);
+    setInstEvents(propios);
+    return true;
+  }
+  return false;
+}
 
-  var tipoLabel = ev.tipo || 'Jornada Normal';
-  var tLower = tipoLabel.toLowerCase();
-  var tipoClass = 'normal';
-  if (tLower.indexOf('feriado') !== -1) tipoClass = 'feriado';
-  else if (tLower.indexOf('conmemor') !== -1) tipoClass = 'conmemoracion';
-  else if (tLower.indexOf('receso') !== -1) tipoClass = 'receso';
-  else if (tLower.indexOf('institucional') !== -1) tipoClass = 'institucional';
-  else if (tLower.indexOf('gremial') !== -1) tipoClass = 'gremial';
-
+function renderEventRow(ev, monthNum) {
+  var diaSemana = ['DO','LU','MA','MI','JU','VI','SA'][new Date(2026, monthNum - 1, ev.day).getDay()];
+  var dateStr = diaSemana + ' ' + String(ev.day).padStart(2, '0') + '/' + String(monthNum).padStart(2, '0');
   var checked = ev.lluvia ? 'checked' : '';
   var obsVal = ev.obs || '';
-
+  var esEditable = canEditEvent(ev);
+  var disabled = esEditable ? '' : ' disabled';
   var hoy = new Date();
-  var esHoy = (hoy.getDate() === ev.day && (hoy.getMonth()+1) === monthNum && hoy.getFullYear() === 2026);
+  var esHoy = hoy.getDate() === ev.day && (hoy.getMonth() + 1) === monthNum && hoy.getFullYear() === 2026;
   var rowCls = esHoy ? 'today' : '';
-  if (isCustom) rowCls += (rowCls ? ' ' : '') + 'custom';
+  if (!ev.isSeed && ev.scope === 'institucion') rowCls += (rowCls ? ' ' : '') + 'custom';
 
   var html = '<tr class="' + rowCls + '">';
   html += '<td class="fecha">' + dateStr + (esHoy ? ' <span class="hoy-badge"> Hoy</span>' : '') + '</td>';
-  html += '<td><span class="event-name">' + ev.name + '</span>';
-  if (isCustom) html += ' <button class="del-btn" onclick="eliminarFechaCustom(\'' + ev.id + '\')" title="Eliminar">✕</button>';
+  html += '<td><span class="event-name">' + ev.name + '</span> <span class="tag" style="background:#eef3f9;color:#2a405c">' + scopeLabel(ev) + '</span>';
+  if (esEditable) html += ' <button class="del-btn" onclick="eliminarFechaCustom(\'' + ev.id + '\')" title="Eliminar">x</button>';
   html += '</td>';
-
-  var tiposBase = ['Feriado Nacional','Asueto Departamental','Asueto Distrital','Conmemoracion','Receso','Jornada Normal','Actividad Institucional','Actividad Gremial'];
-  var opcionesTipo = tiposBase.slice();
-  if (tiposBase.indexOf(tipoLabel) === -1) opcionesTipo.push(tipoLabel);
-  html += '<td><select class="tipo-select" data-key="' + key + '" onchange="guardarTipo(\'' + key + '\',this)">';
+  var opcionesTipo = TIPOS_BASE.slice();
+  if (TIPOS_BASE.indexOf(ev.tipo) === -1) opcionesTipo.push(ev.tipo);
+  html += '<td><select class="tipo-select"' + disabled + ' onchange="guardarTipo(\'' + ev.id + '\',this)">';
   opcionesTipo.forEach(function(t) {
-    html += '<option value="' + t + '" ' + (tipoLabel===t?'selected':'') + '>' + t + '</option>';
+    html += '<option value="' + t + '"' + (ev.tipo === t ? ' selected' : '') + '>' + t + '</option>';
   });
   html += '</select></td>';
-  html += '<td style="text-align:center"><input type="checkbox" class="lluvia-input" data-key="' + key + '" ' + checked + ' onchange="guardarLluvia(\'' + key + '\',this)"></td>';
-  html += '<td><input type="text" class="obs-input" data-key="' + key + '" value="' + obsVal.replace(/"/g,'&quot;') + '" onchange="guardarObs(\'' + key + '\',this)" placeholder="Observaciones..."></td>';
+  html += '<td style="text-align:center"><input type="checkbox" class="lluvia-input"' + disabled + ' ' + checked + ' onchange="guardarLluvia(\'' + ev.id + '\',this)"></td>';
+  html += '<td><input type="text" class="obs-input"' + disabled + ' value="' + obsVal.replace(/"/g, '&quot;') + '" onchange="guardarObs(\'' + ev.id + '\',this)" placeholder="Observaciones..."></td>';
   html += '</tr>';
   return html;
 }
 
-// ===== CARGAR EVENTOS ANECDOTICOS =====
 function cargarAnecdoticos() {
   var result = [];
-  var keys = ['calendario_2026_anec_tecnicas', 'calendario_2026_anec_resistencia'];
-  keys.forEach(function(k) {
+  ['calendario_2026_anec_tecnicas', 'calendario_2026_anec_resistencia'].forEach(function(k) {
     try {
       var s = localStorage.getItem(k);
-      if (s) {
-        var evts = JSON.parse(s);
-        evts.forEach(function(e) { e._anecKey = k; result.push(e); });
-      }
-    } catch(e) {}
+      if (s) JSON.parse(s).forEach(function(e) { e._anecKey = k; result.push(e); });
+    } catch (e) {}
   });
   return result;
 }
 
-// ===== CARGAR TAREAS =====
 function cargarTareasCalendario() {
   try {
     var s = localStorage.getItem('perfil_docente_tareas');
@@ -437,17 +449,16 @@ function cargarTareasCalendario() {
     return JSON.parse(s).filter(function(t) {
       return t.status === 'pendiente' && t.date && t.date !== 'Sin fecha';
     });
-  } catch(e) { return []; }
+  } catch (e) {
+    return [];
+  }
 }
 
-// ===== GENERAR LISTA PLANA =====
-function generarListaPlana(ANEC, TAREAS) {
+function generarListaPlana(events, ANEC, TAREAS) {
   var items = [];
-
-  // Eventos de la institucion
-  getInstEvents().forEach(function(ev) {
+  events.forEach(function(ev) {
     items.push({
-      type: ev.isCustom ? 'custom' : 'calendario',
+      type: ev.isSeed ? 'calendario' : (ev.scope === 'institucion' ? 'custom' : 'calendario'),
       sortKey: ev.month * 100 + ev.day,
       month: ev.month,
       day: ev.day,
@@ -455,11 +466,9 @@ function generarListaPlana(ANEC, TAREAS) {
       tipo: ev.tipo || 'Jornada Normal',
       obs: ev.obs || '',
       lluvia: ev.lluvia || false,
-      tag: ev.isCustom ? ' Personalizado' : ' Calendario'
+      tag: scopeLabel(ev)
     });
   });
-
-  // Anecdoticos
   ANEC.forEach(function(ev) {
     items.push({
       type: 'anec',
@@ -470,16 +479,15 @@ function generarListaPlana(ANEC, TAREAS) {
       tipo: ev.tipoOriginal || (ev.tipo === 'positiva' ? 'Positiva' : 'Negativa'),
       obs: 'Sincronizado del Registro Anecdotico',
       lluvia: false,
-      tag: ' Reg. Anecdotico'
+      tag: 'Reg. Anecdotico'
     });
   });
-
-  // Tareas
   TAREAS.forEach(function(t) {
     if (!t.date || t.date === 'Sin fecha') return;
     var parts = t.date.split('-');
     if (parts.length !== 3) return;
-    var m = parseInt(parts[1]), d = parseInt(parts[2]);
+    var m = parseInt(parts[1], 10);
+    var d = parseInt(parts[2], 10);
     var subjLabel = { tecnicas:'Tecnicas', resistencia:'Resistencia', ambas:'Ambas' }[t.subject] || 'Tarea';
     items.push({
       type: 'tarea',
@@ -488,18 +496,108 @@ function generarListaPlana(ANEC, TAREAS) {
       day: d,
       name: ' ' + t.title + (t.desc ? ' - ' + t.desc : ''),
       tipo: subjLabel,
-      obs: ' Pendiente',
+      obs: 'Pendiente',
       lluvia: false,
-      tag: ' Tarea'
+      tag: 'Tarea'
     });
   });
-
   items.sort(function(a, b) { return a.sortKey - b.sortKey; });
   return items;
 }
 
-// ===== VISTA =====
-var VISTA_ACTUAL = 'grilla';
+function render() {
+  if (!INST_ACTUAL) {
+    document.getElementById('calendarContainer').innerHTML = '<div style="text-align:center;padding:40px;color:#8899aa">Seleccione una institucion para ver su calendario.</div>';
+    document.getElementById('totalEvents').textContent = '0';
+    document.getElementById('totalFeriados').textContent = '0';
+    document.getElementById('totalLluvia').textContent = '0';
+    document.getElementById('addForm').style.display = 'none';
+    return;
+  }
+  document.getElementById('addForm').style.display = '';
+
+  var events = getVisibleEvents();
+  var ANEC = cargarAnecdoticos();
+  var TAREAS = cargarTareasCalendario();
+  var meses = [
+    { num:1, name:'Enero' }, { num:2, name:'Febrero' }, { num:3, name:'Marzo' },
+    { num:4, name:'Abril' }, { num:5, name:'Mayo' }, { num:6, name:'Junio' },
+    { num:7, name:'Julio' }, { num:8, name:'Agosto' }, { num:9, name:'Setiembre' },
+    { num:10, name:'Octubre' }, { num:11, name:'Noviembre' }, { num:12, name:'Diciembre' }
+  ];
+
+  var grillaHtml = '';
+  var optHtml = '<option value="all">Todos los meses</option>';
+  var totalEvents = 0;
+  var totalFeriados = 0;
+  var totalLluvia = 0;
+
+  meses.forEach(function(month) {
+    var monthId = 'mes_' + month.num;
+    optHtml += '<option value="' + monthId + '">' + month.name + ' 2026</option>';
+    var tableHtml = '';
+    var evDelMes = events.filter(function(e) { return e.month === month.num; });
+    evDelMes.forEach(function(ev) {
+      tableHtml += renderEventRow(ev, month.num);
+      totalEvents++;
+      if (['Feriado Nacional','Receso'].indexOf(ev.tipo || '') !== -1) totalFeriados++;
+      if (ev.lluvia) totalLluvia++;
+    });
+
+    var anecDelMes = ANEC.filter(function(e) { return e.month === month.num; });
+    anecDelMes.forEach(function(ev) {
+      var diaSemana = ['DO','LU','MA','MI','JU','VI','SA'][new Date(2026, month.num - 1, ev.day).getDay()];
+      var dateStr = diaSemana + ' ' + String(ev.day).padStart(2, '0') + '/' + String(month.num).padStart(2, '0');
+      tableHtml += '<tr class="custom"><td class="fecha">' + dateStr + '</td>';
+      tableHtml += '<td><span class="event-name" style="color:' + (ev.color || '#0f4c81') + '">' + ev.name + '</span> <span style="font-size:10px;color:#8899aa">(Reg. Anecdotico)</span></td>';
+      tableHtml += '<td><span style="font-size:11px;padding:2px 8px;border-radius:4px;background:' + (ev.color || '#e8f1fb') + '20;color:' + (ev.color || '#0f4c81') + '">' + (ev.tipoOriginal || (ev.tipo === 'positiva' ? 'Positiva' : 'Negativa')) + '</span></td>';
+      tableHtml += '<td style="text-align:center">-</td><td><span style="font-size:11px;color:#8899aa">Sincronizado del Registro Anecdotico</span></td></tr>';
+      totalEvents++;
+    });
+
+    var tareasDelMes = TAREAS.filter(function(t) {
+      if (!t.date || t.date === 'Sin fecha') return false;
+      var parts = t.date.split('-');
+      return parts.length === 3 && parseInt(parts[1], 10) === month.num;
+    });
+    tareasDelMes.forEach(function(t) {
+      var parts = t.date.split('-');
+      var day = parseInt(parts[2], 10);
+      var diaSemana = ['DO','LU','MA','MI','JU','VI','SA'][new Date(2026, month.num - 1, day).getDay()];
+      var dateStr = diaSemana + ' ' + String(day).padStart(2, '0') + '/' + String(month.num).padStart(2, '0');
+      var subjLabel = { tecnicas:'Tecnicas', resistencia:'Resistencia', ambas:'Ambas' }[t.subject] || 'Tarea';
+      tableHtml += '<tr style="background:#fff8e1"><td class="fecha">' + dateStr + '</td>';
+      tableHtml += '<td><span class="event-name" style="color:#e65100"> ' + t.title + '</span><br><span style="font-size:10px;color:#5a687c">' + (t.desc || '') + '</span></td>';
+      tableHtml += '<td><span style="font-size:11px;padding:2px 8px;border-radius:4px;background:#fff3e0;color:#e65100;border:1px solid #ffe0b2">' + subjLabel + '</span></td>';
+      tableHtml += '<td style="text-align:center">-</td><td><span style="font-size:11px;color:#8899aa">Pendiente</span></td></tr>';
+      totalEvents++;
+    });
+
+    grillaHtml += '<div class="mes-section" id="' + monthId + '">';
+    grillaHtml += '<div class="mes-header">' + month.name + ' 2026<span class="mes-count">' + (evDelMes.length + anecDelMes.length) + ' evento(s)</span></div>';
+    grillaHtml += '<table class="cal"><thead><tr><th>Fecha</th><th>Evento</th><th>Tipo</th><th style="text-align:center">Lluvio</th><th>Observaciones</th></tr></thead><tbody>' + tableHtml + '</tbody></table></div>';
+  });
+
+  var listaItems = generarListaPlana(events, ANEC, TAREAS);
+  var listaHtml = listaItems.length === 0
+    ? '<div style="text-align:center;padding:40px 20px;color:#8899aa">No hay eventos registrados.</div>'
+    : '<table class="lista-table"><thead><tr><th>Fecha</th><th>Evento / Tarea</th><th>Tipo / Materia</th><th>Estado / Obs.</th></tr></thead><tbody>' +
+      listaItems.map(function(item) {
+        var diaSemana = ['DO','LU','MA','MI','JU','VI','SA'][new Date(2026, item.month - 1, item.day).getDay()];
+        var dateStr = diaSemana + ' ' + String(item.day).padStart(2, '0') + '/' + String(item.month).padStart(2, '0');
+        var rowBg = item.type === 'tarea' ? ' style="background:#fff8e1"' : ((item.type === 'anec' || item.type === 'custom') ? ' class="custom"' : '');
+        var tagLabel = item.tag ? '<span class="tag" style="background:#e8f1fb;color:#0f4c81">' + item.tag + '</span>' : '';
+        return '<tr' + rowBg + '><td class="fecha">' + dateStr + '</td><td>' + item.name + ' ' + tagLabel + '</td><td><span class="tipo-badge">' + item.tipo + '</span></td><td style="font-size:12px;color:#5a687c">' + (item.lluvia ? 'Lluvia - ' : '') + item.obs + '</td></tr>';
+      }).join('') + '</tbody></table>';
+
+  document.getElementById('calendarContainer').innerHTML = '<div class="view-grilla">' + grillaHtml + '</div><div class="view-lista">' + listaHtml + '</div>';
+  document.getElementById('filterMonth').innerHTML = optHtml;
+  document.getElementById('totalEvents').textContent = totalEvents;
+  document.getElementById('totalFeriados').textContent = totalFeriados;
+  document.getElementById('totalLluvia').textContent = totalLluvia;
+  document.body.className = 'view-mode-' + VISTA_ACTUAL;
+  filtrarMes();
+}
 
 function cambiarVista(mode) {
   VISTA_ACTUAL = mode;
@@ -509,7 +607,6 @@ function cambiarVista(mode) {
   document.body.className = 'view-mode-' + mode;
 }
 
-// ===== FILTRO =====
 function filtrarMes() {
   var val = document.getElementById('filterMonth').value;
   document.querySelectorAll('.mes-section').forEach(function(s) {
@@ -517,17 +614,13 @@ function filtrarMes() {
   });
 }
 
-// ===== INSTITUCION =====
 function renderInstituciones() {
   var sel = document.getElementById('instSelect');
-  sel.innerHTML = '<option value="">-- Seleccionar institucion --</option>' +
-    INSTITUCIONES.map(function(inst) {
-      return '<option value="' + inst.id + '">' + (inst.nombre || inst.id) + '</option>';
-    }).join('');
-
-  // Restaurar ultima institucion seleccionada
+  sel.innerHTML = '<option value="">-- Seleccionar institucion --</option>' + INSTITUCIONES.map(function(inst) {
+    return '<option value="' + inst.id + '">' + (inst.nombre || inst.id) + '</option>';
+  }).join('');
   var ultima = null;
-  try { ultima = localStorage.getItem('calendario_ultima_inst'); } catch(e) {}
+  try { ultima = localStorage.getItem('calendario_ultima_inst'); } catch (e) {}
   if (ultima) {
     sel.value = ultima;
     cambiarInstitucion();
@@ -538,11 +631,10 @@ function cambiarInstitucion() {
   var id = document.getElementById('instSelect').value;
   if (!id) {
     INST_ACTUAL = null;
-    try { localStorage.removeItem('calendario_ultima_inst'); } catch(e) {}
+    try { localStorage.removeItem('calendario_ultima_inst'); } catch (e) {}
     render();
     return;
   }
-
   INST_ACTUAL = null;
   for (var i = 0; i < INSTITUCIONES.length; i++) {
     if (INSTITUCIONES[i].id === id) {
@@ -550,35 +642,40 @@ function cambiarInstitucion() {
       break;
     }
   }
-
-  try { localStorage.setItem('calendario_ultima_inst', id); } catch(e) {}
-
-  // Si la institucion no tiene eventos, sembrar los base
-  if (INST_ACTUAL && (!INST_ACTUAL.eventosCalendario || INST_ACTUAL.eventosCalendario.length === 0)) {
-    INST_ACTUAL.eventosCalendario = sembrarEventosBase();
-    guardarInstituciones();
-  }
-
+  try { localStorage.setItem('calendario_ultima_inst', id); } catch (e) {}
   render();
 }
 
-// ===== CRUD EVENTOS =====
 function agregarFechaCustom() {
-  var day = parseInt(document.getElementById('newDay').value);
-  var month = parseInt(document.getElementById('newMonth').value);
+  var day = parseInt(document.getElementById('newDay').value, 10);
+  var month = parseInt(document.getElementById('newMonth').value, 10);
   var name = document.getElementById('newEventName').value.trim();
   var tipoSelect = document.getElementById('newEventTipo');
   var tipo = tipoSelect.value;
+  var esTipoPersonalizado = false;
   if (tipo === '__otro__') {
     tipo = document.getElementById('newEventTipoOtro').value.trim();
     if (!tipo) { alert('Escribi el tipo personalizado.'); return; }
+    esTipoPersonalizado = true;
   }
-  var color = document.getElementById('newEventColor').value;
   if (!day || !month || !name) { alert('Completa dia, mes y nombre del evento.'); return; }
 
-  var events = getInstEvents();
-  events.push({
-    id: 'cust_' + Date.now() + '_' + Math.random().toString(36).substr(2,4),
+  var scope = inferScopeForTipo(tipo, esTipoPersonalizado);
+  if (scope !== 'institucion') {
+    alert('Los eventos globales, departamentales y distritales se cargan desde data/calendario_2026.json. Desde esta vista solo se agregan eventos propios de la institución.');
+    return;
+  }
+  if (scope === 'departamento' && !INST_ACTUAL.departamento) {
+    alert('La institución debe tener departamento cargado en el Perfil Institucional.');
+    return;
+  }
+  if (scope === 'distrito' && (!INST_ACTUAL.departamento || !INST_ACTUAL.distrito)) {
+    alert('La institución debe tener departamento y distrito cargados en el Perfil Institucional.');
+    return;
+  }
+
+  saveEvent(buildEvent({
+    id: 'cust_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
     day: day,
     month: month,
     year: 2026,
@@ -586,16 +683,16 @@ function agregarFechaCustom() {
     tipo: tipo,
     lluvia: false,
     obs: '',
-    color: color,
+    color: document.getElementById('newEventColor').value,
     isSeed: false,
-    isCustom: true
-  });
-  setInstEvents(events);
+    isCustom: true,
+    scope: scope
+  }, INST_ACTUAL));
 
   document.getElementById('newDay').value = '';
   document.getElementById('newMonth').value = '';
   document.getElementById('newEventName').value = '';
-  tipoSelect.value = 'Conmemoracion';
+  tipoSelect.value = 'Conmemoración';
   document.getElementById('newEventTipoOtro').style.display = 'none';
   document.getElementById('newEventTipoOtro').value = '';
   render();
@@ -603,39 +700,67 @@ function agregarFechaCustom() {
 
 function eliminarFechaCustom(id) {
   if (!confirm('Eliminar esta fecha personalizada?')) return;
-  var events = getInstEvents().filter(function(e) { return e.id !== id; });
-  setInstEvents(events);
+  removeEventById(id);
   render();
 }
 
-// ===== ANOTACIONES =====
 function findEventById(id) {
-  if (!INST_ACTUAL || !INST_ACTUAL.eventosCalendario) return null;
-  for (var i = 0; i < INST_ACTUAL.eventosCalendario.length; i++) {
-    if (INST_ACTUAL.eventosCalendario[i].id === id) return INST_ACTUAL.eventosCalendario[i];
+  var visible = getVisibleEvents();
+  for (var i = 0; i < visible.length; i++) {
+    if (visible[i].id === id) return visible[i];
   }
   return null;
 }
 
 function guardarLluvia(key, el) {
   var ev = findEventById(key);
-  if (ev) { ev.lluvia = el.checked; guardarInstituciones(); actualizarStats(); }
+  if (!canEditEvent(ev)) return;
+  ev.lluvia = el.checked;
+  saveEvent(ev);
+  actualizarStats();
 }
 
 function guardarTipo(key, el) {
   var ev = findEventById(key);
-  if (ev) { ev.tipo = el.value; guardarInstituciones(); actualizarStats(); }
+  if (!canEditEvent(ev)) return;
+  var nextScope = inferScopeForTipo(el.value, TIPOS_BASE.indexOf(el.value) === -1);
+  if (nextScope !== 'institucion') {
+    alert('Los eventos globales, departamentales y distritales se administran en data/calendario_2026.json.');
+    el.value = ev.tipo;
+    return;
+  }
+  if (nextScope === 'departamento' && !INST_ACTUAL.departamento) {
+    alert('La institución debe tener departamento cargado para usar Asueto Departamental.');
+    el.value = ev.tipo;
+    return;
+  }
+  if (nextScope === 'distrito' && (!INST_ACTUAL.departamento || !INST_ACTUAL.distrito)) {
+    alert('La institución debe tener departamento y distrito cargados para usar Asueto Distrital.');
+    el.value = ev.tipo;
+    return;
+  }
+  ev.tipo = el.value;
+  ev.scope = nextScope;
+  ev.institutionId = nextScope === 'institucion' ? INST_ACTUAL.id : null;
+  ev.departamento = nextScope === 'departamento' || nextScope === 'distrito' ? (INST_ACTUAL.departamento || '') : '';
+  ev.distrito = nextScope === 'distrito' ? (INST_ACTUAL.distrito || '') : '';
+  saveEvent(ev);
+  actualizarStats();
+  render();
 }
 
 function guardarObs(key, el) {
   var ev = findEventById(key);
-  if (ev) { ev.obs = el.value; guardarInstituciones(); }
+  if (!canEditEvent(ev)) return;
+  ev.obs = el.value;
+  saveEvent(ev);
 }
 
 function actualizarStats() {
-  var totalFeriados = 0, totalLluvia = 0;
-  getInstEvents().forEach(function(ev) {
-    if (ev.tipo === 'Feriado Nacional') totalFeriados++;
+  var totalFeriados = 0;
+  var totalLluvia = 0;
+  getVisibleEvents().forEach(function(ev) {
+    if (['Feriado Nacional','Receso'].indexOf(ev.tipo) !== -1) totalFeriados++;
     if (ev.lluvia) totalLluvia++;
   });
   document.getElementById('totalFeriados').textContent = totalFeriados;
@@ -644,41 +769,25 @@ function actualizarStats() {
 
 function limpiarInstitucion() {
   if (!INST_ACTUAL) return;
-  INST_ACTUAL.eventosCalendario = sembrarEventosBase();
+  INST_ACTUAL.eventosCalendario = [];
   guardarInstituciones();
 }
 
-function cambiarVista(mode) {
-  VISTA_ACTUAL = mode;
-  document.querySelectorAll('.view-toggle button').forEach(function(b) {
-    b.classList.toggle('active', b.getAttribute('data-view') === mode);
-  });
-  document.body.className = 'view-mode-' + mode;
-}
-
-// ===== MOSTRAR OTRO TIPO =====
 function mostrarOtroTipo(sel) {
   var otroInput = document.getElementById('newEventTipoOtro');
   otroInput.style.display = (sel.value === '__otro__') ? '' : 'none';
   if (sel.value === '__otro__') otroInput.focus();
 }
 
-// ===== INIT =====
 function init() {
   cargarSeed();
   cargarInstituciones();
   renderInstituciones();
-  // Si no hay instituciones
   if (INSTITUCIONES.length === 0) {
-    document.getElementById('calendarContainer').innerHTML = 
-      '<div style="text-align:center;padding:40px;color:#8899aa;line-height:1.8">' +
-      'No hay instituciones configuradas.<br>' +
-      'Vaya al <a href="panel_institucional.html" style="color:#0f4c81;font-weight:600">Perfil Institucional</a> para crear una.' +
-      '</div>';
+    document.getElementById('calendarContainer').innerHTML = '<div style="text-align:center;padding:40px;color:#8899aa;line-height:1.8">No hay instituciones configuradas.<br>Vaya al <a href="panel_institucional.html" style="color:#0f4c81;font-weight:600">Perfil Institucional</a> para crear una.</div>';
     document.getElementById('addForm').style.display = 'none';
     return;
   }
-  // Si hay seleccion por defecto
   if (!INST_ACTUAL && INSTITUCIONES.length > 0) {
     var sel = document.getElementById('instSelect');
     sel.value = INSTITUCIONES[0].id;

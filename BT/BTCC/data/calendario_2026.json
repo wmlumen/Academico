@@ -2,6 +2,7 @@
   "year": 2026,
   "institucion": "Colegio Nacional Defensores del Chaco",
   "fuente": "Calendario Escolar 2026 — Sector Oficial",
+  "sharedEvents": [],
   "months": [
     {
       "num": 1, "name": "Enero",
@@ -12,7 +13,8 @@
     {
       "num": 2, "name": "Febrero",
       "events": [
-        { "day": 10, "name": "Apertura Institucional y Retorno Docente", "tipo": "Actividad Institucional" },
+        { "day": 10, "name": "Apertura Institucional", "tipo": "Apertura Institucional" },
+        { "day": 10, "name": "Retorno Docente", "tipo": "Retorno Docente" },
         { "day": 23, "name": "Inicio de Clases (Sector Oficial)", "tipo": "Jornada Normal" },
         { "day": 24, "name": "Día de la Mujer Paraguaya — Homenaje a las Residentas", "tipo": "Conmemoración" }
       ]
