@@ -1,0 +1,111 @@
+{
+  "year": 2026,
+  "institucion": "Colegio Nacional Defensores del Chaco",
+  "fuente": "Calendario Escolar 2026 — Sector Oficial",
+  "months": [
+    {
+      "num": 1, "name": "Enero",
+      "events": [
+        { "day": 1, "name": "Año Nuevo", "tipo": "Feriado Nacional" }
+      ]
+    },
+    {
+      "num": 2, "name": "Febrero",
+      "events": [
+        { "day": 10, "name": "Apertura Institucional y Retorno Docente", "tipo": "Actividad Institucional" },
+        { "day": 23, "name": "Inicio de Clases (Sector Oficial)", "tipo": "Jornada Normal" },
+        { "day": 24, "name": "Día de la Mujer Paraguaya — Homenaje a las Residentas", "tipo": "Conmemoración" }
+      ]
+    },
+    {
+      "num": 3, "name": "Marzo",
+      "events": [
+        { "day": 1, "name": "Día de los Héroes — Muerte del Mcal. López en Cerro Corá", "tipo": "Feriado Nacional" },
+        { "day": 21, "name": "Día Mundial de la Poesía y Día del Síndrome de Down", "tipo": "Conmemoración" }
+      ]
+    },
+    {
+      "num": 4, "name": "Abril",
+      "events": [
+        { "day": 2, "name": "Jueves Santo (Receso)", "tipo": "Feriado Nacional" },
+        { "day": 3, "name": "Viernes Santo (Receso)", "tipo": "Feriado Nacional" },
+        { "day": 23, "name": "Día del Libro y del Derecho de Autor", "tipo": "Conmemoración" },
+        { "day": 26, "name": "Día del Periodista — Muerte de Santiago Leguizamón", "tipo": "Conmemoración" },
+        { "day": 30, "name": "Día del Maestro (Paraguay)", "tipo": "Conmemoración" }
+      ]
+    },
+    {
+      "num": 5, "name": "Mayo",
+      "events": [
+        { "day": 1, "name": "Día de los Trabajadores", "tipo": "Feriado Nacional" },
+        { "day": 14, "name": "Día de la Independencia Nacional / Día de la Madre", "tipo": "Feriado Nacional" },
+        { "day": 15, "name": "Día de la Independencia Nacional (feriado trasladable)", "tipo": "Feriado Nacional" },
+        { "day": 29, "name": "Día del Ejército Paraguayo", "tipo": "Conmemoración" }
+      ]
+    },
+    {
+      "num": 6, "name": "Junio",
+      "events": [
+        { "day": 12, "name": "Paz del Chaco — Firma del Protocolo de Paz (1935)", "tipo": "Feriado Nacional" },
+        { "day": 19, "name": "Día del Árbol (Paraguay)", "tipo": "Conmemoración" }
+      ]
+    },
+    {
+      "num": 7, "name": "Julio",
+      "events": [
+        { "day": 13, "name": "Vacaciones de Invierno", "tipo": "Receso" },
+        { "day": 14, "name": "Vacaciones de Invierno", "tipo": "Receso" },
+        { "day": 15, "name": "Vacaciones de Invierno", "tipo": "Receso" },
+        { "day": 16, "name": "Vacaciones de Invierno", "tipo": "Receso" },
+        { "day": 17, "name": "Vacaciones de Invierno", "tipo": "Receso" },
+        { "day": 18, "name": "Vacaciones de Invierno", "tipo": "Receso" },
+        { "day": 19, "name": "Vacaciones de Invierno", "tipo": "Receso" },
+        { "day": 20, "name": "Vacaciones de Invierno", "tipo": "Receso" },
+        { "day": 21, "name": "Vacaciones de Invierno", "tipo": "Receso" },
+        { "day": 22, "name": "Vacaciones de Invierno", "tipo": "Receso" },
+        { "day": 23, "name": "Vacaciones de Invierno", "tipo": "Receso" },
+        { "day": 24, "name": "Fin Vacaciones de Invierno / Natalicio del Mcal. Francisco Solano López", "tipo": "Receso" },
+        { "day": 30, "name": "Día de la Amistad — Cruzada Mundial de la Amistad", "tipo": "Conmemoración" }
+      ]
+    },
+    {
+      "num": 8, "name": "Agosto",
+      "events": [
+        { "day": 14, "name": "Día de la Bandera", "tipo": "Conmemoración" },
+        { "day": 15, "name": "Fundación de Asunción y Día del Niño (Paraguay)", "tipo": "Feriado Nacional" },
+        { "day": 16, "name": "Día de los Niños Mártires de Acosta Ñu", "tipo": "Feriado Nacional" },
+        { "day": 22, "name": "Día del Folklore Paraguayo", "tipo": "Conmemoración" },
+        { "day": 25, "name": "Día del Idioma Guaraní", "tipo": "Conmemoración" }
+      ]
+    },
+    {
+      "num": 9, "name": "Septiembre",
+      "events": [
+        { "day": 21, "name": "Día de la Juventud y de la Primavera", "tipo": "Conmemoración" },
+        { "day": 29, "name": "Victoria de Boquerón — Batalla de Boquerón (1932)", "tipo": "Feriado Nacional" }
+      ]
+    },
+    {
+      "num": 10, "name": "Octubre",
+      "events": [
+        { "day": 12, "name": "Día de la Raza — Descubrimiento de América", "tipo": "Conmemoración" },
+        { "day": 23, "name": "Día del Diseñador Gráfico y del Radiooperador", "tipo": "Conmemoración" }
+      ]
+    },
+    {
+      "num": 11, "name": "Noviembre",
+      "events": [
+        { "day": 25, "name": "Día Internacional de la Eliminación de la Violencia contra la Mujer", "tipo": "Conmemoración" },
+        { "day": 30, "name": "Finalización de Clases", "tipo": "Jornada Normal" }
+      ]
+    },
+    {
+      "num": 12, "name": "Diciembre",
+      "events": [
+        { "day": 8, "name": "Día de la Virgen de Caacupé", "tipo": "Feriado Nacional" },
+        { "day": 11, "name": "Cierre de Actividades Administrativas", "tipo": "Jornada Normal" },
+        { "day": 25, "name": "Navidad", "tipo": "Feriado Nacional" }
+      ]
+    }
+  ]
+}

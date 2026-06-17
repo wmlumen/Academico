@@ -118,6 +118,7 @@ tr:hover td.stu-name{background:#f5f9ff}
   <label>Mes:</label>
   <select id="filterMonth" onchange="filtrarMes()"><option value="all">Todos</option></select>
   <button onclick="if(confirm('Resetear datos de asistencia de esta materia?')){var k=getStorageKey();localStorage.removeItem(k);cargarMateria()}" style="padding:7px 14px;border:none;border-radius:8px;background:#ffcdd2;color:#b71c1c;font-size:12px;font-weight:600;cursor:pointer">Limpiar</button>
+  <button onclick="marcarTodosPresentesHastaHoy()" style="padding:7px 14px;border:none;border-radius:8px;background:#c8e6c9;color:#1b5e20;font-size:12px;font-weight:600;cursor:pointer">✅ Marcar todos Presentes hasta hoy</button>
   <button onclick="window.print()" style="padding:7px 14px;border:none;border-radius:8px;background:#e3f2fd;color:#0d47a1;font-size:12px;font-weight:600;cursor:pointer">Imprimir</button>
   <div class="stats" id="statsBar">
     <span class="stat p">P: <strong id="totalP">0</strong></span>
@@ -562,26 +563,17 @@ function renderizar() {
         var ev = esFeriado(f.diaNum, f.mes);
         var esFeriadoReal = ev && (ev.tipo === 'Feriado Nacional' || ev.tipo === 'Receso');
 
-        if (esFeriadoReal && !val) {
-          DATA[f.dateKey][sid] = 'J';
-          val = 'J';
-        }
-
         var cls = val ? 'val-' + val : '';
         tblHtml += '<td' + (esFeriadoReal ? ' class="feriado"' : '') + '>';
-        if (esFeriadoReal) {
-          tblHtml += '<span style="font-size:16px;color:#e65100" title="' + ev.name + '"></span>';
-        } else {
-          tblHtml += '<select class="asis-select ' + cls + '" onchange="cambiarAsistencia(\'' + f.dateKey + '\',\'' + sid + '\',this)">';
+        tblHtml += '<select class="asis-select ' + cls + '" onchange="cambiarAsistencia(\'' + f.dateKey + '\',\'' + sid + '\',this)">';
           ['','P','A','AJ','LT','SA'].forEach(function(opt) {
             var sel = val === opt ? 'selected' : '';
             tblHtml += '<option value="' + opt + '" ' + sel + '>' + (opt || '—') + '</option>';
           });
           tblHtml += '</select>';
-        }
         tblHtml += '</td>';
 
-        if (!esFeriadoReal) habiles++;
+        habiles++;
         if (val === 'P') logrados++;
         else if (val === 'A') noLogrados++;
         else if (val === 'AJ') enProceso++;
@@ -672,6 +664,60 @@ function cambiarAsistencia(dateKey, sid, el) {
   guardarDatos();
   el.className = 'asis-select' + (val ? ' val-' + val : '');
   actualizarStats();
+}
+
+// ===== FERIADOS 2026 =====
+function obtenerFeriados() {
+  return {
+    3:  [{ d:1, t:'F' }],
+    4:  [{ d:2, t:'F' }, { d:3, t:'F' }],
+    5:  [{ d:1, t:'F' }, { d:14, t:'F' }, { d:15, t:'F' }],
+    6:  [{ d:12, t:'F' }],
+    7:  [{ d:13, t:'R' }, { d:14, t:'R' }, { d:15, t:'R' }, { d:16, t:'R' },
+         { d:17, t:'R' }, { d:18, t:'R' }, { d:19, t:'R' }, { d:20, t:'R' },
+         { d:21, t:'R' }, { d:22, t:'R' }, { d:23, t:'R' }, { d:24, t:'R' }],
+    8:  [{ d:15, t:'F' }, { d:16, t:'F' }],
+    9:  [{ d:29, t:'F' }],
+    12: [{ d:8, t:'F' }]
+  };
+}
+
+function esFeriado(dateObj) {
+  var m = dateObj.getMonth() + 1;
+  var d = dateObj.getDate();
+  var feriados = obtenerFeriados();
+  if (feriados[m]) {
+    for (var i = 0; i < feriados[m].length; i++) {
+      if (feriados[m][i].d === d) return feriados[m][i].t;
+    }
+  }
+  return null;
+}
+
+function marcarTodosPresentesHastaHoy() {
+  var fechas = generarFechasClase();
+  var hoy = new Date(CONFIG.year, 5, 17); // 17/06/2026
+  hoy.setHours(23, 59, 59, 999);
+  var cP = 0;
+
+  fechas.forEach(function(f) {
+    if (f.dateObj <= hoy) {
+      if (!DATA[f.dateKey]) DATA[f.dateKey] = {};
+      STUDENTS.forEach(function(s) {
+        if (!DATA[f.dateKey]['s' + s.num]) {
+          DATA[f.dateKey]['s' + s.num] = 'P';
+        }
+      });
+      cP++;
+    }
+  });
+
+  guardarDatos();
+  var msg = '';
+  if (cP > 0) msg += '✅ ' + cP + ' jornada(s) marcadas como Presente.\n';
+  msg += '\nLos alumnos que ya tenían otra marca no se modificaron.';
+  alert(msg);
+  cargarMateria();
 }
 
 // ---- Modal para LT (Llegada Tardía) ----

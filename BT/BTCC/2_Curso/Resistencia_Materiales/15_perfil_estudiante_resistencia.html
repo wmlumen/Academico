@@ -391,6 +391,82 @@ function mostrarPerfil() {
     html += '<div style="padding:14px 16px;color:#8899aa">No se pudieron cargar los instrumentos evaluativos.</div>';
   }
 
+  // ---- EXAMEN SUMATIVO ----
+  html += '<div class="section-title">📝 Examen Sumativo <span style="font-weight:400;font-size:12px;color:#5a687c">(desde <a href="17_examen_sumativo_resistencia.html" style="color:#1565c0">Carga de Exámenes</a>)</span></div>';
+  try {
+    var examData = JSON.parse(localStorage.getItem('examen_sumativo_resistencia')) || {};
+    var exams = examData.exams || [];
+    var scores = examData.scores || {};
+    var exigencia = parseInt(localStorage.getItem('examen_sumativo_resistencia_exigencia')) || 70;
+    if(exams.length === 0) {
+      html += '<div style="padding:14px 16px;color:#8899aa">No hay exámenes cargados. <a href="17_examen_sumativo_resistencia.html" style="color:#1565c0;font-weight:600">Ir a Carga de Exámenes →</a></div>';
+    } else {
+      html += '<div style="padding:10px 16px">';
+      exams.forEach(function(exam) {
+        var val = (scores[sid] && scores[sid][exam.id]) ? parseFloat(scores[sid][exam.id]) : null;
+        var hasVal = val !== null && !isNaN(val);
+        var dateLabel = exam.date ? exam.date.split('-')[2] + '/' + exam.date.split('-')[1] : '';
+        if(hasVal) {
+          var pct = (val / exam.maxScore) * 100;
+          var gradeHtml = '';
+          // Calcular nota según exigencia
+          var N = exam.maxScore;
+          var LI = Math.ceil((exigencia / 100) * N);
+          if (LI < 1) LI = 1;
+          if (LI > N) LI = N;
+          var points = N - LI + 1;
+          var grade = 1;
+          if (points > 0) {
+            var base = Math.floor(points / 4);
+            var rem = points % 4;
+            var sizes = [base, base, base, base];
+            if (rem === 1) sizes[1] += 1;
+            else if (rem === 2) { sizes[1] += 1; sizes[2] += 1; }
+            else if (rem === 3) { sizes[1] += 1; sizes[2] += 1; sizes[0] += 1; }
+            var remaining = points;
+            for (var i = 0; i < sizes.length; i++) {
+              if (remaining <= 0) sizes[i] = 0;
+              else if (sizes[i] === 0 && remaining > 0) { sizes[i] = 1; remaining -= 1; }
+              else remaining -= sizes[i];
+            }
+            var start = LI;
+            var seg2 = sizes[0] > 0 ? [start, start + sizes[0] - 1] : null;
+            start = seg2 ? seg2[1] + 1 : start;
+            var seg3 = sizes[1] > 0 ? [start, start + sizes[1] - 1] : null;
+            start = seg3 ? seg3[1] + 1 : start;
+            var seg4 = sizes[2] > 0 ? [start, start + sizes[2] - 1] : null;
+            start = seg4 ? seg4[1] + 1 : start;
+            var seg5 = sizes[3] > 0 ? [start, N] : null;
+            var ranges = [[1, LI - 1], seg2, seg3, seg4, seg5];
+            for (var i = 0; i < ranges.length; i++) {
+              var range = ranges[i];
+              if (range && val >= range[0] && val <= range[1]) { grade = i + 1; break; }
+            }
+          }
+          var gradeNames = {1:'Insuficiente',2:'Aceptable',3:'Bueno',4:'Muy bueno',5:'Excelente'};
+          var gradeColors = {1:'#b71c1c',2:'#e65100',3:'#f57f17',4:'#2e7d32',5:'#1b5e20'};
+          gradeHtml = '<span style="display:inline-block;padding:2px 10px;border-radius:20px;font-size:13px;font-weight:800;min-width:30px;text-align:center;background:' + (grade===5?'#e8f5e9':'#fff3e0') + ';color:' + gradeColors[grade] + (grade===5?'':'') + '">' + grade + '</span> <span style="color:#5a687c;font-size:12px">' + gradeNames[grade] + '</span>';
+          
+          html += '<div style="display:flex;align-items:center;padding:8px 12px;margin-bottom:6px;background:#f5f9ff;border-radius:6px;border-left:3px solid #4caf50">';
+          html += '<div style="flex:1;font-size:13px"><strong>' + exam.name + '</strong></div>';
+          html += '<div style="font-size:12px;font-weight:700;color:#1565c0;margin:0 12px">' + val + '/' + exam.maxScore + ' (' + pct.toFixed(1) + '%)</div>';
+          html += '<div style="font-size:11px;color:#4d6177">📅 ' + dateLabel + '</div>';
+          html += '<div style="margin-left:12px">' + gradeHtml + '</div>';
+          html += '</div>';
+        } else {
+          html += '<div style="display:flex;align-items:center;padding:8px 12px;margin-bottom:6px;background:#fafafa;border-radius:6px;border-left:3px solid #8899aa">';
+          html += '<div style="flex:1;font-size:13px"><strong>' + exam.name + '</strong></div>';
+          html += '<div style="color:#8899aa;font-size:12px;margin:0 12px">Sin nota registrada</div>';
+          html += '<div style="font-size:11px;color:#4d6177">📅 ' + dateLabel + '</div>';
+          html += '</div>';
+        }
+      });
+      html += '</div>';
+    }
+  } catch(e) {
+    html += '<div style="padding:14px 16px;color:#8899aa">No se pudieron cargar los exámenes sumativos.</div>';
+  }
+
   html += '</div>';
 
   container.innerHTML = html;

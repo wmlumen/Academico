@@ -124,6 +124,14 @@ tr:hover .sticky-col{background:#f5f9ff}
   </div>
 </div>
 
+<!-- ===== SECCIÓN: EXAMEN SUMATIVO ===== -->
+<div class="mes-section">
+  <div class="mes-header" style="background:linear-gradient(135deg,#1565c0,#42a5f5)">📝 Examen Sumativo <span style="font-size:12px;opacity:.8">— Vinculado a <a href="17_examen_sumativo_resistencia.html" style="color:#fff;font-weight:700;text-decoration:underline">Carga de Exámenes</a></span></div>
+  <div style="overflow-x:auto;padding:8px 12px">
+    <div id="examEvidence" style="font-size:11px;color:#4d6177">Cargando exámenes...</div>
+  </div>
+</div>
+
 <!-- ===== SECCIÓN: INSTRUMENTOS EVALUATIVOS EVIDENCIADOS ===== -->
 <div class="mes-section">
   <div class="mes-header" style="background:linear-gradient(135deg,#2e7d32,#4caf50)">📋 Instrumentos Evaluativos Aplicados <span style="font-size:12px;opacity:.8">— Vinculado a <a href="20_instrumentos_evaluativos_resistencia.html" style="color:#fff;font-weight:700;text-decoration:underline">Anexo 5 · Instrumentos Evaluativos</a></span></div>
@@ -178,7 +186,60 @@ function migrarScores() {
             // Si la key es 's1', 's2' etc (formato antiguo) → migrar
             if(key.indexOf('s') === 0) {
               needsMigrate = true;
-            }
+}
+
+// ===== EXAMEN SUMATIVO (desde 17_examen_sumativo_resistencia.html) =====
+function renderExamenEvidence() {
+  var container = document.getElementById('examEvidence');
+  if(!container) return;
+  try {
+    var data = JSON.parse(localStorage.getItem('examen_sumativo_resistencia')) || {};
+  } catch(e) { data = {}; }
+  
+  var exams = data.exams || [];
+  var scores = data.scores || {};
+  
+  if(exams.length === 0) {
+    container.innerHTML = '<div style="padding:14px 16px;color:#8899aa">No hay exámenes cargados. <a href="17_examen_sumativo_resistencia.html" style="color:#1565c0;font-weight:600">Ir a Carga de Exámenes →</a></div>';
+    return;
+  }
+  
+  var html = '<table class="summary-table" style="font-size:10px"><thead><tr><th style="text-align:left;min-width:120px;position:sticky;left:0;background:#e8f1fb;z-index:2">Alumno</th>';
+  exams.forEach(function(exam) {
+    var dateLabel = exam.date ? exam.date.split('-')[2] + '/' + exam.date.split('-')[1] : '';
+    html += '<th style="text-align:center;min-width:60px;font-size:9px;writing-mode:vertical-lr;transform:rotate(180deg);height:60px;padding:2px 3px" title="' + exam.name + ' (' + exam.maxScore + ' pts)">' + exam.name + '<br><small>' + dateLabel + '</small></th>';
+  });
+  html += '<th style="text-align:center;min-width:50px">Prom.</th style="%"></th></tr></thead><tbody>';
+  
+  var totalAll = 0;
+  STUDENTS.forEach(function(s) {
+    var sid = 's' + s.num;
+    var applied = 0;
+    var sumPct = 0;
+    html += '<tr><td style="text-align:left;font-weight:600;position:sticky;left:0;background:#fff;z-index:1">' + s.num + '. ' + s.name.split(',')[0] + '</td>';
+    exams.forEach(function(exam) {
+      var val = (scores[sid] && scores[sid][exam.id]) ? parseFloat(scores[sid][exam.id]) : null;
+      var hasVal = val !== null && !isNaN(val);
+      if(hasVal) {
+        applied++;
+        var pct = (val / exam.maxScore) * 100;
+        sumPct += pct;
+        html += '<td style="text-align:center;font-size:11px">' + val + '/' + exam.maxScore + '<br><small>' + pct.toFixed(1) + '%</small></td>';
+      } else {
+        html += '<td style="text-align:center;font-size:11px;color:#8899aa">—</td>';
+      }
+    });
+    var promPct = applied > 0 ? (sumPct / applied) : 0;
+    html += '<td style="text-align:center;font-weight:700;color:' + (promPct >= 70 ? '#2e7d32' : '#c62828') + '">' + (applied > 0 ? promPct.toFixed(1) + '%' : '—') + '</td></tr>';
+    totalAll += applied;
+  });
+  html += '</tbody></table>';
+  
+  container.innerHTML = '<div style="margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">' +
+    '<span style="font-weight:700;color:#1565c0">📝 Exámenes cargados: ' + exams.length + ' · Evaluaciones registradas: ' + totalAll + '</span>' +
+    '<span><a href="17_examen_sumativo_resistencia.html" style="color:#1565c0;font-weight:600;text-decoration:underline">✏️ Ir a Carga de Exámenes →</a></span>' +
+    '</div>' + html;
+}
           });
         }
       });
@@ -548,6 +609,7 @@ window.addEventListener('DOMContentLoaded', function() {
   cargarProyectos();
   renderTodo();
   renderInstrumentosEvidence();
+  renderExamenEvidence();
 });
 </script>
 

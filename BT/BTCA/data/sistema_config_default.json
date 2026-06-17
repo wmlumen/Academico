@@ -1,0 +1,39 @@
+{
+  "year": 2026,
+  "cursoActual": "1",
+  "materiaActual": "educacion_ambiental_i",
+  "cursos": {
+    "1": {
+      "nombre": "1° Curso BTCA",
+      "alumnos": "data/alumnos_1_curso.js",
+      "materias": [
+        { "id": "educacion_ambiental_i", "nombre": "Educación Ambiental I", "dias": ["LU","MI","VI"] },
+        { "id": "agroecologia_i", "nombre": "Agroecología I", "dias": ["MA","JU"] },
+        { "id": "meteorologia_i", "nombre": "Meteorología I", "dias": ["MI","VI"] },
+        { "id": "biologia_general", "nombre": "Biología General", "dias": ["LU","JU"] },
+        { "id": "sociologia_urbana_rural", "nombre": "Sociología Urbana y Rural", "dias": ["MA"] },
+        { "id": "metodologia", "nombre": "Metodología", "dias": ["MI"] }
+      ]
+    },
+    "2": {
+      "nombre": "2° Curso BTCA",
+      "alumnos": "data/alumnos_2_curso.js",
+      "materias": [
+        { "id": "educacion_ambiental_ii", "nombre": "Educación Ambiental II", "dias": ["LU","MI","VI"] },
+        { "id": "agroecologia_ii", "nombre": "Agroecología II", "dias": ["MA","JU"] },
+        { "id": "meteorologia_ii", "nombre": "Meteorología II", "dias": ["MI","VI"] },
+        { "id": "administracion_ambiental_i", "nombre": "Administración Ambiental I", "dias": ["LU","MA"] }
+      ]
+    },
+    "3": {
+      "nombre": "3° Curso BTCA",
+      "alumnos": "data/alumnos_3_curso.js",
+      "materias": [
+        { "id": "gestion_ambiental", "nombre": "Gestión Ambiental", "dias": ["LU","MI"] },
+        { "id": "evaluacion_impacto_ambiental", "nombre": "Evaluación de Impacto Ambiental", "dias": ["MA","JU"] },
+        { "id": "gestion_recursos_naturales", "nombre": "Gestión de Recursos Naturales", "dias": ["MI","VI"] },
+        { "id": "proyectos_ambientales", "nombre": "Proyectos Ambientales", "dias": ["JU","VI"] }
+      ]
+    }
+  }
+}

@@ -228,6 +228,8 @@ body:not(.rol-alumno) .hide-docente{display:none !important}
     <div class="form-grid">
       <div class="form-group"><label>Nombre de la institución</label><input type="text" id="modalInstNombre" placeholder="Ej: Colegio Nacional ..."></div>
       <div class="form-group"><label>Contraseña de acceso</label><input type="password" id="modalInstPassword" placeholder="Contraseña"></div>
+      <div class="form-group"><label>Departamento</label><input type="text" id="modalInstDepartamento" placeholder="Ej: Presidente Hayes"></div>
+      <div class="form-group"><label>Distrito</label><input type="text" id="modalInstDistrito" placeholder="Ej: Benjamín Aceval"></div>
     </div>
     <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end">
       <button class="btn btn-outline" onclick="cerrarModalInstitucion()">Cancelar</button>
@@ -336,6 +338,8 @@ function migrarDesdeAnterior() {
       id: 'inst_' + Date.now(),
       nombre: nombreInst,
       password: '1340130',
+      departamento: oldData.departamento || '',
+      distrito: oldData.distrito || '',
       docentes: oldData.docentes || [],
       asignaturas: oldData.asignaturas || [],
       eventosCalendario: oldData.eventosCalendario || []
@@ -439,6 +443,8 @@ function renderInstituciones() {
         id: 'inst_default',
         nombre: nombreInst,
         password: '1340130',
+        departamento: DEFAULT_INSTITUCIONES.departamento || '',
+        distrito: DEFAULT_INSTITUCIONES.distrito || '',
         docentes: DEFAULT_INSTITUCIONES.docentes || [],
         asignaturas: DEFAULT_INSTITUCIONES.asignaturas || [],
         eventosCalendario: DEFAULT_INSTITUCIONES.eventosCalendario || []
@@ -457,6 +463,7 @@ function renderInstituciones() {
     card.innerHTML = '<div style="font-size:32px;margin-bottom:8px">🏛️</div>' +
       '<h3 style="margin:0 0 6px;font-size:17px">' + inst.nombre + '</h3>' +
       '<div style="font-size:13px;color:var(--muted);margin-bottom:14px">' +
+        (inst.departamento || 'Sin departamento') + ' · ' + (inst.distrito || 'Sin distrito') + '<br>' +
         (inst.docentes ? inst.docentes.length : 0) + ' docentes · ' +
         (inst.asignaturas ? inst.asignaturas.length : 0) + ' asignaturas · ' +
         (inst.eventosCalendario ? inst.eventosCalendario.length : 0) + ' eventos' +
@@ -478,6 +485,8 @@ function mostrarModalInstitucion() {
   document.getElementById('modalInstTitle').textContent = '🏛️ Nueva institución';
   document.getElementById('modalInstNombre').value = '';
   document.getElementById('modalInstPassword').value = '';
+  document.getElementById('modalInstDepartamento').value = '';
+  document.getElementById('modalInstDistrito').value = '';
   document.getElementById('btnGuardarInst').textContent = '💾 Crear institución';
   document.getElementById('modalInstitucion').style.display = 'flex';
 }
@@ -493,6 +502,8 @@ function editarInstitucion(id) {
   document.getElementById('modalInstTitle').textContent = '✏️ Editar institución';
   document.getElementById('modalInstNombre').value = inst.nombre;
   document.getElementById('modalInstPassword').value = inst.password || '';
+  document.getElementById('modalInstDepartamento').value = inst.departamento || '';
+  document.getElementById('modalInstDistrito').value = inst.distrito || '';
   document.getElementById('btnGuardarInst').textContent = '💾 Guardar';
   document.getElementById('modalInstitucion').style.display = 'flex';
 }
@@ -504,6 +515,8 @@ function cerrarModalInstitucion() {
 function guardarInstitucion() {
   var nombre = document.getElementById('modalInstNombre').value.trim();
   var password = document.getElementById('modalInstPassword').value.trim();
+  var departamento = document.getElementById('modalInstDepartamento').value.trim();
+  var distrito = document.getElementById('modalInstDistrito').value.trim();
   if (!nombre) { mostrarAlerta('Ingrese el nombre de la institución.', 'info'); return; }
   if (!password) { mostrarAlerta('Debe establecer una contraseña para acceder.', 'info'); return; }
   var estado = obtenerEstado();
@@ -512,6 +525,8 @@ function guardarInstitucion() {
       if (estado.instituciones[i].id === editingInstId) {
         estado.instituciones[i].nombre = nombre;
         estado.instituciones[i].password = password;
+        estado.instituciones[i].departamento = departamento;
+        estado.instituciones[i].distrito = distrito;
         break;
       }
     }
@@ -520,6 +535,8 @@ function guardarInstitucion() {
       id: 'inst_' + Date.now(),
       nombre: nombre,
       password: password,
+      departamento: departamento,
+      distrito: distrito,
       docentes: [],
       asignaturas: [],
       eventosCalendario: []

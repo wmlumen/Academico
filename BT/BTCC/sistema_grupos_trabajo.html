@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Grupos de Trabajo — BTCC</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,sans-serif;background:#f0f4fa;color:#172133}
+.wrap{max-width:1500px;margin:0 auto;padding:16px}
+
+.header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:18px 24px;border-radius:14px;margin-bottom:14px}
+.header h1{margin:0 0 4px;font-size:22px}
+.header p{margin:0;font-size:13px;opacity:.9}
+.header .badge{display:inline-block;background:rgba(255,255,255,0.18);padding:2px 10px;border-radius:10px;font-size:11px;margin:4px 6px 0 0}
+.header .badge a{color:#fff}
+
+/* ===== CONTROLS ===== */
+.controls{background:#fff;border:1px solid #d8e3ef;border-radius:12px;padding:14px 18px;margin-bottom:14px;box-shadow:0 2px 8px rgba(23,33,51,0.06)}
+.controls-row{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.controls-row .field{display:flex;flex-direction:column;gap:2px}
+.controls-row .field label{font-size:10px;font-weight:700;color:#4d6177;text-transform:uppercase}
+.controls-row .field select,.controls-row .field input{padding:6px 9px;border:1.5px solid #c8d9ea;border-radius:7px;font-size:12px;background:#fff}
+.controls-row .field input[type=number]{width:70px}
+.controls-row .field input:focus,.controls-row .field select:focus{border-color:#0f4c81;outline:none;box-shadow:0 0 0 3px rgba(15,76,129,0.1)}
+.controls-row .btn{padding:7px 16px;border:none;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;transition:all .12s;display:inline-flex;align-items:center;gap:5px}
+.controls-row .btn.pri{background:#0f4c81;color:#fff}
+.controls-row .btn.pri:hover{background:#1a5f9a}
+.controls-row .btn.sec{background:#e8f1fb;color:#0f4c81;border:1px solid #c8d9ea}
+.controls-row .btn.sec:hover{background:#d4e4f5}
+.controls-row .btn.warn{background:#fff3e0;color:#e65100;border:1px solid #ffe0b2}
+
+.stats-bar{display:flex;flex-wrap:wrap;gap:10px;padding:8px 0;margin-top:10px;border-top:1px solid #e8ecf0;font-size:12px;color:#4d6177}
+.stats-bar .stat{padding:3px 10px;background:#f0f4fa;border-radius:5px}
+.stats-bar .stat strong{color:#0f4c81}
+
+/* ===== METHOD CARDS ===== */
+.methods{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px;margin-top:10px}
+.method-card{padding:10px 12px;border:2px solid #d8e3ef;border-radius:10px;cursor:pointer;transition:all .15s;background:#fff}
+.method-card:hover{border-color:#90b4d9}
+.method-card.active{border-color:#0f4c81;background:#e8f1fb;box-shadow:0 0 0 3px rgba(15,76,129,0.1)}
+.method-card .method-icon{font-size:20px;margin-bottom:2px}
+.method-card .method-name{font-weight:700;font-size:12px;color:#0f4c81}
+.method-card .method-desc{font-size:10px;color:#5a687c;margin-top:2px}
+
+/* ===== SESSIONS TABS ===== */
+.session-bar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;padding:8px 10px;background:#fff;border:1px solid #d8e3ef;border-radius:10px;align-items:center}
+.session-bar .label{font-size:11px;font-weight:700;color:#4d6177;margin-right:6px}
+.session-tab{padding:5px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;border:1.5px solid #c8d9ea;background:#fff;color:#4d6177;transition:all .12s;white-space:nowrap}
+.session-tab:hover{background:#e8f1fb}
+.session-tab.active{background:#0f4c81;color:#fff;border-color:#0f4c81}
+.session-tab .del-sess{margin-left:4px;opacity:0;transition:opacity .12s}
+.session-tab:hover .del-sess{opacity:1}
+.session-tab .del-sess:hover{color:#b71c1c}
+
+/* ===== GROUPS ===== */
+.groups-container{margin-top:10px}
+.group-section{background:#fff;border:1px solid #d8e3ef;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(23,33,51,0.04);margin-bottom:12px}
+.group-header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:9px 14px;font-size:13px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.group-header .group-num{display:flex;align-items:center;gap:8px}
+.group-header .group-size{font-size:11px;opacity:.8;font-weight:400}
+.group-header .btn-sm{padding:2px 8px;border:none;border-radius:4px;font-size:10px;font-weight:700;cursor:pointer;background:rgba(255,255,255,0.18);color:#fff;transition:background .12s}
+.group-header .btn-sm:hover{background:rgba(255,255,255,0.35)}
+.group-body{padding:8px 14px}
+.group-members{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:5px;margin-bottom:8px}
+.member-card{display:flex;align-items:center;gap:6px;padding:5px 8px;background:#f5f9ff;border-radius:6px;border:1px solid #e8ecf0;font-size:11px}
+.member-card .member-num{width:22px;height:22px;border-radius:50%;background:#0f4c81;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.member-card .member-name{flex:1;font-weight:500}
+
+/* ===== TEAM INDICATORS ===== */
+.team-evals{margin-top:6px;padding:8px 10px;background:#fafffe;border-radius:8px;border:1px solid #c8e6c9}
+.team-evals-title{font-size:11px;font-weight:700;color:#1b5e20;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.team-evals table{width:100%;border-collapse:collapse;font-size:10.5px}
+.team-evals th{background:#e8f5e9;color:#1b5e20;font-weight:600;padding:4px 6px;text-align:left;border-bottom:1px solid #a5d6a7;font-size:10px}
+.team-evals td{padding:3px 6px;border-bottom:1px solid #e8ecf0;text-align:center}
+.team-evals td:first-child{text-align:left;font-weight:500}
+.team-evals select{padding:2px 4px;border:1px solid #c8e6c9;border-radius:3px;font-size:10px;background:#fff;min-width:32px}
+.team-evals select:focus{border-color:#2e7d32;outline:none}
+.team-evals .total-row td{background:#e8f5e9;font-weight:700;border-top:2px solid #a5d6a7}
+.team-evals .total-row td:first-child{color:#1b5e20}
+
+/* ===== EMPTY ===== */
+.empty-state{text-align:center;padding:50px 20px;color:#9aabba}
+.empty-state .icon{font-size:44px;margin-bottom:8px}
+.empty-state h3{font-size:16px;color:#4d6177;margin-bottom:4px}
+.empty-state p{font-size:12px;max-width:400px;margin:0 auto}
+
+/* ===== SAVED LIST ===== */
+.saved-list{display:flex;flex-wrap:wrap;gap:6px}
+.saved-item{display:flex;align-items:center;gap:5px;padding:5px 10px;background:#e8f1fb;border:1px solid #c8d9ea;border-radius:6px;font-size:11px;font-weight:600;color:#0f4c81;cursor:pointer;transition:all .12s}
+.saved-item:hover{background:#d4e4f5}
+.saved-item .del-saved{padding:0 3px;cursor:pointer;color:#b71c1c;font-weight:700;font-size:13px}
+
+/* ===== ACTION BUTTONS ===== */
+.action-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.action-bar .btn{padding:8px 16px;border:none;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;transition:all .12s}
+.action-bar .btn.pri{background:#0f4c81;color:#fff}
+.action-bar .btn.pri:hover{background:#1a5f9a}
+.action-bar .btn.sec{background:#e8f1fb;color:#0f4c81;border:1px solid #c8d9ea}
+.action-bar .btn.sec:hover{background:#d4e4f5}
+.action-bar .btn.del{background:#ffebee;color:#b71c1c}
+.action-bar .btn.del:hover{background:#ffcdd2}
+
+@media print{.controls,.session-bar,.action-bar{display:none}.group-section{break-inside:avoid;box-shadow:none;border:1px solid #ccc}}
+@media(max-width:800px){
+  .controls-row{flex-direction:column;align-items:stretch}
+  .methods{grid-template-columns:1fr 1fr}
+  .group-members{grid-template-columns:1fr}
+}
+</style>
+
+<link rel="stylesheet" href="nav/nav.css">
+<script src="nav/runtime.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>👥 Sistema de Grupos de Trabajo</h1>
+  <p>BTCC · Generación de equipos por tema/actividad · Evaluación de trabajo en equipo · Vinculado a proyectos institucionales</p>
+  <span class="badge">📚 Todas las asignaturas</span>
+  <span class="badge">🏗️ <a href="Documentos_Generales/OBRATEC/Proyecto_Educativo_Competencia_Integrada_BTCC_2026_2031.html">Proyecto OBRATEC</a></span>
+  <span class="badge">📋 <a href="2_Curso/Resistencia_Materiales/16_planilla_proceso_resistencia.html">Planilla de Proceso</a></span>
+</div>
+
+<!-- ===== SESSION TABS ===== -->
+<div class="session-bar" id="sessionBar">
+  <span class="label">📂 Sesiones:</span>
+  <div id="sessionTabs" style="display:flex;flex-wrap:wrap;gap:6px;flex:1"></div>
+  <button class="btn sec" onclick="nuevaSesion()" style="padding:4px 10px;border:1px solid #c8d9ea;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;background:#fff;color:#0f4c81">➕ Nueva</button>
+</div>
+
+<!-- ===== CONTROLS ===== -->
+<div class="controls">
+  <div class="controls-row">
+    <div class="field">
+      <label>📖 Asignatura</label>
+      <select id="selSubject" onchange="onConfigChange()">
+        <optgroup label="2.do Curso">
+          <option value="resistencia">Resistencia de Materiales</option>
+          <option value="tecnicas">Técnicas Instrumentales II</option>
+        </optgroup>
+        <optgroup label="Proyecto Institucional">
+          <option value="obratec">🏗️ OBRATEC — Proyecto Integrador</option>
+        </optgroup>
+      </select>
+    </div>
+    <div class="field">
+      <label>🏫 Proyecto Institucional</label>
+      <select id="selProject"><option value="">— Sin proyecto —</option></select>
+    </div>
+    <div class="field" style="flex:1;min-width:140px">
+      <label>📌 Tema / Actividad</label>
+      <input type="text" id="topicName" placeholder="Ej: Análisis de vigas, Cómputo métrico..." style="min-width:160px">
+    </div>
+    <div class="field">
+      <label>👥 Tamaño</label>
+      <input type="number" id="groupSize" value="3" min="2" max="15">
+    </div>
+    <div class="field">
+      <label>🔢 Grupos exactos</label>
+      <input type="number" id="exactGroups" value="0" min="0" max="20" style="width:55px">
+      <span style="font-size:9px;color:#8899aa">0 = usar tamaño</span>
+    </div>
+    <button class="btn pri" onclick="generarGrupos()">⚡ Generar</button>
+  </div>
+
+  <!-- Methods -->
+  <div class="methods" id="methodSelector">
+    <div class="method-card active" data-method="ordenado" onclick="selectMethod('ordenado')">
+      <div class="method-icon">📋</div>
+      <div class="method-name">Por orden</div>
+      <div class="method-desc">Alfabético secuencial</div>
+    </div>
+    <div class="method-card" data-method="aleatorio" onclick="selectMethod('aleatorio')">
+      <div class="method-icon">🎲</div>
+      <div class="method-name">Aleatorio</div>
+      <div class="method-desc">Mezcla al azar</div>
+    </div>
+    <div class="method-card" data-method="impares" onclick="selectMethod('impares')">
+      <div class="method-icon">🔢</div>
+      <div class="method-name">Pares/Impares</div>
+      <div class="method-desc">Posiciones alternadas</div>
+    </div>
+    <div class="method-card" data-method="eleccion" onclick="selectMethod('eleccion')">
+      <div class="method-icon">✋</div>
+      <div class="method-name">Elección propia</div>
+      <div class="method-desc">Alumnos eligen su grupo</div>
+    </div>
+  </div>
+
+  <div class="stats-bar" id="statsBar">
+    <span class="stat">👥 <strong id="totalStudents">0</strong> alumnos</span>
+    <span class="stat">📦 <strong id="totalGroups">0</strong> grupos</span>
+    <span class="stat" id="groupBreakdown"></span>
+  </div>
+</div>
+
+<!-- ===== GROUPS + EVALS ===== -->
+<div id="groupsContainer">
+  <div class="empty-state">
+    <div class="icon">👥</div>
+    <h3>Generá grupos de trabajo</h3>
+    <p>Seleccioná la asignatura, el tema, el proyecto institucional, el tamaño del grupo y el método. Cada actividad genera su propia sesión de grupos con evaluación de equipo.</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+// ============================================================
+//  CONFIG
+// ============================================================
+
+var SAVE_KEY = 'grupos_trabajo_btcc';
+var allStudents = { 1: [], 2: [], 3: [] };
+var currentSessionId = null; // id de la sesión activa
+var sessions = {};          // todas las sesiones guardadas
+var currentMethod = 'ordenado';
+
+// 5 Indicadores de trabajo en equipo
+var TEAM_INDICATORS = [
+  { id: 'e1', name: 'Cooperación y colaboración', desc: 'Trabaja en conjunto, comparte ideas y apoya a los compañeros' },
+  { id: 'e2', name: 'Comunicación efectiva', desc: 'Expresa ideas con claridad, escucha activamente y aporta al diálogo' },
+  { id: 'e3', name: 'Responsabilidad y compromiso', desc: 'Cumple con tareas asignadas, respeta plazos y asume su rol' },
+  { id: 'e4', name: 'Resolución de conflictos', desc: 'Maneja diferencias con respeto, busca acuerdos y soluciones' },
+  { id: 'e5', name: 'Calidad del trabajo en equipo', desc: 'El producto final del grupo muestra coordinación y esfuerzo colectivo' }
+];
+
+// ============================================================
+//  CARGA DE ALUMNOS
+// ============================================================
+
+function cargarAlumnos(callback) {
+  var pend = 3;
+  function cargarCurso(curso, key) {
+    try {
+      var url = '/data/alumnos_' + curso + '_curso.json';
+      var data = window.BTCCRuntime ? window.BTCCRuntime.loadJson(url, []) : [];
+      allStudents[key] = (data || []).map(function(s) {
+        return { num: s.num, name: s.name, doc: s.doc || '', curso: key };
+      });
+    } catch(e) { allStudents[key] = []; }
+    pend--;
+    if(pend <= 0 && callback) callback();
+  }
+  if(window.BTCCRuntime && window.BTCCRuntime.loadJson) {
+    cargarCurso('1_curso', 1); cargarCurso('2_curso', 2); cargarCurso('3_curso', 3);
+  } else {
+    setTimeout(function() {
+      [1,2,3].forEach(function(k) {
+        try {
+          var x = new XMLHttpRequest();
+          x.open('GET', '/data/alumnos_' + k + '_curso.json', false);
+          x.send();
+          allStudents[k] = JSON.parse(x.responseText).map(function(s) {
+            return { num: s.num, name: s.name, doc: s.doc || '', curso: k };
+          });
+        } catch(e) { allStudents[k] = []; }
+      });
+      if(callback) callback();
+    }, 500);
+  }
+}
+
+function getAlumnos(subject) {
+  if(subject === 'resistencia' || subject === 'tecnicas') return (allStudents[2] || []).slice();
+  if(subject === 'obratec') {
+    var c = [];
+    [1,2,3].forEach(function(k) { (allStudents[k] || []).forEach(function(s) { c.push(s); }); });
+    return c;
+  }
+  return [];
+}
+
+function getSubjectLabel(subject) {
+  return { resistencia: 'Resistencia de Materiales · 2.do Curso', tecnicas: 'Técnicas Instrumentales II · 2.do Curso', obratec: 'OBRATEC — Proyecto Integrador' }[subject] || subject;
+}
+
+// ============================================================
+//  PROYECTOS INSTITUCIONALES
+// ============================================================
+function cargarProyectos(sel) {
+  var proyectos = [];
+  var subject = document.getElementById('selSubject').value;
+  // Intentar cargar proyectos desde localStorage (misma clave que Planilla de Proceso)
+  var proyKeys = { resistencia: 'proy_resistencia', tecnicas: 'proy_tecnicas', obratec: 'proy_resistencia' };
+  var key = proyKeys[subject] || 'proy_resistencia';
+  try {
+    var data = JSON.parse(localStorage.getItem(key)) || [];
+    proyectos = data;
+  } catch(e) {}
+  // Si no hay proyectos, mostrar mensaje
+  sel.innerHTML = '<option value="">— Sin proyecto institucional —</option>';
+  proyectos.forEach(function(p) {
+    var opt = document.createElement('option');
+    opt.value = p.id;
+    opt.textContent = p.name;
+    sel.appendChild(opt);
+  });
+}
+
+// ============================================================
+//  SESIONES (CRUD)
+// ============================================================
+
+function cargarSesiones() {
+  try { sessions = JSON.parse(localStorage.getItem(SAVE_KEY)) || {}; } catch(e) { sessions = {}; }
+}
+
+function guardarSesiones() {
+  localStorage.setItem(SAVE_KEY, JSON.stringify(sessions));
+}
+
+function getCurrentSession() {
+  if(!currentSessionId || !sessions[currentSessionId]) return null;
+  return sessions[currentSessionId];
+}
+
+function nuevaSesion() {
+  var subject = document.getElementById('selSubject').value;
+  var topic = document.getElementById('topicName').value.trim() || 'Actividad sin título';
+  var now = new Date();
+  var id = 'sess_' + now.getTime();
+  var session = {
+    id: id,
+    subject: subject,
+    topic: topic,
+    projectId: document.getElementById('selProject').value,
+    projectName: document.getElementById('selProject').selectedOptions[0] ? document.getElementById('selProject').selectedOptions[0].textContent : '',
+    method: currentMethod,
+    createdAt: now.toISOString(),
+    groups: [],
+    teamEvals: {} // { groupIndex: { indicatorId: score } }
+  };
+  sessions[id] = session;
+  currentSessionId = id;
+  guardarSesiones();
+  renderSessionTabs();
+  renderGroups([]);
+  mostrarFeedback('➕ Nueva sesión: ' + topic);
+}
+
+function selectSession(id) {
+  if(!sessions[id]) return;
+  currentSessionId = id;
+  var sess = sessions[id];
+  document.getElementById('selSubject').value = sess.subject;
+  document.getElementById('topicName').value = sess.topic;
+  document.getElementById('selProject').value = sess.projectId || '';
+  currentMethod = sess.method || 'ordenado';
+  document.querySelectorAll('.method-card').forEach(function(el) {
+    el.classList.toggle('active', el.dataset.method === currentMethod);
+  });
+  cargarProyectos(document.getElementById('selProject'));
+  renderSessionTabs();
+  renderGroups(sess.groups || []);
+  renderTeamEvals();
+}
+
+function deleteSession(id) {
+  if(!confirm('¿Eliminar esta sesión y todos sus grupos?')) return;
+  delete sessions[id];
+  if(currentSessionId === id) {
+    currentSessionId = null;
+    var keys = Object.keys(sessions);
+    if(keys.length > 0) selectSession(keys[0]);
+    else {
+      document.getElementById('groupsContainer').innerHTML = '<div class="empty-state"><div class="icon">👥</div><h3>Sin sesiones</h3><p>Creá una nueva sesión para empezar.</p></div>';
+    }
+  }
+  guardarSesiones();
+  renderSessionTabs();
+}
+
+function renderSessionTabs() {
+  var container = document.getElementById('sessionTabs');
+  container.innerHTML = '';
+  var keys = Object.keys(sessions);
+  keys.forEach(function(id) {
+    var sess = sessions[id];
+    var tab = document.createElement('span');
+    tab.className = 'session-tab' + (id === currentSessionId ? ' active' : '');
+    var fecha = new Date(sess.createdAt).toLocaleDateString();
+    tab.innerHTML = (sess.topic || 'Sin tema') + ' <span style="font-weight:400;font-size:9px">(' + (sess.groups ? sess.groups.length : 0) + ' grupos)</span> <span class="del-sess" onclick="event.stopPropagation();deleteSession(\'' + id + '\')">✕</span>';
+    tab.onclick = function() { selectSession(id); };
+    tab.title = getSubjectLabel(sess.subject) + ' · ' + fecha;
+    container.appendChild(tab);
+  });
+}
+
+// ============================================================
+//  ALGORITMOS
+// ============================================================
+
+function mezclarArray(arr) {
+  for(var i = arr.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = arr[i]; arr[i] = arr[j]; arr[j] = temp;
+  }
+  return arr;
+}
+
+function distribuirEnGrupos(alumnos, size, exactCount) {
+  if(alumnos.length === 0) return [];
+  if(exactCount && exactCount > 0) {
+    var n = alumnos.length, ng = exactCount;
+    var base = Math.floor(n / ng), extra = n % ng;
+    var groups = [], idx = 0;
+    for(var g = 0; g < ng; g++) { var gs = base + (g < extra ? 1 : 0); groups.push(alumnos.slice(idx, idx + gs)); idx += gs; }
+    return groups;
+  }
+  var groups = [];
+  var n = alumnos.length, bs = size;
+  var numFull = Math.floor(n / bs), rem = n % bs;
+  if(rem > 0 && rem >= bs - 1) {
+    var ng2 = Math.ceil(n / bs), base2 = Math.floor(n / ng2), extra2 = n % ng2, idx2 = 0;
+    for(var g2 = 0; g2 < ng2; g2++) { var gs2 = base2 + (g2 < extra2 ? 1 : 0); groups.push(alumnos.slice(idx2, idx2 + gs2)); idx2 += gs2; }
+    return groups;
+  }
+  var idx3 = 0;
+  for(var i3 = 0; i3 < numFull; i3++) { groups.push(alumnos.slice(idx3, idx3 + bs)); idx3 += bs; }
+  if(rem > 0) groups.push(alumnos.slice(idx3));
+  return groups;
+}
+
+function generarGruposOrdenado(alumnos, size, exactCount) {
+  return distribuirEnGrupos(alumnos.slice().sort(function(a,b) { return a.name.localeCompare(b.name); }), size, exactCount);
+}
+function generarGruposAleatorio(alumnos, size, exactCount) {
+  return distribuirEnGrupos(mezclarArray(alumnos.slice()), size, exactCount);
+}
+function generarGruposImpares(alumnos, size, exactCount) {
+  var sorted = alumnos.slice().sort(function(a,b) { return a.name.localeCompare(b.name); });
+  var imp = [], par = [];
+  sorted.forEach(function(s,i) { if(i%2===0) imp.push(s); else par.push(s); });
+  return distribuirEnGrupos(imp.concat(par), size, exactCount);
+}
+function generarGruposEleccion(alumnos) {
+  return alumnos.slice().sort(function(a,b) { return a.name.localeCompare(b.name); }).map(function(s) { return [s]; });
+}
+
+// ============================================================
+//  RENDER
+// ============================================================
+
+function renderStats(alumnos, groups) {
+  document.getElementById('totalStudents').textContent = alumnos.length;
+  document.getElementById('totalGroups').textContent = groups.length;
+  var bd = document.getElementById('groupBreakdown');
+  if(!groups.length) { bd.textContent = ''; return; }
+  var sizes = {};
+  groups.forEach(function(g) { var s = g.length; sizes[s] = (sizes[s] || 0) + 1; });
+  var parts = [];
+  Object.keys(sizes).sort(function(a,b) { return a-b; }).forEach(function(s) { parts.push(sizes[s] + ' grupo(s) de ' + s); });
+  bd.textContent = '📊 ' + parts.join(', ');
+}
+
+function renderGroups(groups) {
+  var container = document.getElementById('groupsContainer');
+  if(!groups || !groups.length) {
+    container.innerHTML = '<div class="empty-state"><div class="icon">👥</div><h3>Sin grupos generados</h3><p>Configurá la sesión y hacé clic en "Generar".</p></div>';
+    return;
+  }
+
+  var sess = getCurrentSession();
+  var html = '';
+  var colors = ['#0f4c81','#2e7d32','#e65100','#6a1b9a','#00838f','#ad1457','#283593','#bf360c','#33691e','#4a148c'];
+
+  groups.forEach(function(group, gi) {
+    var bgColor = colors[gi % colors.length];
+    html += '<div class="group-section">';
+    html += '<div class="group-header" style="background:linear-gradient(135deg,' + bgColor + ',' + bgColor + 'cc)">';
+    html += '<div class="group-num"><span>📦 Grupo ' + (gi + 1) + '</span><span class="group-size">' + group.length + ' integrante(s)</span></div>';
+    html += '<button class="btn-sm" onclick="eliminarGrupo(' + gi + ')" title="Eliminar grupo">✕</button>';
+    html += '</div>';
+    html += '<div class="group-body">';
+    html += '<div class="group-members">';
+    group.forEach(function(m) {
+      var cursoTag = m.curso ? '<span style="font-size:9px;color:#8899aa;margin-left:4px">[' + m.curso + '.er]</span>' : '';
+      html += '<div class="member-card"><span class="member-num">' + m.num + '</span><span class="member-name">' + m.name + '</span>' + cursoTag + '</div>';
+    });
+    html += '</div>';
+
+    // Team evaluation section
+    html += renderTeamEval(gi, group);
+
+    html += '</div></div>';
+  });
+
+  // Action buttons
+  html += '<div class="action-bar">';
+  html += '<button class="btn pri" onclick="guardarSesionActual()">💾 Guardar sesión</button>';
+  html += '<button class="btn sec" onclick="exportarSesion()">📋 Copiar grupos</button>';
+  html += '<button class="btn sec" onclick="if(confirm(\'¿Limpiar grupos actuales?\')){var s=getCurrentSession();if(s){s.groups=[];s.teamEvals={};guardarSesiones();renderSessionTabs();renderGroups([]);}}">🗑️ Limpiar</button>';
+  html += '</div>';
+
+  container.innerHTML = html;
+  var alumnos = getAlumnos(document.getElementById('selSubject').value);
+  renderStats(alumnos, groups);
+}
+
+function renderTeamEval(gi, group) {
+  var sess = getCurrentSession();
+  if(!sess) return '';
+  if(!sess.teamEvals) sess.teamEvals = {};
+  if(!sess.teamEvals[gi]) sess.teamEvals[gi] = {};
+
+  var evals = sess.teamEvals[gi];
+  var html = '<div class="team-evals">';
+  html += '<div class="team-evals-title">🤝 Evaluación de trabajo en equipo <span style="font-weight:400;color:#4d6177">(1=Mínimo, 4=Excelente)</span></div>';
+  html += '<table><thead><tr><th style="width:40%">Indicador</th><th style="width:50%">Descripción</th><th style="text-align:center">Puntaje</th></tr></thead><tbody>';
+
+  var total = 0;
+  TEAM_INDICATORS.forEach(function(ind) {
+    var val = evals[ind.id] || '';
+    var numVal = parseInt(val) || 0;
+    total += numVal;
+    html += '<tr>';
+    html += '<td><strong>' + ind.name + '</strong></td>';
+    html += '<td style="font-size:9px;color:#5a687c">' + ind.desc + '</td>';
+    html += '<td><select onchange="setTeamEval(' + gi + ',\'' + ind.id + '\',this.value)">';
+    html += '<option value="">—</option>';
+    for(var i = 1; i <= 4; i++) {
+      html += '<option value="' + i + '"' + (val == i ? ' selected' : '') + '>' + i + '</option>';
+    }
+    html += '</select></td></tr>';
+  });
+
+  var maxTotal = TEAM_INDICATORS.length * 4;
+  var pct = maxTotal > 0 ? Math.round(total / maxTotal * 100) : 0;
+  html += '<tr class="total-row"><td><strong>Total equipo</strong></td><td></td><td style="font-weight:700">' + total + '/' + maxTotal + ' (' + pct + '%)</td></tr>';
+  html += '</tbody></table>';
+  html += '</div>';
+  return html;
+}
+
+function renderTeamEvals() {
+  var sess = getCurrentSession();
+  if(!sess || !sess.groups) return;
+  renderGroups(sess.groups);
+}
+
+// ============================================================
+//  ACCIONES
+// ============================================================
+
+function selectMethod(m) {
+  currentMethod = m;
+  document.querySelectorAll('.method-card').forEach(function(el) { el.classList.toggle('active', el.dataset.method === m); });
+}
+
+function onConfigChange() {
+  cargarProyectos(document.getElementById('selProject'));
+  var alumnos = getAlumnos(document.getElementById('selSubject').value);
+  var groups = getCurrentSession() ? (getCurrentSession().groups || []) : [];
+  renderStats(alumnos, groups);
+}
+
+function generarGrupos() {
+  var alumnos = getAlumnos(document.getElementById('selSubject').value);
+  if(!alumnos.length) { alert('No hay alumnos cargados para esta asignatura.'); return; }
+  var size = parseInt(document.getElementById('groupSize').value) || 3;
+  var exact = parseInt(document.getElementById('exactGroups').value) || 0;
+
+  var groups = [];
+  switch(currentMethod) {
+    case 'ordenado': groups = generarGruposOrdenado(alumnos, size, exact); break;
+    case 'aleatorio': groups = generarGruposAleatorio(alumnos, size, exact); break;
+    case 'impares': groups = generarGruposImpares(alumnos, size, exact); break;
+    case 'eleccion': groups = generarGruposEleccion(alumnos); break;
+    default: groups = generarGruposOrdenado(alumnos, size, exact);
+  }
+
+  // Asegurar que existe sesión activa
+  if(!currentSessionId || !sessions[currentSessionId]) {
+    nuevaSesion();
+  }
+  var sess = sessions[currentSessionId];
+  sess.groups = groups;
+  sess.method = currentMethod;
+  sess.projectId = document.getElementById('selProject').value;
+  sess.projectName = document.getElementById('selProject').selectedOptions[0] ? document.getElementById('selProject').selectedOptions[0].textContent : '';
+  // Inicializar teamEvals para cada grupo
+  sess.teamEvals = {};
+  groups.forEach(function(g, gi) { sess.teamEvals[gi] = {}; });
+  guardarSesiones();
+  renderSessionTabs();
+  renderGroups(groups);
+  mostrarFeedback('✅ ' + groups.length + ' grupos generados');
+}
+
+function setTeamEval(gi, indId, value) {
+  var sess = getCurrentSession();
+  if(!sess) return;
+  if(!sess.teamEvals) sess.teamEvals = {};
+  if(!sess.teamEvals[gi]) sess.teamEvals[gi] = {};
+  sess.teamEvals[gi][indId] = value;
+  guardarSesiones();
+  // Refresh just the eval section
+  if(sess.groups && sess.groups[gi]) {
+    var evalDiv = document.querySelector('.group-section:nth-child(' + (gi + 1) + ') .team-evals');
+    if(evalDiv) {
+      var newHtml = renderTeamEval(gi, sess.groups[gi]);
+      evalDiv.outerHTML = newHtml;
+    }
+  }
+}
+
+function eliminarGrupo(index) {
+  var sess = getCurrentSession();
+  if(!sess || !sess.groups) return;
+  if(index < 0 || index >= sess.groups.length) return;
+  sess.groups.splice(index, 1);
+  // Reindex teamEvals
+  var newEvals = {};
+  sess.groups.forEach(function(g, gi) {
+    newEvals[gi] = sess.teamEvals[gi + 1] || {}; // shift
+    if(index <= gi) {
+      newEvals[gi] = sess.teamEvals[gi + 1] || {};
+    } else {
+      newEvals[gi] = sess.teamEvals[gi] || {};
+    }
+  });
+  // Fix: simpler reindex
+  newEvals = {};
+  for(var i = 0; i < sess.groups.length; i++) {
+    var srcIdx = i >= index ? i + 1 : i;
+    newEvals[i] = sess.teamEvals[srcIdx] || {};
+  }
+  sess.teamEvals = newEvals;
+  guardarSesiones();
+  renderSessionTabs();
+  renderGroups(sess.groups);
+}
+
+function guardarSesionActual() {
+  var sess = getCurrentSession();
+  if(!sess) { alert('No hay sesión activa. Creá una nueva.'); return; }
+  sess.topic = document.getElementById('topicName').value.trim() || sess.topic;
+  sess.projectId = document.getElementById('selProject').value;
+  sess.projectName = document.getElementById('selProject').selectedOptions[0] ? document.getElementById('selProject').selectedOptions[0].textContent : '';
+  guardarSesiones();
+  renderSessionTabs();
+  mostrarFeedback('💾 Sesión guardada: ' + sess.topic);
+}
+
+function exportarSesion() {
+  var sess = getCurrentSession();
+  if(!sess || !sess.groups || !sess.groups.length) { alert('No hay grupos para exportar.'); return; }
+  var lines = [];
+  lines.push('=== GRUPOS DE TRABAJO ===');
+  lines.push('Asignatura: ' + getSubjectLabel(sess.subject));
+  if(sess.projectName) lines.push('Proyecto: ' + sess.projectName);
+  lines.push('Tema: ' + (sess.topic || '—'));
+  lines.push('Método: ' + (document.querySelector('.method-card.active .method-name') || {textContent:''}).textContent);
+  lines.push('Fecha: ' + new Date(sess.createdAt).toLocaleDateString());
+  lines.push('');
+  sess.groups.forEach(function(g, gi) {
+    lines.push('📦 Grupo ' + (gi + 1) + ' (' + g.length + ' integrantes):');
+    g.forEach(function(m) { lines.push('  ' + m.num + '. ' + m.name); });
+    // Team evals
+    if(sess.teamEvals && sess.teamEvals[gi]) {
+      var ev = sess.teamEvals[gi];
+      var hasEval = false;
+      TEAM_INDICATORS.forEach(function(ind) { if(ev[ind.id]) hasEval = true; });
+      if(hasEval) {
+        lines.push('  Evaluación equipo:');
+        TEAM_INDICATORS.forEach(function(ind) {
+          if(ev[ind.id]) lines.push('    ' + ind.name + ': ' + ev[ind.id] + '/4');
+        });
+      }
+    }
+    lines.push('');
+  });
+  var text = lines.join('\n');
+  if(navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() { mostrarFeedback('📋 Grupos copiados'); });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); mostrarFeedback('📋 Grupos copiados'); } catch(e) { alert(text); }
+    document.body.removeChild(ta);
+  }
+}
+
+// ============================================================
+//  FEEDBACK
+// ============================================================
+
+function mostrarFeedback(msg) {
+  var d = document.createElement('div');
+  d.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#0f4c81;color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,0.2);z-index:999;animation:fadeIn .2s';
+  d.textContent = msg;
+  document.body.appendChild(d);
+  setTimeout(function() { d.style.transition = 'opacity .3s'; d.style.opacity = '0'; setTimeout(function() { d.remove(); }, 400); }, 2500);
+}
+var st = document.createElement('style');
+st.textContent = '@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}';
+document.head.appendChild(st);
+
+// ============================================================
+//  INIT
+// ============================================================
+
+window.addEventListener('DOMContentLoaded', function() {
+  cargarAlumnos(function() {
+    cargarSesiones();
+    cargarProyectos(document.getElementById('selProject'));
+
+    // Cargar última sesión o crear una por defecto
+    var keys = Object.keys(sessions);
+    if(keys.length > 0) {
+      selectSession(keys[keys.length - 1]);
+    } else {
+      currentSessionId = null;
+      renderSessionTabs();
+    }
+    renderSessionTabs();
+    mostrarFeedback('👥 Sistema de Grupos listo');
+  });
+});
+</script>
+
+<script src="nav/nav.js"></script>
+</body>
+</html>

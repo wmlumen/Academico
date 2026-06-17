@@ -56,9 +56,9 @@
     },
     {
       "icon": "📝",
-      "name": "Examenes",
-      "desc": "Evaluaciones parciales",
-      "href": "2_Curso/Tecnicas_Instrumentales_II/Examen_Parcial_Calculo_Metrico.html"
+      "name": "Examen Sumativo",
+      "desc": "Carga y seguimiento de exámenes parciales",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/17_examen_sumativo_tecnicas.html"
     },
     {
       "icon": "📊",
@@ -169,6 +169,12 @@
       "name": "Planilla de Proceso RSA",
       "desc": "Registro de seguimiento",
       "href": "2_Curso/Resistencia_Materiales/05_planilla_proceso_rsa_resistencia_de_materiales.html"
+    },
+    {
+      "icon": "📝",
+      "name": "Examen Sumativo",
+      "desc": "Carga y seguimiento de exámenes parciales",
+      "href": "2_Curso/Resistencia_Materiales/17_examen_sumativo_resistencia.html"
     },
     {
       "icon": "📊",

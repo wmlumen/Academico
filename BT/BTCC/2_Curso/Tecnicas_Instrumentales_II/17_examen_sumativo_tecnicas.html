@@ -190,6 +190,18 @@ function cargarDatos() {
       return;
     }
   } catch(e) {}
+  // Intentar cargar desde JSON seed
+  try {
+    if(window.BTCCRuntime) {
+      var seed = BTCCRuntime.loadJson('/data/examen_sumativo_tecnicas.json', null);
+      if(seed && seed.exams && seed.exams.length) {
+        EXAMS = seed.exams;
+        SCORES = seed.scores || {};
+        guardarDatos();
+        return;
+      }
+    }
+  } catch(e) {}
   EXAMS = [
     { id: 'e1', name: 'Parcial 1 — Cómputo Métrico', date: '2026-05-15', maxScore: 20 },
     { id: 'e2', name: 'Parcial 2', date: '2026-08-20', maxScore: 20 }

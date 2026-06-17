@@ -215,6 +215,40 @@
             break-before: avoid-page;
             page-break-before: avoid;
         }
+        @media screen {
+            body {
+                background: #f3f6fa;
+                line-height: 1.6;
+                padding: 28px 20px 40px;
+            }
+            .page {
+                max-width: 1180px;
+            }
+            .cover, .sheet {
+                border-radius: 16px;
+                border-color: #d9e1ea;
+                box-shadow: 0 12px 28px rgba(15, 40, 70, 0.08);
+            }
+            .sheet {
+                max-width: none;
+            }
+            h2 {
+                margin-bottom: 16px;
+            }
+            h3 {
+                margin-top: 22px;
+            }
+            p, li, td, th {
+                font-size: 15px;
+            }
+            table {
+                background: #ffffff;
+            }
+            .callout {
+                background: #f3f7fb;
+                border-left-width: 5px;
+            }
+        }
         @media (max-width: 900px) {
             .meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .grid-2 { grid-template-columns: 1fr; }
@@ -284,7 +318,7 @@
             <p><strong>Período de implementación:</strong> 2026-2031</p>
             <p><strong>Proyectista:</strong> Prof. Christhian Keim</p>
 
-            <div style="margin-top: 24px; padding: 16px; background: var(--gray); border: 1px solid var(--line);">
+            <div style="margin-top: 24px; padding: 16px; background: var(--gray); border: 1px solid var(--gray-mid);">
                 <p style="margin: 2px 0;"><strong>TIPO DE PROYECTO</strong> Interdisciplinario e intercurso</p>
                 <p style="margin: 2px 0;"><strong>PRODUCTO CENTRAL</strong> Competencia anual por estaciones</p>
                 <p style="margin: 2px 0;"><strong>PARTICIPANTES</strong> Estudiantes, docentes y evaluadores internos</p>
@@ -2007,8 +2041,13 @@
                 <strong>Cierre del documento:</strong> este proyecto se presenta como marco institucional para la planificación 2026 y como base de ejecución del piloto de noviembre de 2026, con proyeccion de implementación progresiva hasta 2031.
             </div>
         </section>
-    </div>
 
+        <section class="sheet" style="margin-top:14px;padding:14px 18px;background:#e3f2fd;border:2px solid #90caf9;border-radius:10px;text-align:center">
+            <h3 style="margin:0 0 6px;color:#0d47a1">👥 Sistema de Grupos de Trabajo OBRATEC</h3>
+            <p style="margin:0 0 8px;font-size:13px">Generación automática de equipos multi-curso (1.er, 2.do y 3.er BTCC). Sesiones por actividad, evaluación de trabajo en equipo con 5 indicadores.</p>
+            <a href="../../sistema_grupos_trabajo.html?subject=obratec" class="primary-btn" style="display:inline-block;padding:10px 24px;background:#0f4c81;color:#fff;text-decoration:none;font-weight:700;border-radius:8px;font-size:14px">➡ Ir a Grupos de Trabajo OBRATEC</a>
+        </section>
+    </div>
 <script src="../../nav/nav.js"></script>
 </body>
 </html>

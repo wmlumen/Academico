@@ -7,6 +7,7 @@ const ROOT = __dirname;
 const HOST = '127.0.0.1';
 const PORT = Number(process.env.BTCC_PORT || 8080);
 const STATE_FILE = path.join(ROOT, 'data', 'persisted_state.json');
+const ATTENDANCE_FILE = path.join(ROOT, 'data', 'asistencia_2_curso.json');
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -32,6 +33,42 @@ function ensureStateFile() {
   if (!fs.existsSync(STATE_FILE)) {
     fs.writeFileSync(STATE_FILE, '{}\n', 'utf8');
   }
+}
+
+function parseStoredJson(data, key) {
+  if (!data || typeof data[key] !== 'string') return {};
+  try {
+    return JSON.parse(data[key]);
+  } catch (_) {
+    return {};
+  }
+}
+
+function syncAttendanceJson(data) {
+  const exportData = {
+    institucion: 'BTCC',
+    curso: '2',
+    actualizado_el: new Date().toISOString(),
+    fuente_runtime: 'data/persisted_state.json',
+    formato: {
+      estado_por_alumno: 's1..s21',
+      valores: ['P', 'A', 'T', 'J', 'F']
+    },
+    horarios_docente: parseStoredJson(data, 'perfil_docente_horarios'),
+    planillas_por_asignatura: {
+      resistencia_materiales: parseStoredJson(data, 'asis_planilla_resistencia'),
+      tecnicas_instrumentales_ii: parseStoredJson(data, 'asis_planilla_tecnicas')
+    },
+    sistema_institucional: {
+      tecnicas: parseStoredJson(data, 'asis_2_tecnicas'),
+      resistencia: parseStoredJson(data, 'asis_2_resistencia'),
+      instalaciones_i: parseStoredJson(data, 'asis_2_instalaciones_i'),
+      taller_construcciones_ii: parseStoredJson(data, 'asis_2_taller_construcciones_ii'),
+      topografia: parseStoredJson(data, 'asis_2_topografia')
+    }
+  };
+
+  fs.writeFileSync(ATTENDANCE_FILE, JSON.stringify(exportData, null, 2) + '\n', 'utf8');
 }
 
 function send(res, status, body, contentType) {
@@ -70,6 +107,11 @@ function readBody(req) {
 }
 
 ensureStateFile();
+try {
+  syncAttendanceJson(JSON.parse(fs.readFileSync(STATE_FILE, 'utf8') || '{}'));
+} catch (_) {
+  // Si el estado persistido no es valido, el sistema seguira funcionando y se regenerara al guardar.
+}
 
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host || `${HOST}:${PORT}`}`);
@@ -89,6 +131,7 @@ const server = http.createServer(async (req, res) => {
         const raw = await readBody(req);
         const parsed = JSON.parse(raw || '{}');
         fs.writeFileSync(STATE_FILE, JSON.stringify(parsed, null, 2) + '\n', 'utf8');
+        syncAttendanceJson(parsed);
         return sendJson(res, 200, { ok: true, keys: Object.keys(parsed).length });
       } catch (error) {
         return sendJson(res, 400, { ok: false, error: error.message });
