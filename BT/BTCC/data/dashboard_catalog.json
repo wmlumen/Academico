@@ -4,10 +4,10 @@
       "course": "2_Curso",
       "role": "alumno-docente",
       "courseTag": "2.do curso",
-      "title": "Técnicas Instrumentales II",
+      "title": "Tecnicas Instrumentales II",
       "roleTag": "Alumno",
       "statusTag": "Portal por roles",
-      "description": "Acceso unificado para alumno y docente con filtro por rol. El alumno ve solo sus materiales; el docente ve planificación, evaluación y seguimiento.",
+      "description": "Acceso unificado para alumno y docente con filtro por rol.",
       "actions": [
         { "label": "Ir al portal", "href": "2_Curso/Tecnicas_Instrumentales_II/index.html", "variant": "primary" },
         { "label": "Solo fichas", "href": "2_Curso/Tecnicas_Instrumentales_II/fichas_estudiante_html/index_fichas_estudiante.html", "variant": "secondary" }
@@ -20,7 +20,7 @@
       "title": "Resistencia de Materiales",
       "roleTag": "Alumno",
       "statusTag": "Portal por roles",
-      "description": "Acceso unificado para alumno y docente. Incluye plan anual, plan de clase, fichas con gráficos SVG, ejercitario y documentos de gestión.",
+      "description": "Acceso unificado para alumno y docente.",
       "actions": [
         { "label": "Ir al portal", "href": "2_Curso/Resistencia_Materiales/index.html", "variant": "primary" },
         { "label": "Solo fichas", "href": "2_Curso/Resistencia_Materiales/fichas_estudiante_html/index_fichas_estudiante.html", "variant": "secondary" }
@@ -32,7 +32,7 @@
       "courseTag": "2.do curso",
       "title": "Mapa Documental",
       "statusTag": "Docente",
-      "description": "Inventario general del 2.do curso con limpieza realizada, materiales disponibles por cátedra y faltantes detectados.",
+      "description": "Inventario general del 2.do curso.",
       "actions": [
         { "label": "Ver HTML", "href": "2_Curso/00_mapa_documental_2_curso.html", "variant": "primary" }
       ]
@@ -41,20 +41,20 @@
       "course": "general",
       "role": "docente",
       "courseTag": "Institucional",
-      "title": "Panel Institucional",
+      "title": "Perfil Institucional",
       "statusTag": "Docente",
-      "description": "Registro central del docente, asignaturas a cargo, horarios semanales y calendario académico.",
+      "description": "Registro central multi-institucion con contrasena.",
       "actions": [
-        { "label": "Abrir panel", "href": "panel_institucional.html", "variant": "primary" }
+        { "label": "Abrir perfil", "href": "panel_institucional.html", "variant": "primary" }
       ]
     },
     {
       "course": "3_Curso",
       "role": "alumno-docente",
       "courseTag": "3.er curso",
-      "title": "Cómputo y Presupuesto",
+      "title": "Computo y Presupuesto",
       "statusTag": "En desarrollo",
-      "description": "Versión HTML del plan de cátedra para el eje de gestión económica y presupuesto de obras.",
+      "description": "Plan de catedra para gestion economica y presupuesto de obras.",
       "actions": [
         { "label": "Ver HTML", "href": "3_Curso/Computo_y_Presupuesto/computo_presupuesto.html", "variant": "primary" }
       ]
@@ -62,54 +62,115 @@
   ],
   "quickCards": [
     {
-      "title": "Técnicas Instrumentales II",
-      "description": "Portal unificado con selector de rol. El alumno accede a fichas y materiales; el docente a toda la gestión.",
+      "course": "institucional",
+      "role": "docente",
+      "title": "Perfil Institucional",
+      "description": "Gestion multi-institucion. Cree, edite y acceda con contrasena. Docentes, asignaturas, horarios y calendario.",
       "actions": [
-        { "label": "Ir al portal", "href": "2_Curso/Tecnicas_Instrumentales_II/index.html", "variant": "primary" },
-        { "label": "Fichas", "href": "2_Curso/Tecnicas_Instrumentales_II/fichas_estudiante_html/index_fichas_estudiante.html", "variant": "secondary" }
+        { "label": "Abrir perfil", "href": "panel_institucional.html", "variant": "primary" },
+        { "label": "Asistencia", "href": "sistema_institucional_asistencia.html", "variant": "secondary" }
       ]
     },
     {
-      "title": "Resistencia de Materiales",
-      "description": "Portal unificado con fichas, gráficos SVG y documentos de gestión. Seleccione su rol al ingresar.",
-      "actions": [
-        { "label": "Ir al portal", "href": "2_Curso/Resistencia_Materiales/index.html", "variant": "primary" },
-        { "label": "Fichas", "href": "2_Curso/Resistencia_Materiales/fichas_estudiante_html/index_fichas_estudiante.html", "variant": "secondary" }
-      ]
-    },
-    {
-      "title": "Panel Institucional",
-      "description": "Registro del docente, asignaturas, horarios y calendario académico.",
-      "actions": [
-        { "label": "Abrir panel", "href": "panel_institucional.html", "variant": "primary" }
-      ]
-    },
-    {
-      "title": "Mapa del 2.do Curso",
-      "description": "Inventario de documentos existentes por cátedra.",
-      "actions": [
-        { "label": "Abrir mapa", "href": "2_Curso/00_mapa_documental_2_curso.html", "variant": "primary" }
-      ]
-    },
-    {
+      "course": "institucional",
+      "role": "docente",
       "title": "Calendario Escolar",
-      "description": "Todas las fechas del calendario académico con registro de lluvia, tipo de asueto y observaciones.",
+      "description": "Feriados, eventos, recesos y conmemoraciones del calendario academico 2026.",
       "actions": [
         { "label": "Ver calendario", "href": "calendario_escolar_2026.html", "variant": "primary" }
       ]
     },
     {
+      "course": "institucional",
+      "role": "docente",
       "title": "Perfil Docente",
-      "description": "Panel del docente con acceso a las herramientas organizadas por asignatura y gestión de tareas.",
+      "description": "Panel protegido con cedula. Tareas, horarios, examenes sumativos y herramientas.",
       "actions": [
         { "label": "Abrir perfil", "href": "perfil_docente.html", "variant": "primary" }
       ]
     },
     {
-      "title": "Cómputo y Presupuesto",
-      "description": "Plan de cátedra del 3.er curso.",
+      "course": "institucional",
+      "role": "docente",
+      "title": "Mapa Documental",
+      "description": "Inventario de todos los documentos del 2.do curso por catedra.",
       "actions": [
-        { "label": "Ver plan", "href": "3_Curso/Computo_y_Presupuesto/computo_presupuesto.html", "variant": "secondary" }
+        { "label": "Ver mapa", "href": "2_Curso/00_mapa_documental_2_curso.html", "variant": "primary" }
+      ]
+    },
+    {
+      "course": "institucional",
+      "role": "alumno-docente",
+      "title": "Computo y Presupuesto",
+      "description": "Plan de catedra del 3.er curso BTCC.",
+      "actions": [
+        { "label": "Ver plan", "href": "3_Curso/Computo_y_Presupuesto/computo_presupuesto.html", "variant": "primary" }
+      ]
+    },
+    {
+      "course": "2_Curso",
+      "role": "alumno-docente",
+      "title": "Tecnicas Instrumentales II - Portal",
+      "description": "Portal principal con todos los modulos: fichas, clases, evaluaciones y gestion.",
+      "actions": [
+        { "label": "Portal", "href": "2_Curso/Tecnicas_Instrumentales_II/index.html", "variant": "primary" },
+        { "label": "Fichas", "href": "2_Curso/Tecnicas_Instrumentales_II/fichas_estudiante_html/index_fichas_estudiante.html", "variant": "secondary" }
+      ]
+    },
+    {
+      "course": "2_Curso",
+      "role": "docente",
+      "title": "Tecnicas Instrumentales II - Evaluacion",
+      "description": "RSA Individual, Registro de Clases, Planilla de Proceso y Examennes Sumativos.",
+      "actions": [
+        { "label": "RSA", "href": "2_Curso/Tecnicas_Instrumentales_II/12_rsa_individual_tecnicas.html", "variant": "primary" },
+        { "label": "Clases", "href": "2_Curso/Tecnicas_Instrumentales_II/14_registro_clases_tecnicas.html", "variant": "secondary" },
+        { "label": "Proceso", "href": "2_Curso/Tecnicas_Instrumentales_II/16_planilla_proceso_tecnicas.html", "variant": "secondary" },
+        { "label": "Examennes", "href": "2_Curso/Tecnicas_Instrumentales_II/17_examen_sumativo_tecnicas.html", "variant": "secondary" }
+      ]
+    },
+    {
+      "course": "2_Curso",
+      "role": "docente",
+      "title": "Tecnicas Instrumentales II - Planilla Final",
+      "description": "Planilla Integrada, Competencias Transversales y Perfil del Estudiante.",
+      "actions": [
+        { "label": "Integrada", "href": "2_Curso/Tecnicas_Instrumentales_II/18_planilla_integrada_tecnicas.html", "variant": "primary" },
+        { "label": "Competencias", "href": "2_Curso/Tecnicas_Instrumentales_II/19_competencias_transversales_tecnicas.html", "variant": "secondary" },
+        { "label": "Estudiante", "href": "2_Curso/Tecnicas_Instrumentales_II/15_perfil_estudiante_tecnicas.html", "variant": "secondary" }
+      ]
+    },
+    {
+      "course": "2_Curso",
+      "role": "alumno-docente",
+      "title": "Resistencia de Materiales - Portal",
+      "description": "Portal principal con todos los modulos: fichas, clases, evaluaciones y gestion.",
+      "actions": [
+        { "label": "Portal", "href": "2_Curso/Resistencia_Materiales/index.html", "variant": "primary" },
+        { "label": "Fichas", "href": "2_Curso/Resistencia_Materiales/fichas_estudiante_html/index_fichas_estudiante.html", "variant": "secondary" }
+      ]
+    },
+    {
+      "course": "2_Curso",
+      "role": "docente",
+      "title": "Resistencia de Materiales - Evaluacion",
+      "description": "RSA Individual, Registro de Clases, Planilla de Proceso y Examennes Sumativos.",
+      "actions": [
+        { "label": "RSA", "href": "2_Curso/Resistencia_Materiales/12_rsa_individual_resistencia.html", "variant": "primary" },
+        { "label": "Clases", "href": "2_Curso/Resistencia_Materiales/14_registro_clases_resistencia.html", "variant": "secondary" },
+        { "label": "Proceso", "href": "2_Curso/Resistencia_Materiales/16_planilla_proceso_resistencia.html", "variant": "secondary" },
+        { "label": "Examennes", "href": "2_Curso/Resistencia_Materiales/17_examen_sumativo_resistencia.html", "variant": "secondary" }
+      ]
+    },
+    {
+      "course": "2_Curso",
+      "role": "docente",
+      "title": "Resistencia de Materiales - Planilla Final",
+      "description": "Planilla Integrada, Competencias Transversales y Perfil del Estudiante.",
+      "actions": [
+        { "label": "Integrada", "href": "2_Curso/Resistencia_Materiales/18_planilla_integrada_resistencia.html", "variant": "primary" },
+        { "label": "Competencias", "href": "2_Curso/Resistencia_Materiales/19_competencias_transversales_resistencia.html", "variant": "secondary" },
+        { "label": "Estudiante", "href": "2_Curso/Resistencia_Materiales/15_perfil_estudiante_resistencia.html", "variant": "secondary" }
       ]
     }
   ]

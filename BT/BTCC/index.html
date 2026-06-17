@@ -195,20 +195,31 @@ body.rol-alumno tr[data-role="alumno-docente"]{display:table-row}
     ).join('');
   }
 
+  function getActiveFilters() {
+    return {
+      role: body.className.replace('rol-',''),
+      course: courseFilter.value
+    };
+  }
+
   function renderQuickCards() {
-    quickCards.innerHTML = (DASH.quickCards || []).map(card =>
-      '<div class="mini-card">' +
+    const { role, course } = getActiveFilters();
+    quickCards.innerHTML = (DASH.quickCards || []).filter(card => {
+      if(role === 'alumno' && card.role === 'docente') return false;
+      if(course !== 'all' && card.course !== course) return false;
+      return true;
+    }).map(card =>
+      '<div class="mini-card" data-course="' + (card.course || 'all') + '" data-role="' + (card.role || 'docente') + '">' +
         '<h3>' + card.title + '</h3>' +
         '<p>' + card.description + '</p>' +
         renderActions(card.actions) +
       '</div>'
-    ).join('');
+    ).join('') || '<p style="color:var(--muted);font-size:13px;padding:12px 0;">Sin accesos rapidos para esta seleccion.</p>';
   }
 
   function applyFilters(){
     const rows = docRows.querySelectorAll('tr');
-    const role = body.className.replace('rol-','');
-    const course = courseFilter.value;
+    const { role, course } = getActiveFilters();
     let visible = 0;
 
     rows.forEach(row => {
@@ -224,6 +235,9 @@ body.rol-alumno tr[data-role="alumno-docente"]{display:table-row}
 
     const roleName = role === 'docente' ? 'Docente' : 'Alumno';
     docCountEl.textContent = visible + ' documentos visibles - modo ' + roleName;
+
+    // Re-render quick cards segun el filtro actual
+    renderQuickCards();
   }
 
   roleBtns.forEach(btn => {
