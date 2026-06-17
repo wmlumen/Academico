@@ -240,11 +240,28 @@ if (document.body.classList.contains('rol-alumno')) ES_ALUMNO = true;
 document.title = (BTCC_APP.branding.shortName || 'Portal') + ' - Panel Institucional';
 document.getElementById('panelTitle').textContent = 'Panel Institucional - ' + (BTCC_APP.branding.shortName || '');
 document.getElementById('panelSubtitle').textContent = 'Registro central del docente, asignaturas, horarios y calendario academico ' + (BTCC_APP.branding.shortName || '');
-var DEFAULT_STATE = (window.BTCCRuntime && window.BTCCRuntime.loadJson('/data/panel_institucional_default.json', null)) || {
-  docentes: [],
-  asignaturas: [],
-  eventosCalendario: []
-};
+var DEFAULT_STATE = null;
+function cargarDefaultState() {
+  if (DEFAULT_STATE) return;
+  // Intentar con BTCCRuntime (original)
+  if (window.BTCCRuntime) {
+    var d = BTCCRuntime.loadJson('/data/panel_institucional_default.json', null);
+    if (d) { DEFAULT_STATE = d; return; }
+  }
+  // Intentar fetch del JSON directamente
+  try {
+    var x = new XMLHttpRequest();
+    x.open('GET', 'data/panel_institucional_default.json', false);
+    x.send();
+    if (x.status === 200) {
+      var d = JSON.parse(x.responseText);
+      if (d && d.docentes) { DEFAULT_STATE = d; return; }
+    }
+  } catch(e) {}
+  // Fallback vacío
+  DEFAULT_STATE = { docentes: [], asignaturas: [], eventosCalendario: [] };
+}
+cargarDefaultState();
 function getDefaultState() {
   return JSON.parse(JSON.stringify(DEFAULT_STATE));
 }
