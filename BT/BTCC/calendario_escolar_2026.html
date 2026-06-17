@@ -68,10 +68,17 @@ table.cal .hoy-badge{display:inline-block;font-size:10px;background:#f9a825;colo
 table.cal tr.custom{background:#f3e5f5!important}
 table.cal .del-btn{background:none;border:none;color:#c62828;cursor:pointer;font-size:14px;padding:0 4px;opacity:.5}
 table.cal .del-btn:hover{opacity:1}
+
+/* ADD FORM */
 .add-form{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:6px 14px;background:#f3e5f5;border-bottom:1px solid #ce93d8;border-radius:0 0 10px 10px;margin-top:-10px;margin-bottom:10px}
 .add-form input,.add-form select{padding:5px 8px;border:1px solid #ce93d8;border-radius:6px;font-size:12px;background:#fff}
 .add-form .btn-add-custom{background:#7b1fa2;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:12px;font-weight:600;cursor:pointer}
 .add-form .btn-add-custom:hover{background:#9c27b0}
+
+/* INSTITUCION SELECTOR */
+.inst-selector{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding:10px 14px;background:#fff;border:1px solid #d8e3ef;border-radius:12px;flex-wrap:wrap}
+.inst-selector label{font-size:13px;font-weight:600}
+.inst-selector select{flex:1;min-width:200px;padding:7px 10px;border:1px solid #b6c6da;border-radius:8px;font-size:13px;background:#fff}
 
 @media(max-width:700px){
   table.cal,table.cal thead,table.cal tbody,table.cal tr,table.cal th,table.cal td{display:block}
@@ -83,13 +90,12 @@ table.cal .del-btn:hover{opacity:1}
 }
 
 @media print{
-  .controls,.header{display:none}
+  .controls,.header,.inst-selector,.add-form{display:none}
   .mes-section{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
 }
 </style>
 
 <link rel="stylesheet" href="nav/nav.css">
-
 <script src="nav/runtime.js"></script>
 </head>
 <body>
@@ -100,6 +106,13 @@ table.cal .del-btn:hover{opacity:1}
   <p id="calendarSubtitle">Calendario institucional.</p>
 </div>
 
+<!-- SELECTOR DE INSTITUCION -->
+<div class="inst-selector" id="instSelector">
+  <label>Institución:</label>
+  <select id="instSelect" onchange="cambiarInstitucion()"></select>
+  <span style="font-size:12px;color:#56657a">Cada institución tiene su propio calendario de feriados, asuetos y eventos.</span>
+</div>
+
 <div class="controls">
   <label>Filtrar mes:</label>
   <select id="filterMonth" onchange="filtrarMes()">
@@ -107,19 +120,19 @@ table.cal .del-btn:hover{opacity:1}
   </select>
   <label style="margin-left:6px">Ver:</label>
   <div class="view-toggle">
-    <button class="active" data-view="grilla" onclick="cambiarVista('grilla')">📋 Grilla</button>
-    <button data-view="lista" onclick="cambiarVista('lista')">📄 Lista</button>
-    <button data-view="ambas" onclick="cambiarVista('ambas')">📑 Ambas</button>
+    <button class="active" data-view="grilla" onclick="cambiarVista('grilla')"> Grilla</button>
+    <button data-view="lista" onclick="cambiarVista('lista')"> Lista</button>
+    <button data-view="ambas" onclick="cambiarVista('ambas')"> Ambas</button>
   </div>
   <div class="stats">
-    <span>📅 <strong id="totalEvents">0</strong> eventos</span>
-    <span class="s-feriado">🎌 <strong id="totalFeriados">0</strong> feriados</span>
-    <span class="s-lluvia">🌧️ <strong id="totalLluvia">0</strong> con lluvia</span>
+    <span> <strong id="totalEvents">0</strong> eventos</span>
+    <span class="s-feriado"> <strong id="totalFeriados">0</strong> feriados</span>
+    <span class="s-lluvia"> <strong id="totalLluvia">0</strong> con lluvia</span>
   </div>
 </div>
 
 <div class="add-form" id="addForm">
-  <input type="number" id="newDay" placeholder="Día" min="1" max="31" style="width:55px">
+  <input type="number" id="newDay" placeholder="Dia" min="1" max="31" style="width:55px">
   <select id="newMonth">
     <option value="">Mes</option>
     <option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option>
@@ -128,11 +141,11 @@ table.cal .del-btn:hover{opacity:1}
   </select>
   <input type="text" id="newEventName" placeholder="Nombre del evento" style="flex:2;min-width:120px">
   <select id="newEventTipo" onchange="mostrarOtroTipo(this)">
-    <option value="Conmemoración">Tipo</option>
+    <option value="Conmemoracion">Tipo</option>
     <option value="Feriado Nacional">Feriado Nacional</option>
     <option value="Asueto Departamental">Asueto Departamental</option>
     <option value="Asueto Distrital">Asueto Distrital</option>
-    <option value="Conmemoración">Conmemoración</option>
+    <option value="Conmemoracion">Conmemoracion</option>
     <option value="Actividad Institucional">Actividad Institucional</option>
     <option value="Actividad Gremial">Actividad Gremial</option>
     <option value="Jornada Normal">Jornada Normal</option>
@@ -140,143 +153,258 @@ table.cal .del-btn:hover{opacity:1}
   </select>
   <input type="text" id="newEventTipoOtro" placeholder="Especificar tipo..." style="flex:1;min-width:100px;display:none">
   <input type="color" id="newEventColor" value="#f3e5f5" style="width:30px;height:28px;padding:1px;border:1px solid #ce93d8;border-radius:4px;cursor:pointer">
-  <button class="btn-add-custom" onclick="agregarFechaCustom()">➕ Agregar fecha</button>
+  <button class="btn-add-custom" onclick="agregarFechaCustom()"> + Agregar fecha</button>
 </div>
 
 <div id="calendarContainer"></div>
 
 <p style="text-align:center;font-size:12px;color:#8899aa;margin-top:10px">
-  Los datos ingresados (llovió, tipo de asueto, observaciones) se guardan automáticamente en el navegador.
-  <button class="btn-link" onclick="if(confirm('¿Limpiar todos los datos guardados (anotaciones + fechas personalizadas)?')){localStorage.removeItem('calendario_2026_annot');localStorage.removeItem('calendario_2026_custom');location.reload()}" style="background:none;border:none;color:#c62828;cursor:pointer;text-decoration:underline;font-size:12px">Limpiar datos</button>
+  Los datos (eventos, lluvia, observaciones) se guardan en cada institucion. 
+  <button onclick="if(confirm('Limpiar TODOS los datos guardados del calendario de esta institucion?')){limpiarInstitucion();location.reload()}" style="background:none;border:none;color:#c62828;cursor:pointer;text-decoration:underline;font-size:12px">Limpiar datos de esta institucion</button>
 </p>
 
 </div>
 
 <script>
-// ===== CARGA DE DATOS =====
-window.BTCC_APP = (window.BTCCRuntime && window.BTCCRuntime.loadJson('/data/app_config.json', null)) || { branding: {} };
-var BTCC_APP = window.BTCC_APP;
-document.title = (BTCC_APP.branding.shortName || 'Portal') + ' - Calendario Escolar';
-document.getElementById('calendarTitle').textContent = 'Calendario Escolar ' + ((BTCC_APP.branding.academicYear) || '');
-document.getElementById('calendarSubtitle').textContent = (BTCC_APP.branding.institutionName || '') + ' - ' + (BTCC_APP.branding.shortName || '');
-var DATA = null;
-var ANNOT = {};
-var CUSTOM_EVENTS = []; // Eventos agregados por el usuario
+// ===== CARGA DE INSTITUCIONES =====
+var INSTITUCIONES = [];
+var INST_ACTUAL = null; // { id, nombre, eventosCalendario }
 
-function cargarAnotaciones() {
+function cargarInstituciones() {
   try {
-    var saved = localStorage.getItem('calendario_2026_annot');
-    if(saved) ANNOT = JSON.parse(saved);
-  } catch(e) { ANNOT = {}; }
+    var raw = localStorage.getItem('perfil_institucional');
+    if (!raw) { INSTITUCIONES = []; return; }
+    var data = JSON.parse(raw);
+    INSTITUCIONES = (data.instituciones || []).slice();
+  } catch(e) { INSTITUCIONES = []; }
 }
 
-function guardarAnotaciones() {
-  localStorage.setItem('calendario_2026_annot', JSON.stringify(ANNOT));
+function guardarInstituciones() {
+  try {
+    var raw = localStorage.getItem('perfil_institucional');
+    var data = raw ? JSON.parse(raw) : { instituciones: [] };
+    data.instituciones = INSTITUCIONES;
+    localStorage.setItem('perfil_institucional', JSON.stringify(data));
+  } catch(e) {}
 }
 
-function getKey(m, d, idx) { return m + '_' + d + '_' + idx; }
+function getInst(eventosCalendario) {
+  return eventosCalendario || [];
+}
 
-// ===== FECHAS PERSONALIZADAS =====
-function cargarCustom() {
-  try { var s = localStorage.getItem('calendario_2026_custom'); if(s) CUSTOM_EVENTS = JSON.parse(s); }
-  catch(e) { CUSTOM_EVENTS = []; }
+function setInstEvents(eventos) {
+  if (!INST_ACTUAL) return;
+  INST_ACTUAL.eventosCalendario = eventos;
+  guardarInstituciones();
 }
-function guardarCustom() {
-  localStorage.setItem('calendario_2026_custom', JSON.stringify(CUSTOM_EVENTS));
+
+// ===== SEMILLA DESDE calendario_2026.json =====
+var SEED_DATA = null;
+
+function cargarSeed() {
+  SEED_DATA = (window.BTCCRuntime && window.BTCCRuntime.loadJson('/data/calendario_2026.json', null));
 }
-function mostrarOtroTipo(sel) {
-  var otroInput = document.getElementById('newEventTipoOtro');
-  if(sel.value === '__otro__') {
-    otroInput.style.display = '';
-    otroInput.focus();
-  } else {
-    otroInput.style.display = 'none';
-    otroInput.value = '';
-  }
-}
-function agregarFechaCustom() {
-  var day = parseInt(document.getElementById('newDay').value);
-  var month = parseInt(document.getElementById('newMonth').value);
-  var name = document.getElementById('newEventName').value.trim();
-  var tipoSelect = document.getElementById('newEventTipo');
-  var tipo = tipoSelect.value;
-  if(tipo === '__otro__') {
-    tipo = document.getElementById('newEventTipoOtro').value.trim();
-    if(!tipo) { alert('Escribí el tipo personalizado.'); return; }
-  }
-  var color = document.getElementById('newEventColor').value;
-  if(!day || !month || !name) { alert('Completá día, mes y nombre del evento.'); return; }
-  CUSTOM_EVENTS.push({
-    id: 'c' + Date.now(),
-    day: day, month: month, year: 2026,
-    name: name, tipo: tipo, color: color
+
+function sembrarEventosBase() {
+  if (!SEED_DATA || !SEED_DATA.months) return [];
+  var events = [];
+  SEED_DATA.months.forEach(function(m) {
+    m.events.forEach(function(ev, idx) {
+      events.push({
+        id: 'seed_' + m.num + '_' + idx,
+        day: ev.day,
+        month: m.num,
+        year: 2026,
+        name: ev.name,
+        tipo: ev.tipo || 'Jornada Normal',
+        lluvia: false,
+        obs: '',
+        color: '#e8f1fb',
+        isSeed: true,
+        isCustom: false
+      });
+    });
   });
-  guardarCustom();
-  document.getElementById('newDay').value = '';
-  document.getElementById('newMonth').value = '';
-  document.getElementById('newEventName').value = '';
-  tipoSelect.value = 'Conmemoración';
-  document.getElementById('newEventTipoOtro').style.display = 'none';
-  document.getElementById('newEventTipoOtro').value = '';
-  render();
-}
-function eliminarFechaCustom(id) {
-  if(!confirm('¿Eliminar esta fecha personalizada?')) return;
-  CUSTOM_EVENTS = CUSTOM_EVENTS.filter(function(e){ return e.id !== id; });
-  guardarCustom();
-  render();
+  return events;
 }
 
-// ===== INICIALIZAR =====
-function init() {
-  cargarAnotaciones();
-  cargarCustom();
-  DATA = (window.BTCCRuntime && window.BTCCRuntime.loadJson('/data/calendario_2026.json', null)) || { year: 2026, months: [] };
-  render();
-  // Mostrar todos los meses por defecto
-  var filter = document.getElementById('filterMonth');
-  filter.value = 'all';
+// ===== ANOTACIONES Y EVENTOS POR INSTITUCION =====
+function getInstEvents() {
+  if (!INST_ACTUAL || !INST_ACTUAL.eventosCalendario) return [];
+  return INST_ACTUAL.eventosCalendario;
+}
+
+function getCustomEvents() {
+  return getInstEvents().filter(function(e) { return e.isCustom; });
+}
+
+function getSeedEvents() {
+  return getInstEvents().filter(function(e) { return !e.isCustom; });
+}
+
+// ===== RENDER =====
+function render() {
+  if (!INST_ACTUAL) {
+    document.getElementById('calendarContainer').innerHTML = 
+      '<div style="text-align:center;padding:40px;color:#8899aa">Seleccione una institucion para ver su calendario.</div>';
+    document.getElementById('totalEvents').textContent = '0';
+    document.getElementById('totalFeriados').textContent = '0';
+    document.getElementById('totalLluvia').textContent = '0';
+    document.getElementById('addForm').style.display = 'none';
+    return;
+  }
+  document.getElementById('addForm').style.display = '';
+
+  var container = document.getElementById('calendarContainer');
+  var filterSelect = document.getElementById('filterMonth');
+  var grillaHtml = '';
+  var optHtml = '<option value="all">Todos los meses</option>';
+  var totalEvents = 0, totalFeriados = 0, totalLluvia = 0;
+
+  var events = getInstEvents();
+  var ANEC = cargarAnecdoticos();
+  var TAREAS = cargarTareasCalendario();
+
+  var meses = [
+    { num:1, name:'Enero' }, { num:2, name:'Febrero' }, { num:3, name:'Marzo' },
+    { num:4, name:'Abril' }, { num:5, name:'Mayo' }, { num:6, name:'Junio' },
+    { num:7, name:'Julio' }, { num:8, name:'Agosto' }, { num:9, name:'Setiembre' },
+    { num:10, name:'Octubre' }, { num:11, name:'Noviembre' }, { num:12, name:'Diciembre' }
+  ];
+
+  meses.forEach(function(month) {
+    var monthId = 'mes_' + month.num;
+    optHtml += '<option value="' + monthId + '">' + month.name + ' 2026</option>';
+
+    var tableHtml = '';
+
+    // 1) Eventos del calendario (seed + custom)
+    var evDelMes = events.filter(function(e) { return e.month === month.num; });
+    evDelMes.forEach(function(ev) {
+      var key = ev.id;
+      tableHtml += renderEventRow(ev, key, month.num, ev.isCustom);
+      totalEvents++;
+      var tipoVal = ev.tipo || '';
+      if (tipoVal === 'Feriado Nacional') totalFeriados++;
+      if (ev.lluvia) totalLluvia++;
+    });
+
+    // 2) Eventos anecdoticos
+    var anecDelMes = ANEC.filter(function(e) { return e.month === month.num; });
+    anecDelMes.forEach(function(ev) {
+      tableHtml += '<tr class="custom">';
+      var diaSemana = ['DO','LU','MA','MI','JU','VI','SA'][new Date(2026, month.num-1, ev.day).getDay()];
+      var dateStr = diaSemana + ' ' + String(ev.day).padStart(2,'0') + '/' + String(month.num).padStart(2,'0');
+      tableHtml += '<td class="fecha">' + dateStr + '</td>';
+      tableHtml += '<td><span class="event-name" style="color:' + (ev.color||'#0f4c81') + '">' + ev.name + '</span> <span style="font-size:10px;color:#8899aa">(Reg. Anecdotico)</span></td>';
+      var tipoLabel = ev.tipoOriginal || (ev.tipo === 'positiva' ? 'Positiva' : 'Negativa');
+      tableHtml += '<td><span style="font-size:11px;padding:2px 8px;border-radius:4px;background:' + (ev.color||'#e8f1fb') + '20;color:' + (ev.color||'#0f4c81') + '">' + tipoLabel + '</span></td>';
+      tableHtml += '<td style="text-align:center">—</td>';
+      tableHtml += '<td><span style="font-size:11px;color:#8899aa">Sincronizado del Registro Anecdotico</span></td>';
+      tableHtml += '</tr>';
+      totalEvents++;
+    });
+
+    // 3) Tareas
+    var tareasDelMes = TAREAS.filter(function(t) {
+      if (!t.date || t.date === 'Sin fecha') return false;
+      var parts = t.date.split('-');
+      if (parts.length !== 3) return false;
+      return parseInt(parts[1]) === month.num;
+    });
+    tareasDelMes.forEach(function(t) {
+      var parts = t.date.split('-');
+      var day = parseInt(parts[2]);
+      var diaSemana = ['DO','LU','MA','MI','JU','VI','SA'][new Date(2026, month.num-1, day).getDay()];
+      var dateStr = diaSemana + ' ' + String(day).padStart(2,'0') + '/' + String(month.num).padStart(2,'0');
+      var subjLabel = { tecnicas:'Tecnicas', resistencia:'Resistencia', ambas:'Ambas' }[t.subject] || 'Tarea';
+      tableHtml += '<tr style="background:#fff8e1">';
+      tableHtml += '<td class="fecha">' + dateStr + '</td>';
+      tableHtml += '<td><span class="event-name" style="color:#e65100"> ' + t.title + '</span><br><span style="font-size:10px;color:#5a687c">' + (t.desc || '') + '</span></td>';
+      tableHtml += '<td><span style="font-size:11px;padding:2px 8px;border-radius:4px;background:#fff3e0;color:#e65100;border:1px solid #ffe0b2">' + subjLabel + '</span></td>';
+      tableHtml += '<td style="text-align:center">—</td>';
+      tableHtml += '<td><span style="font-size:11px;color:#8899aa"> Pendiente</span></td>';
+      tableHtml += '</tr>';
+      totalEvents++;
+    });
+
+    grillaHtml += '<div class="mes-section" id="' + monthId + '">';
+    grillaHtml += '<div class="mes-header">' + month.name + ' 2026<span class="mes-count">' + (evDelMes.length + anecDelMes.length) + ' evento(s)</span></div>';
+    grillaHtml += '<table class="cal"><thead><tr>';
+    grillaHtml += '<th>Fecha</th><th>Evento</th><th>Tipo</th><th style="text-align:center">  Llovio</th><th>Observaciones</th>';
+    grillaHtml += '</tr></thead><tbody>' + tableHtml + '</tbody></table>';
+    grillaHtml += '</div>';
+  });
+
+  // ---- LISTA PLANA ----
+  var listaItems = generarListaPlana(ANEC, TAREAS);
+  var listaHtml = '';
+  if (listaItems.length === 0) {
+    listaHtml = '<div style="text-align:center;padding:40px 20px;color:#8899aa">No hay eventos registrados.</div>';
+  } else {
+    listaHtml = '<table class="lista-table"><thead><tr><th>Fecha</th><th>Evento / Tarea</th><th>Tipo / Materia</th><th>Estado / Obs.</th></tr></thead><tbody>';
+    listaItems.forEach(function(item) {
+      var diaSemana = ['DO','LU','MA','MI','JU','VI','SA'][new Date(2026, item.month-1, item.day).getDay()];
+      var dateStr = diaSemana + ' ' + String(item.day).padStart(2,'0') + '/' + String(item.month).padStart(2,'0');
+      var rowBg = '';
+      if (item.type === 'tarea') rowBg = ' style="background:#fff8e1"';
+      else if (item.type === 'anec' || item.type === 'custom') rowBg = ' class="custom"';
+      var tagLabel = item.tag ? '<span class="tag" style="background:#e8f1fb;color:#0f4c81">' + item.tag + '</span>' : '';
+      listaHtml += '<tr' + (rowBg || '') + '>';
+      listaHtml += '<td class="fecha">' + dateStr + '</td>';
+      listaHtml += '<td>' + item.name + ' ' + tagLabel + '</td>';
+      listaHtml += '<td><span class="tipo-badge">' + item.tipo + '</span></td>';
+      listaHtml += '<td style="font-size:12px;color:#5a687c">' + (item.lluvia ? ' ' : '') + item.obs + '</td>';
+      listaHtml += '</tr>';
+    });
+    listaHtml += '</tbody></table>';
+  }
+
+  container.innerHTML = '<div class="view-grilla">' + grillaHtml + '</div><div class="view-lista">' + listaHtml + '</div>';
+
+  filterSelect.innerHTML = optHtml;
+  document.getElementById('totalEvents').textContent = totalEvents;
+  document.getElementById('totalFeriados').textContent = totalFeriados;
+  document.getElementById('totalLluvia').textContent = totalLluvia;
+
+  document.body.className = 'view-mode-' + VISTA_ACTUAL;
   filtrarMes();
 }
 
-// ===== RENDER (una fila de evento) =====
+// ===== RENDER EVENT ROW =====
 function renderEventRow(ev, key, monthNum, isCustom) {
-  var annot = ANNOT[key] || {};
   var diaSemana = ['DO','LU','MA','MI','JU','VI','SA'][new Date(2026, monthNum-1, ev.day).getDay()];
   var dateStr = diaSemana + ' ' + String(ev.day).padStart(2,'0') + '/' + String(monthNum).padStart(2,'0');
 
   var tipoLabel = ev.tipo || 'Jornada Normal';
   var tLower = tipoLabel.toLowerCase();
   var tipoClass = 'normal';
-  if(tLower.indexOf('feriado') !== -1) tipoClass = 'feriado';
-  else if(tLower.indexOf('conmemor') !== -1) tipoClass = 'conmemoracion';
-  else if(tLower.indexOf('receso') !== -1) tipoClass = 'receso';
-  else if(tLower.indexOf('institucional') !== -1) tipoClass = 'institucional';
-  else if(tLower.indexOf('gremial') !== -1) tipoClass = 'gremial';
-  else if(['normal','feriado','conmemoracion','receso','institucional','gremial'].indexOf(tipoClass) === -1) tipoClass = 'otro';
+  if (tLower.indexOf('feriado') !== -1) tipoClass = 'feriado';
+  else if (tLower.indexOf('conmemor') !== -1) tipoClass = 'conmemoracion';
+  else if (tLower.indexOf('receso') !== -1) tipoClass = 'receso';
+  else if (tLower.indexOf('institucional') !== -1) tipoClass = 'institucional';
+  else if (tLower.indexOf('gremial') !== -1) tipoClass = 'gremial';
 
-  var checked = annot.lluvia ? 'checked' : '';
-  var tipoVal = annot.tipo || tipoLabel;
-  var obsVal = annot.obs || '';
+  var checked = ev.lluvia ? 'checked' : '';
+  var obsVal = ev.obs || '';
 
   var hoy = new Date();
   var esHoy = (hoy.getDate() === ev.day && (hoy.getMonth()+1) === monthNum && hoy.getFullYear() === 2026);
   var rowCls = esHoy ? 'today' : '';
-  if(isCustom) rowCls += (rowCls ? ' ' : '') + 'custom';
+  if (isCustom) rowCls += (rowCls ? ' ' : '') + 'custom';
 
   var html = '<tr class="' + rowCls + '">';
-  html += '<td class="fecha">' + dateStr + (esHoy ? ' <span class="hoy-badge">📍 Hoy</span>' : '') + '</td>';
+  html += '<td class="fecha">' + dateStr + (esHoy ? ' <span class="hoy-badge"> Hoy</span>' : '') + '</td>';
   html += '<td><span class="event-name">' + ev.name + '</span>';
-  if(isCustom) html += ' <button class="del-btn" onclick="eliminarFechaCustom(\'' + ev.id + '\')" title="Eliminar">✕</button>';
+  if (isCustom) html += ' <button class="del-btn" onclick="eliminarFechaCustom(\'' + ev.id + '\')" title="Eliminar">✕</button>';
   html += '</td>';
-  // Lista base de tipos
-  var tiposBase = ['Feriado Nacional','Asueto Departamental','Asueto Distrital','Conmemoración','Receso','Jornada Normal','Actividad Institucional','Actividad Gremial'];
-  // Si es un tipo no listado, agregarlo al final
+
+  var tiposBase = ['Feriado Nacional','Asueto Departamental','Asueto Distrital','Conmemoracion','Receso','Jornada Normal','Actividad Institucional','Actividad Gremial'];
   var opcionesTipo = tiposBase.slice();
-  if(tiposBase.indexOf(tipoVal) === -1) opcionesTipo.push(tipoVal);
+  if (tiposBase.indexOf(tipoLabel) === -1) opcionesTipo.push(tipoLabel);
   html += '<td><select class="tipo-select" data-key="' + key + '" onchange="guardarTipo(\'' + key + '\',this)">';
   opcionesTipo.forEach(function(t) {
-    html += '<option value="' + t + '" ' + (tipoVal===t?'selected':'') + '>' + t + '</option>';
+    html += '<option value="' + t + '" ' + (tipoLabel===t?'selected':'') + '>' + t + '</option>';
   });
   html += '</select></td>';
   html += '<td style="text-align:center"><input type="checkbox" class="lluvia-input" data-key="' + key + '" ' + checked + ' onchange="guardarLluvia(\'' + key + '\',this)"></td>';
@@ -292,7 +420,7 @@ function cargarAnecdoticos() {
   keys.forEach(function(k) {
     try {
       var s = localStorage.getItem(k);
-      if(s) {
+      if (s) {
         var evts = JSON.parse(s);
         evts.forEach(function(e) { e._anecKey = k; result.push(e); });
       }
@@ -301,20 +429,76 @@ function cargarAnecdoticos() {
   return result;
 }
 
-// ===== CARGAR TAREAS (desde Perfil Docente) =====
+// ===== CARGAR TAREAS =====
 function cargarTareasCalendario() {
   try {
     var s = localStorage.getItem('perfil_docente_tareas');
-    if(!s) return [];
-    var tareas = JSON.parse(s);
-    // Filtrar solo tareas pendientes con fecha asignada
-    return tareas.filter(function(t) {
+    if (!s) return [];
+    return JSON.parse(s).filter(function(t) {
       return t.status === 'pendiente' && t.date && t.date !== 'Sin fecha';
     });
   } catch(e) { return []; }
 }
 
-// ===== CAMBIAR VISTA =====
+// ===== GENERAR LISTA PLANA =====
+function generarListaPlana(ANEC, TAREAS) {
+  var items = [];
+
+  // Eventos de la institucion
+  getInstEvents().forEach(function(ev) {
+    items.push({
+      type: ev.isCustom ? 'custom' : 'calendario',
+      sortKey: ev.month * 100 + ev.day,
+      month: ev.month,
+      day: ev.day,
+      name: ev.name,
+      tipo: ev.tipo || 'Jornada Normal',
+      obs: ev.obs || '',
+      lluvia: ev.lluvia || false,
+      tag: ev.isCustom ? ' Personalizado' : ' Calendario'
+    });
+  });
+
+  // Anecdoticos
+  ANEC.forEach(function(ev) {
+    items.push({
+      type: 'anec',
+      sortKey: ev.month * 100 + ev.day,
+      month: ev.month,
+      day: ev.day,
+      name: ev.name,
+      tipo: ev.tipoOriginal || (ev.tipo === 'positiva' ? 'Positiva' : 'Negativa'),
+      obs: 'Sincronizado del Registro Anecdotico',
+      lluvia: false,
+      tag: ' Reg. Anecdotico'
+    });
+  });
+
+  // Tareas
+  TAREAS.forEach(function(t) {
+    if (!t.date || t.date === 'Sin fecha') return;
+    var parts = t.date.split('-');
+    if (parts.length !== 3) return;
+    var m = parseInt(parts[1]), d = parseInt(parts[2]);
+    var subjLabel = { tecnicas:'Tecnicas', resistencia:'Resistencia', ambas:'Ambas' }[t.subject] || 'Tarea';
+    items.push({
+      type: 'tarea',
+      sortKey: m * 100 + d,
+      month: m,
+      day: d,
+      name: ' ' + t.title + (t.desc ? ' - ' + t.desc : ''),
+      tipo: subjLabel,
+      obs: ' Pendiente',
+      lluvia: false,
+      tag: ' Tarea'
+    });
+  });
+
+  items.sort(function(a, b) { return a.sortKey - b.sortKey; });
+  return items;
+}
+
+// ===== VISTA =====
 var VISTA_ACTUAL = 'grilla';
 
 function cambiarVista(mode) {
@@ -325,215 +509,6 @@ function cambiarVista(mode) {
   document.body.className = 'view-mode-' + mode;
 }
 
-// ===== GENERAR LISTA PLANA DE EVENTOS =====
-function generarListaPlana() {
-  var items = [];
-  var ANEC_EVENTS = cargarAnecdoticos();
-  var TAREAS_CAL = cargarTareasCalendario();
-
-  // 1) Eventos base del calendario
-  DATA.months.forEach(function(month) {
-    month.events.forEach(function(ev, idx) {
-      var key = getKey(month.num, ev.day, idx);
-      items.push({
-        type: 'calendario',
-        sortKey: month.num * 100 + ev.day,
-        month: month.num,
-        day: ev.day,
-        name: ev.name,
-        tipo: ANNOT[key] ? (ANNOT[key].tipo || ev.tipo || 'Jornada Normal') : (ev.tipo || 'Jornada Normal'),
-        obs: ANNOT[key] ? (ANNOT[key].obs || '') : '',
-        lluvia: ANNOT[key] ? ANNOT[key].lluvia : false,
-        tag: '📅 Calendario'
-      });
-    });
-  });
-
-  // 2) Eventos personalizados
-  CUSTOM_EVENTS.forEach(function(ev) {
-    items.push({
-      type: 'custom',
-      sortKey: ev.month * 100 + ev.day,
-      month: ev.month,
-      day: ev.day,
-      name: ev.name,
-      tipo: ev.tipo || 'Personalizado',
-      obs: '',
-      lluvia: false,
-      tag: '⭐ Personalizado'
-    });
-  });
-
-  // 3) Eventos anecdóticos
-  ANEC_EVENTS.forEach(function(ev) {
-    var tipoLabel = ev.tipoOriginal || (ev.tipo === 'positiva' ? 'Positiva' : (ev.tipo === 'negativa' ? 'Negativa' : '—'));
-    items.push({
-      type: 'anec',
-      sortKey: ev.month * 100 + ev.day,
-      month: ev.month,
-      day: ev.day,
-      name: ev.name,
-      tipo: tipoLabel,
-      obs: 'Sincronizado del Registro Anecdotico',
-      lluvia: false,
-      tag: '📋 Reg. Anecdotico'
-    });
-  });
-
-  // 4) Tareas pendientes (todas las materias juntas)
-  TAREAS_CAL.forEach(function(t) {
-    if(!t.date || t.date === 'Sin fecha') return;
-    var parts = t.date.split('-');
-    if(parts.length !== 3) return;
-    var m = parseInt(parts[1]), d = parseInt(parts[2]);
-    var subjLabel = {tecnicas:'📘 Técnicas', resistencia:'📗 Resistencia', ambas:'📚 Ambas'}[t.subject] || '📋 Tarea';
-    items.push({
-      type: 'tarea',
-      sortKey: m * 100 + d,
-      month: m,
-      day: d,
-      name: '📌 ' + t.title + (t.desc ? ' — ' + t.desc : ''),
-      tipo: subjLabel,
-      obs: '⏳ Pendiente',
-      lluvia: false,
-      tag: '📝 Tarea'
-    });
-  });
-
-  // Ordenar por mes/día
-  items.sort(function(a, b) {
-    return a.sortKey - b.sortKey;
-  });
-
-  return items;
-}
-
-// ===== RENDER =====
-function render() {
-  var container = document.getElementById('calendarContainer');
-  var filterSelect = document.getElementById('filterMonth');
-  var grillaHtml = '';
-  var optHtml = '<option value="all">Todos los meses</option>';
-  var totalEvents = 0, totalFeriados = 0, totalLluvia = 0;
-  var ANEC_EVENTS = cargarAnecdoticos();
-  var TAREAS_CAL = cargarTareasCalendario();
-
-  // ---- GRILLA (por meses) ----
-  DATA.months.forEach(function(month) {
-    var monthId = 'mes_' + month.num;
-    optHtml += '<option value="' + monthId + '">' + month.name + ' ' + DATA.year + '</option>';
-
-    var tableHtml = '';
-    // 1) Eventos base
-    month.events.forEach(function(ev, idx) {
-      var key = getKey(month.num, ev.day, idx);
-      tableHtml += renderEventRow(ev, key, month.num, false);
-      totalEvents++;
-      var annot = ANNOT[key] || {};
-      var tipoVal = annot.tipo || ev.tipo || '';
-      if(tipoVal === 'Feriado Nacional') totalFeriados++;
-      if(annot.lluvia) totalLluvia++;
-    });
-    // 2) Eventos personalizados
-    var customDelMes = CUSTOM_EVENTS.filter(function(e){ return e.month === month.num; });
-    customDelMes.forEach(function(ev) {
-      var key = 'custom_' + ev.id;
-      tableHtml += renderEventRow(ev, key, month.num, true);
-      totalEvents++;
-      var annot = ANNOT[key] || {};
-      var tipoVal = annot.tipo || ev.tipo || '';
-      if(tipoVal === 'Feriado Nacional') totalFeriados++;
-      if(annot.lluvia) totalLluvia++;
-    });
-    // 3) Eventos anecdóticos
-    var anecDelMes = ANEC_EVENTS.filter(function(e){ return e.month === month.num; });
-    anecDelMes.forEach(function(ev) {
-      var key = 'anec_' + ev.id;
-      tableHtml += '<tr class="custom">';
-      var diaSemana = ['DO','LU','MA','MI','JU','VI','SA'][new Date(2026, month.num-1, ev.day).getDay()];
-      var dateStr = diaSemana + ' ' + String(ev.day).padStart(2,'0') + '/' + String(month.num).padStart(2,'0');
-      tableHtml += '<td class="fecha">' + dateStr + '</td>';
-      tableHtml += '<td><span class="event-name" style="color:' + (ev.color||'#0f4c81') + '">' + ev.name + '</span> <span style="font-size:10px;color:#8899aa">(Reg. Anecdotico)</span></td>';
-      var tipoLabel = ev.tipoOriginal || (ev.tipo === 'positiva' ? 'Positiva' : 'Negativa');
-      tableHtml += '<td><span style="font-size:11px;padding:2px 8px;border-radius:4px;background:' + (ev.color||'#e8f1fb') + '20;color:' + (ev.color||'#0f4c81') + '">' + tipoLabel + '</span></td>';
-      tableHtml += '<td style="text-align:center">—</td>';
-      tableHtml += '<td><span style="font-size:11px;color:#8899aa">Sincronizado del Registro Anecdotico</span></td>';
-      tableHtml += '</tr>';
-      totalEvents++;
-    });
-    // 4) Tareas (por mes)
-    var tareasDelMes = TAREAS_CAL.filter(function(t) {
-      if(!t.date || t.date === 'Sin fecha') return false;
-      var parts = t.date.split('-');
-      if(parts.length !== 3) return false;
-      return parseInt(parts[1]) === month.num;
-    });
-    tareasDelMes.forEach(function(t) {
-      var parts = t.date.split('-');
-      var day = parseInt(parts[2]);
-      var diaSemana = ['DO','LU','MA','MI','JU','VI','SA'][new Date(2026, month.num-1, day).getDay()];
-      var dateStr = diaSemana + ' ' + String(day).padStart(2,'0') + '/' + String(month.num).padStart(2,'0');
-      var subjLabel = {tecnicas:'📘 Técnicas', resistencia:'📗 Resistencia', ambas:'📚 Ambas'}[t.subject] || '📋 Tarea';
-      tableHtml += '<tr style="background:#fff8e1">';
-      tableHtml += '<td class="fecha">' + dateStr + '</td>';
-      tableHtml += '<td><span class="event-name" style="color:#e65100">📌 ' + t.title + '</span><br><span style="font-size:10px;color:#5a687c">' + (t.desc || '') + '</span></td>';
-      tableHtml += '<td><span style="font-size:11px;padding:2px 8px;border-radius:4px;background:#fff3e0;color:#e65100;border:1px solid #ffe0b2">' + subjLabel + '</span></td>';
-      tableHtml += '<td style="text-align:center">—</td>';
-      tableHtml += '<td><span style="font-size:11px;color:#8899aa">⏳ Pendiente</span></td>';
-      tableHtml += '</tr>';
-      totalEvents++;
-    });
-
-    grillaHtml += '<div class="mes-section" id="' + monthId + '">';
-    grillaHtml += '<div class="mes-header">' + month.name + ' ' + DATA.year + '<span class="mes-count">' + (month.events.length + customDelMes.length + anecDelMes.length) + ' evento(s)</span></div>';
-    grillaHtml += '<table class="cal"><thead><tr>';
-    grillaHtml += '<th>Fecha</th><th>Evento</th><th>Tipo</th><th style="text-align:center">🌧️ Llovió</th><th>Observaciones</th>';
-    grillaHtml += '</tr></thead><tbody>' + tableHtml + '</tbody></table>';
-    grillaHtml += '</div>';
-  });
-
-  // ---- LISTA PLANA ----
-  var listaItems = generarListaPlana();
-  var listaHtml = '';
-  if(listaItems.length === 0) {
-    listaHtml = '<div style="text-align:center;padding:40px 20px;color:#8899aa">No hay eventos registrados.</div>';
-  } else {
-    listaHtml = '<table class="lista-table"><thead><tr><th>Fecha</th><th>Evento / Tarea</th><th>Tipo / Materia</th><th>Estado / Obs.</th></tr></thead><tbody>';
-    listaItems.forEach(function(item) {
-      var diaSemana = ['DO','LU','MA','MI','JU','VI','SA'][new Date(2026, item.month-1, item.day).getDay()];
-      var dateStr = diaSemana + ' ' + String(item.day).padStart(2,'0') + '/' + String(item.month).padStart(2,'0');
-
-      var rowBg = '';
-      if(item.type === 'tarea') rowBg = ' style="background:#fff8e1"';
-      else if(item.type === 'anec') rowBg = ' class="custom"';
-      else if(item.type === 'custom') rowBg = ' class="custom"';
-
-      var tagLabel = item.tag ? '<span class="tag" style="background:#e8f1fb;color:#0f4c81">' + item.tag + '</span>' : '';
-
-      listaHtml += '<tr' + (rowBg || '') + '>';
-      listaHtml += '<td class="fecha">' + dateStr + '</td>';
-      listaHtml += '<td>' + item.name + ' ' + tagLabel + '</td>';
-      listaHtml += '<td><span class="tipo-badge">' + item.tipo + '</span></td>';
-      listaHtml += '<td style="font-size:12px;color:#5a687c">' + (item.lluvia ? '🌧️ ' : '') + item.obs + '</td>';
-      listaHtml += '</tr>';
-    });
-    listaHtml += '</tbody></table>';
-  }
-
-  // ---- ENSAMBLAR ----
-  container.innerHTML = '<div class="view-grilla">' + grillaHtml + '</div><div class="view-lista">' + listaHtml + '</div>';
-
-  filterSelect.innerHTML = optHtml;
-  document.getElementById('totalEvents').textContent = totalEvents;
-  document.getElementById('totalFeriados').textContent = totalFeriados;
-  document.getElementById('totalLluvia').textContent = totalLluvia;
-
-  // Restaurar vista activa
-  document.body.className = 'view-mode-' + VISTA_ACTUAL;
-
-  filtrarMes();
-}
-
 // ===== FILTRO =====
 function filtrarMes() {
   var val = document.getElementById('filterMonth').value;
@@ -542,57 +517,177 @@ function filtrarMes() {
   });
 }
 
-// ===== GUARDAR =====
+// ===== INSTITUCION =====
+function renderInstituciones() {
+  var sel = document.getElementById('instSelect');
+  sel.innerHTML = '<option value="">-- Seleccionar institucion --</option>' +
+    INSTITUCIONES.map(function(inst) {
+      return '<option value="' + inst.id + '">' + (inst.nombre || inst.id) + '</option>';
+    }).join('');
+
+  // Restaurar ultima institucion seleccionada
+  var ultima = null;
+  try { ultima = localStorage.getItem('calendario_ultima_inst'); } catch(e) {}
+  if (ultima) {
+    sel.value = ultima;
+    cambiarInstitucion();
+  }
+}
+
+function cambiarInstitucion() {
+  var id = document.getElementById('instSelect').value;
+  if (!id) {
+    INST_ACTUAL = null;
+    try { localStorage.removeItem('calendario_ultima_inst'); } catch(e) {}
+    render();
+    return;
+  }
+
+  INST_ACTUAL = null;
+  for (var i = 0; i < INSTITUCIONES.length; i++) {
+    if (INSTITUCIONES[i].id === id) {
+      INST_ACTUAL = INSTITUCIONES[i];
+      break;
+    }
+  }
+
+  try { localStorage.setItem('calendario_ultima_inst', id); } catch(e) {}
+
+  // Si la institucion no tiene eventos, sembrar los base
+  if (INST_ACTUAL && (!INST_ACTUAL.eventosCalendario || INST_ACTUAL.eventosCalendario.length === 0)) {
+    INST_ACTUAL.eventosCalendario = sembrarEventosBase();
+    guardarInstituciones();
+  }
+
+  render();
+}
+
+// ===== CRUD EVENTOS =====
+function agregarFechaCustom() {
+  var day = parseInt(document.getElementById('newDay').value);
+  var month = parseInt(document.getElementById('newMonth').value);
+  var name = document.getElementById('newEventName').value.trim();
+  var tipoSelect = document.getElementById('newEventTipo');
+  var tipo = tipoSelect.value;
+  if (tipo === '__otro__') {
+    tipo = document.getElementById('newEventTipoOtro').value.trim();
+    if (!tipo) { alert('Escribi el tipo personalizado.'); return; }
+  }
+  var color = document.getElementById('newEventColor').value;
+  if (!day || !month || !name) { alert('Completa dia, mes y nombre del evento.'); return; }
+
+  var events = getInstEvents();
+  events.push({
+    id: 'cust_' + Date.now() + '_' + Math.random().toString(36).substr(2,4),
+    day: day,
+    month: month,
+    year: 2026,
+    name: name,
+    tipo: tipo,
+    lluvia: false,
+    obs: '',
+    color: color,
+    isSeed: false,
+    isCustom: true
+  });
+  setInstEvents(events);
+
+  document.getElementById('newDay').value = '';
+  document.getElementById('newMonth').value = '';
+  document.getElementById('newEventName').value = '';
+  tipoSelect.value = 'Conmemoracion';
+  document.getElementById('newEventTipoOtro').style.display = 'none';
+  document.getElementById('newEventTipoOtro').value = '';
+  render();
+}
+
+function eliminarFechaCustom(id) {
+  if (!confirm('Eliminar esta fecha personalizada?')) return;
+  var events = getInstEvents().filter(function(e) { return e.id !== id; });
+  setInstEvents(events);
+  render();
+}
+
+// ===== ANOTACIONES =====
+function findEventById(id) {
+  if (!INST_ACTUAL || !INST_ACTUAL.eventosCalendario) return null;
+  for (var i = 0; i < INST_ACTUAL.eventosCalendario.length; i++) {
+    if (INST_ACTUAL.eventosCalendario[i].id === id) return INST_ACTUAL.eventosCalendario[i];
+  }
+  return null;
+}
+
 function guardarLluvia(key, el) {
-  if(!ANNOT[key]) ANNOT[key] = {};
-  ANNOT[key].lluvia = el.checked;
-  guardarAnotaciones();
-  actualizarStats();
+  var ev = findEventById(key);
+  if (ev) { ev.lluvia = el.checked; guardarInstituciones(); actualizarStats(); }
 }
 
 function guardarTipo(key, el) {
-  if(!ANNOT[key]) ANNOT[key] = {};
-  ANNOT[key].tipo = el.value;
-  guardarAnotaciones();
-  actualizarStats();
+  var ev = findEventById(key);
+  if (ev) { ev.tipo = el.value; guardarInstituciones(); actualizarStats(); }
 }
 
 function guardarObs(key, el) {
-  if(!ANNOT[key]) ANNOT[key] = {};
-  ANNOT[key].obs = el.value;
-  guardarAnotaciones();
+  var ev = findEventById(key);
+  if (ev) { ev.obs = el.value; guardarInstituciones(); }
 }
 
 function actualizarStats() {
   var totalFeriados = 0, totalLluvia = 0;
-  if(!DATA) return;
-  // Eventos base
-  DATA.months.forEach(function(month) {
-    month.events.forEach(function(ev, idx) {
-      var key = getKey(month.num, ev.day, idx);
-      var annot = ANNOT[key] || {};
-      var tipo = annot.tipo || ev.tipo || '';
-      if(tipo === 'Feriado Nacional') totalFeriados++;
-      if(annot.lluvia) totalLluvia++;
-    });
+  getInstEvents().forEach(function(ev) {
+    if (ev.tipo === 'Feriado Nacional') totalFeriados++;
+    if (ev.lluvia) totalLluvia++;
   });
-  // Eventos personalizados
-  CUSTOM_EVENTS.forEach(function(ev) {
-    var key = 'custom_' + ev.id;
-    var annot = ANNOT[key] || {};
-    var tipo = annot.tipo || ev.tipo || '';
-    if(tipo === 'Feriado Nacional') totalFeriados++;
-    if(annot.lluvia) totalLluvia++;
-  });
-  // Los anecdóticos pueden omitirse (no son feriados ni tienen lluvia)
   document.getElementById('totalFeriados').textContent = totalFeriados;
   document.getElementById('totalLluvia').textContent = totalLluvia;
 }
 
+function limpiarInstitucion() {
+  if (!INST_ACTUAL) return;
+  INST_ACTUAL.eventosCalendario = sembrarEventosBase();
+  guardarInstituciones();
+}
+
+function cambiarVista(mode) {
+  VISTA_ACTUAL = mode;
+  document.querySelectorAll('.view-toggle button').forEach(function(b) {
+    b.classList.toggle('active', b.getAttribute('data-view') === mode);
+  });
+  document.body.className = 'view-mode-' + mode;
+}
+
+// ===== MOSTRAR OTRO TIPO =====
+function mostrarOtroTipo(sel) {
+  var otroInput = document.getElementById('newEventTipoOtro');
+  otroInput.style.display = (sel.value === '__otro__') ? '' : 'none';
+  if (sel.value === '__otro__') otroInput.focus();
+}
+
 // ===== INIT =====
+function init() {
+  cargarSeed();
+  cargarInstituciones();
+  renderInstituciones();
+  // Si no hay instituciones
+  if (INSTITUCIONES.length === 0) {
+    document.getElementById('calendarContainer').innerHTML = 
+      '<div style="text-align:center;padding:40px;color:#8899aa;line-height:1.8">' +
+      'No hay instituciones configuradas.<br>' +
+      'Vaya al <a href="panel_institucional.html" style="color:#0f4c81;font-weight:600">Perfil Institucional</a> para crear una.' +
+      '</div>';
+    document.getElementById('addForm').style.display = 'none';
+    return;
+  }
+  // Si hay seleccion por defecto
+  if (!INST_ACTUAL && INSTITUCIONES.length > 0) {
+    var sel = document.getElementById('instSelect');
+    sel.value = INSTITUCIONES[0].id;
+    cambiarInstitucion();
+  }
+}
+
 window.addEventListener('DOMContentLoaded', init);
 </script>
-
 
 <script src="nav/nav.js"></script>
 </body>
