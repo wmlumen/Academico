@@ -108,6 +108,7 @@ body:not(.rol-alumno) .hide-docente{display:none !important}
   <div style="margin-bottom:20px">
     <h1 style="font-size:28px" id="panelTitle">Panel Institucional</h1>
     <p style="color:var(--muted);font-size:15px;margin-top:6px" id="panelSubtitle">Registro central institucional.</p>
+    <div id="institucionHeader" style="display:none;margin-top:10px;padding:10px 16px;background:var(--soft);border-radius:10px;border-left:4px solid var(--primary);font-size:16px;font-weight:600;color:var(--primary)"></div>
   </div>
 
   <!-- TABS -->
@@ -240,6 +241,22 @@ if (document.body.classList.contains('rol-alumno')) ES_ALUMNO = true;
 document.title = (BTCC_APP.branding.shortName || 'Portal') + ' - Panel Institucional';
 document.getElementById('panelTitle').textContent = 'Panel Institucional - ' + (BTCC_APP.branding.shortName || '');
 document.getElementById('panelSubtitle').textContent = 'Registro central del docente, asignaturas, horarios y calendario academico ' + (BTCC_APP.branding.shortName || '');
+function actualizarInstitucionHeader() {
+  var el = document.getElementById('institucionHeader');
+  if (!el) return;
+  try {
+    var s = JSON.parse(localStorage.getItem(INST_KEY));
+    if (s && s.institucion) { el.textContent = '🏫 ' + s.institucion; el.style.display = ''; return; }
+    if (s && s.docentes && s.docentes.length > 0 && s.docentes[0].institucion) {
+      el.textContent = '🏫 ' + s.docentes[0].institucion; el.style.display = '';
+      // Migrar a campo global
+      s.institucion = s.docentes[0].institucion;
+      localStorage.setItem(INST_KEY, JSON.stringify(s));
+      return;
+    }
+  } catch(e) {}
+  el.style.display = 'none';
+}
 var DEFAULT_STATE = null;
 function cargarDefaultState() {
   if (DEFAULT_STATE) return;
@@ -255,11 +272,17 @@ function cargarDefaultState() {
     x.send();
     if (x.status === 200) {
       var d = JSON.parse(x.responseText);
-      if (d && d.docentes) { DEFAULT_STATE = d; return; }
+      if (d && d.docentes) {
+        // Extraer institucion global desde el primer docente
+        if (!d.institucion && d.docentes.length > 0 && d.docentes[0].institucion) {
+          d.institucion = d.docentes[0].institucion;
+        }
+        DEFAULT_STATE = d; return;
+      }
     }
   } catch(e) {}
   // Fallback vacío
-  DEFAULT_STATE = { docentes: [], asignaturas: [], eventosCalendario: [] };
+  DEFAULT_STATE = { docentes: [], asignaturas: [], eventosCalendario: [], institucion: '' };
 }
 cargarDefaultState();
 function getDefaultState() {
@@ -293,6 +316,10 @@ function cargarEstado() {
       if (!parsed.docentes || parsed.docentes.length === 0) parsed.docentes = def.docentes;
       if (!parsed.asignaturas) parsed.asignaturas = def.asignaturas;
       if (!parsed.eventosCalendario) parsed.eventosCalendario = def.eventosCalendario;
+      // Migrar institucion a campo global
+      if (!parsed.institucion && parsed.docentes && parsed.docentes.length > 0 && parsed.docentes[0].institucion) {
+        parsed.institucion = parsed.docentes[0].institucion;
+      }
       return parsed;
     }
   } catch(e) {}
@@ -301,6 +328,10 @@ function cargarEstado() {
 
 function guardarEstado(state) {
   try {
+    // Actualizar institucion global desde el primer docente
+    if (state.docentes && state.docentes.length > 0 && state.docentes[0].institucion) {
+      state.institucion = state.docentes[0].institucion;
+    }
     var json = JSON.stringify(state);
     localStorage.setItem(INST_KEY, json);
     // Verificar que se guardó correctamente
@@ -309,6 +340,7 @@ function guardarEstado(state) {
       mostrarAlerta('⚠️ Error de verificación: los datos no se guardaron correctamente.', 'info');
       return false;
     }
+    actualizarInstitucionHeader();
     return true;
   } catch(e) {
     mostrarAlerta('❌ Error al guardar en localStorage: ' + e.message + '\nVerifique que el almacenamiento no esté lleno.', 'info');
@@ -317,6 +349,7 @@ function guardarEstado(state) {
 }
 
 var STATE = cargarEstado();
+actualizarInstitucionHeader();
 
 // ==============================
 // TAB 1: DOCENTES (listado)
