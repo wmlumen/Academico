@@ -6,10 +6,34 @@
   var SAVE_DELAY = 150;
   var saveEnabled = true;
 
+  /* ---- Computar base path desde la ubicacion de runtime.js ---- */
+  function getDataBase() {
+    var scripts = document.getElementsByTagName('script');
+    for (var i = 0; i < scripts.length; i++) {
+      var src = scripts[i].src || '';
+      if (src.indexOf('runtime.js') !== -1) {
+        // runtime.js esta en nav/, los datos estan en ../data/
+        return src.substring(0, src.lastIndexOf('/') + 1) + '../';
+      }
+    }
+    // Fallback: usar ruta relativa al documento actual
+    return '';
+  }
+
+  var DATA_BASE = getDataBase();
+
+  function resolvePath(path) {
+    // Si comienza con /, se resuelve contra DATA_BASE (GitHub Pages compatible)
+    if (path.charAt(0) === '/') {
+      return DATA_BASE + path.substring(1);
+    }
+    return path;
+  }
+
   function xhr(method, url) {
     try {
       var req = new XMLHttpRequest();
-      req.open(method, url, false);
+      req.open(method, resolvePath(url), false);
       req.send(null);
       if (req.status >= 200 && req.status < 300) return req.responseText;
     } catch (e) {}
@@ -38,7 +62,7 @@
   function persistSnapshot() {
     if (!saveEnabled) return;
     try {
-      fetch(API_STATE, {
+      fetch(resolvePath(API_STATE), {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(currentSnapshot())
