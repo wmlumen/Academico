@@ -124,6 +124,14 @@ tr:hover .sticky-col{background:#f5f9ff}
   </div>
 </div>
 
+<!-- ===== SECCIÓN: INSTRUMENTOS EVALUATIVOS EVIDENCIADOS ===== -->
+<div class="mes-section">
+  <div class="mes-header" style="background:linear-gradient(135deg,#2e7d32,#4caf50)">📋 Instrumentos Evaluativos Aplicados <span style="font-size:12px;opacity:.8">— Vinculado a <a href="20_instrumentos_evaluativos_tecnicas.html" style="color:#fff;font-weight:700;text-decoration:underline">Instrumentos Evaluativos</a></span></div>
+  <div style="overflow-x:auto;padding:8px 12px">
+    <div id="instrEvidence" style="font-size:11px;color:#4d6177">Cargando evidencia de instrumentos...</div>
+  </div>
+</div>
+
 <!-- ===== SECCIÓN: TABLA CONSOLIDADA ===== -->
 <div class="mes-section">
   <div class="mes-header">📊 Consolidado — 70% RSA + 30% Institucional</div>
@@ -478,10 +486,62 @@ function renderConsolidado() {
   document.getElementById('totalReprob').textContent = totalReprob;
 }
 
+// ===== INSTRUMENTOS EVALUATIVOS (desde 20_instrumentos_evaluativos_tecnicas.html) =====
+function renderInstrumentosEvidence() {
+  var container = document.getElementById('instrEvidence');
+  if(!container) return;
+  try {
+    var data = JSON.parse(localStorage.getItem('instr_tecnicas')) || {};
+  } catch(e) { data = {}; }
+  
+  var instrList = [
+    { id: 'r1_metodo', name: 'R1 Método' },
+    { id: 'r2_tiempos', name: 'R2 Tiempos' },
+    { id: 'r3_computo', name: 'R3 Cómputo' },
+    { id: 'r4_integracion', name: 'R4 Integr.' },
+    { id: 'c1_rsa_proceso', name: 'C1 RSA' },
+    { id: 'c2_observacion', name: 'C2 Obs.' },
+    { id: 'n1_ejercitacion', name: 'N1 Ejerc.' }
+  ];
+
+  var html = '<table class="summary-table" style="font-size:10px"><thead><tr><th style="text-align:left;min-width:120px;position:sticky;left:0;background:#e8f1fb;z-index:2">Alumno</th>';
+  instrList.forEach(function(inst) {
+    html += '<th style="text-align:center;font-size:8px;writing-mode:vertical-lr;transform:rotate(180deg);height:70px;padding:2px 3px" title="' + inst.name + '">' + inst.name + '</th>';
+  });
+  html += '<th style="text-align:center;min-width:50px">Aplic.</th></tr></thead><tbody>';
+
+  var totalAll = 0;
+  STUDENTS.forEach(function(s) {
+    var sid = 's' + s.num;
+    var applied = 0;
+    html += '<tr><td style="text-align:left;font-weight:600;position:sticky;left:0;background:#fff;z-index:1">' + s.num + '. ' + s.name.split(',')[0] + '</td>';
+    instrList.forEach(function(inst) {
+      var isApp = false;
+      if(data[inst.id] && data[inst.id][sid]) {
+        var scores = data[inst.id][sid].scores || {};
+        Object.keys(scores).forEach(function(k) {
+          if(scores[k] !== undefined && scores[k] !== null && scores[k] !== '') isApp = true;
+        });
+      }
+      if(isApp) applied++;
+      html += '<td style="text-align:center;font-size:12px">' + (isApp ? '✅' : '⬜') + '</td>';
+    });
+    html += '<td style="text-align:center;font-weight:700">' + applied + '/' + instrList.length + '</td></tr>';
+    totalAll += applied;
+  });
+  html += '</tbody></table>';
+  
+  container.innerHTML = '<div style="margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">' +
+    '<span style="font-weight:700;color:#0f4c81">📋 Instrumentos aplicados: ' + totalAll + ' evaluaciones</span>' +
+    '<span><a href="20_instrumentos_evaluativos_tecnicas.html" style="color:#0f4c81;font-weight:600;text-decoration:underline">✏️ Ir a Instrumentos Evaluativos →</a></span>' +
+    '</div>' + html;
+}
+
 // ===== INIT =====
 window.addEventListener('DOMContentLoaded', function() {
   cargarProyectos();
   renderTodo();
+  renderInstrumentosEvidence();
 });
 </script>
 

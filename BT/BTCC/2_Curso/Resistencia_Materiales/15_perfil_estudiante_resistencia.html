@@ -334,6 +334,63 @@ function mostrarPerfil() {
     html += '</tbody></table>';
   }
 
+  // ---- INSTRUMENTOS EVALUATIVOS APLICADOS ----
+  html += '<div class="section-title">📋 Instrumentos Evaluativos <span style="font-weight:400;font-size:12px;color:#5a687c">(desde <a href="20_instrumentos_evaluativos_resistencia.html" style="color:#0f4c81">Anexo 5</a>)</span></div>';
+  try {
+    var instrData = JSON.parse(localStorage.getItem('instr_resistencia')) || {};
+    var instrList = [
+      { id: 'a2_glosario', name: 'A2 — Lista Cotejo: Glosario Técnico', type: 'si_no' },
+      { id: 'a3_seguridad', name: 'A3 — Lista Cotejo: Seguridad', type: 'si_no' },
+      { id: 'a4_rubrica_problemas', name: 'A4 — Rúbrica: Resolución Problemas', type: 'rubric' },
+      { id: 'a5_observacion_rsa', name: 'A5 — Registro Observación RSA', type: 'numeric' },
+      { id: 'a6_carpeta', name: 'A6 — Control Carpeta Técnica', type: 'si_no' },
+      { id: 'a7_informe', name: 'A7 — Guía Informe Ensayo', type: 'si_no' },
+      { id: 'a8_rubrica_exposicion', name: 'A8 — Rúbrica Exposición Oral', type: 'rubric' },
+      { id: 'a9_rubrica_proyecto', name: 'A9 — Rúbrica Proyecto Integrador', type: 'rubric' },
+      { id: 'a10_autoevaluacion', name: 'A10 — Ficha Autoevaluación', type: 'si_no' },
+      { id: 'a11_coevaluacion', name: 'A11 — Ficha Coevaluación', type: 'si_no' },
+      { id: 'a12_memoria', name: 'A12 — Plantilla Memoria Cálculo', type: 'si_no' }
+    ];
+    var appliedCount = 0;
+    html += '<div style="padding:10px 16px">';
+    instrList.forEach(function(inst) {
+      var scores = instrData[inst.id] && instrData[inst.id][sid] ? instrData[inst.id][sid].scores : {};
+      var date = instrData[inst.id] && instrData[inst.id][sid] ? instrData[inst.id][sid].date || '' : '';
+      var hasAny = false, total = 0, maxTotal = 0;
+      Object.keys(scores).forEach(function(k) {
+        if(k.indexOf('obs_') !== 0 && scores[k] !== undefined && scores[k] !== null && scores[k] !== '') {
+          hasAny = true;
+          total += parseFloat(scores[k]) || 0;
+        }
+      });
+      if(inst.type === 'si_no') {
+        maxTotal = 5; // mayoría tienen 5 items
+        if(inst.id === 'a11_coevaluacion') maxTotal = 4;
+      } else if(inst.type === 'rubric') {
+        maxTotal = inst.id === 'a9_rubrica_proyecto' ? 20 : 16;
+      } else if(inst.type === 'numeric') {
+        maxTotal = 15;
+      }
+      if(hasAny) {
+        appliedCount++;
+        var pct = maxTotal > 0 ? Math.round(total / maxTotal * 100) : 0;
+        html += '<div style="display:flex;align-items:center;padding:6px 8px;margin-bottom:4px;background:#f5f9ff;border-radius:6px;border-left:3px solid #4caf50">';
+        html += '<div style="flex:1;font-size:12px"><strong>' + inst.name + '</strong></div>';
+        html += '<div style="font-size:12px;font-weight:700;color:#0f4c81;margin:0 12px">' + total + '/' + maxTotal + ' (' + pct + '%)</div>';
+        html += '<div style="font-size:10px;color:#4d6177">📅 ' + (date || '—') + '</div>';
+        html += '</div>';
+      }
+    });
+    if(appliedCount === 0) {
+      html += '<div style="color:#8899aa;font-size:13px">Aún no se registraron instrumentos evaluativos aplicados a este alumno.</div>';
+    } else {
+      html += '<div style="margin-top:6px;font-size:12px;font-weight:600;color:#0f4c81">✅ ' + appliedCount + '/' + instrList.length + ' instrumentos aplicados</div>';
+    }
+    html += '</div>';
+  } catch(e) {
+    html += '<div style="padding:14px 16px;color:#8899aa">No se pudieron cargar los instrumentos evaluativos.</div>';
+  }
+
   html += '</div>';
 
   container.innerHTML = html;

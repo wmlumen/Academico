@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instrumentos Evaluativos — Técnicas Instrumentales II</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,sans-serif;background:#f0f4fa;color:#172133}
+.wrap{max-width:1600px;margin:0 auto;padding:16px}
+
+.header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:16px 22px;border-radius:14px;margin-bottom:12px}
+.header h1{margin:0;font-size:20px}
+.header p{margin:4px 0 0;font-size:13px;opacity:.9}
+.header .meta{margin-top:6px;font-size:12px;opacity:.75}
+.header .meta a{color:#fff;font-weight:600}
+.header .badge{display:inline-block;background:rgba(255,255,255,0.2);padding:2px 10px;border-radius:10px;margin-left:8px;font-size:11px}
+
+.toolbar{background:#fff;border:1px solid #d8e3ef;border-radius:12px;padding:10px 14px;margin-bottom:14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;box-shadow:0 2px 8px rgba(23,33,51,0.06)}
+.toolbar .stats{display:flex;gap:14px;font-size:12px;margin-left:auto}
+.toolbar .stats span{padding:3px 10px;border-radius:6px}
+.toolbar .stats .s-total{background:#e3f2fd;color:#0f4c81}
+.toolbar .stats .s-hecho{background:#e8f5e9;color:#1b5e20}
+.toolbar .btn{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;transition:all .12s}
+.toolbar .btn.pri{background:#0f4c81;color:#fff}
+.toolbar .btn.pri:hover{background:#1a5f9a}
+.toolbar .btn.sec{background:#e8f1fb;color:#0f4c81;border:1px solid #c8d9ea}
+.toolbar .btn.sec:hover{background:#d4e4f5}
+
+.inst-section{background:#fff;border:1px solid #d8e3ef;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(23,33,51,0.04);margin-bottom:10px}
+.inst-header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:10px 14px;font-size:13px;font-weight:700;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:background .15s}
+.inst-header:hover{background:linear-gradient(135deg,#1a5f9a,#2a7fc0)}
+.inst-header .toggle{font-size:16px;transition:transform .2s;user-select:none}
+.inst-header .toggle.open{transform:rotate(90deg)}
+.inst-header .status-badge{font-size:10px;background:rgba(255,255,255,0.2);padding:2px 10px;border-radius:10px;font-weight:400}
+.inst-header .status-badge.some{background:#fff3e0;color:#333}
+.inst-header .status-badge.all{background:#4caf50}
+.inst-body{display:none;border-top:1px solid #d8e3ef}
+.inst-body.open{display:block}
+
+.inst-info{display:flex;flex-wrap:wrap;gap:8px;padding:8px 14px;background:#f5f9ff;border-bottom:1px solid #e8ecf0;font-size:11px;color:#4d6177;align-items:center}
+.inst-info .tag{display:inline-block;padding:1px 8px;border-radius:4px;background:#e3f2fd;color:#0f4c81;font-weight:600;font-size:10px}
+.inst-info .date-apply{display:flex;align-items:center;gap:6px;margin-left:auto}
+.inst-info .date-apply input{padding:2px 6px;border:1px solid #d8e0ea;border-radius:4px;font-size:11px}
+
+.matrix-wrap{overflow-x:auto;max-height:600px;overflow-y:auto}
+table.matrix{width:100%;border-collapse:collapse;font-size:11px}
+table.matrix th{background:#e8f1fb;color:#0f4c81;font-weight:600;padding:5px 4px;text-align:center;border-bottom:2px solid #c8d9ea;font-size:10px;white-space:nowrap;position:sticky;top:0;z-index:2}
+table.matrix th.sticky-crit{position:sticky;left:0;z-index:3;background:#e8f1fb;text-align:left;min-width:160px;max-width:200px}
+table.matrix th.sticky-crit::after{content:'';position:absolute;right:-2px;top:0;height:100%;width:2px;background:#c8d9ea}
+table.matrix td{padding:4px 3px;border-bottom:1px solid #e8ecf0;vertical-align:middle;text-align:center}
+table.matrix td.sticky-crit{position:sticky;left:0;z-index:1;background:#fff;text-align:left;font-weight:500;color:#2a405c;max-width:200px;overflow:hidden;text-overflow:ellipsis}
+table.matrix tr:hover td.sticky-crit{background:#f5f9ff}
+table.matrix tr:hover td{background:#fafcff}
+table.matrix tr.total-row td{background:#f5f9ff;font-weight:700;font-size:11px;border-top:2px solid #c8d9ea}
+table.matrix tr.total-row td.sticky-crit{background:#f5f9ff}
+table.matrix tr.total-row td.total-val{color:#0f4c81;font-size:12px}
+
+table.matrix .stu-hdr{writing-mode:vertical-lr;transform:rotate(180deg);font-size:9px;font-weight:600;padding:2px;white-space:nowrap;height:80px;text-align:center;color:#2a405c}
+table.matrix .stu-hdr .stu-num{display:block;font-size:7px;color:#4d6177}
+
+.score-si-no{display:flex;gap:1px;justify-content:center}
+.score-si-no button{padding:2px 5px;border:1.5px solid #d8e0ea;border-radius:3px;font-size:9px;font-weight:700;cursor:pointer;background:#fff;transition:all .08s;min-width:24px;line-height:1.2}
+.score-si-no button.si-on{background:#c8e6c9;border-color:#2e7d32;color:#1b5e20}
+.score-si-no button.no-on{background:#ffcdd2;border-color:#c62828;color:#b71c1c}
+
+select.cell-score{padding:2px 2px;border:1px solid #d8e0ea;border-radius:3px;font-size:9px;background:#fff;text-align:center;min-width:28px;max-width:36px}
+select.cell-score:focus{border-color:#0f4c81;outline:none}
+select.cell-score.level-4{background:#e8f5e9}
+select.cell-score.level-3{background:#fff3e0}
+select.cell-score.level-2{background:#fff8e1}
+select.cell-score.level-1{background:#ffebee}
+
+.summary{background:#fff;border:1px solid #d8e3ef;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(23,33,51,0.04);margin-bottom:14px}
+.summary-header{background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;padding:9px 14px;font-size:14px;font-weight:700;display:flex;justify-content:space-between}
+.summary-body{padding:10px 14px;overflow-x:auto}
+table.summary-tab{width:100%;border-collapse:collapse;font-size:10.5px}
+table.summary-tab th{background:#e8f1fb;color:#0f4c81;font-weight:600;padding:4px 5px;text-align:center;border-bottom:2px solid #c8d9ea;font-size:9px;white-space:nowrap}
+table.summary-tab td{padding:3px 5px;border-bottom:1px solid #e8ecf0;text-align:center}
+table.summary-tab .app-yes{color:#1b5e20;font-weight:700}
+table.summary-tab .app-no{color:#ccc}
+
+@media(max-width:1000px){
+  .toolbar{flex-direction:column;align-items:stretch}
+  .toolbar .stats{margin-left:0;justify-content:space-around}
+  table.matrix{font-size:10px}
+}
+@media print{.toolbar,.inst-header .toggle{display:none}.inst-body{display:block!important}.inst-section{break-inside:avoid}}
+</style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+<script src="../../nav/runtime.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>📋 Instrumentos Evaluativos</h1>
+  <p>Técnicas Instrumentales II · 2.do Curso BTCC</p>
+  <div class="meta">
+    <span>🧑‍🏫 Docente: Christhian Keim</span>
+    <span class="badge">Rúbricas y Listas de Cotejo</span>
+    <span class="badge">🔗 <a href="16_planilla_proceso_tecnicas.html">Planilla de Proceso</a></span>
+    <span class="badge">👤 <a href="15_perfil_estudiante_tecnicas.html">Perfil del Estudiante</a></span>
+  </div>
+</div>
+
+<div class="toolbar">
+  <div style="font-size:13px;font-weight:600;color:#0f4c81">📊 Matriz de Evaluación × Alumnos</div>
+  <div class="stats">
+    <span class="s-total">📋 <strong id="totalInst">0</strong> instrumentos</span>
+    <span class="s-hecho">✅ <strong id="totalApplied">0</strong> evaluaciones registradas</span>
+  </div>
+  <button class="btn sec" onclick="expandirTodos()">📂 Expandir todos</button>
+  <button class="btn sec" onclick="if(confirm('¿Limpiar TODAS las evaluaciones guardadas?')){localStorage.removeItem('instr_tecnicas');location.reload()}">🗑️ Limpiar todo</button>
+</div>
+
+<div class="summary" id="summarySection">
+  <div class="summary-header">📊 Resumen de Instrumentos por Alumno <span id="summaryCount"></span></div>
+  <div class="summary-body" id="summaryBody"></div>
+</div>
+
+<div id="instrumentsContainer"></div>
+
+</div>
+
+<script src="../../data/alumnos_tecnicas.js"></script>
+<script src="../../data/indicadores_tecnicas.js"></script>
+<script>
+// ============================================================
+//  DEFINICIÓN DE INSTRUMENTOS — TÉCNICAS
+// ============================================================
+
+var INSTR_KEY = 'instr_tecnicas';
+
+var INSTRUMENTS = [
+  // --- RÚBRICAS ---
+  {
+    id: 'r1_metodo',
+    name: 'Rúbrica 1 — Método de Trabajo y Organización del Puesto',
+    type: 'rubric',
+    indicators: ['t1','t2'],
+    levels: [
+      { val: 4, label: 'Destacado' },
+      { val: 3, label: 'Logrado' },
+      { val: 2, label: 'En proceso' },
+      { val: 1, label: 'Inicial' }
+    ],
+    items: [
+      { id: 'c1', name: 'Secuencia de trabajo', levels: ['Ordena todos los pasos con criterio técnico','Ordena los pasos principales','Presenta omisiones menores','No logra ordenar la tarea'] },
+      { id: 'c2', name: 'Uso del vocabulario técnico', levels: ['Emplea términos técnicos con precisión','Usa términos principales','Usa vocabulario parcial','No diferencia conceptos'] },
+      { id: 'c3', name: 'Organización del puesto', levels: ['Propone mejoras concretas y justificadas','Reconoce la organización necesaria','Detecta solo parte del problema','No reconoce el problema'] },
+      { id: 'c4', name: 'Presentación', levels: ['Registro claro, ordenado y comprensible','Presentación suficiente','Presentación incompleta','Desorden que impide evaluar'] }
+    ]
+  },
+  {
+    id: 'r2_tiempos',
+    name: 'Rúbrica 2 — Estudio de Tiempos, Rendimiento y Costo',
+    type: 'rubric',
+    indicators: ['t3','t4'],
+    levels: [
+      { val: 4, label: 'Destacado' },
+      { val: 3, label: 'Logrado' },
+      { val: 2, label: 'En proceso' },
+      { val: 1, label: 'Inicial' }
+    ],
+    items: [
+      { id: 'c1', name: 'Registro de datos', levels: ['Registra tiempos y datos completos','Registra datos principales','Registra datos parciales','No registra con orden'] },
+      { id: 'c2', name: 'Interpretación', levels: ['Distingue tiempo productivo e improductivo','Distingue lo principal','Requiere guía','No interpreta'] },
+      { id: 'c3', name: 'Relación rendimiento-costo', levels: ['Relaciona tiempo, cuadrilla y costo con claridad','Relaciona correctamente','Relación parcial','Sin relación válida'] },
+      { id: 'c4', name: 'Resultado técnico', levels: ['Presenta resultado con unidad e interpretación','Presenta resultado correcto','Error menor de presentación','Resultado no válido'] }
+    ]
+  },
+  {
+    id: 'r3_computo',
+    name: 'Rúbrica 3 — Cómputo de Trabajos y Materiales',
+    type: 'rubric',
+    indicators: ['t5','t6','t7','t8'],
+    levels: [
+      { val: 4, label: 'Destacado' },
+      { val: 3, label: 'Logrado' },
+      { val: 2, label: 'En proceso' },
+      { val: 1, label: 'Inicial' }
+    ],
+    items: [
+      { id: 'c1', name: 'Unidad de medida', levels: ['Selecciona y justifica la unidad correcta','Selecciona unidad correcta','Presenta dudas de unidad','Usa unidad incorrecta'] },
+      { id: 'c2', name: 'Procedimiento', levels: ['Desarrolla el cómputo paso a paso','Procedimiento suficiente','Procedimiento incompleto','No organiza el cálculo'] },
+      { id: 'c3', name: 'Consumos y materiales', levels: ['Aplica relaciones o tablas con criterio','Aplica correctamente','Aplica con ayuda','No logra aplicar'] },
+      { id: 'c4', name: 'Control del resultado', levels: ['Verifica coherencia y presenta observación','Presenta control básico','Control parcial','Sin control'] }
+    ]
+  },
+  {
+    id: 'r4_integracion',
+    name: 'Rúbrica 4 — Integración Final',
+    type: 'rubric',
+    indicators: ['t9'],
+    levels: [
+      { val: 4, label: 'Destacado' },
+      { val: 3, label: 'Logrado' },
+      { val: 2, label: 'En proceso' },
+      { val: 1, label: 'Inicial' }
+    ],
+    items: [
+      { id: 'c1', name: 'Planteamiento del caso', levels: ['Define tarea, datos y objetivo con claridad','Define datos principales','Datos incompletos','Caso confuso'] },
+      { id: 'c2', name: 'Desarrollo técnico', levels: ['Integra método, tiempos, cómputo y control','Integra los aspectos principales','Integración parcial','No integra'] },
+      { id: 'c3', name: 'Producto final', levels: ['Planilla o informe técnico ordenado y completo','Presentación suficiente','Presentación incompleta','Entrega mínima'] },
+      { id: 'c4', name: 'Defensa / explicación', levels: ['Argumenta con lenguaje técnico','Explica lo principal','Explica con apoyo','No logra justificar'] }
+    ]
+  },
+  // --- LISTAS DE COTEJO ---
+  {
+    id: 'c1_rsa_proceso',
+    name: 'Lista de Cotejo de Proceso / RSA',
+    type: 'si_no',
+    indicators: ['t1','t2','t3','t4','t5','t6','t7','t8','t9'],
+    items: [
+      { id: 'c1', name: 'Trae materiales y carpeta de trabajo' },
+      { id: 'c2', name: 'Ordena la tarea antes de comenzar' },
+      { id: 'c3', name: 'Registra datos y unidades correctamente' },
+      { id: 'c4', name: 'Controla recorridos, tiempos o consumos' },
+      { id: 'c5', name: 'Corrige errores después de la retroalimentación' },
+      { id: 'c6', name: 'Presenta la evidencia con vocabulario técnico' }
+    ]
+  },
+  {
+    id: 'c2_observacion',
+    name: 'Guía de Observación — Desempeño en Taller',
+    type: 'si_no',
+    indicators: ['t1','t2','t3'],
+    items: [
+      { id: 'c1', name: 'Mantiene orden en el puesto de trabajo' },
+      { id: 'c2', name: 'Utiliza herramientas e instrumentos correctamente' },
+      { id: 'c3', name: 'Sigue la secuencia de trabajo planificada' },
+      { id: 'c4', name: 'Registra datos en planillas o formularios' },
+      { id: 'c5', name: 'Colabora con el grupo cuando corresponde' }
+    ]
+  },
+  // --- REGISTRO NUMÉRICO ---
+  {
+    id: 'n1_ejercitacion',
+    name: 'Registro de Ejercitación en Clase',
+    type: 'numeric',
+    indicators: ['t1','t2','t3','t4','t5','t6','t7','t8'],
+    items: [
+      { id: 'c1', name: 'Completa los ejercicios propuestos', max: 3 },
+      { id: 'c2', name: 'Utiliza unidades y simbología correcta', max: 3 },
+      { id: 'c3', name: 'Presenta procedimientos ordenados', max: 3 },
+      { id: 'c4', name: 'Verifica resultados con criterio técnico', max: 3 }
+    ]
+  }
+];
+
+// ============================================================
+//  ESTADO (misma lógica que Resistencia)
+// ============================================================
+
+var evals = {};
+
+function getEvals() {
+  try { return JSON.parse(localStorage.getItem(INSTR_KEY)) || {}; } catch(e) { return {}; }
+}
+function saveEvals() { localStorage.setItem(INSTR_KEY, JSON.stringify(evals)); }
+
+function cargarEstado() {
+  evals = getEvals();
+  INSTRUMENTS.forEach(function(inst) {
+    if(!evals[inst.id]) evals[inst.id] = {};
+    STUDENTS.forEach(function(s) {
+      var sid = 's' + s.num;
+      if(!evals[inst.id][sid]) evals[inst.id][sid] = { date: '', scores: {} };
+    });
+  });
+}
+
+function getStudentScore(instId, sNum, itemId) {
+  if(!evals[instId] || !evals[instId][sNum]) return '';
+  var val = evals[instId][sNum].scores[itemId];
+  return (val !== undefined && val !== null) ? val : '';
+}
+
+function isStudentApplied(instId, sNum) {
+  var e = evals[instId];
+  if(!e || !e[sNum]) return false;
+  var scores = e[sNum].scores;
+  var has = false;
+  Object.keys(scores).forEach(function(k) {
+    var v = scores[k];
+    if(v !== undefined && v !== null && v !== '') has = true;
+  });
+  return has;
+}
+
+function countApplied(instId) {
+  var count = 0;
+  STUDENTS.forEach(function(s) {
+    if(isStudentApplied(instId, 's' + s.num)) count++;
+  });
+  return count;
+}
+
+function getStudentTotal(instId, sNum) {
+  var scores = evals[instId] && evals[instId][sNum] ? evals[instId][sNum].scores : {};
+  var total = 0, maxTotal = 0, hasAny = false;
+  var inst = null;
+  INSTRUMENTS.forEach(function(i) { if(i.id === instId) inst = i; });
+  if(!inst) return null;
+  inst.items.forEach(function(item) {
+    var val = scores[item.id];
+    if(val !== undefined && val !== null && val !== '') {
+      var n = parseFloat(val);
+      if(!isNaN(n)) { total += n; hasAny = true; }
+    }
+    if(inst.type === 'rubric') { maxTotal += inst.levels[0].val; }
+    else if(inst.type === 'numeric') { maxTotal += item.max; }
+    else { maxTotal += 1; }
+  });
+  if(!hasAny) return null;
+  return { total: total, max: maxTotal, pct: Math.round(total/maxTotal*100) };
+}
+
+// ============================================================
+//  RENDER
+// ============================================================
+
+function getIndName(indId) {
+  if(!window.INDICATORS) return indId;
+  for(var i = 0; i < INDICATORS.length; i++) {
+    if(INDICATORS[i].id === indId) return INDICATORS[i].tema;
+  }
+  return indId;
+}
+
+function renderAll() {
+  renderSummary();
+  renderInstruments();
+  updateStats();
+}
+
+function renderSummary() {
+  var body = document.getElementById('summaryBody');
+  var totalInst = INSTRUMENTS.length;
+  var html = '<table class="summary-tab"><thead><tr><th style="text-align:left;position:sticky;left:0;background:#e8f1fb;z-index:2">Alumno</th>';
+  INSTRUMENTS.forEach(function(inst) {
+    html += '<th style="font-size:8px" title="' + inst.name + '">' + inst.id + '</th>';
+  });
+  html += '<th style="min-width:60px">Aplicados</th><th>%</th></tr></thead><tbody>';
+
+  var totalAppliedAll = 0;
+  STUDENTS.forEach(function(s) {
+    var sid = 's' + s.num;
+    var applied = 0;
+    html += '<tr><td style="text-align:left;font-weight:600;position:sticky;left:0;background:#fff;z-index:1">' + s.num + '. ' + s.name.split(',')[0] + '</td>';
+    INSTRUMENTS.forEach(function(inst) {
+      var isApp = isStudentApplied(inst.id, sid);
+      if(isApp) applied++;
+      html += '<td>' + (isApp ? '<span class="app-yes">✅</span>' : '<span class="app-no">⬜</span>') + '</td>';
+    });
+    var pct = totalInst > 0 ? Math.round(applied/totalInst*100) : 0;
+    html += '<td style="font-weight:700">' + applied + '/' + totalInst + '</td>';
+    html += '<td style="font-weight:700;color:' + (pct >= 70 ? '#1b5e20' : '#e65100') + '">' + pct + '%</td></tr>';
+    totalAppliedAll += applied;
+  });
+  html += '</tbody></table>';
+  body.innerHTML = html;
+  document.getElementById('summaryCount').textContent = totalAppliedAll + ' evaluaciones aplicadas';
+}
+
+function updateStats() {
+  document.getElementById('totalInst').textContent = INSTRUMENTS.length;
+  var totalAll = 0;
+  INSTRUMENTS.forEach(function(inst) { totalAll += countApplied(inst.id); });
+  document.getElementById('totalApplied').textContent = totalAll;
+}
+
+function renderInstruments() {
+  var container = document.getElementById('instrumentsContainer');
+  var html = '';
+
+  INSTRUMENTS.forEach(function(inst, idx) {
+    var cnt = countApplied(inst.id);
+    var badgeClass = 'status-badge';
+    if(cnt === STUDENTS.length) badgeClass += ' all';
+    else if(cnt > 0) badgeClass += ' some';
+    var badgeText = cnt > 0 ? cnt + '/' + STUDENTS.length + ' alumnos' : 'Pendiente';
+
+    html += '<div class="inst-section" id="sec-' + inst.id + '">';
+    html += '<div class="inst-header" onclick="toggleInstrument(\'' + inst.id + '\')">';
+    html += '<span><span class="toggle" id="tog-' + inst.id + '">▶</span> ' + inst.name + '</span>';
+    html += '<span class="' + badgeClass + '" id="badge-' + inst.id + '">' + badgeText + '</span>';
+    html += '</div>';
+
+    html += '<div class="inst-body" id="body-' + inst.id + '">';
+
+    // Info bar
+    html += '<div class="inst-info">';
+    html += '<span>📌 Indicadores RSA: ';
+    inst.indicators.forEach(function(indId, i) {
+      html += '<span class="tag">' + getIndName(indId) + '</span>';
+      if(i < inst.indicators.length - 1) html += ' ';
+    });
+    html += '</span>';
+    html += '<span class="date-apply">📅 Fecha aplicación global: <input type="date" id="gdate-' + inst.id + '" onchange="setGlobalDate(\'' + inst.id + '\',this.value)"></span>';
+    html += '</div>';
+
+    // Matrix
+    html += '<div class="matrix-wrap">';
+    html += '<table class="matrix" id="mtab-' + inst.id + '"><thead><tr>';
+    html += '<th class="sticky-crit" style="min-width:180px">📌 Criterio</th>';
+    STUDENTS.forEach(function(s) {
+      html += '<th><div class="stu-hdr"><span class="stu-num">' + s.num + '.</span>' + s.name.split(',')[0] + '</div></th>';
+    });
+    html += '</tr></thead><tbody>';
+
+    if(inst.type === 'si_no') {
+      html += renderSiNoMatrix(inst);
+    } else if(inst.type === 'rubric') {
+      html += renderRubricMatrix(inst);
+    } else if(inst.type === 'numeric') {
+      html += renderNumericMatrix(inst);
+    }
+
+    html += '</tbody></table></div>';
+    html += '</div></div>';
+  });
+
+  container.innerHTML = html;
+  if(INSTRUMENTS.length > 0) toggleInstrument(INSTRUMENTS[0].id);
+}
+
+function renderSiNoMatrix(inst) {
+  var html = '';
+  inst.items.forEach(function(item) {
+    html += '<tr class="criterio-row">';
+    html += '<td class="sticky-crit">' + item.name + '</td>';
+    STUDENTS.forEach(function(s) {
+      var sid = 's' + s.num;
+      var val = getStudentScore(inst.id, sid, item.id);
+      var siOn = (val === '1' || val === 1 || val === true);
+      var noOn = (val === '0' || val === 0 || val === false);
+      html += '<td><div class="score-si-no">';
+      html += '<button id="si-' + inst.id + '-' + item.id + '-' + s.num + '" class="' + (siOn ? 'si-on' : '') + '" onclick="setScore(\'' + inst.id + '\',\'' + item.id + '\',' + s.num + ',\'1\')">S</button>';
+      html += '<button id="no-' + inst.id + '-' + item.id + '-' + s.num + '" class="' + (noOn ? 'no-on' : '') + '" onclick="setScore(\'' + inst.id + '\',\'' + item.id + '\',' + s.num + ',\'0\')">N</button>';
+      html += '</div></td>';
+    });
+    html += '</tr>';
+  });
+  html += '<tr class="total-row"><td class="sticky-crit"><strong>Total</strong></td>';
+  STUDENTS.forEach(function(s) {
+    var sid = 's' + s.num;
+    var r = getStudentTotal(inst.id, sid);
+    html += '<td class="total-val">' + (r ? r.total + '/' + r.max : '—') + '</td>';
+  });
+  html += '</tr>';
+  return html;
+}
+
+function renderRubricMatrix(inst) {
+  var html = '';
+  inst.items.forEach(function(item) {
+    html += '<tr class="criterio-row">';
+    html += '<td class="sticky-crit" title="' + item.levels.join(' | ') + '">' + item.name + '</td>';
+    STUDENTS.forEach(function(s) {
+      var sid = 's' + s.num;
+      var val = getStudentScore(inst.id, sid, item.id);
+      html += '<td>';
+      html += '<select class="cell-score" onchange="setScore(\'' + inst.id + '\',\'' + item.id + '\',' + s.num + ',this.value)">';
+      html += '<option value="">—</option>';
+      inst.levels.forEach(function(lvl) {
+        var sel = (val == lvl.val) ? ' selected' : '';
+        html += '<option value="' + lvl.val + '" class="level-' + lvl.val + '"' + sel + '>' + lvl.val + '</option>';
+      });
+      html += '</select></td>';
+    });
+    html += '</tr>';
+  });
+  html += '<tr class="total-row"><td class="sticky-crit"><strong>Total</strong></td>';
+  STUDENTS.forEach(function(s) {
+    var sid = 's' + s.num;
+    var r = getStudentTotal(inst.id, sid);
+    html += '<td class="total-val">' + (r ? r.total + '/' + r.max : '—') + '</td>';
+  });
+  html += '</tr>';
+  return html;
+}
+
+function renderNumericMatrix(inst) {
+  var html = '';
+  inst.items.forEach(function(item) {
+    html += '<tr class="criterio-row">';
+    html += '<td class="sticky-crit">' + item.name + '</td>';
+    STUDENTS.forEach(function(s) {
+      var sid = 's' + s.num;
+      var val = getStudentScore(inst.id, sid, item.id);
+      html += '<td>';
+      html += '<select class="cell-score" onchange="setScore(\'' + inst.id + '\',\'' + item.id + '\',' + s.num + ',this.value)">';
+      html += '<option value="">—</option>';
+      for(var i = 0; i <= item.max; i++) {
+        var sel = (val == i) ? ' selected' : '';
+        html += '<option value="' + i + '"' + sel + '>' + i + '</option>';
+      }
+      html += '</select></td>';
+    });
+    html += '</tr>';
+  });
+  html += '<tr class="total-row"><td class="sticky-crit"><strong>Total</strong></td>';
+  STUDENTS.forEach(function(s) {
+    var sid = 's' + s.num;
+    var r = getStudentTotal(inst.id, sid);
+    html += '<td class="total-val">' + (r ? r.total + '/' + r.max : '—') + '</td>';
+  });
+  html += '</tr>';
+  return html;
+}
+
+// ============================================================
+//  ACCIONES
+// ============================================================
+
+function setScore(instId, itemId, sNum, value) {
+  var sid = 's' + sNum;
+  if(!evals[instId]) evals[instId] = {};
+  if(!evals[instId][sid]) evals[instId][sid] = { date: '', scores: {} };
+  evals[instId][sid].scores[itemId] = value;
+  if(!evals[instId][sid].date) {
+    evals[instId][sid].date = new Date().toISOString().split('T')[0];
+  }
+  saveEvals();
+  renderAll();
+}
+
+function setGlobalDate(instId, value) {
+  if(!value) return;
+  if(!evals[instId]) evals[instId] = {};
+  STUDENTS.forEach(function(s) {
+    var sid = 's' + s.num;
+    if(!evals[instId][sid]) evals[instId][sid] = { date: '', scores: {} };
+    if(!evals[instId][sid].date) {
+      evals[instId][sid].date = value;
+    }
+  });
+  saveEvals();
+  renderAll();
+}
+
+function toggleInstrument(id) {
+  var body = document.getElementById('body-' + id);
+  var tog = document.getElementById('tog-' + id);
+  if(!body || !tog) return;
+  var isOpen = body.classList.contains('open');
+  document.querySelectorAll('.inst-body').forEach(function(el) { el.classList.remove('open'); });
+  document.querySelectorAll('.inst-header .toggle').forEach(function(el) { el.classList.remove('open'); });
+  if(!isOpen) {
+    body.classList.add('open');
+    tog.classList.add('open');
+  }
+}
+
+function expandirTodos() {
+  var allClosed = document.querySelectorAll('.inst-body:not(.open)').length > 0;
+  document.querySelectorAll('.inst-body').forEach(function(el) {
+    if(allClosed) el.classList.add('open'); else el.classList.remove('open');
+  });
+  document.querySelectorAll('.inst-header .toggle').forEach(function(el) {
+    if(allClosed) el.classList.add('open'); else el.classList.remove('open');
+  });
+}
+
+// ============================================================
+//  INIT
+// ============================================================
+
+window.addEventListener('DOMContentLoaded', function() {
+  cargarEstado();
+  renderAll();
+});
+</script>
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>

@@ -334,6 +334,54 @@ function mostrarPerfil() {
     html += '</tbody></table>';
   }
 
+  // ---- INSTRUMENTOS EVALUATIVOS APLICADOS ----
+  html += '<div class="section-title">📋 Instrumentos Evaluativos <span style="font-weight:400;font-size:12px;color:#5a687c">(desde <a href="20_instrumentos_evaluativos_tecnicas.html" style="color:#0f4c81">Instrumentos</a>)</span></div>';
+  try {
+    var instrData = JSON.parse(localStorage.getItem('instr_tecnicas')) || {};
+    var instrList = [
+      { id: 'r1_metodo', name: 'R1 — Método y Organización', type: 'rubric' },
+      { id: 'r2_tiempos', name: 'R2 — Tiempos, Rendimiento y Costo', type: 'rubric' },
+      { id: 'r3_computo', name: 'R3 — Cómputo de Trabajos y Materiales', type: 'rubric' },
+      { id: 'r4_integracion', name: 'R4 — Integración Final', type: 'rubric' },
+      { id: 'c1_rsa_proceso', name: 'C1 — Lista Cotejo Proceso/RSA', type: 'si_no' },
+      { id: 'c2_observacion', name: 'C2 — Guía Observación Taller', type: 'si_no' },
+      { id: 'n1_ejercitacion', name: 'N1 — Registro Ejercitación', type: 'numeric' }
+    ];
+    var appliedCount = 0;
+    html += '<div style="padding:10px 16px">';
+    instrList.forEach(function(inst) {
+      var scores = instrData[inst.id] && instrData[inst.id][sid] ? instrData[inst.id][sid].scores : {};
+      var date = instrData[inst.id] && instrData[inst.id][sid] ? instrData[inst.id][sid].date || '' : '';
+      var hasAny = false, total = 0, maxTotal = 0;
+      Object.keys(scores).forEach(function(k) {
+        if(k.indexOf('obs_') !== 0 && scores[k] !== undefined && scores[k] !== null && scores[k] !== '') {
+          hasAny = true;
+          total += parseFloat(scores[k]) || 0;
+        }
+      });
+      if(inst.type === 'rubric') maxTotal = 16;
+      else if(inst.type === 'si_no') maxTotal = inst.id === 'c1_rsa_proceso' ? 6 : 5;
+      else if(inst.type === 'numeric') maxTotal = 12;
+      if(hasAny) {
+        appliedCount++;
+        var pct = maxTotal > 0 ? Math.round(total / maxTotal * 100) : 0;
+        html += '<div style="display:flex;align-items:center;padding:6px 8px;margin-bottom:4px;background:#f5f9ff;border-radius:6px;border-left:3px solid #4caf50">';
+        html += '<div style="flex:1;font-size:12px"><strong>' + inst.name + '</strong></div>';
+        html += '<div style="font-size:12px;font-weight:700;color:#0f4c81;margin:0 12px">' + total + '/' + maxTotal + ' (' + pct + '%)</div>';
+        html += '<div style="font-size:10px;color:#4d6177">📅 ' + (date || '—') + '</div>';
+        html += '</div>';
+      }
+    });
+    if(appliedCount === 0) {
+      html += '<div style="color:#8899aa;font-size:13px">Aún no se registraron instrumentos evaluativos aplicados a este alumno.</div>';
+    } else {
+      html += '<div style="margin-top:6px;font-size:12px;font-weight:600;color:#0f4c81">✅ ' + appliedCount + '/' + instrList.length + ' instrumentos aplicados</div>';
+    }
+    html += '</div>';
+  } catch(e) {
+    html += '<div style="padding:14px 16px;color:#8899aa">No se pudieron cargar los instrumentos evaluativos.</div>';
+  }
+
   html += '</div>';
 
   container.innerHTML = html;
