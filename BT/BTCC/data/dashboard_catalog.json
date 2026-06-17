@@ -100,6 +100,15 @@
     },
     {
       "course": "institucional",
+      "role": "docente",
+      "title": "OBRATEC - Proyecto Institucional",
+      "description": "Proyecto Educativo de Competencia Integrada BTCC 2026-2031 del Colegio Nacional Defensores del Chaco.",
+      "actions": [
+        { "label": "Ver proyecto", "href": "Documentos_Generales/OBRATEC/Proyecto_Educativo_Competencia_Integrada_BTCC_2026_2031.html", "variant": "primary" }
+      ]
+    },
+    {
+      "course": "institucional",
       "role": "alumno-docente",
       "title": "Computo y Presupuesto",
       "description": "Plan de catedra del 3.er curso BTCC.",

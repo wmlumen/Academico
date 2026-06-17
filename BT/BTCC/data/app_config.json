@@ -23,6 +23,7 @@
     { "name": "Inicio", "href": "index.html", "only": "ambos" },
     { "name": "Panel Institucional", "href": "panel_institucional.html", "only": "ambos" },
     { "name": "Sistema de Asistencia", "href": "sistema_institucional_asistencia.html", "only": "docente" },
+    { "name": "OBRATEC - Proyecto Institucional", "href": "Documentos_Generales/OBRATEC/Proyecto_Educativo_Competencia_Integrada_BTCC_2026_2031.html", "only": "docente" },
     { "name": "Calendario Escolar", "href": "calendario_escolar_2026.html", "only": "ambos" },
     { "name": "Perfil Docente", "href": "perfil_docente.html", "only": "docente" }
   ]
