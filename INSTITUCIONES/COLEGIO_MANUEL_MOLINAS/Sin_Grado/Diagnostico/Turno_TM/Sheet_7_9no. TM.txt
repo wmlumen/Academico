@@ -1,0 +1,60 @@
+﻿Categoría|Indicador |Indicador |Tipo de Indicador|Cantidad de veces|NOTA|PR|VALORACION|GRADO|TURNO|NF|42||344|||||||
+Académica|Ale-02. Presenta lagunas en conocimientos previos.|02. Presenta lagunas en conocimientos previos.|Alerta/Mejora|14|2|28|A mejorar|NOVENO|TM|0,33333333||||||||||
+Académica|Ale-04. Se limita a memorizar sin comprender.|04. Se limita a memorizar sin comprender.|Alerta/Mejora|12|3|30|Bueno|NOVENO|TM|0,28571429|0|24|1||Etiquetas de fila|Suma de Cantidad de veces||||
+Académica|Ale-06. Entrega tareas incompletas o descuidadas.|06. Entrega tareas incompletas o descuidadas.|Alerta/Mejora|9|3|33|Bueno|NOVENO|TM|0,21428571|25|28|2||Alerta/Mejora|34||||
+Académica|Ale-08. Se bloquea ante desafíos matemáticos.|08. Se bloquea ante desafíos matemáticos.|Alerta/Mejora|15|2|27|A mejorar|NOVENO|TM|0,35714286|29|33|3||Fortaleza/Logro|310||||
+Académica|Ale-10. Tiene dificultades de expresión oral/escrita.|10. Tiene dificultades de expresión oral/escrita.|Alerta/Mejora|8|4|34|Muy bueno |NOVENO|TM|0,19047619|34|38|4||Total general|344||||
+Académica|Ale-12. Muestra rechazo o desinterés por la lectura.|12. Muestra rechazo o desinterés por la lectura.|Alerta/Mejora|3|5|39|Muy bueno |NOVENO|TM|0,07142857|39|42|5|||||||
+Académica|Ale-14. Requiere supervisión constante para avanzar.|14. Requiere supervisión constante para avanzar.|Alerta/Mejora|7|4|35|Muy bueno |NOVENO|TM|0,16666667||||||||||
+Académica|Ale-16. Muestra apatía por temas nuevos.|16. Muestra apatía por temas nuevos.|Alerta/Mejora|5|4|37|Muy bueno |NOVENO|TM|0,11904762||||||||||
+Conductual|Ale-18. Desafía activamente la autoridad.|18. Desafía activamente la autoridad.|Alerta/Mejora|2|5|40|Muy bueno |NOVENO|TM|0,04761905||||||||||
+Conductual|Ale-20. Presenta retardos o inasistencias frecuentes.|20. Presenta retardos o inasistencias frecuentes.|Alerta/Mejora|4|4|38|Muy bueno |NOVENO|TM|0,0952381||||||||||
+Conductual|Ale-22. Daña el mobiliario o materiales escolares.|22. Daña el mobiliario o materiales escolares.|Alerta/Mejora|0|5|42|Muy bueno |NOVENO|TM|0||||||||||
+Conductual|Ale-24. Interrumpe constantemente el flujo de clase.|24. Interrumpe constantemente el flujo de clase.|Alerta/Mejora|26|1|16|A mejorar|NOVENO|TM|0,61904762||||||||||
+Conductual|Ale-26. Emplea lenguaje soez o despectivo.|26. Emplea lenguaje soez o despectivo.|Alerta/Mejora|0|5|42|Muy bueno |NOVENO|TM|0||||||||||
+Conductual|Ale-28. Miente o culpa a otros por sus actos.|28. Miente o culpa a otros por sus actos.|Alerta/Mejora|4|4|38|Muy bueno |NOVENO|TM|0,0952381||||||||||
+Conductual|Ale-30. Se distrae con dispositivos electrónicos.|30. Se distrae con dispositivos electrónicos.|Alerta/Mejora|10|3|32|Bueno|NOVENO|TM|0,23809524||||||||||
+Conductual|Ale-32. Fomenta el desorden o el caos en el grupo.|32. Fomenta el desorden o el caos en el grupo.|Alerta/Mejora|22|1|20|A mejorar|NOVENO|TM|0,52380952||||||||||
+Socio-Emocional|Ale-34. Se rinde fácilmente ante la frustración.|34. Se rinde fácilmente ante la frustración.|Alerta/Mejora|9|3|33|Bueno|NOVENO|TM|0,21428571||||||||||
+Socio-Emocional|Ale-36. Trabaja de forma aislada o es individualista.|36. Trabaja de forma aislada o es individualista.|Alerta/Mejora|3|5|39|Muy bueno |NOVENO|TM|0,07142857||||||||||
+Socio-Emocional|Ale-38. Ignora o se burla de los sentimientos de otros.|38. Ignora o se burla de los sentimientos de otros.|Alerta/Mejora|2|5|40|Muy bueno |NOVENO|TM|0,04761905||||||||||
+Socio-Emocional|Ale-40. Ejerce presión negativa o bullying.|40. Ejerce presión negativa o bullying.|Alerta/Mejora|0|5|42|Muy bueno |NOVENO|TM|0||||||||||
+Socio-Emocional|Ale-42. Reacciona de forma agresiva o impulsiva.|42. Reacciona de forma agresiva o impulsiva.|Alerta/Mejora|0|5|42|Muy bueno |NOVENO|TM|0||||||||||
+Socio-Emocional|Ale-44. Expresa inseguridad constante ("no puedo").|44. Expresa inseguridad constante ("no puedo").|Alerta/Mejora|8|4|34|Muy bueno |NOVENO|TM|0,19047619||||||||||
+Actitudinal|Ale-46. Requiere estímulos externos para trabajar.|46. Requiere estímulos externos para trabajar.|Alerta/Mejora|16|2|26|A mejorar|NOVENO|TM|0,38095238||||||||||
+Actitudinal|Ale-48. Abandona proyectos a mitad de camino.|48. Abandona proyectos a mitad de camino.|Alerta/Mejora|7|4|35|Muy bueno |NOVENO|TM|0,16666667||||||||||
+Actitudinal|Ale-50. Se muestra a la defensiva ante críticas.|50. Se muestra a la defensiva ante críticas.|Alerta/Mejora|4|4|38|Muy bueno |NOVENO|TM|0,0952381||||||||||
+Académica|For-01. Domina los conceptos clave del grado.|01. Domina los conceptos clave del grado.|Fortaleza/Logro|16|1|16|A mejorar|NOVENO|TM|0,38095238||||||||||
+Académica|For-03. Posee un pensamiento crítico y analítico.|03. Posee un pensamiento crítico y analítico.|Fortaleza/Logro|14|1|14|A mejorar|NOVENO|TM|0,33333333||||||||||
+Académica|For-05. Entrega trabajos con alta calidad y orden.|05. Entrega trabajos con alta calidad y orden.|Fortaleza/Logro|21|1|21|A mejorar|NOVENO|TM|0,5||||||||||
+Académica|For-07. Resuelve problemas lógicos con fluidez.|07. Resuelve problemas lógicos con fluidez.|Fortaleza/Logro|15|1|15|A mejorar|NOVENO|TM|0,35714286||||||||||
+Académica|For-09. Utiliza vocabulario técnico preciso.|09. Utiliza vocabulario técnico preciso.|Fortaleza/Logro|10|1|10|A mejorar|NOVENO|TM|0,23809524||||||||||
+Académica|For-11. Posee excelentes hábitos de lectura.|11. Posee excelentes hábitos de lectura.|Fortaleza/Logro|6|1|6|A mejorar|NOVENO|TM|0,14285714||||||||||
+Académica|For-13. Es autónomo en la realización de tareas.|13. Es autónomo en la realización de tareas.|Fortaleza/Logro|21|1|21|A mejorar|NOVENO|TM|0,5||||||||||
+Académica|For-15. Investiga más allá de lo solicitado.|15. Investiga más allá de lo solicitado.|Fortaleza/Logro|9|1|9|A mejorar|NOVENO|TM|0,21428571||||||||||
+Conductual|For-17. Respeta las normas de convivencia.|17. Respeta las normas de convivencia.|Fortaleza/Logro|25|2|25|A mejorar|NOVENO|TM|0,5952381||||||||||
+Conductual|For-19. Es puntual en todas sus obligaciones.|19. Es puntual en todas sus obligaciones.|Fortaleza/Logro|21|1|21|A mejorar|NOVENO|TM|0,5||||||||||
+Conductual|For-21. Cuida el material propio y ajeno.|21. Cuida el material propio y ajeno.|Fortaleza/Logro|30|3|30|Bueno|NOVENO|TM|0,71428571||||||||||
+Conductual|For-23. Escucha con atención y no interrumpe.|23. Escucha con atención y no interrumpe.|Fortaleza/Logro|4|1|4|A mejorar|NOVENO|TM|0,0952381||||||||||
+Conductual|For-25. Utiliza el lenguaje de forma respetuosa.|25. Utiliza el lenguaje de forma respetuosa.|Fortaleza/Logro|30|3|30|Bueno|NOVENO|TM|0,71428571||||||||||
+Conductual|For-27. Reconoce sus errores honestamente.|27. Reconoce sus errores honestamente.|Fortaleza/Logro|26|2|26|A mejorar|NOVENO|TM|0,61904762|||Suma de Cantidad de veces|Etiquetas de columna||||||
+Conductual|For-29. Usa la tecnología con fines educativos.|29. Usa la tecnología con fines educativos.|Fortaleza/Logro|18|1|18|A mejorar|NOVENO|TM|0,42857143|||Etiquetas de fila|Alerta/Mejora|Fortaleza/Logro|Total general||||
+Conductual|For-31. Mantiene el orden en espacios comunes.|31. Mantiene el orden en espacios comunes.|Fortaleza/Logro|8|1|8|A mejorar|NOVENO|TM|0,19047619|||Académica|19|99|118||||
+Socio-Emocional|For-33. Muestra resiliencia ante el fracaso.|33. Muestra resiliencia ante el fracaso.|Fortaleza/Logro|21|1|21|A mejorar|NOVENO|TM|0,5|||Actitudinal|2|34|36||||
+Socio-Emocional|For-35. Trabaja de forma colaborativa y equitativa.|35. Trabaja de forma colaborativa y equitativa.|Fortaleza/Logro|27|2|27|A mejorar|NOVENO|TM|0,64285714|||Conductual|4|105|109||||
+Socio-Emocional|For-37. Es empático con las necesidades ajenas.|37. Es empático con las necesidades ajenas.|Fortaleza/Logro|28|2|28|A mejorar|NOVENO|TM|0,66666667|||Socio-Emocional|9|72|81||||
+Socio-Emocional|For-39. Posee un liderazgo positivo y ético.|39. Posee un liderazgo positivo y ético.|Fortaleza/Logro|14|1|14|A mejorar|NOVENO|TM|0,33333333|||Total general|34|310|344||||
+Socio-Emocional|For-41. Se comunica de manera asertiva.|41. Se comunica de manera asertiva.|Fortaleza/Logro|24|1|24|A mejorar|NOVENO|TM|0,57142857||||||||||
+Socio-Emocional|For-43. Tiene una autoestima académica sólida.|43. Tiene una autoestima académica sólida.|Fortaleza/Logro|18|1|18|A mejorar|NOVENO|TM|0,42857143||||Etiquetas de columna||||||
+Actitudinal|For-45. Muestra curiosidad e iniciativa propia.|45. Muestra curiosidad e iniciativa propia.|Fortaleza/Logro|23|1|23|A mejorar|NOVENO|TM|0,54761905||||Alerta/Mejora|Fortaleza/Logro|(en blanco)|Total general|||
+Actitudinal|For-47. Es persistente en tareas complejas.|47. Es persistente en tareas complejas.|Fortaleza/Logro|20|1|20|A mejorar|NOVENO|TM|0,47619048|||Suma de Cantidad de veces|34|310||344|||
+Actitudinal|For-49. Acepta retroalimentación constructiva.|49. Acepta retroalimentación constructiva.|Fortaleza/Logro|26|2|26|A mejorar|NOVENO|TM|0,61904762||||||||||
+||||||||||||||||||||
+||||||||||||||||||||
+|||||||||||||Nota |Cantidad de alumnos||% de Alumnos||||
+|||||||||||||1|16||38%||Muy bueno |14|33%
+|||||||||||||2|7||17%||Bueno|5|12%
+|||||||||||||3|5||12%||A mejorar|23|55%
+|||||||||||||4|7||17%||||
+|||||||||||||5|7||17%||||
+||||||||||||||42||||||

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material del Estudiante - Tecnicas Instrumentales II</title>
+    <style>
+        :root {
+            --ink: #172133;
+            --muted: #5a687c;
+            --line: #d8e0ea;
+            --head: #e8f1fb;
+            --brand: #0f4c81;
+            --bg: #f4f7fb;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            line-height: 1.45;
+            padding: 18px;
+        }
+        .topbar, .page { max-width: 1100px; margin: 0 auto; }
+        .topbar { margin-bottom: 14px; }
+        .topnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px;
+            border: 1px solid var(--line);
+            background: #fff;
+        }
+        .topnav a {
+            display: inline-block;
+            text-decoration: none;
+            background: #e8f1fb;
+            color: var(--brand);
+            border: 1px solid #bcd0e6;
+            padding: 8px 12px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+        .cover, .sheet {
+            background: #fff;
+            border: 1px solid var(--line);
+            padding: 22px;
+            margin-bottom: 16px;
+        }
+        .cover { border-left: 8px solid var(--brand); }
+        .cover h1 { margin: 0 0 10px; font-size: 28px; }
+        .cover p { margin: 4px 0; color: var(--muted); font-size: 14px; }
+        .sheet { page-break-after: always; min-height: 960px; }
+        .sheet:last-of-type { page-break-after: auto; }
+        h2 { margin: 0 0 10px; color: var(--brand); font-size: 24px; }
+        h3 { margin: 14px 0 6px; color: #1a3b5b; font-size: 16px; }
+        p { margin: 6px 0; font-size: 14px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+        th, td {
+            border: 1px solid var(--line);
+            padding: 8px 10px;
+            vertical-align: top;
+            font-size: 13px;
+        }
+        th { background: var(--head); text-align: left; }
+        ol, ul { margin: 6px 0 0 18px; padding: 0; }
+        li { margin-bottom: 4px; font-size: 14px; }
+        .grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 14px;
+        }
+        .note {
+            border-left: 4px solid var(--brand);
+            background: #f7fbff;
+            padding: 10px 12px;
+            margin-top: 10px;
+        }
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .chip {
+            display: inline-block;
+            background: #e8f1fb;
+            border: 1px solid #bcd0e6;
+            color: var(--brand);
+            padding: 6px 10px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        @media (max-width: 900px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body { background: #fff; padding: 0; }
+            .topbar { display: none; }
+            .page { max-width: none; }
+            .cover, .sheet { border: none; margin: 0; }
+        }
+    </style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+
+<script src="../../nav/runtime.js"></script>
+</head>
+<body>
+    <div class="topbar">
+        <nav class="topnav" aria-label="Navegacion principal">
+            <a href="../../index.html">Inicio</a>
+            <a href="tecnicas_instrumentales_ii.html">Plan anual</a>
+            <a href="plan_de_clase_tecnicas_instrumentales_ii.html">Plan de clase</a>
+            <a href="fichas_estudiante_html/index_fichas_estudiante.html">Fichas por tema</a>
+        </nav>
+    </div>
+
+    <div class="page">
+        <section class="cover">
+            <h1>Material del Estudiante - Tecnicas Instrumentales II</h1>
+            <p><strong>Disciplina:</strong> Tecnicas Instrumentales II</p>
+            <p><strong>Bachillerato:</strong> Tecnico en Construcciones Civiles (BTCC) | <strong>Curso:</strong> Segundo Curso</p>
+            <p><strong>Institucion:</strong> Colegio Nacional Defensores del Chaco | <strong>Turno:</strong> Manana | <strong>Seccion:</strong> A</p>
+            <p><strong>Docente:</strong> Christhian Keim | <strong>Ano lectivo:</strong> 2026</p>
+            <p>Esta guia integra el sentido general de la catedra, el mapa anual de aprendizaje, criterios de trabajo, formulas base y orientaciones de estudio. Las fichas por tema amplian cada unidad y funcionan como desarrollo puntual; por eso este material no repite su contenido completo, sino que lo organiza y lo conecta.</p>
+        </section>
+
+        <section class="sheet">
+            <h2>Hoja 1 - Mapa General del Curso</h2>
+            <div class="grid">
+                <div>
+                    <h3>Finalidad de la catedra</h3>
+                    <p>Tecnicas Instrumentales II vincula metodo, organizacion, tiempo, rendimiento, costo y computo tecnico. El objetivo es que el estudiante pueda ordenar procedimientos y justificar decisiones en tareas de obra.</p>
+                    <h3>Ejes del ano</h3>
+                    <table>
+                        <tr><th>Eje</th><th>Sentido formativo</th></tr>
+                        <tr><td>Organizacion del trabajo</td><td>Permite ordenar tareas, materiales y desplazamientos.</td></tr>
+                        <tr><td>Medicion del proceso</td><td>Ayuda a registrar tiempos, rendimientos y costos.</td></tr>
+                        <tr><td>Computo tecnico</td><td>Convierte el trabajo de obra en cantidades y materiales.</td></tr>
+                        <tr><td>Integracion final</td><td>Relaciona planillas, calculos, control y presentacion tecnica.</td></tr>
+                    </table>
+                    <h3>Temas del cronograma</h3>
+                    <ol>
+                        <li>Metodo de trabajo.</li>
+                        <li>Organizacion del puesto y movimiento de materiales.</li>
+                        <li>Estudio de tiempos y muestreo.</li>
+                        <li>Rendimiento y costo de mano de obra.</li>
+                        <li>Integracion de etapa.</li>
+                        <li>Computo de trabajos.</li>
+                        <li>Computo de materiales.</li>
+                        <li>Computo aplicado al hormigon armado.</li>
+                        <li>Integracion final.</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3>Como usar esta guia junto con las fichas</h3>
+                    <ul>
+                        <li>Revise primero esta guia para ubicar el tema dentro del proceso anual.</li>
+                        <li>Use las fichas por tema para estudiar conceptos, lectura guiada y ejercitario.</li>
+                        <li>Registre en carpeta las definiciones, unidades y procedimientos.</li>
+                        <li>Vuelva a esta guia para revisar criterios de control y relaciones entre temas.</li>
+                    </ul>
+                    <div class="note">
+                        <strong>Complemento sin repeticion:</strong> las fichas desarrollan el contenido de cada tema. Esta guia concentra relaciones, criterios de trabajo, tablas de referencia y orientaciones generales.
+                    </div>
+                    <h3>Accesos recomendados</h3>
+                    <div class="chips">
+                        <span class="chip">Plan anual</span>
+                        <span class="chip">Plan de clase</span>
+                        <span class="chip">Fichas por tema</span>
+                        <span class="chip">Ejercicios</span>
+                        <span class="chip">Examen parcial</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sheet">
+            <h2>Hoja 2 - Procedimiento Tecnico de Trabajo</h2>
+            <div class="grid">
+                <div>
+                    <h3>Secuencia base para analizar una tarea</h3>
+                    <ol>
+                        <li>Definir el trabajo que se realizara.</li>
+                        <li>Identificar materiales, herramientas y personal.</li>
+                        <li>Ordenar los pasos del procedimiento.</li>
+                        <li>Observar tiempos, desplazamientos y consumos.</li>
+                        <li>Registrar datos en planillas o croquis.</li>
+                        <li>Comparar el resultado con la meta prevista.</li>
+                        <li>Corregir recorridos, tiempos o consumos innecesarios.</li>
+                    </ol>
+                    <h3>Criterios de orden tecnico</h3>
+                    <table>
+                        <tr><th>Criterio</th><th>Que se observa</th></tr>
+                        <tr><td>Secuencia</td><td>Si los pasos siguen un orden logico.</td></tr>
+                        <tr><td>Ubicacion</td><td>Si materiales y herramientas estan accesibles.</td></tr>
+                        <tr><td>Tiempo</td><td>Si hay demoras o interrupciones.</td></tr>
+                        <tr><td>Control</td><td>Si los resultados pueden verificarse.</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h3>Preguntas de control para carpeta</h3>
+                    <ul>
+                        <li>Que tarea se esta ejecutando?</li>
+                        <li>Cual es el metodo previsto?</li>
+                        <li>Que materiales y herramientas intervienen?</li>
+                        <li>Que desplazamientos pueden reducirse?</li>
+                        <li>Que evidencia se registrara?</li>
+                    </ul>
+                    <h3>Errores frecuentes</h3>
+                    <ul>
+                        <li>Comenzar sin definir una secuencia de trabajo.</li>
+                        <li>Medir sin unidad correcta o sin anotar datos.</li>
+                        <li>Separar tiempo, costo y computo como si no estuvieran relacionados.</li>
+                        <li>Presentar resultados sin explicacion tecnica.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="sheet">
+            <h2>Hoja 3 - Tiempos, Rendimiento y Costo</h2>
+            <div class="grid">
+                <div>
+                    <h3>Relaciones clave</h3>
+                    <table>
+                        <tr><th>Concepto</th><th>Lectura tecnica</th></tr>
+                        <tr><td>Tiempo observado</td><td>Duracion real de un paso o tarea.</td></tr>
+                        <tr><td>Muestreo</td><td>Registro de actividades en distintos momentos.</td></tr>
+                        <tr><td>Rendimiento</td><td>Cantidad producida en una jornada o periodo definido.</td></tr>
+                        <tr><td>Jornal</td><td>Pago de una jornada de trabajo.</td></tr>
+                        <tr><td>Costo unitario</td><td>Costo por unidad ejecutada.</td></tr>
+                    </table>
+                    <h3>Formulas base de interpretacion</h3>
+                    <ul>
+                        <li>Productividad = cantidad producida / tiempo empleado.</li>
+                        <li>Rendimiento = trabajo realizado / jornada o cuadrilla.</li>
+                        <li>Costo unitario = costo total de mano de obra / cantidad ejecutada.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Tabla de lectura rapida</h3>
+                    <table>
+                        <tr><th>Si ocurre...</th><th>Se interpreta que...</th></tr>
+                        <tr><td>Aumenta el tiempo improductivo</td><td>Hay problemas de organizacion o abastecimiento.</td></tr>
+                        <tr><td>Sube el rendimiento</td><td>La cuadrilla produce mas en el mismo tiempo.</td></tr>
+                        <tr><td>Baja el costo unitario</td><td>Se uso mejor la mano de obra.</td></tr>
+                        <tr><td>Faltan datos de registro</td><td>No se puede justificar tecnicamente el resultado.</td></tr>
+                    </table>
+                    <div class="note">
+                        Antes de calcular, el estudiante debe registrar. Antes de registrar, debe observar. El dato sin procedimiento no sirve como evidencia tecnica.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sheet">
+            <h2>Hoja 4 - Computo de Trabajos y de Materiales</h2>
+            <div class="grid">
+                <div>
+                    <h3>Unidades frecuentes</h3>
+                    <table>
+                        <tr><th>Trabajo</th><th>Unidad usual</th></tr>
+                        <tr><td>Revoques</td><td>m2</td></tr>
+                        <tr><td>Pisos</td><td>m2</td></tr>
+                        <tr><td>Mamposteria</td><td>m2 o m3</td></tr>
+                        <tr><td>Hormigon</td><td>m3</td></tr>
+                        <tr><td>Aberturas / artefactos</td><td>unidad</td></tr>
+                    </table>
+                    <h3>Secuencia de computo</h3>
+                    <ol>
+                        <li>Identificar que se mide.</li>
+                        <li>Elegir la unidad correcta.</li>
+                        <li>Calcular la cantidad de trabajo.</li>
+                        <li>Relacionar esa cantidad con el consumo de materiales.</li>
+                        <li>Controlar si el resultado es coherente.</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3>Control tecnico del resultado</h3>
+                    <ul>
+                        <li>Verificar que no falten dimensiones.</li>
+                        <li>Comprobar la unidad usada en cada caso.</li>
+                        <li>Separar cantidad de trabajo y cantidad de material.</li>
+                        <li>Justificar la fuente del consumo aplicado.</li>
+                    </ul>
+                    <h3>Hormigon armado</h3>
+                    <p>En la parte estructural del curso se distinguen cuatro componentes basicos: volumen de hormigon, acero de refuerzo, encofrado y materiales para dosificacion. Esta guia recuerda la relacion entre ellos; la ficha del tema desarrolla cada uno.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="sheet">
+            <h2>Hoja 5 - Evidencias, Evaluacion y Presentacion Final</h2>
+            <div class="grid">
+                <div>
+                    <h3>Evidencias esperadas durante el ano</h3>
+                    <ul>
+                        <li>Ejercicios de secuencia y metodo de trabajo.</li>
+                        <li>Croquis del puesto y recorridos.</li>
+                        <li>Planillas de tiempos y muestreo.</li>
+                        <li>Calculos de rendimiento y costo.</li>
+                        <li>Computos de trabajos y materiales.</li>
+                        <li>Planillas tecnicas de hormigon armado.</li>
+                        <li>Caso integrador con presentacion clara.</li>
+                    </ul>
+                    <h3>Instrumentos principales</h3>
+                    <table>
+                        <tr><th>Instrumento</th><th>Uso</th></tr>
+                        <tr><td>Lista de cotejo</td><td>Controla orden, secuencia y presentacion.</td></tr>
+                        <tr><td>Registro de proceso</td><td>Sigue avances y dificultades por tema.</td></tr>
+                        <tr><td>Rubrica de computo</td><td>Valora criterio tecnico y unidad correcta.</td></tr>
+                        <tr><td>Prueba escrita o practica</td><td>Verifica comprension y aplicacion.</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h3>Como presentar un trabajo tecnico</h3>
+                    <ol>
+                        <li>Escribir titulo y tema.</li>
+                        <li>Registrar datos y unidades.</li>
+                        <li>Desarrollar el procedimiento por pasos.</li>
+                        <li>Mostrar calculos u observaciones de forma ordenada.</li>
+                        <li>Cerrar con una conclusion tecnica breve.</li>
+                    </ol>
+                    <div class="note">
+                        La carpeta no debe copiar literalmente las fichas. Debe transformar la informacion en cuadros, procedimientos, definiciones, croquis y respuestas justificadas.
+                    </div>
+                    <h3>Relacion con las fichas por tema</h3>
+                    <p>Use esta guia para revisar criterios generales y luego abra la ficha correspondiente cuando necesite estudiar el tema puntual, responder el ejercitario o preparar una actividad evaluativa.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>

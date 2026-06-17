@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planilla de Proceso — Resistencia de Materiales</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,sans-serif;background:#f0f4fa;color:#172133}
+.wrap{max-width:1500px;margin:0 auto;padding:16px}
+
+.header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:16px 22px;border-radius:14px;margin-bottom:12px}
+.header h1{margin:0;font-size:20px}
+.header p{margin:4px 0 0;font-size:13px;opacity:.9}
+.header .resolucion{margin-top:6px;font-size:12px;background:rgba(255,255,255,0.15);display:inline-block;padding:3px 12px;border-radius:6px}
+
+.controls{background:#fff;border:1px solid #d8e3ef;border-radius:12px;padding:10px 14px;margin-bottom:14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;box-shadow:0 2px 8px rgba(23,33,51,0.06)}
+.controls .stats{display:flex;gap:16px;font-size:12px;margin-left:auto}
+.controls .stats span{padding:3px 10px;border-radius:6px}
+.controls .stats .s-aprob{background:#e8f5e9;color:#1b5e20}
+.controls .stats .s-reprob{background:#ffebee;color:#b71c1c}
+
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#e8f1fb;color:#0f4c81;font-weight:600;padding:7px 6px;text-align:left;border-bottom:2px solid #c8d9ea;font-size:11px;white-space:nowrap}
+td{padding:5px 6px;border-bottom:1px solid #e8ecf0;vertical-align:middle}
+tr:hover td{background:#fafcff}
+
+.sticky-wrap{overflow-x:auto}
+.sticky-col{position:sticky;left:0;background:#fff;z-index:2}
+tr:hover .sticky-col{background:#f5f9ff}
+
+.num-input{width:44px;padding:2px 4px;border:1px solid #d8e0ea;border-radius:3px;text-align:center;font-size:11px;background:#fff}
+.num-input:focus{border-color:#0f4c81;outline:none;box-shadow:0 0 0 2px rgba(15,76,129,0.12)}
+
+.badge{display:inline-block;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:700}
+.badge.l{background:#c8e6c9;color:#1b5e20}
+
+.aprobado{background:#e8f5e9!important}
+.reprobado{background:#ffebee!important}
+.aprobado-txt{color:#1b5e20;font-weight:700}
+.reprobado-txt{color:#b71c1c;font-weight:700}
+
+.mes-section{background:#fff;border:1px solid #d8e3ef;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(23,33,51,0.04);margin-bottom:14px}
+.mes-header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:9px 14px;font-size:14px;font-weight:700;display:flex;justify-content:space-between}
+
+.proy-header{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 12px;background:#fff8e1;border-bottom:1px solid #ffe0b2}
+.proy-header input{padding:4px 7px;border:1px solid #ffe0b2;border-radius:5px;font-size:12px}
+.proy-header .proy-nombre{flex:2;min-width:150px}
+.proy-header button{padding:4px 10px;border:none;border-radius:5px;font-size:11px;font-weight:600;cursor:pointer}
+.btn-add{background:#0f4c81;color:#fff}
+.btn-add:hover{background:#1a5f9a}
+.btn-del{background:#ffcdd2;color:#b71c1c}
+.btn-del:hover{background:#ef9a9a}
+.btn-sec{background:#e8f1fb;color:#0f4c81;border:1px solid #c8d9ea}
+
+.sub-ind{background:#fafffe;font-size:11px;border-left:3px solid #4caf50}
+.sub-ind td{color:#2e405c}
+.sub-ind .ind-name{color:#1b5e20;font-style:italic}
+.sub-ind .num-input{width:38px;font-size:10px}
+.sub-total td{background:#f5f9ff;font-size:12px;font-weight:600;border-top:2px solid #d8e3ef}
+
+@media(max-width:900px){
+  .sticky-col{position:static}
+  .controls{flex-direction:column;align-items:stretch}
+  .controls .stats{margin-left:0}
+}
+@media print{.controls{display:none}.mes-section{break-inside:avoid;box-shadow:none}}
+</style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+
+<script src="../../nav/runtime.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>📊 Planilla de Proceso</h1>
+  <p>Resistencia de Materiales · 2.do Curso BTCC</p>
+  <span class="resolucion">📜 Resolución 1525: 70% Competencias Nacionales + 30% Capacidad Institucional · Mínimo 70% para aprobar</span>
+</div>
+
+<div class="controls">
+  <span class="stats">
+    <span>✅ <strong id="totalAprob">0</strong> aprueban</span>
+    <span class="s-reprob">❌ <strong id="totalReprob">0</strong> reprueban</span>
+    <span>📅 <strong id="totalProy">0</strong> proyectos</span>
+  </span>
+  <button onclick="if(confirm('¿Limpiar todos los proyectos?')){localStorage.removeItem('proy_resistencia');location.reload()}" style="padding:4px 10px;border:none;border-radius:6px;background:#ffcdd2;color:#b71c1c;font-size:11px;font-weight:600;cursor:pointer">🗑️ Limpiar datos</button>
+</div>
+
+<!-- ===== SECCIÓN: PROYECTOS INSTITUCIONALES (30%) ===== -->
+<div class="mes-section">
+  <div class="mes-header">🏫 Proyectos Institucionales y Departamentales — 30% <span class="count" id="proyCount" style="font-size:12px;opacity:.8">0 proyecto(s)</span></div>
+  <div class="proy-header">
+    <input type="text" id="newProyName" class="proy-nombre" placeholder="Nombre del proyecto">
+    <button class="btn-sec" onclick="mostrarFormIndicadores()" style="font-size:11px">➕ Agregar proyecto con indicadores</button>
+  </div>
+  <!-- Formulario de nuevo proyecto con indicadores -->
+  <div id="newProyForm" style="display:none;padding:10px 14px;background:#fafffe;border-bottom:1px solid #c8e6c9">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px">
+      <input type="text" id="formProyName" placeholder="Nombre del proyecto" style="flex:2;padding:5px 8px;border:1px solid #c8e6c9;border-radius:5px;font-size:12px">
+      <input type="color" id="formProyColor" value="#e3f2fd" style="width:32px;height:30px;padding:2px;border:1px solid #ddd;border-radius:4px;cursor:pointer">
+    </div>
+    <div style="font-size:12px;font-weight:600;color:#1b5e20;margin-bottom:6px">Indicadores del proyecto:</div>
+    <div id="indicadoresList">
+      <div class="ind-fila" style="display:flex;gap:6px;margin-bottom:4px">
+        <input type="text" class="ind-name-input" placeholder="Nombre del indicador" style="flex:3;padding:4px 7px;border:1px solid #c8e6c9;border-radius:4px;font-size:11px">
+        <input type="number" class="ind-max-input" placeholder="Pts" style="width:55px;padding:4px 7px;border:1px solid #c8e6c9;border-radius:4px;font-size:11px;text-align:center" value="1" min="0.5" step="0.5">
+        <button class="btn-del" onclick="this.parentElement.remove()" style="padding:3px 8px;font-size:10px">✕</button>
+      </div>
+    </div>
+    <div style="display:flex;gap:6px;margin-top:6px">
+      <button class="btn-sec" onclick="agregarFilaIndicador()" style="font-size:11px">➕ Otro indicador</button>
+      <button class="btn-add" onclick="guardarProyectoConIndicadores()" style="font-size:11px">💾 Guardar proyecto</button>
+      <button class="btn-del" onclick="document.getElementById('newProyForm').style.display='none'" style="font-size:11px">Cancelar</button>
+    </div>
+  </div>
+  <div style="overflow-x:auto">
+    <table>
+      <thead><tr id="proyHeaderRow"></tr></thead>
+      <tbody id="proyBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== SECCIÓN: TABLA CONSOLIDADA ===== -->
+<div class="mes-section">
+  <div class="mes-header">📊 Consolidado — 70% RSA + 30% Institucional</div>
+  <div style="overflow-x:auto">
+    <table>
+      <thead><tr id="consolHeaderRow"></tr></thead>
+      <tbody id="consolBody"></tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+
+<script src="../../data/alumnos_resistencia.js"></script>
+<script src="../../data/indicadores_resistencia.js"></script>
+<script>
+// ===== CONFIG =====
+var RSA_KEY = 'rsa_resistencia_state';
+var PROY_KEY = 'proy_resistencia';
+
+// ===== PROYECTOS CON INDICADORES =====
+var PROYECTOS = [];
+
+function migrarProyecto(p) {
+  // Si no tiene indicators, viene del formato anterior
+  if(p && !p.indicators) {
+    p.indicators = [{ id: 'i1', name: 'Indicador único', max: p.max || 1 }];
+    delete p.max;
+  }
+  return p;
+}
+
+function migrarScores() {
+  // Si los scores están en formato antiguo (proyecto → alumno → puntaje),
+  // los eliminamos porque el nuevo formato es proyecto → indicador → alumno → puntaje
+  try {
+    var scores = JSON.parse(localStorage.getItem(PROY_KEY + '_scores'));
+    if(scores) {
+      var needsMigrate = false;
+      Object.keys(scores).forEach(function(proyId) {
+        var proyScores = scores[proyId];
+        if(proyScores) {
+          Object.keys(proyScores).forEach(function(key) {
+            // Si la key es 's1', 's2' etc (formato antiguo) → migrar
+            if(key.indexOf('s') === 0) {
+              needsMigrate = true;
+            }
+          });
+        }
+      });
+      if(needsMigrate) {
+        localStorage.removeItem(PROY_KEY + '_scores');
+      }
+    }
+  } catch(e) {}
+}
+
+function cargarProyectos() {
+  try {
+    var s = localStorage.getItem(PROY_KEY);
+    if(s) {
+      PROYECTOS = JSON.parse(s);
+      // Migrar proyectos del formato anterior (sin indicators)
+      var migrados = false;
+      PROYECTOS.forEach(function(p) {
+        if(p && !p.indicators) { migrarProyecto(p); migrados = true; }
+      });
+      if(migrados) guardarProyectos();
+      migrarScores();
+      return;
+    }
+  } catch(e) { PROYECTOS = []; }
+  // Datos precargados
+  PROYECTOS = [
+    {
+      id: 'p1',
+      name: 'Desfile Cívico 12 Junio — Paz del Chaco',
+      color: '#e3f2fd',
+      indicators: [
+        { id: 'i1', name: 'Se presenta en la fecha y hora indicada', max: 1 },
+        { id: 'i2', name: 'Se presenta correctamente uniformado/a', max: 1 },
+        { id: 'i3', name: 'Demuestra disciplina durante el evento', max: 1 },
+        { id: 'i4', name: 'Permanece en el evento hasta el final', max: 1 },
+        { id: 'i5', name: 'Cumple con los objetivos del proyecto', max: 1 }
+      ]
+    },
+    {
+      id: 'p2',
+      name: 'Elecciones Centro de Estudiantes',
+      color: '#e8f5e9',
+      indicators: [
+        { id: 'i1', name: 'Participa en el proceso electoral', max: 1 },
+        { id: 'i2', name: 'Ejerce el voto con responsabilidad', max: 1 }
+      ]
+    },
+    {
+      id: 'p3',
+      name: 'Proyecto Departamental',
+      color: '#fff3e0',
+      indicators: [
+        { id: 'i1', name: 'Participa activamente', max: 1 },
+        { id: 'i2', name: 'Presenta trabajo completo', max: 1 }
+      ]
+    }
+  ];
+  guardarProyectos();
+}
+
+function guardarProyectos() {
+  localStorage.setItem(PROY_KEY, JSON.stringify(PROYECTOS));
+}
+
+function agregarFilaIndicador() {
+  var div = document.createElement('div');
+  div.className = 'ind-fila';
+  div.style.cssText = 'display:flex;gap:6px;margin-bottom:4px';
+  div.innerHTML =
+    '<input type="text" class="ind-name-input" placeholder="Nombre del indicador" style="flex:3;padding:4px 7px;border:1px solid #c8e6c9;border-radius:4px;font-size:11px">' +
+    '<input type="number" class="ind-max-input" placeholder="Pts" style="width:55px;padding:4px 7px;border:1px solid #c8e6c9;border-radius:4px;font-size:11px;text-align:center" value="1" min="0.5" step="0.5">' +
+    '<button class="btn-del" onclick="this.parentElement.remove()" style="padding:3px 8px;font-size:10px">✕</button>';
+  document.getElementById('indicadoresList').appendChild(div);
+}
+
+function mostrarFormIndicadores() {
+  document.getElementById('newProyForm').style.display = 'block';
+  document.getElementById('formProyName').value = document.getElementById('newProyName').value;
+}
+
+function guardarProyectoConIndicadores() {
+  var name = document.getElementById('formProyName').value.trim();
+  if(!name) { alert('Escribí el nombre del proyecto.'); return; }
+  var color = document.getElementById('formProyColor').value;
+  var indicators = [];
+  document.querySelectorAll('.ind-fila').forEach(function(fila) {
+    var n = fila.querySelector('.ind-name-input').value.trim();
+    var m = parseFloat(fila.querySelector('.ind-max-input').value) || 0;
+    if(n && m > 0) indicators.push({ id: 'i' + (indicators.length+1), name: n, max: m });
+  });
+  if(indicators.length === 0) { alert('Agregá al menos un indicador.'); return; }
+  PROYECTOS.push({
+    id: 'p' + (PROYECTOS.length + 1),
+    name: name,
+    color: color,
+    indicators: indicators
+  });
+  guardarProyectos();
+  document.getElementById('newProyForm').style.display = 'none';
+  document.getElementById('newProyName').value = '';
+  document.getElementById('formProyName').value = '';
+  document.getElementById('indicadoresList').innerHTML =
+    '<div class="ind-fila" style="display:flex;gap:6px;margin-bottom:4px">' +
+    '<input type="text" class="ind-name-input" placeholder="Nombre del indicador" style="flex:3;padding:4px 7px;border:1px solid #c8e6c9;border-radius:4px;font-size:11px">' +
+    '<input type="number" class="ind-max-input" placeholder="Pts" style="width:55px;padding:4px 7px;border:1px solid #c8e6c9;border-radius:4px;font-size:11px;text-align:center" value="1" min="0.5" step="0.5">' +
+    '<button class="btn-del" onclick="this.parentElement.remove()" style="padding:3px 8px;font-size:10px">✕</button></div>';
+  renderTodo();
+}
+
+function eliminarProyecto(id) {
+  if(!confirm('¿Eliminar este proyecto y todos sus indicadores?')) return;
+  PROYECTOS = PROYECTOS.filter(function(p){ return p.id !== id; });
+  guardarProyectos();
+  var scores = getScores();
+  delete scores[id];
+  guardarScores(scores);
+  renderTodo();
+}
+
+// ===== RSA DATA =====
+function getRSA() {
+  try { return JSON.parse(localStorage.getItem(RSA_KEY)) || {}; } catch(e) { return {}; }
+}
+
+function getRevStatus(rsa, prefix, suf) {
+  var name = prefix + suf;
+  var radioId = rsa['r_' + name];
+  if(!radioId) return null;
+  if(radioId.indexOf('_l') > 0) return 'L';
+  if(radioId.indexOf('_ep') > 0) return 'EP';
+  if(radioId.indexOf('_nl') > 0) return 'NL';
+  return null;
+}
+
+function computeFinal(r1, r2, r3, r4) {
+  if(r4) {
+    if(r4 === 'L')  return {final:'L', pts:1};
+    if(r4 === 'NL') return {final:'NL', pts:0};
+    if(r4 === 'EP') return {final:'—', pts:'—'};
+  }
+  if(!r1 || !r2 || !r3) return {final:'—', pts:'—'};
+  var countL = 0;
+  [r1,r2,r3].forEach(function(r){if(r==='L')countL++;});
+  if(r3 === 'EP') return {final:'—', pts:'—'};
+  if(r3 === 'NL') return {final:'NL', pts:0};
+  if(r3 === 'L') {
+    if(countL >= 2) return {final:'L', pts:1};
+    if(countL === 1) return {final:'?', pts:'—'};
+  }
+  return {final:'—', pts:'—'};
+}
+
+function calcularRSAPuntos(rsa, sid) {
+  var pts = 0;
+  INDICATORS.forEach(function(ind, ti) {
+    var prefix = sid + 't' + (ti+1);
+    var r1 = getRevStatus(rsa, prefix, '');
+    var r2 = getRevStatus(rsa, prefix, 'b');
+    var r3 = getRevStatus(rsa, prefix, 'c');
+    var r4 = getRevStatus(rsa, prefix, 'd');
+    var res = computeFinal(r1, r2, r3, r4);
+    if(res.final === 'L') pts += 1;
+  });
+  return pts;
+}
+
+// ===== SCORES =====
+function getScores() {
+  try { return JSON.parse(localStorage.getItem(PROY_KEY + '_scores')) || {}; } catch(e) { return {}; }
+}
+function guardarScores(scores) {
+  localStorage.setItem(PROY_KEY + '_scores', JSON.stringify(scores));
+}
+
+function setScoreInd(proyId, indId, sNum, val) {
+  var scores = getScores();
+  if(!scores[proyId]) scores[proyId] = {};
+  if(!scores[proyId][indId]) scores[proyId][indId] = {};
+  scores[proyId][indId]['s' + sNum] = parseFloat(val) || 0;
+  guardarScores(scores);
+  renderConsolidado();
+}
+
+// ===== RENDER =====
+function renderTodo() {
+  renderProyectos();
+  renderConsolidado();
+  document.getElementById('totalProy').textContent = PROYECTOS.length;
+  document.getElementById('proyCount').textContent = PROYECTOS.length + ' proyecto(s)';
+}
+
+function renderProyectos() {
+  var scores = getScores();
+  var hRow = document.getElementById('proyHeaderRow');
+  var hHtml = '<th style="min-width:150px;position:sticky;left:0;background:#e8f1fb;z-index:3">Proyecto / Indicador</th>';
+  hHtml += '<th style="text-align:center;width:45px">Pts</th>';
+  STUDENTS.forEach(function(s) {
+    hHtml += '<th style="text-align:center;min-width:36px;font-size:10px" title="' + s.name + '">' + s.num + '</th>';
+  });
+  hHtml += '<th style="text-align:center;width:40px">✕</th>';
+  hRow.innerHTML = hHtml;
+
+  var body = document.getElementById('proyBody');
+  var bHtml = '';
+
+  PROYECTOS.forEach(function(proy) {
+    var colorBg = proy.color || '#f5f9ff';
+    // Fila del proyecto
+    bHtml += '<tr style="background:' + colorBg + ';font-weight:600;font-size:12px">';
+    bHtml += '<td style="position:sticky;left:0;background:' + colorBg + ';border-right:2px solid #d8e3ef"><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:' + proy.color + ';margin-right:6px"></span>' + proy.name + '</td>';
+    var proyMax = 0;
+    proy.indicators.forEach(function(ind){ proyMax += ind.max; });
+    bHtml += '<td style="text-align:center">' + proyMax.toFixed(1) + '</td>';
+
+    STUDENTS.forEach(function(s) {
+      var total = 0;
+      proy.indicators.forEach(function(ind) {
+        if(scores[proy.id] && scores[proy.id][ind.id] && scores[proy.id][ind.id]['s' + s.num]) {
+          total += parseFloat(scores[proy.id][ind.id]['s' + s.num]) || 0;
+        }
+      });
+      bHtml += '<td style="text-align:center;font-weight:700;font-size:12px">' + total.toFixed(1) + '</td>';
+    });
+    bHtml += '<td style="text-align:center"><button class="btn-del" onclick="eliminarProyecto(\'' + proy.id + '\')" style="padding:2px 6px;font-size:9px">✕</button></td>';
+    bHtml += '</tr>';
+
+    // Sub-filas: indicadores
+    proy.indicators.forEach(function(ind) {
+      bHtml += '<tr class="sub-ind">';
+      bHtml += '<td style="position:sticky;left:0;background:#fafffe" class="ind-name">└ ' + ind.name + '</td>';
+      bHtml += '<td style="text-align:center;font-weight:600">' + ind.max.toFixed(1) + '</td>';
+      STUDENTS.forEach(function(s) {
+        var val = (scores[proy.id] && scores[proy.id][ind.id] && scores[proy.id][ind.id]['s' + s.num]) ? scores[proy.id][ind.id]['s' + s.num] : 0;
+        bHtml += '<td style="text-align:center"><input type="number" class="num-input" step="0.5" min="0" max="' + ind.max + '" value="' + val + '" onchange="setScoreInd(\'' + proy.id + '\',\'' + ind.id + '\',' + s.num + ',this.value)"></td>';
+      });
+      bHtml += '<td></td></tr>';
+    });
+  });
+
+  body.innerHTML = bHtml;
+}
+
+function renderConsolidado() {
+  var rsa = getRSA();
+  var scores = getScores();
+  var maxRSA = INDICATORS.length;
+
+  // Calcular max institucional
+  var totalMaxProy = 0;
+  PROYECTOS.forEach(function(proy) {
+    proy.indicators.forEach(function(ind) { totalMaxProy += ind.max; });
+  });
+
+  var hRow = document.getElementById('consolHeaderRow');
+  var hHtml = '<th style="min-width:130px;position:sticky;left:0;background:#e8f1fb;z-index:3">Alumno</th>';
+  hHtml += '<th style="text-align:center">🎯 RSA <br><small>70%</small></th>';
+  hHtml += '<th style="text-align:center">🏫 Instituc. <br><small>30%</small></th>';
+  hHtml += '<th style="text-align:center;font-size:13px">📊 Total</th>';
+  hHtml += '<th style="text-align:center">Estado</th>';
+  hRow.innerHTML = hHtml;
+
+  var body = document.getElementById('consolBody');
+  var bHtml = '';
+  var totalAprob = 0, totalReprob = 0;
+
+  STUDENTS.forEach(function(s) {
+    var sid = 's' + s.num;
+
+    // RSA
+    var rsaPts = calcularRSAPuntos(rsa, sid);
+    var rsaPct = (rsaPts / maxRSA) * 100;
+
+    // Institucional
+    var proyPts = 0;
+    PROYECTOS.forEach(function(proy) {
+      proy.indicators.forEach(function(ind) {
+        if(scores[proy.id] && scores[proy.id][ind.id] && scores[proy.id][ind.id][sid]) {
+          proyPts += parseFloat(scores[proy.id][ind.id][sid]) || 0;
+        }
+      });
+    });
+    var proyPct = totalMaxProy > 0 ? (proyPts / totalMaxProy) * 100 : 0;
+
+    // Ponderado 70/30
+    var totalPct = (rsaPct * 0.70) + (proyPct * 0.30);
+    var aprueba = totalPct >= 70;
+
+    if(aprueba) totalAprob++; else totalReprob++;
+
+    var cls = aprueba ? 'aprobado' : 'reprobado';
+    var txtCls = aprueba ? 'aprobado-txt' : 'reprobado-txt';
+
+    bHtml += '<tr class="' + cls + '">';
+    bHtml += '<td style="position:sticky;left:0;background:#fff;font-weight:600;border-right:2px solid #e8ecf0" class="' + cls + '">' + s.num + '. ' + s.name.split(',')[0] + '</td>';
+    bHtml += '<td style="text-align:center">' + rsaPts + '/' + maxRSA + '<br><small>' + rsaPct.toFixed(1) + '%</small></td>';
+    bHtml += '<td style="text-align:center">' + proyPts.toFixed(1) + '/' + totalMaxProy.toFixed(1) + '<br><small>' + proyPct.toFixed(1) + '%</small></td>';
+    bHtml += '<td style="text-align:center;font-size:18px;font-weight:700" class="' + txtCls + '">' + totalPct.toFixed(1) + '%</td>';
+    bHtml += '<td style="text-align:center;font-weight:700" class="' + txtCls + '">' + (aprueba ? '✅ Aprueba' : '❌ Reprueba') + '</td>';
+    bHtml += '</tr>';
+  });
+
+  body.innerHTML = bHtml;
+  document.getElementById('totalAprob').textContent = totalAprob;
+  document.getElementById('totalReprob').textContent = totalReprob;
+}
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded', function() {
+  cargarProyectos();
+  renderTodo();
+});
+</script>
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>

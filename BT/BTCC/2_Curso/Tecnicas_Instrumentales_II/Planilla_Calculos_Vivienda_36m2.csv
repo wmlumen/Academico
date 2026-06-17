@@ -1,0 +1,36 @@
+Name,Value,Unit,Comment
+Largo (m),6,m,
+Ancho (m),6,m,
+Alto_Muro (m),2.8,m,
+Espesor_Muro (m),0.15,m,
+Cimiento_Ancho (m),0.4,m,
+Cimiento_Prof (m),0.6,m,
+Limpieza_Margen (m),1,m,metros extra por lado
+Superficie_Construida (m2),=B2*B3,m,=Largo x Ancho
+Superficie_Limpieza (m2),=(B2+2*B8)*(B3+2*B8),m,(Largo+2*margen)x(Ancho+2%margen)
+Perimetro (m),=2*(B2+B3),m,
+Vol_Excavacion (m3),=B11*B6*B7,m3,Perímetro x ancho zanja x profundidad
+Vol_Cimiento (m3),=B11*B6*B7,m3,Volumen de mampostería de cimiento
+Area_Muros_Brutos (m2),=B11*B4,m2,Perímetro x altura
+Puerta_Ancho (m),0.8,m,
+Puerta_Alto (m),2.1,m,
+Num_Puertas,2,,
+Ventana1_Ancho (m),1.2,m,
+Ventana1_Alto (m),1.0,m,
+Num_Ventana1,2,,
+Ventana_Baño_Ancho (m),0.6,m,
+Ventana_Baño_Alto (m),0.4,m,
+Num_Ventana_Baño,1,,
+Area_Aberturas (m2),=B16*B17*B18 + B19*B20*B21 + B22*B23*B24,m2,Suma de puertas y ventanas
+Area_Muros_Neto (m2),=B14 - B25,m2,Area de muros descontando aberturas
+Revoque_Total (m2),=B26*2,m2,Interior + exterior
+Contrapiso_Superficie (m2),=B9,m2,Superficie útil interna
+Contrapiso_Volumen (m3),=B28*0.10,m3,Espesor e=0.10 m
+Techo_Superficie (m2),=B9*1.15,m2,Factor por inclinación y solapado (15%)
+Ladrillos_por_m2,60,unidad,
+Total_Ladrillos,=B26*B31,unidad,Area muros neto x ladrillos/m2
+Cemento_Revoque_kg_por_m2,4.5,kg/m2,
+Cemento_Necesario_kg,=B27*B33,kg,Revoque_total x kg/m2
+Cemento_Bolsas_50kg,=CEILING(B34/50,1),bolsas,Redondeado al alza
+Arena_revoque_m3_por_m2,0.015,m3/m2,
+Arena_Necesaria_m3,=B27*B36,m3,Volumen aproximado de arena para revoque

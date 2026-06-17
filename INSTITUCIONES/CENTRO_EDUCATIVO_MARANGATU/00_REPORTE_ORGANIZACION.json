@@ -1,0 +1,56 @@
+{
+  "institution": "CENTRO_EDUCATIVO_MARANGATU",
+  "source_file_count": 4,
+  "unique_content_count": 3,
+  "copied_entries": [
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\CENTRO_EDUCATIVO_MARANGATU\\7_Grado\\Diagnostico\\Turno_TT\\Informe de Diagnostico.htm",
+      "original_name": "Informe de Diagnostico.htm",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH CENTRO EDUC. MARANGATU 7 TT\\Informe de Diagnostico.htm",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH CENTRO EDUC. MARANGATU 7 TT\\Informe de Diagnostico.htm"
+      ],
+      "sha256": "d89d0f014cdaf17f5c814628770e8af08b8a3d549ebfdf7958435268456c128d"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\CENTRO_EDUCATIVO_MARANGATU\\7_Grado\\Ciencias\\Turno_TT\\vh centro educativo marangatu  ciencias naturales 7no tt.xlsx__V1.xlsx",
+      "original_name": "VH CENTRO EDUCATIVO MARANGATU  CIENCIAS NATURALES 7no TT.xlsx.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH CENTRO EDUC. MARANGATU 7 TT\\VH CENTRO EDUCATIVO MARANGATU  CIENCIAS NATURALES 7no TT.xlsx.xlsx"
+      ],
+      "sha256": "1e4de6af6379ed7bef93e934252d092bd47cf8945069ff3571577dee69564238"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\CENTRO_EDUCATIVO_MARANGATU\\7_Grado\\Ciencias\\Turno_TT\\vh centro educativo marangatu  ciencias naturales 7no tt.xlsx__V2.xlsx",
+      "original_name": "VH CENTRO EDUCATIVO MARANGATU  CIENCIAS NATURALES 7no TT.xlsx.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH CENTRO EDUC. MARANGATU 7 TT\\VH CENTRO EDUCATIVO MARANGATU  CIENCIAS NATURALES 7no TT.xlsx.xlsx"
+      ],
+      "sha256": "bd764079700349bfe9558d86cfbe7cfeea7fcc9d8c4f593ac25a59a51e9e10bf"
+    }
+  ],
+  "deduplicated_content": [
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\CENTRO_EDUCATIVO_MARANGATU\\7_Grado\\Diagnostico\\Turno_TT\\Informe de Diagnostico.htm",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH CENTRO EDUC. MARANGATU 7 TT\\Informe de Diagnostico.htm"
+      ]
+    }
+  ],
+  "same_name_different_content": [
+    {
+      "folder": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\CENTRO_EDUCATIVO_MARANGATU\\7_Grado\\Ciencias\\Turno_TT",
+      "name": "vh centro educativo marangatu  ciencias naturales 7no tt.xlsx.xlsx",
+      "versions": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\CENTRO_EDUCATIVO_MARANGATU\\7_Grado\\Ciencias\\Turno_TT\\vh centro educativo marangatu  ciencias naturales 7no tt.xlsx__V1.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\CENTRO_EDUCATIVO_MARANGATU\\7_Grado\\Ciencias\\Turno_TT\\vh centro educativo marangatu  ciencias naturales 7no tt.xlsx__V2.xlsx"
+      ],
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH CENTRO EDUC. MARANGATU 7 TT\\VH CENTRO EDUCATIVO MARANGATU  CIENCIAS NATURALES 7no TT.xlsx.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH CENTRO EDUC. MARANGATU 7 TT\\VH CENTRO EDUCATIVO MARANGATU  CIENCIAS NATURALES 7no TT.xlsx.xlsx"
+      ],
+      "combined_summary": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\CENTRO_EDUCATIVO_MARANGATU\\7_Grado\\Ciencias\\Turno_TT\\vh centro educativo marangatu  ciencias naturales 7no tt.xlsx__COMBINADO.md",
+      "combined_workbook": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\CENTRO_EDUCATIVO_MARANGATU\\7_Grado\\Ciencias\\Turno_TT\\vh centro educativo marangatu  ciencias naturales 7no tt.xlsx__COMBINADO.xlsx"
+    }
+  ]
+}

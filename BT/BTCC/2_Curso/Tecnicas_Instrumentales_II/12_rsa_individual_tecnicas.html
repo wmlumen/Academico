@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSA por Indicadores — Técnicas Instrumentales II</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,sans-serif;background:#f0f4fa;color:#172133;padding-top:0}
+.wrap{max-width:1480px;margin:0 auto;padding:16px}
+
+/* ===== HEADER ===== */
+.header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:18px 24px;border-radius:14px;margin-bottom:12px}
+.header h1{margin:0;font-size:20px}
+.header p{margin:4px 0 0;font-size:13px;opacity:.9}
+
+/* ===== TOOLBAR (SIEMPRE VISIBLE) ===== */
+.toolbar{position:sticky;top:0;z-index:100;background:#fff;border:1px solid #d8e3ef;border-radius:12px;padding:10px 14px;margin-bottom:14px;box-shadow:0 4px 16px rgba(23,33,51,0.1);display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.toolbar label{font-size:13px;font-weight:600;color:#2a405c}
+.toolbar select,.toolbar input{padding:7px 10px;border:1px solid #b6c6da;border-radius:8px;font-size:13px;background:#fff}
+.toolbar .btn{display:inline-flex;align-items:center;gap:4px;padding:7px 14px;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s}
+.toolbar .btn.pri{background:#0f4c81;color:#fff}
+.toolbar .btn.pri:hover{background:#1a5f9a}
+.toolbar .btn.sec{background:#e8f1fb;color:#0f4c81;border:1px solid #c8d9ea}
+.toolbar .btn.sec:hover{background:#d4e4f5}
+.toolbar .counter{margin-left:auto;font-size:12px;color:#4d6177;padding:4px 10px;background:#f0f4fa;border-radius:6px}
+
+/* ===== NAV ESTUDIANTES (SIEMPRE VISIBLE) ===== */
+.student-nav{position:sticky;top:58px;z-index:99;display:flex;flex-wrap:wrap;gap:4px;padding:8px 10px;background:#fff;border:1px solid #d8e3ef;border-radius:12px;margin-bottom:14px;box-shadow:0 2px 10px rgba(23,33,51,0.06);max-height:90px;overflow-y:auto}
+.student-nav a{display:inline-block;padding:4px 8px;border-radius:6px;text-decoration:none;font-size:11px;font-weight:600;background:#e8f1fb;color:#0f4c81;border:1px solid #c8d9ea;cursor:pointer;transition:all .12s;white-space:nowrap}
+.student-nav a:hover,.student-nav a.active{background:#0f4c81;color:#fff;border-color:#0f4c81}
+.student-nav a.done{background:#c8e6c9;border-color:#4caf50;color:#1b5e20}
+.student-nav a.done:hover{background:#388e3c;color:#fff}
+
+/* ===== INDICADOR ROW (compacto) ===== */
+.ind-row{display:none;margin-bottom:6px}
+.ind-row.visible{display:block}
+.ind-card{background:#fff;border:1px solid #d8e3ef;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(23,33,51,0.04);margin-bottom:4px}
+.ind-card.student-header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:6px 12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px;border-radius:10px 10px 0 0}
+.ind-card.student-header h3{margin:0;font-size:13px}
+.ind-card.student-header .info{font-size:11px;opacity:.85}
+
+/* Info del indicador */
+.ind-info{padding:5px 12px;background:#f5f9ff;border-bottom:1px solid #e8ecf0}
+.ind-info .ind-tema{font-size:12px;font-weight:700;color:#0f4c81}
+.ind-info .ind-desc{font-size:11px;color:#4d6177;display:block;margin-top:1px}
+
+/* ===== REVISIONES EN LÍNEA (3 en 1 fila) ===== */
+.rev-row{display:flex;align-items:center;gap:4px;padding:3px 8px;border-bottom:1px solid #f0f2f5;flex-wrap:nowrap;overflow-x:auto}
+.rev-row:last-of-type{border-bottom:none}
+.rev-block{display:flex;align-items:center;gap:3px;padding:2px 6px 2px 2px;flex-shrink:0}
+.rev-block+.rev-block{border-left:1px solid #e0e4ea;margin-left:2px;padding-left:8px}
+.rev-block .rev-label{font-size:10px;font-weight:700;color:#4d6177;min-width:17px;text-align:right;flex-shrink:0}
+.rev-block .rev-date{width:54px;padding:2px 3px;border:1px solid #d8e0ea;border-radius:3px;text-align:center;font-size:10px;background:#fff;flex-shrink:0}
+.rev-block .rev-date.filled{background:#e8f5e9;border-color:#4caf50}
+.rev-block .btn-hoy{padding:2px 5px;font-size:9px;font-weight:700;border:1px solid #0f4c81;border-radius:3px;background:#e8f1fb;color:#0f4c81;cursor:pointer;line-height:1;transition:all .12s;flex-shrink:0}
+.rev-block .btn-hoy:hover{background:#0f4c81;color:#fff}
+.rev-block .s-group{display:flex;gap:1px;flex-shrink:0}
+.rev-block .s-group label{display:inline-block;padding:1px 4px;border-radius:3px;font-size:9.5px;font-weight:700;cursor:pointer;border:1.5px solid #d8e0ea;background:#fff;transition:all .1s;min-width:18px;text-align:center;line-height:1.4}
+.rev-block .s-group input{display:none}
+.rev-block .s-group input:checked+label.l{background:#c8e6c9;border-color:#2e7d32;color:#1b5e20}
+.rev-block .s-group input:checked+label.ep{background:#fff9c4;border-color:#f9a825;color:#f57f17}
+.rev-block .s-group input:checked+label.nl{background:#ffcdd2;border-color:#c62828;color:#b71c1c}
+.rev-block .s-group label.l:hover{background:#e8f5e9}
+.rev-block .s-group label.ep:hover{background:#fffde7}
+.rev-block .s-group label.nl:hover{background:#ffebee}
+
+/* Resultado inline al final de la fila */
+.rev-result{display:flex;align-items:center;gap:6px;margin-left:auto;flex-shrink:0;padding-left:8px;border-left:2px solid #e0e4ea}
+.rev-result .res-final{font-weight:700;padding:1px 6px;border-radius:3px;font-size:11px}
+.rev-result .res-final.l{background:#c8e6c9;color:#1b5e20}
+.rev-result .res-final.nl{background:#ffcdd2;color:#b71c1c}
+.rev-result .res-final.pend{background:#fff9c4;color:#f57f17}
+.rev-result .res-pts{font-weight:700;font-size:12px;padding:1px 4px;border-radius:3px}
+.rev-result .res-pts.uno{color:#1b5e20}
+.rev-result .res-pts.cero{color:#b71c1c}
+
+/* 4.ª revisión (oculta, debajo) */
+.fourth-row{display:none;align-items:center;gap:4px;padding:3px 12px 3px 20px;background:#fff8e1;border-top:1px solid #ffe0b2}
+.fourth-row.show{display:flex}
+.fourth-row .fourth-label{font-size:10px;font-weight:700;color:#e65100;min-width:16px;text-align:right}
+.fourth-row .rev-date{width:54px;padding:2px 3px;border:1px solid #d8e0ea;border-radius:3px;text-align:center;font-size:10px;background:#fff}
+.fourth-row .rev-date.filled{background:#e8f5e9;border-color:#4caf50}
+.fourth-row .btn-hoy{padding:2px 5px;font-size:9px;font-weight:700;border:1px solid #e65100;border-radius:3px;background:#fff3e0;color:#e65100;cursor:pointer;line-height:1}
+.fourth-row .btn-hoy:hover{background:#e65100;color:#fff}
+.fourth-row .s-group{display:flex;gap:1px}
+.fourth-row .s-group label{display:inline-block;padding:1px 4px;border-radius:3px;font-size:9.5px;font-weight:700;cursor:pointer;border:1.5px solid #d8e0ea;background:#fff;transition:all .1s;min-width:18px;text-align:center;line-height:1.4}
+.fourth-row .s-group input{display:none}
+.fourth-row .s-group input:checked+label.l{background:#c8e6c9;border-color:#2e7d32;color:#1b5e20}
+.fourth-row .s-group input:checked+label.ep{background:#fff9c4;border-color:#f9a825;color:#f57f17}
+.fourth-row .s-group input:checked+label.nl{background:#ffcdd2;border-color:#c62828;color:#b71c1c}
+
+/* ===== BOTONES FLOTANTES ===== */
+.float-bar{position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;gap:8px;z-index:200}
+.float-bar .btn{width:50px;height:50px;border-radius:50%;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:all .15s}
+.float-bar .btn.up{background:#0f4c81;color:#fff}
+.float-bar .btn.up:hover{background:#1a5f9a;transform:scale(1.05)}
+.float-bar .btn.down{background:#fff;color:#0f4c81;border:2px solid #0f4c81}
+.float-bar .btn.down:hover{background:#e8f1fb;transform:scale(1.05)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:800px){
+  .ind-card .ind-body{grid-template-columns:1fr;gap:2px}
+  .toolbar{flex-direction:column;align-items:stretch}
+  .toolbar .counter{margin-left:0}
+  .student-nav{position:static;max-height:none}
+}
+@media print{.toolbar,.student-nav,.float-bar{display:none}.ind-card{break-inside:avoid}}
+</style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+
+<script src="../../nav/runtime.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HEADER -->
+<div class="header">
+  <h1>📋 RSA — Registro de Seguimiento Académico</h1>
+  <p>Técnicas Instrumentales II · 2.do Curso BTCC · Seleccione indicador, elija alumno → fecha automática, solo marque L / EP / NL</p>
+</div>
+
+<!-- TOOLBAR (sticky) -->
+<div class="toolbar" id="toolbar">
+  <label>📌 Indicador:</label>
+  <select id="filterIndicator" onchange="filtrarIndicador()">
+    <option value="all">Mostrar todos los indicadores</option>
+  </select>
+
+  <label>🔍 Alumno:</label>
+  <select id="filterStudent" onchange="irAAlumno()">
+    <option value="">— Seleccionar —</option>
+  </select>
+
+  <button class="btn pri" onclick="avanzarRevisionVisible()">📅 Avanzar revisión → solo visibles</button>
+  <span style="font-size:12px;color:#5a687c;padding:4px 8px;background:#e8f5e9;border-radius:6px">Llena la <strong>siguiente</strong> casilla vacía de cada fila visible</span>
+
+  <span class="counter" id="statusCounter">0/0 marcados</span>
+</div>
+
+<!-- NAV ESTUDIANTES (sticky, siempre visible) -->
+<nav class="student-nav" id="studentNav"></nav>
+
+<!-- CONTENEDOR RSA -->
+<div id="rsaContainer"></div>
+
+<!-- BOTONES FLOTANTES -->
+<div class="float-bar">
+  <button class="btn up" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Volver arriba">⬆</button>
+  <button class="btn down" onclick="var t=document.getElementById('toolbar');t.scrollIntoView({behavior:'smooth'})" title="Ir a filtros">⬇</button>
+</div>
+
+<!-- DATOS EXTERNOS (alumnos + indicadores desde data/) -->
+<script src="../../data/alumnos_tecnicas.js"></script>
+<script src="../../data/indicadores_tecnicas.js"></script>
+
+<script>
+// ===== GENERAR (compacto) =====
+function generar() {
+  var container = document.getElementById('rsaContainer');
+  var nav = document.getElementById('studentNav');
+  var indFilter = document.getElementById('filterIndicator');
+  var stuFilter = document.getElementById('filterStudent');
+  var html = '';
+  var navHtml = '';
+  var indOpts = '';
+  var stuOpts = '';
+
+  INDICATORS.forEach(function(ind) {
+    indOpts += '<option value="' + ind.id + '">' + ind.tema + '</option>';
+  });
+
+  STUDENTS.forEach(function(s) {
+    var sid = 's' + s.num;
+    var shortName = s.name.split(',')[0];
+    navHtml += '<a href="#' + sid + '" data-sid="' + sid + '" onclick="irAAlumnoPor(\'' + sid + '\')">' + s.num + '. ' + shortName + '</a>';
+    stuOpts += '<option value="' + sid + '">' + s.num + '. ' + s.name + '</option>';
+
+    html += '<!-- ' + s.name + ' -->\n';
+
+    INDICATORS.forEach(function(ind, ti) {
+      var prefix = 's' + s.num + 't' + (ti+1);
+      var rowId = 'row_' + sid + '_' + ind.id;
+      html += '<div class="ind-row" id="' + rowId + '" data-student="' + sid + '" data-indicator="' + ind.id + '">';
+      // Header
+      if(ti === 0) {
+        html += '<div class="ind-card student-header" id="' + sid + '">';
+        html += '<h3>N.° ' + s.num + ' — ' + s.name + '</h3>';
+        html += '<span class="info">Doc. ' + s.doc + '</span></div>';
+      }
+      // Card
+      html += '<div class="ind-card" data-prefix="' + prefix + '">';
+      // Info del indicador
+      html += '<div class="ind-info"><span class="ind-tema">' + ind.tema + '</span><span class="ind-desc">' + ind.indicador + '</span></div>';
+
+      // 3 revisiones en UNA fila horizontal
+      var revs = ['1.ª','2.ª','3.ª'];
+      html += '<div class="rev-row">';
+      revs.forEach(function(rlabel, ri) {
+        var suf = ri === 0 ? '' : (ri === 1 ? 'b' : 'c');
+        var dateId = prefix + suf + '_fecha';
+        var radioName = prefix + suf;
+        html += '<div class="rev-block">';
+        html += '<span class="rev-label">' + rlabel + '</span>';
+        html += '<input type="text" id="' + dateId + '" placeholder="dd/mm/aa" class="rev-date date-input" data-student="' + sid + '" onchange="guardarEstadoRSA()">';
+        html += '<button class="btn-hoy" type="button" onclick="ponerHoy(\'' + dateId + '\')">Hoy</button>';
+        html += '<div class="s-group">';
+        ['l','ep','nl'].forEach(function(st) {
+          var id = prefix + suf + '_' + st;
+          html += '<input type="radio" name="' + radioName + '" id="' + id + '" onchange="actualizarContador();computarResultados();guardarEstadoRSA()">';
+          html += '<label for="' + id + '" class="' + st + '">' + st.toUpperCase() + '</label>';
+        });
+        html += '</div></div>';
+      });
+      // Resultado inline al final
+      html += '<div class="rev-result">';
+      html += '<span>🏆 Final: <strong class="res-final" id="final_' + prefix + '">—</strong></span>';
+      html += '<span>⭐ Puntaje: <strong class="res-pts" id="puntos_' + prefix + '">—</strong></span>';
+      html += '</div>';
+      html += '</div>';
+
+      // 4.ª revisión (oculta, debajo)
+      html += '<div class="fourth-row" id="fourth_' + prefix + '">';
+      html += '<span class="fourth-label">4.ª</span>';
+      html += '<input type="text" id="' + prefix + 'd_fecha" placeholder="dd/mm/aa" class="rev-date date-input" data-student="' + sid + '" onchange="guardarEstadoRSA()">';
+      html += '<button class="btn-hoy" type="button" onclick="ponerHoy(\'' + prefix + 'd_fecha\')">Hoy</button>';
+      html += '<div class="s-group">';
+      ['l','ep','nl'].forEach(function(st) {
+        var id = prefix + 'd_' + st;
+        html += '<input type="radio" name="' + prefix + 'd" id="' + id + '" onchange="actualizarContador();computarResultados();guardarEstadoRSA()">';
+        html += '<label for="' + id + '" class="' + st + '">' + st.toUpperCase() + '</label>';
+      });
+      html += '</div></div>';
+
+      html += '</div></div>\n';
+    });
+  });
+
+  container.innerHTML = html;
+  nav.innerHTML = navHtml;
+  indFilter.innerHTML = '<option value="all">Mostrar todos los indicadores</option>' + indOpts;
+  stuFilter.innerHTML = '<option value="">— Seleccionar —</option>' + stuOpts;
+
+  filtrarIndicador();
+  actualizarContador();
+}
+
+// ===== FILTRO POR INDICADOR =====
+function filtrarIndicador() {
+  var val = document.getElementById('filterIndicator').value;
+  var rows = document.querySelectorAll('.ind-row');
+  var visible = {};
+
+  rows.forEach(function(row) {
+    var sid = row.getAttribute('data-student');
+    var iid = row.getAttribute('data-indicator');
+    var show = val === 'all' || iid === val;
+    row.classList.toggle('visible', show);
+    if(show) visible[sid] = true;
+  });
+
+  // Hide student headers if no rows visible for that student
+  var headers = document.querySelectorAll('.ind-card.student-header');
+  headers.forEach(function(h) {
+    var sid = h.id;
+    h.style.display = (val === 'all' || visible[sid]) ? '' : 'none';
+  });
+
+  actualizarContador();
+}
+
+// ===== IR A ALUMNO =====
+function irAAlumno() {
+  var val = document.getElementById('filterStudent').value;
+  if(val) irAAlumnoPor(val);
+}
+
+function irAAlumnoPor(sid) {
+  var target = document.getElementById(sid);
+  if(target) {
+    target.scrollIntoView({ behavior:'smooth', block:'start' });
+    // Auto-fill date for this student
+    autoFillStudentDate(sid);
+    // Highlight nav
+    document.querySelectorAll('.student-nav a').forEach(function(a) {
+      a.classList.toggle('active', a.getAttribute('data-sid') === sid);
+    });
+  }
+}
+
+// ===== PONER HOY EN UNA FECHA ESPECÍFICA =====
+function ponerHoy(id) {
+  var inp = document.getElementById(id);
+  if(!inp) return;
+  var d = new Date();
+  var dateStr = String(d.getDate()).padStart(2,'0') + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getFullYear()).slice(-2);
+  inp.value = dateStr;
+  inp.classList.add('filled');
+  guardarEstadoRSA();
+}
+
+// ===== AUTO-FILL DATE (UNA CASILLA POR VEZ) =====
+function getDateStr() {
+  var d = new Date();
+  return String(d.getDate()).padStart(2,'0') + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getFullYear()).slice(-2);
+}
+
+function llenarSiguienteFecha(inputs) {
+  var dateStr = getDateStr();
+  for(var i=0; i<inputs.length; i++) {
+    var v = inputs[i].value.trim();
+    if(v === '' || v === '__/__/__' || v === '//') {
+      inputs[i].value = dateStr;
+      inputs[i].classList.add('filled');
+      return true; // filled one
+    }
+  }
+  return false; // all already filled
+}
+
+function avanzarRevisionVisible() {
+  var rows = document.querySelectorAll('.ind-row.visible');
+  var total = 0;
+  rows.forEach(function(row) {
+    var dates = row.querySelectorAll('.date-input');
+    if(llenarSiguienteFecha(dates)) total++;
+  });
+  actualizarContador();
+  // feedback
+  var btn = document.querySelector('button[onclick*="avanzarRevisionVisible"]');
+  if(btn) {
+    var orig = btn.textContent;
+    btn.textContent = '✅ ' + total + ' fecha(s) avanzada(s)';
+    setTimeout(function(){ btn.textContent = orig; }, 2000);
+  }
+}
+
+// Al hacer clic en alumno: solo avanza UNA casilla por fila
+function autoFillStudentDate(sid) {
+  var rows = document.querySelectorAll('.ind-row[data-student="' + sid + '"]');
+  rows.forEach(function(row) {
+    var dates = row.querySelectorAll('.date-input');
+    llenarSiguienteFecha(dates);
+  });
+}
+
+// ===== CONTADOR =====
+function actualizarContador() {
+  var total = 0;
+  var marcados = 0;
+  document.querySelectorAll('.s-group input[type="radio"]').forEach(function(r) {
+    // Saltar radios de 4.ª revisión oculta
+    var fourth = r.closest('.fourth-row');
+    if(fourth && fourth.style.display === 'none') return;
+    total++;
+    if(r.checked) marcados++;
+  });
+  document.getElementById('statusCounter').textContent = marcados + '/' + total + ' marcados';
+}
+
+// ===== PUNTUACIÓN AUTOMÁTICA =====
+function getStatus(name) {
+  var l = document.getElementById(name + '_l');
+  var ep = document.getElementById(name + '_ep');
+  var nl = document.getElementById(name + '_nl');
+  if(l && l.checked) return 'L';
+  if(ep && ep.checked) return 'EP';
+  if(nl && nl.checked) return 'NL';
+  return null;
+}
+
+function computeFinal(r1, r2, r3, r4) {
+  // Si hay 4.ª revisión y está definida → ese es el resultado
+  if(r4) {
+    if(r4 === 'L')    return {final:'L', puntos:1, need4th:false};
+    if(r4 === 'NL')   return {final:'NL', puntos:0, need4th:false};
+    if(r4 === 'EP')   return {final:'—', puntos:'—', need4th:false};
+  }
+
+  // Datos insuficientes
+  if(!r1 || !r2 || !r3) return {final:'—', puntos:'—', need4th:false};
+
+  // Contar L en las 3 revisiones
+  var countL = 0;
+  [r1, r2, r3].forEach(function(r) { if(r === 'L') countL++; });
+
+  // REGLA 1: 3.ª revisión es EP → en desarrollo
+  if(r3 === 'EP') return {final:'—', puntos:'—', need4th:false};
+
+  // REGLA 2: 3.ª revisión es NL → Final NL
+  if(r3 === 'NL') return {final:'NL', puntos:0, need4th:false};
+
+  // REGLA 3: 3.ª revisión es L
+  if(r3 === 'L') {
+    if(countL >= 2) return {final:'L', puntos:1, need4th:false};
+    if(countL === 1) return {final:'?', puntos:'—', need4th:true};
+  }
+
+  return {final:'—', puntos:'—', need4th:false};
+}
+
+function computarResultados() {
+  document.querySelectorAll('.ind-card[data-prefix]').forEach(function(card) {
+    var prefix = card.getAttribute('data-prefix');
+    var r1 = getStatus(prefix);
+    var r2 = getStatus(prefix + 'b');
+    var r3 = getStatus(prefix + 'c');
+    var r4 = getStatus(prefix + 'd');
+
+    var result = computeFinal(r1, r2, r3, r4);
+
+    var finalEl = card.querySelector('.res-final');
+    var puntosEl = card.querySelector('.res-pts');
+    var fourthRev = document.getElementById('fourth_' + prefix);
+
+    if(result.final === 'L') {
+      finalEl.textContent = 'L';
+      finalEl.className = 'res-final l';
+      puntosEl.textContent = '1';
+      puntosEl.className = 'res-pts uno';
+    } else if(result.final === 'NL') {
+      finalEl.textContent = 'NL';
+      finalEl.className = 'res-final nl';
+      puntosEl.textContent = '0';
+      puntosEl.className = 'res-pts cero';
+    } else if(result.final === '?') {
+      finalEl.textContent = '?';
+      finalEl.className = 'res-final pend';
+      puntosEl.textContent = '—';
+      puntosEl.className = 'res-pts';
+    } else {
+      finalEl.textContent = '—';
+      finalEl.className = 'res-final';
+      puntosEl.textContent = '—';
+      puntosEl.className = 'res-pts';
+    }
+
+    // Mostrar/ocultar 4.ª revisión
+    if(result.need4th) {
+      fourthRev.classList.add('show');
+    } else {
+      fourthRev.classList.remove('show');
+    }
+  });
+}
+
+// ===== PERSISTENCIA LOCALSTORAGE =====
+function guardarEstadoRSA() {
+  var state = {};
+  // Fechas
+  document.querySelectorAll('.date-input').forEach(function(inp) {
+    state['d_' + inp.id] = { v: inp.value, f: inp.classList.contains('filled') ? 1 : 0 };
+  });
+  // Radios checkeados
+  document.querySelectorAll('.s-group input[type="radio"]:checked').forEach(function(r) {
+    state['r_' + r.name] = r.id;
+  });
+  try {
+    localStorage.setItem('rsa_tecnicas_state', JSON.stringify(state));
+  } catch(e) {}
+}
+
+function cargarEstadoRSA() {
+  try {
+    var saved = localStorage.getItem('rsa_tecnicas_state');
+    if(!saved) return;
+    var state = JSON.parse(saved);
+    Object.keys(state).forEach(function(key) {
+      if(key.indexOf('d_') === 0) {
+        var id = key.substring(2);
+        var inp = document.getElementById(id);
+        if(inp) {
+          inp.value = state[key].v || '';
+          if(state[key].f) inp.classList.add('filled');
+        }
+      } else if(key.indexOf('r_') === 0) {
+        var el = document.getElementById(state[key]);
+        if(el) el.checked = true;
+      }
+    });
+  } catch(e) {}
+}
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded', function() {
+  generar();
+  cargarEstadoRSA();
+  computarResultados();
+  actualizarContador();
+});
+</script>
+
+</div>
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Anual y Material Didáctico - Técnicas Instrumentales II</title>
+    <style>
+        :root {
+            --black: #000000;
+            --gray: #e5e5e5;
+            --gray-mid: #c0c0c0;
+            --gray-text: #666666;
+            --france-blue: #0055a4;
+            --paper: #ffffff;
+            --green: #2e7d32;
+            --green-bg: #e8f5e9;
+            --amber: #f57f17;
+            --amber-bg: #fff8e1;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 18px;
+            background: var(--paper);
+            color: var(--black);
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.5;
+        }
+        .sheet {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: var(--paper);
+            padding: 20px;
+            border: 1px solid var(--gray);
+            page-break-after: always;
+        }
+        .sheet:last-of-type { page-break-after: auto; }
+        .title {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .title h1 {
+            margin: 0 0 6px;
+            font-size: 24px;
+            text-transform: uppercase;
+            color: var(--france-blue);
+        }
+        .title p {
+            margin: 2px 0;
+            font-size: 14px;
+            color: var(--gray-text);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 14px;
+        }
+        th, td {
+            border: 1px solid var(--gray-mid);
+            padding: 8px 10px;
+            vertical-align: top;
+            font-size: 12.5px;
+        }
+        th {
+            background: var(--gray);
+            text-align: left;
+            color: var(--black);
+        }
+        .section {
+            background: var(--gray);
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+        ul { margin: 0; padding-left: 18px; }
+        li { margin-bottom: 4px; }
+        .signatures td { height: 80px; }
+        .center { text-align: center; }
+
+        h2 {
+            margin: 0 0 12px;
+            font-size: 22px;
+            color: var(--france-blue);
+            line-height: 1.2;
+        }
+        h3 {
+            margin: 16px 0 8px;
+            font-size: 16px;
+            color: var(--black);
+            line-height: 1.2;
+        }
+        h4 {
+            margin: 12px 0 6px;
+            font-size: 14px;
+            color: var(--france-blue);
+            line-height: 1.2;
+        }
+        .didactic p { margin: 6px 0; font-size: 14px; }
+        .didactic ul, .didactic ol { margin: 6px 0 6px 20px; padding: 0; }
+        .didactic li { margin-bottom: 5px; font-size: 14px; }
+        .callout {
+            background: var(--gray);
+            border-left: 4px solid var(--france-blue);
+            padding: 12px 14px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: var(--gray);
+            border: 1px solid var(--gray-mid);
+            color: var(--france-blue);
+            font-size: 12px;
+            font-weight: 700;
+            margin: 2px;
+        }
+        .activity-box {
+            border: 2px solid var(--france-blue);
+            padding: 14px;
+            margin: 12px 0;
+            background: #f9f9f9;
+        }
+        .activity-box h4 { margin-top: 0; }
+        .eval-table th { width: 25%; }
+        .product-box {
+            border: 2px dashed var(--france-blue);
+            padding: 14px;
+            margin: 12px 0;
+            text-align: center;
+        }
+
+        /* Controles dinámicos */
+        .controls-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            padding: 10px 14px;
+            background: #f5f7fb;
+            border: 1px solid var(--gray-mid);
+            border-radius: 8px;
+            flex-wrap: wrap;
+        }
+        .controls-bar label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-text);
+        }
+        .toggle-btn {
+            padding: 6px 16px;
+            border: 2px solid var(--france-blue);
+            border-radius: 6px;
+            background: #fff;
+            color: var(--france-blue);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .15s;
+        }
+        .toggle-btn.active {
+            background: var(--france-blue);
+            color: #fff;
+        }
+        .toggle-btn:hover {
+            opacity: .85;
+        }
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        .status-dot.dev { background: var(--green); }
+        .status-dot.pend { background: var(--amber); }
+        .dev-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        .dev-badge.dev { background: var(--green-bg); color: var(--green); border: 1px solid #a5d6a7; }
+        .dev-badge.pend { background: var(--amber-bg); color: var(--amber); border: 1px solid #ffe082; }
+        .dev-row { background: #fafff5; }
+        .pend-row { background: #fffcf0; }
+        .stats-bar {
+            display: flex;
+            gap: 16px;
+            font-size: 13px;
+            margin-left: auto;
+        }
+        .stats-bar span {
+            padding: 3px 10px;
+            border-radius: 6px;
+            background: #fff;
+            border: 1px solid var(--gray-mid);
+        }
+
+        @media print {
+            body { background: var(--paper); padding: 0; }
+            .sheet { max-width: none; border: none; padding: 0; }
+            .controls-bar { display: none; }
+        }
+    </style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+
+<script src="../../nav/runtime.js"></script>
+</head>
+<body>
+    <div class="sheet">
+        <!-- BARRA DE CONTROL DINÁMICA -->
+        <div class="controls-bar" id="controlsBar">
+            <label>📊 Orden:</label>
+            <button class="toggle-btn active" id="btnPlan" onclick="mostrarVista('plan')">📋 Plan Original</button>
+            <button class="toggle-btn" id="btnDesarrollo" onclick="mostrarVista('desarrollo')">✓ Por Desarrollo</button>
+            <div class="stats-bar">
+                <span>📅 <strong id="totalJornadas">0</strong> jornadas</span>
+                <span>✅ <strong id="numDesarrolladas">0</strong>/<span id="numTotalUnidades">9</span> unidades</span>
+                <span id="pctAvance" style="font-weight:700;color:var(--france-blue)">0%</span>
+            </div>
+        </div>
+
+        <div class="title">
+            <h1>Plan Anual de Catedra</h1>
+            <p><strong>Tecnicas Instrumentales II - 2.do Curso</strong></p>
+            <p><strong>Bachillerato Tecnico en Construcciones Civiles (BTCC)</strong></p>
+        </div>
+
+        <table>
+            <tr>
+                <th colspan="4" class="section">1. Datos Identificatorios</th>
+            </tr>
+            <tr>
+                <th>Institucion</th>
+                <td>Colegio Nacional Defensores del Chaco</td>
+                <th>Area</th>
+                <td>Tecnica y Tecnologica</td>
+            </tr>
+            <tr>
+                <th>Especialidad</th>
+                <td>Construcciones Civiles</td>
+                <th>Disciplina / Catedra</th>
+                <td>Tecnicas Instrumentales II</td>
+            </tr>
+            <tr>
+                <th>Curso lectivo</th>
+                <td>Segundo Curso</td>
+                <th>Turno</th>
+                <td>Manana</td>
+            </tr>
+            <tr>
+                <th>Seccion</th>
+                <td>A</td>
+                <th>Docente</th>
+                <td>Christhian Keim</td>
+            </tr>
+            <tr>
+                <th>Ano lectivo</th>
+                <td>2026</td>
+                <th>Duracion referencial</th>
+                <td>140 horas catedra anuales</td>
+            </tr>
+
+            <tr>
+                <th colspan="4" class="section">2. Fundamentacion</th>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    Tecnicas Instrumentales II articula el razonamiento tecnico con la organizacion del trabajo, el estudio de tiempos y movimientos,
+                    el computo de cantidades y la estimacion basica de costos en construccion civil. La catedra ayuda al estudiante a comprender como se
+                    planifica, controla y optimiza una tarea de obra, vinculando metodo, tiempo, consumo de materiales, rendimiento y productividad.
+                </td>
+            </tr>
+
+            <tr>
+                <th colspan="4" class="section">3. Competencia General</th>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    Aplica metodos, tecnicas y procedimientos de organizacion, medicion, computo y control del trabajo en construccion civil,
+                    utilizando criterios de eficiencia, secuencia operativa, consumo de materiales y estimacion basica de costos.
+                </td>
+            </tr>
+
+            <tr>
+                <th colspan="4" class="section">4. Capacidades Esenciales</th>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <ul>
+                        <li>Reflexiona sobre la importancia del uso de un metodo para la realizacion del trabajo.</li>
+                        <li>Determina la metodologia a seguir para la ejecucion de un trabajo.</li>
+                        <li>Reconoce la importancia del movimiento de materiales y del desplazamiento del trabajador.</li>
+                        <li>Utiliza tecnicas para aumentar la eficiencia productiva.</li>
+                        <li>Calcula costos de mano de obra, rendimientos y costos unitarios simples.</li>
+                        <li>Interpreta y aplica tecnicas de muestreo del trabajo.</li>
+                        <li>Determina cantidad de trabajos de albanileria, revoques, pisos, cubiertas y revestimientos.</li>
+                        <li>Determina cantidad de materiales para la ejecucion de diversos trabajos.</li>
+                        <li>Determina volumen de hormigon, acero, encofrados y dosificacion basica en hormigon armado.</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+
+        <table id="cronogramaTable">
+            <tr>
+                <th colspan="9" class="section">5. Cronograma de Desarrollo</th>
+            </tr>
+            <tr>
+                <th style="width:5%">#</th>
+                <th style="width:5%">Estado</th>
+                <th style="width:8%">Mes</th>
+                <th style="width:13%">Unidad / Tema</th>
+                <th style="width:16%">Capacidad</th>
+                <th style="width:16%">Contenidos</th>
+                <th style="width:10%">Indicadores</th>
+                <th style="width:14%">Estrategias metodologicas</th>
+                <th style="width:8%">Evaluacion</th>
+                <th style="width:5%">Tiempo</th>
+            </tr>
+            <tbody id="cronogramaBody">
+                <!-- Generado por JS -->
+            </tbody>
+        </table>
+
+        <table>
+            <tr>
+                <th colspan="4" class="section">6. Evaluacion</th>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <th>Proposito</th>
+                <th>Instrumentos</th>
+                <th>Evidencias</th>
+            </tr>
+            <tr>
+                <td>Diagnostica</td>
+                <td>Explorar saberes previos sobre organizacion del trabajo, calculo y lectura tecnica.</td>
+                <td>Sondeo inicial, preguntas orales, prueba diagnostica.</td>
+                <td>Registro de respuestas, observacion inicial.</td>
+            </tr>
+            <tr>
+                <td>Formativa</td>
+                <td>Acompanhar el proceso, corregir procedimientos y mejorar el orden tecnico.</td>
+                <td>Lista de cotejo, registro de proceso, carpeta tecnica, planillas.</td>
+                <td>Ejercicios, croquis, computos y correcciones parciales.</td>
+            </tr>
+            <tr>
+                <td>Sumativa</td>
+                <td>Valorar el nivel de logro al cierre de cada unidad y en la integracion final.</td>
+                <td>Pruebas escritas, rubricas, planillas de computo, presentacion final.</td>
+                <td>Prueba de etapa, rubrica de computo y caso integrador.</td>
+            </tr>
+
+            <tr>
+                <th colspan="4" class="section">7. Recursos</th>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <ul>
+                        <li>Calculadora, regla, cinta metrica y cuaderno tecnico.</li>
+                        <li>Tablas de rendimiento y consumo.</li>
+                        <li>Planillas impresas o digitales.</li>
+                        <li>Pizarra, croquis y materiales de apoyo.</li>
+                        <li>Planos simples y ejemplos de obra.</li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <th colspan="4" class="section">8. Observacion CAC</th>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    Para estudiantes con discapacidad, el docente se regira por la normativa vigente y realizara los ajustes razonables necesarios
+                    en las consignas, el tiempo, los apoyos visuales y la forma de registro de evidencias.
+                </td>
+            </tr>
+        </table>
+
+        <table class="signatures">
+            <tr>
+                <th colspan="2" class="section">9. Firmas</th>
+            </tr>
+            <tr>
+                <td class="center"><strong>Docente</strong><br><br>______________________________</td>
+                <td class="center"><strong>Coordinacion / Direccion</strong><br><br>______________________________</td>
+            </tr>
+        </table>
+    </div>
+
+<script>
+// ===== DATOS DEL PLAN =====
+var PLAN_DATA = [
+    { id: 1, mes: 'Marzo',     nombre: 'Metodo de trabajo',                                                                        capacidad: 'Reflexiona sobre el uso de un metodo para la realizacion del trabajo.',                                                  contenidos: 'Metodo, secuencia, productividad, eficacia y eficiencia.',                                                   indicadores: 'Ordena tareas de manera logica y justifica la secuencia.',                     estrategias: 'Lectura guiada, analisis de casos y cuadros de pasos.',                              evaluacion: 'Diagnostico, ejercicios y observacion.',                    tiempo: '16 h', keywords: ['metodo','trabajo','metodologia'] },
+    { id: 2, mes: 'Abril',     nombre: 'Organizacion del puesto y movimiento de materiales',                                        capacidad: 'Reconoce la importancia del movimiento de materiales y del desplazamiento del trabajador.',                               contenidos: 'Recorridos, disposicion del puesto, orden, seguridad y economia de movimientos.',                             indicadores: 'Detecta recorridos innecesarios y propone mejoras.',                           estrategias: 'Croquis, estudio de recorridos y observacion guiada.',                                 evaluacion: 'Lista de cotejo y carpeta tecnica.',                        tiempo: '16 h', keywords: ['organizacion','puesto','movimiento','materiales','recorrido'] },
+    { id: 3, mes: 'Mayo',      nombre: 'Estudio de tiempos y muestreo',                                                             capacidad: 'Utiliza tecnicas para aumentar la eficiencia productiva e interpreta el muestreo del trabajo.',                            contenidos: 'Observacion, tiempos observados, muestreo, tiempos improductivos y tiempos tipo.',                            indicadores: 'Registra y compara tiempos con orden.',                                      estrategias: 'Planillas, comparacion de resultados y registro guiado.',                            evaluacion: 'Planillas de registro y ejercicios.',                       tiempo: '16 h', keywords: ['tiempo','muestreo','observado','muestra'] },
+    { id: 4, mes: 'Junio',     nombre: 'Rendimiento y costo de mano de obra',                                                       capacidad: 'Calcula costos de mano de obra.',                                                                                     contenidos: 'Jornal, cuadrilla, rendimiento, costo unitario y control de produccion.',                                     indicadores: 'Relaciona tiempo, cuadrilla y costo.',                                        estrategias: 'Problemas de calculo y cuadros comparativos.',                                  evaluacion: 'Prueba practica y carpeta tecnica.',                        tiempo: '16 h', keywords: ['rendimiento','costo','mano de obra','jornal','cuadrilla'] },
+    { id: 5, mes: 'Julio',     nombre: 'Integracion de etapa (Examen Parcial)',                                                      capacidad: 'Integra metodo, tiempo y costo en casos simples.',                                                                      contenidos: 'Repaso de etapa, correccion y nivelacion.',                                                                  indicadores: 'Integra conceptos con orden tecnico.',                                        estrategias: 'Taller de correccion y caso integrador.',                                     evaluacion: 'Evaluacion de etapa.',                                  tiempo: '12 h', keywords: ['integracion','etapa','examen','parcial','repaso'] },
+    { id: 6, mes: 'Agosto',    nombre: 'Computo de trabajos',                                                                       capacidad: 'Determina cantidad de trabajos de construccion.',                                                                      contenidos: 'Albanileria, revoques, pisos, cubiertas, aberturas y revestimientos.',                                       indicadores: 'Calcula cantidades con unidad correcta.',                                      estrategias: 'Ejercicios de computo y resolucion guiada.',                                    evaluacion: 'Rubrica de computo.',                                  tiempo: '16 h', keywords: ['computo','trabajo','albanileria','revoque','piso','cubierta'] },
+    { id: 7, mes: 'Septiembre',nombre: 'Computo de materiales',                                                                     capacidad: 'Determina la cantidad de material necesario para diversos trabajos.',                                                  contenidos: 'Consumos, relaciones trabajo-material y control tecnico.',                                                      indicadores: 'Aplica tablas de consumo y controla resultados.',                               estrategias: 'Tablas tecnicas, ejercicios y comparacion de resultados.',                       evaluacion: 'Prueba escrita y ejercicios.',                         tiempo: '16 h', keywords: ['computo','material','consumo','tabla'] },
+    { id: 8, mes: 'Octubre',   nombre: 'Computo aplicado al hormigon armado',                                                       capacidad: 'Determina volumen de hormigon, acero y encofrados.',                                                                   contenidos: 'Volumen, acero, encofrado y dosificacion basica.',                                                           indicadores: 'Calcula volumenes y cantidades con orden tecnico.',                             estrategias: 'Problemas tecnicos y planillas estructurales.',                                 evaluacion: 'Prueba tecnica y planilla.',                           tiempo: '16 h', keywords: ['hormigon','acero','encofrado','dosificacion','armado'] },
+    { id: 9, mes: 'Noviembre', nombre: 'Integracion final',                                                                         capacidad: 'Integra metodos, computos y control tecnico en un caso final.',                                                         contenidos: 'Planillas integradoras, caso de obra y presentacion.',                                                            indicadores: 'Comunica resultados con claridad y fundamento.',                                estrategias: 'Proyecto breve y presentacion tecnica.',                                        evaluacion: 'Rubrica integradora.',                               tiempo: '16 h', keywords: ['integracion','final','proyecto','presentacion'] }
+];
+
+var vistaActual = 'plan'; // 'plan' | 'desarrollo'
+var UNIDADES_DESARROLLADAS = {}; // { "Unidad nombre": { desarrollado: true, fechas: [...] } }
+
+// ===== CARGAR DATOS DEL REGISTRO DE CLASES =====
+function cargarRegistroClases() {
+    var raw = {};
+    try {
+        var s = localStorage.getItem('reg_clases_tecnicas');
+        if (s) raw = JSON.parse(s);
+    } catch(e) { raw = {}; }
+
+    // Extraer topics únicos del registro de clases
+    var topicsDict = {};
+    Object.keys(raw).forEach(function(key) {
+        var blks = raw[key];
+        ['b1','b2'].forEach(function(bid) {
+            if (blks[bid] && blks[bid].tema) {
+                var t = blks[bid].tema.trim();
+                if (t) {
+                    if (!topicsDict[t]) topicsDict[t] = [];
+                    topicsDict[t].push(key); // guardar la fecha
+                }
+            }
+        });
+    });
+
+    // Matchear con las unidades del plan
+    var developed = {};
+    PLAN_DATA.forEach(function(u) {
+        var matchFound = false;
+        var fechas = [];
+        // Buscar si algún tema del registro coincide con las keywords de la unidad
+        Object.keys(topicsDict).forEach(function(tema) {
+            var temaLower = tema.toLowerCase();
+            // Coincidencia directa con el nombre de la unidad
+            if (temaLower.indexOf(u.nombre.toLowerCase()) !== -1) {
+                matchFound = true;
+                fechas = fechas.concat(topicsDict[tema]);
+                return;
+            }
+            // Coincidencia con keywords
+            u.keywords.forEach(function(kw) {
+                if (temaLower.indexOf(kw) !== -1) {
+                    matchFound = true;
+                    fechas = fechas.concat(topicsDict[tema]);
+                }
+            });
+            // Coincidencia inversa: parte del tema está en el nombre de la unidad
+            var palabras = temaLower.split(/\s+/);
+            palabras.forEach(function(pal) {
+                if (pal.length > 4 && u.nombre.toLowerCase().indexOf(pal) !== -1) {
+                    matchFound = true;
+                    fechas = fechas.concat(topicsDict[tema]);
+                }
+            });
+        });
+        // Deduplicar fechas
+        fechas = fechas.filter(function(f, i) { return fechas.indexOf(f) === i; });
+        developed[u.nombre] = { desarrollado: matchFound, fechas: fechas };
+    });
+
+    UNIDADES_DESARROLLADAS = developed;
+}
+
+// ===== CONTAR JORNADAS =====
+function contarJornadas() {
+    try {
+        var s = localStorage.getItem('reg_clases_tecnicas');
+        if (!s) return 0;
+        var raw = JSON.parse(s);
+        return Object.keys(raw).length;
+    } catch(e) { return 0; }
+}
+
+// ===== RENDERIZAR CRONOGRAMA =====
+function renderCronograma() {
+    cargarRegistroClases();
+    var tbody = document.getElementById('cronogramaBody');
+    var html = '';
+
+    var data = PLAN_DATA.slice(); // copia
+    var desarrolladas = 0;
+
+    if (vistaActual === 'desarrollo') {
+        // Ordenar: desarrolladas primero, pendientes después
+        data.sort(function(a, b) {
+            var da = UNIDADES_DESARROLLADAS[a.nombre] || {};
+            var db = UNIDADES_DESARROLLADAS[b.nombre] || {};
+            if (da.desarrollado && !db.desarrollado) return -1;
+            if (!da.desarrollado && db.desarrollado) return 1;
+            return a.id - b.id;
+        });
+    }
+
+    data.forEach(function(u, idx) {
+        var info = UNIDADES_DESARROLLADAS[u.nombre] || { desarrollado: false, fechas: [] };
+        var estado = info.desarrollado ? 'dev' : 'pend';
+        var badgeHtml = info.desarrollado
+            ? '<span class="dev-badge dev">✓ Desarrollado</span>'
+            : '<span class="dev-badge pend">⏳ Pendiente</span>';
+        var rowClass = info.desarrollado ? 'dev-row' : 'pend-row';
+        if (info.desarrollado) desarrolladas++;
+
+        var numOrder = vistaActual === 'desarrollo' ? (idx + 1) : u.id;
+
+        // Fechas reales (si hay)
+        var fechasStr = '';
+        if (info.fechas && info.fechas.length > 0) {
+            fechasStr = info.fechas.map(function(f) {
+                // Formato: "LU 24/03/2026" → mostrar solo "24/03"
+                var parts = f.split(' ');
+                if (parts.length > 1) return parts[1];
+                return f;
+            }).join(', ');
+        }
+
+        html += '<tr class="' + rowClass + '">';
+        html += '<td class="center">' + numOrder + '</td>';
+        html += '<td class="center">' + badgeHtml + (fechasStr ? '<br><span style="font-size:10px;color:#666">' + fechasStr + '</span>' : '') + '</td>';
+        html += '<td>' + u.mes + '</td>';
+        html += '<td><strong>' + u.nombre + '</strong></td>';
+        html += '<td>' + u.capacidad + '</td>';
+        html += '<td>' + u.contenidos + '</td>';
+        html += '<td>' + u.indicadores + '</td>';
+        html += '<td>' + u.estrategias + '</td>';
+        html += '<td>' + u.evaluacion + '</td>';
+        html += '<td class="center">' + u.tiempo + '</td>';
+        html += '</tr>';
+    });
+
+    tbody.innerHTML = html;
+    document.getElementById('numDesarrolladas').textContent = desarrolladas;
+    document.getElementById('numTotalUnidades').textContent = PLAN_DATA.length;
+    document.getElementById('totalJornadas').textContent = contarJornadas();
+    document.getElementById('pctAvance').textContent = Math.round(desarrolladas / PLAN_DATA.length * 100) + '%';
+}
+
+// ===== CAMBIAR VISTA =====
+function mostrarVista(vista) {
+    vistaActual = vista;
+    document.getElementById('btnPlan').classList.toggle('active', vista === 'plan');
+    document.getElementById('btnDesarrollo').classList.toggle('active', vista === 'desarrollo');
+    renderCronograma();
+}
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded', function() {
+    renderCronograma();
+});
+</script>
+
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>

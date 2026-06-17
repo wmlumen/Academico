@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 2</title>
+<style>
+body{font-family:"Segoe UI",Tahoma,sans-serif;color:#172133;background:#fff;margin:0;padding:20px;line-height:1.42}
+.topnav,.pager{max-width:900px;margin:0 auto 14px;display:flex;flex-wrap:wrap;gap:8px}
+.topnav a,.pager a{display:inline-block;text-decoration:none;background:#e8f1fb;color:#0f4c81;border:1px solid #c8d9ea;padding:8px 12px;font-size:13px;font-weight:700}
+.pager{justify-content:space-between;margin-top:18px}
+.sheet{max-width:900px;margin:0 auto;border:1px solid #d8e0ea;padding:22px}
+.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+h1{margin:0 0 10px;color:#0f4c81}
+h2{font-size:16px;color:#183a5a;margin:14px 0 6px}
+p,li,td,th{font-size:14px}
+table{width:100%;border-collapse:collapse;margin-top:8px}
+th,td{border:1px solid #d8e0ea;padding:8px 10px;vertical-align:top}
+th{background:#e8f1fb;text-align:left}
+img{max-width:100%;display:block;margin:8px auto;border:1px solid #d8e0ea;padding:6px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+@media print{body{padding:0}.topnav,.pager{display:none}.sheet{border:none;max-width:none;padding:0}}
+</style>
+</head>
+<body>
+<nav class="topnav" aria-label="Navegacion principal"><a href="../../../index.html">Inicio</a><a href="../plan_de_clase_resistencia_materiales.html">Plan de clase</a><a href="../material_del_estudiante_resistencia_materiales.html">Guia completa</a><a href="index_fichas_estudiante.html">Fichas</a></nav>
+<section class="sheet">
+<h1>Tema 2. Fuerzas, Resultantes y Momento</h1>
+<p><strong>Capacidad:</strong> Calcula resultantes de fuerzas concurrentes y no concurrentes. Comprende el momento de una fuerza y su efecto de rotación.</p>
+<p><strong>Propósito:</strong> Resolver composiciones simples de fuerzas y comprender el efecto de giro producido por el momento.</p>
+<div class="grid">
+<div>
+<h2>Desarrollo conceptual</h2>
+<p>Cuando varias fuerzas actúan sobre un punto o sobre una estructura, pueden reemplazarse por una <strong>resultante</strong>. El <strong>momento</strong> permite medir la tendencia de una fuerza a producir giro alrededor de un punto.</p>
+<h2>Lectura guiada</h2>
+<p>En construcción no siempre actúa una sola carga. Sobre una viga pueden apoyarse varios pesos al mismo tiempo: materiales, personas, tabiques o equipos. Para estudiar el efecto total de esas acciones, muchas veces se las reemplaza por una sola fuerza llamada resultante.</p>
+<p>Si las fuerzas tienen el mismo sentido, la resultante se obtiene sumando sus valores. Si actúan en sentidos contrarios, la resultante surge de la diferencia entre ambas y conserva el sentido de la mayor. El momento aparece cuando la fuerza actúa a una distancia del apoyo o punto de giro.</p>
+<h2>Definiciones clave</h2>
+<ul><li><strong>Resultante:</strong> fuerza única equivalente a varias fuerzas.</li><li><strong>Momento:</strong> efecto de giro de una fuerza.</li><li><strong>Fuerzas concurrentes:</strong> actúan sobre un mismo punto.</li><li><strong>Fuerzas paralelas:</strong> tienen igual dirección.</li></ul>
+<h2>Comparación técnica</h2>
+<table><tr><th>Concepto</th><th>Característica</th></tr><tr><td>Resultante</td><td>Resume el efecto de varias fuerzas</td></tr><tr><td>Momento</td><td>Explica la rotación</td></tr><tr><td>Fuerza concurrente</td><td>Mismo punto de aplicación</td></tr><tr><td>Fuerza paralela</td><td>Misma dirección</td></tr></table>
+</div>
+<div>
+<h2>Gráfico</h2>
+<img src="../graficos_material_alumno/05_resultante_momento.svg" alt="Resultante y momento">
+<p><strong>Explicación del gráfico:</strong> las fuerzas <code>F1 = 4 kN</code> y <code>F2 = 6 kN</code> pueden reemplazarse por la resultante <code>R = 10 kN</code>. La distancia <code>d = 2 m</code> respecto del punto O permite calcular el momento y comprender la tendencia al giro.</p>
+<p><strong>Ejemplo aplicado:</strong> si dos pilas de ladrillos descargan sobre una misma viga, la estructura recibe la suma de ambas cargas. Si una se coloca lejos del apoyo, el efecto de giro es mayor.</p>
+</div>
+</div>
+<h2>Ejercitario</h2>
+<ol><li>Suma dos fuerzas de 4 kN y 6 kN del mismo sentido.</li><li>Calcula la resultante de 9 kN y 5 kN en sentido contrario.</li><li>Calcula el momento de una fuerza de 10 N aplicada a 2 m.</li><li>Menciona un ejemplo de obra donde sea importante el momento.</li></ol>
+<nav class="pager" aria-label="Navegacion entre temas"><a href="tema_01_introduccion.html">Tema anterior</a><a href="tema_03_equilibrio_vinculos_reacciones.html">Siguiente tema</a></nav>
+</section>
+</body>
+</html>

@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico Integrado - Formación Ética y Ciudadana</title>
+    <style>
+        /* --- ESTILOS GLOBALES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background: #f0f2f5; min-height: 100vh; padding: 20px; }
+        
+        .main-header { 
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); 
+            color: white; 
+            padding: 20px 30px; 
+            border-radius: 12px; 
+            margin-bottom: 25px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .main-header h1 { font-size: 2rem; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+        .prof-info { font-size: 1.1rem; line-height: 1.5; color: #e2e8f0; }
+        .prof-info strong { color: #fff; font-size: 1.2rem; }
+        
+        /* Top Navigation para cambiar de vistas */
+        .top-nav { display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+        .nav-btn { 
+            background: rgba(255,255,255,0.15); 
+            color: white; 
+            border: 1px solid rgba(255,255,255,0.3); 
+            padding: 10px 20px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            font-size: 1rem;
+            transition: all 0.3s ease; 
+        }
+        .nav-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
+        .nav-btn.active { background: #f59e0b; color: #1e3a5f; border-color: #f59e0b; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+
+        .main-view { display: none; animation: fadeIn 0.4s; }
+        .main-view.active-view { display: block; }
+        @keyframes fadeIn { from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);} }
+
+        /* --- ESTILOS DEL DASHBOARD VISUAL --- */
+        .controls { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .btn { padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+        .btn-primary { background: #2d5a87; color: white; }
+        .btn-primary:hover { background: #1e3a5f; }
+        .btn-primary.active { background: #f59e0b; color: #1e3a5f; transform: scale(1.05); }
+        .btn-filter { padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem; background: #e0e0e0; color: #666; }
+        .btn-filter.active { box-shadow: 0 0 0 2px #333; transform: scale(1.05); }
+        
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .stat-card { background: white; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .stat-card .number { font-size: 2rem; font-weight: bold; color: #1e3a5f; }
+        .stat-card .label { font-size: 0.85rem; color: #666; }
+        
+        .section-title { color: #1e3a5f; font-size: 1.2rem; margin: 20px 0 10px 0; padding-bottom: 5px; border-bottom: 2px solid #e0e0e0; }
+        
+        .indicators-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+        .indicator-card { background: white; padding: 12px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.08); border-left: 4px solid #ccc; }
+        .indicator-card.alerta { border-left-color: #ef4444; }
+        .indicator-card.fortaleza { border-left-color: #10b981; }
+        
+        .indicator-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .indicator-code { font-size: 0.75rem; color: #888; font-weight: 600; }
+        .indicator-value { font-size: 1.5rem; font-weight: bold; padding: 4px 12px; border-radius: 20px; }
+        .indicator-value.muy-bueno { background: #d1fae5; color: #065f46; }
+        .indicator-value.bueno { background: #fef3c7; color: #92400e; }
+        .indicator-value.a-mejorar { background: #fee2e2; color: #991b1b; }
+        
+        .indicator-name { font-size: 0.9rem; color: #333; line-height: 1.4; }
+        
+        .legend { display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+        .legend-color.muy-bueno { background: #10b981; }
+        .legend-color.bueno { background: #f59e0b; }
+        .legend-color.a-mejorar { background: #ef4444; }
+
+        .scale-bar { height: 8px; border-radius: 4px; background: #e0e0e0; margin-top: 8px; overflow: hidden; }
+        .scale-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+        .scale-fill.muy-bueno { background: #10b981; }
+        .scale-fill.bueno { background: #f59e0b; }
+        .scale-fill.a-mejorar { background: #ef4444; }
+        .hidden { display: none; }
+
+        /* --- ESTILOS DE INFORMES PEDAGÓGICOS --- */
+        .informes-container {
+            background: #fff;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .informes-container h2 { color: #2980b9; margin-top: 40px; border-bottom: 2px solid #ecf0f1; padding-bottom: 5px; font-size: 1.5em; }
+        .informes-container h3 { color: #34495e; margin-top: 25px; font-size: 1.17em; border-bottom: none; }
+        .informes-container table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .informes-container th, .informes-container td { border: 1px solid #bdc3c7; padding: 12px; text-align: left; }
+        .informes-container th { background-color: #34495e; color: white; }
+        .informes-container ul, .informes-container ol { margin-left: 20px; margin-bottom: 15px; }
+        
+        .report-card { background-color: #fafafa; border-left: 5px solid #3498db; padding: 20px; margin-bottom: 40px; }
+        .alert-item { color: #c0392b; font-weight: bold; }
+        .strength-item { color: #27ae60; font-weight: bold; }
+        .meta-info { background: #ecf0f1; padding: 10px; border-radius: 5px; font-weight: bold; margin-bottom: 20px; color: #2c3e50; }
+        
+        .tabs { display: flex; border-bottom: 2px solid #3498db; margin-bottom: 20px; flex-wrap: wrap; }
+        .tab-btn { background: #ecf0f1; border: none; padding: 12px 20px; font-size: 16px; cursor: pointer; color: #2c3e50; font-weight: bold; border-radius: 5px 5px 0 0; margin-right: 5px; transition: background 0.3s; }
+        .tab-btn:hover { background: #bdc3c7; }
+        .tab-btn.active { background: #3498db; color: white; }
+        .tab-content { display: none; animation: fadeEffect 0.4s; }
+        .tab-content.active { display: block; }
+        @keyframes fadeEffect { from {opacity: 0;} to {opacity: 1;} }
+
+        .metrics-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; }
+        .metrics-section h4 { margin: 0 0 15px 0; color: #2c3e50; text-align: center; font-size: 1.05em; border-bottom: 2px solid #bdc3c7; padding-bottom: 5px; }
+        .valuation-summary { display: flex; gap: 10px; text-align: center; }
+        .val-item { flex: 1; padding: 12px 5px; border-radius: 6px; color: white; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: center; }
+        .val-mb { background-color: #27ae60; }
+        .val-b { background-color: #f39c12; }
+        .val-am { background-color: #c0392b; }
+        .val-item span { display: block; font-size: 1.6em; line-height: 1.1; margin: 5px 0; }
+        .val-item small { font-size: 0.85em; opacity: 0.95; font-weight: normal; background: rgba(0,0,0,0.15); padding: 2px 6px; border-radius: 10px; display: inline-block; align-self: center; }
+        
+        @media (max-width: 768px) {
+            .metrics-container { grid-template-columns: 1fr; }
+        }
+
+        /* --- ESTILOS DE IMPRESIÓN Y EXPORTACIÓN A PDF --- */
+        @media print {
+            body { background: white; padding: 0; margin: 0; font-size: 11pt; }
+            .main-header { padding: 15px; border-radius: 0; box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .top-nav, .controls, .tabs, .legend { display: none !important; }
+            .main-view:not(.active-view) { display: none !important; }
+            .tab-content:not(.active) { display: none !important; }
+            .grade-panel.hidden { display: none !important; }
+            .informes-container { padding: 0; box-shadow: none; }
+            .report-card { border: 1px solid #bdc3c7; page-break-inside: avoid; margin-bottom: 20px; }
+            .indicator-card { page-break-inside: avoid; border: 1px solid #e0e0e0; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+
+        /* --- ESTILOS DEL FOOTER --- */
+        .site-footer { 
+            text-align: center; 
+            padding: 20px; 
+            color: #7f8c8d; 
+            font-size: 0.9em; 
+            margin-top: 40px; 
+            border-top: 1px solid #e0e0e0; 
+        }
+        @media print { .site-footer { display: none; } }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER UNIFICADO -->
+    <div class="main-header">
+        <h1>Sistema Integrado de Diagnóstico</h1>
+        <div class="prof-info">
+            <strong>Prof. Christhian Keim</strong><br>
+            Cátedra: Formación Ética y Ciudadana.<br>
+            Año 2026.
+        </div>
+        <div class="top-nav">
+            <button class="nav-btn active" id="btn-view-dash" onclick="switchMainView('dashboard')">📊 Panel Visual de Indicadores</button>
+            <button class="nav-btn" id="btn-view-inf" onclick="switchMainView('informes')">📄 Informes Pedagógicos y Planes</button>
+            <button class="nav-btn" onclick="window.print()" style="background: #8e44ad; border-color: #8e44ad; margin-left: auto;">🖨️ Guardar PDF / Imprimir</button>
+        </div>
+    </div>
+
+    <!-- FOOTER GLOBAL -->
+    <div class="site-footer">
+        <strong>✅ Documento 100% Integrado:</strong> Panel Visual + Informes Pedagógicos + Plan Interdisciplinario + POA. <br>
+        <em>(Utiliza los botones de la parte superior azul para alternar entre las gráficas y los documentos de texto).</em>
+    </div>
+
+    <!-- =========================================
+         VISTA 1: DASHBOARD VISUAL (panel_diagnostico)
+         ========================================= -->
+    <div id="view-dashboard" class="main-view active-view">
+        
+        <div class="controls">
+            <button class="btn btn-primary" onclick="showGrade('7mo_TM')">7mo TM</button>
+            <button class="btn btn-primary" onclick="showGrade('7mo_TT')">7mo TT</button>
+            <button class="btn btn-primary" onclick="showGrade('8vo_TM')">8vo TM</button>
+            <button class="btn btn-primary" onclick="showGrade('9no_TM')">9no TM</button>
+            <span style="margin-left: 20px; align-self: center; color: #666; font-weight:bold;">Filtrar Indicadores:</span>
+            <button class="btn btn-filter active" onclick="setFilter('all')">Todos</button>
+            <button class="btn btn-filter" onclick="setFilter('muy-bueno')" style="background:#10b981;color:white;">Muy Bueno</button>
+            <button class="btn btn-filter" onclick="setFilter('bueno')" style="background:#f59e0b;color:#1e3a5f;">Bueno</button>
+            <button class="btn btn-filter" onclick="setFilter('a-mejorar')" style="background:#ef4444;color:white;">A Mejorar</button>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item"><div class="legend-color muy-bueno"></div>Muy Bueno (4-5)</div>
+            <div class="legend-item"><div class="legend-color bueno"></div>Bueno (3)</div>
+            <div class="legend-item"><div class="legend-color a-mejorar"></div>A Mejorar (1-2)</div>
+        </div>
+
+        <!-- CONTENEDORES DASHBOARD POR GRADO -->
+        <div id="panel-7mo_TM" class="grade-panel">
+            <div class="stats-row">
+                <div class="stat-card"><div class="number">37</div><div class="label">Alumnos</div></div>
+                <div class="stat-card"><div class="number">25</div><div class="label">Ind. Alerta</div></div>
+                <div class="stat-card"><div class="number">25</div><div class="label">Ind. Fortaleza</div></div>
+                <div class="stat-card"><div class="number" style="color:#ef4444;">78%</div><div class="label">A Mejorar (Alumnos)</div></div>
+            </div>
+            <h3 class="section-title">🔴 Área Académica - Alertas</h3><div class="indicators-grid" id="academic-alerts-7mo_TM"></div>
+            <h3 class="section-title">🔴 Área Conductual - Alertas</h3><div class="indicators-grid" id="conductual-alerts-7mo_TM"></div>
+            <h3 class="section-title">🔴 Área Socio-Emocional - Alertas</h3><div class="indicators-grid" id="social-alerts-7mo_TM"></div>
+            <h3 class="section-title">🔴 Área Actitudinal - Alertas</h3><div class="indicators-grid" id="attitudinal-alerts-7mo_TM"></div>
+            <h3 class="section-title">🟢 Área Académica - Fortalezas</h3><div class="indicators-grid" id="academic-fort-7mo_TM"></div>
+            <h3 class="section-title">🟢 Área Conductual - Fortalezas</h3><div class="indicators-grid" id="conductual-fort-7mo_TM"></div>
+            <h3 class="section-title">🟢 Área Socio-Emocional - Fortalezas</h3><div class="indicators-grid" id="social-fort-7mo_TM"></div>
+            <h3 class="section-title">🟢 Área Actitudinal - Fortalezas</h3><div class="indicators-grid" id="attitudinal-fort-7mo_TM"></div>
+        </div>
+
+        <div id="panel-7mo_TT" class="grade-panel hidden">
+            <div class="stats-row">
+                <div class="stat-card"><div class="number">14</div><div class="label">Alumnos</div></div>
+                <div class="stat-card"><div class="number">25</div><div class="label">Ind. Alerta</div></div>
+                <div class="stat-card"><div class="number">25</div><div class="label">Ind. Fortaleza</div></div>
+                <div class="stat-card"><div class="number" style="color:#10b981;">79%</div><div class="label">Muy Bueno (Alumnos)</div></div>
+            </div>
+            <h3 class="section-title">🔴 Área Académica - Alertas</h3><div class="indicators-grid" id="academic-alerts-7mo_TT"></div>
+            <h3 class="section-title">🔴 Área Conductual - Alertas</h3><div class="indicators-grid" id="conductual-alerts-7mo_TT"></div>
+            <h3 class="section-title">🔴 Área Socio-Emocional - Alertas</h3><div class="indicators-grid" id="social-alerts-7mo_TT"></div>
+            <h3 class="section-title">🔴 Área Actitudinal - Alertas</h3><div class="indicators-grid" id="attitudinal-alerts-7mo_TT"></div>
+            <h3 class="section-title">🟢 Área Académica - Fortalezas</h3><div class="indicators-grid" id="academic-fort-7mo_TT"></div>
+            <h3 class="section-title">🟢 Área Conductual - Fortalezas</h3><div class="indicators-grid" id="conductual-fort-7mo_TT"></div>
+            <h3 class="section-title">🟢 Área Socio-Emocional - Fortalezas</h3><div class="indicators-grid" id="social-fort-7mo_TT"></div>
+            <h3 class="section-title">🟢 Área Actitudinal - Fortalezas</h3><div class="indicators-grid" id="attitudinal-fort-7mo_TT"></div>
+        </div>
+
+        <div id="panel-8vo_TM" class="grade-panel hidden">
+            <div class="stats-row">
+                <div class="stat-card"><div class="number">42</div><div class="label">Alumnos</div></div>
+                <div class="stat-card"><div class="number">25</div><div class="label">Ind. Alerta</div></div>
+                <div class="stat-card"><div class="number">25</div><div class="label">Ind. Fortaleza</div></div>
+                <div class="stat-card"><div class="number" style="color:#ef4444;">50%</div><div class="label">A Mejorar (Alumnos)</div></div>
+            </div>
+            <h3 class="section-title">🔴 Área Académica - Alertas</h3><div class="indicators-grid" id="academic-alerts-8vo_TM"></div>
+            <h3 class="section-title">🔴 Área Conductual - Alertas</h3><div class="indicators-grid" id="conductual-alerts-8vo_TM"></div>
+            <h3 class="section-title">🔴 Área Socio-Emocional - Alertas</h3><div class="indicators-grid" id="social-alerts-8vo_TM"></div>
+            <h3 class="section-title">🔴 Área Actitudinal - Alertas</h3><div class="indicators-grid" id="attitudinal-alerts-8vo_TM"></div>
+            <h3 class="section-title">🟢 Área Académica - Fortalezas</h3><div class="indicators-grid" id="academic-fort-8vo_TM"></div>
+            <h3 class="section-title">🟢 Área Conductual - Fortalezas</h3><div class="indicators-grid" id="conductual-fort-8vo_TM"></div>
+            <h3 class="section-title">🟢 Área Socio-Emocional - Fortalezas</h3><div class="indicators-grid" id="social-fort-8vo_TM"></div>
+            <h3 class="section-title">🟢 Área Actitudinal - Fortalezas</h3><div class="indicators-grid" id="attitudinal-fort-8vo_TM"></div>
+        </div>
+
+        <div id="panel-9no_TM" class="grade-panel hidden">
+            <div class="stats-row">
+                <div class="stat-card"><div class="number">42</div><div class="label">Alumnos</div></div>
+                <div class="stat-card"><div class="number">25</div><div class="label">Ind. Alerta</div></div>
+                <div class="stat-card"><div class="number">25</div><div class="label">Ind. Fortaleza</div></div>
+                <div class="stat-card"><div class="number" style="color:#ef4444;">57%</div><div class="label">A Mejorar (Alumnos)</div></div>
+            </div>
+            <h3 class="section-title">🔴 Área Académica - Alertas</h3><div class="indicators-grid" id="academic-alerts-9no_TM"></div>
+            <h3 class="section-title">🔴 Área Conductual - Alertas</h3><div class="indicators-grid" id="conductual-alerts-9no_TM"></div>
+            <h3 class="section-title">🔴 Área Socio-Emocional - Alertas</h3><div class="indicators-grid" id="social-alerts-9no_TM"></div>
+            <h3 class="section-title">🔴 Área Actitudinal - Alertas</h3><div class="indicators-grid" id="attitudinal-alerts-9no_TM"></div>
+            <h3 class="section-title">🟢 Área Académica - Fortalezas</h3><div class="indicators-grid" id="academic-fort-9no_TM"></div>
+            <h3 class="section-title">🟢 Área Conductual - Fortalezas</h3><div class="indicators-grid" id="conductual-fort-9no_TM"></div>
+            <h3 class="section-title">🟢 Área Socio-Emocional - Fortalezas</h3><div class="indicators-grid" id="social-fort-9no_TM"></div>
+            <h3 class="section-title">🟢 Área Actitudinal - Fortalezas</h3><div class="indicators-grid" id="attitudinal-fort-9no_TM"></div>
+        </div>
+    </div>
+
+    <!-- =========================================
+         VISTA 2: INFORMES (Informes_Diagnosticos_Panel)
+         ========================================= -->
+    <div id="view-informes" class="main-view">
+        <div class="informes-container">
+            
+            <div class="tabs">
+                <button class="tab-btn active" onclick="openTab(event, 'tab-inf-7mo-tm')">7mo TM</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab-inf-7mo-tt')">7mo TT</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab-inf-8vo-tm')">8vo TM</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab-inf-9no-tm')">9no TM</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab-protocolo')">Protocolo de Intervención</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab-poa-global')">POA Global 2026</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab-plan-interdisciplinario')">Plan Interdisciplinario</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab-analisis-estrategias')">Análisis y Estrategias</button>
+            </div>
+
+            <!-- INFORME 7MO TM -->
+            <div id="tab-inf-7mo-tm" class="tab-content active">
+              <div class="report-card">
+                <h2>1. INFORME PEDAGÓGICO: SÉPTIMO GRADO - TURNO MAÑANA (TM)</h2>
+                <div class="meta-info">Muestra: 37 Estudiantes | Fecha de Análisis: 23 de Abril, 2026</div>
+                
+                <div class="metrics-container">
+                    <div class="metrics-section">
+                        <h4>👥 Valoración por Alumnos</h4>
+                        <div class="valuation-summary">
+                            <div class="val-item val-mb">Muy Bueno<span>5</span><small>14%</small></div>
+                            <div class="val-item val-b">Bueno<span>3</span><small>8%</small></div>
+                            <div class="val-item val-am">A Mejorar<span>29</span><small>78%</small></div>
+                        </div>
+                    </div>
+                    <div class="metrics-section">
+                        <h4>📊 Valoración por Indicadores</h4>
+                        <div class="valuation-summary">
+                            <div class="val-item val-mb">Muy Bueno<span>7</span><small>14%</small></div>
+                            <div class="val-item val-b">Bueno<span>4</span><small>8%</small></div>
+                            <div class="val-item val-am">A Mejorar<span>39</span><small>78%</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>1.1. Línea Base y Estado de Fortalezas (Logros)</h3>
+                <p>El grupo presenta un perfil altamente receptivo y respetuoso, que servirá como base para la intervención. Los 3 indicadores más fuertes son:</p>
+                <ul>
+                    <li><span class="strength-item">For-21. Cuida el material propio y ajeno:</span> 23 repeticiones.</li>
+                    <li><span class="strength-item">For-17. Respeta las normas de convivencia:</span> 22 repeticiones.</li>
+                    <li><span class="strength-item">For-23. Escucha con atención y no interrumpe:</span> 20 repeticiones.</li>
+                </ul>
+                <p><strong>Análisis Pedagógico:</strong> Es un grupo dócil y con excelente disposición actitudinal para escuchar. La gestión del aula a nivel conductual no es un problema, lo cual es una ventaja inmensa para implementar rutinas de trabajo focalizado.</p>
+
+                <h3>1.2. Focos Rojos y Barreras de Aprendizaje (Alertas)</h3>
+                <p>Los indicadores críticos que demandan atención urgente son:</p>
+                <ul>
+                    <li><span class="alert-item">Ale-02. Presenta lagunas en conocimientos previos:</span> 37 repeticiones (100% del grupo).</li>
+                    <li><span class="alert-item">Ale-14/28/34/44/48. Requiere supervisión / Miente / Se rinde / Inseguridad / Abandona proyectos:</span> 19 repeticiones cada uno.</li>
+                    <li><span class="alert-item">Ale-08. Se bloquea ante desafíos matemáticos:</span> 18 repeticiones.</li>
+                </ul>
+                <p><strong>Diagnóstico:</strong> El grupo sufre de <em>Indefensión Aprendida</em>. El 100% arrastra lagunas críticas. Su docilidad es pasividad por miedo a equivocarse. Al no tener las bases, se frustran ("no puedo"), se rinden y recurren a mecanismos de defensa ante el inminente fracaso académico.</p>
+
+                <h3>1.3. Plan de Intervención Didáctica y Ajuste Curricular</h3>
+                <ul>
+                    <li><strong>Estrategias de Aula:</strong> Implementación de "Pedagogía del Error" y Micro-Andamiaje para reconstruir su autoestima académica y generar soluciones de razonamiento seguras.</li>
+                    <li><strong>Ajuste Curricular de Emergencia:</strong> "Desintoxicación del Fracaso y Nivelación Base". Se pausará la malla regular al menos 4 semanas para nivelar competencias elementales y operaciones básicas.</li>
+                </ul>
+
+                <h3>1.4. Mapeo y Alineación Institucional</h3>
+                <table>
+                    <tr><th>Documento Rector</th><th>Vinculación del Plan de Acción</th></tr>
+                    <tr><td><strong>PIE</strong></td><td>Refuerzo de la integridad emocional y la confianza académica del estudiante, pilares del perfil de egreso.</td></tr>
+                    <tr><td><strong>POA</strong></td><td>Activar el apoyo del departamento de psicología/orientación para tratar la baja autoestima académica y la tolerancia a la frustración.</td></tr>
+                    <tr><td><strong>Plan de Grado</strong></td><td>Adaptación de la Unidad I hacia una fase de andamiaje nivelatorio intensivo.</td></tr>
+                </table>
+              </div>
+            </div>
+
+            <!-- INFORME 7MO TT -->
+            <div id="tab-inf-7mo-tt" class="tab-content">
+              <div class="report-card">
+                <h2>2. INFORME PEDAGÓGICO: SÉPTIMO GRADO - TURNO TARDE (TT)</h2>
+                <div class="meta-info">Muestra: 14 Estudiantes | Fecha de Análisis: 23 de Abril, 2026</div>
+
+                <div class="metrics-container">
+                    <div class="metrics-section">
+                        <h4>👥 Valoración por Alumnos</h4>
+                        <div class="valuation-summary">
+                            <div class="val-item val-mb">Muy Bueno<span>11</span><small>79%</small></div>
+                            <div class="val-item val-b">Bueno<span>2</span><small>14%</small></div>
+                            <div class="val-item val-am">A Mejorar<span>1</span><small>7%</small></div>
+                        </div>
+                    </div>
+                    <div class="metrics-section">
+                        <h4>📊 Valoración por Indicadores</h4>
+                        <div class="valuation-summary">
+                            <div class="val-item val-mb">Muy Bueno<span>41</span><small>82%</small></div>
+                            <div class="val-item val-b">Bueno<span>6</span><small>12%</small></div>
+                            <div class="val-item val-am">A Mejorar<span>3</span><small>6%</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>2.1. Línea Base y Estado de Fortalezas (Logros)</h3>
+                <p>El grupo, siendo más reducido, muestra un desarrollo superior en autonomía y cognición:</p>
+                <ul>
+                    <li><span class="strength-item">For-03. Posee un pensamiento crítico y analítico:</span> 14 repeticiones (Muy Bueno).</li>
+                    <li><span class="strength-item">For-13. Es autónomo en la realización de tareas:</span> 14 repeticiones (Muy Bueno).</li>
+                    <li><span class="strength-item">For-17. Respeta las normas de convivencia:</span> 14 repeticiones (Muy Bueno).</li>
+                </ul>
+                <p><strong>Análisis Pedagógico:</strong> Tienen excelentes funciones ejecutivas de autorregulación. Son capaces de pensar críticamente y trabajar sin que el docente los guíe de la mano paso a paso.</p>
+
+                <h3>2.2. Focos Rojos y Barreras de Aprendizaje (Alertas)</h3>
+                <ul>
+                    <li><span class="alert-item">Ale-02. Presenta lagunas en conocimientos previos:</span> 12 repeticiones.</li>
+                    <li><span class="alert-item">Ale-04. Se limita a memorizar sin comprender:</span> 8 repeticiones.</li>
+                    <li><span class="alert-item">Ale-08. Se bloquea ante desafíos matemáticos:</span> 7 repeticiones.</li>
+                </ul>
+                <p><strong>Diagnóstico:</strong> La barrera es el <em>aprendizaje mecánico</em>. Ante sus lagunas, la estrategia de supervivencia de estos alumnos autónomos ha sido memorizar mecánicamente. Esto detona bloqueos cuando se enfrentan a lógica matemática pura.</p>
+
+                <h3>2.3. Plan de Intervención Didáctica y Ajuste Curricular</h3>
+                <ul>
+                    <li><strong>Estrategias de Aula:</strong> Rutinas de Pensamiento Visible para forzar al alumno a explicar "cómo" llegó a la respuesta, apoyado en Tutorías de Pares.</li>
+                    <li><strong>Ajuste Curricular de Emergencia:</strong> Transición a un "Módulo de Lógica Aplicada". Las guías de ejercicios tradicionales se sustituirán por problemas que requieran generar soluciones de razonamiento lógicas.</li>
+                </ul>
+
+                <h3>2.4. Mapeo y Alineación Institucional</h3>
+                <table>
+                    <tr><th>Documento Rector</th><th>Vinculación del Plan de Acción</th></tr>
+                    <tr><td><strong>PIE</strong></td><td>Fomento del pensamiento autónomo y la resolución creativa de problemas por encima de la educación bancaria/memorística.</td></tr>
+                    <tr><td><strong>POA</strong></td><td>Se debe incluir una jornada de <strong>Capacitación Docente en Estrategias de Andamiaje y DUA</strong>, así como una reunión de Escuela para Padres para orientar sobre cómo apoyar la ansiedad matemática en casa.</td></tr>
+                    <tr><td><strong>Plan de Grado</strong></td><td>Migrar los instrumentos de evaluación tradicionales hacia rúbricas formativas y portafolios de procesos de razonamiento.</td></tr>
+                </table>
+              </div>
+            </div>
+
+            <!-- INFORME 8VO TM -->
+            <div id="tab-inf-8vo-tm" class="tab-content">
+              <div class="report-card">
+                <h2>3. INFORME PEDAGÓGICO: OCTAVO GRADO - TURNO MAÑANA (TM)</h2>
+                <div class="meta-info">Muestra: 42 Estudiantes | Fecha de Análisis: 23 de Abril, 2026</div>
+
+                <div class="metrics-container">
+                    <div class="metrics-section">
+                        <h4>👥 Valoración por Alumnos</h4>
+                        <div class="valuation-summary">
+                            <div class="val-item val-mb">Muy Bueno<span>20</span><small>48%</small></div>
+                            <div class="val-item val-b">Bueno<span>1</span><small>2%</small></div>
+                            <div class="val-item val-am">A Mejorar<span>21</span><small>50%</small></div>
+                        </div>
+                    </div>
+                    <div class="metrics-section">
+                        <h4>📊 Valoración por Indicadores</h4>
+                        <div class="valuation-summary">
+                            <div class="val-item val-mb">Muy Bueno<span>24</span><small>48%</small></div>
+                            <div class="val-item val-b">Bueno<span>1</span><small>2%</small></div>
+                            <div class="val-item val-am">A Mejorar<span>25</span><small>50%</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>3.1. Línea Base y Estado de Fortalezas (Logros)</h3>
+                <p>Un grupo con alta energía, fuertemente inclinado hacia la indagación y lo social:</p>
+                <ul>
+                    <li><span class="strength-item">For-45. Muestra curiosidad e iniciativa propia:</span> 14 repeticiones.</li>
+                    <li><span class="strength-item">For-35. Trabaja de forma colaborativa y equitativa:</span> 14 repeticiones.</li>
+                    <li><span class="strength-item">For-13. Es autónomo en la realización de tareas:</span> 14 repeticiones.</li>
+                </ul>
+                <p><strong>Análisis Pedagógico:</strong> Poseen una combinación ideal de <em>agencia personal</em> e <em>interdependencia</em>. Es el terreno perfecto para el modelo socioconstructivista.</p>
+
+                <h3>3.2. Focos Rojos y Barreras de Aprendizaje (Alertas)</h3>
+                <ul>
+                    <li><span class="alert-item">Ale-24. Interrumpe constantemente el flujo de clase:</span> 9 repeticiones.</li>
+                    <li><span class="alert-item">Ale-30. Se distrae con dispositivos electrónicos:</span> 8 repeticiones.</li>
+                    <li><span class="alert-item">Ale-02. Presenta lagunas en conocimientos previos:</span> 8 repeticiones.</li>
+                    <li><span class="alert-item">Ale-08. Se bloquea ante desafíos matemáticos:</span> 7 repeticiones.</li>
+                </ul>
+                <p><strong>Diagnóstico:</strong> La barrera es la <em>desconexión metodológica</em>. El modelo tradicional choca con ellos. Al frustrarse por lagunas, su curiosidad y autonomía se desvían hacia la tecnología o a interrumpir. Su distracción es evasión cognitiva por falta de estímulos relevantes.</p>
+
+                <h3>3.3. Plan de Intervención Didáctica y Ajuste Curricular</h3>
+                <ul>
+                    <li><strong>Estrategias de Aula:</strong> Integración de EdTech (simuladores como GeoGebra) y Aulas de Pensamiento Vertical (pizarras en las paredes) para canalizar su energía motriz y colaborativa.</li>
+                    <li><strong>Ajuste Curricular de Emergencia:</strong> "Laboratorio Digital y Ciudadanía". Pausar clases frontales 2 semanas para establecer pactos de uso de pantallas e integrar retos tecnológicos lógicos.</li>
+                </ul>
+
+                <h3>3.4. Mapeo y Alineación Institucional</h3>
+                <table>
+                    <tr><th>Documento Rector</th><th>Vinculación del Plan de Acción</th></tr>
+                    <tr><td><strong>PIE</strong></td><td>Alineación con la formación de ciudadanos digitales responsables y proactivos del siglo XXI.</td></tr>
+                    <tr><td><strong>POA</strong></td><td>Incorporar una jornada de <strong>Capacitación Docente en "Integración de EdTech y Gestión de Aulas Activas"</strong> y programar un taller para padres sobre el acompañamiento en la era digital.</td></tr>
+                    <tr><td><strong>Plan de Grado</strong></td><td>Uso obligatorio de simuladores visuales en ciencias y destinar 30% de la clase a resolución grupal de pie.</td></tr>
+                </table>
+              </div>
+            </div>
+
+            <!-- INFORME 9NO TM -->
+            <div id="tab-inf-9no-tm" class="tab-content">
+              <div class="report-card">
+                <h2>4. INFORME PEDAGÓGICO: NOVENO GRADO - TURNO MAÑANA (TM)</h2>
+                <div class="meta-info">Muestra: 42 Estudiantes | Fecha de Análisis: 23 de Abril, 2026</div>
+
+                <div class="metrics-container">
+                    <div class="metrics-section">
+                        <h4>👥 Valoración por Alumnos</h4>
+                        <div class="valuation-summary">
+                            <div class="val-item val-mb">Muy Bueno<span>13</span><small>31%</small></div>
+                            <div class="val-item val-b">Bueno<span>5</span><small>12%</small></div>
+                            <div class="val-item val-am">A Mejorar<span>24</span><small>57%</small></div>
+                        </div>
+                    </div>
+                    <div class="metrics-section">
+                        <h4>📊 Valoración por Indicadores</h4>
+                        <div class="valuation-summary">
+                            <div class="val-item val-mb">Muy Bueno<span>16</span><small>32%</small></div>
+                            <div class="val-item val-b">Bueno<span>6</span><small>12%</small></div>
+                            <div class="val-item val-am">A Mejorar<span>28</span><small>56%</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>4.1. Línea Base y Estado de Fortalezas (Logros)</h3>
+                <p>El nivel de inteligencia social e interpersonal de este grupo es excepcional:</p>
+                <ul>
+                    <li><span class="strength-item">For-21/25. Cuida el material y usa lenguaje respetuoso:</span> 30 repeticiones.</li>
+                    <li><span class="strength-item">For-37. Es empático con las necesidades ajenas:</span> 28 repeticiones.</li>
+                    <li><span class="strength-item">For-35. Trabaja de forma colaborativa:</span> 27 repeticiones.</li>
+                </ul>
+                <p><strong>Análisis Pedagógico:</strong> Han consolidado su identidad adolescente positivamente con una cohesión inquebrantable, empatía profunda y respeto por el entorno. El capital humano está en su punto máximo.</p>
+
+                <h3>4.2. Focos Rojos y Barreras de Aprendizaje (Alertas)</h3>
+                <ul>
+                    <li><span class="alert-item">Ale-24. Interrumpe constantemente el flujo de clase:</span> 26 repeticiones.</li>
+                    <li><span class="alert-item">Ale-32. Fomenta el desorden o el caos en el grupo:</span> 22 repeticiones.</li>
+                    <li><span class="alert-item">Ale-46. Requiere estímulos externos para trabajar:</span> 16 repeticiones.</li>
+                    <li><span class="alert-item">Ale-08. Se bloquea ante desafíos matemáticos:</span> 15 repeticiones.</li>
+                </ul>
+                <p><strong>Diagnóstico:</strong> La barrera es la <em>necesidad adolescente de estímulo dopaminérgico</em>. Crean el caos no por malicia (son altamente respetuosos), sino para entretenerse colaborativamente ante la falta de estímulos externos en clases magistrales tradicionales.</p>
+
+                <h3>4.3. Plan de Intervención Didáctica y Ajuste Curricular</h3>
+                <ul>
+                    <li><strong>Estrategias de Aula:</strong> Seminarios Socráticos (canalizar el habla a debates) y Gamificación (dar roles y misiones para cubrir su necesidad de estímulos externos).</li>
+                    <li><strong>Ajuste Curricular de Emergencia:</strong> Transición a un <em>Aprendizaje Basado en Proyectos (ABP) de Impacto Social</em>. Vincular la empatía con la resolución matemática de problemas del mundo real.</li>
+                </ul>
+
+                <h3>4.4. Mapeo y Alineación Institucional</h3>
+                <table>
+                    <tr><th>Documento Rector</th><th>Vinculación del Plan de Acción</th></tr>
+                    <tr><td><strong>PIE</strong></td><td>Empoderar a los estudiantes como agentes de cambio solidarios para su inminente paso a la Educación Media.</td></tr>
+                    <tr><td><strong>POA</strong></td><td>Urge incluir talleres de <strong>"Gestión de Aulas Cooperativas y Gamificación"</strong> para los docentes del Tercer Ciclo, ya que el modelo frontal de clases ha caducado para este grupo etario.</td></tr>
+                    <tr><td><strong>Plan de Grado</strong></td><td>Inserción formal del ABP en el cronograma, evaluando no solo resultados, sino razonamiento, debate y trabajo en equipo.</td></tr>
+                </table>
+              </div>
+            </div>
+
+            <div id="tab-protocolo" class="tab-content">
+              <div class="report-card" style="border-left: 5px solid #27ae60;">
+                <h2 style="color: #27ae60;">Protocolo Unificado de Reevaluación (Post-Test para Tercer Ciclo)</h2>
+                <p>Para todos los grados, se establece el plazo de <strong>90 días (cierre de trimestre)</strong> para volver a aplicar el instrumento de diagnóstico. Se esperará una reducción del 40% al 50% en las Alertas Académicas Base (Ale-02 y Ale-08), validando el progreso a través de:</p>
+                <ol>
+                    <li><strong>Diarios de metacognición.</strong></li>
+                    <li><strong>Portafolios de procesos de razonamiento (no solo de resultados).</strong></li>
+                    <li><strong>Bitácoras docentes de clima de aula y actitud frente al desafío.</strong></li>
+                </ol>
+              </div>
+            </div>
+
+            <!-- TAB POA GLOBAL -->
+            <div id="tab-poa-global" class="tab-content">
+              <div class="report-card" style="border-left: 5px solid #8e44ad;">
+                <h2 style="color: #8e44ad;">PLAN OPERATIVO ANUAL (POA) GLOBAL 2026 - TERCER CICLO</h2>
+                <div class="meta-info">Cátedra: Formación Ética y Ciudadana | Elaborado en base al Diagnóstico Integrado</div>
+                
+                <h3>🎯 Objetivo General</h3>
+                <p>Implementar un modelo de intervención pedagógica progresiva que transforme las barreras de aprendizaje (indefensión aprendida, desconexión metodológica y apatía) en agencialidad, razonamiento lógico y ciudadanía activa para los estudiantes del Tercer Ciclo.</p>
+
+                <h3>📈 Ejes Estratégicos de Intervención Institucional</h3>
+                
+                <h4>1. Plan de Capacitación Docente Continua</h4>
+                <ul>
+                    <li><strong>Módulo I (Foco 7mo Grado):</strong> Taller práctico sobre "Estrategias de Andamiaje, DUA (Diseño Universal para el Aprendizaje) y Pedagogía del Error". <em>Objetivo: Brindar herramientas para nivelar lagunas sin recurrir a la memorización mecánica.</em></li>
+                    <li><strong>Módulo II (Foco 8vo Grado):</strong> Seminario sobre "Integración de EdTech, Simuladores y Gestión de Aulas Activas (Thinking Classrooms)". <em>Objetivo: Transformar el dispositivo móvil de distractor a herramienta cognitiva.</em></li>
+                    <li><strong>Módulo III (Foco 9no Grado):</strong> Capacitación en "Gamificación, Seminarios Socráticos y Aprendizaje Basado en Proyectos (ABP)". <em>Objetivo: Canalizar la necesidad adolescente de estímulos externos hacia la resolución de problemas reales.</em></li>
+                </ul>
+
+                <h4>2. Programa de Acompañamiento Psicoeducativo</h4>
+                <ul>
+                    <li><strong>Clínica de Autoestima Académica:</strong> Intervención conjunta con el departamento de orientación para tratar los bloqueos matemáticos y la alta tasa de rendición ante la frustración detectada en 7mo grado (TM).</li>
+                    <li><strong>Talleres de Autorregulación Digital:</strong> Espacios guiados para estudiantes de 8vo y 9no enfocados en la ciudadanía digital y el manejo constructivo de su cohesión grupal.</li>
+                </ul>
+
+                <h4>3. Escuela para Familias (Comunidad Educativa)</h4>
+                <ul>
+                    <li><strong>Jornada Trimestre 1:</strong> "Ansiedad Matemática y Expectativas: Cómo apoyar el razonamiento en casa sin presionar a la memorización" (Prioritario para familias de 7mo grado).</li>
+                    <li><strong>Jornada Trimestre 2:</strong> "Acompañamiento en la Era Digital: Límites sanos y uso productivo de pantallas en adolescentes" (Prioritario para familias de 8vo y 9no grado).</li>
+                </ul>
+
+                <h4>4. Ajuste Curricular y Evaluación Institucional</h4>
+                <ul>
+                    <li><strong>Flexibilización Curricular de Emergencia:</strong> Autorizar la pausa oficial de 2 a 4 semanas en la malla tradicional durante el inicio de clases para ejecutar los "Módulos de Lógica Aplicada y Nivelación Base".</li>
+                    <li><strong>Transición Evaluativa:</strong> Establecer el uso obligatorio de rúbricas de proceso, coevaluación y portafolios de razonamiento en al menos un 30% de la ponderación trimestral institucional para todo el ciclo.</li>
+                </ul>
+              </div>
+            </div>
+            
+            <!-- TAB PLAN INTERDISCIPLINARIO -->
+            <div id="tab-plan-interdisciplinario" class="tab-content">
+              <div class="report-card" style="border-left: 5px solid #e67e22;">
+                <h2 style="color: #e67e22;">📋 PLAN INTEGRAL DE MEJORA INTERDISCIPLINARIO</h2>
+                <div class="meta-info">I MM I 2026 - Coordinación entre Asignaturas | Fecha: Marzo 2026</div>
+
+                <h3>🔴 Hallazgos del Diagnóstico (Prioritarios)</h3>
+                
+                <h4>7mo TM - Críticos (68% A Mejorar)</h4>
+                <ul>
+                    <li><span class="alert-item">Lagunas en conocimientos previos:</span> 37 estudiantes</li>
+                    <li><span class="alert-item">Se bloquea ante desafíos matemáticos:</span> 18 estudiantes</li>
+                    <li><span class="alert-item">Desafía activamente la autoridad:</span> 16 estudiantes</li>
+                    <li><span class="alert-item">Se distrae con dispositivos electrónicos:</span> 16 estudiantes</li>
+                    <li><span class="alert-item">Se rinde fácilmente ante la frustración:</span> 19 estudiantes</li>
+                    <li><span class="alert-item">Expresa inseguridad constante "no puedo":</span> 19 estudiantes</li>
+                    <li><span class="alert-item">Abandona proyectos a mitad de camino:</span> 19 estudiantes</li>
+                    <li><span class="alert-item">Trabaja de forma aislada:</span> 14 estudiantes</li>
+                </ul>
+
+                <h4>9no TM - Áreas Críticas (55% A Mejorar)</h4>
+                <ul>
+                    <li><span class="alert-item">Interrumpe constantemente el flujo de clase:</span> 26 estudiantes</li>
+                    <li><span class="alert-item">Fomenta el desorden en el grupo:</span> 22 estudiantes</li>
+                    <li><span class="alert-item">Requiere estímulos externos para trabajar:</span> 16 estudiantes</li>
+                </ul>
+
+                <h3>📝📝 Acciones Recomendadas para el Informe</h3>
+                
+                <h4>1. Estructurales (para TODAS las asignaturas)</h4>
+                <ul>
+                    <li><strong>[ALTA] Formato único de informe:</strong> Plantilla estandarizada para todas las asignaturas del tercer ciclo.</li>
+                    <li><strong>[ALTA] Coordinación semanal:</strong> Reunión semanal entre docentes del ciclo para unificar criterios.</li>
+                    <li><strong>[MEDIA] Base de datos compartida:</strong> Sistema digital para registrar indicadores por estudiante.</li>
+                </ul>
+
+                <h4>2. Metodológicas (por Asignatura)</h4>
+                <table>
+                    <tr><th>Acción</th><th>Prioridad</th><th>Castellano</th><th>Matemática</th><th>Ciencias</th><th>Ética</th></tr>
+                    <tr><td>Pensamiento creativo y algebraico</td><td>ALTA</td><td>✔️</td><td>✔️</td><td>✔️</td><td>✔️</td></tr>
+                    <tr><td>Aprendizaje basado en proyectos</td><td>ALTA</td><td>✔️</td><td>✔️</td><td>✔️</td><td>✔️</td></tr>
+                    <tr><td>Tutoría entre pares</td><td>ALTA</td><td>✔️</td><td>✔️</td><td>✔️</td><td>✔️</td></tr>
+                    <tr><td>Trabajo colaborativo/equipo</td><td>ALTA</td><td>✔️</td><td>✔️</td><td>✔️</td><td>✔️</td></tr>
+                    <tr><td>Aulas de refuerzo</td><td>MEDIA</td><td>✔️</td><td>✔️</td><td>✔️</td><td>✔️</td></tr>
+                    <tr><td>Taller de expresión oral</td><td>ALTA</td><td>✔️</td><td>-</td><td>-</td><td>✔️</td></tr>
+                    <tr><td>Club de lectura</td><td>MEDIA</td><td>✔️</td><td>-</td><td>-</td><td>-</td></tr>
+                    <tr><td>Resolución de problemas</td><td>ALTA</td><td>-</td><td>✔️</td><td>✔️</td><td>-</td></tr>
+                    <tr><td>Laboratorio/prácticas</td><td>ALTA</td><td>-</td><td>-</td><td>✔️</td><td>-</td></tr>
+                    <tr><td>Diario de logros</td><td>MEDIA</td><td>✔️</td><td>✔️</td><td>✔️</td><td>✔️</td></tr>
+                    <tr><td>Reto matemático</td><td>ALTA</td><td>-</td><td>✔️</td><td>-</td><td>-</td></tr>
+                    <tr><td>Proyectos investigación</td><td>ALTA</td><td>-</td><td>-</td><td>✔️</td><td>-</td></tr>
+                    <tr><td>Taller resiliencia</td><td>MEDIA</td><td>-</td><td>-</td><td>-</td><td>✔️</td></tr>
+                    <tr><td>Ferias de ciencias</td><td>MEDIA</td><td>-</td><td>-</td><td>✔️</td><td>-</td></tr>
+                    <tr><td>Debate/discusión</td><td>MEDIA</td><td>✔️</td><td>-</td><td>-</td><td>✔️</td></tr>
+                    <tr><td>Olimpiadas académicas</td><td>MEDIA</td><td>✔️</td><td>✔️</td><td>✔️</td><td>-</td></tr>
+                </table>
+
+                <h4>3. Seguimiento (por Asignatura)</h4>
+                <table>
+                    <tr><th>Acción</th><th>Prioridad</th><th>Castellano</th><th>Matemática</th><th>Ciencias</th><th>Ética</th></tr>
+                    <tr><td>Fichas de seguimiento individual</td><td>ALTA</td><td>✔️</td><td>✔️</td><td>✔️</td><td>✔️</td></tr>
+                    <tr><td>Registro conductual por clase</td><td>ALTA</td><td>✔️</td><td>✔️</td><td>✔️</td><td>✔️</td></tr>
+                    <tr><td>Reuniones de padres</td><td>MEDIA</td><td>✔️</td><td>✔️</td><td>✔️</td><td>✔️</td></tr>
+                    <tr><td>Plataforma digital de notas</td><td>MEDIA</td><td>✔️</td><td>✔️</td><td>✔️</td><td>✔️</td></tr>
+                    <tr><td>Autoevaluación del estudiante</td><td>MEDIA</td><td>✔️</td><td>✔️</td><td>✔️</td><td>✔️</td></tr>
+                    <tr><td>Registro de intervención conductual</td><td>ALTA</td><td>-</td><td>-</td><td>-</td><td>✔️</td></tr>
+                    <tr><td>Pruebas diagnósticas</td><td>ALTA</td><td>✔️</td><td>✔️</td><td>✔️</td><td>-</td></tr>
+                    <tr><td>Portafolio del estudiante</td><td>MEDIA</td><td>✔️</td><td>✔️</td><td>✔️</td><td>-</td></tr>
+                    <tr><td>Boletín informativo</td><td>MEDIA</td><td>✔️</td><td>✔️</td><td>✔️</td><td>✔️</td></tr>
+                    <tr><td>Reunión semanal de coordinación</td><td>ALTA</td><td>✔️</td><td>✔️</td><td>✔️</td><td>✔️</td></tr>
+                </table>
+
+                <h3>📚 Coordinación por Asignatura - Tercer Ciclo</h3>
+                <p><em>Grados: 7mo, 8vo, 9vo Educación Básica</em></p>
+
+                <h4>📖 CASTELLANO / LENGUAJE</h4>
+                <table>
+                    <tr><th>Problema Detectado</th><th>Qué debe trabajar</th><th>Actividad Conjunta</th></tr>
+                    <tr><td>Dificultades de expresión oral/escrita</td><td>Lenguaje escrito y oral</td><td>Taller de expresión oral mensual</td></tr>
+                    <tr><td>Rechazo a la lectura</td><td>Hábitos lectores</td><td>Club de lectura interdisciplinario</td></tr>
+                    <tr><td>Se rinde "no puedo" (frustración)</td><td>Autoexpresión escrita</td><td>Diario de logros - Castellano</td></tr>
+                    <tr><td>Aislamiento</td><td>Debate y discusión</td><td>Concurso de oratoria</td></tr>
+                </table>
+
+                <h4>🔢 MATEMÁTICA</h4>
+                <table>
+                    <tr><th>Problema Detectado</th><th>Qué debe trabajar</th><th>Actividad Conjunta</th></tr>
+                    <tr><td>Se bloquea ante desafíos matemáticos</td><td>Resolución de problemas</td><td>Desafío matemático</td></tr>
+                    <tr><td>Lagunas en conocimientos previos</td><td>Bases matemáticas</td><td>Refuerzos cruzados</td></tr>
+                    <tr><td>Abandona proyectos</td><td>Perseverancia</td><td>Proyectos por etapas</td></tr>
+                    <tr><td>Trabaja aislado</td><td>Colaboración matemática</td><td>Olimpiadas por equipos</td></tr>
+                </table>
+
+                <h4>🔬 CIENCIAS NATURALES / BIOLOGÍA / FÍSICA / QUÍMICA</h4>
+                <table>
+                    <tr><th>Problema Detectado</th><th>Qué debe trabajar</th><th>Actividad Conjunta</th></tr>
+                    <tr><td>Lagunas en conocimientos</td><td>Base científica</td><td>Laboratorio integrado</td></tr>
+                    <tr><td>Se rinde fácilmente</td><td>Método científico</td><td>Proyectos de investigación</td></tr>
+                    <tr><td>Trabaja aislado</td><td>Trabajo en equipo</td><td>Ferias de ciencias por grupos</td></tr>
+                    <tr><td>Requiere supervisión</td><td>Autonomía experimental</td><td>Prácticas supervisadas</td></tr>
+                </table>
+
+                <h3>🤝 Matriz de Coordinación Interdisciplinaria</h3>
+                <table>
+                    <tr><th>Indicador del Diagnóstico</th><th>Castellano</th><th>Matemática</th><th>Ciencias</th><th>Ética/Cívica</th></tr>
+                    <tr><td>Lagunas conocimientos previos</td><td>Comprensión lectora</td><td>Refuerzos básicos</td><td>Base científica</td><td>Refuerzos general</td></tr>
+                    <tr><td>Se bloquea/frustra fácil</td><td>Escritura creativa</td><td>Problemas graduales</td><td>Experimentos simples</td><td>Taller resiliencia</td></tr>
+                    <tr><td>Abandona proyectos</td><td>Proyectos Writing</td><td>Matemática aplicada</td><td>Proyectos científicos</td><td>Proyectos sociales</td></tr>
+                    <tr><td>Trabaja aislado</td><td>Grupos de lectura</td><td>Trabajo en equipo</td><td>Laboratorio grupal</td><td>Trabajo comunitario</td></tr>
+                    <tr><td>Desafía autoridad</td><td>Debate respetuoso</td><td>Normas de aula</td><td>Protocolos de laboratorio</td><td>Convivencia</td></tr>
+                    <tr><td>Usa mal tecnología</td><td>Digital writing</td><td>Herramientas digital</td><td>Simulaciones</td><td>Uso responsable</td></tr>
+                    <tr><td>No trabaja sin estímulo</td><td>Temas interesantes</td><td>Aplicaciones reales</td><td>Experimentos reales</td><td>Iniciativa propia</td></tr>
+                </table>
+
+                <h3>📅 Cronograma de Ejecución y Coordinación</h3>
+                <table>
+                    <tr><th>Fecha</th><th>Actividad</th><th>Participantes</th><th>Objetivo</th></tr>
+                    <tr><td>Marzo - Semana 1</td><td>Reunión de docentes ciclo</td><td>Todas las asignaturas</td><td>Unificar criterios</td></tr>
+                    <tr><td>Marzo - Semana 3</td><td>Diagnóstico inicial integrado</td><td>Castellano, Matemática, Ciencias</td><td>Identificar necesidades</td></tr>
+                    <tr><td>Abril - Semana 1</td><td>Taller interdisciplinario</td><td>Estudiantes 7mo-9no</td><td>Trabajo colaborativo</td></tr>
+                    <tr><td>Mayo - Semana 2</td><td>Seguimiento 1er mes</td><td>Docentes ciclo</td><td>Revisar avances</td></tr>
+                    <tr><td>Junio - Semana 1</td><td>Expociencias + Oralia</td><td>Integrado</td><td>Mostrar proyectos</td></tr>
+                    <tr><td>Julio - Semana 1</td><td>Evaluación midterm</td><td>Todas las asignaturas</td><td>Diagnosticar mejora</td></tr>
+                    <tr><td>Septiembre - Semana 2</td><td>Feria de proyectos</td><td>Integrado</td><td>Presentaciones</td></tr>
+                    <tr><td>Noviembre - Semana 1</td><td>Evaluación final</td><td>Todas las asignaturas</td><td>Cierre y planificación 2027</td></tr>
+                </table>
+                
+                <div style="margin-top: 20px; font-size: 0.9em; color: #7f8c8d; background: #fdfdfd; padding: 10px; border-radius: 5px;">
+                    <strong>Documento generado para:</strong> I MM I 2026<br>
+                    <strong>Para coordinar con:</strong> Docentes de Castellano, Matemática, Ciencias y Formación Ética.
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB ANÁLISIS Y ESTRATEGIAS (Desde carpeta local HTML) -->
+            <div id="tab-analisis-estrategias" class="tab-content">
+              <div class="report-card" style="border-left: 5px solid #16a085;">
+                <h2 style="color: #16a085;">ANÁLISIS DEL DIAGNÓSTICO Y ESTRATEGIAS INTEGRADAS</h2>
+                <div class="meta-info">Documento de Análisis Especial | Importado de Archivos Locales</div>
+                
+                <!-- 👇 PEGA AQUÍ EL CONTENIDO DE TUS ARCHIVOS HTML LOCALES 👇 -->
+                <p style="padding: 20px; text-align: center; color: #7f8c8d; font-style: italic; background-color: #f9f9f9; border-radius: 8px;">
+                    (Por favor, abre tus archivos de la carpeta "HTML" en el bloc de notas, copia el texto y pégalo aquí, o pégamelo en el chat para que lo integre por ti).
+                </p>
+                <!-- 👆 FIN DEL ESPACIO PARA PEGAR 👆 -->
+              </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- SCRIPTS JS COMBINADOS -->
+    <script>
+        // --- FUNCIONES DEL MENÚ PRINCIPAL ---
+        function switchMainView(viewType) {
+            document.querySelectorAll('.main-view').forEach(el => el.classList.remove('active-view'));
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+            
+            if (viewType === 'dashboard') {
+                document.getElementById('view-dashboard').classList.add('active-view');
+                document.getElementById('btn-view-dash').classList.add('active');
+            } else {
+                document.getElementById('view-informes').classList.add('active-view');
+                document.getElementById('btn-view-inf').classList.add('active');
+            }
+        }
+
+        // --- FUNCIONES DE INFORMES (Tabs) ---
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            setTimeout(() => document.getElementById(tabName).classList.add("active"), 10);
+            evt.currentTarget.className += " active";
+        }
+
+        // --- DATOS Y FUNCIONES DEL DASHBOARD VISUAL ---
+        const data = {
+            '7mo_TM': {
+                students: 37,
+                academic: {
+                    alerts: [
+                        { code: 'Ale-02', name: 'Presenta lagunas en conocimientos previos.', count: 37, nota: 1 },
+                        { code: 'Ale-04', name: 'Se limita a memorizar sin comprender.', count: 18, nota: 1 },
+                        { code: 'Ale-06', name: 'Entrega tareas incompletas o descuidadas.', count: 4, nota: 4 },
+                        { code: 'Ale-08', name: 'Se bloquea ante desafíos matemáticos.', count: 18, nota: 1 },
+                        { code: 'Ale-10', name: 'Tiene dificultades de expresión oral/escrita.', count: 14, nota: 2 },
+                        { code: 'Ale-12', name: 'Muestra rechazo o desinterés por la lectura.', count: 11, nota: 3 },
+                        { code: 'Ale-14', name: 'Requiere supervisión constante para avanzar.', count: 19, nota: 1 },
+                        { code: 'Ale-16', name: 'Muestra apatía por temas nuevos.', count: 7, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-01', name: 'Domina los conceptos clave del grado.', count: 6, nota: 1 },
+                        { code: 'For-03', name: 'Posee un pensamiento crítico y analítico.', count: 11, nota: 1 },
+                        { code: 'For-05', name: 'Entrega trabajos con alta calidad y orden.', count: 12, nota: 1 },
+                        { code: 'For-07', name: 'Resuelve problemas lógicos con fluidez.', count: 11, nota: 1 },
+                        { code: 'For-09', name: 'Utiliza vocabulario técnico preciso.', count: 10, nota: 1 },
+                        { code: 'For-11', name: 'Posee excelentes hábitos de lectura.', count: 10, nota: 1 },
+                        { code: 'For-13', name: 'Es autónomo en la realización de tareas.', count: 12, nota: 1 },
+                        { code: 'For-15', name: 'Investiga más allá de lo solicitado.', count: 13, nota: 1 }
+                    ]
+                },
+                conductual: {
+                    alerts: [
+                        { code: 'Ale-18', name: 'Desafía activamente la autoridad.', count: 16, nota: 1 },
+                        { code: 'Ale-20', name: 'Presenta retardos o inasistencias frecuentes.', count: 2, nota: 5 },
+                        { code: 'Ale-22', name: 'Daña el mobiliario o materiales escolares.', count: 1, nota: 5 },
+                        { code: 'Ale-24', name: 'Interrumpe constantemente el flujo de clase.', count: 2, nota: 5 },
+                        { code: 'Ale-26', name: 'Emplea lenguaje soez o despectivo.', count: 11, nota: 3 },
+                        { code: 'Ale-28', name: 'Miente o culpa a otros por sus actos.', count: 19, nota: 1 },
+                        { code: 'Ale-30', name: 'Se distrae con dispositivos electrónicos.', count: 16, nota: 1 },
+                        { code: 'Ale-32', name: 'Fomenta el desorden o el caos en el grupo.', count: 6, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-17', name: 'Respeta las normas de convivencia.', count: 22, nota: 2 },
+                        { code: 'For-19', name: 'Es puntual en todas sus obligaciones.', count: 10, nota: 1 },
+                        { code: 'For-21', name: 'Cuida el material propio y ajeno.', count: 23, nota: 2 },
+                        { code: 'For-23', name: 'Escucha con atención y no interrumpe.', count: 20, nota: 1 },
+                        { code: 'For-25', name: 'Utiliza el lenguaje de forma respetuosa.', count: 13, nota: 1 },
+                        { code: 'For-27', name: 'Reconoce sus errores honestamente.', count: 15, nota: 1 },
+                        { code: 'For-29', name: 'Usa la tecnología con fines educativos.', count: 3, nota: 1 },
+                        { code: 'For-31', name: 'Mantiene el orden en espacios comunes.', count: 11, nota: 1 }
+                    ]
+                },
+                social: {
+                    alerts: [
+                        { code: 'Ale-34', name: 'Se rinde fácilmente ante la frustración.', count: 19, nota: 1 },
+                        { code: 'Ale-36', name: 'Trabaja de forma aislada o es individualista.', count: 14, nota: 2 },
+                        { code: 'Ale-38', name: 'Ignora o se burla de los sentimientos de otros.', count: 15, nota: 2 },
+                        { code: 'Ale-40', name: 'Ejerce presión negativa o bullying.', count: 4, nota: 4 },
+                        { code: 'Ale-42', name: 'Reacciona de forma agresiva o impulsiva.', count: 11, nota: 3 },
+                        { code: 'Ale-44', name: 'Expresa inseguridad constante ("no puedo").', count: 19, nota: 1 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-33', name: 'Muestra resiliencia ante el fracaso.', count: 18, nota: 1 },
+                        { code: 'For-35', name: 'Trabaja de forma colaborativa y equitativa.', count: 16, nota: 1 },
+                        { code: 'For-37', name: 'Es empático con las necesidades ajenas.', count: 18, nota: 1 },
+                        { code: 'For-39', name: 'Posee un liderazgo positivo y ético.', count: 4, nota: 1 },
+                        { code: 'For-41', name: 'Se comunica de manera asertiva.', count: 6, nota: 1 },
+                        { code: 'For-43', name: 'Tiene una autoestima académica sólida.', count: 6, nota: 1 }
+                    ]
+                },
+                attitudinal: {
+                    alerts: [
+                        { code: 'Ale-46', name: 'Requiere estímulos externos para trabajar.', count: 16, nota: 1 },
+                        { code: 'Ale-48', name: 'Abandona proyectos a mitad de camino.', count: 19, nota: 1 },
+                        { code: 'Ale-50', name: 'Se muestra a la defensiva ante críticas.', count: 11, nota: 3 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-45', name: 'Muestra curiosidad e iniciativa propia.', count: 16, nota: 1 },
+                        { code: 'For-47', name: 'Es persistente en tareas complejas.', count: 5, nota: 1 },
+                        { code: 'For-49', name: 'Acepta retroalimentación constructiva.', count: 12, nota: 1 }
+                    ]
+                }
+            },
+            '7mo_TT': {
+                students: 14,
+                academic: {
+                    alerts: [
+                        { code: 'Ale-02', name: 'Presenta lagunas en conocimientos previos.', count: 12, nota: 1 },
+                        { code: 'Ale-04', name: 'Se limita a memorizar sin comprender.', count: 8, nota: 1 },
+                        { code: 'Ale-06', name: 'Entrega tareas incompletas o descuidadas.', count: 3, nota: 3 },
+                        { code: 'Ale-08', name: 'Se bloquea ante desafíos matemáticos.', count: 7, nota: 1 },
+                        { code: 'Ale-10', name: 'Tiene dificultades de expresión oral/escrita.', count: 2, nota: 4 },
+                        { code: 'Ale-12', name: 'Muestra rechazo o desinterés por la lectura.', count: 3, nota: 3 },
+                        { code: 'Ale-14', name: 'Requiere supervisión constante para avanzar.', count: 3, nota: 3 },
+                        { code: 'Ale-16', name: 'Muestra apatía por temas nuevos.', count: 0, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-01', name: 'Domina los conceptos clave del grado.', count: 12, nota: 4 },
+                        { code: 'For-03', name: 'Posee un pensamiento crítico y analítico.', count: 14, nota: 4 },
+                        { code: 'For-05', name: 'Entrega trabajos con alta calidad y orden.', count: 12, nota: 4 },
+                        { code: 'For-07', name: 'Resuelve problemas lógicos con fluidez.', count: 12, nota: 4 },
+                        { code: 'For-09', name: 'Utiliza vocabulario técnico preciso.', count: 12, nota: 4 },
+                        { code: 'For-11', name: 'Posee excelentes hábitos de lectura.', count: 11, nota: 3 },
+                        { code: 'For-13', name: 'Es autónomo en la realización de tareas.', count: 14, nota: 4 },
+                        { code: 'For-15', name: 'Investiga más allá de lo solicitado.', count: 12, nota: 4 }
+                    ]
+                },
+                conductual: {
+                    alerts: [
+                        { code: 'Ale-18', name: 'Desafía activamente la autoridad.', count: 0, nota: 4 },
+                        { code: 'Ale-20', name: 'Presenta retardos o inasistencias frecuentes.', count: 2, nota: 4 },
+                        { code: 'Ale-22', name: 'Daña el mobiliario o materiales escolares.', count: 0, nota: 4 },
+                        { code: 'Ale-24', name: 'Interrumpe constantemente el flujo de clase.', count: 2, nota: 4 },
+                        { code: 'Ale-26', name: 'Emplea lenguaje soez o despectivo.', count: 0, nota: 4 },
+                        { code: 'Ale-28', name: 'Miente o culpa a otros por sus actos.', count: 0, nota: 4 },
+                        { code: 'Ale-30', name: 'Se distrae con dispositivos electrónicos.', count: 0, nota: 4 },
+                        { code: 'Ale-32', name: 'Fomenta el desorden o el caos en el grupo.', count: 0, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-17', name: 'Respeta las normas de convivencia.', count: 14, nota: 4 },
+                        { code: 'For-19', name: 'Es puntual en todas sus obligaciones.', count: 12, nota: 4 },
+                        { code: 'For-21', name: 'Cuida el material propio y ajeno.', count: 14, nota: 4 },
+                        { code: 'For-23', name: 'Escucha con atención y no interrumpe.', count: 14, nota: 4 },
+                        { code: 'For-25', name: 'Utiliza el lenguaje de forma respetuosa.', count: 14, nota: 4 },
+                        { code: 'For-27', name: 'Reconoce sus errores honestamente.', count: 14, nota: 4 },
+                        { code: 'For-29', name: 'Usa la tecnología con fines educativos.', count: 12, nota: 4 },
+                        { code: 'For-31', name: 'Mantiene el orden en espacios comunes.', count: 11, nota: 3 }
+                    ]
+                },
+                social: {
+                    alerts: [
+                        { code: 'Ale-34', name: 'Se rinde fácilmente ante la frustración.', count: 2, nota: 4 },
+                        { code: 'Ale-36', name: 'Trabaja de forma aislada o es individualista.', count: 1, nota: 4 },
+                        { code: 'Ale-38', name: 'Ignora o se burla de los sentimientos de otros.', count: 3, nota: 3 },
+                        { code: 'Ale-40', name: 'Ejerce presión negativa o bullying.', count: 1, nota: 4 },
+                        { code: 'Ale-42', name: 'Reacciona de forma agresiva o impulsiva.', count: 1, nota: 4 },
+                        { code: 'Ale-44', name: 'Expresa inseguridad constante ("no puedo").', count: 1, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-33', name: 'Muestra resiliencia ante el fracaso.', count: 12, nota: 4 },
+                        { code: 'For-35', name: 'Trabaja de forma colaborativa y equitativa.', count: 12, nota: 4 },
+                        { code: 'For-37', name: 'Es empático con las necesidades ajenas.', count: 12, nota: 4 },
+                        { code: 'For-39', name: 'Posee un liderazgo positivo y ético.', count: 12, nota: 4 },
+                        { code: 'For-41', name: 'Se comunica de manera asertiva.', count: 12, nota: 4 },
+                        { code: 'For-43', name: 'Tiene una autoestima académica sólida.', count: 12, nota: 4 }
+                    ]
+                },
+                attitudinal: {
+                    alerts: [
+                        { code: 'Ale-46', name: 'Requiere estímulos externos para trabajar.', count: 2, nota: 4 },
+                        { code: 'Ale-48', name: 'Abandona proyectos a mitad de camino.', count: 0, nota: 4 },
+                        { code: 'Ale-50', name: 'Se muestra a la defensiva ante críticas.', count: 0, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-45', name: 'Muestra curiosidad e iniciativa propia.', count: 12, nota: 4 },
+                        { code: 'For-47', name: 'Es persistente en tareas complejas.', count: 10, nota: 3 },
+                        { code: 'For-49', name: 'Acepta retroalimentación constructiva.', count: 12, nota: 4 }
+                    ]
+                }
+            },
+            '8vo_TM': {
+                students: 42,
+                academic: {
+                    alerts: [
+                        { code: 'Ale-02', name: 'Presenta lagunas en conocimientos previos.', count: 8, nota: 4 },
+                        { code: 'Ale-04', name: 'Se limita a memorizar sin comprender.', count: 6, nota: 4 },
+                        { code: 'Ale-06', name: 'Entrega tareas incompletas o descuidadas.', count: 4, nota: 4 },
+                        { code: 'Ale-08', name: 'Se bloquea ante desafíos matemáticos.', count: 7, nota: 4 },
+                        { code: 'Ale-10', name: 'Tiene dificultades de expresión oral/escrita.', count: 5, nota: 4 },
+                        { code: 'Ale-12', name: 'Muestra rechazo o desinterés por la lectura.', count: 6, nota: 4 },
+                        { code: 'Ale-14', name: 'Requiere supervisión constante para avanzar.', count: 7, nota: 4 },
+                        { code: 'Ale-16', name: 'Muestra apatía por temas nuevos.', count: 2, nota: 5 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-01', name: 'Domina los conceptos clave del grado.', count: 12, nota: 1 },
+                        { code: 'For-03', name: 'Posee un pensamiento crítico y analítico.', count: 11, nota: 1 },
+                        { code: 'For-05', name: 'Entrega trabajos con alta calidad y orden.', count: 13, nota: 1 },
+                        { code: 'For-07', name: 'Resuelve problemas lógicos con fluidez.', count: 10, nota: 1 },
+                        { code: 'For-09', name: 'Utiliza vocabulario técnico preciso.', count: 12, nota: 1 },
+                        { code: 'For-11', name: 'Posee excelentes hábitos de lectura.', count: 11, nota: 1 },
+                        { code: 'For-13', name: 'Es autónomo en la realización de tareas.', count: 14, nota: 1 },
+                        { code: 'For-15', name: 'Investiga más allá de lo solicitado.', count: 10, nota: 1 }
+                    ]
+                },
+                conductual: {
+                    alerts: [
+                        { code: 'Ale-18', name: 'Desafía activamente la autoridad.', count: 1, nota: 5 },
+                        { code: 'Ale-20', name: 'Presenta retardos o inasistencias frecuentes.', count: 4, nota: 4 },
+                        { code: 'Ale-22', name: 'Daña el mobiliario o materiales escolares.', count: 1, nota: 5 },
+                        { code: 'Ale-24', name: 'Interrumpe constantemente el flujo de clase.', count: 9, nota: 3 },
+                        { code: 'Ale-26', name: 'Emplea lenguaje soez o despectivo.', count: 2, nota: 5 },
+                        { code: 'Ale-28', name: 'Miente o culpa a otros por sus actos.', count: 2, nota: 5 },
+                        { code: 'Ale-30', name: 'Se distrae con dispositivos electrónicos.', count: 8, nota: 4 },
+                        { code: 'Ale-32', name: 'Fomenta el desorden o el caos en el grupo.', count: 5, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-17', name: 'Respeta las normas de convivencia.', count: 13, nota: 1 },
+                        { code: 'For-19', name: 'Es puntual en todas sus obligaciones.', count: 12, nota: 1 },
+                        { code: 'For-21', name: 'Cuida el material propio y ajeno.', count: 14, nota: 1 },
+                        { code: 'For-23', name: 'Escucha con atención y no interrumpe.', count: 12, nota: 1 },
+                        { code: 'For-25', name: 'Utiliza el lenguaje de forma respetuosa.', count: 14, nota: 1 },
+                        { code: 'For-27', name: 'Reconoce sus errores honestamente.', count: 13, nota: 1 },
+                        { code: 'For-29', name: 'Usa la tecnología con fines educativos.', count: 11, nota: 1 },
+                        { code: 'For-31', name: 'Mantiene el orden en espacios comunes.', count: 12, nota: 1 }
+                    ]
+                },
+                social: {
+                    alerts: [
+                        { code: 'Ale-34', name: 'Se rinde fácilmente ante la frustración.', count: 6, nota: 4 },
+                        { code: 'Ale-36', name: 'Trabaja de forma aislada o es individualista.', count: 3, nota: 5 },
+                        { code: 'Ale-38', name: 'Ignora o se burla de los sentimientos de otros.', count: 2, nota: 5 },
+                        { code: 'Ale-40', name: 'Ejerce presión negativa o bullying.', count: 1, nota: 5 },
+                        { code: 'Ale-42', name: 'Reacciona de forma agresiva o impulsiva.', count: 2, nota: 5 },
+                        { code: 'Ale-44', name: 'Expresa inseguridad constante ("no puedo").', count: 5, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-33', name: 'Muestra resiliencia ante el fracaso.', count: 11, nota: 1 },
+                        { code: 'For-35', name: 'Trabaja de forma colaborativa y equitativa.', count: 14, nota: 1 },
+                        { code: 'For-37', name: 'Es empático con las necesidades ajenas.', count: 13, nota: 1 },
+                        { code: 'For-39', name: 'Posee un liderazgo positivo y ético.', count: 11, nota: 1 },
+                        { code: 'For-41', name: 'Se comunica de manera asertiva.', count: 12, nota: 1 },
+                        { code: 'For-43', name: 'Tiene una autoestima académica sólida.', count: 12, nota: 1 }
+                    ]
+                },
+                attitudinal: {
+                    alerts: [
+                        { code: 'Ale-46', name: 'Requiere estímulos externos para trabajar.', count: 7, nota: 4 },
+                        { code: 'Ale-48', name: 'Abandona proyectos a mitad de camino.', count: 3, nota: 5 },
+                        { code: 'Ale-50', name: 'Se muestra a la defensiva ante críticas.', count: 4, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-45', name: 'Muestra curiosidad e iniciativa propia.', count: 14, nota: 1 },
+                        { code: 'For-47', name: 'Es persistente en tareas complejas.', count: 11, nota: 1 },
+                        { code: 'For-49', name: 'Acepta retroalimentación constructiva.', count: 13, nota: 1 }
+                    ]
+                }
+            },
+            '9no_TM': {
+                students: 42,
+                academic: {
+                    alerts: [
+                        { code: 'Ale-02', name: 'Presenta lagunas en conocimientos previos.', count: 14, nota: 2 },
+                        { code: 'Ale-04', name: 'Se limita a memorizar sin comprender.', count: 12, nota: 3 },
+                        { code: 'Ale-06', name: 'Entrega tareas incompletas o descuidadas.', count: 9, nota: 3 },
+                        { code: 'Ale-08', name: 'Se bloquea ante desafíos matemáticos.', count: 15, nota: 2 },
+                        { code: 'Ale-10', name: 'Tiene dificultades de expresión oral/escrita.', count: 8, nota: 4 },
+                        { code: 'Ale-12', name: 'Muestra rechazo o desinterés por la lectura.', count: 3, nota: 5 },
+                        { code: 'Ale-14', name: 'Requiere supervisión constante para avanzar.', count: 7, nota: 4 },
+                        { code: 'Ale-16', name: 'Muestra apatía por temas nuevos.', count: 5, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-01', name: 'Domina los conceptos clave del grado.', count: 16, nota: 1 },
+                        { code: 'For-03', name: 'Posee un pensamiento crítico y analítico.', count: 14, nota: 1 },
+                        { code: 'For-05', name: 'Entrega trabajos con alta calidad y orden.', count: 21, nota: 1 },
+                        { code: 'For-07', name: 'Resuelve problemas lógicos con fluidez.', count: 15, nota: 1 },
+                        { code: 'For-09', name: 'Utiliza vocabulario técnico preciso.', count: 10, nota: 1 },
+                        { code: 'For-11', name: 'Posee excelentes hábitos de lectura.', count: 6, nota: 1 },
+                        { code: 'For-13', name: 'Es autónomo en la realización de tareas.', count: 21, nota: 1 },
+                        { code: 'For-15', name: 'Investiga más allá de lo solicitado.', count: 9, nota: 1 }
+                    ]
+                },
+                conductual: {
+                    alerts: [
+                        { code: 'Ale-18', name: 'Desafía activamente la autoridad.', count: 2, nota: 5 },
+                        { code: 'Ale-20', name: 'Presenta retardos o inasistencias frecuentes.', count: 4, nota: 4 },
+                        { code: 'Ale-22', name: 'Daña el mobiliario o materiales escolares.', count: 0, nota: 5 },
+                        { code: 'Ale-24', name: 'Interrumpe constantemente el flujo de clase.', count: 26, nota: 1 },
+                        { code: 'Ale-26', name: 'Emplea lenguaje soez o despectivo.', count: 0, nota: 5 },
+                        { code: 'Ale-28', name: 'Miente o culpa a otros por sus actos.', count: 4, nota: 4 },
+                        { code: 'Ale-30', name: 'Se distrae con dispositivos electrónicos.', count: 10, nota: 3 },
+                        { code: 'Ale-32', name: 'Fomenta el desorden o el caos en el grupo.', count: 22, nota: 1 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-17', name: 'Respeta las normas de convivencia.', count: 25, nota: 2 },
+                        { code: 'For-19', name: 'Es puntual en todas sus obligaciones.', count: 21, nota: 1 },
+                        { code: 'For-21', name: 'Cuida el material propio y ajeno.', count: 30, nota: 3 },
+                        { code: 'For-23', name: 'Escucha con atención y no interrumpe.', count: 4, nota: 1 },
+                        { code: 'For-25', name: 'Utiliza el lenguaje de forma respetuosa.', count: 30, nota: 3 },
+                        { code: 'For-27', name: 'Reconoce sus errores honestamente.', count: 26, nota: 2 },
+                        { code: 'For-29', name: 'Usa la tecnología con fines educativos.', count: 18, nota: 1 },
+                        { code: 'For-31', name: 'Mantiene el orden en espacios comunes.', count: 8, nota: 1 }
+                    ]
+                },
+                social: {
+                    alerts: [
+                        { code: 'Ale-34', name: 'Se rinde fácilmente ante la frustración.', count: 9, nota: 3 },
+                        { code: 'Ale-36', name: 'Trabaja de forma aislada o es individualista.', count: 3, nota: 5 },
+                        { code: 'Ale-38', name: 'Ignora o se burla de los sentimientos de otros.', count: 2, nota: 5 },
+                        { code: 'Ale-40', name: 'Ejerce presión negativa o bullying.', count: 0, nota: 5 },
+                        { code: 'Ale-42', name: 'Reacciona de forma agresiva o impulsiva.', count: 0, nota: 5 },
+                        { code: 'Ale-44', name: 'Expresa inseguridad constante ("no puedo").', count: 8, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-33', name: 'Muestra resiliencia ante el fracaso.', count: 21, nota: 1 },
+                        { code: 'For-35', name: 'Trabaja de forma colaborativa y equitativa.', count: 27, nota: 2 },
+                        { code: 'For-37', name: 'Es empático con las necesidades ajenas.', count: 28, nota: 2 },
+                        { code: 'For-39', name: 'Posee un liderazgo positivo y ético.', count: 14, nota: 1 },
+                        { code: 'For-41', name: 'Se comunica de manera asertiva.', count: 24, nota: 1 },
+                        { code: 'For-43', name: 'Tiene una autoestima académica sólida.', count: 18, nota: 1 }
+                    ]
+                },
+                attitudinal: {
+                    alerts: [
+                        { code: 'Ale-46', name: 'Requiere estímulos externos para trabajar.', count: 16, nota: 2 },
+                        { code: 'Ale-48', name: 'Abandona proyectos a mitad de camino.', count: 7, nota: 4 },
+                        { code: 'Ale-50', name: 'Se muestra a la defensiva ante críticas.', count: 4, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-45', name: 'Muestra curiosidad e iniciativa propia.', count: 23, nota: 1 },
+                        { code: 'For-47', name: 'Es persistente en tareas complejas.', count: 20, nota: 1 },
+                        { code: 'For-49', name: 'Acepta retroalimentación constructiva.', count: 26, nota: 2 }
+                    ]
+                }
+            }
+        };
+
+        function getValoracionClass(nota) {
+            if (nota >= 4) return 'muy-bueno';
+            if (nota === 3) return 'bueno';
+            return 'a-mejorar';
+        }
+
+        function renderIndicators(containerId, indicators, isAlert) {
+            const container = document.getElementById(containerId);
+            if (!indicators || indicators.length === 0) {
+                container.innerHTML = '<div style="padding:20px;text-align:center;color:#888;grid-column:1/-1;">No hay indicadores en esta categoría</div>';
+                return;
+            }
+            container.innerHTML = indicators.map(ind => `
+                <div class="indicator-card ${isAlert ? 'alerta' : 'fortaleza'} ${getValoracionClass(ind.nota)}">
+                    <div class="indicator-header">
+                        <span class="indicator-code">${ind.code}</span>
+                        <span class="indicator-value ${getValoracionClass(ind.nota)}">${ind.nota}</span>
+                    </div>
+                    <div class="indicator-name">${ind.name}</div>
+                    <div class="scale-bar">
+                        <div class="scale-fill ${getValoracionClass(ind.nota)}" style="width: ${(ind.nota / 5) * 100}%"></div>
+                    </div>
+                    <div style="font-size: 0.75rem; color: #888; margin-top: 4px;">Veces: ${ind.count}</div>
+                </div>
+            `).join('');
+        }
+
+        function showGrade(gradeId) {
+            currentGrade = gradeId;
+            currentFilter = 'all';
+            document.querySelectorAll('.grade-panel').forEach(p => p.classList.add('hidden'));
+            document.getElementById('panel-' + gradeId).classList.remove('hidden');
+            
+            document.querySelectorAll('.btn-primary').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.btn-filter').forEach(b => {
+                b.classList.remove('active');
+                if (b.textContent === 'Todos') b.classList.add('active');
+            });
+            event.target.classList.add('active');
+
+            const d = data[gradeId];
+            renderIndicators('academic-alerts-' + gradeId, d.academic.alerts, true);
+            renderIndicators('academic-fort-' + gradeId, d.academic.fortaleza, false);
+            renderIndicators('conductual-alerts-' + gradeId, d.conductual.alerts, true);
+            renderIndicators('conductual-fort-' + gradeId, d.conductual.fortaleza, false);
+            renderIndicators('social-alerts-' + gradeId, d.social.alerts, true);
+            renderIndicators('social-fort-' + gradeId, d.social.fortaleza, false);
+            renderIndicators('attitudinal-alerts-' + gradeId, d.attitudinal.alerts, true);
+            renderIndicators('attitudinal-fort-' + gradeId, d.attitudinal.fortaleza, false);
+        }
+
+        let currentFilter = 'all';
+        let currentGrade = '7mo_TM';
+
+        function setFilter(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const d = data[currentGrade];
+            renderIndicators('academic-alerts-' + currentGrade, getFilteredIndicators(d.academic.alerts), true);
+            renderIndicators('academic-fort-' + currentGrade, getFilteredIndicators(d.academic.fortaleza), false);
+            renderIndicators('conductual-alerts-' + currentGrade, getFilteredIndicators(d.conductual.alerts), true);
+            renderIndicators('conductual-fort-' + currentGrade, getFilteredIndicators(d.conductual.fortaleza), false);
+            renderIndicators('social-alerts-' + currentGrade, getFilteredIndicators(d.social.alerts), true);
+            renderIndicators('social-fort-' + currentGrade, getFilteredIndicators(d.social.fortaleza), false);
+            renderIndicators('attitudinal-alerts-' + currentGrade, getFilteredIndicators(d.attitudinal.alerts), true);
+            renderIndicators('attitudinal-fort-' + currentGrade, getFilteredIndicators(d.attitudinal.fortaleza), false);
+        }
+
+        function getFilteredIndicators(indicators) {
+            if (currentFilter === 'all') return indicators;
+            return indicators.filter(ind => getValoracionClass(ind.nota) === currentFilter);
+        }
+
+        // Iniciar en 7mo TM (Dashboard)
+        document.querySelector('.btn-primary').classList.add('active');
+        showGrade('7mo_TM');
+
+    </script>
+</body>
+</html>

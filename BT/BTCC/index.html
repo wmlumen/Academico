@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal Academico</title>
+<style>
+:root{--bg:#f3f6fb;--panel:#fff;--ink:#152033;--muted:#56657a;--line:#d7dfeb;--primary:#0f4c81;--primary-2:#1f6aa5;--accent:#d97706;--soft:#eaf2fb;--success:#1f7a4c}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",Tahoma,sans-serif;background:linear-gradient(180deg,rgba(15,76,129,0.08),rgba(15,76,129,0) 240px),var(--bg);color:var(--ink)}
+.page{max-width:1240px;margin:0 auto;padding:28px 20px 40px}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0f4c81,#1d5f92 60%,#2b79b2);color:#fff;border-radius:18px;padding:28px;box-shadow:0 16px 36px rgba(15,76,129,0.18)}
+.hero h1{margin:0 0 8px;font-size:32px;line-height:1.1}
+.hero p{margin:0;max-width:900px;color:rgba(255,255,255,0.9);font-size:15px}
+.meta-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px}
+.meta-card{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.18);border-radius:12px;padding:12px 14px}
+.meta-card span{display:block;font-size:12px;text-transform:uppercase;letter-spacing:0.4px;color:rgba(255,255,255,0.72);margin-bottom:4px}
+.meta-card strong{font-size:15px;font-weight:600}
+
+/* FILTER BAR */
+.filter-bar{display:flex;flex-wrap:wrap;align-items:center;gap:14px;padding:14px 18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;margin-bottom:18px;box-shadow:0 4px 14px rgba(27,47,74,0.05)}
+.filter-group{display:flex;align-items:center;gap:8px}
+.filter-group label{font-size:13px;font-weight:600;color:#2a405c}
+.filter-group select{padding:8px 10px;border:1px solid #b6c6da;border-radius:10px;font-size:13px;background:#fff;color:var(--ink)}
+.toggle-group{display:flex;border:2px solid #c8d9ea;border-radius:10px;overflow:hidden}
+.toggle-group button{border:none;padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;background:#fff;color:#4d6177}
+.toggle-group button.active{background:var(--primary);color:#fff}
+.toggle-group button:not(.active):hover{background:#e8f1fb}
+.filter-status{font-size:12px;color:var(--muted);margin-left:auto}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:2fr 1fr;gap:22px;margin-top:4px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 10px 24px rgba(27,47,74,0.06)}
+.panel h2{margin:0 0 14px;font-size:20px}
+.panel p.lead{margin:0 0 16px;color:var(--muted);font-size:14px}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse}
+thead th{background:#e8f1fb;color:#16304d;text-align:left;font-size:13px;padding:12px 10px;border-bottom:1px solid var(--line)}
+tbody td{padding:14px 10px;border-bottom:1px solid #e8edf5;vertical-align:top;font-size:14px}
+tbody tr:hover{background:#fbfdff}
+
+/* HIDE ROWS BY ROLE */
+body.rol-alumno tr[data-role="docente"]{display:none}
+body.rol-alumno tr[data-role="alumno-docente"]{display:table-row}
+
+.course-tag,.status-tag{display:inline-block;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700;letter-spacing:0.2px}
+.course-tag{background:#eaf2fb;color:#0f4c81}
+.status-tag{background:#e7f6ed;color:var(--success)}
+.role-tag{display:inline-block;border-radius:999px;padding:3px 8px;font-size:10px;font-weight:700;background:#fef3e0;color:#b55f0a;margin-left:6px;vertical-align:middle}
+
+.action-group{display:flex;flex-wrap:wrap;gap:8px}
+.link-btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:10px;text-decoration:none;font-size:13px;font-weight:700;border:1px solid transparent;transition:0.15s ease}
+.link-btn.primary{background:var(--primary);color:#fff}
+.link-btn.primary:hover{background:var(--primary-2)}
+.link-btn.secondary{background:#fff;color:var(--primary);border-color:#b7c7dc}
+.link-btn.secondary:hover{background:#f6faff}
+
+/* SIDEBAR */
+.side-list{display:grid;gap:12px}
+.mini-card{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fcfdff}
+.mini-card h3{margin:0 0 6px;font-size:15px}
+.mini-card p{margin:0 0 10px;font-size:13px;color:var(--muted)}
+
+.footer-note{margin-top:20px;font-size:13px;color:var(--muted)}
+
+@media(max-width:980px){.layout{grid-template-columns:1fr}.meta-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){
+  .page{padding:16px 12px 28px}
+  .hero{padding:20px}
+  .hero h1{font-size:26px}
+  .meta-grid{grid-template-columns:1fr}
+  thead{display:none}
+  table,tbody,tr,td{display:block;width:100%}
+  tbody tr{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden;background:#fff}
+  tbody td{border-bottom:1px solid #edf2f8}
+  tbody td:last-child{border-bottom:none}
+}
+</style>
+
+<link rel="stylesheet" href="nav/nav.css">
+
+<script src="nav/runtime.js"></script>
+</head>
+<body class="rol-docente">
+
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1 id="heroTitle">Portal Academico</h1>
+    <p id="heroDesc">Catalogo documental institucional.</p>
+    <div class="meta-grid">
+      <div class="meta-card"><span>Institucion</span><strong id="metaInstitution">-</strong></div>
+      <div class="meta-card"><span>Especialidad</span><strong id="metaProgram">-</strong></div>
+      <div class="meta-card"><span>Anio lectivo</span><strong id="metaYear">-</strong></div>
+      <div class="meta-card"><span>Estado</span><strong id="docCount">Documentacion organizada</strong></div>
+    </div>
+  </section>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <div class="filter-group">
+      <label for="roleFilter">Acceder como:</label>
+      <div class="toggle-group" id="roleToggle">
+        <button data-role="docente" class="active">👨‍🏫 Docente</button>
+        <button data-role="alumno">👨‍🎓 Alumno</button>
+      </div>
+    </div>
+    <div class="filter-group">
+      <label for="courseFilter">Filtrar por curso:</label>
+      <select id="courseFilter"></select>
+    </div>
+    <span class="filter-status" id="filterStatus">Vista completa · todos los documentos</span>
+  </div>
+
+  <div class="layout">
+    <section class="panel">
+      <h2>Matriz de Documentos Técnicos</h2>
+      <p class="lead">Se muestran los materiales organizados por curso y asignatura. Seleccione su rol para ver solo lo relevante.</p>
+
+      <table>
+        <thead>
+          <tr><th>Curso / Área</th><th>Asignatura o Documento</th><th>Descripción</th><th>Acciones</th></tr>
+        </thead>
+        <tbody id="docRows"></tbody>
+      </table>
+
+      <p class="footer-note">Los portales por asignatura incluyen un selector de rol (Docente / Alumno) para filtrar los contenidos según el perfil del usuario.</p>
+    </section>
+
+    <aside class="panel">
+      <h2>Accesos Rápidos</h2>
+      <div class="side-list" id="quickCards"></div>
+    </aside>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  const APP = (window.BTCCRuntime && window.BTCCRuntime.loadJson('/data/app_config.json', null)) || {};
+  const DASH = (window.BTCCRuntime && window.BTCCRuntime.loadJson('/data/dashboard_catalog.json', null)) || { rows: [], quickCards: [] };
+  const body = document.body;
+  const roleBtns = document.querySelectorAll('#roleToggle button');
+  const courseFilter = document.getElementById('courseFilter');
+  const docRows = document.getElementById('docRows');
+  const quickCards = document.getElementById('quickCards');
+  const statusEl = document.getElementById('filterStatus');
+  const docCountEl = document.getElementById('docCount');
+  const heroTitle = document.getElementById('heroTitle');
+  const heroDesc = document.getElementById('heroDesc');
+  const metaInstitution = document.getElementById('metaInstitution');
+  const metaProgram = document.getElementById('metaProgram');
+  const metaYear = document.getElementById('metaYear');
+
+  const statusText = {
+    docente: 'Vista completa - todos los documentos',
+    alumno: 'Vista alumno - solo materiales de estudio'
+  };
+
+  function renderBranding() {
+    const branding = APP.branding || {};
+    document.title = ((branding.shortName || 'Portal') + ' - ' + (branding.dashboardTitle || 'Gestion Academica'));
+    heroTitle.textContent = (branding.dashboardTitle || 'Gestion Academica') + ' ' + (branding.shortName || '');
+    heroDesc.textContent = branding.dashboardDescription || '';
+    metaInstitution.textContent = branding.institutionName || '-';
+    metaProgram.textContent = branding.specialization || branding.programName || '-';
+    metaYear.textContent = branding.academicYear || '-';
+  }
+
+  function renderCourseOptions() {
+    const courses = APP.courses || [];
+    courseFilter.innerHTML = '<option value="all">Mostrar todos</option>' + courses.map(c => '<option value="' + c.key + '">' + c.label + '</option>').join('');
+  }
+
+  function renderActions(actions) {
+    return '<div class="action-group">' + (actions || []).map(action =>
+      '<a href="' + action.href + '" class="link-btn ' + (action.variant || 'primary') + '">' + action.label + '</a>'
+    ).join('') + '</div>';
+  }
+
+  function renderRows() {
+    docRows.innerHTML = (DASH.rows || []).map(row =>
+      '<tr data-course="' + row.course + '" data-role="' + row.role + '">' +
+        '<td><span class="course-tag">' + row.courseTag + '</span></td>' +
+        '<td><strong>' + row.title + '</strong>' +
+          (row.roleTag ? '<span class="role-tag">' + row.roleTag + '</span>' : '') +
+          '<br><span class="status-tag">' + row.statusTag + '</span></td>' +
+        '<td>' + row.description + '</td>' +
+        '<td>' + renderActions(row.actions) + '</td>' +
+      '</tr>'
+    ).join('');
+  }
+
+  function renderQuickCards() {
+    quickCards.innerHTML = (DASH.quickCards || []).map(card =>
+      '<div class="mini-card">' +
+        '<h3>' + card.title + '</h3>' +
+        '<p>' + card.description + '</p>' +
+        renderActions(card.actions) +
+      '</div>'
+    ).join('');
+  }
+
+  function applyFilters(){
+    const rows = docRows.querySelectorAll('tr');
+    const role = body.className.replace('rol-','');
+    const course = courseFilter.value;
+    let visible = 0;
+
+    rows.forEach(row => {
+      const rowCourse = row.getAttribute('data-course');
+      const rowRole = row.getAttribute('data-role');
+      let showByRole = true;
+      if(role === 'alumno' && rowRole === 'docente') showByRole = false;
+      const showByCourse = course === 'all' || rowCourse === course;
+      const show = showByRole && showByCourse;
+      row.style.display = show ? '' : 'none';
+      if(show) visible++;
+    });
+
+    const roleName = role === 'docente' ? 'Docente' : 'Alumno';
+    docCountEl.textContent = visible + ' documentos visibles - modo ' + roleName;
+  }
+
+  roleBtns.forEach(btn => {
+    btn.addEventListener('click', function(){
+      const role = this.dataset.role;
+      roleBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      body.className = 'rol-' + role;
+      statusEl.textContent = statusText[role] || '';
+      applyFilters();
+    });
+  });
+
+  courseFilter.addEventListener('change', applyFilters);
+  renderBranding();
+  renderCourseOptions();
+  renderRows();
+  renderQuickCards();
+  applyFilters();
+})();
+</script>
+
+
+<script src="nav/nav.js"></script>
+</body>
+</html>

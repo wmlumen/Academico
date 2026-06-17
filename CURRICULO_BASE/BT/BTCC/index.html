@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTCC - Gestión Académica 2026</title>
+    <style>
+        :root {
+            --bg: #f3f6fb;
+            --panel: #ffffff;
+            --ink: #152033;
+            --muted: #56657a;
+            --line: #d7dfeb;
+            --primary: #0f4c81;
+            --primary-2: #1f6aa5;
+            --accent: #d97706;
+            --soft: #eaf2fb;
+            --success: #1f7a4c;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background:
+                linear-gradient(180deg, rgba(15, 76, 129, 0.08), rgba(15, 76, 129, 0) 240px),
+                var(--bg);
+            color: var(--ink);
+        }
+
+        .page {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 28px 20px 40px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f4c81, #1d5f92 60%, #2b79b2);
+            color: #fff;
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 16px 36px rgba(15, 76, 129, 0.18);
+        }
+
+        .hero h1 {
+            margin: 0 0 8px;
+            font-size: 32px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            margin: 0;
+            max-width: 900px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 15px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .meta-card {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            padding: 12px 14px;
+        }
+
+        .meta-card span {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: rgba(255, 255, 255, 0.72);
+            margin-bottom: 4px;
+        }
+
+        .meta-card strong {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 22px;
+            margin-top: 24px;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 24px rgba(27, 47, 74, 0.06);
+        }
+
+        .panel h2 {
+            margin: 0 0 14px;
+            font-size: 20px;
+        }
+
+        .panel p.lead {
+            margin: 0 0 16px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            background: var(--soft);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .filters label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .filters select {
+            padding: 8px 10px;
+            border: 1px solid #b6c6da;
+            border-radius: 10px;
+            font-size: 14px;
+            background: #fff;
+            color: var(--ink);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead th {
+            background: #e8f1fb;
+            color: #16304d;
+            text-align: left;
+            font-size: 13px;
+            padding: 12px 10px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        tbody td {
+            padding: 14px 10px;
+            border-bottom: 1px solid #e8edf5;
+            vertical-align: top;
+            font-size: 14px;
+        }
+
+        tbody tr:hover {
+            background: #fbfdff;
+        }
+
+        .course-tag,
+        .status-tag {
+            display: inline-block;
+            border-radius: 999px;
+            padding: 5px 10px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        .course-tag {
+            background: #eaf2fb;
+            color: #0f4c81;
+        }
+
+        .status-tag {
+            background: #e7f6ed;
+            color: var(--success);
+        }
+
+        .action-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            transition: 0.15s ease;
+        }
+
+        .link-btn.primary {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .link-btn.primary:hover {
+            background: var(--primary-2);
+        }
+
+        .link-btn.secondary {
+            background: #fff;
+            color: var(--primary);
+            border-color: #b7c7dc;
+        }
+
+        .link-btn.secondary:hover {
+            background: #f6faff;
+        }
+
+        .side-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .mini-card {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 14px;
+            background: #fcfdff;
+        }
+
+        .mini-card h3 {
+            margin: 0 0 6px;
+            font-size: 15px;
+        }
+
+        .mini-card p {
+            margin: 0 0 10px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .footer-note {
+            margin-top: 20px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        @media (max-width: 980px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .meta-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                padding: 16px 12px 28px;
+            }
+
+            .hero {
+                padding: 20px;
+            }
+
+            .hero h1 {
+                font-size: 26px;
+            }
+
+            .meta-grid {
+                grid-template-columns: 1fr;
+            }
+
+            thead {
+                display: none;
+            }
+
+            table, tbody, tr, td {
+                display: block;
+                width: 100%;
+            }
+
+            tbody tr {
+                border: 1px solid var(--line);
+                border-radius: 12px;
+                margin-bottom: 12px;
+                overflow: hidden;
+                background: #fff;
+            }
+
+            tbody td {
+                border-bottom: 1px solid #edf2f8;
+            }
+
+            tbody td:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <section class="hero">
+            <h1>Gestión Académica BTCC 2026</h1>
+            <p>Portal interno de organización documental para Bachillerato Técnico en Construcciones Civiles. Integra planes anuales, planes de clase desarrollados, anexos evaluativos y documentos generales por curso y asignatura.</p>
+            <div class="meta-grid">
+                <div class="meta-card">
+                    <span>Institución</span>
+                    <strong>Colegio Nacional Defensores del Chaco</strong>
+                </div>
+                <div class="meta-card">
+                    <span>Especialidad</span>
+                    <strong>Construcciones Civiles</strong>
+                </div>
+                <div class="meta-card">
+                    <span>Año lectivo</span>
+                    <strong>2026</strong>
+                </div>
+                <div class="meta-card">
+                    <span>Estado</span>
+                    <strong>Documentación organizada</strong>
+                </div>
+            </div>
+        </section>
+
+        <div class="layout">
+            <section class="panel">
+                <h2>Matriz de Documentos Técnicos</h2>
+                <p class="lead">Se muestran los materiales principales organizados por curso y asignatura. Use el filtro para concentrar la vista por año.</p>
+
+                <div class="filters">
+                    <label for="courseFilter">Filtrar por curso</label>
+                    <select id="courseFilter">
+                        <option value="all">Mostrar todos</option>
+                        <option value="1_Curso">1.er curso</option>
+                        <option value="2_Curso">2.do curso</option>
+                        <option value="3_Curso">3.er curso</option>
+                        <option value="general">Documentos generales</option>
+                    </select>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Curso / Área</th>
+                            <th>Asignatura o Documento</th>
+                            <th>Descripción</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-course="2_Curso">
+                            <td>
+                                <span class="course-tag">2.do curso</span>
+                            </td>
+                            <td>
+                                <strong>Mapa Documental</strong><br>
+                                <span class="status-tag">Nuevo</span>
+                            </td>
+                            <td>Inventario general del 2.do curso con limpieza realizada, materiales disponibles por cátedra y faltantes detectados.</td>
+                            <td>
+                                <div class="action-group">
+                                    <a href="2_Curso/00_mapa_documental_2_curso.html" class="link-btn primary">Ver HTML</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-course="2_Curso">
+                            <td>
+                                <span class="course-tag">2.do curso</span>
+                            </td>
+                            <td>
+                                <strong>Técnicas Instrumentales II</strong><br>
+                                <span class="status-tag">Actualizado</span>
+                            </td>
+                            <td>Plan anual, plan de clase, material del estudiante y documentos obligatorios del docente para la cátedra.</td>
+                            <td>
+                                <div class="action-group">
+                                    <a href="2_Curso/Tecnicas_Instrumentales_II/tecnicas_instrumentales_ii.html" class="link-btn primary">Plan anual</a>
+                                    <a href="2_Curso/Tecnicas_Instrumentales_II/plan_de_clase_tecnicas_instrumentales_ii.html" class="link-btn secondary">Plan de clase</a>
+                                    <a href="2_Curso/Tecnicas_Instrumentales_II/material_del_estudiante_tecnicas_instrumentales_ii.html" class="link-btn secondary">Material</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-course="2_Curso">
+                            <td>
+                                <span class="course-tag">2.do curso</span>
+                            </td>
+                            <td>
+                                <strong>Resistencia de Materiales</strong><br>
+                                <span class="status-tag">Actualizado</span>
+                            </td>
+                            <td>Plan anual en formato tabla con capacidades, contenidos, indicadores, evaluación, recursos y cronograma anual.</td>
+                            <td>
+                                <div class="action-group">
+                                    <a href="2_Curso/Resistencia_Materiales/resistencia_materiales.html" class="link-btn primary">Ver HTML</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-course="2_Curso">
+                            <td>
+                                <span class="course-tag">2.do curso</span>
+                            </td>
+                            <td>
+                                <strong>Material del Estudiante</strong><br>
+                                <span class="status-tag">Nuevo</span>
+                            </td>
+                            <td>Guía de aprendizaje para el alumno con desarrollo conceptual, gráficos explicados, ejercitario graduado y bibliografía real.</td>
+                            <td>
+                                <div class="action-group">
+                                    <a href="2_Curso/Resistencia_Materiales/fichas_estudiante_html/index_fichas_estudiante.html" class="link-btn primary">Ver fichas</a>
+                                    <a href="2_Curso/Resistencia_Materiales/material_del_estudiante_resistencia_materiales.html" class="link-btn secondary">Guía completa</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-course="2_Curso">
+                            <td>
+                                <span class="course-tag">2.do curso</span>
+                            </td>
+                            <td>
+                                <strong>Plan de Clase Desarrollado</strong><br>
+                                <span class="status-tag">Nuevo</span>
+                            </td>
+                            <td>Desarrollo mensual de temas, secuencias didácticas, cronograma numerado, evidencias y anexos de instrumentos evaluativos.</td>
+                            <td>
+                                <div class="action-group">
+                                    <a href="2_Curso/Resistencia_Materiales/plan_de_clase_resistencia_materiales.html" class="link-btn primary">Ver HTML</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-course="3_Curso">
+                            <td>
+                                <span class="course-tag">3.er curso</span>
+                            </td>
+                            <td>
+                                <strong>Cómputo y Presupuesto</strong>
+                            </td>
+                            <td>Versión HTML del plan de cátedra para el eje de gestión económica y presupuesto de obras.</td>
+                            <td>
+                                <div class="action-group">
+                                    <a href="3_Curso/Computo_y_Presupuesto/computo_presupuesto.html" class="link-btn primary">Ver HTML</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="footer-note">Los enlaces fueron actualizados según la nueva organización de carpetas del repositorio.</p>
+            </section>
+
+            <aside class="panel">
+                <h2>Accesos Rápidos</h2>
+                <div class="side-list">
+                    <div class="mini-card">
+                        <h3>Mapa del 2.do Curso</h3>
+                        <p>Resumen para revisar qué documentos ya existen, qué se complementó y qué falta desarrollar por cátedra.</p>
+                        <div class="action-group">
+                            <a href="2_Curso/00_mapa_documental_2_curso.html" class="link-btn primary">Abrir mapa</a>
+                        </div>
+                    </div>
+
+                    <div class="mini-card">
+                        <h3>Resistencia de Materiales</h3>
+                        <p>Acceso directo al plan anual, al plan de clase desarrollado y a la guía del estudiante del 2.do curso.</p>
+                        <div class="action-group">
+                            <a href="2_Curso/Resistencia_Materiales/resistencia_materiales.html" class="link-btn primary">Plan anual</a>
+                            <a href="2_Curso/Resistencia_Materiales/plan_de_clase_resistencia_materiales.html" class="link-btn secondary">Plan de clase</a>
+                            <a href="2_Curso/Resistencia_Materiales/fichas_estudiante_html/index_fichas_estudiante.html" class="link-btn secondary">Fichas alumno</a>
+                        </div>
+                    </div>
+
+                    <div class="mini-card">
+                        <h3>Técnicas Instrumentales II</h3>
+                        <p>Acceso directo al plan anual, al plan de clase y al material del estudiante del 2.do curso.</p>
+                        <div class="action-group">
+                            <a href="2_Curso/Tecnicas_Instrumentales_II/tecnicas_instrumentales_ii.html" class="link-btn primary">Plan anual</a>
+                            <a href="2_Curso/Tecnicas_Instrumentales_II/plan_de_clase_tecnicas_instrumentales_ii.html" class="link-btn secondary">Plan de clase</a>
+                            <a href="2_Curso/Tecnicas_Instrumentales_II/material_del_estudiante_tecnicas_instrumentales_ii.html" class="link-btn secondary">Material</a>
+                        </div>
+                    </div>
+
+                    <div class="mini-card">
+                        <h3>Acceso Directo</h3>
+                        <p>Ingreso rápido a los HTML principales actualmente disponibles en la estructura organizada.</p>
+                        <div class="action-group">
+                            <a href="2_Curso/Resistencia_Materiales/resistencia_materiales.html" class="link-btn secondary">Resistencia</a>
+                            <a href="3_Curso/Computo_y_Presupuesto/computo_presupuesto.html" class="link-btn secondary">Cómputo</a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        const courseFilter = document.getElementById('courseFilter');
+        const rows = document.querySelectorAll('tbody tr');
+
+        courseFilter.addEventListener('change', function () {
+            const value = this.value;
+
+            rows.forEach((row) => {
+                const rowCourse = row.getAttribute('data-course');
+                const show = value === 'all' || rowCourse === value;
+                row.style.display = show ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

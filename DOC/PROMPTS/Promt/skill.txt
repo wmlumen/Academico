@@ -1,0 +1,71 @@
+Perfecto. A continuación explico de forma clara y práctica cómo se relacionan entre sí las partes de tu Plan Anual de Educación Ambiental (Competencia, Distribución Mensual, Metodología y Evaluación) y propongo ajustes prácticos para asegurar coherencia pedagógica y operacional durante el año lectivo 2026.
+
+Cómo se relacionan las secciones (resumen)
+- Competencia del curso: es la brújula pedagógica; define el propósito final (analizar modelos socioeconómicos vs. equilibrio ambiental y proponer mitigación/consumo responsable). Todas las unidades, actividades, metodología y evaluaciones deben alinearse con esta competencia.
+- Distribución mensual: convierte la competencia en secuencia temática progresiva. Cada unidad desarrolla capacidades específicas que, sumadas, permiten alcanzar la competencia final.
+- Metodología: describe los métodos (eco-auditoría, foros, TIC) que hacen efectiva la construcción de capacidades planteadas en la distribución mensual; conecta teoría con práctica y favorece evidencia para la evaluación.
+- Sistema de Evaluación: cierra el ciclo pedagógico vinculando lo evaluado (planes de mejora, rúbricas, RSA) con los productos de la metodología y los objetivos de cada unidad; garantiza rendición de cuentas y retroalimentación formativa.
+
+Relaciones clave y ejemplos concretos
+- Marzo (Modelos de Desarrollo) ↔ Competencia:
+  - Propósito: situar a estudiantes en el debate desarrollo vs. equilibrio ambiental.
+  - Método útil: foro de debate y análisis de casos locales; produce argumentos que alimentan la construcción del plan de mejora final.
+- Abril (Cambio Climático I) + Mayo (Mitigación y Adaptación) ↔ Metodología (TICs, auditoría):
+  - Uso de mapas de deforestación y datos climáticos para diagnosticar problemas locales; de ahí se derivan estrategias de mitigación individuales y escolares que el proyecto desarrollará.
+- Junio (Legislación II) ↔ Evaluación y Proyecto:
+  - Comprender normas (p. ej. Ley de Deforestación Cero) fundamenta propuestas de mejora institucional y garantiza factibilidad legal en la auditoría ambiental.
+- Agosto (Consumo Responsable) + Septiembre (Energía) ↔ Instrumentos prácticos:
+  - Actividades como auditoría del consumo y campañas anti-plástico generan evidencias (listas de cotejo, registros) que alimentan la rúbrica y el RSA.
+- Octubre (Acción Institucional) ↔ Evaluación Final:
+  - Implementación de medidas en la institución es el entregable para la Evaluación Final de Desempeño (Plan de mejora ambiental), evaluado con rúbrica y listas de cotejo.
+
+Ajustes y recomendaciones para fortalecer coherencia
+- Desglosar capacidades por unidad: añade 1–2 capacidades medibles por mes (ver ejemplo abajo) para que la evaluación sea más directa.
+- Vincular evidencias mínimas por unidad: define un producto obligatorio por unidad (p. ej. ficha de auditoría, informe de debate, propuesta breve) que alimenta el RSA.
+- Calendarizar evaluación formativa: fija micro-evaluaciones (cada 2–3 semanas) para retroalimentación y evitar acumular evaluación al final.
+- Detallar roles en el proyecto institucional: asigna responsabilidades (coordinador, registrador de datos, comunicador) para simular gestión real y facilitar evidencia.
+- Ajustar carga horaria: con 2–3 h/s, planifica actividades prácticas que requieran sesiones fuera del aula (recolección de datos, entrevistas) para optimizar tiempo.
+
+Ejemplo: capacidades por unidad (sugerencia)
+- Marzo — Modelos de Desarrollo: reconoce diferencias entre desarrollo sustentable y modelo industrializado; argumenta dos ventajas/desventajas de cada modelo.
+- Abril — Cambio Climático I: interpreta datos locales/globales sobre temperatura y deforestación; relaciona evidencia con causas humanas.
+- Mayo — Mitigación y Adaptación: diseña al menos dos acciones concretas para reducir huella de carbono personal y escolar.
+- Junio — Legislación II: explica los principales puntos de la Ley de Deforestación Cero y su aplicación local.
+- Agosto — Consumo Responsable: clasifica plásticos y propone alternativas viables para el centro educativo.
+- Septiembre — Energía: calcula consumo energético aproximado de un aula y sugiere 3 medidas de ahorro.
+- Octubre — Acción Institucional: elabora un plan de mejora institucional con cronograma y responsables.
+- Noviembre — Cierre: sintetiza aprendizajes en un portafolio y evalúa impacto del proyecto.
+
+Evidencias sugeridas por mes (mínimo 1 por unidad)
+- Marzo: resumen crítico del debate (1 página).
+- Abril: mapa anotado o gráfico local de indicadores climáticos.
+- Mayo: lista de acciones personales y escolares con cronograma.
+- Junio: ficha legal (puntos clave de la normativa).
+- Agosto: campaña breve (poster digital o físico) contra plásticos.
+- Septiembre: registro de consumo y propuesta de ahorro.
+- Octubre: informe de auditoría y plan de mejora institucional.
+- Noviembre: portafolio final (compilación de evidencias y reflexión).
+
+Propuesta de rúbricas e instrumentos (breve)
+- Rúbrica para Plan de Mejora Institucional (3 criterios):
+  - Relevancia y diagnóstico (calidad del diagnóstico; evidencia), Diseño de acciones (claridad, factibilidad), Gestión y seguimiento (cronograma, roles). Niveles: Excelente / Satisfactorio / Necesita refuerzo.
+- Listas de cotejo para actividades prácticas: presencia de datos (sí/no), fuentes citadas (sí/no), acciones propuestas (sí/no), responsable asignado (sí/no).
+- RSA: registro por estudiante/grupo con entradas periódicas: fecha, actividad, evidencia, reflexión (2–4 líneas).
+
+Integración pedagógica: secuencia didáctica general (modelo anual)
+- Inicio del año: diagnóstico institucional y sensibilización (Marzo).
+- Desarrollo: profundización conceptual y prácticas (Abr–Sept).
+- Implementación: acciones reales y auditoría (Oct).
+- Evaluación y sistematización: cierre y portafolio (Nov).
+
+Sugerencias para la implementación práctica
+- Inicia con una auditoría rápida en la primera semana (línea base).
+- Use TICs para almacenar evidencias (carpeta compartida, respaldo en la nube).
+- Coordina con dirección escolar para vincular acciones con mantenimiento/infraestructura.
+- Involucra a la comunidad: presentaciones breves a padres o municipalidad para legitimar acciones.
+- Reserva tiempo en clase para trabajo de proyecto y registro del RSA (p. ej. 20–30 min cada sesión).
+
+Conclusión práctica (1 frase)
+- El plan anual articula temas, métodos y evaluación de forma secuencial para que los estudiantes aprendan, practiquen y propongan mejoras reales que vinculen conocimiento ambiental con acción institucional.
+
+¿Quieres que convierta esto en una versión imprimible de 1 página con: a) capacidades por mes; b) evidencias mínimas; y c) una rúbrica corta para el plan final?

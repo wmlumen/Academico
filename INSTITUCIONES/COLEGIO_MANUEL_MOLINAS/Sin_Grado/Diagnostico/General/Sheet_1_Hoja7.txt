@@ -1,0 +1,204 @@
+﻿Categoría|Indicador |Indicador |Tipo de Indicador|Cantidad de veces|NOTA|PR|VALORACION|GRADO|TURNO|NF
+Académica|Ale-02. Presenta lagunas en conocimientos previos.|02. Presenta lagunas en conocimientos previos.|Alerta/Mejora|37|1|0|A mejorar|SEPTIMO|TM|0
+Académica|Ale-04. Se limita a memorizar sin comprender.|04. Se limita a memorizar sin comprender.|Alerta/Mejora|18|1|19|A mejorar|SEPTIMO|TM|0
+Académica|Ale-06. Entrega tareas incompletas o descuidadas.|06. Entrega tareas incompletas o descuidadas.|Alerta/Mejora|4|4|33|Muy bueno |SEPTIMO|TM|0
+Académica|Ale-08. Se bloquea ante desafíos matemáticos.|08. Se bloquea ante desafíos matemáticos.|Alerta/Mejora|18|1|19|A mejorar|SEPTIMO|TM|0
+Académica|Ale-10. Tiene dificultades de expresión oral/escrita.|10. Tiene dificultades de expresión oral/escrita.|Alerta/Mejora|14|2|23|A mejorar|SEPTIMO|TM|0
+Académica|Ale-12. Muestra rechazo o desinterés por la lectura.|12. Muestra rechazo o desinterés por la lectura.|Alerta/Mejora|11|3|26|Bueno|SEPTIMO|TM|0
+Académica|Ale-14. Requiere supervisión constante para avanzar.|14. Requiere supervisión constante para avanzar.|Alerta/Mejora|19|1|18|A mejorar|SEPTIMO|TM|0
+Académica|Ale-16. Muestra apatía por temas nuevos.|16. Muestra apatía por temas nuevos.|Alerta/Mejora|7|4|30|Muy bueno |SEPTIMO|TM|0
+Conductual|Ale-18. Desafía activamente la autoridad.|18. Desafía activamente la autoridad.|Alerta/Mejora|16|1|21|A mejorar|SEPTIMO|TM|0
+Conductual|Ale-20. Presenta retardos o inasistencias frecuentes.|20. Presenta retardos o inasistencias frecuentes.|Alerta/Mejora|2|5|35|Muy bueno |SEPTIMO|TM|0
+Conductual|Ale-22. Daña el mobiliario o materiales escolares.|22. Daña el mobiliario o materiales escolares.|Alerta/Mejora|1|5|36|Muy bueno |SEPTIMO|TM|0
+Conductual|Ale-24. Interrumpe constantemente el flujo de clase.|24. Interrumpe constantemente el flujo de clase.|Alerta/Mejora|2|5|35|Muy bueno |SEPTIMO|TM|0
+Conductual|Ale-26. Emplea lenguaje soez o despectivo.|26. Emplea lenguaje soez o despectivo.|Alerta/Mejora|11|3|26|Bueno|SEPTIMO|TM|0
+Conductual|Ale-28. Miente o culpa a otros por sus actos.|28. Miente o culpa a otros por sus actos.|Alerta/Mejora|19|1|18|A mejorar|SEPTIMO|TM|0
+Conductual|Ale-30. Se distrae con dispositivos electrónicos.|30. Se distrae con dispositivos electrónicos.|Alerta/Mejora|16|1|21|A mejorar|SEPTIMO|TM|0
+Conductual|Ale-32. Fomenta el desorden o el caos en el grupo.|32. Fomenta el desorden o el caos en el grupo.|Alerta/Mejora|6|4|31|Muy bueno |SEPTIMO|TM|0
+Socio-Emocional|Ale-34. Se rinde fácilmente ante la frustración.|34. Se rinde fácilmente ante la frustración.|Alerta/Mejora|19|1|18|A mejorar|SEPTIMO|TM|0
+Socio-Emocional|Ale-36. Trabaja de forma aislada o es individualista.|36. Trabaja de forma aislada o es individualista.|Alerta/Mejora|14|2|23|A mejorar|SEPTIMO|TM|0
+Socio-Emocional|Ale-38. Ignora o se burla de los sentimientos de otros.|38. Ignora o se burla de los sentimientos de otros.|Alerta/Mejora|15|2|22|A mejorar|SEPTIMO|TM|0
+Socio-Emocional|Ale-40. Ejerce presión negativa o bullying.|40. Ejerce presión negativa o bullying.|Alerta/Mejora|4|4|33|Muy bueno |SEPTIMO|TM|0
+Socio-Emocional|Ale-42. Reacciona de forma agresiva o impulsiva.|42. Reacciona de forma agresiva o impulsiva.|Alerta/Mejora|11|3|26|Bueno|SEPTIMO|TM|0
+Socio-Emocional|Ale-44. Expresa inseguridad constante ("no puedo").|44. Expresa inseguridad constante ("no puedo").|Alerta/Mejora|19|1|18|A mejorar|SEPTIMO|TM|0
+Actitudinal|Ale-46. Requiere estímulos externos para trabajar.|46. Requiere estímulos externos para trabajar.|Alerta/Mejora|16|1|21|A mejorar|SEPTIMO|TM|0
+Actitudinal|Ale-48. Abandona proyectos a mitad de camino.|48. Abandona proyectos a mitad de camino.|Alerta/Mejora|19|1|18|A mejorar|SEPTIMO|TM|0
+Actitudinal|Ale-50. Se muestra a la defensiva ante críticas.|50. Se muestra a la defensiva ante críticas.|Alerta/Mejora|11|3|26|Bueno|SEPTIMO|TM|0
+Académica|For-01. Domina los conceptos clave del grado.|01. Domina los conceptos clave del grado.|Fortaleza/Logro|6|1|6|A mejorar|SEPTIMO|TM|0
+Académica|For-03. Posee un pensamiento crítico y analítico.|03. Posee un pensamiento crítico y analítico.|Fortaleza/Logro|11|1|11|A mejorar|SEPTIMO|TM|0
+Académica|For-05. Entrega trabajos con alta calidad y orden.|05. Entrega trabajos con alta calidad y orden.|Fortaleza/Logro|12|1|12|A mejorar|SEPTIMO|TM|0
+Académica|For-07. Resuelve problemas lógicos con fluidez.|07. Resuelve problemas lógicos con fluidez.|Fortaleza/Logro|11|1|11|A mejorar|SEPTIMO|TM|0
+Académica|For-09. Utiliza vocabulario técnico preciso.|09. Utiliza vocabulario técnico preciso.|Fortaleza/Logro|10|1|10|A mejorar|SEPTIMO|TM|0
+Académica|For-11. Posee excelentes hábitos de lectura.|11. Posee excelentes hábitos de lectura.|Fortaleza/Logro|10|1|10|A mejorar|SEPTIMO|TM|0
+Académica|For-13. Es autónomo en la realización de tareas.|13. Es autónomo en la realización de tareas.|Fortaleza/Logro|12|1|12|A mejorar|SEPTIMO|TM|0
+Académica|For-15. Investiga más allá de lo solicitado.|15. Investiga más allá de lo solicitado.|Fortaleza/Logro|13|1|13|A mejorar|SEPTIMO|TM|0
+Conductual|For-17. Respeta las normas de convivencia.|17. Respeta las normas de convivencia.|Fortaleza/Logro|22|2|22|A mejorar|SEPTIMO|TM|0
+Conductual|For-19. Es puntual en todas sus obligaciones.|19. Es puntual en todas sus obligaciones.|Fortaleza/Logro|10|1|10|A mejorar|SEPTIMO|TM|0
+Conductual|For-21. Cuida el material propio y ajeno.|21. Cuida el material propio y ajeno.|Fortaleza/Logro|23|2|23|A mejorar|SEPTIMO|TM|0
+Conductual|For-23. Escucha con atención y no interrumpe.|23. Escucha con atención y no interrumpe.|Fortaleza/Logro|20|1|20|A mejorar|SEPTIMO|TM|0
+Conductual|For-25. Utiliza el lenguaje de forma respetuosa.|25. Utiliza el lenguaje de forma respetuosa.|Fortaleza/Logro|13|1|13|A mejorar|SEPTIMO|TM|0
+Conductual|For-27. Reconoce sus errores honestamente.|27. Reconoce sus errores honestamente.|Fortaleza/Logro|15|1|15|A mejorar|SEPTIMO|TM|0
+Conductual|For-29. Usa la tecnología con fines educativos.|29. Usa la tecnología con fines educativos.|Fortaleza/Logro|3|1|3|A mejorar|SEPTIMO|TM|0
+Conductual|For-31. Mantiene el orden en espacios comunes.|31. Mantiene el orden en espacios comunes.|Fortaleza/Logro|11|1|11|A mejorar|SEPTIMO|TM|0
+Socio-Emocional|For-33. Muestra resiliencia ante el fracaso.|33. Muestra resiliencia ante el fracaso.|Fortaleza/Logro|18|1|18|A mejorar|SEPTIMO|TM|0
+Socio-Emocional|For-35. Trabaja de forma colaborativa y equitativa.|35. Trabaja de forma colaborativa y equitativa.|Fortaleza/Logro|16|1|16|A mejorar|SEPTIMO|TM|0
+Socio-Emocional|For-37. Es empático con las necesidades ajenas.|37. Es empático con las necesidades ajenas.|Fortaleza/Logro|18|1|18|A mejorar|SEPTIMO|TM|0
+Socio-Emocional|For-39. Posee un liderazgo positivo y ético.|39. Posee un liderazgo positivo y ético.|Fortaleza/Logro|4|1|4|A mejorar|SEPTIMO|TM|0
+Socio-Emocional|For-41. Se comunica de manera asertiva.|41. Se comunica de manera asertiva.|Fortaleza/Logro|6|1|6|A mejorar|SEPTIMO|TM|0
+Socio-Emocional|For-43. Tiene una autoestima académica sólida.|43. Tiene una autoestima académica sólida.|Fortaleza/Logro|6|1|6|A mejorar|SEPTIMO|TM|0
+Actitudinal|For-45. Muestra curiosidad e iniciativa propia.|45. Muestra curiosidad e iniciativa propia.|Fortaleza/Logro|16|1|16|A mejorar|SEPTIMO|TM|0
+Actitudinal|For-47. Es persistente en tareas complejas.|47. Es persistente en tareas complejas.|Fortaleza/Logro|5|1|5|A mejorar|SEPTIMO|TM|0
+Actitudinal|For-49. Acepta retroalimentación constructiva.|49. Acepta retroalimentación constructiva.|Fortaleza/Logro|12|1|12|A mejorar|SEPTIMO|TM|0
+Categoría|Indicador |Indicador |Tipo de Indicador|Cantidad de veces|NOTA|PR|VALORACION|GRADO|TURNO|NF
+Académica|Ale-02. Presenta lagunas en conocimientos previos.|02. Presenta lagunas en conocimientos previos.|Alerta/Mejora|12|1|2|A mejorar|SEPTIMO|TT|0
+Académica|Ale-04. Se limita a memorizar sin comprender.|04. Se limita a memorizar sin comprender.|Alerta/Mejora|8|1|6|A mejorar|SEPTIMO|TT|0
+Académica|Ale-06. Entrega tareas incompletas o descuidadas.|06. Entrega tareas incompletas o descuidadas.|Alerta/Mejora|3|3|11|Bueno|SEPTIMO|TT|0
+Académica|Ale-08. Se bloquea ante desafíos matemáticos.|08. Se bloquea ante desafíos matemáticos.|Alerta/Mejora|7|1|7|A mejorar|SEPTIMO|TT|0
+Académica|Ale-10. Tiene dificultades de expresión oral/escrita.|10. Tiene dificultades de expresión oral/escrita.|Alerta/Mejora|2|4|12|Muy bueno |SEPTIMO|TT|0
+Académica|Ale-12. Muestra rechazo o desinterés por la lectura.|12. Muestra rechazo o desinterés por la lectura.|Alerta/Mejora|3|3|11|Bueno|SEPTIMO|TT|0
+Académica|Ale-14. Requiere supervisión constante para avanzar.|14. Requiere supervisión constante para avanzar.|Alerta/Mejora|3|3|11|Bueno|SEPTIMO|TT|0
+Académica|Ale-16. Muestra apatía por temas nuevos.|16. Muestra apatía por temas nuevos.|Alerta/Mejora|0|4|14|Muy bueno |SEPTIMO|TT|0
+Conductual|Ale-18. Desafía activamente la autoridad.|18. Desafía activamente la autoridad.|Alerta/Mejora|0|4|14|Muy bueno |SEPTIMO|TT|0
+Conductual|Ale-20. Presenta retardos o inasistencias frecuentes.|20. Presenta retardos o inasistencias frecuentes.|Alerta/Mejora|2|4|12|Muy bueno |SEPTIMO|TT|0
+Conductual|Ale-22. Daña el mobiliario o materiales escolares.|22. Daña el mobiliario o materiales escolares.|Alerta/Mejora|0|4|14|Muy bueno |SEPTIMO|TT|0
+Conductual|Ale-24. Interrumpe constantemente el flujo de clase.|24. Interrumpe constantemente el flujo de clase.|Alerta/Mejora|2|4|12|Muy bueno |SEPTIMO|TT|0
+Conductual|Ale-26. Emplea lenguaje soez o despectivo.|26. Emplea lenguaje soez o despectivo.|Alerta/Mejora|0|4|14|Muy bueno |SEPTIMO|TT|0
+Conductual|Ale-28. Miente o culpa a otros por sus actos.|28. Miente o culpa a otros por sus actos.|Alerta/Mejora|0|4|14|Muy bueno |SEPTIMO|TT|0
+Conductual|Ale-30. Se distrae con dispositivos electrónicos.|30. Se distrae con dispositivos electrónicos.|Alerta/Mejora|0|4|14|Muy bueno |SEPTIMO|TT|0
+Conductual|Ale-32. Fomenta el desorden o el caos en el grupo.|32. Fomenta el desorden o el caos en el grupo.|Alerta/Mejora|0|4|14|Muy bueno |SEPTIMO|TT|0
+Socio-Emocional|Ale-34. Se rinde fácilmente ante la frustración.|34. Se rinde fácilmente ante la frustración.|Alerta/Mejora|2|4|12|Muy bueno |SEPTIMO|TT|0
+Socio-Emocional|Ale-36. Trabaja de forma aislada o es individualista.|36. Trabaja de forma aislada o es individualista.|Alerta/Mejora|1|4|13|Muy bueno |SEPTIMO|TT|0
+Socio-Emocional|Ale-38. Ignora o se burla de los sentimientos de otros.|38. Ignora o se burla de los sentimientos de otros.|Alerta/Mejora|3|3|11|Bueno|SEPTIMO|TT|0
+Socio-Emocional|Ale-40. Ejerce presión negativa o bullying.|40. Ejerce presión negativa o bullying.|Alerta/Mejora|1|4|13|Muy bueno |SEPTIMO|TT|0
+Socio-Emocional|Ale-42. Reacciona de forma agresiva o impulsiva.|42. Reacciona de forma agresiva o impulsiva.|Alerta/Mejora|1|4|13|Muy bueno |SEPTIMO|TT|0
+Socio-Emocional|Ale-44. Expresa inseguridad constante ("no puedo").|44. Expresa inseguridad constante ("no puedo").|Alerta/Mejora|1|4|13|Muy bueno |SEPTIMO|TT|0
+Actitudinal|Ale-46. Requiere estímulos externos para trabajar.|46. Requiere estímulos externos para trabajar.|Alerta/Mejora|2|4|12|Muy bueno |SEPTIMO|TT|0
+Actitudinal|Ale-48. Abandona proyectos a mitad de camino.|48. Abandona proyectos a mitad de camino.|Alerta/Mejora|0|4|14|Muy bueno |SEPTIMO|TT|0
+Actitudinal|Ale-50. Se muestra a la defensiva ante críticas.|50. Se muestra a la defensiva ante críticas.|Alerta/Mejora|0|4|14|Muy bueno |SEPTIMO|TT|0
+Académica|For-01. Domina los conceptos clave del grado.|01. Domina los conceptos clave del grado.|Fortaleza/Logro|12|4|12|Muy bueno |SEPTIMO|TT|0
+Académica|For-03. Posee un pensamiento crítico y analítico.|03. Posee un pensamiento crítico y analítico.|Fortaleza/Logro|14|4|14|Muy bueno |SEPTIMO|TT|0
+Académica|For-05. Entrega trabajos con alta calidad y orden.|05. Entrega trabajos con alta calidad y orden.|Fortaleza/Logro|12|4|12|Muy bueno |SEPTIMO|TT|0
+Académica|For-07. Resuelve problemas lógicos con fluidez.|07. Resuelve problemas lógicos con fluidez.|Fortaleza/Logro|12|4|12|Muy bueno |SEPTIMO|TT|0
+Académica|For-09. Utiliza vocabulario técnico preciso.|09. Utiliza vocabulario técnico preciso.|Fortaleza/Logro|12|4|12|Muy bueno |SEPTIMO|TT|0
+Académica|For-11. Posee excelentes hábitos de lectura.|11. Posee excelentes hábitos de lectura.|Fortaleza/Logro|11|3|11|Bueno|SEPTIMO|TT|0
+Académica|For-13. Es autónomo en la realización de tareas.|13. Es autónomo en la realización de tareas.|Fortaleza/Logro|14|4|14|Muy bueno |SEPTIMO|TT|0
+Académica|For-15. Investiga más allá de lo solicitado.|15. Investiga más allá de lo solicitado.|Fortaleza/Logro|12|4|12|Muy bueno |SEPTIMO|TT|0
+Conductual|For-17. Respeta las normas de convivencia.|17. Respeta las normas de convivencia.|Fortaleza/Logro|14|4|14|Muy bueno |SEPTIMO|TT|0
+Conductual|For-19. Es puntual en todas sus obligaciones.|19. Es puntual en todas sus obligaciones.|Fortaleza/Logro|12|4|12|Muy bueno |SEPTIMO|TT|0
+Conductual|For-21. Cuida el material propio y ajeno.|21. Cuida el material propio y ajeno.|Fortaleza/Logro|14|4|14|Muy bueno |SEPTIMO|TT|0
+Conductual|For-23. Escucha con atención y no interrumpe.|23. Escucha con atención y no interrumpe.|Fortaleza/Logro|14|4|14|Muy bueno |SEPTIMO|TT|0
+Conductual|For-25. Utiliza el lenguaje de forma respetuosa.|25. Utiliza el lenguaje de forma respetuosa.|Fortaleza/Logro|14|4|14|Muy bueno |SEPTIMO|TT|0
+Conductual|For-27. Reconoce sus errores honestamente.|27. Reconoce sus errores honestamente.|Fortaleza/Logro|14|4|14|Muy bueno |SEPTIMO|TT|0
+Conductual|For-29. Usa la tecnología con fines educativos.|29. Usa la tecnología con fines educativos.|Fortaleza/Logro|12|4|12|Muy bueno |SEPTIMO|TT|0
+Conductual|For-31. Mantiene el orden en espacios comunes.|31. Mantiene el orden en espacios comunes.|Fortaleza/Logro|11|3|11|Bueno|SEPTIMO|TT|0
+Socio-Emocional|For-33. Muestra resiliencia ante el fracaso.|33. Muestra resiliencia ante el fracaso.|Fortaleza/Logro|12|4|12|Muy bueno |SEPTIMO|TT|0
+Socio-Emocional|For-35. Trabaja de forma colaborativa y equitativa.|35. Trabaja de forma colaborativa y equitativa.|Fortaleza/Logro|12|4|12|Muy bueno |SEPTIMO|TT|0
+Socio-Emocional|For-37. Es empático con las necesidades ajenas.|37. Es empático con las necesidades ajenas.|Fortaleza/Logro|12|4|12|Muy bueno |SEPTIMO|TT|0
+Socio-Emocional|For-39. Posee un liderazgo positivo y ético.|39. Posee un liderazgo positivo y ético.|Fortaleza/Logro|12|4|12|Muy bueno |SEPTIMO|TT|0
+Socio-Emocional|For-41. Se comunica de manera asertiva.|41. Se comunica de manera asertiva.|Fortaleza/Logro|12|4|12|Muy bueno |SEPTIMO|TT|0
+Socio-Emocional|For-43. Tiene una autoestima académica sólida.|43. Tiene una autoestima académica sólida.|Fortaleza/Logro|12|4|12|Muy bueno |SEPTIMO|TT|0
+Actitudinal|For-45. Muestra curiosidad e iniciativa propia.|45. Muestra curiosidad e iniciativa propia.|Fortaleza/Logro|12|4|12|Muy bueno |SEPTIMO|TT|0
+Actitudinal|For-47. Es persistente en tareas complejas.|47. Es persistente en tareas complejas.|Fortaleza/Logro|10|3|10|Bueno|SEPTIMO|TT|0
+Actitudinal|For-49. Acepta retroalimentación constructiva.|49. Acepta retroalimentación constructiva.|Fortaleza/Logro|12|4|12|Muy bueno |SEPTIMO|TT|0
+Categoría|Indicador |Indicador |Tipo de Indicador|Cantidad de veces|NOTA|PR|VALORACION|GRADO|TURNO|NF
+Académica|Ale-02. Presenta lagunas en conocimientos previos.|02. Presenta lagunas en conocimientos previos.|Alerta/Mejora|8|4|34|Muy bueno |OCTAVO|TM|0,19048
+Académica|Ale-04. Se limita a memorizar sin comprender.|04. Se limita a memorizar sin comprender.|Alerta/Mejora|6|4|36|Muy bueno |OCTAVO|TM|0,14286
+Académica|Ale-06. Entrega tareas incompletas o descuidadas.|06. Entrega tareas incompletas o descuidadas.|Alerta/Mejora|4|4|38|Muy bueno |OCTAVO|TM|0,09524
+Académica|Ale-08. Se bloquea ante desafíos matemáticos.|08. Se bloquea ante desafíos matemáticos.|Alerta/Mejora|7|4|35|Muy bueno |OCTAVO|TM|0,16667
+Académica|Ale-10. Tiene dificultades de expresión oral/escrita.|10. Tiene dificultades de expresión oral/escrita.|Alerta/Mejora|5|4|37|Muy bueno |OCTAVO|TM|0,11905
+Académica|Ale-12. Muestra rechazo o desinterés por la lectura.|12. Muestra rechazo o desinterés por la lectura.|Alerta/Mejora|6|4|36|Muy bueno |OCTAVO|TM|0,14286
+Académica|Ale-14. Requiere supervisión constante para avanzar.|14. Requiere supervisión constante para avanzar.|Alerta/Mejora|7|4|35|Muy bueno |OCTAVO|TM|0,16667
+Académica|Ale-16. Muestra apatía por temas nuevos.|16. Muestra apatía por temas nuevos.|Alerta/Mejora|2|5|40|Muy bueno |OCTAVO|TM|0,04762
+Conductual|Ale-18. Desafía activamente la autoridad.|18. Desafía activamente la autoridad.|Alerta/Mejora|1|5|41|Muy bueno |OCTAVO|TM|0,02381
+Conductual|Ale-20. Presenta retardos o inasistencias frecuentes.|20. Presenta retardos o inasistencias frecuentes.|Alerta/Mejora|4|4|38|Muy bueno |OCTAVO|TM|0,09524
+Conductual|Ale-22. Daña el mobiliario o materiales escolares.|22. Daña el mobiliario o materiales escolares.|Alerta/Mejora|1|5|41|Muy bueno |OCTAVO|TM|0,02381
+Conductual|Ale-24. Interrumpe constantemente el flujo de clase.|24. Interrumpe constantemente el flujo de clase.|Alerta/Mejora|9|3|33|Bueno|OCTAVO|TM|0,21429
+Conductual|Ale-26. Emplea lenguaje soez o despectivo.|26. Emplea lenguaje soez o despectivo.|Alerta/Mejora|2|5|40|Muy bueno |OCTAVO|TM|0,04762
+Conductual|Ale-28. Miente o culpa a otros por sus actos.|28. Miente o culpa a otros por sus actos.|Alerta/Mejora|2|5|40|Muy bueno |OCTAVO|TM|0,04762
+Conductual|Ale-30. Se distrae con dispositivos electrónicos.|30. Se distrae con dispositivos electrónicos.|Alerta/Mejora|8|4|34|Muy bueno |OCTAVO|TM|0,19048
+Conductual|Ale-32. Fomenta el desorden o el caos en el grupo.|32. Fomenta el desorden o el caos en el grupo.|Alerta/Mejora|5|4|37|Muy bueno |OCTAVO|TM|0,11905
+Socio-Emocional|Ale-34. Se rinde fácilmente ante la frustración.|34. Se rinde fácilmente ante la frustración.|Alerta/Mejora|6|4|36|Muy bueno |OCTAVO|TM|0,14286
+Socio-Emocional|Ale-36. Trabaja de forma aislada o es individualista.|36. Trabaja de forma aislada o es individualista.|Alerta/Mejora|3|5|39|Muy bueno |OCTAVO|TM|0,07143
+Socio-Emocional|Ale-38. Ignora o se burla de los sentimientos de otros.|38. Ignora o se burla de los sentimientos de otros.|Alerta/Mejora|2|5|40|Muy bueno |OCTAVO|TM|0,04762
+Socio-Emocional|Ale-40. Ejerce presión negativa o bullying.|40. Ejerce presión negativa o bullying.|Alerta/Mejora|1|5|41|Muy bueno |OCTAVO|TM|0,02381
+Socio-Emocional|Ale-42. Reacciona de forma agresiva o impulsiva.|42. Reacciona de forma agresiva o impulsiva.|Alerta/Mejora|2|5|40|Muy bueno |OCTAVO|TM|0,04762
+Socio-Emocional|Ale-44. Expresa inseguridad constante ("no puedo").|44. Expresa inseguridad constante ("no puedo").|Alerta/Mejora|5|4|37|Muy bueno |OCTAVO|TM|0,11905
+Actitudinal|Ale-46. Requiere estímulos externos para trabajar.|46. Requiere estímulos externos para trabajar.|Alerta/Mejora|7|4|35|Muy bueno |OCTAVO|TM|0,16667
+Actitudinal|Ale-48. Abandona proyectos a mitad de camino.|48. Abandona proyectos a mitad de camino.|Alerta/Mejora|3|5|39|Muy bueno |OCTAVO|TM|0,07143
+Actitudinal|Ale-50. Se muestra a la defensiva ante críticas.|50. Se muestra a la defensiva ante críticas.|Alerta/Mejora|4|4|38|Muy bueno |OCTAVO|TM|0,09524
+Académica|For-01. Domina los conceptos clave del grado.|01. Domina los conceptos clave del grado.|Fortaleza/Logro|12|1|12|A mejorar|OCTAVO|TM|0,28571
+Académica|For-03. Posee un pensamiento crítico y analítico.|03. Posee un pensamiento crítico y analítico.|Fortaleza/Logro|11|1|11|A mejorar|OCTAVO|TM|0,2619
+Académica|For-05. Entrega trabajos con alta calidad y orden.|05. Entrega trabajos con alta calidad y orden.|Fortaleza/Logro|13|1|13|A mejorar|OCTAVO|TM|0,30952
+Académica|For-07. Resuelve problemas lógicos con fluidez.|07. Resuelve problemas lógicos con fluidez.|Fortaleza/Logro|10|1|10|A mejorar|OCTAVO|TM|0,2381
+Académica|For-09. Utiliza vocabulario técnico preciso.|09. Utiliza vocabulario técnico preciso.|Fortaleza/Logro|12|1|12|A mejorar|OCTAVO|TM|0,28571
+Académica|For-11. Posee excelentes hábitos de lectura.|11. Posee excelentes hábitos de lectura.|Fortaleza/Logro|11|1|11|A mejorar|OCTAVO|TM|0,2619
+Académica|For-13. Es autónomo en la realización de tareas.|13. Es autónomo en la realización de tareas.|Fortaleza/Logro|14|1|14|A mejorar|OCTAVO|TM|0,33333
+Académica|For-15. Investiga más allá de lo solicitado.|15. Investiga más allá de lo solicitado.|Fortaleza/Logro|10|1|10|A mejorar|OCTAVO|TM|0,2381
+Conductual|For-17. Respeta las normas de convivencia.|17. Respeta las normas de convivencia.|Fortaleza/Logro|13|1|13|A mejorar|OCTAVO|TM|0,30952
+Conductual|For-19. Es puntual en todas sus obligaciones.|19. Es puntual en todas sus obligaciones.|Fortaleza/Logro|12|1|12|A mejorar|OCTAVO|TM|0,28571
+Conductual|For-21. Cuida el material propio y ajeno.|21. Cuida el material propio y ajeno.|Fortaleza/Logro|14|1|14|A mejorar|OCTAVO|TM|0,33333
+Conductual|For-23. Escucha con atención y no interrumpe.|23. Escucha con atención y no interrumpe.|Fortaleza/Logro|12|1|12|A mejorar|OCTAVO|TM|0,28571
+Conductual|For-25. Utiliza el lenguaje de forma respetuosa.|25. Utiliza el lenguaje de forma respetuosa.|Fortaleza/Logro|14|1|14|A mejorar|OCTAVO|TM|0,33333
+Conductual|For-27. Reconoce sus errores honestamente.|27. Reconoce sus errores honestamente.|Fortaleza/Logro|13|1|13|A mejorar|OCTAVO|TM|0,30952
+Conductual|For-29. Usa la tecnología con fines educativos.|29. Usa la tecnología con fines educativos.|Fortaleza/Logro|11|1|11|A mejorar|OCTAVO|TM|0,2619
+Conductual|For-31. Mantiene el orden en espacios comunes.|31. Mantiene el orden en espacios comunes.|Fortaleza/Logro|12|1|12|A mejorar|OCTAVO|TM|0,28571
+Socio-Emocional|For-33. Muestra resiliencia ante el fracaso.|33. Muestra resiliencia ante el fracaso.|Fortaleza/Logro|11|1|11|A mejorar|OCTAVO|TM|0,2619
+Socio-Emocional|For-35. Trabaja de forma colaborativa y equitativa.|35. Trabaja de forma colaborativa y equitativa.|Fortaleza/Logro|14|1|14|A mejorar|OCTAVO|TM|0,33333
+Socio-Emocional|For-37. Es empático con las necesidades ajenas.|37. Es empático con las necesidades ajenas.|Fortaleza/Logro|13|1|13|A mejorar|OCTAVO|TM|0,30952
+Socio-Emocional|For-39. Posee un liderazgo positivo y ético.|39. Posee un liderazgo positivo y ético.|Fortaleza/Logro|11|1|11|A mejorar|OCTAVO|TM|0,2619
+Socio-Emocional|For-41. Se comunica de manera asertiva.|41. Se comunica de manera asertiva.|Fortaleza/Logro|12|1|12|A mejorar|OCTAVO|TM|0,28571
+Socio-Emocional|For-43. Tiene una autoestima académica sólida.|43. Tiene una autoestima académica sólida.|Fortaleza/Logro|12|1|12|A mejorar|OCTAVO|TM|0,28571
+Actitudinal|For-45. Muestra curiosidad e iniciativa propia.|45. Muestra curiosidad e iniciativa propia.|Fortaleza/Logro|14|1|14|A mejorar|OCTAVO|TM|0,33333
+Actitudinal|For-47. Es persistente en tareas complejas.|47. Es persistente en tareas complejas.|Fortaleza/Logro|11|1|11|A mejorar|OCTAVO|TM|0,2619
+Actitudinal|For-49. Acepta retroalimentación constructiva.|49. Acepta retroalimentación constructiva.|Fortaleza/Logro|13|1|13|A mejorar|OCTAVO|TM|0,30952
+Categoría|Indicador |Indicador |Tipo de Indicador|Cantidad de veces|NOTA|PR|VALORACION|GRADO|TURNO|NF
+Académica|Ale-02. Presenta lagunas en conocimientos previos.|02. Presenta lagunas en conocimientos previos.|Alerta/Mejora|14|2|28|A mejorar|NOVENO|TM|0,33333
+Académica|Ale-04. Se limita a memorizar sin comprender.|04. Se limita a memorizar sin comprender.|Alerta/Mejora|12|3|30|Bueno|NOVENO|TM|0,28571
+Académica|Ale-06. Entrega tareas incompletas o descuidadas.|06. Entrega tareas incompletas o descuidadas.|Alerta/Mejora|9|3|33|Bueno|NOVENO|TM|0,21429
+Académica|Ale-08. Se bloquea ante desafíos matemáticos.|08. Se bloquea ante desafíos matemáticos.|Alerta/Mejora|15|2|27|A mejorar|NOVENO|TM|0,35714
+Académica|Ale-10. Tiene dificultades de expresión oral/escrita.|10. Tiene dificultades de expresión oral/escrita.|Alerta/Mejora|8|4|34|Muy bueno |NOVENO|TM|0,19048
+Académica|Ale-12. Muestra rechazo o desinterés por la lectura.|12. Muestra rechazo o desinterés por la lectura.|Alerta/Mejora|3|5|39|Muy bueno |NOVENO|TM|0,07143
+Académica|Ale-14. Requiere supervisión constante para avanzar.|14. Requiere supervisión constante para avanzar.|Alerta/Mejora|7|4|35|Muy bueno |NOVENO|TM|0,16667
+Académica|Ale-16. Muestra apatía por temas nuevos.|16. Muestra apatía por temas nuevos.|Alerta/Mejora|5|4|37|Muy bueno |NOVENO|TM|0,11905
+Conductual|Ale-18. Desafía activamente la autoridad.|18. Desafía activamente la autoridad.|Alerta/Mejora|2|5|40|Muy bueno |NOVENO|TM|0,04762
+Conductual|Ale-20. Presenta retardos o inasistencias frecuentes.|20. Presenta retardos o inasistencias frecuentes.|Alerta/Mejora|4|4|38|Muy bueno |NOVENO|TM|0,09524
+Conductual|Ale-22. Daña el mobiliario o materiales escolares.|22. Daña el mobiliario o materiales escolares.|Alerta/Mejora|0|5|42|Muy bueno |NOVENO|TM|0
+Conductual|Ale-24. Interrumpe constantemente el flujo de clase.|24. Interrumpe constantemente el flujo de clase.|Alerta/Mejora|26|1|16|A mejorar|NOVENO|TM|0,61905
+Conductual|Ale-26. Emplea lenguaje soez o despectivo.|26. Emplea lenguaje soez o despectivo.|Alerta/Mejora|0|5|42|Muy bueno |NOVENO|TM|0
+Conductual|Ale-28. Miente o culpa a otros por sus actos.|28. Miente o culpa a otros por sus actos.|Alerta/Mejora|4|4|38|Muy bueno |NOVENO|TM|0,09524
+Conductual|Ale-30. Se distrae con dispositivos electrónicos.|30. Se distrae con dispositivos electrónicos.|Alerta/Mejora|10|3|32|Bueno|NOVENO|TM|0,2381
+Conductual|Ale-32. Fomenta el desorden o el caos en el grupo.|32. Fomenta el desorden o el caos en el grupo.|Alerta/Mejora|22|1|20|A mejorar|NOVENO|TM|0,52381
+Socio-Emocional|Ale-34. Se rinde fácilmente ante la frustración.|34. Se rinde fácilmente ante la frustración.|Alerta/Mejora|9|3|33|Bueno|NOVENO|TM|0,21429
+Socio-Emocional|Ale-36. Trabaja de forma aislada o es individualista.|36. Trabaja de forma aislada o es individualista.|Alerta/Mejora|3|5|39|Muy bueno |NOVENO|TM|0,07143
+Socio-Emocional|Ale-38. Ignora o se burla de los sentimientos de otros.|38. Ignora o se burla de los sentimientos de otros.|Alerta/Mejora|2|5|40|Muy bueno |NOVENO|TM|0,04762
+Socio-Emocional|Ale-40. Ejerce presión negativa o bullying.|40. Ejerce presión negativa o bullying.|Alerta/Mejora|0|5|42|Muy bueno |NOVENO|TM|0
+Socio-Emocional|Ale-42. Reacciona de forma agresiva o impulsiva.|42. Reacciona de forma agresiva o impulsiva.|Alerta/Mejora|0|5|42|Muy bueno |NOVENO|TM|0
+Socio-Emocional|Ale-44. Expresa inseguridad constante ("no puedo").|44. Expresa inseguridad constante ("no puedo").|Alerta/Mejora|8|4|34|Muy bueno |NOVENO|TM|0,19048
+Actitudinal|Ale-46. Requiere estímulos externos para trabajar.|46. Requiere estímulos externos para trabajar.|Alerta/Mejora|16|2|26|A mejorar|NOVENO|TM|0,38095
+Actitudinal|Ale-48. Abandona proyectos a mitad de camino.|48. Abandona proyectos a mitad de camino.|Alerta/Mejora|7|4|35|Muy bueno |NOVENO|TM|0,16667
+Actitudinal|Ale-50. Se muestra a la defensiva ante críticas.|50. Se muestra a la defensiva ante críticas.|Alerta/Mejora|4|4|38|Muy bueno |NOVENO|TM|0,09524
+Académica|For-01. Domina los conceptos clave del grado.|01. Domina los conceptos clave del grado.|Fortaleza/Logro|16|1|16|A mejorar|NOVENO|TM|0,38095
+Académica|For-03. Posee un pensamiento crítico y analítico.|03. Posee un pensamiento crítico y analítico.|Fortaleza/Logro|14|1|14|A mejorar|NOVENO|TM|0,33333
+Académica|For-05. Entrega trabajos con alta calidad y orden.|05. Entrega trabajos con alta calidad y orden.|Fortaleza/Logro|21|1|21|A mejorar|NOVENO|TM|0,5
+Académica|For-07. Resuelve problemas lógicos con fluidez.|07. Resuelve problemas lógicos con fluidez.|Fortaleza/Logro|15|1|15|A mejorar|NOVENO|TM|0,35714
+Académica|For-09. Utiliza vocabulario técnico preciso.|09. Utiliza vocabulario técnico preciso.|Fortaleza/Logro|10|1|10|A mejorar|NOVENO|TM|0,2381
+Académica|For-11. Posee excelentes hábitos de lectura.|11. Posee excelentes hábitos de lectura.|Fortaleza/Logro|6|1|6|A mejorar|NOVENO|TM|0,14286
+Académica|For-13. Es autónomo en la realización de tareas.|13. Es autónomo en la realización de tareas.|Fortaleza/Logro|21|1|21|A mejorar|NOVENO|TM|0,5
+Académica|For-15. Investiga más allá de lo solicitado.|15. Investiga más allá de lo solicitado.|Fortaleza/Logro|9|1|9|A mejorar|NOVENO|TM|0,21429
+Conductual|For-17. Respeta las normas de convivencia.|17. Respeta las normas de convivencia.|Fortaleza/Logro|25|2|25|A mejorar|NOVENO|TM|0,59524
+Conductual|For-19. Es puntual en todas sus obligaciones.|19. Es puntual en todas sus obligaciones.|Fortaleza/Logro|21|1|21|A mejorar|NOVENO|TM|0,5
+Conductual|For-21. Cuida el material propio y ajeno.|21. Cuida el material propio y ajeno.|Fortaleza/Logro|30|3|30|Bueno|NOVENO|TM|0,71429
+Conductual|For-23. Escucha con atención y no interrumpe.|23. Escucha con atención y no interrumpe.|Fortaleza/Logro|4|1|4|A mejorar|NOVENO|TM|0,09524
+Conductual|For-25. Utiliza el lenguaje de forma respetuosa.|25. Utiliza el lenguaje de forma respetuosa.|Fortaleza/Logro|30|3|30|Bueno|NOVENO|TM|0,71429
+Conductual|For-27. Reconoce sus errores honestamente.|27. Reconoce sus errores honestamente.|Fortaleza/Logro|26|2|26|A mejorar|NOVENO|TM|0,61905
+Conductual|For-29. Usa la tecnología con fines educativos.|29. Usa la tecnología con fines educativos.|Fortaleza/Logro|18|1|18|A mejorar|NOVENO|TM|0,42857
+Conductual|For-31. Mantiene el orden en espacios comunes.|31. Mantiene el orden en espacios comunes.|Fortaleza/Logro|8|1|8|A mejorar|NOVENO|TM|0,19048
+Socio-Emocional|For-33. Muestra resiliencia ante el fracaso.|33. Muestra resiliencia ante el fracaso.|Fortaleza/Logro|21|1|21|A mejorar|NOVENO|TM|0,5
+Socio-Emocional|For-35. Trabaja de forma colaborativa y equitativa.|35. Trabaja de forma colaborativa y equitativa.|Fortaleza/Logro|27|2|27|A mejorar|NOVENO|TM|0,64286
+Socio-Emocional|For-37. Es empático con las necesidades ajenas.|37. Es empático con las necesidades ajenas.|Fortaleza/Logro|28|2|28|A mejorar|NOVENO|TM|0,66667
+Socio-Emocional|For-39. Posee un liderazgo positivo y ético.|39. Posee un liderazgo positivo y ético.|Fortaleza/Logro|14|1|14|A mejorar|NOVENO|TM|0,33333
+Socio-Emocional|For-41. Se comunica de manera asertiva.|41. Se comunica de manera asertiva.|Fortaleza/Logro|24|1|24|A mejorar|NOVENO|TM|0,57143
+Socio-Emocional|For-43. Tiene una autoestima académica sólida.|43. Tiene una autoestima académica sólida.|Fortaleza/Logro|18|1|18|A mejorar|NOVENO|TM|0,42857
+Actitudinal|For-45. Muestra curiosidad e iniciativa propia.|45. Muestra curiosidad e iniciativa propia.|Fortaleza/Logro|23|1|23|A mejorar|NOVENO|TM|0,54762
+Actitudinal|For-47. Es persistente en tareas complejas.|47. Es persistente en tareas complejas.|Fortaleza/Logro|20|1|20|A mejorar|NOVENO|TM|0,47619
+Actitudinal|For-49. Acepta retroalimentación constructiva.|49. Acepta retroalimentación constructiva.|Fortaleza/Logro|26|2|26|A mejorar|NOVENO|TM|0,61905

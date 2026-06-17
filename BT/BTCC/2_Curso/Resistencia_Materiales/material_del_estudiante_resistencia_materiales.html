@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material del Estudiante - Resistencia de Materiales</title>
+    <style>
+        :root {
+            --ink: #172133;
+            --muted: #5a687c;
+            --line: #d8e0ea;
+            --head: #e8f1fb;
+            --brand: #0f4c81;
+            --bg: #f4f7fb;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            line-height: 1.45;
+            padding: 18px;
+        }
+        .topbar, .page { max-width: 1100px; margin: 0 auto; }
+        .topbar { margin-bottom: 14px; }
+        .topnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px;
+            border: 1px solid var(--line);
+            background: #fff;
+        }
+        .topnav a {
+            display: inline-block;
+            text-decoration: none;
+            background: #e8f1fb;
+            color: var(--brand);
+            border: 1px solid #bcd0e6;
+            padding: 8px 12px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+        .cover, .sheet {
+            background: #fff;
+            border: 1px solid var(--line);
+            padding: 22px;
+            margin-bottom: 16px;
+        }
+        .cover { border-left: 8px solid var(--brand); }
+        .cover h1 { margin: 0 0 10px; font-size: 28px; }
+        .cover p { margin: 4px 0; color: var(--muted); font-size: 14px; }
+        .sheet { page-break-after: always; min-height: 1020px; }
+        .sheet:last-of-type { page-break-after: auto; }
+        h2 { margin: 0 0 10px; color: var(--brand); font-size: 24px; }
+        h3 { margin: 14px 0 6px; color: #1a3b5b; font-size: 16px; }
+        p { margin: 6px 0; font-size: 14px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+        th, td {
+            border: 1px solid var(--line);
+            padding: 8px 10px;
+            vertical-align: top;
+            font-size: 13px;
+        }
+        th { background: var(--head); text-align: left; }
+        ol, ul { margin: 6px 0 0 18px; padding: 0; }
+        li { margin-bottom: 4px; font-size: 14px; }
+        .grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 14px;
+        }
+        img.graph {
+            display: block;
+            max-width: 100%;
+            margin: 10px auto;
+            border: 1px solid var(--line);
+            background: #fff;
+            padding: 6px;
+        }
+        @media (max-width: 900px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body { background: #fff; padding: 0; }
+            .topbar { display: none; }
+            .page { max-width: none; }
+            .cover, .sheet { border: none; margin: 0; }
+        }
+    </style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+
+<script src="../../nav/runtime.js"></script>
+</head>
+<body>
+    <div class="topbar">
+        <nav class="topnav" aria-label="Navegacion principal">
+            <a href="../../index.html">Inicio</a>
+            <a href="resistencia_materiales.html">Plan anual</a>
+            <a href="plan_de_clase_resistencia_materiales.html">Plan de clase</a>
+            <a href="fichas_estudiante_html/index_fichas_estudiante.html">Fichas por tema</a>
+        </nav>
+    </div>
+
+    <div class="page">
+        <section class="cover">
+            <h1>Material del Estudiante - Resistencia de Materiales</h1>
+            <p><strong>Disciplina:</strong> Resistencia de Materiales</p>
+            <p><strong>Bachillerato:</strong> Técnico en Construcciones Civiles (BTCC) | <strong>Curso:</strong> Segundo Curso</p>
+            <p><strong>Institución:</strong> Colegio Nacional Defensores del Chaco | <strong>Turno:</strong> Mañana | <strong>Sección:</strong> A</p>
+            <p><strong>Docente:</strong> Christhian Keim | <strong>Año lectivo:</strong> 2026</p>
+            <p>Este material está organizado en fichas de una hoja por tema. Cada ficha incluye capacidad, propósito, lectura guiada, gráfico explicativo y ejercitario resoluble con la información de la misma página.</p>
+        </section>
+
+        <section class="sheet">
+            <h2>Ficha 1 - Introducción a la Resistencia de Materiales</h2>
+            <p><strong>Capacidad:</strong> Interpreta la finalidad de la Resistencia de Materiales como estudio de sólidos deformables. Reconoce fuerzas, cargas, acciones y vectores aplicados a estructuras.</p>
+            <p><strong>Propósito:</strong> Comprender el campo de estudio de la asignatura y establecer conceptos iniciales para el análisis técnico de elementos estructurales.</p>
+            <div class="grid">
+                <div>
+                    <h3>Desarrollo conceptual</h3>
+                    <p>La Resistencia de Materiales estudia el comportamiento de los cuerpos sólidos cuando actúan sobre ellos cargas externas. Su finalidad es explicar cómo resisten, se deforman o fallan los elementos estructurales.</p>
+                    <h3>Lectura guiada</h3>
+                    <p>En una obra, casi todos los elementos están sometidos a cargas. Una columna soporta el peso de vigas, muros y losas; una viga recibe cargas del techo, del piso o de las personas; un andamio resiste trabajadores, herramientas y materiales; y una cubierta puede recibir viento, lluvia y peso propio.</p>
+                    <p>Cuando una carga actúa sobre un elemento, este responde generando <strong>esfuerzos</strong> internos. Si la carga es pequeña y el material trabaja dentro de su capacidad, la deformación puede ser reducida y segura. Si la carga es excesiva, el elemento puede deformarse demasiado, fisurarse o colapsar.</p>
+                    <p>También es importante distinguir entre la acción externa y la respuesta interna: la <strong>fuerza</strong> o <strong>carga</strong> actúa desde afuera; el <strong>esfuerzo</strong> se produce dentro del material; y la <strong>deformación</strong> es el cambio visible o medible del elemento.</p>
+                    <h3>Definiciones clave</h3>
+                    <ul>
+                        <li><strong>Fuerza:</strong> acción capaz de producir movimiento, deformación o equilibrio.</li>
+                        <li><strong>Carga:</strong> fuerza aplicada sobre un elemento estructural.</li>
+                        <li><strong>Esfuerzo:</strong> respuesta interna de un cuerpo frente a una carga.</li>
+                        <li><strong>Tensión:</strong> intensidad del esfuerzo sobre una sección.</li>
+                        <li><strong>Deformación:</strong> cambio de forma o longitud.</li>
+                    </ul>
+                    <h3>Comparación técnica</h3>
+                    <table>
+                        <tr><th>Concepto</th><th>Idea principal</th></tr>
+                        <tr><td>Fuerza</td><td>Acción externa</td></tr>
+                        <tr><td>Carga</td><td>Fuerza aplicada a una estructura</td></tr>
+                        <tr><td>Esfuerzo</td><td>Respuesta interna del material</td></tr>
+                        <tr><td>Deformación</td><td>Cambio visible o medible</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h3>Gráfico</h3>
+                    <img class="graph" src="graficos_material_alumno/01_vector_fuerza.svg" alt="Representación de una fuerza como vector">
+                    <p><strong>Explicación del gráfico:</strong> la flecha roja representa la fuerza F. Su longitud sugiere la magnitud, su inclinación muestra la dirección y la punta indica el sentido. Las componentes Fx y Fy ayudan a descomponer la fuerza para estudiarla.</p>
+                    <p><strong>Ejemplo aplicado:</strong> si una bolsa de cemento está apoyada sobre una losa, su peso actúa hacia abajo como una carga. La losa resiste esa acción y transmite parte del esfuerzo a las vigas y columnas.</p>
+                </div>
+            </div>
+            <h3>Activación de saberes previos</h3>
+            <ol>
+                <li>¿Qué entiendes por carga en una estructura?</li>
+                <li>¿Dónde observas fuerzas en una obra?</li>
+                <li>¿Qué diferencia puede haber entre una fuerza pequeña y una grande?</li>
+            </ol>
+            <h3>Ejercitario</h3>
+            <ol>
+                <li>Define fuerza, carga, esfuerzo, tensión y deformación.</li>
+                <li>Dibuja un vector horizontal, uno vertical y uno inclinado.</li>
+                <li>Clasifica cuatro cargas de una obra como estáticas o dinámicas.</li>
+                <li>Explica por qué la seguridad técnica es importante al estudiar estructuras.</li>
+            </ol>
+        </section>
+
+        <section class="sheet">
+            <h2>Ficha 2 - Fuerzas, Resultantes y Momento</h2>
+            <p><strong>Capacidad:</strong> Calcula resultantes de fuerzas concurrentes y no concurrentes. Comprende el momento de una fuerza y su efecto de rotación.</p>
+            <p><strong>Propósito:</strong> Resolver composiciones simples de fuerzas y comprender el efecto de giro producido por el momento.</p>
+            <div class="grid">
+                <div>
+                    <h3>Desarrollo conceptual</h3>
+                    <p>Cuando varias fuerzas actúan sobre un punto o sobre una estructura, pueden reemplazarse por una <strong>resultante</strong>. El <strong>momento</strong> permite medir la tendencia de una fuerza a producir giro alrededor de un punto.</p>
+                    <h3>Lectura guiada</h3>
+                    <p>En construcción no siempre actúa una sola carga. Sobre una viga pueden apoyarse varios pesos al mismo tiempo: materiales, personas, tabiques o equipos. Para estudiar el efecto total de esas acciones, muchas veces se las reemplaza por una sola fuerza llamada resultante.</p>
+                    <p>Si las fuerzas tienen el mismo sentido, la resultante se obtiene sumando sus valores. Si actúan en sentidos contrarios, la resultante surge de la diferencia entre ambas y conserva el sentido de la mayor. El momento aparece cuando la fuerza actúa a una distancia del apoyo o punto de giro.</p>
+                    <h3>Definiciones clave</h3>
+                    <ul>
+                        <li><strong>Resultante:</strong> fuerza única equivalente a varias fuerzas.</li>
+                        <li><strong>Momento:</strong> efecto de giro de una fuerza.</li>
+                        <li><strong>Fuerzas concurrentes:</strong> actúan sobre un mismo punto.</li>
+                        <li><strong>Fuerzas paralelas:</strong> tienen igual dirección.</li>
+                    </ul>
+                    <h3>Comparación técnica</h3>
+                    <table>
+                        <tr><th>Concepto</th><th>Característica</th></tr>
+                        <tr><td>Resultante</td><td>Resume el efecto de varias fuerzas</td></tr>
+                        <tr><td>Momento</td><td>Explica la rotación</td></tr>
+                        <tr><td>Fuerza concurrente</td><td>Mismo punto de aplicación</td></tr>
+                        <tr><td>Fuerza paralela</td><td>Misma dirección</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h3>Gráfico</h3>
+                    <img class="graph" src="graficos_material_alumno/05_resultante_momento.svg" alt="Resultante y momento">
+                    <p><strong>Explicación del gráfico:</strong> las fuerzas `F1 = 4 kN` y `F2 = 6 kN` pueden reemplazarse por la resultante `R = 10 kN`. La distancia `d = 2 m` respecto del punto O permite calcular el momento y comprender la tendencia al giro.</p>
+                    <p><strong>Ejemplo aplicado:</strong> si dos pilas de ladrillos descargan sobre una misma viga, la estructura recibe la suma de ambas cargas. Si una se coloca lejos del apoyo, el efecto de giro es mayor.</p>
+                </div>
+            </div>
+            <h3>Ejercitario</h3>
+            <ol>
+                <li>Suma dos fuerzas de `4 kN` y `6 kN` del mismo sentido.</li>
+                <li>Calcula la resultante de `9 kN` y `5 kN` en sentido contrario.</li>
+                <li>Calcula el momento de una fuerza de `10 N` aplicada a `2 m`.</li>
+                <li>Menciona un ejemplo de obra donde sea importante el momento.</li>
+            </ol>
+        </section>
+
+        <section class="sheet">
+            <h2>Ficha 3 - Equilibrio, Vínculos y Reacciones</h2>
+            <p><strong>Capacidad:</strong> Aplica condiciones de equilibrio en el plano. Analiza vínculos y calcula reacciones en apoyos de estructuras simples.</p>
+            <p><strong>Propósito:</strong> Aplicar condiciones de equilibrio para interpretar apoyos y reacciones en estructuras simples.</p>
+            <div class="grid">
+                <div>
+                    <h3>Desarrollo conceptual</h3>
+                    <p>Una estructura está en equilibrio cuando la suma de fuerzas y la suma de momentos es igual a cero. Los apoyos generan reacciones que compensan las cargas aplicadas.</p>
+                    <h3>Lectura guiada</h3>
+                    <p>En toda estructura los apoyos cumplen una función esencial. Una viga simplemente apoyada no se mantiene en su lugar solo por su peso: necesita reacciones en los apoyos para equilibrar las cargas que recibe.</p>
+                    <h3>Definiciones clave</h3>
+                    <ul>
+                        <li><strong>Equilibrio:</strong> estado sin movimiento ni giro.</li>
+                        <li><strong>Vínculo:</strong> apoyo o restricción de un elemento.</li>
+                        <li><strong>Reacción:</strong> fuerza generada por el apoyo.</li>
+                        <li><strong>Diagrama de cuerpo libre:</strong> esquema con todas las fuerzas.</li>
+                    </ul>
+                    <h3>Comparación técnica</h3>
+                    <table>
+                        <tr><th>Apoyo</th><th>Característica</th></tr>
+                        <tr><td>Móvil</td><td>Permite desplazamiento horizontal</td></tr>
+                        <tr><td>Fijo</td><td>Restringe más movimientos</td></tr>
+                        <tr><td>Empotramiento</td><td>Resiste desplazamiento y giro</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h3>Gráfico</h3>
+                    <img class="graph" src="graficos_material_alumno/02_viga_carga_reacciones.svg" alt="Viga simplemente apoyada con reacciones">
+                    <p><strong>Explicación del gráfico:</strong> la carga P actúa hacia abajo. Las reacciones RA y RB actúan hacia arriba y equilibran la estructura.</p>
+                </div>
+            </div>
+            <h3>Ejercitario</h3>
+            <ol>
+                <li>Dibuja una viga con dos apoyos y una carga puntual.</li>
+                <li>Explica la diferencia entre apoyo móvil y fijo.</li>
+                <li>¿Qué sucede si una reacción no compensa la carga?</li>
+                <li>Describe un caso de pérdida de equilibrio en obra.</li>
+            </ol>
+        </section>
+
+        <section class="sheet">
+            <h2>Ficha 4 - Tracción, Compresión y Ley de Hooke</h2>
+            <p><strong>Capacidad:</strong> Analiza elementos sometidos a tracción y compresión. Relaciona carga, área, tensión, deformación y módulo de elasticidad.</p>
+            <p><strong>Propósito:</strong> Relacionar carga, área, tensión y deformación en piezas sometidas a esfuerzos axiales.</p>
+            <div class="grid">
+                <div>
+                    <h3>Desarrollo conceptual</h3>
+                    <p>Una pieza trabaja a <strong>tracción</strong> cuando se estira y a <strong>compresión</strong> cuando se acorta. La tensión normal puede calcularse con `σ = P / A`.</p>
+                    <h3>Lectura guiada</h3>
+                    <p>Muchos elementos de obra trabajan con esfuerzos axiales. Un tensor de acero se estira cuando recibe tracción. En cambio, una columna recibe cargas verticales que tienden a comprimirla.</p>
+                    <p>Si la misma carga actúa sobre un área pequeña, la tensión será mayor. Si el área aumenta, la tensión disminuye. Dentro del límite elástico, el material recupera su forma inicial cuando desaparece la carga.</p>
+                    <h3>Definiciones clave</h3>
+                    <ul>
+                        <li><strong>Tracción:</strong> esfuerzo que tiende a alargar.</li>
+                        <li><strong>Compresión:</strong> esfuerzo que tiende a acortar.</li>
+                        <li><strong>Tensión normal:</strong> carga repartida sobre un área.</li>
+                        <li><strong>Elasticidad:</strong> capacidad de recuperar la forma inicial.</li>
+                    </ul>
+                    <h3>Comparación técnica</h3>
+                    <table>
+                        <tr><th>Tracción</th><th>Compresión</th></tr>
+                        <tr><td>Alarga el elemento</td><td>Acorta el elemento</td></tr>
+                        <tr><td>Típica en cables y tensores</td><td>Típica en columnas y pilares</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h3>Gráfico</h3>
+                    <img class="graph" src="graficos_material_alumno/06_traccion_compresion.svg" alt="Tracción y compresión">
+                    <p><strong>Explicación del gráfico:</strong> a la izquierda las fuerzas tiran del elemento y lo alargan. A la derecha las fuerzas empujan hacia el centro y lo acortan. Debajo se recuerda la relación `σ = P / A`.</p>
+                    <p><strong>Ejemplo aplicado:</strong> los alambres de tensado de una cubierta trabajan a tracción. Los pilares de hormigón que sostienen una losa trabajan principalmente a compresión.</p>
+                </div>
+            </div>
+            <h3>Ejercitario</h3>
+            <ol>
+                <li>Calcula la tensión de una barra con `12 000 N` y `200 mm²`.</li>
+                <li>Explica por qué una columna trabaja a compresión.</li>
+                <li>¿Qué ocurre si se supera el límite elástico?</li>
+                <li>Compara el comportamiento del acero y la madera frente a tracción.</li>
+            </ol>
+        </section>
+
+        <section class="sheet">
+            <h2>Ficha 5 - Cortante y Momento Flector</h2>
+            <p><strong>Capacidad:</strong> Identifica esfuerzo cortante y momento flector en piezas de plano medio. Representa leyes de esfuerzos en vigas simples.</p>
+            <p><strong>Propósito:</strong> Reconocer esfuerzos internos y representar diagramas básicos en vigas simples.</p>
+            <div class="grid">
+                <div>
+                    <h3>Desarrollo conceptual</h3>
+                    <p>Cuando una viga está cargada aparecen esfuerzos internos. El <strong>cortante</strong> se asocia al deslizamiento entre secciones y el <strong>momento flector</strong> a la curvatura del elemento.</p>
+                    <h3>Lectura guiada</h3>
+                    <p>Cuando una viga soporta cargas, en su interior no aparece un solo tipo de respuesta. El cortante intenta que una parte de la sección se deslice respecto de la otra. El momento flector provoca curvatura y hace que la pieza se doble.</p>
+                    <p>Si la viga muestra un descenso en el centro, se está manifestando el efecto del momento flector. Si aparecen fisuras inclinadas cerca de los apoyos, puede haber problemas asociados al cortante.</p>
+                    <h3>Definiciones clave</h3>
+                    <ul>
+                        <li><strong>Cortante:</strong> esfuerzo interno que tiende a cortar una sección.</li>
+                        <li><strong>Momento flector:</strong> esfuerzo que curva la viga.</li>
+                        <li><strong>Esfuerzo interno:</strong> reacción resistente dentro del material.</li>
+                    </ul>
+                    <h3>Comparación técnica</h3>
+                    <table>
+                        <tr><th>Cortante</th><th>Momento flector</th></tr>
+                        <tr><td>Tiende a cortar</td><td>Tiende a curvar</td></tr>
+                        <tr><td>Se analiza por secciones</td><td>Se asocia a la flexión</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h3>Gráfico</h3>
+                    <img class="graph" src="graficos_material_alumno/07_cortante_momento.svg" alt="Cortante y momento flector">
+                    <p><strong>Explicación del gráfico:</strong> la viga recibe una carga `P`. En una sección interna aparecen el cortante `V`, que intenta deslizar, y el momento `M`, que produce curvatura. La zona central suele ser importante para el momento flector.</p>
+                    <p><strong>Ejemplo aplicado:</strong> en una viga de techo cargada con tejas o chapas, el cortante suele ser significativo cerca de los apoyos y el momento flector en el tramo central.</p>
+                </div>
+            </div>
+            <h3>Ejercitario</h3>
+            <ol>
+                <li>Define cortante.</li>
+                <li>Define momento flector.</li>
+                <li>¿Dónde se espera mayor flexión en una viga con carga central?</li>
+                <li>Explica por qué estos esfuerzos importan en obra.</li>
+            </ol>
+        </section>
+
+        <section class="sheet">
+            <h2>Ficha 6 - Flexión y Propiedades Geométricas de Secciones</h2>
+            <p><strong>Capacidad:</strong> Analiza el comportamiento de un elemento estructural sujeto a flexión. Calcula propiedades básicas de secciones y reconoce fibras comprimidas y traccionadas.</p>
+            <p><strong>Propósito:</strong> Interpretar la flexión de una viga y comprender la importancia del eje neutro y de la forma de la sección.</p>
+            <div class="grid">
+                <div>
+                    <h3>Desarrollo conceptual</h3>
+                    <p>Cuando una viga se flexiona, unas fibras se traccionan y otras se comprimen. Entre ambas se encuentra el <strong>eje neutro</strong>, donde el esfuerzo es aproximadamente cero.</p>
+                    <h3>Definiciones clave</h3>
+                    <ul>
+                        <li><strong>Flexión:</strong> deformación curvada de una pieza.</li>
+                        <li><strong>Eje neutro:</strong> zona donde el esfuerzo por flexión es nulo.</li>
+                        <li><strong>Fibra extrema:</strong> parte más alejada del eje neutro.</li>
+                        <li><strong>Momento de inercia:</strong> propiedad geométrica ligada a la resistencia a flexión.</li>
+                    </ul>
+                    <h3>Comparación técnica</h3>
+                    <table>
+                        <tr><th>Zona traccionada</th><th>Zona comprimida</th></tr>
+                        <tr><td>Se alarga</td><td>Se acorta</td></tr>
+                        <tr><td>Aparece en una cara</td><td>Aparece en la cara opuesta</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <img class="graph" src="graficos_material_alumno/03_distribucion_esfuerzos_flexion.svg" alt="Distribución de esfuerzos">
+                    <p><strong>Gráfico 1:</strong> el esfuerzo es cero en el eje neutro y aumenta hacia las fibras extremas.</p>
+                    <img class="graph" src="graficos_material_alumno/04_deflexion_viga.svg" alt="Deflexión de viga">
+                    <p><strong>Gráfico 2:</strong> la curva elástica representa la deformación de la viga.</p>
+                </div>
+            </div>
+            <h3>Ejercitario</h3>
+            <ol>
+                <li>Define eje neutro.</li>
+                <li>Explica por qué las fibras extremas reciben mayor esfuerzo.</li>
+                <li>Dibuja una sección rectangular y marca tracción, compresión y eje neutro.</li>
+                <li>Explica cómo influye la forma de la sección en la resistencia.</li>
+            </ol>
+        </section>
+
+        <section class="sheet">
+            <h2>Ficha 7 - Materiales Estructurales, Muros y Cerchas</h2>
+            <p><strong>Capacidad:</strong> Determina propiedades mecánicas básicas de madera, acero y hormigón. Clasifica pilares, columnas, muros, cerchas, andamios y encofrados según su función resistente.</p>
+            <p><strong>Propósito:</strong> Relacionar las propiedades de los materiales estructurales con su uso en diferentes elementos resistentes.</p>
+            <div class="grid">
+                <div>
+                    <h3>Desarrollo conceptual</h3>
+                    <p>Cada material responde mejor a determinadas solicitaciones. La selección correcta mejora la seguridad, la economía y la durabilidad de la obra.</p>
+                    <h3>Lectura guiada</h3>
+                    <p>La madera es liviana y muy útil en estructuras temporales, cubiertas y encofrados. El acero posee gran resistencia, especialmente frente a tracción. El hormigón trabaja muy bien a compresión y se emplea en columnas, vigas, losas y fundaciones.</p>
+                    <p>Una cercha necesita piezas capaces de trabajar con tracción y compresión en forma combinada. Una columna esbelta puede fallar por pandeo si su relación altura-sección es desfavorable.</p>
+                    <h3>Definiciones clave</h3>
+                    <ul>
+                        <li><strong>Madera:</strong> material liviano, útil en compresión y flexión moderada.</li>
+                        <li><strong>Acero:</strong> material muy resistente, especialmente a tracción.</li>
+                        <li><strong>Hormigón:</strong> material resistente a compresión.</li>
+                        <li><strong>Cercha:</strong> estructura triangulada para cubiertas.</li>
+                    </ul>
+                    <h3>Comparación técnica</h3>
+                    <table>
+                        <tr><th>Material</th><th>Uso frecuente</th></tr>
+                        <tr><td>Madera</td><td>Encofrados, cubiertas, estructuras livianas</td></tr>
+                        <tr><td>Acero</td><td>Barras, perfiles, armaduras</td></tr>
+                        <tr><td>Hormigón</td><td>Columnas, vigas, losas, fundaciones</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h3>Gráfico</h3>
+                    <img class="graph" src="graficos_material_alumno/08_materiales_estructurales.svg" alt="Materiales estructurales">
+                    <p><strong>Explicación del gráfico:</strong> el esquema compara madera, acero y hormigón con propiedades generales y usos frecuentes. También aparece una cercha simple como ejemplo de estructura triangulada.</p>
+                    <p><strong>Ejemplo aplicado:</strong> una estructura liviana de techo puede resolverse con madera o acero. Una columna de varios niveles suele requerir hormigón armado o acero estructural.</p>
+                </div>
+            </div>
+            <h3>Ejercitario</h3>
+            <ol>
+                <li>Completa un cuadro comparativo entre madera, acero y hormigón.</li>
+                <li>¿Qué material resiste mejor tracción?</li>
+                <li>¿Qué riesgo presenta una columna muy esbelta?</li>
+                <li>¿Qué función cumple una cercha?</li>
+            </ol>
+        </section>
+
+        <section class="sheet">
+            <h2>Ficha 8 - Hormigón Armado y Control Técnico</h2>
+            <p><strong>Capacidad:</strong> Reconoce el comportamiento conjunto acero-hormigón. Distingue solicitaciones y puntos críticos de control en elementos de hormigón armado de baja complejidad.</p>
+            <p><strong>Propósito:</strong> Comprender el trabajo conjunto del acero y del hormigón en elementos estructurales básicos.</p>
+            <div class="grid">
+                <div>
+                    <h3>Desarrollo conceptual</h3>
+                    <p>El hormigón resiste bien la compresión y el acero resiste bien la tracción. Por eso el hormigón armado combina ambos materiales.</p>
+                    <h3>Lectura guiada</h3>
+                    <p>El hormigón armado une dos materiales complementarios. El hormigón soporta muy bien la compresión, mientras que el acero se encarga de resistir las tracciones que aparecen en vigas, losas y otros elementos.</p>
+                    <p>Dentro de una viga de hormigón armado se colocan barras longitudinales en la zona donde se espera tracción y estribos para colaborar con el cortante y mantener la armadura en posición. El recubrimiento protege el acero contra la humedad y la corrosión.</p>
+                    <h3>Definiciones clave</h3>
+                    <ul>
+                        <li><strong>Hormigón armado:</strong> combinación de hormigón y acero.</li>
+                        <li><strong>Armadura longitudinal:</strong> barras principales.</li>
+                        <li><strong>Estribo:</strong> barra transversal de sujeción.</li>
+                        <li><strong>Recubrimiento:</strong> espesor de hormigón que protege el acero.</li>
+                    </ul>
+                    <h3>Comparación técnica</h3>
+                    <table>
+                        <tr><th>Hormigón</th><th>Acero</th></tr>
+                        <tr><td>Resiste compresión</td><td>Resiste tracción</td></tr>
+                        <tr><td>Protege y envuelve</td><td>Refuerza zonas críticas</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h3>Gráfico</h3>
+                    <img class="graph" src="graficos_material_alumno/09_hormigon_armado.svg" alt="Hormigón armado">
+                    <p><strong>Explicación del gráfico:</strong> la figura muestra una sección simple de viga. Las barras inferiores representan la armadura longitudinal. La línea superior representa los estribos. Todo queda envuelto por el hormigón.</p>
+                    <p><strong>Ejemplo aplicado:</strong> en una viga de entrepiso, el hormigón resiste gran parte de la compresión mientras el acero de la zona inferior ayuda a soportar la tracción por flexión.</p>
+                </div>
+            </div>
+            <h3>Ejercitario</h3>
+            <ol>
+                <li>Define hormigón armado.</li>
+                <li>Explica por qué el acero se ubica en zonas traccionadas.</li>
+                <li>Menciona tres controles antes del hormigonado.</li>
+                <li>Dibuja una viga con armaduras.</li>
+            </ol>
+        </section>
+
+        <section class="sheet">
+            <h2>Ficha 9 - Integración y Memoria de Cálculo</h2>
+            <p><strong>Capacidad:</strong> Integra conocimientos de cargas, equilibrio, esfuerzos y materiales para verificar una estructura simple y comunicar resultados técnicos.</p>
+            <p><strong>Propósito:</strong> Integrar contenidos del año mediante una producción técnica ordenada.</p>
+            <div class="grid">
+                <div>
+                    <h3>Desarrollo conceptual</h3>
+                    <p>La memoria de cálculo permite registrar datos, fórmulas, operaciones y conclusiones de manera clara y verificable.</p>
+                    <h3>Lectura guiada</h3>
+                    <p>En la práctica técnica no alcanza con obtener un resultado numérico. Es necesario mostrar cómo se llegó a ese valor. Para eso se elabora una memoria de cálculo, que ordena el trabajo en una secuencia comprensible.</p>
+                    <p>Una memoria breve puede incluir: croquis del problema, datos conocidos, fórmulas utilizadas, reemplazo numérico, resultado y conclusión técnica. Este orden facilita la revisión del procedimiento y permite detectar errores.</p>
+                    <h3>Definiciones clave</h3>
+                    <ul>
+                        <li><strong>Croquis:</strong> dibujo técnico simplificado.</li>
+                        <li><strong>Memoria de cálculo:</strong> registro ordenado del procedimiento.</li>
+                        <li><strong>Conclusión técnica:</strong> interpretación del resultado.</li>
+                    </ul>
+                    <h3>Comparación técnica</h3>
+                    <table>
+                        <tr><th>Ejercicio suelto</th><th>Memoria de cálculo</th></tr>
+                        <tr><td>Puede quedar incompleto</td><td>Exige orden y justificación</td></tr>
+                        <tr><td>Resuelve una parte</td><td>Explica el proceso completo</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h3>Gráfico</h3>
+                    <img class="graph" src="graficos_material_alumno/10_memoria_calculo.svg" alt="Secuencia de memoria de cálculo">
+                    <p><strong>Explicación del gráfico:</strong> la memoria de cálculo se organiza en cinco pasos: croquis, datos, fórmulas, cálculo y conclusión. El resultado final debe estar acompañado del procedimiento.</p>
+                    <p><strong>Ejemplo aplicado:</strong> si se analiza una viga simplemente apoyada, primero se dibuja el croquis, luego se anotan la luz y la carga, después se aplica la fórmula y finalmente se interpreta el resultado.</p>
+                </div>
+            </div>
+            <h3>Ejercitario integrador</h3>
+            <ol>
+                <li>Dibuja una viga simplemente apoyada con carga puntual.</li>
+                <li>Indica cargas, reacciones y esfuerzo principal esperado.</li>
+                <li>Elige un material para una columna baja y justifica.</li>
+                <li>Presenta una memoria breve con datos, fórmula, resultado y conclusión.</li>
+            </ol>
+        </section>
+    </div>
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>

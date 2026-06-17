@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="420" viewBox="0 0 860 420">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="430" y="34" text-anchor="middle" font-family="Segoe UI, Arial" font-size="24" fill="#0f4c81">Tracción y Compresión</text>
+  <rect x="150" y="140" width="180" height="70" fill="#dbeafe" stroke="#1d4ed8" stroke-width="3"/>
+  <line x1="110" y1="175" x2="150" y2="175" stroke="#dc2626" stroke-width="6"/>
+  <polygon points="110,175 132,163 132,187" fill="#dc2626"/>
+  <line x1="330" y1="175" x2="370" y2="175" stroke="#dc2626" stroke-width="6"/>
+  <polygon points="370,175 348,163 348,187" fill="#dc2626"/>
+  <text x="170" y="122" font-family="Segoe UI, Arial" font-size="20" fill="#1d4ed8">Tracción</text>
+  <text x="150" y="240" font-family="Segoe UI, Arial" font-size="17" fill="#374151">Las fuerzas tiran del elemento y lo alargan.</text>
+  <rect x="520" y="140" width="180" height="70" fill="#fee2e2" stroke="#b91c1c" stroke-width="3"/>
+  <line x1="480" y1="175" x2="520" y2="175" stroke="#ea580c" stroke-width="6"/>
+  <polygon points="520,175 500,163 500,187" fill="#ea580c"/>
+  <line x1="700" y1="175" x2="740" y2="175" stroke="#ea580c" stroke-width="6"/>
+  <polygon points="700,175 720,163 720,187" fill="#ea580c"/>
+  <text x="527" y="122" font-family="Segoe UI, Arial" font-size="20" fill="#b91c1c">Compresión</text>
+  <text x="497" y="240" font-family="Segoe UI, Arial" font-size="17" fill="#374151">Las fuerzas empujan al elemento y lo acortan.</text>
+  <text x="195" y="305" font-family="Segoe UI, Arial" font-size="18" fill="#111827">σ = P / A</text>
+  <text x="540" y="305" font-family="Segoe UI, Arial" font-size="18" fill="#111827">Ley de Hooke: deformación proporcional dentro del límite elástico</text>
+</svg>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase: Consumo Responsable</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background-color: #f4f7f4; }
+        header { background: #fff; color: #2e7d32; border: 4px double #2e7d32; padding: 20px; border-radius: 8px; text-align: center; margin-bottom: 20px; }
+        h1 { color: #2e7d32; text-transform: uppercase; margin: 0; }
+        h2 { color: #2e7d32; border-bottom: 2px solid #a5d6a7; padding-bottom: 10px; }
+        section { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; background: #e8f5e9; padding: 15px; border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f1f8e9; }
+        .timeline { border-left: 4px solid #81c784; padding-left: 20px; margin-left: 10px; }
+        .time-block { margin-bottom: 25px; }
+        .time-badge { background: #2e7d32; color: white; padding: 2px 10px; border-radius: 4px; font-weight: bold; font-size: 0.9em; }
+        .plastic-card { background: #e3f2fd; border: 2px solid #1565c0; border-radius: 8px; padding: 15px; margin: 10px 0; }
+        .alternative-card { background: #e8f5e9; border: 2px solid #2e7d32; border-radius: 8px; padding: 15px; margin: 10px 0; }
+        .btn-container { margin-top: 20px; text-align: center; }
+        button { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 0 5px; }
+        .btn-print { background: #2e7d32; color: white; }
+        .btn-bw { background: #555; color: white; }
+        body.bw-mode { background: white !important; color: black !important; }
+        .bw-mode header, .bw-mode section { background: white !important; border-color: black !important; color: black !important; box-shadow: none !important; }
+        .bw-mode h1, .bw-mode h2 { color: black !important; }
+        .bw-mode h2 { border-bottom-color: black !important; }
+        .bw-mode .info-grid { background: #f0f0f0 !important; border: 1px solid black !important; }
+        .bw-mode table, .bw-mode th, .bw-mode td { border-color: black !important; background: white !important; color: black !important; }
+        .bw-mode th { background: #e0e0e0 !important; }
+        .bw-mode .plastic-card { background: #f5f5f5 !important; border-color: black !important; }
+        .bw-mode .alternative-card { background: #f5f5f5 !important; border-color: black !important; }
+        .bw-mode .time-badge { background: black !important; }
+        @media print { .btn-container { display: none; } body { padding: 0; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="font-weight: bold;">MINISTERIO DE EDUCACIÓN Y CIENCIAS</div>
+    <div style="font-weight: bold; margin-bottom: 5px;">COLEGIO NACIONAL "DON JORGE GAYOSO"</div>
+    <h1 style="margin: 0;">Educación Ambiental: Consumo Responsable</h1>
+    <p style="margin: 0;">Clasificación de plásticos y alternativas viables para el centro educativo</p>
+</header>
+
+<section>
+    <h2>Datos Generales</h2>
+    <div class="info-grid">
+        <div><strong>Nivel:</strong> 2.º Curso Educación Media</div>
+        <div><strong>Duración:</strong> 80 minutos</div>
+        <div><strong>Área:</strong> Educación Ambiental</div>
+        <div><strong>Año Lectivo:</strong> 2026</div>
+    </div>
+    <p><strong>Propósito:</strong> Que los estudiantes clasifiquen los diferentes tipos de plásticos según su reciclabilidad y propongan alternativas viables para reducir el consumo de plásticos de un solo uso en el centro educativo.</p>
+</section>
+
+<section>
+    <h2>Objetivos de Aprendizaje</h2>
+    <ul>
+        <li>Identificar los tipos de plásticos según su código de identificación (PET, HDPE, PVC, etc.).</li>
+        <li>Clasificar los residuos plásticos generados en el hogar y la escuela.</li>
+        <li>Proponer alternativas sostenibles al uso de plásticos de un solo uso.</li>
+        <li>Diseñar una campaña visual (póster) que promueva el consumo responsable en la institución.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Desarrollo de la Clase</h2>
+    <div class="timeline">
+        <div class="time-block">
+            <span class="time-badge">15 min</span>
+            <h3>Inicio: ¿Cuánto plástico consumimos?</h3>
+            <p>Dinámica: los estudiantes observan los objetos plásticos que tienen en su mochila/escritorio y los enumeran.</p>
+            <p>El docente presenta datos: se producen más de 400 millones de toneladas de plástico al año en el mundo; solo el 9% se recicla.</p>
+        </div>
+        <div class="time-block">
+            <span class="time-badge">25 min</span>
+            <h3>Desarrollo: Clasificación de Plásticos</h3>
+            <div class="plastic-card">
+                <h3 style="margin-top: 0;">Códigos de Identificación de Plásticos</h3>
+                <table>
+                    <tr><th>Código</th><th>Tipo</th><th>Usos comunes</th><th>¿Reciclable?</th></tr>
+                    <tr><td>1 - PET</td><td>Tereftalato de polietileno</td><td>Botellas de agua, gaseosas</td><td>Sí</td></tr>
+                    <tr><td>2 - HDPE</td><td>Polietileno de alta densidad</td><td>Envases de shampoo, detergente</td><td>Sí</td></tr>
+                    <tr><td>3 - PVC</td><td>Cloruro de polivinilo</td><td>Tuberías, juguetes</td><td>Difícil</td></tr>
+                    <tr><td>4 - LDPE</td><td>Polietileno de baja densidad</td><td>Bolsas, film transparente</td><td>Difícil</td></tr>
+                    <tr><td>5 - PP</td><td>Polipropileno</td><td>Tapitas, sorbetes, tuppers</td><td>Sí</td></tr>
+                    <tr><td>6 - PS</td><td>Poliestireno</td><td>Vasos descartables, telgopor</td><td>Difícil</td></tr>
+                    <tr><td>7 - OTROS</td><td>Mezclas o acrílico</td><td>Electrodomésticos, CD</td><td>No</td></tr>
+                </table>
+            </div>
+            <p><strong>Actividad Individual:</strong> Los estudiantes registran en una tabla los plásticos que encontraron en su entorno, clasificándolos por código.</p>
+        </div>
+        <div class="time-block">
+            <span class="time-badge">25 min</span>
+            <h3>Aplicación: Alternativas y Campaña</h3>
+            <div class="alternative-card">
+                <h3 style="margin-top: 0;">Alternativas al Plástico de un Solo Uso</h3>
+                <ul>
+                    <li>Botella reutilizable de acero o vidrio (reemplaza PET).</li>
+                    <li>Bolsa de tela o carrito (reemplaza LDPE).</li>
+                    <li>Envases de vidrio para almacenar alimentos (reemplaza PP/PS).</li>
+                    <li>Sorbetes de metal, bambú o pasta (reemplaza PP).</li>
+                    <li>Compra a granel con envases propios.</li>
+                </ul>
+            </div>
+            <p><strong>Actividad Grupal:</strong> Cada equipo diseña un póster/conceptualización de campaña anti-plástico para el colegio, incluyendo:</p>
+            <ul>
+                <li>Un eslogan llamativo.</li>
+                <li>3 datos impactantes sobre plásticos.</li>
+                <li>3 alternativas viables para implementar en la institución.</li>
+                <li>Un diseño visual atractivo.</li>
+            </ul>
+        </div>
+        <div class="time-block">
+            <span class="time-badge">15 min</span>
+            <h3>Cierre: Presentación de Campañas</h3>
+            <p>Cada grupo comparte su propuesta de póster/campaña. Se selecciona la mejor para imprimir y colocar en la cartelera institucional.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Evaluación y Seguimiento</h2>
+    <p><strong>Indicadores de Logro:</strong></p>
+    <ul>
+        <li>Clasifica correctamente los plásticos según su código de identificación.</li>
+        <li>Propone alternativas viables y fundamentadas al plástico de un solo uso.</li>
+        <li>Diseña una campaña visual clara y persuasiva.</li>
+    </ul>
+    <p><strong>Instrumentos:</strong> Rúbrica para el póster/campaña y lista de verificación de clasificación.</p>
+    <p><strong>Evidencia Mínima:</strong> Campaña/Póster anti-plástico.</p>
+</section>
+
+<section style="border-left: 5px solid #2e7d32;">
+    <h2>Material de Planificación</h2>
+    <p><strong>Capacidad:</strong> Clasifica plásticos y propone alternativas viables para el centro educativo.</p>
+    <p><strong>Evidencia:</strong> Campaña/Póster anti-plástico.</p>
+</section>
+
+<div class="btn-container">
+    <button class="btn-print" onclick="window.print()">Imprimir</button>
+    <button class="btn-bw" onclick="toggleBW()">Modo Blanco y Negro</button>
+</div>
+
+<script>
+    function toggleBW() { document.body.classList.toggle('bw-mode'); }
+</script>
+</body>
+</html>

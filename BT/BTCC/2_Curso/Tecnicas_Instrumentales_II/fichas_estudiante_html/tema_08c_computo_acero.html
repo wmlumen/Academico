@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clase 3</title>
+<link rel="stylesheet" href="fichas.css">
+
+<link rel="stylesheet" href="../../../nav/nav.css">
+
+<script src="../../../nav/runtime.js"></script>
+</head>
+<body>
+<nav class="topnav" aria-label="Navegacion principal"><a href="../../../index.html">Inicio</a><a href="../tecnicas_instrumentales_ii.html">Plan anual</a><a href="index_fichas_estudiante.html">Fichas</a></nav>
+<section class="sheet">
+<h1>Clase 3 — Cómputo de Acero de Refuerzo</h1>
+<div>
+<span class="badge">Unidad: Cómputo HA</span>
+<span class="badge">Clase 3 de 4</span>
+<span class="badge">Duración: 4 h</span>
+<span class="badge">2.do Curso BTCC</span>
+</div>
+<p><strong>Capacidad:</strong> Determina volumen de hormigón, acero y encofrados.</p>
+<p><strong>Propósito de la clase:</strong> Aprender a calcular la cantidad de acero de refuerzo en kg a partir de planillas de doblado y tablas de pesos.</p>
+
+<h2>Cómputo de acero</h2>
+<p>El acero se calcula en kg. Se mide la longitud de cada barra, se multiplica por el peso por metro lineal (según el diámetro) y se suman todas las barras.</p>
+
+<h2>Pesos de barras de acero (kg/m)</h2>
+<table>
+<tr><th>Diámetro (mm)</th><th>Peso (kg/m)</th><th>Uso típico</th></tr>
+<tr><td>6 mm</td><td>0,222</td><td>Estribos</td></tr>
+<tr><td>8 mm</td><td>0,395</td><td>Estribos, armadura secundaria</td></tr>
+<tr><td>10 mm</td><td>0,617</td><td>Armadura principal liviana</td></tr>
+<tr><td>12 mm</td><td>0,888</td><td>Armadura principal</td></tr>
+<tr><td>16 mm</td><td>1,578</td><td>Armadura principal pesada</td></tr>
+</table>
+
+<h2>Ejemplo: Columna con 4 barras de 12 mm y estribos de 6 mm c/20 cm</h2>
+<table>
+<tr><th style="width:45%">Elemento</th><th>Cálculo</th><th>Peso</th></tr>
+<tr><td>4 barras de 12 mm × 3 m</td><td>4 × 3 × 0,888</td><td>10,66 kg</td></tr>
+<tr><td>Estribos de 6 mm (15 u × 0,8 m c/u)</td><td>15 × 0,8 × 0,222</td><td>2,66 kg</td></tr>
+<tr><td><strong>Total acero columna</strong></td><td></td><td><strong>13,32 kg</strong></td></tr>
+</table>
+
+<div class="callout">
+<strong>Tip técnico:</strong> Siempre se agrega un 5 % de desperdicio por recortes y ganchos de anclaje.
+</div>
+
+<div class="ej">
+<h3>Ejercicio individual</h3>
+<ol>
+<li>¿Cuánto pesa una barra de 12 mm de 6 m de largo?</li>
+<li>Una viga tiene 6 barras de 16 mm de 4 m y estribos de 8 mm c/15 cm (cada estribo mide 1,2 m). Calculá el peso total del acero.</li>
+<li>Agregá 5 % de desperdicio al resultado anterior.</li>
+</ol>
+</div>
+
+<h2>Fuentes bibliográficas</h2>
+<ul>
+<li>Kanawaty, G. (1996). <em>Introducción al estudio del trabajo</em> (4ª ed.). Organización Internacional del Trabajo.</li>
+</ul>
+<div class="firma"><div><span class="linea">&nbsp;</span><strong>Estudiante</strong></div><div><span class="linea">&nbsp;<strong>Docente</strong></div></div>
+<nav class="pager" aria-label="Navegacion entre clases"><a href="tema_08b_volumen_encofrado.html">Clase 2</a><a href="tema_08d_ejercicios_ha.html">Clase 4</a></nav>
+</section>
+
+<script src="../../../nav/nav.js"></script>
+</body>
+</html>

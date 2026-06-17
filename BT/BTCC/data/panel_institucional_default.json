@@ -1,0 +1,120 @@
+{
+  "docentes": [
+    {
+      "id": "d1",
+      "nombre": "Christhian Keim",
+      "cedula": "1340130",
+      "especialidad": "Ingeniería Civil",
+      "institucion": "Colegio Nacional Defensores del Chaco",
+      "email": "",
+      "telefono": ""
+    }
+  ],
+  "asignaturas": [
+    {
+      "id": "tecnicas",
+      "nombre": "Técnicas Instrumentales II",
+      "curso": "2.do Curso",
+      "docenteId": "d1",
+      "color": "#2e7d32",
+      "horario": [
+        {
+          "dia": "Lunes",
+          "inicio": "13:00",
+          "fin": "15:10"
+        },
+        {
+          "dia": "Miércoles",
+          "inicio": "13:00",
+          "fin": "15:10"
+        }
+      ]
+    },
+    {
+      "id": "resistencia",
+      "nombre": "Resistencia de Materiales",
+      "curso": "2.do Curso",
+      "docenteId": "d1",
+      "color": "#1565c0",
+      "horario": [
+        {
+          "dia": "Martes",
+          "inicio": "15:10",
+          "fin": "17:20"
+        },
+        {
+          "dia": "Jueves",
+          "inicio": "15:10",
+          "fin": "17:20"
+        }
+      ]
+    }
+  ],
+  "eventosCalendario": [
+    {
+      "fecha": "2026-02-20",
+      "tipo": "feriado",
+      "desc": "Inicio de clases — 1.er día"
+    },
+    {
+      "fecha": "2026-03-01",
+      "tipo": "feriado",
+      "desc": "Día de los Héroes"
+    },
+    {
+      "fecha": "2026-04-17",
+      "tipo": "feriado",
+      "desc": "Jueves Santo"
+    },
+    {
+      "fecha": "2026-04-18",
+      "tipo": "feriado",
+      "desc": "Viernes Santo"
+    },
+    {
+      "fecha": "2026-05-01",
+      "tipo": "feriado",
+      "desc": "Día del Trabajador"
+    },
+    {
+      "fecha": "2026-05-14",
+      "tipo": "feriado",
+      "desc": "Día de la Independencia Nacional"
+    },
+    {
+      "fecha": "2026-05-15",
+      "tipo": "feriado",
+      "desc": "Día de la Independencia Nacional (asuetos)"
+    },
+    {
+      "fecha": "2026-06-12",
+      "tipo": "feriado",
+      "desc": "Día de la Paz del Chaco"
+    },
+    {
+      "fecha": "2026-06-15",
+      "tipo": "evento",
+      "desc": "Inicio receso invernal (15-26 Jun)"
+    },
+    {
+      "fecha": "2026-06-29",
+      "tipo": "evento",
+      "desc": "Fin receso invernal"
+    },
+    {
+      "fecha": "2026-08-15",
+      "tipo": "feriado",
+      "desc": "Día de la Fundación de Asunción"
+    },
+    {
+      "fecha": "2026-09-29",
+      "tipo": "feriado",
+      "desc": "Día de la Victoria de Boquerón"
+    },
+    {
+      "fecha": "2026-11-27",
+      "tipo": "evento",
+      "desc": "Último día de clases"
+    }
+  ]
+}

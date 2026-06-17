@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planilla de Calificaciones — Técnicas Instrumentales II</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,sans-serif;background:#f5f7fb;color:#172133;padding:18px}
+.sheet{max-width:1600px;margin:0 auto;background:#fff;border:1px solid #d8e0ea;padding:16px 18px;overflow-x:auto}
+.header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid #0f4c81}
+.header h1{margin:0;font-size:20px;color:#0f4c81}
+.header .info{font-size:13px;color:#4d6177}
+.leyenda{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;font-size:12px;color:#4d6177}
+.leyenda span{background:#f0f4fa;padding:4px 10px;border-radius:6px;border:1px solid #d8e3ef}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:11.5px}
+th{background:#0f4c81;color:#fff;text-align:center;padding:6px 4px;border:1px solid #1a5f9a;font-weight:600;vertical-align:middle}
+td{border:1px solid #c8d9ea;padding:5px 4px;vertical-align:middle}
+.student-name{text-align:left;min-width:180px;font-weight:600;font-size:11px}
+.student-num{text-align:center;width:28px;font-weight:600;color:#4d6177}
+.doc-num{text-align:center;font-size:10px;color:#4d6177;min-width:70px}
+.grade-cell{text-align:center;min-width:48px}
+.grade-cell input{width:42px;border:1px solid #b6c6da;border-radius:4px;padding:3px 2px;text-align:center;font-size:11px;font-weight:600;background:#fff}
+.grade-cell input:focus{outline:2px solid #0f4c81;border-color:#0f4c81}
+.subtotal{background:#e8f5e9;font-weight:700;text-align:center}
+.subtotal input{background:#e8f5e9}
+.total{background:#c8e6c9;font-weight:700;text-align:center;min-width:55px}
+.total input{background:#c8e6c9;font-weight:700;width:50px}
+.semestre-head{background:#1a5f9a;color:#fff;font-size:10px;text-transform:uppercase;letter-spacing:0.5px}
+.tema-label{background:#e8f1fb;font-size:10px;font-weight:700;color:#0f4c81;text-align:center;padding:4px}
+.obs-cell{min-width:100px;font-size:10px}
+.obs-cell input{width:90px;border:1px solid #d8e0ea;border-radius:4px;padding:2px 4px;font-size:10px;border-style:dashed}
+.firma-section{display:flex;justify-content:space-between;margin-top:18px;padding-top:12px;border-top:1px solid #d8e0ea;font-size:13px}
+.firma-section div{text-align:center;width:40%}
+.firma-section .linea{border-bottom:1px solid #172133;display:block;margin-bottom:4px;padding-bottom:4px;height:30px}
+.footer-note{margin-top:12px;font-size:11px;color:#5a687c;text-align:center}
+
+/* PRINT */
+@media print{body{background:#fff;padding:0}.sheet{border:none;padding:12px}th{background:#0f4c81!important;color:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.semestre-head{background:#1a5f9a!important}.subtotal{background:#e8f5e9!important}.total{background:#c8e6c9!important}.tema-label{background:#e8f1fb!important}}
+@media(max-width:800px){.header{flex-direction:column;align-items:flex-start}}
+</style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+
+<script src="../../nav/runtime.js"></script>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <h1>📊 Planilla de Calificaciones</h1>
+      <div class="info">Técnicas Instrumentales II · 2.do Curso BTCC · Año 2026</div>
+    </div>
+    <div class="info" style="text-align:right">
+      <strong>Docente:</strong> Christhian Keim<br>
+      <strong>Institución:</strong> Colegio Nacional Defensores del Chaco
+    </div>
+  </div>
+
+  <!-- LEYENDA -->
+  <div class="leyenda">
+    <span>📝 Escala: 1 – 100 puntos</span>
+    <span>✅ Mínimo para aprobar: 70</span>
+    <span>📅 1.er Semestre: Temas 1–5</span>
+    <span>📅 2.do Semestre: Temas 6–9</span>
+    <span>📌 Las celdas en blanco son editables</span>
+  </div>
+
+  <!-- TABLE -->
+  <table>
+    <thead>
+      <!-- COLABEL: SEMESTRES -->
+      <tr>
+        <th colspan="3" style="background:#0f4c81">Estudiante</th>
+        <th colspan="6" class="semestre-head">1.er Semestre (Mar–Jul)</th>
+        <th colspan="5" class="semestre-head">2.do Semestre (Ago–Nov)</th>
+        <th colspan="2" style="background:#0f4c81">Final</th>
+        <th style="background:#0f4c81;min-width:60px">Recup.</th>
+        <th style="background:#0f4c81;min-width:80px">Observaciones</th>
+      </tr>
+      <!-- SUB LABELS -->
+      <tr>
+        <th style="width:28px">N°</th>
+        <th style="min-width:180px">Apellido y Nombre</th>
+        <th style="width:72px">Doc.</th>
+        <!-- 1er Semestre -->
+        <th class="tema-label">T1<br>Método</th>
+        <th class="tema-label">T2<br>Organiz.</th>
+        <th class="tema-label">T3<br>Tiempos</th>
+        <th class="tema-label">T4<br>Costo MO</th>
+        <th class="tema-label">T5<br>Ex. Parc.</th>
+        <th class="tema-label" style="background:#1a5f9a;color:#fff">Prom. S1</th>
+        <!-- 2do Semestre -->
+        <th class="tema-label">T6<br>Cómputo trab.</th>
+        <th class="tema-label">T7<br>Cómputo mat.</th>
+        <th class="tema-label">T8<br>Cómputo HA</th>
+        <th class="tema-label">T9<br>Integrac.</th>
+        <th class="tema-label" style="background:#1a5f9a;color:#fff">Prom. S2</th>
+        <!-- Final -->
+        <th class="tema-label" style="background:#2e7d32;color:#fff">Prom. Final</th>
+        <th class="tema-label" style="background:#2e7d32;color:#fff">%</th>
+        <th style="background:#fef3e0;text-align:center;font-size:10px">Recuperación</th>
+        <th style="font-size:10px">Observaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- STUDENT 1 -->
+      <tr>
+        <td class="student-num">1</td>
+        <td class="student-name">AGUERO CACERES, MARIA DEL ROSARIO</td>
+        <td class="doc-num">7201472</td>
+        <!-- S1 -->
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <!-- S2 -->
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <!-- FINAL -->
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 2 -->
+      <tr>
+        <td class="student-num">2</td>
+        <td class="student-name">ARECO ROMERO, LUISA VICTORIA</td>
+        <td class="doc-num">6755937</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 3 -->
+      <tr>
+        <td class="student-num">3</td>
+        <td class="student-name">AYALA PAEZ, MATIAS MILCIADES</td>
+        <td class="doc-num">7837334</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 4 -->
+      <tr>
+        <td class="student-num">4</td>
+        <td class="student-name">BENITEZ BENITEZ, MARIA JOSE</td>
+        <td class="doc-num">7813900</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 5 -->
+      <tr>
+        <td class="student-num">5</td>
+        <td class="student-name">CABRERA CONTRERA, TIARA GIULIANA</td>
+        <td class="doc-num">6850154</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 6 -->
+      <tr>
+        <td class="student-num">6</td>
+        <td class="student-name">CACERES CABALLERO, TIAGO ADAL</td>
+        <td class="doc-num">6849613</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 7 -->
+      <tr>
+        <td class="student-num">7</td>
+        <td class="student-name">CACERES MONTIEL, ANGELICA FIORELLA</td>
+        <td class="doc-num">6610515</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 8 -->
+      <tr>
+        <td class="student-num">8</td>
+        <td class="student-name">CONCHA TORRES, MARIA DE LOS ANGELES</td>
+        <td class="doc-num">7244821</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 9 -->
+      <tr>
+        <td class="student-num">9</td>
+        <td class="student-name">DAVALOS CABRAL, YONATHAN DANIEL</td>
+        <td class="doc-num">8167100</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 10 -->
+      <tr>
+        <td class="student-num">10</td>
+        <td class="student-name">DAVALOS GONZALEZ, ANTONELLA LUJAN</td>
+        <td class="doc-num">7362902</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 11 -->
+      <tr>
+        <td class="student-num">11</td>
+        <td class="student-name">DUARTE BRITOS, ANTONIO ANDRES</td>
+        <td class="doc-num">6372537</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 12 -->
+      <tr>
+        <td class="student-num">12</td>
+        <td class="student-name">GIMENEZ, GABRIEL</td>
+        <td class="doc-num">8363367</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 13 -->
+      <tr>
+        <td class="student-num">13</td>
+        <td class="student-name">INSFRAN LESMO, ANGEL TOBIAS</td>
+        <td class="doc-num">6610421</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 14 -->
+      <tr>
+        <td class="student-num">14</td>
+        <td class="student-name">MARTINEZ GONZALEZ, RICHART DANIEL</td>
+        <td class="doc-num">6767420</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 15 -->
+      <tr>
+        <td class="student-num">15</td>
+        <td class="student-name">ORTIZ RODRIGUEZ, ANGEL GUSTAVO</td>
+        <td class="doc-num">7644286</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 16 -->
+      <tr>
+        <td class="student-num">16</td>
+        <td class="student-name">RIVEROS PINHO, GISELLE ARAMI</td>
+        <td class="doc-num">6265765</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 17 -->
+      <tr>
+        <td class="student-num">17</td>
+        <td class="student-name">RODRIGUEZ ZALAZAR, ARACELI ARAMI</td>
+        <td class="doc-num">8297018</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 18 -->
+      <tr>
+        <td class="student-num">18</td>
+        <td class="student-name">RUIZ BENITEZ, DERLIS ELIEZER</td>
+        <td class="doc-num">7413899</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 19 -->
+      <tr>
+        <td class="student-num">19</td>
+        <td class="student-name">RUIZ DIAZ FERNANDEZ, ARACELI MONSERRATH</td>
+        <td class="doc-num">6904434</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+      <!-- STUDENT 20 -->
+      <tr>
+        <td class="student-num">20</td>
+        <td class="student-name">VILLALBA LOPEZ, VICTOR FABIAN</td>
+        <td class="doc-num">7416521</td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="subtotal"><input type="text" placeholder="Prom." style="background:#e8f5e9"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="grade-cell"><input type="text" placeholder="—"></td>
+        <td class="total"><input type="text" placeholder="Prom." style="background:#c8e6c9"></td>
+        <td class="total"><input type="text" placeholder="Final" style="background:#c8e6c9;font-weight:700"></td>
+        <td class="total"><input type="text" placeholder="%" style="background:#c8e6c9"></td>
+        <td class="grade-cell" style="background:#fef3e0"><input type="text" placeholder="—" style="background:#fef3e0"></td>
+        <td class="obs-cell"><input type="text" placeholder="" style="border-style:dashed"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- FIRMA -->
+  <div class="firma-section">
+    <div>
+      <span class="linea"></span>
+      <strong>Docente</strong><br>
+      <span style="font-size:12px;color:#5a687c">Christhian Keim</span>
+    </div>
+    <div>
+      <span class="linea"></span>
+      <strong>Coordinación / Dirección</strong>
+    </div>
+    <div>
+      <span class="linea"></span>
+      <strong>Fecha</strong>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Planilla de calificaciones — Técnicas Instrumentales II · 2.do Curso BTCC · Año 2026 · Escala 1–100 · Aprobación ≥ 70 pts
+  </div>
+
+</div>
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>

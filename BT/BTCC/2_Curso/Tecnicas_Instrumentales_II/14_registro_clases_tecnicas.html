@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro de Clases — Técnicas Instrumentales II</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,sans-serif;background:#f0f4fa;color:#172133}
+.wrap{max-width:1400px;margin:0 auto;padding:16px}
+
+.header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:16px 22px;border-radius:14px;margin-bottom:12px}
+.header h1{margin:0;font-size:20px}
+.header p{margin:4px 0 0;font-size:13px;opacity:.9}
+
+.controls{background:#fff;border:1px solid #d8e3ef;border-radius:12px;padding:10px 14px;margin-bottom:14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;box-shadow:0 2px 8px rgba(23,33,51,0.06)}
+.controls label{font-size:13px;font-weight:600;color:#2a405c}
+.controls select{padding:7px 10px;border:1px solid #b6c6da;border-radius:8px;font-size:13px;background:#fff}
+.controls .stats{margin-left:auto;display:flex;gap:12px;font-size:12px}
+.controls .stats span{padding:3px 10px;border-radius:6px;background:#f0f4fa}
+
+.mes-section{background:#fff;border:1px solid #d8e3ef;border-radius:12px;margin-bottom:16px;overflow:hidden;box-shadow:0 2px 8px rgba(23,33,51,0.04)}
+.mes-header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:9px 14px;font-size:15px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.mes-header .count{font-size:12px;opacity:.8;font-weight:400}
+
+.jornada{border-bottom:1px solid #e8ecf0}
+.jornada:last-child{border-bottom:none}
+.jornada .j-header{padding:8px 14px;background:#f5f9ff;font-weight:600;font-size:13px;color:#0f4c81;display:flex;justify-content:space-between;align-items:center}
+.jornada .j-body{display:grid;grid-template-columns:120px 1.2fr 2fr 1fr;gap:1px;background:#d8e0ea}
+.jornada .j-body > div{padding:8px 10px;background:#fff;display:flex;align-items:center;flex-wrap:wrap;gap:4px}
+.jornada .j-body .block-label{font-size:12px;font-weight:600;color:#4d6177;background:#fafcff;justify-content:center}
+.jornada .j-body .tema-input{width:100%;min-width:140px;padding:5px 8px;border:1px solid #d8e0ea;border-radius:5px;font-size:12px;background:#fff;transition:border .15s}
+.jornada .j-body .tema-input:focus{border-color:#0f4c81;outline:none;box-shadow:0 0 0 2px rgba(15,76,129,0.12)}
+.jornada .j-body .asis-wrap{display:flex;flex-wrap:wrap;gap:2px;max-height:60px;overflow-y:auto}
+.jornada .j-body .asis-wrap label{display:inline-flex;align-items:center;gap:2px;padding:2px 5px;font-size:10px;border-radius:3px;cursor:pointer;background:#f5f5f5;border:1px solid #ddd;transition:all .12s;white-space:nowrap}
+.jornada .j-body .asis-wrap label.asiste{background:#c8e6c9;border-color:#4caf50}
+.jornada .j-body .asis-wrap input{display:none}
+.jornada .j-body .asis-wrap input:checked+label{background:#c8e6c9;border-color:#2e7d32}
+.jornada .j-body .obs-input{width:100%;min-width:100px;padding:4px 8px;border:1px solid #d8e0ea;border-radius:4px;font-size:11px;background:#fff}
+.jornada .j-body .obs-input:focus{border-color:#0f4c81;outline:none}
+
+@media(max-width:900px){
+  .jornada .j-body{grid-template-columns:1fr;gap:2px}
+  .controls{flex-direction:column;align-items:stretch}
+  .controls .stats{margin-left:0}
+}
+@media print{.controls{display:none}.mes-section{break-inside:avoid}}
+</style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+
+<script src="../../nav/runtime.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>📋 Registro de Asistencia y Temas</h1>
+  <p>Técnicas Instrumentales II · Miércoles 13:00-15:10 / 15:10-17:20 · 2.do Curso BTCC</p>
+</div>
+
+<div class="controls">
+  <label>Filtrar mes:</label>
+  <select id="filterMonth" onchange="filtrarMes()">
+    <option value="all">Todos los meses</option>
+  </select>
+  <button class="btn-pri" onclick="if(confirm('¿Resetear todos los datos de asistencia?')){localStorage.removeItem('reg_clases_tecnicas');location.reload()}" style="padding:7px 14px;border:none;border-radius:8px;background:#ffcdd2;color:#b71c1c;font-size:12px;font-weight:600;cursor:pointer">🗑️ Limpiar datos</button>
+  <div class="stats">
+    <span>📅 <strong id="totalJornadas">0</strong> jornadas</span>
+    <span>✅ <strong id="totalAsist">0</strong> asistencias</span>
+  </div>
+</div>
+
+<div id="container"></div>
+
+</div>
+
+<!-- Cargar alumnos externos -->
+<script src="../../data/alumnos_tecnicas.js"></script>
+<script>
+// ===== CONFIG =====
+var SUBJECT_KEY = 'reg_clases_tecnicas';
+var FECHA_INICIO = new Date(2026, 1, 23); // Feb 23
+var FECHA_FIN = new Date(2026, 10, 30);   // Nov 30
+var BLOQUES = [
+  { id:'b1', label:'1.er Bloque (13:00-15:10)' },
+  { id:'b2', label:'2.do Bloque (15:10-17:20)' }
+];
+
+var ALL_DATES = []; // Array de {dateStr, dateObj, bloques: [{id, tema, asis:[], obs}]}
+var ANNOT = {};
+
+// ===== LOCALSTORAGE =====
+function cargarAnnot() {
+  try { var s = localStorage.getItem(SUBJECT_KEY); if(s) ANNOT = JSON.parse(s); } catch(e) { ANNOT = {}; }
+}
+function guardarAnnot() {
+  localStorage.setItem(SUBJECT_KEY, JSON.stringify(ANNOT));
+}
+
+// ===== GENERAR MIÉRCOLES =====
+function generarMiercoles() {
+  var dates = [];
+  var d = new Date(FECHA_INICIO);
+  // Avanzar al primer miércoles
+  while(d.getDay() !== 3) d.setDate(d.getDate() + 1);
+  // Generar todos los miércoles hasta FECHA_FIN
+  while(d <= FECHA_FIN) {
+    dates.push(new Date(d));
+    d.setDate(d.getDate() + 7);
+  }
+  return dates;
+}
+
+// ===== RENDER =====
+function render() {
+  var container = document.getElementById('container');
+  var filterSel = document.getElementById('filterMonth');
+  var miers = generarMiercoles();
+  ALL_DATES = miers;
+  var html = '';
+  var optHtml = '<option value="all">Todas las jornadas</option>';
+  var mesesMap = {};
+  var totalJornadas = 0, totalAsist = 0;
+
+  // Agrupar por mes
+  miers.forEach(function(d) {
+    var m = d.getMonth(); // 0-11
+    if(!mesesMap[m]) mesesMap[m] = [];
+    mesesMap[m].push(d);
+    totalJornadas++;
+  });
+
+  // Generar HTML por mes
+  var months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  
+  Object.keys(mesesMap).forEach(function(m) {
+    var monthNum = parseInt(m) + 1;
+    var monthId = 'mes_' + monthNum;
+    optHtml += '<option value="' + monthId + '">' + months[parseInt(m)] + ' 2026</option>';
+
+    var monthHtml = '';
+    mesesMap[m].forEach(function(d) {
+      var dateStr = formatDate(d);
+      var key = dateStr;
+      var annot = ANNOT[key] || {};
+
+      monthHtml += '<div class="jornada">';
+      monthHtml += '<div class="j-header">📅 ' + dateStr + ' <span>Miércoles</span></div>';
+      monthHtml += '<div class="j-body">';
+
+      // Header row
+      monthHtml += '<div class="block-label" style="background:#e8f1fb;font-weight:600;color:#0f4c81;justify-content:center"></div>';
+      monthHtml += '<div style="background:#e8f1fb;font-weight:600;color:#0f4c81;font-size:12px">Tema trabajado</div>';
+      monthHtml += '<div style="background:#e8f1fb;font-weight:600;color:#0f4c81;font-size:12px">Asistencia</div>';
+      monthHtml += '<div style="background:#e8f1fb;font-weight:600;color:#0f4c81;font-size:12px">Observaciones</div>';
+
+      // Blocks
+      BLOQUES.forEach(function(blk) {
+        var blkAnnot = annot[blk.id] || {};
+        var temaVal = blkAnnot.tema || '';
+        var obsVal = blkAnnot.obs || '';
+        var asis = blkAnnot.asis || [];
+
+        monthHtml += '<div class="block-label">' + blk.label + '</div>';
+
+        // Tema
+        monthHtml += '<div><input type="text" class="tema-input" placeholder="Ej: T1 — Método de trabajo..." value="' + temaVal.replace(/"/g,'&quot;') + '" onchange="guardarTema(\'' + key + '\',\'' + blk.id + '\',this)"></div>';
+
+        // Asistencia
+        monthHtml += '<div><div class="asis-wrap">';
+        STUDENTS.forEach(function(s, si) {
+          var checked = asis[si] ? 'checked' : '';
+          var asisId = 'a_' + key + '_' + blk.id + '_' + s.num;
+          monthHtml += '<input type="checkbox" id="' + asisId + '" ' + checked + ' onchange="guardarAsis(\'' + key + '\',\'' + blk.id + '\',' + si + ',this)">';
+          monthHtml += '<label for="' + asisId + '" class="' + (checked ? 'asiste':'') + '">' + s.num + '</label>';
+        });
+        monthHtml += '</div></div>';
+
+        // Observaciones
+        monthHtml += '<div><input type="text" class="obs-input" placeholder="..." value="' + obsVal.replace(/"/g,'&quot;') + '" onchange="guardarObs(\'' + key + '\',\'' + blk.id + '\',this)"></div>';
+      });
+
+      monthHtml += '</div></div>';
+
+      // Contar asistencias
+      BLOQUES.forEach(function(blk) {
+        var blkAnnot = annot[blk.id] || {};
+        var asis = blkAnnot.asis || [];
+        asis.forEach(function(a) { if(a) totalAsist++; });
+      });
+    });
+
+    html += '<div class="mes-section" id="' + monthId + '">';
+    html += '<div class="mes-header">' + months[parseInt(m)] + ' 2026 <span class="count">' + mesesMap[m].length + ' jornada(s)</span></div>';
+    html += monthHtml;
+    html += '</div>';
+  });
+
+  container.innerHTML = html;
+  filterSel.innerHTML = optHtml;
+  document.getElementById('totalJornadas').textContent = totalJornadas;
+  document.getElementById('totalAsist').textContent = totalAsist;
+  filtrarMes();
+}
+
+// ===== HELPERS =====
+function formatDate(d) {
+  var diaSem = ['DO','LU','MA','MI','JU','VI','SA'][d.getDay()];
+  var dd = String(d.getDate()).padStart(2,'0');
+  var mm = String(d.getMonth()+1).padStart(2,'0');
+  var yy = d.getFullYear();
+  return diaSem + ' ' + dd + '/' + mm + '/' + yy;
+}
+
+// ===== GUARDAR =====
+function getAnnot(key) {
+  if(!ANNOT[key]) ANNOT[key] = {};
+  return ANNOT[key];
+}
+
+function guardarTema(key, blkId, el) {
+  var a = getAnnot(key);
+  if(!a[blkId]) a[blkId] = { tema:'', asis:[], obs:'' };
+  a[blkId].tema = el.value;
+  guardarAnnot();
+}
+
+function guardarAsis(key, blkId, si, el) {
+  var a = getAnnot(key);
+  if(!a[blkId]) a[blkId] = { tema:'', asis:[], obs:'' };
+  if(!a[blkId].asis) a[blkId].asis = [];
+  a[blkId].asis[si] = el.checked;
+  guardarAnnot();
+  actualizarStats();
+  // Visual feedback
+  el.nextElementSibling.classList.toggle('asiste', el.checked);
+}
+
+function guardarObs(key, blkId, el) {
+  var a = getAnnot(key);
+  if(!a[blkId]) a[blkId] = { tema:'', asis:[], obs:'' };
+  a[blkId].obs = el.value;
+  guardarAnnot();
+}
+
+function actualizarStats() {
+  var total = 0;
+  Object.keys(ANNOT).forEach(function(key) {
+    BLOQUES.forEach(function(blk) {
+      var a = ANNOT[key];
+      if(a && a[blk.id] && a[blk.id].asis) {
+        a[blk.id].asis.forEach(function(ch) { if(ch) total++; });
+      }
+    });
+  });
+  document.getElementById('totalAsist').textContent = total;
+}
+
+// ===== FILTRO =====
+function filtrarMes() {
+  var val = document.getElementById('filterMonth').value;
+  document.querySelectorAll('.mes-section').forEach(function(s) {
+    s.style.display = (val === 'all' || s.id === val) ? '' : 'none';
+  });
+}
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded', function() {
+  cargarAnnot();
+  render();
+});
+</script>
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>

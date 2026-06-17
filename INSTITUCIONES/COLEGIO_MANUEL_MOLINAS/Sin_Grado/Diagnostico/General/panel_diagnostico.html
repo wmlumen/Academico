@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Diagnóstico - MOLINAS</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background: #f0f2f5; min-height: 100vh; padding: 20px; }
+        
+        .header { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); color: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+        .header h1 { font-size: 1.8rem; margin-bottom: 5px; }
+        .header p { opacity: 0.8; }
+        
+        .controls { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .btn { padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+        .btn-primary { background: #2d5a87; color: white; }
+        .btn-primary:hover { background: #1e3a5f; }
+        .btn.active { background: #f59e0b; color: #1e3a5f; transform: scale(1.05); }
+        .btn-filter { padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem; background: #e0e0e0; color: #666; }
+        .btn-filter.active { box-shadow: 0 0 0 2px #333; transform: scale(1.05); }
+        
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .stat-card { background: white; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .stat-card .number { font-size: 2rem; font-weight: bold; color: #1e3a5f; }
+        .stat-card .label { font-size: 0.85rem; color: #666; }
+        
+        .section-title { color: #1e3a5f; font-size: 1.2rem; margin: 20px 0 10px 0; padding-bottom: 5px; border-bottom: 2px solid #e0e0e0; }
+        
+        .indicators-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+        
+        .indicator-card { background: white; padding: 12px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.08); border-left: 4px solid #ccc; }
+        .indicator-card.muy-bueno { border-left-color: #10b981; }
+        .indicator-card.bueno { border-left-color: #f59e0b; }
+        .indicator-card.a-mejorar { border-left-color: #ef4444; }
+        
+        .indicator-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .indicator-code { font-size: 0.75rem; color: #888; font-weight: 600; }
+        .indicator-value { font-size: 1.5rem; font-weight: bold; padding: 4px 12px; border-radius: 20px; }
+        .indicator-value.muy-bueno { background: #d1fae5; color: #065f46; }
+        .indicator-value.bueno { background: #fef3c7; color: #92400e; }
+        .indicator-value.a-mejorar { background: #fee2e2; color: #991b1b; }
+        
+        .indicator-name { font-size: 0.9rem; color: #333; line-height: 1.4; }
+        
+        .legend { display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+        .legend-color.muy-bueno { background: #10b981; }
+        .legend-color.bueno { background: #f59e0b; }
+        .legend-color.a-mejorar { background: #ef4444; }
+
+        .scale-bar { height: 8px; border-radius: 4px; background: #e0e0e0; margin-top: 8px; overflow: hidden; }
+        .scale-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+        .scale-fill.muy-bueno { background: #10b981; }
+        .scale-fill.bueno { background: #f59e0b; }
+        .scale-fill.a-mejorar { background: #ef4444; }
+
+        .alerta { border-left-color: #ef4444; }
+        .fortaleza { border-left-color: #10b981; }
+        
+        .type-badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; margin-left: 8px; }
+        .type-badge.alerta { background: #fee2e2; color: #991b1b; }
+        .type-badge.fortaleza { background: #d1fae5; color: #065f46; }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 Panel de Diagnóstico - I MM I 2026</h1>
+        <p>Institución: MOLINAS | Año: 2026</p>
+    </div>
+
+    <div class="controls">
+        <button class="btn btn-primary" onclick="showGrade('7mo_TM')">7mo TM</button>
+        <button class="btn btn-primary" onclick="showGrade('7mo_TT')">7mo TT</button>
+        <button class="btn btn-primary" onclick="showGrade('8vo_TM')">8vo TM</button>
+        <button class="btn btn-primary" onclick="showGrade('9no_TM')">9no TM</button>
+        <span style="margin-left: 20px; align-self: center; color: #666;">Filtrar:</span>
+        <button class="btn btn-filter active" onclick="setFilter('all')">Todos</button>
+        <button class="btn btn-filter" onclick="setFilter('muy-bueno')" style="background:#10b981;color:white;">Muy Bueno</button>
+        <button class="btn btn-filter" onclick="setFilter('bueno')" style="background:#f59e0b;color:#1e3a5f;">Bueno</button>
+        <button class="btn btn-filter" onclick="setFilter('a-mejorar')" style="background:#ef4444;color:white;">A Mejorar</button>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item"><div class="legend-color muy-bueno"></div>Muy Bueno (4-5)</div>
+        <div class="legend-item"><div class="legend-color bueno"></div>Bueno (3)</div>
+        <div class="legend-item"><div class="legend-color a-mejorar"></div>A Mejorar (1-2)</div>
+    </div>
+
+    <div id="panel-7mo_TM" class="grade-panel">
+        <div class="stats-row">
+            <div class="stat-card"><div class="number">37</div><div class="label">Alumnos</div></div>
+            <div class="stat-card"><div class="number">26</div><div class="label">Alertas</div></div>
+            <div class="stat-card"><div class="number">24</div><div class="label">Fortalezas</div></div>
+            <div class="stat-card"><div class="number">68%</div><div class="label">A Mejorar</div></div>
+        </div>
+        
+        <h3 class="section-title">🔴 Área Académica - Alertas</h3>
+        <div class="indicators-grid" id="academic-alerts-7mo_TM"></div>
+        
+        <h3 class="section-title">🔴 Área Conductual - Alertas</h3>
+        <div class="indicators-grid" id="conductual-alerts-7mo_TM"></div>
+        
+        <h3 class="section-title">🔴 Área Socio-Emocional - Alertas</h3>
+        <div class="indicators-grid" id="social-alerts-7mo_TM"></div>
+        
+        <h3 class="section-title">🔴 Área Actitudinal - Alertas</h3>
+        <div class="indicators-grid" id="attitudinal-alerts-7mo_TM"></div>
+        
+        <h3 class="section-title">🟢 Área Académica - Fortalezas</h3>
+        <div class="indicators-grid" id="academic-fort-7mo_TM"></div>
+        
+        <h3 class="section-title">🟢 Área Conductual - Fortalezas</h3>
+        <div class="indicators-grid" id="conductual-fort-7mo_TM"></div>
+        
+        <h3 class="section-title">🟢 Área Socio-Emocional - Fortalezas</h3>
+        <div class="indicators-grid" id="social-fort-7mo_TM"></div>
+        
+        <h3 class="section-title">🟢 Área Actitudinal - Fortalezas</h3>
+        <div class="indicators-grid" id="attitudinal-fort-7mo_TM"></div>
+    </div>
+
+    <div id="panel-7mo_TT" class="grade-panel hidden">
+        <div class="stats-row">
+            <div class="stat-card"><div class="number">14</div><div class="label">Alumnos</div></div>
+            <div class="stat-card"><div class="number">34</div><div class="label">Alertas</div></div>
+            <div class="stat-card"><div class="number">310</div><div class="label">Fortalezas</div></div>
+            <div class="stat-card"><div class="number">79%</div><div class="label">Muy Bueno</div></div>
+        </div>
+        <h3 class="section-title">🔴 Área Académica - Alertas</h3>
+        <div class="indicators-grid" id="academic-alerts-7mo_TT"></div>
+        <h3 class="section-title">🔴 Área Conductual - Alertas</h3>
+        <div class="indicators-grid" id="conductual-alerts-7mo_TT"></div>
+        <h3 class="section-title">🔴 Área Socio-Emocional - Alertas</h3>
+        <div class="indicators-grid" id="social-alerts-7mo_TT"></div>
+        <h3 class="section-title">🔴 Área Actitudinal - Alertas</h3>
+        <div class="indicators-grid" id="attitudinal-alerts-7mo_TT"></div>
+        <h3 class="section-title">🟢 Área Académica - Fortalezas</h3>
+        <div class="indicators-grid" id="academic-fort-7mo_TT"></div>
+        <h3 class="section-title">🟢 Área Conductual - Fortalezas</h3>
+        <div class="indicators-grid" id="conductual-fort-7mo_TT"></div>
+        <h3 class="section-title">🟢 Área Socio-Emocional - Fortalezas</h3>
+        <div class="indicators-grid" id="social-fort-7mo_TT"></div>
+        <h3 class="section-title">🟢 Área Actitudinal - Fortalezas</h3>
+        <div class="indicators-grid" id="attitudinal-fort-7mo_TT"></div>
+    </div>
+
+    <div id="panel-8vo_TM" class="grade-panel hidden">
+        <div class="stats-row">
+            <div class="stat-card"><div class="number">42</div><div class="label">Alumnos</div></div>
+            <div class="stat-card"><div class="number">34</div><div class="label">Alertas</div></div>
+            <div class="stat-card"><div class="number">310</div><div class="label">Fortalezas</div></div>
+            <div class="stat-card"><div class="number">48%</div><div class="label">Muy Bueno</div></div>
+        </div>
+        <h3 class="section-title">🔴 Área Académica - Alertas</h3>
+        <div class="indicators-grid" id="academic-alerts-8vo_TM"></div>
+        <h3 class="section-title">🔴 Área Conductual - Alertas</h3>
+        <div class="indicators-grid" id="conductual-alerts-8vo_TM"></div>
+        <h3 class="section-title">🔴 Área Socio-Emocional - Alertas</h3>
+        <div class="indicators-grid" id="social-alerts-8vo_TM"></div>
+        <h3 class="section-title">🔴 Área Actitudinal - Alertas</h3>
+        <div class="indicators-grid" id="attitudinal-alerts-8vo_TM"></div>
+        <h3 class="section-title">🟢 Área Académica - Fortalezas</h3>
+        <div class="indicators-grid" id="academic-fort-8vo_TM"></div>
+        <h3 class="section-title">🟢 Área Conductual - Fortalezas</h3>
+        <div class="indicators-grid" id="conductual-fort-8vo_TM"></div>
+        <h3 class="section-title">🟢 Área Socio-Emocional - Fortalezas</h3>
+        <div class="indicators-grid" id="social-fort-8vo_TM"></div>
+        <h3 class="section-title">🟢 Área Actitudinal - Fortalezas</h3>
+        <div class="indicators-grid" id="attitudinal-fort-8vo_TM"></div>
+    </div>
+
+    <div id="panel-9no_TM" class="grade-panel hidden">
+        <div class="stats-row">
+            <div class="stat-card"><div class="number">42</div><div class="label">Alumnos</div></div>
+            <div class="stat-card"><div class="number">34</div><div class="label">Alertas</div></div>
+            <div class="stat-card"><div class="number">310</div><div class="label">Fortalezas</div></div>
+            <div class="stat-card"><div class="number">33%</div><div class="label">Muy Bueno</div></div>
+        </div>
+        <h3 class="section-title">🔴 Área Académica - Alertas</h3>
+        <div class="indicators-grid" id="academic-alerts-9no_TM"></div>
+        <h3 class="section-title">🔴 Área Conductual - Alertas</h3>
+        <div class="indicators-grid" id="conductual-alerts-9no_TM"></div>
+        <h3 class="section-title">🔴 Área Socio-Emocional - Alertas</h3>
+        <div class="indicators-grid" id="social-alerts-9no_TM"></div>
+        <h3 class="section-title">🔴 Área Actitudinal - Alertas</h3>
+        <div class="indicators-grid" id="attitudinal-alerts-9no_TM"></div>
+        <h3 class="section-title">🟢 Área Académica - Fortalezas</h3>
+        <div class="indicators-grid" id="academic-fort-9no_TM"></div>
+        <h3 class="section-title">🟢 Área Conductual - Fortalezas</h3>
+        <div class="indicators-grid" id="conductual-fort-9no_TM"></div>
+        <h3 class="section-title">🟢 Área Socio-Emocional - Fortalezas</h3>
+        <div class="indicators-grid" id="social-fort-9no_TM"></div>
+        <h3 class="section-title">🟢 Área Actitudinal - Fortalezas</h3>
+        <div class="indicators-grid" id="attitudinal-fort-9no_TM"></div>
+    </div>
+
+    <script>
+        const data = {
+            '7mo_TM': {
+                students: 37,
+                academic: {
+                    alerts: [
+                        { code: 'Ale-02', name: 'Presenta lagunas en conocimientos previos.', count: 37, nota: 1 },
+                        { code: 'Ale-04', name: 'Se limita a memorizar sin comprender.', count: 18, nota: 1 },
+                        { code: 'Ale-06', name: 'Entrega tareas incompletas o descuidadas.', count: 4, nota: 4 },
+                        { code: 'Ale-08', name: 'Se bloquea ante desafíos matemáticos.', count: 18, nota: 1 },
+                        { code: 'Ale-10', name: 'Tiene dificultades de expresión oral/escrita.', count: 14, nota: 2 },
+                        { code: 'Ale-12', name: 'Muestra rechazo o desinterés por la lectura.', count: 11, nota: 3 },
+                        { code: 'Ale-14', name: 'Requiere supervisión constante para avanzar.', count: 19, nota: 1 },
+                        { code: 'Ale-16', name: 'Muestra apatía por temas nuevos.', count: 7, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-01', name: 'Domina los conceptos clave del grado.', count: 6, nota: 1 },
+                        { code: 'For-03', name: 'Posee un pensamiento crítico y analítico.', count: 11, nota: 1 },
+                        { code: 'For-05', name: 'Entrega trabajos con alta calidad y orden.', count: 12, nota: 1 },
+                        { code: 'For-07', name: 'Resuelve problemas lógicos con fluidez.', count: 11, nota: 1 },
+                        { code: 'For-09', name: 'Utiliza vocabulario técnico preciso.', count: 10, nota: 1 },
+                        { code: 'For-11', name: 'Posee excelentes hábitos de lectura.', count: 10, nota: 1 },
+                        { code: 'For-13', name: 'Es autónomo en la realización de tareas.', count: 12, nota: 1 },
+                        { code: 'For-15', name: 'Investiga más allá de lo solicitado.', count: 13, nota: 1 }
+                    ]
+                },
+                conductual: {
+                    alerts: [
+                        { code: 'Ale-18', name: 'Desafía activamente la autoridad.', count: 16, nota: 1 },
+                        { code: 'Ale-20', name: 'Presenta retardos o inasistencias frecuentes.', count: 2, nota: 5 },
+                        { code: 'Ale-22', name: 'Daña el mobiliario o materiales escolares.', count: 1, nota: 5 },
+                        { code: 'Ale-24', name: 'Interrumpe constantemente el flujo de clase.', count: 2, nota: 5 },
+                        { code: 'Ale-26', name: 'Emplea lenguaje soez o despectivo.', count: 11, nota: 3 },
+                        { code: 'Ale-28', name: 'Miente o culpa a otros por sus actos.', count: 19, nota: 1 },
+                        { code: 'Ale-30', name: 'Se distrae con dispositivos electrónicos.', count: 16, nota: 1 },
+                        { code: 'Ale-32', name: 'Fomenta el desorden o el caos en el grupo.', count: 6, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-17', name: 'Respeta las normas de convivencia.', count: 22, nota: 2 },
+                        { code: 'For-19', name: 'Es puntual en todas sus obligaciones.', count: 10, nota: 1 },
+                        { code: 'For-21', name: 'Cuida el material propio y ajeno.', count: 23, nota: 2 },
+                        { code: 'For-23', name: 'Escucha con atención y no interrumpe.', count: 20, nota: 1 },
+                        { code: 'For-25', name: 'Utiliza el lenguaje de forma respetuosa.', count: 13, nota: 1 },
+                        { code: 'For-27', name: 'Reconoce sus errores honestamente.', count: 15, nota: 1 },
+                        { code: 'For-29', name: 'Usa la tecnología con fines educativos.', count: 3, nota: 1 },
+                        { code: 'For-31', name: 'Mantiene el orden en espacios comunes.', count: 11, nota: 1 }
+                    ]
+                },
+                social: {
+                    alerts: [
+                        { code: 'Ale-34', name: 'Se rinde fácilmente ante la frustración.', count: 19, nota: 1 },
+                        { code: 'Ale-36', name: 'Trabaja de forma aislada o es individualista.', count: 14, nota: 2 },
+                        { code: 'Ale-38', name: 'Ignora o se burla de los sentimientos de otros.', count: 15, nota: 2 },
+                        { code: 'Ale-40', name: 'Ejerce presión negativa o bullying.', count: 4, nota: 4 },
+                        { code: 'Ale-42', name: 'Reacciona de forma agresiva o impulsiva.', count: 11, nota: 3 },
+                        { code: 'Ale-44', name: 'Expresa inseguridad constante ("no puedo").', count: 19, nota: 1 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-33', name: 'Muestra resiliencia ante el fracaso.', count: 18, nota: 1 },
+                        { code: 'For-35', name: 'Trabaja de forma colaborativa y equitativa.', count: 16, nota: 1 },
+                        { code: 'For-37', name: 'Es empático con las necesidades ajenas.', count: 18, nota: 1 },
+                        { code: 'For-39', name: 'Posee un liderazgo positivo y ético.', count: 4, nota: 1 },
+                        { code: 'For-41', name: 'Se comunica de manera asertiva.', count: 6, nota: 1 },
+                        { code: 'For-43', name: 'Tiene una autoestima académica sólida.', count: 6, nota: 1 }
+                    ]
+                },
+                attitudinal: {
+                    alerts: [
+                        { code: 'Ale-46', name: 'Requiere estímulos externos para trabajar.', count: 16, nota: 1 },
+                        { code: 'Ale-48', name: 'Abandona proyectos a mitad de camino.', count: 19, nota: 1 },
+                        { code: 'Ale-50', name: 'Se muestra a la defensiva ante críticas.', count: 11, nota: 3 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-45', name: 'Muestra curiosidad e iniciativa propia.', count: 16, nota: 1 },
+                        { code: 'For-47', name: 'Es persistente en tareas complejas.', count: 5, nota: 1 },
+                        { code: 'For-49', name: 'Acepta retroalimentación constructiva.', count: 12, nota: 1 }
+                    ]
+                }
+            },
+            '7mo_TT': {
+                students: 14,
+                academic: {
+                    alerts: [
+                        { code: 'Ale-02', name: 'Presenta lagunas en conocimientos previos.', count: 12, nota: 1 },
+                        { code: 'Ale-04', name: 'Se limita a memorizar sin comprender.', count: 8, nota: 1 },
+                        { code: 'Ale-06', name: 'Entrega tareas incompletas o descuidadas.', count: 3, nota: 3 },
+                        { code: 'Ale-08', name: 'Se bloquea ante desafíos matemáticos.', count: 7, nota: 1 },
+                        { code: 'Ale-10', name: 'Tiene dificultades de expresión oral/escrita.', count: 2, nota: 4 },
+                        { code: 'Ale-12', name: 'Muestra rechazo o desinterés por la lectura.', count: 3, nota: 3 },
+                        { code: 'Ale-14', name: 'Requiere supervisión constante para avanzar.', count: 3, nota: 3 },
+                        { code: 'Ale-16', name: 'Muestra apatía por temas nuevos.', count: 0, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-01', name: 'Domina los conceptos clave del grado.', count: 12, nota: 4 },
+                        { code: 'For-03', name: 'Posee un pensamiento crítico y analítico.', count: 14, nota: 4 },
+                        { code: 'For-05', name: 'Entrega trabajos con alta calidad y orden.', count: 12, nota: 4 },
+                        { code: 'For-07', name: 'Resuelve problemas lógicos con fluidez.', count: 12, nota: 4 },
+                        { code: 'For-09', name: 'Utiliza vocabulario técnico preciso.', count: 12, nota: 4 },
+                        { code: 'For-11', name: 'Posee excelentes hábitos de lectura.', count: 11, nota: 3 },
+                        { code: 'For-13', name: 'Es autónomo en la realización de tareas.', count: 14, nota: 4 },
+                        { code: 'For-15', name: 'Investiga más allá de lo solicitado.', count: 12, nota: 4 }
+                    ]
+                },
+                conductual: {
+                    alerts: [
+                        { code: 'Ale-18', name: 'Desafía activamente la autoridad.', count: 0, nota: 4 },
+                        { code: 'Ale-20', name: 'Presenta retardos o inasistencias frecuentes.', count: 2, nota: 4 },
+                        { code: 'Ale-22', name: 'Daña el mobiliario o materiales escolares.', count: 0, nota: 4 },
+                        { code: 'Ale-24', name: 'Interrumpe constantemente el flujo de clase.', count: 2, nota: 4 },
+                        { code: 'Ale-26', name: 'Emplea lenguaje soez o despectivo.', count: 0, nota: 4 },
+                        { code: 'Ale-28', name: 'Miente o culpa a otros por sus actos.', count: 0, nota: 4 },
+                        { code: 'Ale-30', name: 'Se distrae con dispositivos electrónicos.', count: 0, nota: 4 },
+                        { code: 'Ale-32', name: 'Fomenta el desorden o el caos en el grupo.', count: 0, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-17', name: 'Respeta las normas de convivencia.', count: 14, nota: 4 },
+                        { code: 'For-19', name: 'Es puntual en todas sus obligaciones.', count: 12, nota: 4 },
+                        { code: 'For-21', name: 'Cuida el material propio y ajeno.', count: 14, nota: 4 },
+                        { code: 'For-23', name: 'Escucha con atención y no interrumpe.', count: 14, nota: 4 },
+                        { code: 'For-25', name: 'Utiliza el lenguaje de forma respetuosa.', count: 14, nota: 4 },
+                        { code: 'For-27', name: 'Reconoce sus errores honestamente.', count: 14, nota: 4 },
+                        { code: 'For-29', name: 'Usa la tecnología con fines educativos.', count: 12, nota: 4 },
+                        { code: 'For-31', name: 'Mantiene el orden en espacios comunes.', count: 11, nota: 3 }
+                    ]
+                },
+                social: {
+                    alerts: [
+                        { code: 'Ale-34', name: 'Se rinde fácilmente ante la frustración.', count: 2, nota: 4 },
+                        { code: 'Ale-36', name: 'Trabaja de forma aislada o es individualista.', count: 1, nota: 4 },
+                        { code: 'Ale-38', name: 'Ignora o se burla de los sentimientos de otros.', count: 3, nota: 3 },
+                        { code: 'Ale-40', name: 'Ejerce presión negativa o bullying.', count: 1, nota: 4 },
+                        { code: 'Ale-42', name: 'Reacciona de forma agresiva o impulsiva.', count: 1, nota: 4 },
+                        { code: 'Ale-44', name: 'Expresa inseguridad constante ("no puedo").', count: 1, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-33', name: 'Muestra resiliencia ante el fracaso.', count: 12, nota: 4 },
+                        { code: 'For-35', name: 'Trabaja de forma colaborativa y equitativa.', count: 12, nota: 4 },
+                        { code: 'For-37', name: 'Es empático con las necesidades ajenas.', count: 12, nota: 4 },
+                        { code: 'For-39', name: 'Posee un liderazgo positivo y ético.', count: 12, nota: 4 },
+                        { code: 'For-41', name: 'Se comunica de manera asertiva.', count: 12, nota: 4 },
+                        { code: 'For-43', name: 'Tiene una autoestima académica sólida.', count: 12, nota: 4 }
+                    ]
+                },
+                attitudinal: {
+                    alerts: [
+                        { code: 'Ale-46', name: 'Requiere estímulos externos para trabajar.', count: 2, nota: 4 },
+                        { code: 'Ale-48', name: 'Abandona proyectos a mitad de camino.', count: 0, nota: 4 },
+                        { code: 'Ale-50', name: 'Se muestra a la defensiva ante críticas.', count: 0, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-45', name: 'Muestra curiosidad e iniciativa propia.', count: 12, nota: 4 },
+                        { code: 'For-47', name: 'Es persistente en tareas complejas.', count: 10, nota: 3 },
+                        { code: 'For-49', name: 'Acepta retroalimentación constructiva.', count: 12, nota: 4 }
+                    ]
+                }
+            },
+            '8vo_TM': {
+                students: 42,
+                academic: {
+                    alerts: [
+                        { code: 'Ale-02', name: 'Presenta lagunas en conocimientos previos.', count: 8, nota: 4 },
+                        { code: 'Ale-04', name: 'Se limita a memorizar sin comprender.', count: 6, nota: 4 },
+                        { code: 'Ale-06', name: 'Entrega tareas incompletas o descuidadas.', count: 4, nota: 4 },
+                        { code: 'Ale-08', name: 'Se bloquea ante desafíos matemáticos.', count: 7, nota: 4 },
+                        { code: 'Ale-10', name: 'Tiene dificultades de expresión oral/escrita.', count: 5, nota: 4 },
+                        { code: 'Ale-12', name: 'Muestra rechazo o desinterés por la lectura.', count: 6, nota: 4 },
+                        { code: 'Ale-14', name: 'Requiere supervisión constante para avanzar.', count: 7, nota: 4 },
+                        { code: 'Ale-16', name: 'Muestra apatía por temas nuevos.', count: 2, nota: 5 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-01', name: 'Domina los conceptos clave del grado.', count: 12, nota: 1 },
+                        { code: 'For-03', name: 'Posee un pensamiento crítico y analítico.', count: 11, nota: 1 },
+                        { code: 'For-05', name: 'Entrega trabajos con alta calidad y orden.', count: 13, nota: 1 },
+                        { code: 'For-07', name: 'Resuelve problemas lógicos con fluidez.', count: 10, nota: 1 },
+                        { code: 'For-09', name: 'Utiliza vocabulario técnico preciso.', count: 12, nota: 1 },
+                        { code: 'For-11', name: 'Posee excelentes hábitos de lectura.', count: 11, nota: 1 },
+                        { code: 'For-13', name: 'Es autónomo en la realización de tareas.', count: 14, nota: 1 },
+                        { code: 'For-15', name: 'Investiga más allá de lo solicitado.', count: 10, nota: 1 }
+                    ]
+                },
+                conductual: {
+                    alerts: [
+                        { code: 'Ale-18', name: 'Desafía activamente la autoridad.', count: 1, nota: 5 },
+                        { code: 'Ale-20', name: 'Presenta retardos o inasistencias frecuentes.', count: 4, nota: 4 },
+                        { code: 'Ale-22', name: 'Daña el mobiliario o materiales escolares.', count: 1, nota: 5 },
+                        { code: 'Ale-24', name: 'Interrumpe constantemente el flujo de clase.', count: 9, nota: 3 },
+                        { code: 'Ale-26', name: 'Emplea lenguaje soez o despectivo.', count: 2, nota: 5 },
+                        { code: 'Ale-28', name: 'Miente o culpa a otros por sus actos.', count: 2, nota: 5 },
+                        { code: 'Ale-30', name: 'Se distrae con dispositivos electrónicos.', count: 8, nota: 4 },
+                        { code: 'Ale-32', name: 'Fomenta el desorden o el caos en el grupo.', count: 5, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-17', name: 'Respeta las normas de convivencia.', count: 13, nota: 1 },
+                        { code: 'For-19', name: 'Es puntual en todas sus obligaciones.', count: 12, nota: 1 },
+                        { code: 'For-21', name: 'Cuida el material propio y ajeno.', count: 14, nota: 1 },
+                        { code: 'For-23', name: 'Escucha con atención y no interrumpe.', count: 12, nota: 1 },
+                        { code: 'For-25', name: 'Utiliza el lenguaje de forma respetuosa.', count: 14, nota: 1 },
+                        { code: 'For-27', name: 'Reconoce sus errores honestamente.', count: 13, nota: 1 },
+                        { code: 'For-29', name: 'Usa la tecnología con fines educativos.', count: 11, nota: 1 },
+                        { code: 'For-31', name: 'Mantiene el orden en espacios comunes.', count: 12, nota: 1 }
+                    ]
+                },
+                social: {
+                    alerts: [
+                        { code: 'Ale-34', name: 'Se rinde fácilmente ante la frustración.', count: 6, nota: 4 },
+                        { code: 'Ale-36', name: 'Trabaja de forma aislada o es individualista.', count: 3, nota: 5 },
+                        { code: 'Ale-38', name: 'Ignora o se burla de los sentimientos de otros.', count: 2, nota: 5 },
+                        { code: 'Ale-40', name: 'Ejerce presión negativa o bullying.', count: 1, nota: 5 },
+                        { code: 'Ale-42', name: 'Reacciona de forma agresiva o impulsiva.', count: 2, nota: 5 },
+                        { code: 'Ale-44', name: 'Expresa inseguridad constante ("no puedo").', count: 5, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-33', name: 'Muestra resiliencia ante el fracaso.', count: 11, nota: 1 },
+                        { code: 'For-35', name: 'Trabaja de forma colaborativa y equitativa.', count: 14, nota: 1 },
+                        { code: 'For-37', name: 'Es empático con las necesidades ajenas.', count: 13, nota: 1 },
+                        { code: 'For-39', name: 'Posee un liderazgo positivo y ético.', count: 11, nota: 1 },
+                        { code: 'For-41', name: 'Se comunica de manera asertiva.', count: 12, nota: 1 },
+                        { code: 'For-43', name: 'Tiene una autoestima académica sólida.', count: 12, nota: 1 }
+                    ]
+                },
+                attitudinal: {
+                    alerts: [
+                        { code: 'Ale-46', name: 'Requiere estímulos externos para trabajar.', count: 7, nota: 4 },
+                        { code: 'Ale-48', name: 'Abandona proyectos a mitad de camino.', count: 3, nota: 5 },
+                        { code: 'Ale-50', name: 'Se muestra a la defensiva ante críticas.', count: 4, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-45', name: 'Muestra curiosidad e iniciativa propia.', count: 14, nota: 1 },
+                        { code: 'For-47', name: 'Es persistente en tareas complejas.', count: 11, nota: 1 },
+                        { code: 'For-49', name: 'Acepta retroalimentación constructiva.', count: 13, nota: 1 }
+                    ]
+                }
+            },
+            '9no_TM': {
+                students: 42,
+                academic: {
+                    alerts: [
+                        { code: 'Ale-02', name: 'Presenta lagunas en conocimientos previos.', count: 14, nota: 2 },
+                        { code: 'Ale-04', name: 'Se limita a memorizar sin comprender.', count: 12, nota: 3 },
+                        { code: 'Ale-06', name: 'Entrega tareas incompletas o descuidadas.', count: 9, nota: 3 },
+                        { code: 'Ale-08', name: 'Se bloquea ante desafíos matemáticos.', count: 15, nota: 2 },
+                        { code: 'Ale-10', name: 'Tiene dificultades de expresión oral/escrita.', count: 8, nota: 4 },
+                        { code: 'Ale-12', name: 'Muestra rechazo o desinterés por la lectura.', count: 3, nota: 5 },
+                        { code: 'Ale-14', name: 'Requiere supervisión constante para avanzar.', count: 7, nota: 4 },
+                        { code: 'Ale-16', name: 'Muestra apatía por temas nuevos.', count: 5, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-01', name: 'Domina los conceptos clave del grado.', count: 16, nota: 1 },
+                        { code: 'For-03', name: 'Posee un pensamiento crítico y analítico.', count: 14, nota: 1 },
+                        { code: 'For-05', name: 'Entrega trabajos con alta calidad y orden.', count: 21, nota: 1 },
+                        { code: 'For-07', name: 'Resuelve problemas lógicos con fluidez.', count: 15, nota: 1 },
+                        { code: 'For-09', name: 'Utiliza vocabulario técnico preciso.', count: 10, nota: 1 },
+                        { code: 'For-11', name: 'Posee excelentes hábitos de lectura.', count: 6, nota: 1 },
+                        { code: 'For-13', name: 'Es autónomo en la realización de tareas.', count: 21, nota: 1 },
+                        { code: 'For-15', name: 'Investiga más allá de lo solicitado.', count: 9, nota: 1 }
+                    ]
+                },
+                conductual: {
+                    alerts: [
+                        { code: 'Ale-18', name: 'Desafía activamente la autoridad.', count: 2, nota: 5 },
+                        { code: 'Ale-20', name: 'Presenta retardos o inasistencias frecuentes.', count: 4, nota: 4 },
+                        { code: 'Ale-22', name: 'Daña el mobiliario o materiales escolares.', count: 0, nota: 5 },
+                        { code: 'Ale-24', name: 'Interrumpe constantemente el flujo de clase.', count: 26, nota: 1 },
+                        { code: 'Ale-26', name: 'Emplea lenguaje soez o despectivo.', count: 0, nota: 5 },
+                        { code: 'Ale-28', name: 'Miente o culpa a otros por sus actos.', count: 4, nota: 4 },
+                        { code: 'Ale-30', name: 'Se distrae con dispositivos electrónicos.', count: 10, nota: 3 },
+                        { code: 'Ale-32', name: 'Fomenta el desorden o el caos en el grupo.', count: 22, nota: 1 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-17', name: 'Respeta las normas de convivencia.', count: 25, nota: 2 },
+                        { code: 'For-19', name: 'Es puntual en todas sus obligaciones.', count: 21, nota: 1 },
+                        { code: 'For-21', name: 'Cuida el material propio y ajeno.', count: 30, nota: 3 },
+                        { code: 'For-23', name: 'Escucha con atención y no interrumpe.', count: 4, nota: 1 },
+                        { code: 'For-25', name: 'Utiliza el lenguaje de forma respetuosa.', count: 30, nota: 3 },
+                        { code: 'For-27', name: 'Reconoce sus errores honestamente.', count: 26, nota: 2 },
+                        { code: 'For-29', name: 'Usa la tecnología con fines educativos.', count: 18, nota: 1 },
+                        { code: 'For-31', name: 'Mantiene el orden en espacios comunes.', count: 8, nota: 1 }
+                    ]
+                },
+                social: {
+                    alerts: [
+                        { code: 'Ale-34', name: 'Se rinde fácilmente ante la frustración.', count: 9, nota: 3 },
+                        { code: 'Ale-36', name: 'Trabaja de forma aislada o es individualista.', count: 3, nota: 5 },
+                        { code: 'Ale-38', name: 'Ignora o se burla de los sentimientos de otros.', count: 2, nota: 5 },
+                        { code: 'Ale-40', name: 'Ejerce presión negativa o bullying.', count: 0, nota: 5 },
+                        { code: 'Ale-42', name: 'Reacciona de forma agresiva o impulsiva.', count: 0, nota: 5 },
+                        { code: 'Ale-44', name: 'Expresa inseguridad constante ("no puedo").', count: 8, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-33', name: 'Muestra resiliencia ante el fracaso.', count: 21, nota: 1 },
+                        { code: 'For-35', name: 'Trabaja de forma colaborativa y equitativa.', count: 27, nota: 2 },
+                        { code: 'For-37', name: 'Es empático con las necesidades ajenas.', count: 28, nota: 2 },
+                        { code: 'For-39', name: 'Posee un liderazgo positivo y ético.', count: 14, nota: 1 },
+                        { code: 'For-41', name: 'Se comunica de manera asertiva.', count: 24, nota: 1 },
+                        { code: 'For-43', name: 'Tiene una autoestima académica sólida.', count: 18, nota: 1 }
+                    ]
+                },
+                attitudinal: {
+                    alerts: [
+                        { code: 'Ale-46', name: 'Requiere estímulos externos para trabajar.', count: 16, nota: 2 },
+                        { code: 'Ale-48', name: 'Abandona proyectos a mitad de camino.', count: 7, nota: 4 },
+                        { code: 'Ale-50', name: 'Se muestra a la defensiva ante críticas.', count: 4, nota: 4 }
+                    ],
+                    fortaleza: [
+                        { code: 'For-45', name: 'Muestra curiosidad e iniciativa propia.', count: 23, nota: 1 },
+                        { code: 'For-47', name: 'Es persistente en tareas complejas.', count: 20, nota: 1 },
+                        { code: 'For-49', name: 'Acepta retroalimentación constructiva.', count: 26, nota: 2 }
+                    ]
+                }
+            }
+        };
+
+        function getValoracionClass(nota) {
+            if (nota >= 4) return 'muy-bueno';
+            if (nota === 3) return 'bueno';
+            return 'a-mejorar';
+        }
+
+        function getValoracionText(nota) {
+            if (nota >= 4) return 'Muy Bueno';
+            if (nota === 3) return 'Bueno';
+            return 'A Mejorar';
+        }
+
+        function renderIndicators(containerId, indicators, isAlert) {
+            const container = document.getElementById(containerId);
+            if (!indicators || indicators.length === 0) {
+                container.innerHTML = '<div style="padding:20px;text-align:center;color:#888;grid-column:1/-1;">No hay indicadores en esta categoría</div>';
+                return;
+            }
+            container.innerHTML = indicators.map(ind => `
+                <div class="indicator-card ${isAlert ? 'alerta' : 'fortaleza'} ${getValoracionClass(ind.nota)}">
+                    <div class="indicator-header">
+                        <span class="indicator-code">${ind.code}</span>
+                        <span class="indicator-value ${getValoracionClass(ind.nota)}">${ind.nota}</span>
+                    </div>
+                    <div class="indicator-name">${ind.name}</div>
+                    <div class="scale-bar">
+                        <div class="scale-fill ${getValoracionClass(ind.nota)}" style="width: ${(ind.nota / 5) * 100}%"></div>
+                    </div>
+                    <div style="font-size: 0.75rem; color: #888; margin-top: 4px;">Veces: ${ind.count}</div>
+                </div>
+            `).join('');
+        }
+
+        function showGrade(gradeId) {
+            currentGrade = gradeId;
+            currentFilter = 'all';
+            document.querySelectorAll('.grade-panel').forEach(p => p.classList.add('hidden'));
+            document.getElementById('panel-' + gradeId).classList.remove('hidden');
+            
+            document.querySelectorAll('.btn-primary').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.btn-filter').forEach(b => {
+                b.classList.remove('active');
+                if (b.textContent === 'Todos') b.classList.add('active');
+            });
+            event.target.classList.add('active');
+
+            const d = data[gradeId];
+            renderIndicators('academic-alerts-' + gradeId, d.academic.alerts, true);
+            renderIndicators('academic-fort-' + gradeId, d.academic.fortaleza, false);
+            renderIndicators('conductual-alerts-' + gradeId, d.conductual.alerts, true);
+            renderIndicators('conductual-fort-' + gradeId, d.conductual.fortaleza, false);
+            renderIndicators('social-alerts-' + gradeId, d.social.alerts, true);
+            renderIndicators('social-fort-' + gradeId, d.social.fortaleza, false);
+            renderIndicators('attitudinal-alerts-' + gradeId, d.attitudinal.alerts, true);
+            renderIndicators('attitudinal-fort-' + gradeId, d.attitudinal.fortaleza, false);
+        }
+
+        let currentFilter = 'all';
+
+        function setFilter(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const d = data[currentGrade];
+            renderIndicators('academic-alerts-' + currentGrade, getFilteredIndicators(d.academic.alerts), true);
+            renderIndicators('academic-fort-' + currentGrade, getFilteredIndicators(d.academic.fortaleza), false);
+            renderIndicators('conductual-alerts-' + currentGrade, getFilteredIndicators(d.conductual.alerts), true);
+            renderIndicators('conductual-fort-' + currentGrade, getFilteredIndicators(d.conductual.fortaleza), false);
+            renderIndicators('social-alerts-' + currentGrade, getFilteredIndicators(d.social.alerts), true);
+            renderIndicators('social-fort-' + currentGrade, getFilteredIndicators(d.social.fortaleza), false);
+            renderIndicators('attitudinal-alerts-' + currentGrade, getFilteredIndicators(d.attitudinal.alerts), true);
+            renderIndicators('attitudinal-fort-' + currentGrade, getFilteredIndicators(d.attitudinal.fortaleza), false);
+        }
+
+        function getFilteredIndicators(indicators) {
+            if (currentFilter === 'all') return indicators;
+            return indicators.filter(ind => getValoracionClass(ind.nota) === currentFilter);
+        }
+
+        document.querySelector('.btn-primary').classList.add('active');
+        let currentGrade = '7mo_TM';
+        showGrade('7mo_TM');
+    </script>

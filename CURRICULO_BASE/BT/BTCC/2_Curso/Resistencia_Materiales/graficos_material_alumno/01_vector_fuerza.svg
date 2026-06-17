@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect width="100%" height="100%" fill="white"/>
+  <text x="400" y="40" text-anchor="middle" font-family="Segoe UI, Arial" font-size="24" font-weight="700">Representacion de una fuerza como vector</text>
+  <line x1="120" y1="350" x2="700" y2="350" stroke="#333" stroke-width="2"/>
+  <line x1="120" y1="350" x2="120" y2="80" stroke="#333" stroke-width="2"/>
+  <line x1="120" y1="350" x2="520" y2="140" stroke="#d62828" stroke-width="5"/>
+  <polygon points="520,140 500,145 510,160" fill="#d62828"/>
+  <line x1="120" y1="350" x2="520" y2="350" stroke="#2563eb" stroke-width="4"/>
+  <polygon points="520,350 500,342 500,358" fill="#2563eb"/>
+  <line x1="520" y1="350" x2="520" y2="140" stroke="#16a34a" stroke-width="4"/>
+  <polygon points="520,140 512,160 528,160" fill="#16a34a"/>
+  <line x1="520" y1="350" x2="520" y2="140" stroke="#999" stroke-dasharray="6 6"/>
+  <text x="315" y="338" font-family="Segoe UI, Arial" font-size="20" fill="#2563eb">Fx</text>
+  <text x="535" y="250" font-family="Segoe UI, Arial" font-size="20" fill="#16a34a">Fy</text>
+  <text x="335" y="225" font-family="Segoe UI, Arial" font-size="22" fill="#d62828" font-weight="700">F</text>
+  <text x="250" y="100" font-family="Segoe UI, Arial" font-size="18" fill="#333">La fuerza se representa por un vector.</text>
+  <text x="250" y="125" font-family="Segoe UI, Arial" font-size="18" fill="#333">Tiene magnitud, direccion y sentido.</text>
+  <text x="680" y="372" font-family="Segoe UI, Arial" font-size="16" fill="#333">Eje x</text>
+  <text x="90" y="95" font-family="Segoe UI, Arial" font-size="16" fill="#333">Eje y</text>
+</svg>

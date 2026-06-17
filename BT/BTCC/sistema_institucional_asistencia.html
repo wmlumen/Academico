@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema Institucional de Asistencia</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4fa;color:#172133;padding:14px}
+.wrap{max-width:1800px;margin:0 auto}
+
+.header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:16px 22px;border-radius:14px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.header h1{margin:0;font-size:20px}
+.header p{margin:2px 0 0;font-size:12px;opacity:.9}
+.header .logo{text-align:right;font-size:11px;opacity:.7}
+
+.controls{background:#fff;border:1px solid #d8e3ef;border-radius:12px;padding:10px 14px;margin-bottom:12px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;box-shadow:0 2px 8px rgba(23,33,51,0.06)}
+.controls label{font-size:13px;font-weight:600;color:#2a405c}
+.controls select,.controls input{padding:7px 10px;border:1px solid #b6c6da;border-radius:8px;font-size:13px;background:#fff;min-width:140px}
+.controls .stats{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+.controls .stats .stat{padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600}
+.controls .stats .stat.l{background:#c8e6c9;color:#1b5e20}
+.controls .stats .stat.ep{background:#fff9c4;color:#f57f17}
+.controls .stats .stat.nl{background:#ffcdd2;color:#b71c1c}
+.controls .stats .stat.total{background:#e8eaf6;color:#283593}
+
+.tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.tabs button{padding:8px 16px;border:1px solid #d8e3ef;border-radius:8px;background:#fff;cursor:pointer;font-size:13px;font-weight:600;color:#2a405c;transition:all .15s}
+.tabs button:hover{background:#e8f1fb}
+.tabs button.active{background:#0f4c81;color:#fff;border-color:#0f4c81}
+
+.mes-section{background:#fff;border:1px solid #d8e3ef;border-radius:12px;margin-bottom:12px;overflow:hidden;box-shadow:0 2px 8px rgba(23,33,51,0.04)}
+.mes-header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:9px 14px;font-size:15px;font-weight:700;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.mes-header .count{font-size:12px;opacity:.8;font-weight:400}
+
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:11.5px}
+th{background:#e8f1fb;color:#16304d;padding:5px 3px;border:1px solid #c8d9ea;font-size:10px;font-weight:700;text-align:center;position:sticky;top:0;z-index:2}
+th.stu-name{text-align:left;min-width:210px;position:sticky;left:0;z-index:3;background:#e8f1fb}
+td{border:1px solid #d8e0ea;padding:3px;text-align:center;vertical-align:middle}
+td.stu-name{text-align:left;padding:3px 8px;font-weight:600;font-size:11px;position:sticky;left:0;z-index:1;background:#fff}
+td.stu-num{font-size:11px;font-weight:700;width:26px}
+tr:hover td.stu-name{background:#f5f9ff}
+
+.asis-select{padding:2px;border:1.5px solid #d8e0ea;border-radius:4px;font-size:11px;font-weight:700;text-align:center;width:42px;height:28px;cursor:pointer;background:#fff;transition:all .12s}
+.asis-select:focus{outline:none;border-color:#0f4c81}
+.asis-select.val-L{background:#c8e6c9;border-color:#2e7d32;color:#1b5e20}
+.asis-select.val-EP{background:#fff9c4;border-color:#f9a825;color:#f57f17}
+.asis-select.val-NL{background:#ffcdd2;border-color:#c62828;color:#b71c1c}
+.asis-select.val-J{background:#e3f2fd;border-color:#1e88e5;color:#0d47a1}
+
+.feriado{background:#fff3e0!important}
+.feriado th{background:#ffe0b2!important;color:#e65100}
+
+.resumen-row td{background:#f5f9ff;font-weight:700;font-size:10px}
+.resumen-row .total-l{color:#1b5e20}
+.resumen-row .total-ep{color:#f57f17}
+.resumen-row .total-nl{color:#b71c1c}
+
+.no-schedule{text-align:center;padding:40px;color:#8899aa;font-size:14px}
+.no-students{text-align:center;padding:40px;color:#8899aa;font-size:14px}
+.no-students .emoji{font-size:48px;display:block;margin-bottom:10px}
+
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;padding:10px}
+.cal-header{font-weight:700;text-align:center;padding:6px;background:#e8f1fb;border-radius:6px;font-size:12px;color:#16304d}
+.cal-day{text-align:center;padding:8px 4px;border-radius:6px;font-size:13px;font-weight:600;background:#f8fafc;border:1px solid #e2e8f0;cursor:default;position:relative;min-height:50px}
+.cal-day:hover{box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+.cal-day .day-num{font-size:16px;font-weight:700}
+.cal-day .day-event{font-size:8px;margin-top:2px;line-height:1.2}
+.cal-day.feriado{background:#fff3e0;border-color:#ffcc80}
+.cal-day.feriado .day-num{color:#e65100}
+.cal-day.conmemoracion{background:#f3e5f5;border-color:#ce93d8}
+.cal-day.clase{background:#e8f5e9;border-color:#81c784}
+.cal-day.clase .day-num{color:#2e7d32}
+.cal-day.vacio{background:transparent;border-color:transparent}
+.cal-day.hoy{box-shadow:0 0 0 2px #0f4c81}
+.cal-day .badge-clase{display:inline-block;font-size:7px;padding:1px 4px;border-radius:3px;background:#c8e6c9;color:#1b5e20;margin-top:2px}
+
+.alerta-carga{background:#fff8e1;border:1px solid #ffe082;border-radius:8px;padding:12px 16px;margin-bottom:10px;font-size:13px;color:#e65100}
+.alerta-carga strong{display:block;margin-bottom:4px}
+
+/* Panel badge */
+.panel-badge{font-size:11px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.18);border-radius:8px;padding:4px 10px;margin-top:4px;display:inline-block}
+
+@media print{body{background:#fff;padding:0}.controls,.tabs{display:none}.mes-header{background:#0f4c81!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}th{background:#e8f1fb!important}.asis-select.val-L,.asis-select.val-EP,.asis-select.val-NL,.asis-select.val-J{-webkit-print-color-adjust:exact;print-color-adjust:exact}.cal-day.feriado,.cal-day.clase,.cal-day.conmemoracion{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+<link rel="stylesheet" href="nav/nav.css">
+
+<script src="nav/runtime.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <h1 id="attendanceTitle">Sistema Institucional de Asistencia</h1>
+    <p id="attendanceSubtitle">Seguimiento institucional.</p>
+    <p style="font-size:11px;opacity:.7;margin-top:2px">Códigos: L=Logrado / EP=En Proceso / NL=No Logrado / J=Justificado</p>
+  </div>
+  <div class="logo">
+    <div id="attendanceShortName">Portal</div>
+    <div style="font-size:10px" id="headerDocente">Prof. Christhian Keim</div>
+  </div>
+</div>
+
+<div class="controls">
+  <label>Curso:</label>
+  <select id="selCurso" onchange="cambiarCurso()"></select>
+  <label>Materia:</label>
+  <select id="selMateria" onchange="cargarMateria()"></select>
+  <label>Mes:</label>
+  <select id="filterMonth" onchange="filtrarMes()"><option value="all">Todos</option></select>
+  <button onclick="if(confirm('Resetear datos de asistencia de esta materia?')){var k=getStorageKey();localStorage.removeItem(k);cargarMateria()}" style="padding:7px 14px;border:none;border-radius:8px;background:#ffcdd2;color:#b71c1c;font-size:12px;font-weight:600;cursor:pointer">Limpiar</button>
+  <button onclick="window.print()" style="padding:7px 14px;border:none;border-radius:8px;background:#e3f2fd;color:#0d47a1;font-size:12px;font-weight:600;cursor:pointer">Imprimir</button>
+  <div class="stats" id="statsBar">
+    <span class="stat l">L: <strong id="totalL">0</strong></span>
+    <span class="stat ep">EP: <strong id="totalEP">0</strong></span>
+    <span class="stat nl">NL: <strong id="totalNL">0</strong></span>
+    <span class="stat total">% Logro: <strong id="pctLogro">0%</strong></span>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="active" onclick="cambiarVista('planilla',this)">Planilla por Mes</button>
+  <button onclick="cambiarVista('calendario',this)">Calendario Anual</button>
+  <button onclick="cambiarVista('resumen',this)">Resumen General</button>
+</div>
+
+<div id="alertaCarga"></div>
+<div id="vistaPlanilla"></div>
+<div id="vistaCalendario" style="display:none"></div>
+<div id="vistaResumen" style="display:none"></div>
+
+</div>
+
+<script>
+// ============================================================
+// CONFIGURACION — Lee desde Panel Institucional (localStorage)
+// ============================================================
+window.BTCC_APP = (window.BTCCRuntime && window.BTCCRuntime.loadJson('/data/app_config.json', null)) || { branding: {}, defaults: {} };
+var BTCC_APP = window.BTCC_APP;
+document.title = (BTCC_APP.branding.shortName || 'Portal') + ' - Sistema de Asistencia';
+document.getElementById('attendanceTitle').textContent = 'Sistema Institucional de Asistencia';
+document.getElementById('attendanceSubtitle').textContent = (BTCC_APP.branding.programName || '') + ' - ' + (BTCC_APP.branding.shortName || '') + ' - ' + ((BTCC_APP.branding.academicYear) || '');
+document.getElementById('attendanceShortName').textContent = BTCC_APP.branding.shortName || 'Portal';
+document.getElementById('headerDocente').textContent = (BTCC_APP.defaults && BTCC_APP.defaults.teacherName) || document.getElementById('headerDocente').textContent;
+var DIAS_NOMBRE = {LU:'Lunes',MA:'Martes',MI:'Miércoles',JU:'Jueves',VI:'Viernes',SA:'Sábado',DO:'Domingo'};
+var DIAS_ABREV = {Lunes:'LU',Martes:'MA',Miércoles:'MI',Jueves:'JU',Viernes:'VI',Sábado:'SA',Domingo:'DO'};
+var MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+// Fallback hardcodeado si no hay Panel Institucional
+var CONFIG_HARDCODEADO = (window.BTCCRuntime && window.BTCCRuntime.loadJson('/data/sistema_config_default.json', null)) || { year: 2026, cursoActual: '2', materiaActual: '', cursos: {} };
+
+function parseCursoNum(cursoStr) {
+  // "2.do Curso" → "2", "1.er Curso" → "1"
+  var m = (cursoStr || '').match(/^(\d+)/);
+  return m ? m[1] : null;
+}
+
+function cargarConfigDesdePanel() {
+  try {
+    var s = localStorage.getItem('panel_institucional');
+    if (!s) return null;
+    var panel = JSON.parse(s);
+    if (!panel.asignaturas || panel.asignaturas.length === 0) return null;
+
+    var config = {
+      year: 2026,
+      cursoActual: '2',
+      materiaActual: '',
+      cursos: {}
+    };
+
+    panel.asignaturas.forEach(function(asig) {
+      var cursoNum = parseCursoNum(asig.curso);
+      if (!cursoNum) return;
+      if (!config.cursos[cursoNum]) {
+        config.cursos[cursoNum] = {
+          nombre: cursoNum + '° Curso BTCC',
+          alumnos: 'data/alumnos_' + cursoNum + '_curso.js',
+          materias: []
+        };
+      }
+      // Extraer días únicos del horario
+      var diasSet = {};
+      if (asig.horario) {
+        asig.horario.forEach(function(h) {
+          var abrev = DIAS_ABREV[h.dia];
+          if (abrev) diasSet[abrev] = true;
+        });
+      }
+      config.cursos[cursoNum].materias.push({
+        id: asig.id,
+        nombre: asig.nombre,
+        dias: Object.keys(diasSet)
+      });
+    });
+
+    // Establecer primera materia del curso actual
+    var primerCurso = Object.keys(config.cursos).sort()[0] || '2';
+    if (!config.materiaActual && config.cursos[primerCurso] && config.cursos[primerCurso].materias.length > 0) {
+      config.materiaActual = config.cursos[primerCurso].materias[0].id;
+    }
+
+    return config;
+  } catch(e) {
+    return null;
+  }
+}
+
+// Determinar CONFIG final
+var CONFIG = cargarConfigDesdePanel() || CONFIG_HARDCODEADO;
+
+// Datos del docente desde Panel Institucional
+var DOCENTE_NOMBRE = 'Prof. Christhian Keim'; // fallback
+try {
+  var pi = JSON.parse(localStorage.getItem('panel_institucional'));
+  if (pi && pi.docentes && pi.docentes.length > 0) {
+    DOCENTE_NOMBRE = pi.docentes[0].nombre;
+  }
+} catch(e) {}
+
+var CALENDARIO = null;
+var DATA = {};
+var STUDENTS = [];
+
+// ============================================================
+// Utilidades de almacenamiento
+// ============================================================
+function getStorageKey() {
+  return 'asis_' + CONFIG.cursoActual + '_' + CONFIG.materiaActual;
+}
+
+function cargarDatos() {
+  try { var s = localStorage.getItem(getStorageKey()); if(s) DATA = JSON.parse(s); else DATA = {}; } catch(e) { DATA = {}; }
+}
+
+function guardarDatos() {
+  localStorage.setItem(getStorageKey(), JSON.stringify(DATA));
+}
+
+function cargarCalendario() {
+  if (CALENDARIO) return;
+
+  // Intentar cargar desde panel_institucional primero
+  try {
+    var pi = JSON.parse(localStorage.getItem('panel_institucional'));
+    if (pi && pi.eventosCalendario && pi.eventosCalendario.length > 0) {
+      // Convertir eventos del panel al formato del calendario
+      var monthsMap = {};
+      pi.eventosCalendario.forEach(function(ev) {
+        var parts = ev.fecha.split('-');
+        if (parts.length !== 3) return;
+        var mNum = parseInt(parts[1]);
+        var dia = parseInt(parts[2]);
+        if (!monthsMap[mNum]) monthsMap[mNum] = { num: mNum, name: MESES[mNum - 1] || '', events: [] };
+        var tipoMap = { feriado: 'Feriado Nacional', evento: 'Conmemoración' };
+        monthsMap[mNum].events.push({
+          day: dia,
+          type: tipoMap[ev.tipo] || 'Conmemoración',
+          name: ev.desc || 'Evento'
+        });
+      });
+      CALENDARIO = { year: 2026, months: Object.values(monthsMap) };
+      return;
+    }
+  } catch(e) {}
+
+  // Fallback: archivo JSON
+  try {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'data/calendario_2026.json', false);
+    xhr.send();
+    if (xhr.status === 200) CALENDARIO = JSON.parse(xhr.responseText);
+  } catch(e) { CALENDARIO = null; }
+}
+
+function esFeriado(dia, mes) {
+  if (!CALENDARIO) return null;
+  var m = CALENDARIO.months.find(function(mo) { return mo.num === mes; });
+  if (!m) return null;
+  var ev = m.events.find(function(e) { return e.day === dia; });
+  return ev || null;
+}
+
+// ============================================================
+// Inicialización de curso / materia
+// ============================================================
+function getCurso() {
+  return CONFIG.cursos[CONFIG.cursoActual];
+}
+
+function getMateria() {
+  var c = getCurso();
+  if (!c) return null;
+  return c.materias.find(function(m) { return m.id === CONFIG.materiaActual; });
+}
+
+function getDiasSemana(d) {
+  return ['DO','LU','MA','MI','JU','VI','SA'][d.getDay()];
+}
+
+function formatFecha(d) {
+  var dd = String(d.getDate()).padStart(2,'0');
+  var mm = String(d.getMonth()+1).padStart(2,'0');
+  var yy = d.getFullYear();
+  return dd + '/' + mm + '/' + yy;
+}
+
+function formatFechaKey(d) {
+  var dd = String(d.getDate()).padStart(2,'0');
+  var mm = String(d.getMonth()+1).padStart(2,'0');
+  var yy = d.getFullYear();
+  return yy + '-' + mm + '-' + dd;
+}
+
+function esDiaClase(diaSem) {
+  var m = getMateria();
+  if (!m) return false;
+  return m.dias.indexOf(diaSem) !== -1;
+}
+
+function generarFechasClase() {
+  var fechas = [];
+  var d = new Date(CONFIG.year, 2, 1);
+  var fin = new Date(CONFIG.year, 10, 30);
+  while (d <= fin) {
+    var diaSem = getDiasSemana(d);
+    if (esDiaClase(diaSem)) {
+      fechas.push({ dateObj: new Date(d), dateStr: formatFecha(d), dateKey: formatFechaKey(d), diaSem: diaSem, diaNum: d.getDate(), mes: d.getMonth()+1 });
+    }
+    d.setDate(d.getDate() + 1);
+  }
+  return fechas;
+}
+
+// ============================================================
+// Selectores de curso y materia
+// ============================================================
+function poblarCursos() {
+  var sel = document.getElementById('selCurso');
+  sel.innerHTML = '';
+  var keys = Object.keys(CONFIG.cursos).sort();
+  keys.forEach(function(k) {
+    var opt = document.createElement('option');
+    opt.value = k;
+    opt.textContent = CONFIG.cursos[k].nombre;
+    if (k === CONFIG.cursoActual) opt.selected = true;
+    sel.appendChild(opt);
+  });
+}
+
+function poblarMaterias() {
+  var sel = document.getElementById('selMateria');
+  sel.innerHTML = '';
+  var c = getCurso();
+  if (!c) return;
+  c.materias.forEach(function(m) {
+    var opt = document.createElement('option');
+    opt.value = m.id;
+    opt.textContent = m.nombre + ' (' + m.dias.map(function(d) { return DIAS_NOMBRE[d]; }).join(', ') + ')';
+    if (m.id === CONFIG.materiaActual) opt.selected = true;
+    sel.appendChild(opt);
+  });
+}
+
+function cambiarCurso() {
+  CONFIG.cursoActual = document.getElementById('selCurso').value;
+  CONFIG.materiaActual = getCurso().materias[0].id;
+  poblarMaterias();
+  cargarScriptAlumnos();
+}
+
+function cargarMateria() {
+  CONFIG.materiaActual = document.getElementById('selMateria').value;
+  cargarScriptAlumnos();
+}
+
+// ============================================================
+// Carga de alumnos — lee JSON directamente (fiel al Panel Institucional)
+// ============================================================
+function cargarScriptAlumnos() {
+  var alerta = document.getElementById('alertaCarga');
+  var c = getCurso();
+  if (!c) {
+    alerta.innerHTML = '<div class="alerta-carga"><strong>Curso no encontrado</strong>Verifique la configuración.</div>';
+    return;
+  }
+
+  // Derivar ruta JSON desde la ruta JS
+  var jsonPath = c.alumnos.replace(/\.js$/i, '.json');
+
+  // Cargar JSON vía fetch
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', jsonPath + '?t=' + new Date().getTime(), true);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      try {
+        var data = JSON.parse(xhr.responseText);
+        if (Array.isArray(data) && data.length > 0) {
+          STUDENTS = data;
+          alerta.innerHTML = '';
+          finalizarCarga();
+          return;
+        }
+      } catch(e) {}
+    }
+    // Fallback: intentar cargar el .js
+    cargarScriptFallback();
+  };
+  xhr.onerror = function() {
+    cargarScriptFallback();
+  };
+  xhr.send();
+}
+
+function cargarScriptFallback() {
+  var alerta = document.getElementById('alertaCarga');
+  var c = getCurso();
+  if (!c) { finalizarCarga(); return; }
+
+  var old = document.getElementById('scriptAlumnos');
+  if (old) old.parentNode.removeChild(old);
+
+  var script = document.createElement('script');
+  script.id = 'scriptAlumnos';
+  script.src = c.alumnos + '?t=' + new Date().getTime();
+  script.onload = function() {
+    if (typeof CURSO_STUDENTS !== 'undefined' && CURSO_STUDENTS.length > 0) {
+      STUDENTS = CURSO_STUDENTS;
+      alerta.innerHTML = '';
+    } else {
+      STUDENTS = [];
+      alerta.innerHTML = '<div class="alerta-carga"><strong>Lista de alumnos vacía</strong>Complete el archivo <code>' + c.alumnos + '</code> con la nómina del curso.</div>';
+    }
+    finalizarCarga();
+  };
+  script.onerror = function() {
+    STUDENTS = [];
+    alerta.innerHTML = '<div class="alerta-carga"><strong>No se pudo cargar la lista de alumnos</strong>Archivo no encontrado: <code>' + c.alumnos + '</code>. Cree el archivo con la nómina del curso.</div>';
+    finalizarCarga();
+  };
+  document.body.appendChild(script);
+}
+
+function finalizarCarga() {
+  document.querySelectorAll('.tabs button').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelector('.tabs button').classList.add('active');
+  document.getElementById('vistaPlanilla').style.display = '';
+  document.getElementById('vistaCalendario').style.display = 'none';
+  document.getElementById('vistaResumen').style.display = 'none';
+  renderizar();
+}
+
+// ============================================================
+// Vistas
+// ============================================================
+function cambiarVista(vista, btn) {
+  document.querySelectorAll('.tabs button').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  document.getElementById('vistaPlanilla').style.display = vista === 'planilla' ? '' : 'none';
+  document.getElementById('vistaCalendario').style.display = vista === 'calendario' ? '' : 'none';
+  document.getElementById('vistaResumen').style.display = vista === 'resumen' ? '' : 'none';
+  if (vista === 'planilla') renderizar();
+  if (vista === 'calendario') renderCalendario();
+  if (vista === 'resumen') renderResumen();
+}
+
+// ============================================================
+// PLANILLA POR MES
+// ============================================================
+function renderizar() {
+  cargarDatos();
+  cargarCalendario();
+  if (!getMateria() || STUDENTS.length === 0) {
+    document.getElementById('vistaPlanilla').innerHTML = '<div class="no-students"><span class="emoji"></span>Cargue una materia con alumnos para ver la planilla.</div>';
+    return;
+  }
+
+  var container = document.getElementById('vistaPlanilla');
+  var fechas = generarFechasClase();
+  if (fechas.length === 0) { container.innerHTML = '<div class="no-schedule">No se generaron fechas para esta materia.</div>'; return; }
+
+  var mesesMap = {};
+  fechas.forEach(function(f) {
+    if (!mesesMap[f.mes]) mesesMap[f.mes] = [];
+    mesesMap[f.mes].push(f);
+  });
+
+  var html = '';
+  var filterOpts = '<option value="all">Todos los meses</option>';
+  var statsGlobal = { L:0, EP:0, NL:0, total:0 };
+  var mesesOrdenados = Object.keys(mesesMap).map(Number).sort(function(a,b){ return a-b; });
+
+  mesesOrdenados.forEach(function(m) {
+    var monthName = MESES[m-1] || 'Mes ' + m;
+    var monthId = 'mes_' + m;
+    filterOpts += '<option value="' + monthId + '">' + monthName + ' ' + CONFIG.year + '</option>';
+
+    var fechasMes = mesesMap[m];
+    var tblHtml = '<div class="tbl-wrap"><table><thead><tr>';
+    tblHtml += '<th class="stu-name" rowspan="2">N°</th><th class="stu-name" rowspan="2">Apellidos y Nombres</th>';
+    fechasMes.forEach(function(f) {
+      var ev = esFeriado(f.diaNum, f.mes);
+      var cls = ev && (ev.tipo === 'Feriado Nacional' || ev.tipo === 'Receso') ? ' class="feriado"' : '';
+      tblHtml += '<th' + cls + ' title="' + f.dateStr + ' - ' + (ev ? ev.name : 'Clase normal') + '">' + f.diaSem + '<br>' + f.diaNum + '/' + String(f.mes).padStart(2,'0') + '</th>';
+    });
+    tblHtml += '<th rowspan="2">%<br>Logro</th>';
+    tblHtml += '<th rowspan="2">L</th><th rowspan="2">EP</th><th rowspan="2">NL</th>';
+    tblHtml += '</tr><tr>';
+    fechasMes.forEach(function(f) {
+      tblHtml += '<th style="font-size:8px;font-weight:400;color:#5a687c;padding:1px 2px">' + f.dateStr.split('/')[1] + '/' + f.dateStr.split('/')[2] + '</th>';
+    });
+    tblHtml += '</tr></thead><tbody>';
+
+    var totalsRow = { L:0, EP:0, NL:0, habiles:0 };
+
+    STUDENTS.forEach(function(s) {
+      var sid = 's' + s.num;
+      tblHtml += '<tr>';
+      tblHtml += '<td class="stu-num">' + s.num + '</td>';
+      tblHtml += '<td class="stu-name">' + s.name + '</td>';
+
+      var logrados = 0, enProceso = 0, noLogrados = 0, habiles = 0;
+
+      fechasMes.forEach(function(f) {
+        if (!DATA[f.dateKey]) DATA[f.dateKey] = {};
+        var val = DATA[f.dateKey][sid] || '';
+        var ev = esFeriado(f.diaNum, f.mes);
+        var esFeriadoReal = ev && (ev.tipo === 'Feriado Nacional' || ev.tipo === 'Receso');
+
+        if (esFeriadoReal && !val) {
+          DATA[f.dateKey][sid] = 'J';
+          val = 'J';
+        }
+
+        var cls = val ? 'val-' + val : '';
+        tblHtml += '<td' + (esFeriadoReal ? ' class="feriado"' : '') + '>';
+        if (esFeriadoReal) {
+          tblHtml += '<span style="font-size:16px;color:#e65100" title="' + ev.name + '"></span>';
+        } else {
+          tblHtml += '<select class="asis-select ' + cls + '" onchange="cambiarAsistencia(\'' + f.dateKey + '\',\'' + sid + '\',this)">';
+          ['','L','EP','NL'].forEach(function(opt) {
+            var sel = val === opt ? 'selected' : '';
+            tblHtml += '<option value="' + opt + '" ' + sel + '>' + (opt || '—') + '</option>';
+          });
+          tblHtml += '</select>';
+        }
+        tblHtml += '</td>';
+
+        if (!esFeriadoReal) habiles++;
+        if (val === 'L') logrados++;
+        else if (val === 'EP') enProceso++;
+        else if (val === 'NL') noLogrados++;
+      });
+
+      var pct = habiles > 0 ? Math.round((logrados + enProceso) / habiles * 100) : 0;
+      tblHtml += '<td style="font-weight:700;font-size:12px;color:' + (pct >= 80 ? '#2e7d32' : pct >= 60 ? '#f57f17' : '#c62828') + '">' + pct + '%</td>';
+      tblHtml += '<td style="font-weight:600;color:#2e7d32">' + logrados + '</td>';
+      tblHtml += '<td style="font-weight:600;color:#f57f17">' + enProceso + '</td>';
+      tblHtml += '<td style="font-weight:600;color:#b71c1c">' + noLogrados + '</td>';
+      tblHtml += '</tr>';
+
+      totalsRow.L += logrados;
+      totalsRow.EP += enProceso;
+      totalsRow.NL += noLogrados;
+      totalsRow.habiles += habiles;
+
+      statsGlobal.L += logrados;
+      statsGlobal.EP += enProceso;
+      statsGlobal.NL += noLogrados;
+      statsGlobal.total += habiles;
+    });
+
+    guardarDatos();
+
+    var pctMes = totalsRow.habiles > 0 ? Math.round((totalsRow.L + totalsRow.EP) / totalsRow.habiles * 100) : 0;
+    tblHtml += '<tr class="resumen-row">';
+    tblHtml += '<td colspan="2" style="font-weight:700;text-align:right;padding-right:10px">Total Mes</td>';
+    fechasMes.forEach(function(f) {
+      var diaTot = { L:0, EP:0, NL:0, J:0 };
+      STUDENTS.forEach(function(s) {
+        var v = DATA[f.dateKey] ? DATA[f.dateKey]['s' + s.num] : '';
+        if (v === 'L') diaTot.L++;
+        else if (v === 'EP') diaTot.EP++;
+        else if (v === 'NL') diaTot.NL++;
+        else if (v === 'J') diaTot.J++;
+      });
+      tblHtml += '<td style="font-size:9px;font-weight:600;padding:2px">';
+      if (diaTot.L > 0) tblHtml += '<span class="total-l">L' + diaTot.L + '</span> ';
+      if (diaTot.EP > 0) tblHtml += '<span class="total-ep">EP' + diaTot.EP + '</span> ';
+      if (diaTot.NL > 0) tblHtml += '<span class="total-nl">NL' + diaTot.NL + '</span> ';
+      tblHtml += '</td>';
+    });
+    tblHtml += '<td style="font-weight:700;font-size:13px;color:' + (pctMes >= 80 ? '#2e7d32' : pctMes >= 60 ? '#f57f17' : '#c62828') + '">' + pctMes + '%</td>';
+    tblHtml += '<td style="font-weight:700;color:#2e7d32">' + totalsRow.L + '</td>';
+    tblHtml += '<td style="font-weight:700;color:#f57f17">' + totalsRow.EP + '</td>';
+    tblHtml += '<td style="font-weight:700;color:#b71c1c">' + totalsRow.NL + '</td>';
+    tblHtml += '</tr>';
+    tblHtml += '</tbody></table></div>';
+
+    html += '<div class="mes-section" id="' + monthId + '">';
+    html += '<div class="mes-header">' + monthName + ' ' + CONFIG.year + ' <span class="count">' + fechasMes.length + ' jornada(s) · ' + totalsRow.habiles + ' día(s) hábil(es)</span></div>';
+    html += tblHtml;
+    html += '</div>';
+  });
+
+  container.innerHTML = html;
+  document.getElementById('filterMonth').innerHTML = filterOpts;
+
+  var totalHabiles = statsGlobal.L + statsGlobal.EP + statsGlobal.NL;
+  var pctGlobal = totalHabiles > 0 ? Math.round((statsGlobal.L + statsGlobal.EP) / totalHabiles * 100) : 0;
+  document.getElementById('totalL').textContent = statsGlobal.L;
+  document.getElementById('totalEP').textContent = statsGlobal.EP;
+  document.getElementById('totalNL').textContent = statsGlobal.NL;
+  document.getElementById('pctLogro').textContent = pctGlobal + '% (sobre ' + totalHabiles + ' registros)';
+
+  filtrarMes();
+}
+
+function cambiarAsistencia(dateKey, sid, el) {
+  if (!DATA[dateKey]) DATA[dateKey] = {};
+  DATA[dateKey][sid] = el.value;
+  guardarDatos();
+  el.className = 'asis-select' + (el.value ? ' val-' + el.value : '');
+  actualizarStats();
+}
+
+function actualizarStats() {
+  var stats = { L:0, EP:0, NL:0, total:0 };
+  Object.keys(DATA).forEach(function(dateKey) {
+    Object.keys(DATA[dateKey]).forEach(function(sid) {
+      var v = DATA[dateKey][sid];
+      if (v === 'L') stats.L++;
+      else if (v === 'EP') stats.EP++;
+      else if (v === 'NL') stats.NL++;
+    });
+  });
+  stats.total = stats.L + stats.EP + stats.NL;
+  document.getElementById('totalL').textContent = stats.L;
+  document.getElementById('totalEP').textContent = stats.EP;
+  document.getElementById('totalNL').textContent = stats.NL;
+  var pct = stats.total > 0 ? Math.round((stats.L + stats.EP) / stats.total * 100) : 0;
+  document.getElementById('pctLogro').textContent = pct + '% (sobre ' + stats.total + ' registros)';
+}
+
+function filtrarMes() {
+  var val = document.getElementById('filterMonth').value;
+  document.querySelectorAll('.mes-section').forEach(function(s) {
+    s.style.display = (val === 'all' || s.id === val) ? '' : 'none';
+  });
+}
+
+// ============================================================
+// CALENDARIO ANUAL
+// ============================================================
+function renderCalendario() {
+  cargarCalendario();
+  var container = document.getElementById('vistaCalendario');
+  if (!CALENDARIO) { container.innerHTML = '<div class="no-schedule">No se pudo cargar el calendario.</div>'; return; }
+
+  var html = '';
+  var mesesConClase = [3,4,5,6,7,8,9,10,11];
+  var mActual = getMateria();
+
+  mesesConClase.forEach(function(mNum) {
+    var m = CALENDARIO.months.find(function(mo) { return mo.num === mNum; });
+    if (!m) return;
+    var diasEnMes = new Date(CONFIG.year, mNum, 0).getDate();
+    var primerDia = new Date(CONFIG.year, mNum-1, 1).getDay();
+
+    html += '<div class="mes-section">';
+    html += '<div class="mes-header">' + m.name + ' ' + CONFIG.year + (mActual ? ' — ' + mActual.nombre : '') + '</div>';
+    html += '<div class="cal-grid">';
+    ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'].forEach(function(d) {
+      html += '<div class="cal-header">' + d + '</div>';
+    });
+
+    for (var i = 0; i < primerDia; i++) {
+      html += '<div class="cal-day vacio"></div>';
+    }
+
+    for (var dia = 1; dia <= diasEnMes; dia++) {
+      var d = new Date(CONFIG.year, mNum-1, dia);
+      var diaSem = getDiasSemana(d);
+      var ev = esFeriado(dia, mNum);
+      var esClase = esDiaClase(diaSem);
+
+      var clases = [];
+      if (ev) clases.push('cal-day');
+      if (ev && (ev.tipo === 'Feriado Nacional' || ev.tipo === 'Receso')) clases.push('feriado');
+      else if (ev && ev.tipo === 'Conmemoración') clases.push('conmemoracion');
+      if (esClase && !ev) clases.push('clase');
+
+      var hoy = new Date();
+      if (dia === hoy.getDate() && mNum === hoy.getMonth()+1 && hoy.getFullYear() === CONFIG.year) clases.push('hoy');
+
+      html += '<div class="' + clases.join(' ') + '">';
+      html += '<div class="day-num">' + dia + '</div>';
+      if (ev) html += '<div class="day-event">' + ev.name.split('—')[0].trim() + '</div>';
+      if (esClase) html += '<div class="badge-clase">Clase</div>';
+      html += '</div>';
+    }
+    html += '</div></div>';
+  });
+
+  container.innerHTML = html;
+}
+
+// ============================================================
+// RESUMEN GENERAL
+// ============================================================
+function renderResumen() {
+  cargarDatos();
+  var container = document.getElementById('vistaResumen');
+  var fechas = generarFechasClase();
+  var mActual = getMateria();
+
+  if (STUDENTS.length === 0) {
+    container.innerHTML = '<div class="no-students"><span class="emoji"></span>No hay alumnos cargados.</div>';
+    return;
+  }
+
+  var resumenHtml = '<div class="mes-section"><div class="mes-header">Resumen General' + (mActual ? ' — ' + mActual.nombre : '') + '</div><div class="tbl-wrap"><table><thead><tr>';
+  resumenHtml += '<th>#</th><th class="stu-name">Apellidos y Nombres</th>';
+  resumenHtml += '<th>Total<br>Jornadas</th><th>L</th><th>EP</th><th>NL</th><th>% Logro</th><th>Barra</th>';
+  resumenHtml += '</tr></thead><tbody>';
+
+  var statsGlobal = { L:0, EP:0, NL:0, total:0 };
+
+  STUDENTS.forEach(function(s) {
+    var sid = 's' + s.num;
+    var logrados = 0, enProceso = 0, noLogrados = 0, total = 0;
+
+    fechas.forEach(function(f) {
+      var v = DATA[f.dateKey] ? DATA[f.dateKey][sid] : '';
+      if (v === 'L') { logrados++; total++; }
+      else if (v === 'EP') { enProceso++; total++; }
+      else if (v === 'NL') { noLogrados++; total++; }
+    });
+
+    var pct = total > 0 ? Math.round((logrados + enProceso) / total * 100) : 0;
+    var colorBar = pct >= 80 ? '#2e7d32' : pct >= 60 ? '#f57f17' : '#c62828';
+
+    resumenHtml += '<tr>';
+    resumenHtml += '<td>' + s.num + '</td>';
+    resumenHtml += '<td class="stu-name">' + s.name + '</td>';
+    resumenHtml += '<td>' + total + '</td>';
+    resumenHtml += '<td style="font-weight:600;color:#2e7d32">' + logrados + '</td>';
+    resumenHtml += '<td style="font-weight:600;color:#f57f17">' + enProceso + '</td>';
+    resumenHtml += '<td style="font-weight:600;color:#b71c1c">' + noLogrados + '</td>';
+    resumenHtml += '<td><span style="background:' + (pct >= 80 ? '#c8e6c9' : pct >= 60 ? '#fff9c4' : '#ffcdd2') + ';color:' + colorBar + ';padding:3px 8px;border-radius:4px;font-weight:700">' + pct + '%</span></td>';
+    resumenHtml += '<td style="min-width:120px"><div style="background:#e8eaf6;border-radius:4px;height:12px;overflow:hidden"><div style="height:100%;width:' + pct + '%;background:' + colorBar + ';border-radius:4px;transition:width .3s"></div></div></td>';
+    resumenHtml += '</tr>';
+
+    statsGlobal.L += logrados;
+    statsGlobal.EP += enProceso;
+    statsGlobal.NL += noLogrados;
+    statsGlobal.total += total;
+  });
+
+  var pctGlobal = statsGlobal.total > 0 ? Math.round((statsGlobal.L + statsGlobal.EP) / statsGlobal.total * 100) : 0;
+  resumenHtml += '<tr class="resumen-row"><td colspan="2" style="text-align:right;padding-right:10px">Totales</td>';
+  resumenHtml += '<td>' + statsGlobal.total + '</td>';
+  resumenHtml += '<td class="total-l">' + statsGlobal.L + '</td>';
+  resumenHtml += '<td class="total-ep">' + statsGlobal.EP + '</td>';
+  resumenHtml += '<td class="total-nl">' + statsGlobal.NL + '</td>';
+  resumenHtml += '<td><span style="font-size:14px;font-weight:700;color:' + (pctGlobal >= 80 ? '#2e7d32' : pctGlobal >= 60 ? '#f57f17' : '#c62828') + '">' + pctGlobal + '%</span></td>';
+  resumenHtml += '<td></td></tr>';
+
+  resumenHtml += '</tbody></table></div></div>';
+
+  resumenHtml += '<div class="mes-section"><div class="mes-header">Estadísticas del Curso</div><div style="padding:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px">';
+  resumenHtml += '<div style="background:#e8f5e9;padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;color:#2e7d32;font-weight:600">Total Alumnos</div><div style="font-size:24px;font-weight:700;color:#1b5e20">' + STUDENTS.length + '</div></div>';
+  resumenHtml += '<div style="background:#e8eaf6;padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;color:#283593;font-weight:600">Total Jornadas</div><div style="font-size:24px;font-weight:700;color:#1a237e">' + fechas.length + '</div></div>';
+  resumenHtml += '<div style="background:#c8e6c9;padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;color:#1b5e20;font-weight:600">Logrados (L)</div><div style="font-size:24px;font-weight:700;color:#1b5e20">' + statsGlobal.L + '</div></div>';
+  resumenHtml += '<div style="background:#fff9c4;padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;color:#f57f17;font-weight:600">En Proceso (EP)</div><div style="font-size:24px;font-weight:700;color:#e65100">' + statsGlobal.EP + '</div></div>';
+  resumenHtml += '<div style="background:#ffcdd2;padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;color:#b71c1c;font-weight:600">No Logrado (NL)</div><div style="font-size:24px;font-weight:700;color:#b71c1c">' + statsGlobal.NL + '</div></div>';
+  resumenHtml += '<div style="background:' + (pctGlobal >= 80 ? '#c8e6c9' : pctGlobal >= 60 ? '#fff9c4' : '#ffcdd2') + ';padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;font-weight:600;color:' + (pctGlobal >= 80 ? '#1b5e20' : pctGlobal >= 60 ? '#f57f17' : '#b71c1c') + '">% Logro General</div><div style="font-size:32px;font-weight:700;color:' + (pctGlobal >= 80 ? '#1b5e20' : pctGlobal >= 60 ? '#e65100' : '#b71c1c') + '">' + pctGlobal + '%</div></div>';
+  resumenHtml += '</div></div>';
+
+  container.innerHTML = resumenHtml;
+}
+
+// ============================================================
+// Arranque
+// ============================================================
+window.addEventListener('DOMContentLoaded', function() {
+  // Actualizar nombre del docente desde panel_institucional
+  document.getElementById('headerDocente').textContent = DOCENTE_NOMBRE;
+
+  cargarCalendario();
+  poblarCursos();
+  poblarMaterias();
+  cargarScriptAlumnos();
+});
+</script>
+
+<script src="nav/nav.js"></script>
+</body>
+</html>

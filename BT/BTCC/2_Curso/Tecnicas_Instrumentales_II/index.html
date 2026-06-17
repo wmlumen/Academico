@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tecnicas Instrumentales II — Portal del 2.do Curso</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,sans-serif;background:#f0f4fa;color:#172133;line-height:1.5}
+.wrap{max-width:1160px;margin:0 auto;padding:20px 24px 40px}
+header{background:linear-gradient(135deg,#0f4c81 0%,#1e6fb0 100%);color:#fff;padding:28px 24px;border-radius:14px;box-shadow:0 8px 28px rgba(15,76,129,0.2)}
+header h1{margin:0 0 6px;font-size:2rem}
+header p{margin:0;font-size:14px;opacity:.9}
+.role-bar{display:flex;align-items:center;gap:10px;margin:18px 0;padding:12px 18px;background:#fff;border:1px solid #d8e3ef;border-radius:12px;flex-wrap:wrap}
+.role-bar label{font-size:14px;font-weight:600;color:#2a405c}
+.toggle-group{display:flex;border:2px solid #c8d9ea;border-radius:10px;overflow:hidden}
+.toggle-group button{border:none;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;background:#fff;color:#4d6177}
+.toggle-group button.active{background:#0f4c81;color:#fff}
+.toggle-group button:not(.active):hover{background:#e8f1fb}
+.role-hint{font-size:13px;color:#5a687c;margin-left:auto;padding:6px 12px;background:#f0f7ff;border-radius:8px}
+.section{margin-top:20px}
+.section-title{font-size:1.2rem;color:#0f4c81;margin:0 0 12px;padding:0 0 8px;border-bottom:2px solid #d8e3ef}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.card{background:#fff;border:1px solid #d8e3ef;border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(23,33,51,0.06);transition:box-shadow .2s}
+.card:hover{box-shadow:0 6px 20px rgba(15,76,129,0.1)}
+.card-head{padding:14px 16px 10px}
+.card-head h3{margin:0 0 4px;font-size:15px;color:#0f4c81}
+.card-head p{margin:0;font-size:13px;color:#5a687c}
+.card-body{padding:8px 16px 16px}
+.card-body p{margin:0 0 12px;font-size:13px;color:#4d6177}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.links a{text-decoration:none;padding:8px 12px;border-radius:8px;font-size:13px;font-weight:700;transition:all .15s}
+.links .pri{background:#0f4c81;color:#fff}
+.links .pri:hover{background:#1a5f9a}
+.links .sec{background:#e8f1fb;color:#0f4c81;border:1px solid #c8d9ea}
+.links .sec:hover{background:#d4e4f5}
+.links .ter{background:#f0f4fa;color:#4d6177;border:1px solid #d8e3ef;font-size:12px}
+.links .ter:hover{background:#e4ebf5}
+.sub-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;padding-top:10px;border-top:1px solid #edf2f8}
+.sub-links a{font-size:12px;padding:4px 10px;background:#f5f9ff;color:#0f4c81;border:1px solid #c8d9ea;border-radius:6px;text-decoration:none;transition:all .15s}
+.sub-links a:hover{background:#d4e4f5}
+.pdf-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;background:#fef3e0;color:#b55f0a;border:1px solid #f5d99a;padding:2px 8px;border-radius:6px;margin-top:8px}
+.docente-only{display:none}
+body.rol-docente .docente-only{display:block}
+body.rol-docente .docente-only-inline{display:inline-flex}
+.alumno-only{display:none}
+body.rol-alumno .alumno-only{display:block}
+footer{margin-top:28px;padding-top:16px;border-top:1px solid #d8e3ef;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:#5a687c}
+@media(max-width:720px){
+  .wrap{padding:14px}
+  header h1{font-size:1.6rem}
+  .role-bar{flex-direction:column;align-items:stretch}
+  .role-hint{margin-left:0;text-align:center}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+
+<script src="../../nav/runtime.js"></script>
+</head>
+<body class="rol-docente">
+<div class="wrap">
+  <header>
+    <h1>Tecnicas Instrumentales II</h1>
+    <p>Bachillerato Tecnico en Construcciones Civiles (BTCC) · 2.do Curso</p>
+    <p>Colegio Nacional Defensores del Chaco · Docente: Christhian Keim · Anio 2026</p>
+  </header>
+  <div class="role-bar">
+    <label>Acceder como:</label>
+    <div class="toggle-group" id="roleToggle">
+      <button data-role="docente" class="active">Docente</button>
+      <button data-role="alumno">Alumno</button>
+    </div>
+    <span class="role-hint" id="roleHint">Vista completa · todos los documentos</span>
+  </div>
+  <div class="docente-only">
+    <section class="section">
+      <h2 class="section-title">Planificacion</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-head"><h3>Plan Anual</h3><p>Fundamentacion, capacidades, cronograma</p></div>
+          <div class="card-body">
+            <p>Documento base de la catedra. Contiene la planificacion anual completa.</p>
+            <div class="links">
+              <a href="tecnicas_instrumentales_ii.html" class="pri">Ver HTML</a>
+              <a href="Plan_Anual_Tecnicas_Instrumentales_II.md" class="sec">Markdown</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Plan de Clase Desarrollado</h3><p>Secuencia mensual de temas</p></div>
+          <div class="card-body">
+            <p>Cronograma detallado con capacidades, indicadores y evaluacion por mes.</p>
+            <div class="links">
+              <a href="plan_de_clase_tecnicas_instrumentales_ii.html" class="pri">Ver HTML</a>
+              <a href="Plan_de_Clase_Desarrollado_Tecnicas_Instrumentales_II.md" class="sec">Markdown</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Plan Sintetico Semanal</h3><p>Distribucion clase por clase</p></div>
+          <div class="card-body">
+            <p>Desglose semanal con fechas, contenidos y actividades planificadas.</p>
+            <div class="links">
+              <a href="06_plan_sintetico_semanal_tecnicas_instrumentales_ii.html" class="pri">Ver HTML</a>
+              <a href="06_Plan_Sintetico_Semanal_Tecnicas_Instrumentales_II.md" class="sec">Markdown</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <h2 class="section-title">Material Didactico</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-head"><h3>Material del Estudiante</h3><p>Guia completa del curso</p></div>
+          <div class="card-body">
+            <p>Mapa anual, criterios, procedimientos base, formulas y orientaciones generales.</p>
+            <div class="links">
+              <a href="material_del_estudiante_tecnicas_instrumentales_ii.html" class="pri">Ver HTML</a>
+              <a href="Material_del_Estudiante_Tecnicas_Instrumentales_II.md" class="sec">Markdown</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Fichas del Estudiante</h3><p>9 temas · 35 clases</p></div>
+          <div class="card-body">
+            <p>Fichas separadas por tema con sub-fichas por clase. Acceso directo a cada unidad.</p>
+            <div class="links">
+              <a href="fichas_estudiante_html/index_fichas_estudiante.html" class="pri">Ir a fichas</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <h2 class="section-title">Evaluacion</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-head"><h3>Prueba Diagnostica</h3><p>Evaluacion inicial</p></div>
+          <div class="card-body">
+            <p>Instrumento para evaluar conocimientos previos al inicio del curso.</p>
+            <div class="links">
+              <a href="08_prueba_diagnostica_tecnicas_instrumentales_ii.html" class="pri">Ver HTML</a>
+              <a href="08_Prueba_Diagnostica_Tecnicas_Instrumentales_II.md" class="sec">Markdown</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Rubricas y Correspondencia</h3><p>Criterios de evaluacion</p></div>
+          <div class="card-body">
+            <p>Rubricas analiticas y tabla de correspondencia con indicadores del plan de clase.</p>
+            <div class="links">
+              <a href="03_Rubricas_y_Correspondencia.md" class="pri">Ver Markdown</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Examenes</h3><p>Evaluaciones parciales</p></div>
+          <div class="card-body">
+            <p>Examenes, solucionarios y ejercicios de practica para computo metrico.</p>
+            <div class="links">
+              <a href="Examen_Parcial_Calculo_Metrico.html" class="sec">Examen</a>
+              <a href="Solucionario_Examen_Parcial_Computo_Metrico.html" class="sec">Solucionario</a>
+              <a href="Ejercicios_Practica_Computo_Metrico.html" class="sec">Practica</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <h2 class="section-title">Seguimiento y Gestion</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-head"><h3>Planilla de Asistencia</h3><p>Registro de presencia</p></div>
+          <div class="card-body">
+            <div class="links">
+              <a href="07_planilla_asistencia_tecnicas_instrumentales_ii.html" class="pri">Ver HTML</a>
+              <a href="07_Planilla_Asistencia_Tecnicas_Instrumentales_II.csv" class="sec">CSV</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Plan de Mejora</h3><p>Estrategias de apoyo</p></div>
+          <div class="card-body">
+            <p>Plan de intervencion para alumnos con dificultades en el aprendizaje.</p>
+            <div class="links">
+              <a href="09_plan_de_mejora_tecnicas_instrumentales_ii.html" class="pri">Ver HTML</a>
+              <a href="09_Plan_de_Mejora_Tecnicas_Instrumentales_II.md" class="sec">Markdown</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Registro Anecdotico</h3><p>Incidencias</p></div>
+          <div class="card-body">
+            <div class="links">
+              <a href="10_registro_anecdotico_tecnicas_instrumentales_ii.html" class="pri">Ver HTML</a>
+              <a href="10_Registro_Anecdotico_Tecnicas_Instrumentales_II.csv" class="sec">CSV</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Planilla de Calificaciones</h3><p>Registro de notas</p></div>
+          <div class="card-body">
+            <p>Planilla de calificaciones por tema con espacios editables, promedios por semestre, nota final y recuperacion.</p>
+            <div class="links">
+              <a href="11_planilla_calificaciones_tecnicas_instrumentales_ii.html" class="pri">Ver HTML</a>
+              <a href="11_planilla_calificaciones_tecnicas_instrumentales_ii.csv" class="sec">CSV (Excel)</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>RSA por Indicadores (antes Planilla de Proceso)</h3><p>Seguimiento academico individual</p></div>
+          <div class="card-body">
+            <p>Registro de seguimiento por estudiante con 9 indicadores, cada uno con 3 revisiones durante el anio. Incluye filtro, busqueda y auto-puntuacion.</p>
+            <div class="links">
+              <a href="12_rsa_individual_tecnicas.html" class="pri">Ver RSA</a>
+              <a href="05_Planilla_Proceso_RSA_Tecnicas_Instrumentales_II.csv" class="sec">CSV</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Registro de Asistencia y Temas</h3><p>Control de asistencia y temas desarrollados por jornada</p></div>
+          <div class="card-body">
+            <p>Registro por bloque horario (13:00-15:10 / 15:10-17:20). Se guarda automaticamente.</p>
+            <div class="links">
+              <a href="14_registro_clases_tecnicas.html" class="pri">Abrir registro</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Perfil del Estudiante</h3><p>Panel consolidado de avance academico y asistencia</p></div>
+          <div class="card-body">
+            <p>Resumen por alumno: indicadores aprobados, puntaje, asistencia y ausencias.</p>
+            <div class="links">
+              <a href="15_perfil_estudiante_tecnicas.html" class="pri">Ver perfil</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Planilla de Proceso</h3><p>70% RSA + 30% Proyectos Institucionales · Res. 1525</p></div>
+          <div class="card-body">
+            <p>Consolidado de competencias nacionales e institucionales con ponderacion. Minimo 70% para aprobar.</p>
+            <div class="links">
+              <a href="16_planilla_proceso_tecnicas.html" class="pri">Ver planilla</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Examen Sumativo</h3><p>Carga de puntajes de examenes</p></div>
+          <div class="card-body">
+            <p>Planilla para cargar los puntajes obtenidos por cada alumno en examenes parciales. Convierte automaticamente a nota 1-5 segun la escala de calificaciones.</p>
+            <div class="links">
+              <a href="17_examen_sumativo_tecnicas.html" class="pri">Cargar puntajes</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Planilla Integrada — Final de Etapa</h3><p>RSA + Proyectos + Examenes · Escala 1-5</p></div>
+          <div class="card-body">
+            <p>Consolidado final que integra RSA, Proyectos Institucionales y Examenes Sumativos con pesos configurables. Calcula nota segun la escala oficial de calificaciones.</p>
+            <div class="links">
+              <a href="18_planilla_integrada_tecnicas.html" class="pri">Ver planilla integrada</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Competencias Transversales</h3><p>Evaluacion por criterios actitudinales, academicos y socioemocionales</p></div>
+          <div class="card-body">
+            <p>Registro de competencias vinculado al Registro Anecdotico. Marca los logros de cada alumno en 28 criterios.</p>
+            <div class="links">
+              <a href="19_competencias_transversales_tecnicas.html" class="pri">Ver competencias</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Control de Temas y Adecuaciones</h3><p>Avance del plan y adecuaciones</p></div>
+          <div class="card-body">
+            <p>Marque los temas desarrollados del Plan Anual, registre fechas de inicio/cierre y agregue adecuaciones curriculares realizadas.</p>
+            <div class="links">
+              <a href="13_control_temas_adecuaciones_tecnicas.html" class="pri">Ver control</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Notas del Docente</h3><p>Reproduccion y observaciones</p></div>
+          <div class="card-body">
+            <p>Notas internas del docente para la reproduccion del paquete didactico.</p>
+            <div class="links">
+              <a href="04_Notas_Docente_Reproduccion.md" class="pri">Ver Markdown</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Planilla de Calculos</h3><p>Vivienda 36 m2</p></div>
+          <div class="card-body">
+            <p>Planilla de calculos para vivienda de 36 m2, referente para ejercicios practicos.</p>
+            <div class="links">
+              <a href="Planilla_Calculos_Vivienda_36m2.csv" class="pri">Ver CSV</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="alumno-only">
+    <section class="section">
+      <h2 class="section-title">Mi Perfil</h2>
+      <div class="grid">
+        <div class="card" id="loginCard">
+          <div class="card-head"><h3>Iniciar sesión</h3><p>Ingresá con tu nombre y contraseña</p></div>
+          <div class="card-body" id="loginFormContainer">
+            <p style="margin:0 0 12px;font-size:13px;color:#4d6177">Seleccioná tu nombre de la lista e ingresá la contraseña que te entregó el profesor.</p>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <select id="alumnoSelector" style="padding:10px 12px;border:1px solid #c8d9ea;border-radius:8px;font-size:14px;background:#fff">
+                <option value="">— Seleccioná tu nombre —</option>
+              </select>
+              <input type="password" id="alumnoPassword" placeholder="Contraseña" style="padding:10px 12px;border:1px solid #c8d9ea;border-radius:8px;font-size:14px;background:#fff">
+              <button onclick="loginAlumno()" style="padding:10px;border:none;border-radius:8px;background:#0f4c81;color:#fff;font-size:14px;font-weight:700;cursor:pointer">🔑 Acceder a mi perfil</button>
+              <div id="loginError" style="color:#c62828;font-size:13px;font-weight:600;display:none;padding:6px 10px;background:#ffebee;border-radius:6px"></div>
+            </div>
+          </div>
+          <div class="card-body" id="loginSuccessContainer" style="display:none">
+            <p style="margin:0 0 12px;font-size:14px;font-weight:600;color:#1b5e20" id="loginWelcome"></p>
+            <div class="links">
+              <a href="" id="loginProfileLink" class="pri">📊 Ver mi perfil</a>
+              <button onclick="logoutAlumno()" class="sec" style="padding:8px 12px;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;background:#e8f1fb;color:#0f4c81;border:1px solid #c8d9ea">🚪 Cerrar sesión</button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Material del Estudiante</h3><p>Guía completa del curso</p></div>
+          <div class="card-body">
+            <p>Mapa anual, criterios, procedimientos base, fórmulas y orientaciones generales.</p>
+            <div class="links">
+              <a href="material_del_estudiante_tecnicas_instrumentales_ii.html" class="pri">Ver material</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Fichas del Estudiante</h3><p>9 temas · 35 clases</p></div>
+          <div class="card-body">
+            <p>Fichas separadas por tema con sub-fichas por clase. Acceso directo a cada unidad.</p>
+            <div class="links">
+              <a href="fichas_estudiante_html/index_fichas_estudiante.html" class="pri">Ir a fichas</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <section class="section">
+    <h2 class="section-title">Fichas del Estudiante por Tema</h2>
+    <p style="margin:0 0 14px;color:#4d6177;font-size:14px">Acceso directo a cada tema con sus respectivas clases. <span class="pdf-badge">PDF disponible</span></p>
+    <div class="grid">
+      <div class="card">
+        <div class="card-head"><h3>Tema 1 — Metodo de trabajo</h3></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_01_metodo_de_trabajo.html" class="pri">Ficha principal</a>
+            <a href="fichas_estudiante_html/pdf_compilados/Tema_01_Metodo_De_Trabajo.pdf" class="sec">PDF</a>
+          </div>
+          <div class="sub-links">
+            <a href="fichas_estudiante_html/tema_01a_introduccion_metodo.html">Clase 1</a>
+            <a href="fichas_estudiante_html/tema_01b_secuencia_organizacion.html">Clase 2</a>
+            <a href="fichas_estudiante_html/tema_01c_aplicacion_practica.html">Clase 3</a>
+            <a href="fichas_estudiante_html/tema_01d_integracion_evaluacion.html">Clase 4</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Tema 2 — Organizacion del puesto</h3></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_02_organizacion_del_puesto.html" class="pri">Ficha principal</a>
+            <a href="fichas_estudiante_html/pdf_compilados/Tema_02_Organizacion_Del_Puesto.pdf" class="sec">PDF</a>
+          </div>
+          <div class="sub-links">
+            <a href="fichas_estudiante_html/tema_02a_principios_organizacion.html">Clase 1</a>
+            <a href="fichas_estudiante_html/tema_02b_movimiento_materiales.html">Clase 2</a>
+            <a href="fichas_estudiante_html/tema_02c_economia_movimientos.html">Clase 3</a>
+            <a href="fichas_estudiante_html/tema_02d_aplicacion_practica.html">Clase 4</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Tema 3 — Estudio de tiempos</h3></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_03_estudio_de_tiempos_y_muestreo.html" class="pri">Ficha principal</a>
+            <a href="fichas_estudiante_html/pdf_compilados/Tema_03_Estudio_De_Tiempos_Y_Muestreo.pdf" class="sec">PDF</a>
+          </div>
+          <div class="sub-links">
+            <a href="fichas_estudiante_html/tema_03a_introduccion_tiempos.html">Clase 1</a>
+            <a href="fichas_estudiante_html/tema_03b_muestreo_trabajo.html">Clase 2</a>
+            <a href="fichas_estudiante_html/tema_03c_tiempos_improductivos.html">Clase 3</a>
+            <a href="fichas_estudiante_html/tema_03d_planillas_registro.html">Clase 4</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Tema 4 — Rendimiento y costo MO</h3></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_04_rendimiento_y_costo_mano_de_obra.html" class="pri">Ficha principal</a>
+            <a href="fichas_estudiante_html/pdf_compilados/Tema_04_Rendimiento_Y_Costo_Mano_De_Obra.pdf" class="sec">PDF</a>
+          </div>
+          <div class="sub-links">
+            <a href="fichas_estudiante_html/tema_04a_jornal_cuadrilla.html">Clase 1</a>
+            <a href="fichas_estudiante_html/tema_04b_calculo_costo_unitario.html">Clase 2</a>
+            <a href="fichas_estudiante_html/tema_04c_control_produccion.html">Clase 3</a>
+            <a href="fichas_estudiante_html/tema_04d_ejercicios_practicos.html">Clase 4</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Tema 5 — Integracion de etapa</h3></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_05_integracion_de_etapa.html" class="pri">Ficha principal</a>
+            <a href="fichas_estudiante_html/pdf_compilados/Tema_05_Integracion_De_Etapa.pdf" class="sec">PDF</a>
+          </div>
+          <div class="sub-links">
+            <a href="fichas_estudiante_html/tema_05a_repaso_general.html">Clase 1</a>
+            <a href="fichas_estudiante_html/tema_05b_ejercicios_integradores.html">Clase 2</a>
+            <a href="fichas_estudiante_html/tema_05c_evaluacion_etapa.html">Clase 3</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Tema 6 — Computo de trabajos</h3></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_06_computo_de_trabajos.html" class="pri">Ficha principal</a>
+            <a href="fichas_estudiante_html/pdf_compilados/Tema_06_Computo_De_Trabajos.pdf" class="sec">PDF</a>
+          </div>
+          <div class="sub-links">
+            <a href="fichas_estudiante_html/tema_06a_introduccion_computo.html">Clase 1</a>
+            <a href="fichas_estudiante_html/tema_06b_computo_albanileria.html">Clase 2</a>
+            <a href="fichas_estudiante_html/tema_06c_computo_revoques.html">Clase 3</a>
+            <a href="fichas_estudiante_html/tema_06d_planilla_computo.html">Clase 4</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Tema 7 — Computo de materiales</h3></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_07_computo_de_materiales.html" class="pri">Ficha principal</a>
+            <a href="fichas_estudiante_html/pdf_compilados/Tema_07_Computo_De_Materiales.pdf" class="sec">PDF</a>
+          </div>
+          <div class="sub-links">
+            <a href="fichas_estudiante_html/tema_07a_introduccion_consumos.html">Clase 1</a>
+            <a href="fichas_estudiante_html/tema_07b_materiales_albanileria.html">Clase 2</a>
+            <a href="fichas_estudiante_html/tema_07c_materiales_pisos.html">Clase 3</a>
+            <a href="fichas_estudiante_html/tema_07d_ejercicios_materiales.html">Clase 4</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Tema 8 — Computo de HA</h3></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_08_computo_hormigon_armado.html" class="pri">Ficha principal</a>
+            <a href="fichas_estudiante_html/pdf_compilados/Tema_08_Computo_Hormigon_Armado.pdf" class="sec">PDF</a>
+          </div>
+          <div class="sub-links">
+            <a href="fichas_estudiante_html/tema_08a_introduccion_ha.html">Clase 1</a>
+            <a href="fichas_estudiante_html/tema_08b_volumen_encofrado.html">Clase 2</a>
+            <a href="fichas_estudiante_html/tema_08c_computo_acero.html">Clase 3</a>
+            <a href="fichas_estudiante_html/tema_08d_ejercicios_ha.html">Clase 4</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Tema 9 — Integracion final</h3></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_09_integracion_final.html" class="pri">Ficha principal</a>
+            <a href="fichas_estudiante_html/pdf_compilados/Tema_09_Integracion_Final.pdf" class="sec">PDF</a>
+          </div>
+          <div class="sub-links">
+            <a href="fichas_estudiante_html/tema_09a_repaso_segunda_etapa.html">Clase 1</a>
+            <a href="fichas_estudiante_html/tema_09b_caso_integrador.html">Clase 2</a>
+            <a href="fichas_estudiante_html/tema_09c_planilla_tecnica.html">Clase 3</a>
+            <a href="fichas_estudiante_html/tema_09d_evaluacion_final.html">Clase 4</a>
+          </div>
+        </div>
+      </div>
+  </div>
+  </section>
+  <footer>
+    <span>Colegio Nacional Defensores del Chaco · BTCC 2.do Curso</span>
+    <span>Docente: Christhian Keim · <a href="fichas_estudiante_html/index_fichas_estudiante.html" style="color:#0f4c81">Vista fichas</a></span>
+  </footer>
+</div>
+<script src="../../data/credenciales_alumnos.js"></script>
+<script>
+(function(){
+  const body = document.body;
+  const toggle = document.getElementById('roleToggle');
+  const hint = document.getElementById('roleHint');
+  const btns = toggle.querySelectorAll('button');
+  const hints = {
+    docente: 'Vista completa - todos los documentos de planificacion, evaluacion y seguimiento',
+    alumno:  'Vista alumno - solo materiales de estudio y fichas por tema'
+  };
+  btns.forEach(btn => {
+    btn.addEventListener('click', function(){
+      const role = this.dataset.role;
+      btns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      body.className = 'rol-' + role;
+      hint.textContent = hints[role] || '';
+    });
+  });
+})();
+
+// ===== LOGIN DE ALUMNO =====
+function cargarSelectorAlumnos() {
+  var sel = document.getElementById('alumnoSelector');
+  if(!sel) return;
+  CREDENCIALES.forEach(function(c) {
+    var opt = document.createElement('option');
+    opt.value = c.num;
+    opt.textContent = c.num + '. ' + c.name.split(',')[0];
+    sel.appendChild(opt);
+  });
+}
+
+function loginAlumno() {
+  var num = parseInt(document.getElementById('alumnoSelector').value);
+  var pass = document.getElementById('alumnoPassword').value;
+  var error = document.getElementById('loginError');
+
+  if(!num) { error.textContent = 'Seleccioná tu nombre de la lista.'; error.style.display = 'block'; return; }
+  if(!pass) { error.textContent = 'Ingresá tu contraseña.'; error.style.display = 'block'; return; }
+
+  if(validarCredencial(num, pass)) {
+    error.style.display = 'none';
+    localStorage.setItem('alumno_login', JSON.stringify({ num: num, name: obtenerAlumnoPorNumero(num).name, time: Date.now() }));
+    mostrarBienvenida(num);
+  } else {
+    error.textContent = 'Contraseña incorrecta. Consultá con tu profesor.';
+    error.style.display = 'block';
+  }
+}
+
+function mostrarBienvenida(num) {
+  var alumno = obtenerAlumnoPorNumero(num);
+  if(!alumno) return;
+  document.getElementById('loginFormContainer').style.display = 'none';
+  document.getElementById('loginWelcome').textContent = '👋 Bienvenido/a, ' + alumno.name.split(',')[0] + '!';
+  document.getElementById('loginProfileLink').href = '15_perfil_estudiante_tecnicas.html#' + num;
+  document.getElementById('loginSuccessContainer').style.display = 'block';
+}
+
+function logoutAlumno() {
+  localStorage.removeItem('alumno_login');
+  document.getElementById('loginSuccessContainer').style.display = 'none';
+  document.getElementById('loginFormContainer').style.display = 'block';
+  document.getElementById('alumnoPassword').value = '';
+}
+
+function verificarSesionAlumno() {
+  try {
+    var s = localStorage.getItem('alumno_login');
+    if(s) {
+      var data = JSON.parse(s);
+      mostrarBienvenida(data.num);
+    }
+  } catch(e) {}
+}
+
+cargarSelectorAlumnos();
+verificarSesionAlumno();
+</script>
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>

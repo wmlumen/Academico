@@ -1,0 +1,30 @@
+[
+  {
+    "institution": "CENTRO_EDUCATIVO_MARANGATU",
+    "source_file_count": 4,
+    "unique_content_count": 3,
+    "deduplicated_count": 1,
+    "conflict_count": 1
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source_file_count": 175,
+    "unique_content_count": 65,
+    "deduplicated_count": 30,
+    "conflict_count": 3
+  },
+  {
+    "institution": "COLEGIO_NACIONAL_DON_JORGE_GAYOSO",
+    "source_file_count": 6,
+    "unique_content_count": 1,
+    "deduplicated_count": 1,
+    "conflict_count": 0
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source_file_count": 39,
+    "unique_content_count": 29,
+    "deduplicated_count": 5,
+    "conflict_count": 0
+  }
+]

@@ -1,0 +1,116 @@
+{
+  "rows": [
+    {
+      "course": "2_Curso",
+      "role": "alumno-docente",
+      "courseTag": "2.do curso",
+      "title": "Técnicas Instrumentales II",
+      "roleTag": "Alumno",
+      "statusTag": "Portal por roles",
+      "description": "Acceso unificado para alumno y docente con filtro por rol. El alumno ve solo sus materiales; el docente ve planificación, evaluación y seguimiento.",
+      "actions": [
+        { "label": "Ir al portal", "href": "2_Curso/Tecnicas_Instrumentales_II/index.html", "variant": "primary" },
+        { "label": "Solo fichas", "href": "2_Curso/Tecnicas_Instrumentales_II/fichas_estudiante_html/index_fichas_estudiante.html", "variant": "secondary" }
+      ]
+    },
+    {
+      "course": "2_Curso",
+      "role": "alumno-docente",
+      "courseTag": "2.do curso",
+      "title": "Resistencia de Materiales",
+      "roleTag": "Alumno",
+      "statusTag": "Portal por roles",
+      "description": "Acceso unificado para alumno y docente. Incluye plan anual, plan de clase, fichas con gráficos SVG, ejercitario y documentos de gestión.",
+      "actions": [
+        { "label": "Ir al portal", "href": "2_Curso/Resistencia_Materiales/index.html", "variant": "primary" },
+        { "label": "Solo fichas", "href": "2_Curso/Resistencia_Materiales/fichas_estudiante_html/index_fichas_estudiante.html", "variant": "secondary" }
+      ]
+    },
+    {
+      "course": "2_Curso",
+      "role": "docente",
+      "courseTag": "2.do curso",
+      "title": "Mapa Documental",
+      "statusTag": "Docente",
+      "description": "Inventario general del 2.do curso con limpieza realizada, materiales disponibles por cátedra y faltantes detectados.",
+      "actions": [
+        { "label": "Ver HTML", "href": "2_Curso/00_mapa_documental_2_curso.html", "variant": "primary" }
+      ]
+    },
+    {
+      "course": "general",
+      "role": "docente",
+      "courseTag": "Institucional",
+      "title": "Panel Institucional",
+      "statusTag": "Docente",
+      "description": "Registro central del docente, asignaturas a cargo, horarios semanales y calendario académico.",
+      "actions": [
+        { "label": "Abrir panel", "href": "panel_institucional.html", "variant": "primary" }
+      ]
+    },
+    {
+      "course": "3_Curso",
+      "role": "alumno-docente",
+      "courseTag": "3.er curso",
+      "title": "Cómputo y Presupuesto",
+      "statusTag": "En desarrollo",
+      "description": "Versión HTML del plan de cátedra para el eje de gestión económica y presupuesto de obras.",
+      "actions": [
+        { "label": "Ver HTML", "href": "3_Curso/Computo_y_Presupuesto/computo_presupuesto.html", "variant": "primary" }
+      ]
+    }
+  ],
+  "quickCards": [
+    {
+      "title": "Técnicas Instrumentales II",
+      "description": "Portal unificado con selector de rol. El alumno accede a fichas y materiales; el docente a toda la gestión.",
+      "actions": [
+        { "label": "Ir al portal", "href": "2_Curso/Tecnicas_Instrumentales_II/index.html", "variant": "primary" },
+        { "label": "Fichas", "href": "2_Curso/Tecnicas_Instrumentales_II/fichas_estudiante_html/index_fichas_estudiante.html", "variant": "secondary" }
+      ]
+    },
+    {
+      "title": "Resistencia de Materiales",
+      "description": "Portal unificado con fichas, gráficos SVG y documentos de gestión. Seleccione su rol al ingresar.",
+      "actions": [
+        { "label": "Ir al portal", "href": "2_Curso/Resistencia_Materiales/index.html", "variant": "primary" },
+        { "label": "Fichas", "href": "2_Curso/Resistencia_Materiales/fichas_estudiante_html/index_fichas_estudiante.html", "variant": "secondary" }
+      ]
+    },
+    {
+      "title": "Panel Institucional",
+      "description": "Registro del docente, asignaturas, horarios y calendario académico.",
+      "actions": [
+        { "label": "Abrir panel", "href": "panel_institucional.html", "variant": "primary" }
+      ]
+    },
+    {
+      "title": "Mapa del 2.do Curso",
+      "description": "Inventario de documentos existentes por cátedra.",
+      "actions": [
+        { "label": "Abrir mapa", "href": "2_Curso/00_mapa_documental_2_curso.html", "variant": "primary" }
+      ]
+    },
+    {
+      "title": "Calendario Escolar",
+      "description": "Todas las fechas del calendario académico con registro de lluvia, tipo de asueto y observaciones.",
+      "actions": [
+        { "label": "Ver calendario", "href": "calendario_escolar_2026.html", "variant": "primary" }
+      ]
+    },
+    {
+      "title": "Perfil Docente",
+      "description": "Panel del docente con acceso a las herramientas organizadas por asignatura y gestión de tareas.",
+      "actions": [
+        { "label": "Abrir perfil", "href": "perfil_docente.html", "variant": "primary" }
+      ]
+    },
+    {
+      "title": "Cómputo y Presupuesto",
+      "description": "Plan de cátedra del 3.er curso.",
+      "actions": [
+        { "label": "Ver plan", "href": "3_Curso/Computo_y_Presupuesto/computo_presupuesto.html", "variant": "secondary" }
+      ]
+    }
+  ]
+}

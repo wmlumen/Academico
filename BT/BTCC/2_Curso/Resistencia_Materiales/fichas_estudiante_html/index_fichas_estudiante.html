@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fichas del Estudiante — Resistencia de Materiales</title>
+<style>
+body{font-family:"Segoe UI",Tahoma,sans-serif;background:#f4f7fb;color:#172133;margin:0;padding:24px}
+.wrap{max-width:1100px;margin:0 auto}
+.topnav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;background:white;border:1px solid #d8e0ea;border-radius:12px;padding:12px}
+.topnav a{display:inline-block;text-decoration:none;background:#e8f1fb;color:#0f4c81;padding:8px 12px;border:1px solid #c8d9ea;border-radius:8px;font-weight:700;font-size:13px}
+.topnav a:hover{background:#d4e4f5}
+.role-info{display:flex;align-items:center;gap:10px;padding:10px 16px;background:#fef8e7;border:1px solid #f5d99a;border-radius:10px;margin-bottom:14px;font-size:14px;color:#6b5200}
+.role-info a{color:#0f4c81;font-weight:700;text-decoration:none}
+.role-info a:hover{text-decoration:underline}
+.hero{background:#0f4c81;color:white;padding:22px;border-radius:14px;margin-bottom:18px}
+.hero h1{margin:0 0 4px}
+.hero .sub{font-size:14px;opacity:.8;margin-bottom:8px}
+.hero p{font-size:14px;opacity:.9;max-width:700px;margin:8px 0 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.card{background:white;border:1px solid #d8e0ea;border-radius:12px;padding:16px;box-shadow:0 4px 12px rgba(23,33,51,0.05)}
+.card h2{margin:0 0 6px;font-size:16px;color:#0f4c81}
+.card p{margin:0 0 14px;font-size:14px;color:#5a687c}
+.card .links{display:flex;flex-wrap:wrap;gap:8px}
+.card .links a{display:inline-block;text-decoration:none;background:#0f4c81;color:white;padding:8px 14px;border-radius:8px;font-weight:700;font-size:13px}
+.card .links a:hover{background:#1a5f9a}
+.card .links a.sec{background:#e8f1fb;color:#0f4c81;border:1px solid #c8d9ea}
+.card .links a.sec:hover{background:#d4e4f5}
+.svg-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7;padding:3px 10px;border-radius:6px;margin-top:8px;font-weight:600}
+footer{text-align:center;margin-top:24px;padding-top:16px;border-top:1px solid #d8e0ea;font-size:13px;color:#5a687c}
+footer a{color:#0f4c81;text-decoration:none;font-weight:700}
+@media(max-width:720px){.grid{grid-template-columns:1fr}}
+</style>
+
+<link rel="stylesheet" href="../../../nav/nav.css">
+
+<script src="../../../nav/runtime.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- NAV -->
+  <nav class="topnav" aria-label="Navegacion principal">
+    <a href="../../../index.html">Inicio BTCC</a>
+    <a href="../index.html">Portal Resistencia</a>
+    <a href="../resistencia_materiales.html">Plan anual</a>
+    <a href="../plan_de_clase_resistencia_materiales.html">Plan de clase</a>
+    <a href="../material_del_estudiante_resistencia_materiales.html">Guía completa</a>
+  </nav>
+
+  <!-- ROLE HINT -->
+  <div class="role-info">
+    👨‍🎓 Estás en <strong>vista Alumno</strong> · aquí encontrarás las fichas de estudio organizadas por tema.
+    <a href="../index.html">🔁 Cambiar a vista Docente</a>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Fichas del Estudiante</h1>
+    <div class="sub">Resistencia de Materiales · 2.do Curso BTCC</div>
+    <p>Cada ficha contiene desarrollo conceptual, gráficos explicativos en SVG y ejercicios prácticos.</p>
+  </div>
+
+  <!-- FICHAS GRID -->
+  <div class="grid">
+    <div class="card">
+      <h2>Tema 1 — Introducción</h2>
+      <p>Conceptos fundamentales de la resistencia de materiales: esfuerzo, deformación y tipos de cargas.</p>
+      <div class="links">
+        <a href="tema_01_introduccion.html">Abrir ficha</a>
+        <a href="../material_del_estudiante_resistencia_materiales.html" class="sec">Guía completa</a>
+      </div>
+      <span class="svg-badge">🎨 Incluye gráfico</span>
+    </div>
+
+    <div class="card">
+      <h2>Tema 2 — Fuerzas, resultantes y momento</h2>
+      <p>Estática aplicada: cálculo de fuerzas resultantes y momentos en estructuras simples.</p>
+      <div class="links">
+        <a href="tema_02_fuerzas_resultantes_momento.html">Abrir ficha</a>
+      </div>
+      <span class="svg-badge">🎨 Incluye gráfico</span>
+    </div>
+
+    <div class="card">
+      <h2>Tema 3 — Equilibrio, vínculos y reacciones</h2>
+      <p>Condiciones de equilibrio, tipos de vínculos y cálculo de reacciones en apoyos.</p>
+      <div class="links">
+        <a href="tema_03_equilibrio_vinculos_reacciones.html">Abrir ficha</a>
+      </div>
+      <span class="svg-badge">🎨 Incluye gráfico</span>
+    </div>
+
+    <div class="card">
+      <h2>Tema 4 — Tracción, compresión y Ley de Hooke</h2>
+      <p>Esfuerzos axiales, deformación elástica y aplicación de la Ley de Hooke.</p>
+      <div class="links">
+        <a href="tema_04_traccion_compresion_hooke.html">Abrir ficha</a>
+      </div>
+      <span class="svg-badge">🎨 Incluye gráfico</span>
+    </div>
+
+    <div class="card">
+      <h2>Tema 5 — Cortante y momento flector</h2>
+      <p>Diagramas de esfuerzo cortante y momento flector en vigas isostáticas.</p>
+      <div class="links">
+        <a href="tema_05_cortante_momento_flector.html">Abrir ficha</a>
+      </div>
+      <span class="svg-badge">🎨 Incluye gráfico</span>
+    </div>
+
+    <div class="card">
+      <h2>Tema 6 — Flexión y propiedades geométricas</h2>
+      <p>Teoría de flexión, momento de inercia, módulo resistente y tensiones en vigas.</p>
+      <div class="links">
+        <a href="tema_06_flexion_propiedades_geometricas.html">Abrir ficha</a>
+      </div>
+      <span class="svg-badge">🎨 Incluye gráfico</span>
+    </div>
+
+    <div class="card">
+      <h2>Tema 7 — Materiales, muros y cerchas</h2>
+      <p>Propiedades de materiales estructurales, análisis de muros de carga y cerchas.</p>
+      <div class="links">
+        <a href="tema_07_materiales_muros_cerchas.html">Abrir ficha</a>
+      </div>
+      <span class="svg-badge">🎨 Incluye gráfico</span>
+    </div>
+
+    <div class="card">
+      <h2>Tema 8 — Hormigón armado y control técnico</h2>
+      <p>Fundamentos de HA, dosificación, control de calidad y ensayos.</p>
+      <div class="links">
+        <a href="tema_08_hormigon_armado_control.html">Abrir ficha</a>
+      </div>
+      <span class="svg-badge">🎨 Incluye gráfico</span>
+    </div>
+
+    <div class="card">
+      <h2>Tema 9 — Integración y memoria de cálculo</h2>
+      <p>Caso integrador final con memoria de cálculo completa de un elemento estructural.</p>
+      <div class="links">
+        <a href="tema_09_integracion_memoria_calculo.html">Abrir ficha</a>
+      </div>
+      <span class="svg-badge">🎨 Incluye gráfico</span>
+    </div>
+  </div>
+
+  <footer>
+    <a href="../index.html">⬅ Volver al portal de Resistencia de Materiales</a>
+    &nbsp;·&nbsp; Colegio Nacional Defensores del Chaco · BTCC 2026
+  </footer>
+
+</div>
+
+<script src="../../../nav/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="320" viewBox="0 0 900 320">
+  <rect width="100%" height="100%" fill="white"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Segoe UI, Arial" font-size="24" font-weight="700">Viga simplemente apoyada con carga puntual</text>
+  <line x1="120" y1="170" x2="760" y2="170" stroke="#222" stroke-width="8"/>
+  <polygon points="120,170 100,210 140,210" fill="#111"/>
+  <polygon points="760,170 740,210 780,210" fill="#777"/>
+  <line x1="440" y1="70" x2="440" y2="165" stroke="#d62828" stroke-width="6"/>
+  <polygon points="440,165 430,140 450,140" fill="#d62828"/>
+  <text x="455" y="100" font-family="Segoe UI, Arial" font-size="22" fill="#d62828" font-weight="700">P</text>
+  <line x1="120" y1="240" x2="440" y2="240" stroke="#888" stroke-width="2"/>
+  <line x1="440" y1="240" x2="760" y2="240" stroke="#888" stroke-width="2"/>
+  <text x="280" y="232" text-anchor="middle" font-family="Segoe UI, Arial" font-size="18">L/2</text>
+  <text x="600" y="232" text-anchor="middle" font-family="Segoe UI, Arial" font-size="18">L/2</text>
+  <line x1="120" y1="210" x2="120" y2="120" stroke="#2563eb" stroke-width="5"/>
+  <polygon points="120,120 110,145 130,145" fill="#2563eb"/>
+  <text x="82" y="127" font-family="Segoe UI, Arial" font-size="18" fill="#2563eb">RA</text>
+  <line x1="760" y1="210" x2="760" y2="120" stroke="#16a34a" stroke-width="5"/>
+  <polygon points="760,120 750,145 770,145" fill="#16a34a"/>
+  <text x="772" y="127" font-family="Segoe UI, Arial" font-size="18" fill="#16a34a">RB</text>
+  <text x="190" y="285" font-family="Segoe UI, Arial" font-size="18" fill="#333">Las reacciones RA y RB equilibran la carga aplicada P.</text>
+</svg>

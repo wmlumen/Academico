@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase: Acción Institucional</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background-color: #f4f7f4; }
+        header { background: #fff; color: #2e7d32; border: 4px double #2e7d32; padding: 20px; border-radius: 8px; text-align: center; margin-bottom: 20px; }
+        h1 { color: #2e7d32; text-transform: uppercase; margin: 0; }
+        h2 { color: #2e7d32; border-bottom: 2px solid #a5d6a7; padding-bottom: 10px; }
+        section { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; background: #e8f5e9; padding: 15px; border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f1f8e9; }
+        .timeline { border-left: 4px solid #81c784; padding-left: 20px; margin-left: 10px; }
+        .time-block { margin-bottom: 25px; }
+        .time-badge { background: #2e7d32; color: white; padding: 2px 10px; border-radius: 4px; font-weight: bold; font-size: 0.9em; }
+        .plan-card { background: #e8f5e9; border: 2px solid #2e7d32; border-radius: 8px; padding: 15px; margin: 10px 0; }
+        .audit-card { background: #fce4ec; border: 2px solid #c62828; border-radius: 8px; padding: 15px; margin: 10px 0; }
+        .btn-container { margin-top: 20px; text-align: center; }
+        button { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 0 5px; }
+        .btn-print { background: #2e7d32; color: white; }
+        .btn-bw { background: #555; color: white; }
+        body.bw-mode { background: white !important; color: black !important; }
+        .bw-mode header, .bw-mode section { background: white !important; border-color: black !important; color: black !important; box-shadow: none !important; }
+        .bw-mode h1, .bw-mode h2 { color: black !important; }
+        .bw-mode h2 { border-bottom-color: black !important; }
+        .bw-mode .info-grid { background: #f0f0f0 !important; border: 1px solid black !important; }
+        .bw-mode table, .bw-mode th, .bw-mode td { border-color: black !important; background: white !important; color: black !important; }
+        .bw-mode th { background: #e0e0e0 !important; }
+        .bw-mode .plan-card { background: #f5f5f5 !important; border-color: black !important; }
+        .bw-mode .audit-card { background: #f5f5f5 !important; border-color: black !important; }
+        .bw-mode .time-badge { background: black !important; }
+        @media print { .btn-container { display: none; } body { padding: 0; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="font-weight: bold;">MINISTERIO DE EDUCACIÓN Y CIENCIAS</div>
+    <div style="font-weight: bold; margin-bottom: 5px;">COLEGIO NACIONAL "DON JORGE GAYOSO"</div>
+    <h1 style="margin: 0;">Educación Ambiental: Acción Institucional</h1>
+    <p style="margin: 0;">Plan de mejora ambiental institucional</p>
+</header>
+
+<section>
+    <h2>Datos Generales</h2>
+    <div class="info-grid">
+        <div><strong>Nivel:</strong> 2.º Curso Educación Media</div>
+        <div><strong>Duración:</strong> 80 minutos + aplicación en semanas siguientes</div>
+        <div><strong>Área:</strong> Educación Ambiental</div>
+        <div><strong>Año Lectivo:</strong> 2026</div>
+    </div>
+    <p><strong>Propósito:</strong> Que los estudiantes elaboren un plan de mejora institucional basado en los diagnósticos realizados durante el año, con cronograma, responsables y metas concretas para reducir el impacto ambiental del centro educativo.</p>
+</section>
+
+<section>
+    <h2>Objetivos de Aprendizaje</h2>
+    <ul>
+        <li>Sintetizar los hallazgos de las auditorías ambientales realizadas (consumo, residuos, energía).</li>
+        <li>Diseñar un plan de mejora con objetivos, acciones, cronograma y responsables.</li>
+        <li>Presentar el plan a la comunidad educativa para su validación e implementación.</li>
+        <li>Evaluar el impacto potencial de las acciones propuestas.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Desarrollo de la Clase</h2>
+    <div class="timeline">
+        <div class="time-block">
+            <span class="time-badge">15 min</span>
+            <h3>Inicio: Síntesis de Auditorías</h3>
+            <p>El docente guía una revisión de los diagnósticos previos:</p>
+            <div class="audit-card">
+                <h3 style="margin-top: 0;">Hallazgos de las Auditorías</h3>
+                <ul>
+                    <li><strong>Residuos:</strong> Tipos y cantidades de plásticos identificados (Agosto).</li>
+                    <li><strong>Energía:</strong> Consumo eléctrico del aula calculado (Septiembre).</li>
+                    <li><strong>Agua:</strong> Observaciones de desperdicio en sanitarios y grifos.</li>
+                    <li><strong>Áreas verdes:</strong> Estado de los espacios naturales del colegio.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="time-block">
+            <span class="time-badge">30 min</span>
+            <h3>Desarrollo: Diseño del Plan de Mejora</h3>
+            <div class="plan-card">
+                <h3 style="margin-top: 0;">Estructura del Plan de Mejora Institucional</h3>
+                <table>
+                    <tr><th>Componente</th><th>Descripción</th></tr>
+                    <tr><td><strong>Problema identificado</strong></td><td>¿Qué diagnosticamos? (Ej: alto consumo de plásticos descartables)</td></tr>
+                    <tr><td><strong>Objetivo</strong></td><td>¿Qué queremos lograr? (Ej: reducir 50% el uso de plásticos en la cantina)</td></tr>
+                    <tr><td><strong>Acciones concretas</strong></td><td>¿Qué haremos? (Ej: campaña de concientización, instalación de filtros de agua)</td></tr>
+                    <tr><td><strong>Cronograma</strong></td><td>¿Cuándo lo haremos? (Ej: Octubre - Noviembre)</td></tr>
+                    <tr><td><strong>Responsables</strong></td><td>¿Quién lo hará? (Ej: Comité Ambiental del curso)</td></tr>
+                    <tr><td><strong>Recursos</strong></td><td>¿Qué necesitamos? (Ej: afiches, contenedores, presupuesto)</td></tr>
+                    <tr><td><strong>Indicador de éxito</strong></td><td>¿Cómo mediremos? (Ej: reducción de kg de plástico recolectado)</td></tr>
+                </table>
+            </div>
+            <p><strong>Actividad Grupal:</strong> Cada equipo elige un área de mejora (residuos, energía, agua, áreas verdes) y desarrolla su plan siguiendo la estructura.</p>
+        </div>
+        <div class="time-block">
+            <span class="time-badge">20 min</span>
+            <h3>Aplicación: Redacción del Informe</h3>
+            <p>Los grupos redactan el informe de auditoría y plan de mejora, incluyendo:</p>
+            <ul>
+                <li>Resumen de hallazgos con datos concretos.</li>
+                <li>Plan detallado con cronograma semanal.</li>
+                <li>Asignación de roles dentro del equipo.</li>
+                <li>Proyección de impacto esperado.</li>
+            </ul>
+        </div>
+        <div class="time-block">
+            <span class="time-badge">15 min</span>
+            <h3>Cierre: Presentación y Retroalimentación</h3>
+            <p>Cada grupo presenta su plan. Los compañeros y el docente ofrecen sugerencias para mejorar la factibilidad. Se consolidan los planes en un documento único del curso.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Evaluación y Seguimiento</h2>
+    <p><strong>Indicadores de Logro:</strong></p>
+    <ul>
+        <li>Diagnostica correctamente los problemas ambientales de la institución.</li>
+        <li>Diseña un plan de mejora completo, realista y con responsables claros.</li>
+        <li>Presenta el plan con claridad y fundamentación técnica.</li>
+    </ul>
+    <p><strong>Instrumentos:</strong> Rúbrica detallada del plan de mejora (ver Recursos Docentes).</p>
+    <p><strong>Evidencia Mínima:</strong> Informe de auditoría y Plan.</p>
+</section>
+
+<section style="border-left: 5px solid #2e7d32;">
+    <h2>Material de Planificación</h2>
+    <p><strong>Capacidad:</strong> Elabora un plan de mejora institucional con cronograma y responsables.</p>
+    <p><strong>Evidencia:</strong> Informe de auditoría y Plan.</p>
+</section>
+
+<div class="btn-container">
+    <button class="btn-print" onclick="window.print()">Imprimir</button>
+    <button class="btn-bw" onclick="toggleBW()">Modo Blanco y Negro</button>
+</div>
+
+<script>
+    function toggleBW() { document.body.classList.toggle('bw-mode'); }
+</script>
+</body>
+</html>

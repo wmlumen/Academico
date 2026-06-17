@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Informes Pedagógicos de Diagnóstico - 2026</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 40px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        h3 {
+            color: #34495e;
+            margin-top: 25px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #bdc3c7;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #34495e;
+            color: white;
+        }
+        .report-card {
+            background-color: #fafafa;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        .alert-item {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .strength-item {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .meta-info {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        /* Estilos para Pestañas (Tabs) y Valoraciones */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #3498db;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            background: #ecf0f1;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #2c3e50;
+            font-weight: bold;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+            transition: background 0.3s;
+        }
+        .tab-btn:hover {
+            background: #bdc3c7;
+        }
+        .tab-btn.active {
+            background: #3498db;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            animation: fadeEffect 0.4s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeEffect {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        .metrics-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        .metrics-section h4 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            text-align: center;
+            font-size: 1.05em;
+            border-bottom: 2px solid #bdc3c7;
+            padding-bottom: 5px;
+        }
+        .valuation-summary {
+            display: flex;
+            gap: 10px;
+            text-align: center;
+        }
+        .val-item {
+            flex: 1;
+            padding: 12px 5px;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .val-mb { background-color: #27ae60; }
+        .val-b { background-color: #f39c12; }
+        .val-am { background-color: #c0392b; }
+        .val-item span {
+            display: block;
+            font-size: 1.6em;
+            line-height: 1.1;
+            margin: 5px 0;
+        }
+        .val-item small {
+            font-size: 0.85em;
+            opacity: 0.95;
+            font-weight: normal;
+            background: rgba(0,0,0,0.15);
+            padding: 2px 6px;
+            border-radius: 10px;
+            display: inline-block;
+            align-self: center;
+        }
+        @media (max-width: 768px) {
+            .metrics-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>COMPENDIO DE INFORMES PEDAGÓGICOS Y PLANES DE INTERVENCIÓN</h1>
+    
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'tab-7mo-tm')">7mo TM</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab-7mo-tt')">7mo TT</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab-8vo-tm')">8vo TM</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab-9no-tm')">9no TM</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab-protocolo')">Protocolo Unificado</button>
+    </div>
+
+    <!-- INFORME 7MO TM -->
+    <div id="tab-7mo-tm" class="tab-content active">
+      <div class="report-card">
+        <h2>1. INFORME PEDAGÓGICO: SÉPTIMO GRADO - TURNO MAÑANA (TM)</h2>
+        <div class="meta-info">
+            Muestra: 37 Estudiantes | Fecha de Análisis: 23 de Abril, 2026
+        </div>
+
+        <div class="metrics-container">
+            <div class="metrics-section">
+                <h4>👥 Valoración por Alumnos</h4>
+                <div class="valuation-summary">
+                    <div class="val-item val-mb">Muy Bueno<span>5</span><small>14%</small></div>
+                    <div class="val-item val-b">Bueno<span>3</span><small>8%</small></div>
+                    <div class="val-item val-am">A Mejorar<span>29</span><small>78%</small></div>
+                </div>
+            </div>
+            <div class="metrics-section">
+                <h4>📊 Valoración por Indicadores</h4>
+                <div class="valuation-summary">
+                    <div class="val-item val-mb">Muy Bueno<span>7</span><small>14%</small></div>
+                    <div class="val-item val-b">Bueno<span>4</span><small>8%</small></div>
+                    <div class="val-item val-am">A Mejorar<span>39</span><small>78%</small></div>
+                </div>
+            </div>
+        </div>
+
+        <h3>1.1. Línea Base y Estado de Fortalezas (Logros)</h3>
+        <p>El grupo presenta un perfil altamente receptivo y respetuoso, que servirá como base para la intervención. Los 3 indicadores más fuertes son:</p>
+        <ul>
+            <li><span class="strength-item">For-21. Cuida el material propio y ajeno:</span> 23 repeticiones.</li>
+            <li><span class="strength-item">For-17. Respeta las normas de convivencia:</span> 22 repeticiones.</li>
+            <li><span class="strength-item">For-23. Escucha con atención y no interrumpe:</span> 20 repeticiones.</li>
+        </ul>
+        <p><strong>Análisis Pedagógico:</strong> Es un grupo dócil y con excelente disposición actitudinal para escuchar. La gestión del aula a nivel conductual no es un problema, lo cual es una ventaja inmensa para implementar rutinas de trabajo focalizado.</p>
+
+        <h3>1.2. Focos Rojos y Barreras de Aprendizaje (Alertas)</h3>
+        <p>Los indicadores críticos que demandan atención urgente son:</p>
+        <ul>
+            <li><span class="alert-item">Ale-02. Presenta lagunas en conocimientos previos:</span> 37 repeticiones (100% del grupo).</li>
+            <li><span class="alert-item">Ale-14/28/34/44/48. Requiere supervisión / Miente / Se rinde / Inseguridad / Abandona proyectos:</span> 19 repeticiones cada uno.</li>
+            <li><span class="alert-item">Ale-08. Se bloquea ante desafíos matemáticos:</span> 18 repeticiones.</li>
+        </ul>
+        <p><strong>Diagnóstico:</strong> El grupo sufre de <em>Indefensión Aprendida</em>. El 100% arrastra lagunas críticas. Su docilidad es pasividad por miedo a equivocarse. Al no tener las bases, se frustran ("no puedo"), se rinden y recurren a mecanismos de defensa ante el inminente fracaso académico.</p>
+
+        <h3>1.3. Plan de Intervención Didáctica y Ajuste Curricular</h3>
+        <ul>
+            <li><strong>Estrategias de Aula:</strong> Implementación de "Pedagogía del Error" y Micro-Andamiaje para reconstruir su autoestima académica y generar soluciones de razonamiento seguras.</li>
+            <li><strong>Ajuste Curricular de Emergencia:</strong> "Desintoxicación del Fracaso y Nivelación Base". Se pausará la malla regular al menos 4 semanas para nivelar competencias elementales y operaciones básicas.</li>
+        </ul>
+
+        <h3>1.4. Mapeo y Alineación Institucional</h3>
+        <table>
+            <tr>
+                <th>Documento Rector</th>
+                <th>Vinculación del Plan de Acción</th>
+            </tr>
+            <tr>
+                <td><strong>PIE</strong></td>
+                <td>Refuerzo de la integridad emocional y la confianza académica del estudiante, pilares del perfil de egreso.</td>
+            </tr>
+            <tr>
+                <td><strong>POA</strong></td>
+                <td>Activar el apoyo del departamento de psicología/orientación para tratar la baja autoestima académica y la tolerancia a la frustración.</td>
+            </tr>
+            <tr>
+                <td><strong>Plan de Grado</strong></td>
+                <td>Adaptación de la Unidad I hacia una fase de andamiaje nivelatorio intensivo.</td>
+            </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- INFORME 7MO TT -->
+    <div id="tab-7mo-tt" class="tab-content">
+      <div class="report-card">
+        <h2>2. INFORME PEDAGÓGICO: SÉPTIMO GRADO - TURNO TARDE (TT)</h2>
+        <div class="meta-info">
+            Muestra: 14 Estudiantes | Fecha de Análisis: 23 de Abril, 2026
+        </div>
+
+        <div class="metrics-container">
+            <div class="metrics-section">
+                <h4>👥 Valoración por Alumnos</h4>
+                <div class="valuation-summary">
+                    <div class="val-item val-mb">Muy Bueno<span>11</span><small>79%</small></div>
+                    <div class="val-item val-b">Bueno<span>2</span><small>14%</small></div>
+                    <div class="val-item val-am">A Mejorar<span>1</span><small>7%</small></div>
+                </div>
+            </div>
+            <div class="metrics-section">
+                <h4>📊 Valoración por Indicadores</h4>
+                <div class="valuation-summary">
+                    <div class="val-item val-mb">Muy Bueno<span>41</span><small>82%</small></div>
+                    <div class="val-item val-b">Bueno<span>6</span><small>12%</small></div>
+                    <div class="val-item val-am">A Mejorar<span>3</span><small>6%</small></div>
+                </div>
+            </div>
+        </div>
+
+        <h3>2.1. Línea Base y Estado de Fortalezas (Logros)</h3>
+        <p>El grupo, siendo más reducido, muestra un desarrollo superior en autonomía y cognición:</p>
+        <ul>
+            <li><span class="strength-item">For-03. Posee un pensamiento crítico y analítico:</span> 14 repeticiones (Muy Bueno).</li>
+            <li><span class="strength-item">For-13. Es autónomo en la realización de tareas:</span> 14 repeticiones (Muy Bueno).</li>
+            <li><span class="strength-item">For-17. Respeta las normas de convivencia:</span> 14 repeticiones (Muy Bueno).</li>
+        </ul>
+        <p><strong>Análisis Pedagógico:</strong> Tienen excelentes funciones ejecutivas de autorregulación. Son capaces de pensar críticamente y trabajar sin que el docente los guíe de la mano paso a paso.</p>
+
+        <h3>2.2. Focos Rojos y Barreras de Aprendizaje (Alertas)</h3>
+        <ul>
+            <li><span class="alert-item">Ale-02. Presenta lagunas en conocimientos previos:</span> 12 repeticiones.</li>
+            <li><span class="alert-item">Ale-04. Se limita a memorizar sin comprender:</span> 8 repeticiones.</li>
+            <li><span class="alert-item">Ale-08. Se bloquea ante desafíos matemáticos:</span> 7 repeticiones.</li>
+        </ul>
+        <p><strong>Diagnóstico:</strong> La barrera es el <em>aprendizaje mecánico</em>. Ante sus lagunas, la estrategia de supervivencia de estos alumnos autónomos ha sido memorizar mecánicamente. Esto detona bloqueos cuando se enfrentan a lógica matemática pura.</p>
+
+        <h3>2.3. Plan de Intervención Didáctica y Ajuste Curricular</h3>
+        <ul>
+            <li><strong>Estrategias de Aula:</strong> Rutinas de Pensamiento Visible para forzar al alumno a explicar "cómo" llegó a la respuesta, apoyado en Tutorías de Pares.</li>
+            <li><strong>Ajuste Curricular de Emergencia:</strong> Transición a un "Módulo de Lógica Aplicada". Las guías de ejercicios tradicionales se sustituirán por problemas que requieran generar soluciones de razonamiento lógicas.</li>
+        </ul>
+
+        <h3>2.4. Mapeo y Alineación Institucional</h3>
+        <table>
+            <tr>
+                <th>Documento Rector</th>
+                <th>Vinculación del Plan de Acción</th>
+            </tr>
+            <tr>
+                <td><strong>PIE</strong></td>
+                <td>Fomento del pensamiento autónomo y la resolución creativa de problemas por encima de la educación bancaria/memorística.</td>
+            </tr>
+            <tr>
+                <td><strong>POA</strong></td>
+                <td>Capacitación a docentes de área en enfoques de diseño de pensamiento visible y andamiaje.</td>
+            </tr>
+            <tr>
+                <td><strong>Plan de Grado</strong></td>
+                <td>Migrar los instrumentos de evaluación tradicionales hacia rúbricas formativas y portafolios de procesos de razonamiento.</td>
+            </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- INFORME 8VO TM -->
+    <div id="tab-8vo-tm" class="tab-content">
+      <div class="report-card">
+        <h2>3. INFORME PEDAGÓGICO: OCTAVO GRADO - TURNO MAÑANA (TM)</h2>
+        <div class="meta-info">
+            Muestra: 42 Estudiantes | Fecha de Análisis: 23 de Abril, 2026
+        </div>
+
+        <div class="metrics-container">
+            <div class="metrics-section">
+                <h4>👥 Valoración por Alumnos</h4>
+                <div class="valuation-summary">
+                    <div class="val-item val-mb">Muy Bueno<span>20</span><small>48%</small></div>
+                    <div class="val-item val-b">Bueno<span>1</span><small>2%</small></div>
+                    <div class="val-item val-am">A Mejorar<span>21</span><small>50%</small></div>
+                </div>
+            </div>
+            <div class="metrics-section">
+                <h4>📊 Valoración por Indicadores</h4>
+                <div class="valuation-summary">
+                    <div class="val-item val-mb">Muy Bueno<span>24</span><small>48%</small></div>
+                    <div class="val-item val-b">Bueno<span>1</span><small>2%</small></div>
+                    <div class="val-item val-am">A Mejorar<span>25</span><small>50%</small></div>
+                </div>
+            </div>
+        </div>
+
+        <h3>3.1. Línea Base y Estado de Fortalezas (Logros)</h3>
+        <p>Un grupo con alta energía, fuertemente inclinado hacia la indagación y lo social:</p>
+        <ul>
+            <li><span class="strength-item">For-45. Muestra curiosidad e iniciativa propia:</span> 14 repeticiones.</li>
+            <li><span class="strength-item">For-35. Trabaja de forma colaborativa y equitativa:</span> 14 repeticiones.</li>
+            <li><span class="strength-item">For-13. Es autónomo en la realización de tareas:</span> 14 repeticiones.</li>
+        </ul>
+        <p><strong>Análisis Pedagógico:</strong> Poseen una combinación ideal de <em>agencia personal</em> e <em>interdependencia</em>. Es el terreno perfecto para el modelo socioconstructivista.</p>
+
+        <h3>3.2. Focos Rojos y Barreras de Aprendizaje (Alertas)</h3>
+        <ul>
+            <li><span class="alert-item">Ale-24. Interrumpe constantemente el flujo de clase:</span> 9 repeticiones.</li>
+            <li><span class="alert-item">Ale-30. Se distrae con dispositivos electrónicos:</span> 8 repeticiones.</li>
+            <li><span class="alert-item">Ale-02. Presenta lagunas en conocimientos previos:</span> 8 repeticiones.</li>
+            <li><span class="alert-item">Ale-08. Se bloquea ante desafíos matemáticos:</span> 7 repeticiones.</li>
+        </ul>
+        <p><strong>Diagnóstico:</strong> La barrera es la <em>desconexión metodológica</em>. El modelo tradicional choca con ellos. Al frustrarse por lagunas, su curiosidad y autonomía se desvían hacia la tecnología o a interrumpir. Su distracción es evasión cognitiva por falta de estímulos relevantes.</p>
+
+        <h3>3.3. Plan de Intervención Didáctica y Ajuste Curricular</h3>
+        <ul>
+            <li><strong>Estrategias de Aula:</strong> Integración de EdTech (simuladores como GeoGebra) y Aulas de Pensamiento Vertical (pizarras en las paredes) para canalizar su energía motriz y colaborativa.</li>
+            <li><strong>Ajuste Curricular de Emergencia:</strong> "Laboratorio Digital y Ciudadanía". Pausar clases frontales 2 semanas para establecer pactos de uso de pantallas e integrar retos tecnológicos lógicos.</li>
+        </ul>
+
+        <h3>3.4. Mapeo y Alineación Institucional</h3>
+        <table>
+            <tr>
+                <th>Documento Rector</th>
+                <th>Vinculación del Plan de Acción</th>
+            </tr>
+            <tr>
+                <td><strong>PIE</strong></td>
+                <td>Alineación con la formación de ciudadanos digitales responsables y proactivos del siglo XXI.</td>
+            </tr>
+            <tr>
+                <td><strong>POA</strong></td>
+                <td>Talleres de Escuela para Padres sobre el uso sano de pantallas y capacitación docente en integración tecnológica.</td>
+            </tr>
+            <tr>
+                <td><strong>Plan de Grado</strong></td>
+                <td>Uso obligatorio de simuladores visuales en ciencias y destinar 30% de la clase a resolución grupal de pie.</td>
+            </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- INFORME 9NO TM -->
+    <div id="tab-9no-tm" class="tab-content">
+      <div class="report-card">
+        <h2>4. INFORME PEDAGÓGICO: NOVENO GRADO - TURNO MAÑANA (TM)</h2>
+        <div class="meta-info">
+            Muestra: 42 Estudiantes | Fecha de Análisis: 23 de Abril, 2026
+        </div>
+
+        <div class="metrics-container">
+            <div class="metrics-section">
+                <h4>👥 Valoración por Alumnos</h4>
+                <div class="valuation-summary">
+                    <div class="val-item val-mb">Muy Bueno<span>13</span><small>31%</small></div>
+                    <div class="val-item val-b">Bueno<span>5</span><small>12%</small></div>
+                    <div class="val-item val-am">A Mejorar<span>24</span><small>57%</small></div>
+                </div>
+            </div>
+            <div class="metrics-section">
+                <h4>📊 Valoración por Indicadores</h4>
+                <div class="valuation-summary">
+                    <div class="val-item val-mb">Muy Bueno<span>16</span><small>32%</small></div>
+                    <div class="val-item val-b">Bueno<span>6</span><small>12%</small></div>
+                    <div class="val-item val-am">A Mejorar<span>28</span><small>56%</small></div>
+                </div>
+            </div>
+        </div>
+
+        <h3>4.1. Línea Base y Estado de Fortalezas (Logros)</h3>
+        <p>El nivel de inteligencia social e interpersonal de este grupo es excepcional:</p>
+        <ul>
+            <li><span class="strength-item">For-21/25. Cuida el material y usa lenguaje respetuoso:</span> 30 repeticiones.</li>
+            <li><span class="strength-item">For-37. Es empático con las necesidades ajenas:</span> 28 repeticiones.</li>
+            <li><span class="strength-item">For-35. Trabaja de forma colaborativa:</span> 27 repeticiones.</li>
+        </ul>
+        <p><strong>Análisis Pedagógico:</strong> Han consolidado su identidad adolescente positivamente con una cohesión inquebrantable, empatía profunda y respeto por el entorno. El capital humano está en su punto máximo.</p>
+
+        <h3>4.2. Focos Rojos y Barreras de Aprendizaje (Alertas)</h3>
+        <ul>
+            <li><span class="alert-item">Ale-24. Interrumpe constantemente el flujo de clase:</span> 26 repeticiones.</li>
+            <li><span class="alert-item">Ale-32. Fomenta el desorden o el caos en el grupo:</span> 22 repeticiones.</li>
+            <li><span class="alert-item">Ale-46. Requiere estímulos externos para trabajar:</span> 16 repeticiones.</li>
+            <li><span class="alert-item">Ale-08. Se bloquea ante desafíos matemáticos:</span> 15 repeticiones.</li>
+        </ul>
+        <p><strong>Diagnóstico:</strong> La barrera es la <em>necesidad adolescente de estímulo dopaminérgico</em>. Crean el caos no por malicia (son altamente respetuosos), sino para entretenerse colaborativamente ante la falta de estímulos externos en clases magistrales tradicionales.</p>
+
+        <h3>4.3. Plan de Intervención Didáctica y Ajuste Curricular</h3>
+        <ul>
+            <li><strong>Estrategias de Aula:</strong> Seminarios Socráticos (canalizar el habla a debates) y Gamificación (dar roles y misiones para cubrir su necesidad de estímulos externos).</li>
+            <li><strong>Ajuste Curricular de Emergencia:</strong> Transición a un <em>Aprendizaje Basado en Proyectos (ABP) de Impacto Social</em>. Vincular la empatía con la resolución matemática de problemas del mundo real.</li>
+        </ul>
+
+        <h3>4.4. Mapeo y Alineación Institucional</h3>
+        <table>
+            <tr>
+                <th>Documento Rector</th>
+                <th>Vinculación del Plan de Acción</th>
+            </tr>
+            <tr>
+                <td><strong>PIE</strong></td>
+                <td>Empoderar a los estudiantes como agentes de cambio solidarios para su inminente paso a la Educación Media.</td>
+            </tr>
+            <tr>
+                <td><strong>POA</strong></td>
+                <td>Inclusión de talleres de "Gestión de Aulas Cooperativas y Gamificación" para docentes del Tercer Ciclo.</td>
+            </tr>
+            <tr>
+                <td><strong>Plan de Grado</strong></td>
+                <td>Inserción formal del ABP en el cronograma, evaluando no solo resultados, sino razonamiento, debate y trabajo en equipo.</td>
+            </tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="tab-protocolo" class="tab-content">
+      <div class="report-card" style="border-left: 5px solid #27ae60;">
+        <h2>Protocolo Unificado de Reevaluación (Post-Test para Tercer Ciclo)</h2>
+        <p>Para todos los grados, se establece el plazo de <strong>90 días (cierre de trimestre)</strong> para volver a aplicar el instrumento de diagnóstico. Se esperará una reducción del 40% al 50% en las Alertas Académicas Base (Ale-02 y Ale-08), validando el progreso a través de:</p>
+        <ol>
+            <li><strong>Diarios de metacognición.</strong></li>
+            <li><strong>Portafolios de procesos de razonamiento (no solo de resultados).</strong></li>
+            <li><strong>Bitácoras docentes de clima de aula y actitud frente al desafío.</strong></li>
+        </ol>
+      </div>
+    </div>
+
+</div>
+
+<script>
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+        tabcontent[i].classList.remove("active");
+    }
+    tablinks = document.getElementsByClassName("tab-btn");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    setTimeout(() => document.getElementById(tabName).classList.add("active"), 10);
+    evt.currentTarget.className += " active";
+}
+</script>
+</body>
+</html>

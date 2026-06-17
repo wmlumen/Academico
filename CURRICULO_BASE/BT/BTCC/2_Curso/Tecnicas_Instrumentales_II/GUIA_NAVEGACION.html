@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Navegación - Técnicas Instrumentales II</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Segoe UI", Tahoma, sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        header { text-align: center; margin-bottom: 40px; border-bottom: 3px solid #667eea; padding-bottom: 20px; }
+        h1 { color: #0f4c81; font-size: 2.2em; margin-bottom: 10px; }
+        .subtitle { color: #666; font-size: 1.1em; }
+        h2 { color: #0f4c81; margin: 30px 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #667eea; }
+        h3 { color: #667eea; margin: 20px 0 10px 0; }
+        .section { background: #f9f9f9; padding: 20px; margin: 15px 0; border-radius: 5px; border-left: 4px solid #667eea; }
+        .file-item { background: white; padding: 15px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; }
+        .file-name { font-weight: bold; color: #0f4c81; }
+        .file-desc { color: #666; font-size: 0.9em; }
+        .file-type { display: inline-block; padding: 4px 8px; background: #667eea; color: white; border-radius: 3px; font-size: 0.8em; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        table th { background: #667eea; color: white; padding: 12px; text-align: left; }
+        table td { padding: 12px; border-bottom: 1px solid #ddd; }
+        table tr:hover { background: #f9f9f9; }
+        .badge { display: inline-block; padding: 5px 10px; background: #667eea; color: white; border-radius: 3px; font-size: 0.85em; margin: 3px 3px 3px 0; }
+        .icon { font-size: 1.5em; margin-right: 10px; }
+        ul { margin: 15px 0 15px 30px; }
+        li { margin: 8px 0; }
+        footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; color: #666; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧭 Guía de Navegación</h1>
+            <p class="subtitle">Portal de Recursos Educativos — Técnicas Instrumentales II</p>
+            <p style="color: #999; font-size: 0.9em; margin-top: 10px;">Colegio Nacional Defensores del Chaco | Segundo Curso BTCC</p>
+        </header>
+        
+        <h2>Estructura de Navegación del Sitio</h2>
+        
+        <div class="section">
+            <h3>🏠 Página de Inicio (index.html)</h3>
+            <p><strong>Función:</strong> Portal central que agrupa todos los recursos del curso.</p>
+            <p><strong>Contenido:</strong></p>
+            <ul>
+                <li>Tarjetas de acceso rápido a cada sección (Material, Evaluación, Ejercicios, Planificación).</li>
+                <li>Descripción de cada módulo.</li>
+                <li>Enlaces directos a todos los documentos.</li>
+                <li>Información del curso (duración, docente, institución).</li>
+            </ul>
+            <p><strong>Acceso:</strong> Punto de entrada principal. Desde aquí se accede a todos los demás documentos.</p>
+        </div>
+        
+        <h2>Archivos HTML con Navegación Integrada</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Archivo</th>
+                    <th>Descripción</th>
+                    <th>Tipo de Contenido</th>
+                    <th>Navegación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>index.html</strong></td>
+                    <td>Portal principal de recursos</td>
+                    <td>Índice de navegación</td>
+                    <td>Centro de distribución</td>
+                </tr>
+                <tr>
+                    <td><strong>material_del_estudiante_..html</strong></td>
+                    <td>Material teórico completo (Fichas 1-6)</td>
+                    <td>Teoría + Conceptos</td>
+                    <td>Menú superior + breadcrumb</td>
+                </tr>
+                <tr>
+                    <td><strong>Examen_Parcial_..html</strong></td>
+                    <td>Examen con 17 preguntas, soluciones y rúbrica</td>
+                    <td>Evaluación</td>
+                    <td>Menú superior + breadcrumb</td>
+                </tr>
+                <tr>
+                    <td><strong>Solucionario_Examen_..html</strong></td>
+                    <td>Soluciones paso-a-paso para docente</td>
+                    <td>Evaluación (Docente)</td>
+                    <td>Menú superior + breadcrumb</td>
+                </tr>
+                <tr>
+                    <td><strong>Ejercicios_Practica_..html</strong></td>
+                    <td>6 ejercicios graduados con soluciones</td>
+                    <td>Práctica + Autoevaluación</td>
+                    <td>Menú superior + breadcrumb</td>
+                </tr>
+                <tr>
+                    <td><strong>plan_de_clase_..html</strong></td>
+                    <td>Plan anual 2026 con distribución mensual</td>
+                    <td>Planificación</td>
+                    <td>Menú superior + breadcrumb</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2>Menú de Navegación (En Todos los Documentos)</h2>
+        
+        <div class="section">
+            <h3>Barra de Navegación Superior (Color Oscuro)</h3>
+            <p>Disponible en todas las páginas como barra pegajosa (sticky):</p>
+            <table style="margin-top: 10px;">
+                <tr>
+                    <td><strong>🏠 Inicio</strong></td>
+                    <td>Lleva al index.html (portal principal)</td>
+                </tr>
+                <tr>
+                    <td><strong>📖 Material</strong></td>
+                    <td>Acceso al material teórico (Fichas 1-6)</td>
+                </tr>
+                <tr>
+                    <td><strong>✅ Examen</strong></td>
+                    <td>Acceso al examen parcial</td>
+                </tr>
+                <tr>
+                    <td><strong>💪 Ejercicios</strong></td>
+                    <td>Acceso a ejercicios de práctica</td>
+                </tr>
+                <tr>
+                    <td><strong>📖 Solucionario</strong></td>
+                    <td>Acceso a soluciones (solo en páginas relevantes)</td>
+                </tr>
+                <tr>
+                    <td><strong>📅 Plan Anual</strong></td>
+                    <td>Acceso al plan de clase anual</td>
+                </tr>
+            </table>
+        </div>
+        
+        <h2>Flujos de Navegación Recomendados</h2>
+        
+        <div class="section">
+            <h3>📚 Para Estudiantes (Flujo de Estudio)</h3>
+            <ol>
+                <li><strong>Inicio</strong> (index.html) → Obtener visión general del curso</li>
+                <li><strong>Material Teórico</strong> (material_del_estudiante..html) → Estudiar Ficha 1 y 2</li>
+                <li><strong>Ejercicios</strong> (Ejercicios_Practica..html) → Practicar casos graduados (Ej. 1 al 4)</li>
+                <li><strong>Examen</strong> (Examen_Parcial..html) → Resolver el examen completo</li>
+                <li><strong>Autoevaluación</strong> → Verificar respuestas (si el docente proporciona solucionario)</li>
+            </ol>
+        </div>
+        
+        <div class="section">
+            <h3>👨‍🏫 Para Docentes (Flujo de Enseñanza)</h3>
+            <ol>
+                <li><strong>Inicio</strong> (index.html) → Acceso centralizado a todos los recursos</li>
+                <li><strong>Plan Anual</strong> (plan_de_clase..html) → Revisar calendario y capacidades</li>
+                <li><strong>Material Teórico</strong> (material_del_estudiante..html) → Preparar clases</li>
+                <li><strong>Ejercicios</strong> (Ejercicios_Practica..html) → Proponer prácticas en clase</li>
+                <li><strong>Examen</strong> (Examen_Parcial..html) → Aplicar evaluación</li>
+                <li><strong>Solucionario</strong> (Solucionario_Examen..html) → Calificar con rúbrica</li>
+            </ol>
+        </div>
+        
+        <h2>Compatibilidad y Requisitos</h2>
+        
+        <div class="section">
+            <h3>Navegadores Compatibles</h3>
+            <p>✅ Chrome, Firefox, Safari, Edge (versiones recientes)</p>
+            <p>✅ Responsive: Funciona en computadoras, tablets y celulares</p>
+            
+            <h3>Requisitos Técnicos</h3>
+            <ul>
+                <li>Navegador web actualizado</li>
+                <li>JavaScript habilitado (para funcionalidad completa)</li>
+                <li>No requiere conexión a internet (archivos locales)</li>
+            </ul>
+        </div>
+        
+        <h2>Archivos Complementarios (Descargas)</h2>
+        
+        <table>
+            <tr>
+                <th>Archivo</th>
+                <th>Tipo</th>
+                <th>Descripción</th>
+            </tr>
+            <tr>
+                <td>Planilla_Calculos_Vivienda_36m2.csv</td>
+                <td><span class="badge">CSV/Excel</span></td>
+                <td>Variables y fórmulas para cómputo métrico</td>
+            </tr>
+            <tr>
+                <td>Material_del_Estudiante..md</td>
+                <td><span class="badge">Markdown</span></td>
+                <td>Versión texto del material (editable)</td>
+            </tr>
+            <tr>
+                <td>Examen_Parcial..md</td>
+                <td><span class="badge">Markdown</span></td>
+                <td>Versión texto del examen (editable)</td>
+            </tr>
+            <tr>
+                <td>Ejercicios_Practica..md</td>
+                <td><span class="badge">Markdown</span></td>
+                <td>Versión texto de ejercicios (editable)</td>
+            </tr>
+        </table>
+        
+        <h2>Características Técnicas del Portal</h2>
+        
+        <div class="section">
+            <h3>✨ Diseño y Usabilidad</h3>
+            <ul>
+                <li><strong>Tema de colores profesional:</strong> Azul (#0f4c81) y púrpura (#667eea)</li>
+                <li><strong>Tipografía clara:</strong> Segoe UI, sans-serif</li>
+                <li><strong>Jerarquía visual:</strong> Encabezados distinguibles, tablas ordenadas</li>
+                <li><strong>Navegación consistente:</strong> Menú pegajoso en todas las páginas</li>
+                <li><strong>Breadcrumb:</strong> Indica ubicación actual en la estructura</li>
+                <li><strong>Botones de navegación:</strong> Anterior/Siguiente en cada documento</li>
+            </ul>
+        </div>
+        
+        <h2>Instrucciones de Uso</h2>
+        
+        <div class="section">
+            <h3>Abrir Archivos Localmente</h3>
+            <ol>
+                <li>Asegúrese de que todos los archivos HTML estén en la misma carpeta.</li>
+                <li>Haga doble clic en <strong>index.html</strong> para abrir en el navegador.</li>
+                <li>Navegue usando los enlaces y menús.</li>
+            </ol>
+            
+            <h3>Publicar en Línea (Servidor Web)</h3>
+            <ol>
+                <li>Suba todos los archivos HTML a su servidor web.</li>
+                <li>Mantenga la estructura de carpetas.</li>
+                <li>Acceda a través de la URL (ej: www.tudominio.com/tecnicas_instrumentales_ii/)</li>
+            </ol>
+            
+            <h3>Personalización</h3>
+            <ul>
+                <li>Para editar contenido: Modifique los archivos .md y reconvierta a HTML si es necesario.</li>
+                <li>Para cambiar colores: Busque los códigos de color (#0f4c81, #667eea) en los estilos CSS.</li>
+                <li>Para agregar páginas: Use el mismo template HTML y agregue enlaces en el index.html.</li>
+            </ul>
+        </div>
+        
+        <h2>Resumen de Archivos Generados</h2>
+        
+        <table>
+            <tr>
+                <th>Tipo</th>
+                <th>Cantidad</th>
+                <th>Descripción</th>
+            </tr>
+            <tr>
+                <td>Archivos HTML</td>
+                <td>6</td>
+                <td>Portal principal + 5 documentos temáticos</td>
+            </tr>
+            <tr>
+                <td>Archivos Markdown</td>
+                <td>5</td>
+                <td>Versiones editables (respaldo)</td>
+            </tr>
+            <tr>
+                <td>Archivos CSV</td>
+                <td>1</td>
+                <td>Planilla de cálculos (Excel)</td>
+            </tr>
+            <tr>
+                <td><strong>Total de recursos</strong></td>
+                <td><strong>12+</strong></td>
+                <td>Documentos completos y navegables</td>
+            </tr>
+        </table>
+        
+        <footer>
+            <p><strong>Guía de Navegación — Técnicas Instrumentales II</strong></p>
+            <p>Colegio Nacional Defensores del Chaco © 2026 | Docente: Christhian Keim</p>
+            <p style="margin-top: 10px; color: #999;">Última actualización: 3 de junio de 2026</p>
+        </footer>
+    </div>
+</body>
+</html>

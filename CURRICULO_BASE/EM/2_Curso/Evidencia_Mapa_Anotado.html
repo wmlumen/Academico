@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidencia: Mapa Anotado</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.5; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background: #fff; }
+        .header-box { border: 4px double #2e7d32; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center; }
+        .header-box h1 { color: #2e7d32; text-transform: uppercase; margin: 5px 0; font-size: 1.3em; }
+        .student-info { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0; font-size: 0.95em; }
+        h2 { background: #e8f5e9; color: #2e7d32; padding: 8px; font-size: 1.1em; border-left: 5px solid #2e7d32; }
+        .example-box { background: #fffde7; border: 2px dashed #f9a825; padding: 12px; margin: 10px 0; border-radius: 5px; font-size: 0.9em; }
+        .example-box h4 { color: #f57f17; margin: 0 0 5px 0; }
+        .map-space { border: 2px solid #333; min-height: 300px; margin: 10px 0; text-align: center; padding: 20px; background: #fafafa; }
+        .data-table { margin: 10px 0; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #999; padding: 8px; text-align: left; }
+        th { background: #f1f8e9; }
+        .footer { margin-top: 30px; text-align: center; font-size: 0.8em; color: #666; border-top: 1px solid #eee; padding-top: 10px; }
+        .btn-container { text-align: center; margin-bottom: 15px; }
+        button { padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 0 4px; }
+        .btn-print { background: #2e7d32; color: white; }
+        .btn-bw { background: #555; color: white; }
+        body.bw-mode { background: white !important; color: black !important; }
+        .bw-mode .header-box { border-color: black !important; }
+        .bw-mode h1 { color: black !important; }
+        .bw-mode h2 { background: #f0f0f0 !important; color: black !important; border-left-color: black !important; }
+        .bw-mode th { background: #e0e0e0 !important; }
+        .bw-mode .example-box { background: #f5f5f5 !important; border-color: black !important; }
+        .bw-mode .example-box h4 { color: black !important; }
+        .bw-mode .map-space { border-color: black !important; background: white !important; }
+        @media print { .btn-container { display: none; } body { padding: 10px; } }
+    </style>
+</head>
+<body>
+
+<div class="btn-container">
+    <button class="btn-print" onclick="window.print()">Imprimir</button>
+    <button class="btn-bw" onclick="document.body.classList.toggle('bw-mode')">Modo B/N</button>
+</div>
+
+<div class="header-box">
+    <div style="font-weight: bold;">MINISTERIO DE EDUCACIÓN Y CIENCIAS</div>
+    <div style="font-weight: bold;">COLEGIO NACIONAL "DON JORGE GAYOSO"</div>
+    <h1>Mapa Anotado: Cambio Climático en Paraguay</h1>
+</div>
+
+<div class="student-info">
+    <div><strong>Nombre:</strong> _____________________________________</div>
+    <div><strong>Curso:</strong> 2.º BTCA</div>
+    <div><strong>Fecha:</strong> ____/____/2026</div>
+</div>
+
+<div class="example-box">
+    <h4>Ejemplo - Datos para anotar en el mapa</h4>
+    <table class="data-table">
+        <tr><th>Región</th><th>% Bosque perdido</th><th>Aumento temp.</th><th>Causa principal</th></tr>
+        <tr><td>Oriental</td><td>90%</td><td>+1.5°C</td><td>Expansión agrícola</td></tr>
+        <tr><td>Occidental (Chaco)</td><td>30%</td><td>+2.0°C</td><td>Ganadería intensiva</td></tr>
+    </table>
+</div>
+
+<h2>Mapa de Paraguay: Anotá los datos</h2>
+<div class="map-space">
+    <p style="color: #999; margin-top: 120px;">Dibujá acá el mapa de Paraguay.<br>Señalá: Región Oriental, Región Occidental (Chaco),<br>principales zonas de deforestación y datos de temperatura.</p>
+</div>
+
+<h2>Gráfico: Deforestación vs. Temperatura</h2>
+<div class="map-space" style="min-height: 180px;">
+    <p style="color: #999; margin-top: 60px;">Construí acá un gráfico de barras o línea<br>mostrando la evolución de la deforestación y temperatura (2000-2025).</p>
+</div>
+
+<div class="footer">Educación Ambiental - MEC 2026 | Evidencia Mínima: Mapa anotado o gráfico local</div>
+
+</body>
+</html>

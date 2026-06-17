@@ -1,0 +1,42 @@
+# OS
+Thumbs.db
+.DS_Store
+Desktop.ini
+
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.egg-info/
+
+# Node
+node_modules/
+
+# Temp
+*.tmp
+*.log
+~$*
+*.~lock.*
+
+# PDF builds (large generated files)
+build_exam_docx.py
+build_grade_sheet.py
+generate_fichas_ti2.py
+Examen_Primera_Etapa_Resistencia_de_Materiales.docx
+Examen_Primera_Etapa_Resistencia_de_Materiales.pdf
+Planilla_Primera_Etapa_Segundo_Curso.xlsx
+
+# Private notes
+**/privado/
+**/private/
+
+# Source originals — large PDFs exceeding GitHub limits
+FUENTES_ORIGINALES/
+
+# Large build artifacts (PDF/XLSX)
+BT/BTCC/Documentos_Generales/OBRATEC/*.pdf
+
+# Sensitive
+token_Github.txt
+*.token
+**/secrets/

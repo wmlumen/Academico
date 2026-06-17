@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Institucional</title>
+<style>
+:root{--bg:#f3f6fb;--panel:#fff;--ink:#152033;--muted:#56657a;--line:#d7dfeb;--primary:#0f4c81;--primary-2:#1f6aa5;--accent:#d97706;--soft:#eaf2fb;--success:#1f7a4c;--danger:#b71c1c}
+*{box-sizing:border-box;margin:0}
+body{font-family:"Segoe UI",Tahoma,sans-serif;background:linear-gradient(180deg,rgba(15,76,129,0.06),rgba(15,76,129,0) 200px),var(--bg);color:var(--ink);padding:24px 20px 40px}
+.page{max-width:1100px;margin:0 auto}
+
+/* Tabs */
+.tabs{display:flex;gap:4px;margin-bottom:20px;flex-wrap:wrap}
+.tab-btn{padding:10px 22px;border:1px solid var(--line);border-radius:10px 10px 0 0;background:#eef3f9;cursor:pointer;font-size:14px;font-weight:600;color:var(--muted);transition:all .15s;border-bottom:2px solid transparent}
+.tab-btn:hover{background:#e2ecf7;color:var(--ink)}
+.tab-btn.active{background:var(--panel);color:var(--primary);border-color:var(--line) var(--line) var(--panel) var(--line);border-bottom:2px solid var(--panel);box-shadow:0 -2px 8px rgba(15,76,129,0.06)}
+
+/* Panels */
+.tab-content{display:none;background:var(--panel);border:1px solid var(--line);border-radius:0 12px 12px 12px;padding:24px;box-shadow:0 8px 20px rgba(27,47,74,0.06)}
+.tab-content.active{display:block}
+
+.panel-title{font-size:22px;margin-bottom:6px}
+.panel-desc{color:var(--muted);font-size:14px;margin-bottom:20px}
+
+/* Form elements */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{display:flex;flex-direction:column;gap:4px}
+.form-group label{font-size:13px;font-weight:600;color:#2a405c}
+.form-group input,.form-group select,.form-group textarea{padding:10px 12px;border:1px solid #b6c6da;border-radius:10px;font-size:14px;font-family:inherit;background:#fff;color:var(--ink);transition:border .15s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(15,76,129,0.12)}
+.form-group textarea{min-height:60px;resize:vertical}
+
+/* Buttons */
+.btn{padding:10px 20px;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-2)}
+.btn-success{background:var(--success);color:#fff}
+.btn-success:hover{background:#23935a}
+.btn-outline{background:#fff;color:var(--primary);border:1px solid #b7c7dc}
+.btn-outline:hover{background:#f6faff}
+.btn-danger{background:#fff;color:var(--danger);border:1px solid #e0b3b3}
+.btn-danger:hover{background:#fff5f5}
+.btn-sm{padding:6px 14px;font-size:12px}
+.btn-muted{background:#eef3f9;color:var(--muted)}
+.btn-muted:hover{background:#e2ecf7}
+
+/* Table */
+table.data{width:100%;border-collapse:collapse}
+table.data thead th{background:#e8f1fb;color:#16304d;text-align:left;font-size:13px;padding:12px 10px;border-bottom:1px solid var(--line)}
+table.data tbody td{padding:12px 10px;border-bottom:1px solid #e8edf5;vertical-align:middle;font-size:14px}
+table.data tbody tr:hover{background:#fbfdff}
+table.data tbody tr:last-child td{border-bottom:none}
+
+/* Schedule grid */
+.schedule-grid{display:grid;grid-template-columns:100px repeat(5,1fr);gap:4px;font-size:13px}
+.schedule-header{padding:10px 6px;text-align:center;font-weight:700;background:var(--primary);color:#fff;border-radius:6px}
+.schedule-time{padding:12px 6px;background:#f5f9ff;font-weight:600;border-radius:4px;display:flex;align-items:center;justify-content:center}
+.schedule-cell{min-height:70px;padding:6px;border-radius:6px;background:#fafcff;border:1px dashed #d7dfeb;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:all .15s}
+.schedule-cell .subj-name{font-size:11px;text-align:center;line-height:1.2}
+.schedule-cell .subj-block{font-size:10px;color:var(--muted)}
+
+/* Subjects */
+.subj-card{border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px}
+.subj-card h3{margin-bottom:6px;font-size:16px}
+.subj-card p{color:var(--muted);font-size:13px;margin-bottom:10px}
+.subj-horario-item{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid #edf2f8;font-size:14px}
+.subj-horario-item:last-child{border-bottom:none}
+.subj-horario-item .dia{font-weight:600;min-width:80px}
+.subj-horario-item .hora{color:var(--muted)}
+
+/* Calendar mini */
+.mini-calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font-size:12px}
+.cal-day-header{text-align:center;font-weight:700;padding:6px;background:#e8f1fb;border-radius:4px;font-size:11px}
+.cal-day{padding:8px 4px;text-align:center;border-radius:4px;background:#fafcff;min-height:40px}
+.cal-day.feriado{background:#fff3e0;color:#e65100;font-weight:600}
+.cal-day.evento{background:#e8f5e9;font-weight:600}
+.cal-day.ambos{background:#f3e5f5;font-weight:600}
+.cal-day.empty{background:transparent}
+
+/* Alert */
+.alert{padding:12px 16px;border-radius:10px;font-size:14px;margin-bottom:16px}
+.alert-success{background:#e8f5e9;color:#1b5e20;border:1px solid #a5d6a7}
+.alert-info{background:#e3f2fd;color:#0d47a1;border:1px solid #90caf9}
+
+/* Role-based visibility */
+body.rol-alumno .hide-alumno{display:none !important}
+body:not(.rol-alumno) .hide-docente{display:none !important}
+
+/* Responsive */
+@media(max-width:720px){
+  .form-grid{grid-template-columns:1fr}
+  .schedule-grid{grid-template-columns:70px repeat(5,1fr);font-size:11px}
+  body{padding:16px 12px 28px}
+  .tab-btn{padding:8px 14px;font-size:13px}
+  .tab-content{padding:16px;border-radius:0 8px 8px 8px}
+}
+</style>
+<link rel="stylesheet" href="nav/nav.css">
+
+<script src="nav/runtime.js"></script>
+</head>
+<body class="rol-docente">
+
+<div class="page">
+
+  <!-- TITLE -->
+  <div style="margin-bottom:20px">
+    <h1 style="font-size:28px" id="panelTitle">Panel Institucional</h1>
+    <p style="color:var(--muted);font-size:15px;margin-top:6px" id="panelSubtitle">Registro central institucional.</p>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs" id="tabBar">
+    <button class="tab-btn active" data-tab="tabDocente">👨‍🏫 Docente</button>
+    <button class="tab-btn" data-tab="tabAsignaturas">📚 Asignaturas</button>
+    <button class="tab-btn" data-tab="tabHorario">⏰ Horario</button>
+    <button class="tab-btn" data-tab="tabCalendario">📅 Calendario</button>
+  </div>
+
+  <!-- ============================== TAB 1: DOCENTES ============================== -->
+  <div id="tabDocente" class="tab-content active">
+    <h2 class="panel-title">👨‍🏫 Listado de Docentes</h2>
+    <p class="panel-desc">Registro institucional de docentes. Cada asignatura se asigna a un docente.</p>
+
+    <div id="docentesContainer"></div>
+
+    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap" class="hide-alumno">
+      <button class="btn btn-primary" onclick="nuevoDocente()">➕ Nuevo docente</button>
+      <button class="btn btn-success" onclick="guardarDocentes()">💾 Guardar todos</button>
+      <button class="btn btn-outline" onclick="renderDocentes()">🔄 Restaurar</button>
+    </div>
+
+    <div style="margin-top:14px;padding:12px 16px;background:#fefce8;border:1px solid #fde68a;border-radius:10px;font-size:13px;color:#92400e" class="hide-alumno">
+      ⚙️ Los docentes registrados aquí pueden ser asignados a las asignaturas en la pestaña <strong>📚 Asignaturas</strong>.
+    </div>
+  </div>
+
+  <!-- ============================== TAB 2: ASIGNATURAS ============================== -->
+  <div id="tabAsignaturas" class="tab-content">
+    <h2 class="panel-title">📚 Asignaturas Registradas</h2>
+    <p class="panel-desc">Asignaturas a cargo del docente con su horario semanal. Cada asignatura puede tener uno o más bloques horarios.</p>
+
+    <div id="asignaturasContainer"></div>
+
+    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap" class="hide-alumno">
+      <button class="btn btn-primary" onclick="nuevaAsignatura()">➕ Nueva asignatura</button>
+      <button class="btn btn-success" onclick="guardarAsignaturas()">💾 Guardar todas</button>
+      <button class="btn btn-outline" onclick="renderAsignaturas()">🔄 Restaurar</button>
+    </div>
+
+    <div style="margin-top:14px;padding:12px 16px;background:#fefce8;border:1px solid #fde68a;border-radius:10px;font-size:13px;color:#92400e" class="hide-alumno">
+      ⚙️ <strong>Nota:</strong> Los horarios registrados aquí se utilizan como fuente institucional para el Registro de Clases y otros módulos del sistema.
+    </div>
+  </div>
+
+  <!-- ============================== TAB 3: HORARIO ============================== -->
+  <div id="tabHorario" class="tab-content">
+    <h2 class="panel-title">⏰ Horario Semanal de Clases</h2>
+    <p class="panel-desc">Vista integrada del horario del 2.do Curso BTCC según las asignaturas registradas.</p>
+
+    <div id="horarioGrid"></div>
+
+    <div id="horarioLegend" style="margin-top:16px;padding:12px 16px;background:#f5f9ff;border:1px solid #d7dfeb;border-radius:10px;font-size:13px;color:var(--ink)">
+      <strong>🎨 Leyenda:</strong>
+      <span id="legendItems"></span>
+    </div>
+  </div>
+
+  <!-- ============================== TAB 4: CALENDARIO ============================== -->
+  <div id="tabCalendario" class="tab-content">
+    <h2 class="panel-title">📅 Calendario Académico 2026</h2>
+    <p class="panel-desc">Gestión de fechas importantes, feriados, eventos y receso escolar. Configure aquí los días no laborables que afectan al cómputo de asistencia.</p>
+
+    <div style="margin-bottom:16px;display:flex;gap:10px;flex-wrap:wrap">
+      <span class="hide-alumno">
+        <button class="btn btn-primary" onclick="agregarEventoCalendario()">➕ Agregar evento</button>
+        <button class="btn btn-success" onclick="guardarEventosCalendario()">💾 Guardar calendario</button>
+        <button class="btn btn-outline" onclick="renderCalendario()">🔄 Restaurar</button>
+      </span>
+      <a href="calendario_escolar_2026.html" class="btn btn-muted" target="_blank">📅 Ir al Calendario Escolar</a>
+    </div>
+
+    <table class="data" id="eventosTable">
+      <thead>
+        <tr><th>Fecha</th><th>Tipo</th><th>Descripción</th><th style="width:60px">Acción</th></tr>
+      </thead>
+      <tbody id="eventosBody"></tbody>
+    </table>
+
+    <div id="miniCalendario" style="margin-top:20px"></div>
+  </div>
+
+  <!-- Footer con estado -->
+  <div style="margin-top:28px;padding:12px 16px;background:#f5f9ff;border:1px solid #d7dfeb;border-radius:10px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+    <span>💾 Datos sincronizados en <strong>JSON</strong> y espejo local · clave <code style="background:#eef3f9;padding:2px 6px;border-radius:4px">panel_institucional</code></span>
+    <span class="hide-alumno">
+      <span id="storageStatus" style="color:#2e7d32">✓ Listo</span>
+      <button class="btn btn-sm btn-outline" onclick="verificarStorage()" style="margin-left:8px">🔍 Verificar</button>
+    </span>
+  </div>
+</div>
+
+<!-- ============================== MODAL DOCENTE ============================== -->
+<div id="modalDocente" style="display:none;position:fixed;z-index:10000;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);align-items:center;justify-content:center" onclick="if(event.target===this)cerrarModalDocente()">
+  <div style="background:#fff;border-radius:16px;padding:28px;max-width:500px;width:90%;max-height:90vh;overflow-y:auto;box-shadow:0 24px 48px rgba(0,0,0,0.2)">
+    <h3 id="modalDocenteTitle" style="margin-bottom:16px">👨‍🏫 Editar docente</h3>
+    <div class="form-grid">
+      <div class="form-group"><label>Nombre completo</label><input type="text" id="modalDocNombre" placeholder="Nombre"></div>
+      <div class="form-group"><label>Cédula / Documento</label><input type="text" id="modalDocCedula" placeholder="Cédula"></div>
+      <div class="form-group"><label>Especialidad / Título</label><input type="text" id="modalDocEspecialidad" placeholder="Especialidad"></div>
+      <div class="form-group"><label>Institución</label><input type="text" id="modalDocInstitucion" placeholder="Institución"></div>
+      <div class="form-group"><label>Correo electrónico</label><input type="email" id="modalDocEmail" placeholder="Email"></div>
+      <div class="form-group"><label>Teléfono</label><input type="text" id="modalDocTelefono" placeholder="Teléfono"></div>
+    </div>
+    <div style="margin-top:18px;display:flex;gap:10px;justify-content:flex-end">
+      <button class="btn btn-outline" onclick="cerrarModalDocente()">Cancelar</button>
+      <button class="btn btn-primary" id="modalDocenteGuardar">💾 Guardar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// PANEL INSTITUCIONAL — lógica completa
+// ============================================================
+
+window.BTCC_APP = (window.BTCCRuntime && window.BTCCRuntime.loadJson('/data/app_config.json', null)) || { branding: {}, defaults: {} };
+var BTCC_APP = window.BTCC_APP;
+var INST_KEY = 'panel_institucional';
+var ES_ALUMNO = false;
+try {
+  var login = JSON.parse(localStorage.getItem('alumno_login'));
+  if (login && login.num) ES_ALUMNO = true;
+} catch(e) {}
+// Si el body tiene clase rol-alumno (forzado desde nav.js)
+if (document.body.classList.contains('rol-alumno')) ES_ALUMNO = true;
+
+// ---- Estado por defecto ----
+document.title = (BTCC_APP.branding.shortName || 'Portal') + ' - Panel Institucional';
+document.getElementById('panelTitle').textContent = 'Panel Institucional - ' + (BTCC_APP.branding.shortName || '');
+document.getElementById('panelSubtitle').textContent = 'Registro central del docente, asignaturas, horarios y calendario academico ' + (BTCC_APP.branding.shortName || '');
+var DEFAULT_STATE = (window.BTCCRuntime && window.BTCCRuntime.loadJson('/data/panel_institucional_default.json', null)) || {
+  docentes: [],
+  asignaturas: [],
+  eventosCalendario: []
+};
+function getDefaultState() {
+  return JSON.parse(JSON.stringify(DEFAULT_STATE));
+}
+
+// ---- Cargar / guardar estado ----
+function cargarEstado() {
+  try {
+    var s = localStorage.getItem(INST_KEY);
+    if (s) {
+      var parsed = JSON.parse(s);
+      var def = getDefaultState();
+      // Migración: si existe docente único → pasar a docentes[]
+      if (parsed.docente && !parsed.docentes) {
+        parsed.docentes = [{
+          id: 'd1',
+          nombre: parsed.docente.nombre || def.docentes[0].nombre,
+          cedula: parsed.docente.cedula || def.docentes[0].cedula,
+          especialidad: parsed.docente.especialidad || def.docentes[0].especialidad,
+          institucion: parsed.docente.institucion || def.docentes[0].institucion,
+          email: parsed.docente.email || '',
+          telefono: parsed.docente.telefono || ''
+        }];
+        delete parsed.docente;
+        // Asignar docenteId a las asignaturas existentes
+        if (parsed.asignaturas) {
+          parsed.asignaturas.forEach(function(a) { a.docenteId = 'd1'; });
+        }
+      }
+      if (!parsed.docentes || parsed.docentes.length === 0) parsed.docentes = def.docentes;
+      if (!parsed.asignaturas) parsed.asignaturas = def.asignaturas;
+      if (!parsed.eventosCalendario) parsed.eventosCalendario = def.eventosCalendario;
+      return parsed;
+    }
+  } catch(e) {}
+  return getDefaultState();
+}
+
+function guardarEstado(state) {
+  try {
+    var json = JSON.stringify(state);
+    localStorage.setItem(INST_KEY, json);
+    // Verificar que se guardó correctamente
+    var verif = localStorage.getItem(INST_KEY);
+    if (verif !== json) {
+      mostrarAlerta('⚠️ Error de verificación: los datos no se guardaron correctamente.', 'info');
+      return false;
+    }
+    return true;
+  } catch(e) {
+    mostrarAlerta('❌ Error al guardar en localStorage: ' + e.message + '\nVerifique que el almacenamiento no esté lleno.', 'info');
+    return false;
+  }
+}
+
+var STATE = cargarEstado();
+
+// ==============================
+// TAB 1: DOCENTES (listado)
+// ==============================
+function renderDocentes() {
+  STATE = cargarEstado();
+  var container = document.getElementById('docentesContainer');
+  container.innerHTML = '';
+
+  if (STATE.docentes.length === 0) {
+    container.innerHTML = '<div style="padding:24px;text-align:center;color:var(--muted);font-size:15px">📭 No hay docentes registrados. Haga clic en <strong>"➕ Nuevo docente"</strong> para agregar uno.</div>';
+    return;
+  }
+
+  STATE.docentes.forEach(function(doc, idx) {
+    var card = document.createElement('div');
+    card.className = 'subj-card';
+
+    var html = '';
+    html += '<div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:8px">';
+    html += '<div>';
+    html += '<h3 style="display:flex;align-items:center;gap:6px">👨‍🏫 ' + doc.nombre + '</h3>';
+    html += '<p style="margin-bottom:4px">Cédula: <strong>' + (doc.cedula || '—') + '</strong> · ' + (doc.especialidad || '—') + '</p>';
+    if (doc.email || doc.telefono) {
+      html += '<p style="font-size:12px;color:var(--muted);margin:0">' + (doc.email ? '✉️ ' + doc.email : '') + (doc.email && doc.telefono ? ' · ' : '') + (doc.telefono ? '📞 ' + doc.telefono : '') + '</p>';
+    }
+    html += '</div>';
+    if (!ES_ALUMNO) {
+      html += '<div style="display:flex;gap:6px;flex-wrap:wrap">';
+      html += '<button class="btn btn-sm btn-outline" onclick="editarDocente(' + idx + ')">✏️ Editar</button>';
+      html += '<button class="btn btn-sm btn-danger" onclick="eliminarDocente(' + idx + ')">🗑️ Eliminar</button>';
+      html += '</div>';
+    }
+    html += '</div>';
+    html += '<div style="font-size:12px;color:var(--muted);margin-top:4px">🏫 ' + (doc.institucion || '—') + '</div>';
+
+    card.innerHTML = html;
+    container.appendChild(card);
+  });
+}
+
+var _editandoDocenteIdx = -1; // -1 = nuevo, >=0 = editando
+
+function abrirModalDocente(idx) {
+  _editandoDocenteIdx = idx;
+  var title = document.getElementById('modalDocenteTitle');
+  var btn = document.getElementById('modalDocenteGuardar');
+
+  if (idx >= 0) {
+    // Editar existente
+    var doc = STATE.docentes[idx];
+    document.getElementById('modalDocNombre').value = doc.nombre || '';
+    document.getElementById('modalDocCedula').value = doc.cedula || '';
+    document.getElementById('modalDocEspecialidad').value = doc.especialidad || '';
+    document.getElementById('modalDocInstitucion').value = doc.institucion || '';
+    document.getElementById('modalDocEmail').value = doc.email || '';
+    document.getElementById('modalDocTelefono').value = doc.telefono || '';
+    title.textContent = '✏️ Editar docente';
+    btn.textContent = '💾 Guardar cambios';
+  } else {
+    // Nuevo
+    document.getElementById('modalDocNombre').value = '';
+    document.getElementById('modalDocCedula').value = '';
+    document.getElementById('modalDocEspecialidad').value = '';
+    document.getElementById('modalDocInstitucion').value = (window.BTCC_APP && window.BTCC_APP.branding.institutionName) || '';
+
+    document.getElementById('modalDocEmail').value = '';
+    document.getElementById('modalDocTelefono').value = '';
+    title.textContent = '➕ Nuevo docente';
+    btn.textContent = '💾 Crear docente';
+  }
+  document.getElementById('modalDocente').style.display = 'flex';
+  document.getElementById('modalDocNombre').focus();
+}
+
+function cerrarModalDocente() {
+  document.getElementById('modalDocente').style.display = 'none';
+}
+
+function guardarModalDocente() {
+  var nombre = document.getElementById('modalDocNombre').value.trim();
+  if (!nombre) { mostrarAlerta('⚠️ El nombre es obligatorio.', 'info'); return; }
+
+  if (_editandoDocenteIdx >= 0) {
+    // Actualizar existente
+    var doc = STATE.docentes[_editandoDocenteIdx];
+    STATE.docentes[_editandoDocenteIdx] = {
+      id: doc.id,
+      nombre: nombre,
+      cedula: document.getElementById('modalDocCedula').value.trim(),
+      especialidad: document.getElementById('modalDocEspecialidad').value.trim(),
+      institucion: document.getElementById('modalDocInstitucion').value.trim(),
+      email: document.getElementById('modalDocEmail').value.trim(),
+      telefono: document.getElementById('modalDocTelefono').value.trim()
+    };
+    guardarEstado(STATE);
+    renderDocentes();
+    cerrarModalDocente();
+    mostrarAlerta('✅ Docente actualizado.', 'success');
+  } else {
+    // Crear nuevo
+    STATE.docentes.push({
+      id: 'd' + Date.now(),
+      nombre: nombre,
+      cedula: document.getElementById('modalDocCedula').value.trim(),
+      especialidad: document.getElementById('modalDocEspecialidad').value.trim(),
+      institucion: document.getElementById('modalDocInstitucion').value.trim(),
+      email: document.getElementById('modalDocEmail').value.trim(),
+      telefono: document.getElementById('modalDocTelefono').value.trim()
+    });
+    guardarEstado(STATE);
+    renderDocentes();
+    renderAsignaturas();
+    cerrarModalDocente();
+    mostrarAlerta('✅ Docente "' + nombre + '" agregado.', 'success');
+  }
+}
+
+function nuevoDocente() { abrirModalDocente(-1); }
+function editarDocente(idx) { abrirModalDocente(idx); }
+
+function eliminarDocente(idx) {
+  var doc = STATE.docentes[idx];
+  if (!confirm('¿Eliminar al docente "' + doc.nombre + '"?\n\nLas asignaturas asignadas a este docente quedarán sin docente asignado.')) return;
+  STATE.docentes.splice(idx, 1);
+  // Desasignar de las asignaturas
+  STATE.asignaturas.forEach(function(a) {
+    if (a.docenteId === doc.id) a.docenteId = '';
+  });
+  guardarEstado(STATE);
+  renderDocentes();
+  renderAsignaturas();
+  mostrarAlerta('🗑️ Docente eliminado.', 'info');
+}
+
+function guardarDocentes() {
+  guardarEstado(STATE);
+  mostrarAlerta('✅ Docentes guardados correctamente.', 'success');
+}
+
+// ==============================
+// TAB 2: ASIGNATURAS
+// ==============================
+var DIAS = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+var COLORES = ['#2e7d32','#1565c0','#e65100','#6a1b9a','#00838f','#c62828','#558b2f','#283593','#f57f17','#4e342e'];
+
+function renderAsignaturas() {
+  STATE = cargarEstado();
+  var container = document.getElementById('asignaturasContainer');
+  container.innerHTML = '';
+
+  if (STATE.asignaturas.length === 0) {
+    container.innerHTML = '<div style="padding:24px;text-align:center;color:var(--muted);font-size:15px">📭 No hay asignaturas registradas. Haga clic en <strong>"➕ Nueva asignatura"</strong> para agregar una.</div>';
+    return;
+  }
+
+  STATE.asignaturas.forEach(function(asig, idx) {
+    var color = asig.color || COLORES[idx % COLORES.length];
+    var card = document.createElement('div');
+    card.className = 'subj-card';
+    card.style.borderLeft = '4px solid ' + color;
+
+    // Nombre del docente asignado
+    var docenteNombre = '';
+    if (asig.docenteId) {
+      var doc = STATE.docentes.find(function(d) { return d.id === asig.docenteId; });
+      if (doc) docenteNombre = doc.nombre;
+    }
+
+    var html = '';
+    html += '<div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:8px">';
+    html += '<div><h3 style="display:flex;align-items:center;gap:6px">';
+    html += '<span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:' + color + '"></span>';
+    html += asig.nombre + '</h3>';
+    html += '<p>' + (asig.curso || '—') + ' · ' + (docenteNombre ? '👨‍🏫 ' + docenteNombre : '<span style="color:#bdbdbd">Sin docente asignado</span>') + '</p></div>';
+    if (!ES_ALUMNO) {
+      html += '<div style="display:flex;gap:6px;flex-wrap:wrap">';
+      html += '<button class="btn btn-sm btn-outline" onclick="editarCurso(' + idx + ')">📚 Curso</button>';
+      html += '<button class="btn btn-sm btn-outline" onclick="editarAsignatura(' + idx + ')">✏️ Nombre</button>';
+      html += '<button class="btn btn-sm btn-outline" onclick="cambiarColor(' + idx + ')">🎨 Color</button>';
+      html += '<button class="btn btn-sm btn-outline" onclick="asignarDocente(' + idx + ')">👨‍🏫 Docente</button>';
+      html += '<button class="btn btn-sm btn-danger" onclick="eliminarAsignatura(' + idx + ')">🗑️ Eliminar</button>';
+      html += '</div>';
+    }
+    html += '</div>';
+
+    // Horario items
+    html += '<div style="margin-top:8px">';
+    html += '<div style="font-size:13px;font-weight:600;color:var(--muted);margin-bottom:4px">Horario semanal:</div>';
+    if (asig.horario.length === 0) {
+      html += '<div style="font-size:13px;color:#9e9e9e;padding:4px 0">Sin horario registrado. Agregue un bloque debajo.</div>';
+    } else {
+      asig.horario.forEach(function(h, hidx) {
+        html += '<div class="subj-horario-item">';
+        html += '<span class="dia">' + h.dia + '</span>';
+        html += '<span class="hora">' + h.inicio + ' — ' + h.fin + '</span>';
+        if (!ES_ALUMNO) {
+          html += '<button class="btn btn-sm btn-danger" style="margin-left:auto" onclick="eliminarBloque(' + idx + ',' + hidx + ')">✕</button>';
+        }
+        html += '</div>';
+      });
+    }
+
+    // Add new block (solo docente)
+    if (!ES_ALUMNO) {
+      html += '<div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;align-items:center">';
+      html += '<select id="newDia_' + idx + '" style="padding:6px 8px;border:1px solid #b6c6da;border-radius:6px;font-size:13px">';
+      DIAS.forEach(function(d) { html += '<option value="' + d + '">' + d + '</option>'; });
+      html += '</select>';
+      html += '<label style="font-size:12px">Inicio: <input type="time" id="newInicio_' + idx + '" value="13:00" style="padding:5px;border:1px solid #b6c6da;border-radius:6px;font-size:13px"></label>';
+      html += '<label style="font-size:12px">Fin: <input type="time" id="newFin_' + idx + '" value="15:10" style="padding:5px;border:1px solid #b6c6da;border-radius:6px;font-size:13px"></label>';
+      html += '<button class="btn btn-sm btn-primary" onclick="agregarBloque(' + idx + ')">+ Agregar bloque</button>';
+      html += '</div>';
+    }
+
+    html += '</div>';
+    card.innerHTML = html;
+    container.appendChild(card);
+  });
+}
+
+function horariosSolapan(h1, h2) {
+  // Retorna true si dos bloques en el mismo día se superponen
+  if (h1.dia !== h2.dia) return false;
+  return h1.inicio < h2.fin && h2.inicio < h1.fin;
+}
+
+function agregarBloque(idx) {
+  var dia = document.getElementById('newDia_' + idx).value;
+  var inicio = document.getElementById('newInicio_' + idx).value;
+  var fin = document.getElementById('newFin_' + idx).value;
+  if (!inicio || !fin) { alert('Complete los horarios.'); return; }
+  // Validar que inicio < fin
+  if (inicio >= fin) { alert('⚠️ La hora de inicio debe ser anterior a la hora de fin.'); return; }
+
+  var nuevoBloque = { dia: dia, inicio: inicio, fin: fin };
+
+  // Validar solapamiento contra TODAS las asignaturas
+  var conflictos = [];
+  STATE.asignaturas.forEach(function(asig, aidx) {
+    asig.horario.forEach(function(h) {
+      if (horariosSolapan(h, nuevoBloque)) {
+        conflictos.push(asig.nombre + ' (' + h.dia + ' ' + h.inicio + '–' + h.fin + ')');
+      }
+    });
+  });
+
+  if (conflictos.length > 0) {
+    mostrarAlerta('⚠️ Solapamiento de horarios:\n' + conflictos.join('\n') + '\n\nEste bloque no se agregó.', 'info');
+    return;
+  }
+
+  STATE.asignaturas[idx].horario.push(nuevoBloque);
+  var ok = guardarEstado(STATE);
+  renderAsignaturas();
+  renderHorario();
+  if (ok) mostrarAlerta('✅ Bloque horario agregado correctamente.', 'success');
+}
+
+function eliminarBloque(idx, hidx) {
+  STATE.asignaturas[idx].horario.splice(hidx, 1);
+  guardarEstado(STATE);
+  renderAsignaturas();
+}
+
+function editarAsignatura(idx) {
+  var nuevo = prompt('Nombre de la asignatura:', STATE.asignaturas[idx].nombre);
+  if (nuevo && nuevo.trim()) {
+    STATE.asignaturas[idx].nombre = nuevo.trim();
+    guardarEstado(STATE);
+    renderAsignaturas();
+  }
+}
+
+function guardarAsignaturas() {
+  guardarEstado(STATE);
+  mostrarAlerta('✅ Asignaturas y horarios guardados correctamente.', 'success');
+  renderHorario();
+}
+
+function asignarDocente(idx) {
+  if (STATE.docentes.length === 0) {
+    mostrarAlerta('⚠️ No hay docentes registrados. Vaya a la pestaña Docentes primero.', 'info');
+    return;
+  }
+  var msg = 'Seleccione el docente para "' + STATE.asignaturas[idx].nombre + '":\n\n';
+  STATE.docentes.forEach(function(d, i) {
+    msg += (i + 1) + ') ' + d.nombre + '\n';
+  });
+  msg += '\n(0) Ninguno';
+  var opcion = prompt(msg, '1');
+  if (opcion === null) return;
+  var num = parseInt(opcion);
+  if (num === 0) {
+    STATE.asignaturas[idx].docenteId = '';
+    guardarEstado(STATE);
+    renderAsignaturas();
+    return;
+  }
+  if (num >= 1 && num <= STATE.docentes.length) {
+    STATE.asignaturas[idx].docenteId = STATE.docentes[num - 1].id;
+    guardarEstado(STATE);
+    renderAsignaturas();
+  } else {
+    mostrarAlerta('Opción no válida.', 'info');
+  }
+}
+
+function nuevaAsignatura() {
+  var nombre = prompt('Nombre de la nueva asignatura:', '');
+  if (!nombre || !nombre.trim()) return;
+  var curso = prompt('Curso (ej: 1.er Curso, 2.do Curso, 3.er Curso):', '2.do Curso');
+  if (!curso) curso = '2.do Curso';
+  var color = COLORES[STATE.asignaturas.length % COLORES.length];
+
+  // Asignar al primer docente si existe
+  var docenteId = STATE.docentes.length > 0 ? STATE.docentes[0].id : '';
+
+  STATE.asignaturas.push({
+    id: 'asig_' + Date.now(),
+    nombre: nombre.trim(),
+    curso: curso.trim(),
+    docenteId: docenteId,
+    color: color,
+    horario: []
+  });
+  guardarEstado(STATE);
+  renderAsignaturas();
+  renderHorario();
+  mostrarAlerta('✅ Asignatura "' + nombre.trim() + '" creada.', 'success');
+}
+
+function eliminarAsignatura(idx) {
+  var nombre = STATE.asignaturas[idx].nombre;
+  if (!confirm('¿Eliminar la asignatura "' + nombre + '" y todos sus horarios?')) return;
+  STATE.asignaturas.splice(idx, 1);
+  guardarEstado(STATE);
+  renderAsignaturas();
+  renderHorario();
+  mostrarAlerta('🗑️ Asignatura "' + nombre + '" eliminada.', 'info');
+}
+
+function editarCurso(idx) {
+  var actual = STATE.asignaturas[idx].curso || '';
+  var nuevo = prompt('Curso de la asignatura:', actual);
+  if (nuevo !== null) {
+    STATE.asignaturas[idx].curso = nuevo.trim();
+    guardarEstado(STATE);
+    renderAsignaturas();
+  }
+}
+
+function cambiarColor(idx) {
+  var msg = 'Seleccione un color:\n';
+  COLORES.forEach(function(c, i) {
+    msg += (i + 1) + ') ' + c + '\n';
+  });
+  msg += '\nO escriba un color hexadecimal (ej: #f44336):';
+  var opcion = prompt(msg, '1');
+  if (!opcion) return;
+  var color;
+  if (/^#?[0-9a-f]{6}$/i.test(opcion.trim())) {
+    color = '#' + opcion.trim().replace('#', '');
+  } else {
+    var idxColor = parseInt(opcion) - 1;
+    if (idxColor >= 0 && idxColor < COLORES.length) {
+      color = COLORES[idxColor];
+    } else {
+      mostrarAlerta('Color no válido. Se mantiene el actual.', 'info');
+      return;
+    }
+  }
+  STATE.asignaturas[idx].color = color;
+  guardarEstado(STATE);
+  renderAsignaturas();
+  renderHorario();
+}
+
+// ==============================
+// TAB 3: HORARIO SEMANAL
+// ==============================
+function renderHorario() {
+  STATE = cargarEstado();
+  var grid = document.getElementById('horarioGrid');
+
+  // Bloques horarios únicos ordenados
+  var bloques = [];
+  STATE.asignaturas.forEach(function(asig) {
+    asig.horario.forEach(function(h) {
+      var key = h.inicio + '-' + h.fin;
+      var existente = bloques.find(function(b) { return b.key === key; });
+      if (!existente) {
+        bloques.push({ key: key, inicio: h.inicio, fin: h.fin, order: h.inicio });
+      }
+    });
+  });
+  bloques.sort(function(a, b) { return a.inicio.localeCompare(b.inicio); });
+
+  var html = '<div class="schedule-grid">';
+
+  // Header
+  html += '<div class="schedule-header">Hora</div>';
+  DIAS.forEach(function(d) {
+    html += '<div class="schedule-header">' + d + '</div>';
+  });
+
+  // Rows
+  bloques.forEach(function(bloque) {
+    html += '<div class="schedule-time">' + bloque.inicio + '<br><span style="font-weight:400;font-size:10px">' + bloque.fin + '</span></div>';
+    DIAS.forEach(function(dia) {
+      var contents = [];
+      STATE.asignaturas.forEach(function(asig) {
+        asig.horario.forEach(function(h) {
+          if (h.dia === dia && h.inicio === bloque.inicio && h.fin === bloque.fin) {
+            var color = asig.color || COLORES[0];
+            var bgColor = color + '22';
+            // Obtener nombre del docente
+            var docName = '';
+            if (asig.docenteId) {
+              var doc = STATE.docentes.find(function(d) { return d.id === asig.docenteId; });
+              if (doc) docName = doc.nombre;
+            }
+            contents.push('<div style="background:' + bgColor + ';border:1px solid ' + color + ';border-radius:6px;padding:4px 6px;margin:2px 0;width:100%">' +
+              '<div class="subj-name" style="color:' + color + ';font-weight:700">📖 ' + asig.nombre + '</div>' +
+              (docName ? '<div style="font-size:9px;color:var(--muted)">👨‍🏫 ' + docName + '</div>' : '') +
+              '<div class="subj-block" style="font-size:10px;color:var(--muted)">' + h.inicio + '–' + h.fin + '</div></div>');
+          }
+        });
+      });
+      html += '<div class="schedule-cell">';
+      if (contents.length > 0) {
+        html += contents.join('');
+      }
+      html += '</div>';
+    });
+  });
+
+  html += '</div>';
+  grid.innerHTML = html;
+
+  // ---- Leyenda dinámica ----
+  var legendHtml = '';
+  STATE.asignaturas.forEach(function(asig) {
+    var color = asig.color || COLORES[0];
+    legendHtml += '<span style="margin-left:8px;display:inline-block;background:' + color + '22;border:1px solid ' + color + ';padding:2px 10px;border-radius:4px;font-weight:600;color:' + color + ';font-size:12px">' + asig.nombre + '</span>';
+  });
+  document.getElementById('legendItems').innerHTML = legendHtml || '<span style="color:var(--muted);margin-left:8px">(sin asignaturas)</span>';
+}
+
+// ==============================
+// TAB 4: CALENDARIO
+// ==============================
+function renderCalendario() {
+  STATE = cargarEstado();
+  var body = document.getElementById('eventosBody');
+  body.innerHTML = '';
+
+  // Ordenar por fecha
+  var eventos = STATE.eventosCalendario.slice().sort(function(a, b) { return a.fecha.localeCompare(b.fecha); });
+
+  eventos.forEach(function(ev, idx) {
+    var tipoLabel = ev.tipo === 'feriado' ? '🔴 Feriado' : (ev.tipo === 'evento' ? '🟢 Evento' : '⚪ Otro');
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td style="white-space:nowrap;font-weight:600">' + ev.fecha + '</td>' +
+      '<td>' + tipoLabel + '</td>' +
+      '<td>' + (ev.desc || '—') + '</td>' +
+      (ES_ALUMNO ? '<td style="color:#bdbdbd;font-size:11px">—</td>' : '<td><button class="btn btn-sm btn-danger" onclick="eliminarEvento(' + idx + ')">✕</button></td>');
+    body.appendChild(tr);
+  });
+
+  // Mini calendario del mes actual
+  renderMiniCalendario();
+}
+
+function renderMiniCalendario() {
+  var container = document.getElementById('miniCalendario');
+  var now = new Date();
+  var year = now.getFullYear();
+  var month = now.getMonth();
+
+  var monthNames = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre'];
+
+  var html = '<h3 style="font-size:16px;margin-bottom:10px">🗓️ ' + monthNames[month] + ' ' + year + ' — Vista rápida</h3>';
+  html += '<div class="mini-calendar">';
+
+  var daysOfWeek = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  daysOfWeek.forEach(function(d) {
+    html += '<div class="cal-day-header">' + d + '</div>';
+  });
+
+  var firstDay = new Date(year, month, 1).getDay();
+  var daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  for (var i = 0; i < firstDay; i++) {
+    html += '<div class="cal-day empty"></div>';
+  }
+
+  for (var d = 1; d <= daysInMonth; d++) {
+    var dateStr = year + '-' + String(month + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+    var isFeriado = false;
+    var isEvento = false;
+    STATE.eventosCalendario.forEach(function(ev) {
+      if (ev.fecha === dateStr) {
+        if (ev.tipo === 'feriado') isFeriado = true;
+        else isEvento = true;
+      }
+    });
+    var cls = 'cal-day';
+    if (isFeriado && isEvento) cls += ' ambos';
+    else if (isFeriado) cls += ' feriado';
+    else if (isEvento) cls += ' evento';
+    html += '<div class="' + cls + '">' + d + '</div>';
+  }
+
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function agregarEventoCalendario() {
+  var fecha = prompt('Ingrese la fecha (AAAA-MM-DD):', '2026-');
+  if (!fecha) return;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(fecha)) { alert('Formato inválido. Use AAAA-MM-DD'); return; }
+  var tipo = prompt('Tipo: feriado / evento', 'evento');
+  if (!tipo || (tipo !== 'feriado' && tipo !== 'evento')) { alert('Debe ser "feriado" o "evento"'); return; }
+  var desc = prompt('Descripción:', '');
+  if (!desc) desc = '—';
+
+  STATE.eventosCalendario.push({ fecha: fecha, tipo: tipo, desc: desc });
+  guardarEstado(STATE);
+  renderCalendario();
+  mostrarAlerta('✅ Evento agregado al calendario.', 'success');
+}
+
+function eliminarEvento(idx) {
+  if (!confirm('¿Eliminar este evento del calendario?')) return;
+  STATE.eventosCalendario.splice(idx, 1);
+  guardarEstado(STATE);
+  renderCalendario();
+}
+
+function guardarEventosCalendario() {
+  guardarEstado(STATE);
+  mostrarAlerta('✅ Calendario guardado correctamente.', 'success');
+}
+
+// ==============================
+// TABS
+// ==============================
+function initTabs() {
+  var btns = document.querySelectorAll('.tab-btn');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      var contents = document.querySelectorAll('.tab-content');
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      var target = document.getElementById(this.dataset.tab);
+      if (target) {
+        target.classList.add('active');
+        // Render contenido específico de cada tab
+        if (this.dataset.tab === 'tabHorario') renderHorario();
+        if (this.dataset.tab === 'tabCalendario') renderCalendario();
+        if (this.dataset.tab === 'tabAsignaturas') renderAsignaturas();
+      }
+    });
+  });
+}
+
+// ==============================
+// ALERTAS
+// ==============================
+function mostrarAlerta(msg, tipo) {
+  var div = document.createElement('div');
+  div.className = 'alert alert-' + tipo;
+  div.innerHTML = msg.replace(/\n/g, '<br>');
+  div.style.position = 'fixed';
+  div.style.top = '20px';
+  div.style.right = '20px';
+  div.style.zIndex = '9999';
+  div.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12)';
+  div.style.animation = 'slideIn 0.3s ease';
+  document.body.appendChild(div);
+  setTimeout(function() {
+    div.style.opacity = '0';
+    div.style.transition = 'opacity 0.3s';
+    setTimeout(function() { div.remove(); }, 400);
+  }, 3000);
+}
+
+// ==============================
+// INIT
+// ==============================
+window.addEventListener('DOMContentLoaded', function() {
+  initTabs();
+  renderDocentes();
+  renderAsignaturas();
+  renderHorario();
+  renderCalendario();
+
+  // Modal docente: guardar con Enter y clic
+  document.getElementById('modalDocenteGuardar').addEventListener('click', guardarModalDocente);
+  document.getElementById('modalDocente').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+      e.preventDefault();
+      guardarModalDocente();
+    }
+  });
+});
+</script>
+
+<script src="nav/nav.js"></script>
+</body>
+</html>

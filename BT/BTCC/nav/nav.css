@@ -1,0 +1,186 @@
+/* ===== SIDEBAR DE NAVEGACIÓN ===== */
+:root {
+  --nav-w: 240px;
+  --nav-handle-w: 28px;
+  --nav-bg: #0f2a44;
+  --nav-hover: #1e4a7a;
+  --nav-text: #c8d9ea;
+  --nav-active: #fff;
+  --nav-border: rgba(255,255,255,0.08);
+  --nav-accent: #4fc3f7;
+}
+
+/* Handle / pestaña */
+#nav-handle {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--nav-handle-w);
+  height: 60px;
+  background: var(--nav-bg);
+  color: #fff;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  z-index: 9999;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+  padding: 0;
+  line-height: 1;
+}
+#nav-handle:hover {
+  background: var(--nav-hover);
+  box-shadow: 2px 0 12px rgba(0,0,0,0.25);
+}
+
+/* Sidebar */
+#nav-sidebar {
+  position: fixed;
+  left: calc(-1 * var(--nav-w));
+  top: 0;
+  width: var(--nav-w);
+  height: 100vh;
+  background: var(--nav-bg);
+  color: var(--nav-text);
+  z-index: 9998;
+  overflow-y: auto;
+  transition: left 0.3s ease;
+  box-shadow: 2px 0 20px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+}
+#nav-sidebar.open {
+  left: 0;
+}
+#nav-sidebar.open + #nav-handle {
+  left: var(--nav-w);
+}
+
+/* Header dentro del sidebar */
+#nav-sidebar .nav-header {
+  padding: 16px 14px 10px;
+  border-bottom: 1px solid var(--nav-border);
+  flex-shrink: 0;
+}
+#nav-sidebar .nav-header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.3px;
+}
+#nav-sidebar .nav-header p {
+  margin: 2px 0 0;
+  font-size: 10px;
+  color: var(--nav-text);
+  opacity: 0.7;
+}
+
+/* Role indicators */
+#nav-sidebar .nav-rol {
+  padding: 6px 14px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--nav-border);
+  flex-shrink: 0;
+}
+#nav-sidebar .nav-rol .rol-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: 10px;
+}
+#nav-sidebar .nav-rol .rol-badge.docente {
+  background: rgba(79, 195, 247, 0.2);
+  color: #4fc3f7;
+}
+#nav-sidebar .nav-rol .rol-badge.alumno {
+  background: rgba(255, 215, 0, 0.2);
+  color: #ffd700;
+}
+
+/* Categorías */
+#nav-sidebar .nav-cat {
+  padding: 6px 14px 0;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--nav-accent);
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+/* Links */
+#nav-sidebar .nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 2px 0 8px;
+  flex-shrink: 0;
+}
+#nav-sidebar .nav-links li {
+  margin: 0;
+}
+#nav-sidebar .nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px 5px 20px;
+  font-size: 12px;
+  color: var(--nav-text);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  border-left: 3px solid transparent;
+}
+#nav-sidebar .nav-links a:hover,
+#nav-sidebar .nav-links a:focus {
+  background: var(--nav-hover);
+  color: var(--nav-active);
+  border-left-color: var(--nav-accent);
+}
+#nav-sidebar .nav-links a.active {
+  background: rgba(79,195,247,0.12);
+  color: #fff;
+  border-left-color: var(--nav-accent);
+  font-weight: 600;
+}
+
+/* Espaciado inferior */
+#nav-sidebar .nav-footer {
+  flex: 1;
+  min-height: 20px;
+}
+
+/* Scrollbar */
+#nav-sidebar::-webkit-scrollbar { width: 4px; }
+#nav-sidebar::-webkit-scrollbar-track { background: transparent; }
+#nav-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+
+/* Botón cerrar */
+#nav-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--nav-text);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+#nav-close:hover { opacity: 1; }
+
+/* Responsive: en móvil el sidebar ocupa más ancho */
+@media (max-width: 700px) {
+  :root { --nav-w: 280px; }
+}

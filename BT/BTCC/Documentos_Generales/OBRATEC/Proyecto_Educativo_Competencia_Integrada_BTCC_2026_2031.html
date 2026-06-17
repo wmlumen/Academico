@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obratec 2026 – Proyecto Educativo Integrador BTCC</title>
+    <style>
+        :root {
+            --black: #000000;
+            --gray: #e5e5e5;
+            --gray-mid: #c0c0c0;
+            --gray-text: #666666;
+            --france-blue: #0055a4;
+            --paper: #ffffff;
+            --page-width: 210mm;
+            --page-inner: 175mm;
+            --bind-gutter: 14mm;
+        }
+        * { box-sizing: border-box; }
+        html {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--black);
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.45;
+            padding: 18px;
+        }
+        .page {
+            max-width: calc(var(--page-width) + 28px);
+            margin: 0 auto;
+        }
+        .cover, .sheet {
+            background: var(--paper);
+            border: 1px solid var(--gray);
+            margin-bottom: 16px;
+            padding: 22px 22px 24px 26px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+        }
+        .cover {
+            border-left: 8px solid var(--france-blue);
+            min-height: 990px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .cover h1 {
+            margin: 0 0 8px;
+            font-size: 30px;
+            line-height: 1.12;
+            color: var(--france-blue);
+        }
+        .cover p {
+            margin: 4px 0;
+            font-size: 14px;
+            color: var(--gray-text);
+        }
+        .meta {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 18px;
+        }
+        .meta-card {
+            background: var(--gray);
+            border: 1px solid var(--gray);
+            padding: 12px;
+        }
+        .meta-card span {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--gray-text);
+            margin-bottom: 4px;
+            letter-spacing: 0.4px;
+        }
+        .meta-card strong {
+            font-size: 14px;
+            color: var(--black);
+        }
+        .sheet {
+            max-width: var(--page-width);
+            break-inside: auto;
+            page-break-inside: auto;
+        }
+        h2 {
+            margin: 0 0 12px;
+            font-size: 24px;
+            color: var(--france-blue);
+            line-height: 1.15;
+            break-after: avoid-page;
+            page-break-after: avoid;
+            orphans: 3;
+            widows: 3;
+        }
+        h3 {
+            margin: 16px 0 8px;
+            font-size: 16px;
+            color: var(--black);
+            line-height: 1.2;
+            break-after: avoid-page;
+            page-break-after: avoid;
+            orphans: 3;
+            widows: 3;
+        }
+        p {
+            margin: 6px 0;
+            font-size: 14px;
+            orphans: 3;
+            widows: 3;
+        }
+        ul, ol {
+            margin: 6px 0 0 18px;
+            padding: 0;
+            orphans: 3;
+            widows: 3;
+        }
+        li {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 12px 0 18px;
+            border: 1px solid var(--gray-mid);
+            table-layout: auto;
+            overflow: hidden;
+        }
+        th, td {
+            border-right: 1px solid var(--gray);
+            border-bottom: 1px solid var(--gray);
+            padding: 9px 11px;
+            vertical-align: top;
+            font-size: 13px;
+            line-height: 1.35;
+            overflow-wrap: anywhere;
+            word-break: normal;
+        }
+        th {
+            background: var(--gray);
+            text-align: left;
+            color: var(--black);
+            font-weight: 700;
+            vertical-align: middle;
+        }
+        tr:last-child td {
+            border-bottom: 0;
+        }
+        tr > *:last-child {
+            border-right: 0;
+        }
+        table tr:nth-child(even) td {
+            background: var(--paper);
+        }
+        .section-head {
+            background: var(--gray);
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1.08fr 0.92fr;
+            gap: 16px;
+        }
+        .callout {
+            background: var(--gray);
+            border-left: 4px solid var(--france-blue);
+            padding: 12px 14px;
+            margin-top: 10px;
+            break-inside: avoid-page;
+            page-break-inside: avoid;
+        }
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 6px 10px;
+            background: var(--gray);
+            border: 1px solid var(--gray-mid);
+            color: var(--france-blue);
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .center { text-align: center; }
+        .ok { color: var(--black); font-weight: 700; }
+        .accent { color: var(--france-blue); font-weight: 700; }
+        .small { font-size: 12px; color: var(--gray-text); }
+        .cover-break {
+            page-break-after: always;
+            break-after: page;
+            height: 0;
+            border: 0;
+            margin: 0;
+            padding: 0;
+        }
+        h2 + p,
+        h2 + table,
+        h2 + .grid-2,
+        h3 + p,
+        h3 + ul,
+        h3 + ol,
+        h3 + table,
+        h3 + .callout {
+            break-before: avoid-page;
+            page-break-before: avoid;
+        }
+        @media (max-width: 900px) {
+            .meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .grid-2 { grid-template-columns: 1fr; }
+            .cover, .sheet {
+                padding: 18px;
+            }
+        }
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 1.6cm 1.3cm 1.6cm 2.3cm;
+            }
+            body {
+                background: var(--paper);
+                padding: 0;
+            }
+            .page {
+                max-width: none;
+            }
+            .cover, .sheet {
+                border: none;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+            }
+            .cover {
+                page-break-after: always;
+                break-after: page;
+                min-height: calc(297mm - 3.2cm);
+            }
+            h2, h3 {
+                break-after: avoid-page;
+                page-break-after: avoid;
+            }
+            p, ul, ol, .callout {
+                break-inside: avoid-page;
+                page-break-inside: avoid;
+            }
+            tr {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            thead {
+                display: table-header-group;
+            }
+            tfoot {
+                display: table-footer-group;
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+
+<script src="../../nav/runtime.js"></script>
+</head>
+<body>
+    <div class="page">
+        <section class="cover">
+            <p><strong>Ministerio de Educación y Ciencias</strong></p>
+            <p><strong>Colegio Nacional Defensores del Chaco</strong></p>
+            <p><strong>Bachillerato Técnico en Construcciónes Civiles (BTCC)</strong></p>
+
+            <h1>Competencia Integrada de Habilidades Técnicas</h1>
+            <p style="font-size: 28px; font-weight: bold; color: var(--france-blue); text-align: center; letter-spacing: 3px; margin: 16px 0;">OBRATEC 2026</p>
+
+            <p><strong>Alcance:</strong> 1er, 2do y 3er curso, con integración de las asignaturas técnicas y tecnológicas del plan específico</p>
+            <p><strong>Período de implementación:</strong> 2026-2031</p>
+            <p><strong>Proyectista:</strong> Prof. Christhian Keim</p>
+
+            <div style="margin-top: 24px; padding: 16px; background: var(--gray); border: 1px solid var(--line);">
+                <p style="margin: 2px 0;"><strong>TIPO DE PROYECTO</strong> Interdisciplinario e intercurso</p>
+                <p style="margin: 2px 0;"><strong>PRODUCTO CENTRAL</strong> Competencia anual por estaciones</p>
+                <p style="margin: 2px 0;"><strong>PARTICIPANTES</strong> Estudiantes, docentes y evaluadores internos</p>
+                <p style="margin: 2px 0;"><strong>PRIMER HITO</strong> Piloto técnico en noviembre de 2026</p>
+                <p style="margin: 2px 0;"><strong>EQUIPOS DE COMPETENCIA</strong> 3 equipos mixtos intercurso</p>
+                <p style="margin: 2px 0;"><strong>RED DE APOYO</strong> Docentes, padres y empresas</p>
+            </div>
+
+            <p style="margin-top: 30px; font-size: 22px; text-align: center;"><strong>Año 2026</strong></p>
+        </section>
+        <div class="cover-break"></div>
+
+        <section class="sheet">
+            <h2>Índice General</h2>
+            <style>
+                .indice { width: 100%; border-collapse: collapse; font-size: 10pt; }
+                .indice td, .indice th { padding: 2px 6px; text-align: left; vertical-align: top; border: none; }
+                .indice th { font-weight: bold; }
+                .indice .pag { text-align: right; width: 40px; }
+            </style>
+            <table class="indice">
+                <tr><th>Sección</th><th></th><th class="pag">Pág.</th></tr>
+                <tr><td>1.</td><td>Presentación y Fundamentación</td><td class="pag">3</td></tr>
+                <tr><td>2.</td><td>Diagnóstico, Alcance y Participantes</td><td class="pag">3</td></tr>
+                <tr><td>3.</td><td>Objetivos del Proyecto</td><td class="pag">7</td></tr>
+                <tr><td>4.</td><td>Estructura General de la Competencia</td><td class="pag">8</td></tr>
+                <tr><td>5.</td><td>Metodología de Implementación</td><td class="pag">9</td></tr>
+                <tr><td>6.</td><td>Estaciones de Trabajo Propuestas</td><td class="pag">9</td></tr>
+                <tr><td>7.</td><td>Sistema de Puntaje e Indicadores</td><td class="pag">14</td></tr>
+                <tr><td>8.</td><td>Cronograma General 2026-2031</td><td class="pag">16</td></tr>
+                <tr><td>9.</td><td>Equipo Técnico, Padres y Empresas</td><td class="pag">18</td></tr>
+                <tr><td>10.</td><td>Roles, Recursos y Organización Operativa</td><td class="pag">19</td></tr>
+                <tr><td>11.</td><td>Evaluación del Proyecto y Sostenibilidad</td><td class="pag">20</td></tr>
+                <tr><td>12.</td><td>Anexos Operativos</td><td class="pag">21</td></tr>
+                <tr><td>13.</td><td>Matriz de Acreditación Individual por Curso</td><td class="pag">21</td></tr>
+                <tr><td>14.</td><td>Productos Finales Obligatorios por Estudiante</td><td class="pag">23</td></tr>
+                <tr><td>15.</td><td>Vinculación con el Perfil de Egreso del BTCC</td><td class="pag">24</td></tr>
+                <tr><td>16.</td><td>Escala de Calificación Final y Traducción a Acta</td><td class="pag">25</td></tr>
+                <tr><td>17.</td><td>Garantías de Validez y Fiabilidad de la Evaluación</td><td class="pag">26</td></tr>
+                <tr><td colspan="3" style="padding-top:8px;"><strong>Anexos</strong></td></tr>
+                <tr><td></td><td>A – Modelo de Ficha de Estación</td><td class="pag">28</td></tr>
+                <tr><td></td><td>B – Distribución de Puntaje de Referencia</td><td class="pag">28</td></tr>
+                <tr><td></td><td>C – Asignaturas y Posibles Aportes</td><td class="pag">28</td></tr>
+                <tr><td></td><td>D – Grilla por Alumno, Equipo y Estación</td><td class="pag">29</td></tr>
+                <tr><td></td><td>E – Planilla de Docentes por Asignatura</td><td class="pag">31</td></tr>
+                <tr><td></td><td>F – Modelo de Nota para Empresas, Padres y Autoridades</td><td class="pag">32</td></tr>
+                <tr><td></td><td>G – Modelo de Nota al Intendente</td><td class="pag">33</td></tr>
+            </table>
+        </section>
+
+        <section class="sheet">
+            <h2>1. Presentación y Fundamentación</h2>
+            <p>El presente proyecto educativo (denominado <strong>Obratec 2026</strong>) propone la creación de una <strong>Competencia Integrada de Habilidades Técnicas BTCC</strong>, organizada por estaciones de trabajo y diseñada para vincular los aprendizajes de <strong>los tres cursos</strong> del Bachillerato Técnico en Construcciónes Civiles en una experiencia progresiva, evaluable y visible para la comunidad educativa.</p>
+            <p>La iniciativa se orienta a transformar los conocimientos técnicos desarrollados durante el año en <strong>situaciones auténticas de resolución</strong>, donde cada estudiante deba demostrar dominio personal, capacidad de trabajo en equipo, precisión técnica, seguridad, organización del proceso y toma de decisiones según el nivel formativo alcanzado.</p>
+
+            <h3>Problema educativo que atiende</h3>
+            <ul>
+                <li>Los saberes técnicos suelen evaluarse de forma aislada por asignatura, con baja integración entre cursos y disciplinas.</li>
+                <li>No siempre se visibiliza la progresión real de habilidades desde el primer al tercer curso.</li>
+                <li>Existen aprendizajes de taller, dibujo, cálculo, organización, seguridad, instalaciones, topografía, resistencia, cómputo y gestión que pueden articularse mejor en desafíos concretos.</li>
+                <li>La institución requiere una experiencia anual de demostración de logro técnico que fortalezca identidad, motivación y cultura de evaluación por desempeño.</li>
+            </ul>
+
+            <h3>Sentido pedagógico del proyecto</h3>
+            <div class="grid-2">
+                <div>
+                    <p>La competencia no se plantea como una actividad aislada ni meramente recreativa. Se concibe como un <strong>dispositivo de integración curricular</strong> en el que cada curso participa desde su nivel de complejidad y cada asignatura aporta conocimientos, instrumentos, criterios y evidencias.</p>
+                    <p>El proyecto se apoya en tres principios:</p>
+                    <ol>
+                        <li><strong>Progresión:</strong> cada curso enfrenta desafíos acordes a su formación.</li>
+                        <li><strong>Integración:</strong> las asignaturas se complementan en una misma experiencia.</li>
+                        <li><strong>Desempeño observable:</strong> el aprendizaje se valora mediante indicadores claros.</li>
+                    </ol>
+                </div>
+                <div>
+                    <div class="callout">
+                        <strong>Idea fuerza del proyecto:</strong><br>
+                        “Lo que el estudiante aprende durante el año debe poder demostrarse en una situación técnica organizada, evaluable y pertinente al perfil del BTCC”.
+                    </div>
+                    <div class="badge-row">
+                        <span class="badge">Técnica</span>
+                        <span class="badge">Trabajo en equipo</span>
+                        <span class="badge">Seguridad</span>
+                        <span class="badge">Desempeño</span>
+                        <span class="badge">Interdisciplinariedad</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Marco temporal</h3>
+            <table>
+                <tr>
+                    <th>Periodo</th>
+                    <th>Caracter</th>
+                    <th>Proposito</th>
+                </tr>
+                <tr>
+                    <td>2026</td>
+                    <td>Planificación institucional + piloto</td>
+                    <td>Diseñar instrumentos, estaciones, cronograma y realizar una primera experiencia piloto en noviembre.</td>
+                </tr>
+                <tr>
+                    <td>2027-2031</td>
+                    <td>Implementación progresiva</td>
+                    <td>Consolidar la competencia como experiencia anual institucional, con ajustes y crecimiento por cohorte.</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="sheet">
+            <h2>2. Diagnóstico, Alcance y Participantes</h2>
+            <h3>Diagnóstico sintético</h3>
+            <table>
+                <tr>
+                    <th>Aspecto</th>
+                    <th>Situación observada</th>
+                    <th>Oportunidad institucional</th>
+                </tr>
+                <tr>
+                    <td>Articulacion entre cursos</td>
+                    <td>Los cursos avanzan por trayectos propios, con escasa visibilidad de continuidad.</td>
+                    <td>Mostrar una progresión real de complejidad técnica desde 1.er a 3.er curso.</td>
+                </tr>
+                <tr>
+                    <td>Integracion entre asignaturas</td>
+                    <td>Muchos contenidos se desarrollan por separado.</td>
+                    <td>Unificar problemas de obra, cálculo, diseño, seguridad y gestión en estaciones comunes.</td>
+                </tr>
+                <tr>
+                    <td>Evaluación de desempeño</td>
+                    <td>Predominan instrumentos fragmentados.</td>
+                    <td>Incorporar indicadores personales, de equipo y de dificultad por estación.</td>
+                </tr>
+                <tr>
+                    <td>Motivacion estudiantil</td>
+                    <td>Los estudiantes responden mejor ante desafios concretos.</td>
+                    <td>Transformar el cierre del año en una muestra competitiva con sentido formativo.</td>
+                </tr>
+            </table>
+
+            <h3>Alcance curricular</h3>
+            <p>El proyecto integra prioritariamente las asignaturas técnicas del BTCC presentes en los tres cursos, entre ellas:</p>
+            <ul>
+                <li><strong>1.er curso:</strong> Dibujo Técnico I, Materiales de Construcción, Seguridad Industrial, Taller de Construcciónes I, Técnicas I, Técnicas Instrumentales.</li>
+                <li><strong>2.do curso:</strong> Resistencia de Materiales, Técnicas Instrumentales II, Instalaciones I, Topografía, Taller de Construcciónes II, Técnicas II.</li>
+                <li><strong>3.er curso:</strong> Cómputo y Presupuesto, Instalaciones II, Organización y Gestión de Obras, Taller de Construcciónes III, Técnicas III.</li>
+            </ul>
+
+            <h3>Temas a desarrollar por curso y por asignatura</h3>
+            <p>Para realizar las tareas priorizadas del proyecto, cada curso y cada asignatura debe preparar contenidos específicos que permitan ejecutar con solvencia la medición de ventanas, el uso de cinta métrica, la seguridad personal, el metrado de azulejos, la organización del trabajo y la elaboración de planos en AutoCAD con acotación y corte longitudinal.</p>
+
+            <table>
+                <tr>
+                    <th>Curso</th>
+                    <th>Asignatura</th>
+                    <th>Temas a desarrollar</th>
+                    <th>Aplicacion dentro del proyecto</th>
+                </tr>
+                <tr>
+                    <td>1.er curso</td>
+                    <td>Dibujo Técnico I</td>
+                    <td>Croquis, líneas normalizadas, acotación básica, escalas, lectura de vistas y representación simple de aberturas.</td>
+                    <td>Base para interpretar el relevamiento y comprender el paso al plano acotado.</td>
+                </tr>
+                <tr>
+                    <td>1.er curso</td>
+                    <td>Materiales de Construcción</td>
+                    <td>Tipos de materiales de obra, piezas cerámicas, azulejos, morteros, uso y conservación de materiales.</td>
+                    <td>Reconocimiento de materiales para terminación y cálculo de revestimiento de baño.</td>
+                </tr>
+                <tr>
+                    <td>1.er curso</td>
+                    <td>Seguridad Industrial</td>
+                    <td>Vestimenta de seguridad, EPP, normas básicas de prevención, orden del puesto y cierre seguro de tarea.</td>
+                    <td>Control de seguridad personal, orden y limpieza de herramientas al inicio y al cierre.</td>
+                </tr>
+                <tr>
+                    <td>1.er curso</td>
+                    <td>Taller de Construcciónes I</td>
+                    <td>Uso inicial de herramientas manuales, cuidado del puesto, limpieza final, apoyo en armado seguro y manipulación básica.</td>
+                    <td>Apoyo operativo en estaciones de organización, medición y cierre de trabajo.</td>
+                </tr>
+                <tr>
+                    <td>1.er curso</td>
+                    <td>Técnicas I</td>
+                    <td>Secuencia de trabajo, interpretación de consignas, registro simple de datos, vocabulario técnico inicial.</td>
+                    <td>Comprension de la consigna, orden de pasos y registro de información basica.</td>
+                </tr>
+                <tr>
+                    <td>1.er curso</td>
+                    <td>Técnicas Instrumentales</td>
+                    <td>Uso de cinta métrica, lectura de medidas, conversión simple, control de inicio y cierre de actividad.</td>
+                    <td>Medición inicial, registro de dimensiónes y tiempos de trabajo.</td>
+                </tr>
+                <tr>
+                    <td>1.er, 2.do y 3.er curso</td>
+                    <td>Plan Común - Redacción de Informes Técnicos</td>
+                    <td>Estructura del informe técnico, redacción objetiva, registro de procedimientos, descripción de resultados, conclusiones y vocabulario técnico.</td>
+                    <td>Elaboración del informe final de cada estación o del cierre general del proyecto, con datos, observaciones y conclusiones.</td>
+                </tr>
+                <tr>
+                    <td>1.er, 2.do y 3.er curso</td>
+                    <td>Plan Común - Señalética</td>
+                    <td>Diseño y lectura de señalética, carteles preventivos, avisos de seguridad, identificación de áreas de trabajo y circulación.</td>
+                    <td>Organización visual de estaciones, zonas de seguridad, circulación, herramientas y normas de trabajo durante la competencia.</td>
+                </tr>
+                <tr>
+                    <td>1.er, 2.do y 3.er curso</td>
+                    <td>Plan Común - Guaraní</td>
+                    <td>Comprensión y expresión oral contextual, vocabulario funcional, consignas y apoyo comunicativo en lengua nacional.</td>
+                    <td>Apoyo a la comunicación con la comunidad, señalizaciones básicas y presentaciones breves vinculadas al proyecto.</td>
+                </tr>
+                <tr>
+                    <td>1.er, 2.do y 3.er curso</td>
+                    <td>Plan Común - Castellano</td>
+                    <td>Comprensión lectora, redacción formal, coherencia textual, exposición oral y presentación de informes.</td>
+                    <td>Redacción de informes, notas, actas, conclusiones y defensa oral del trabajo realizado.</td>
+                </tr>
+                <tr>
+                    <td>1.er, 2.do y 3.er curso</td>
+                    <td>Plan Común - Matemática</td>
+                    <td>Operaciones, proporcionalidad, cálculo de longitudes, superficies, escalas, conversiones y estimaciones.</td>
+                    <td>Mediciónes, cálculo de azulejos, interpretación de escalas y verificación numérica de resultados.</td>
+                </tr>
+                <tr>
+                    <td>1.er, 2.do y 3.er curso</td>
+                    <td>Plan Común - Educación Vial</td>
+                    <td>Normas de circulación, desplazamiento seguro, prevención, señales y conducta responsable en espacios compartidos.</td>
+                    <td>Organización de accesos, circulación interna y seguridad de desplazamiento durante la competencia.</td>
+                </tr>
+                <tr>
+                    <td>1.er, 2.do y 3.er curso</td>
+                    <td>Plan Común - Ciencias Naturales</td>
+                    <td>Observación del entorno, materiales, higiene, salud ocupacional, ambiente y prevención de riesgos.</td>
+                    <td>Relación entre materiales, condiciónes de trabajo, cuidado del cuerpo y prácticas seguras.</td>
+                </tr>
+                <tr>
+                    <td>1.er, 2.do y 3.er curso</td>
+                    <td>Plan Común - Inglés</td>
+                    <td>Vocabulario técnico básico, lectura de palabras frecuentes en herramientas, seguridad y planos.</td>
+                    <td>Interpretación de términos técnicos básicos en manuales, etiquetas y simbología internacional.</td>
+                </tr>
+                <tr>
+                    <td>1.er, 2.do y 3.er curso</td>
+                    <td>Plan Común - Historia y Geografía</td>
+                    <td>Contexto local, desarrollo urbano, territorio, patrimonio, evolución de obras y lectura del espacio.</td>
+                    <td>Vinculación del proyecto con la comunidad, el municipio, el entorno construido y la identidad local.</td>
+                </tr>
+                <tr>
+                    <td>1.er, 2.do y 3.er curso</td>
+                    <td>Plan Común - Educación Física</td>
+                    <td>Trabajo corporal, postura, coordinación, esfuerzo dosificado, cuidado del cuerpo y trabajo en equipo.</td>
+                    <td>Mejor desempeño en tareas prácticas, traslados, ergonomía, resistencia y cooperación grupal.</td>
+                </tr>
+                <tr>
+                    <td>1.er, 2.do y 3.er curso</td>
+                    <td>Aplicaciones en Celulares para la Construcción</td>
+                    <td>Uso guiado de aplicaciónes móviles para medición, nivelación, cálculo, registro fotográfico, escaneo, croquis digital, control de tiempos y organización de tareas.</td>
+                    <td>Apoyo al relevamiento, al metrado, al registro de evidencias, a la verificación rápida de datos y a la organización operativa de las estaciones.</td>
+                </tr>
+                <tr>
+                    <td>2.do curso</td>
+                    <td>Resistencia de Materiales</td>
+                    <td>Tracción, compresión, flexión, comportamiento de elementos simples y control básico de seguridad estructural.</td>
+                    <td>Análisis de estabilidad y criterio técnico en armado seguro para medición o apoyo de trabajo.</td>
+                </tr>
+                <tr>
+                    <td>2.do curso</td>
+                    <td>Técnicas Instrumentales II</td>
+                    <td>Metrado, cómputo básico, rendimiento, registro ordenado, control de tiempo, precisión de medición y verificación.</td>
+                    <td>Cálculo de azulejos del baño, registro de cantidades y control de proceso.</td>
+                </tr>
+                <tr>
+                    <td>2.do curso</td>
+                    <td>Instalaciones I</td>
+                    <td>Reconocimiento de artefactos, ubicacion de puntos sanitarios, interferencias y cuidado de instalaciones existentes.</td>
+                    <td>Lectura del espacio del baño y consideración de elementos instalados para el metrado y el plano.</td>
+                </tr>
+                <tr>
+                    <td>2.do curso</td>
+                    <td>Topografía</td>
+                    <td>Medición directa, verificación de dimensiónes, croquis de campo, referencias, cotas y control de error.</td>
+                    <td>Relevamiento de ventanas y toma de medidas reales con cinta métrica.</td>
+                </tr>
+                <tr>
+                    <td>2.do curso</td>
+                    <td>Taller de Construcciónes II</td>
+                    <td>Armado y verificación de dispositivos de trabajo, procedimientos seguros, cuidado de herramientas y ejecución controlada.</td>
+                    <td>Armado del andamio o dispositivo de acceso y control del puesto de trabajo.</td>
+                </tr>
+                <tr>
+                    <td>2.do curso</td>
+                    <td>Técnicas II</td>
+                    <td>Interpretación técnica intermedia, organización del trabajo, control de tiempos, relación entre medición y ejecución.</td>
+                    <td>Articulación entre relevamiento, consigna técnica y resolución práctica.</td>
+                </tr>
+                <tr>
+                    <td>3.er curso</td>
+                    <td>Cómputo y Presupuesto</td>
+                    <td>Cálculo de superficies útiles, cantidades de materiales, margen de desperdicio, unidades de cómputo y presentación de resultados.</td>
+                    <td>Determinacion de cantidad de azulejos, superficie revestible y estimacion basica de insumos.</td>
+                </tr>
+                <tr>
+                    <td>3.er curso</td>
+                    <td>Instalaciones II</td>
+                    <td>Interpretación de interferencias técnicas, compatibilización con instalaciones y criterio de resolución.</td>
+                    <td>Revisión de condiciónes del baño o del área relevada antes del plano y del cómputo.</td>
+                </tr>
+                <tr>
+                    <td>3.er curso</td>
+                    <td>Organización y Gestión de Obras</td>
+                    <td>Planificación de tareas, hora de inicio y cierre, asignación de roles, control de recursos y cierre operativo.</td>
+                    <td>Coordinacion del equipo, control de tiempos y secuencia general de cada estacion.</td>
+                </tr>
+                <tr>
+                    <td>3.er curso</td>
+                    <td>Taller de Construcciónes III</td>
+                    <td>Supervision de procedimientos, control de calidad, mantenimiento y limpieza final de herramientas y area.</td>
+                    <td>Verificacion del cierre técnico de la tarea y condiciónes finales del puesto.</td>
+                </tr>
+                <tr>
+                    <td>3.er curso</td>
+                    <td>Técnicas III</td>
+                    <td>Integración de información técnica, lectura global del problema, toma de decisiones y argumentación profesional básica.</td>
+                    <td>Conducción técnica de la resolución y presentación final de resultados.</td>
+                </tr>
+            </table>
+
+            <div class="callout">
+                <strong>Criterio de articulación:</strong> los temas deben desarrollarse con progresión entre cursos. El 1.er curso aporta reconocimiento, seguridad y registro inicial; el 2.do curso aporta medición, control y resolución técnico-práctica; el 3.er curso aporta cómputo, organización, integración y presentación final.
+            </div>
+
+            <h3>Participantes</h3>
+            <div class="grid-2">
+                <div>
+            <h3>Participación estudiantil</h3>
+            <ul>
+                <li>Estudiantes de 1.er curso: nivel inicial y operativo guiado.</li>
+                <li>Estudiantes de 2.do curso: nivel intermedio y resolución técnico-práctica.</li>
+                <li>Estudiantes de 3.er curso: nivel avanzado, integrador y de gestion.</li>
+                <li>Cada equipo de competencia estara conformado por estudiantes de los tres cursos.</li>
+            </ul>
+                </div>
+                <div>
+                    <h3>Participación docente</h3>
+                    <ul>
+                        <li>Docentes de cada asignatura técnica como responsables de estaciones y criterios.</li>
+                        <li>Equipo directivo como aval institucional y coordinación general.</li>
+                        <li>Participación de padres y referentes de empresas como apoyo logístico y de vinculación.</li>
+                        <li>Posible inclusión de evaluadores invitados internos o externos en fases consolidadas.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="callout">
+                <strong>Criterio de alcance:</strong> todas las asignaturas no necesariamente generan una estación propia, pero sí deben tener alguna forma de aporte al proyecto, ya sea como contenido de base, instrumento de evaluación, preparación previa o evidencia final.
+            </div>
+        </section>
+
+        <section class="sheet">
+            <h2>3. Objetivos del Proyecto</h2>
+            <h3>Objetivo general</h3>
+            <p>Implementar una competencia anual de habilidades técnicas del BTCC, articulada entre cursos y asignaturas, que permita evidenciar progresivamente los aprendizajes aplicados en situaciones practicas, con indicadores personales, de equipo y de dificultad, durante el periodo 2026-2031.</p>
+
+            <h3>Objetivos específicos</h3>
+            <ol>
+                <li>Diseñar una estructura de competencia por estaciones de trabajo alineada con los aprendizajes de 1.er, 2.do y 3.er curso.</li>
+                <li>Integrar en una misma experiencia contenidos de dibujo, taller, materiales, seguridad, resistencia, técnicas instrumentales, instalaciones, topografia, computo y gestion.</li>
+                <li>Definir indicadores de evaluación diferenciados en tres dimensiónes: personal, de equipo y de nivel de dificultad.</li>
+                <li>Implementar en noviembre de 2026 un piloto institucional con cantidad reducida de estaciones y evaluación posterior.</li>
+                <li>Consolidar entre 2027 y 2031 una version anual, ajustada y escalable del proyecto.</li>
+                <li>Generar evidencias técnicas, registros y criterios comparables entre cohortes.</li>
+                <li>Fortalecer la identidad del BTCC mediante una muestra de desempeño técnico visible para estudiantes y comunidad educativa.</li>
+            </ol>
+
+            <h3>Resultados esperados</h3>
+            <table>
+                <tr>
+                    <th>Plazo</th>
+                    <th>Resultado esperado</th>
+                </tr>
+                <tr>
+                    <td>2026</td>
+                    <td>Documento marco aprobado, piloto ejecutado y matriz inicial de indicadores validada.</td>
+                </tr>
+                <tr>
+                    <td>2027-2028</td>
+                    <td>Competencia anual estable con estaciones por curso y mejor articulación docente.</td>
+                </tr>
+                <tr>
+                    <td>2029-2031</td>
+                    <td>Sistema consolidado con registros historicos, mejoras anuales y posible apertura a invitados o muestras externas.</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="sheet">
+            <h2>4. Estructura General de la Competencia</h2>
+            <h3>Modelo organizativo</h3>
+            <p>La competencia se organiza en <strong>estaciones de trabajo</strong>. Cada estacion propone un desafio técnico vinculado con una o varias asignaturas y ajustado a un nivel de complejidad segun el curso. Los equipos rotan por estaciones y acumulan puntaje por desempeño.</p>
+
+            <h3>Conformación de equipos de competencia</h3>
+            <table>
+                <tr>
+                    <th>Equipo</th>
+                    <th>Composicion sugerida</th>
+                    <th>Perfil funcional</th>
+                </tr>
+                <tr>
+                    <td>Equipo A - Estructura y Control</td>
+                    <td>Estudiantes de 1.er, 2.do y 3.er curso</td>
+                    <td>Enfasis en seguridad, lectura tecnica, resistencia y control del proceso.</td>
+                </tr>
+                <tr>
+                    <td>Equipo B - Medición y Ejecucion</td>
+                    <td>Estudiantes de 1.er, 2.do y 3.er curso</td>
+                    <td>Enfasis en replanteo, taller, materiales y resolución practica.</td>
+                </tr>
+                <tr>
+                    <td>Equipo C - Computo y Gestion</td>
+                    <td>Estudiantes de 1.er, 2.do y 3.er curso</td>
+                    <td>Enfasis en organización, computo, costo, instalaciones y gestion de obra.</td>
+                </tr>
+            </table>
+            <p class="small">La cantidad de integrantes por equipo podra definirse segun matricula y disponibilidad institucional, manteniendo siempre representacion de los tres cursos.</p>
+
+            <h3>Niveles de participación por curso</h3>
+            <table>
+                <tr>
+                    <th>Curso</th>
+                    <th>Nivel de complejidad</th>
+                    <th>Tipo de desafio predominante</th>
+                    <th>Perfil esperado</th>
+                </tr>
+                <tr>
+                    <td>1.er curso</td>
+                    <td>Básico</td>
+                    <td>Reconocimiento, lectura, orden, seguridad y ejecución guiada</td>
+                    <td>Inicio técnico y comprension de procedimientos</td>
+                </tr>
+                <tr>
+                    <td>2.do curso</td>
+                    <td>Intermedio</td>
+                    <td>Aplicacion, calculo, control, medición y resolución técnico-practica</td>
+                    <td>Uso funcional de herramientas y criterios técnicos</td>
+                </tr>
+                <tr>
+                    <td>3.er curso</td>
+                    <td>Avanzado</td>
+                    <td>Integracion, gestion, computo, organización de obra y toma de decisiones</td>
+                    <td>Desempeño integrador y argumentacion profesional basica</td>
+                </tr>
+            </table>
+
+            <h3>Modalidad de participación</h3>
+            <ul>
+                <li>Tres equipos mixtos permanentes o semipermanentes durante la fase de competencia.</li>
+                <li>Rotacion por estaciones con tiempos definidos.</li>
+                <li>Puntaje acumulativo por estacion.</li>
+                <li>Registro simultaneo de desempeño individual y grupal.</li>
+                <li>Cierre con tabla general de resultados y devolucion tecnica.</li>
+            </ul>
+
+            <div class="callout">
+                <strong>Recomendacion para el piloto 2026:</strong> iniciar con tres equipos mixtos y una cantidad limitada de estaciones, de manera que la institución pueda validar tiempos, criterios, materiales y flujo operativo antes de ampliar el formato.
+            </div>
+        </section>
+
+        <section class="sheet">
+            <h2>5. Metodologia de Implementación</h2>
+            <h3>Enfoque metodologico</h3>
+            <p>La metodologia del proyecto combina <strong>aprendizaje basado en retos</strong>, <strong>integración curricular</strong>, <strong>evaluación por desempeño</strong> y <strong>trabajo cooperativo intercurso</strong>. Cada equipo resuelve desafios reales o simulados de obra, en condiciónes controladas, con tiempo limitado y criterios previamente conocidos.</p>
+
+            <div class="grid-2">
+                <div>
+                    <h3>Fases metodologicas</h3>
+                    <ol>
+                        <li><strong>Sensibilizacion:</strong> presentacion del proyecto a estudiantes, familias y docentes.</li>
+                        <li><strong>Preparacion por asignaturas:</strong> cada catedra trabaja contenidos y evidencias previas.</li>
+                        <li><strong>Entrenamiento por equipos:</strong> simulaciones cortas, rotación de roles y ejercicios integrados.</li>
+                        <li><strong>Competencia por estaciones:</strong> resolución de desafios con puntaje y control de tiempo.</li>
+                        <li><strong>Retroalimentacion:</strong> devolucion tecnica individual, grupal e institucional.</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3>Roles dentro de cada equipo</h3>
+                    <ul>
+                        <li>Coordinador de equipo.</li>
+                        <li>Responsable de registro y planilla.</li>
+                        <li>Responsable técnico operativo.</li>
+                        <li>Responsable de control y seguridad.</li>
+                        <li>Apoyo de calculo, dibujo o verificación segun estacion.</li>
+                    </ul>
+                    <div class="callout">
+                        Los roles podran rotarse para asegurar que todos los estudiantes demuestren capacidades personales y no solo desempeño grupal.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sheet">
+            <h2>6. Estaciones de Trabajo Propuestas</h2>
+            <p>Las estaciones pueden variar cada año, pero el proyecto recomienda una matriz base para asegurar continuidad y articulación entre asignaturas.</p>
+
+            <div style="overflow-x: auto;">
+            <table>
+                <tr>
+                    <th>Estación</th>
+                    <th>Asignaturas involucradas</th>
+                    <th>Descripción del desafío</th>
+                    <th>Imprevisto / Innovación</th>
+                    <th>Materiales necesarios</th>
+                    <th>Puntaje máximo</th>
+                    <th>Nivel predominante</th>
+                </tr>
+                <tr>
+                    <td>1. Seguridad, organización inicial y herramientas</td>
+                    <td>Seguridad Industrial, Taller, Técnicas Instrumentales, Instalaciones II</td>
+                    <td>Identificar riesgos, preparar la vestimenta de seguridad (casco, guantes, botines, arnés), verificar herramientas manuales y eléctricas. Utilizar el busca polo (detector de tensión) para verificar ausencia de corriente antes de manipular un circuito eléctrico. Registrar hora de inicio y cierre, y justificar medidas preventivas antes y después del trabajo.</td>
+                    <td>Falta un extintor en el área señalizada. El equipo debe improvisar una estación de emergencia con los recursos disponibles y reportar la novedad por escrito.</td>
+                    <td>Casco, guantes de seguridad, botines, arnés, busca polo, extintor (simulado o real), planilla de verificación de herramientas, cronómetro.</td>
+                    <td class="center">20 pts</td>
+                    <td>Básico - Intermedio</td>
+                </tr>
+                <tr>
+                    <td>2. Lectura e interpretación técnica</td>
+                    <td>Dibujo Técnico, Técnicas I-II-III, AutoCAD</td>
+                    <td>Interpretar croquis base y trasladarlo a un plano en AutoCAD, debidamente acotado y con un corte longitudinal simple.</td>
+                    <td>El archivo digital del croquis se corrompió. El equipo debe reconstruir el croquis a partir de una descripción oral o escrita incompleta y luego realizar el plano.</td>
+                    <td>Computadora con AutoCAD, croquis impreso (o descripción alternativa), hojas de papel milimetrado, lápiz, escuadras, escalímetro.</td>
+                    <td class="center">25 pts</td>
+                    <td>Intermedio - Avanzado</td>
+                </tr>
+                <tr>
+                    <td>3. Materiales y sistemas constructivos</td>
+                    <td>Materiales de Construcción, Taller I-II-III</td>
+                    <td>Seleccionar materiales y justificar su uso según resistencia, función y etapa de obra.</td>
+                    <td>El material previsto (ladrillo cerámico) no está disponible. El equipo debe seleccionar un material alternativo (bloque de concreto, ladrillo sílico-calcáreo) y reajustar la justificación técnica.</td>
+                    <td>Muestras de materiales (ladrillos, bloques, cemento, cal, arena), fichas técnicas, balanza, probeta para densidad, guía de selección de materiales.</td>
+                    <td class="center">20 pts</td>
+                    <td>Básico - Intermedio</td>
+                </tr>
+                <tr>
+                    <td>4. Medición y replanteo</td>
+                    <td>Topografía, Taller, Técnicas Instrumentales</td>
+                    <td>Armar andamio o dispositivo seguro de acceso para medir ventanas usando cinta métrica, registrar dimensiones reales, hora de inicio y cierre, y verificar condiciones de seguridad y precisión.</td>
+                    <td>La cinta métrica se rompió al inicio. El equipo debe completar la tarea usando solo herramientas alternativas (regla plegable, cordel, teléfono con app de medición) y recalcular las dimensiones.</td>
+                    <td>Andamio o banco de trabajo seguro, cinta métrica (y alternativa: regla plegable, cordel, app de medición), nivel de burbuja, planilla de registro, cronómetro, arnés de seguridad.</td>
+                    <td class="center">30 pts</td>
+                    <td>Intermedio</td>
+                </tr>
+                <tr>
+                    <td>5. Resistencia y control técnico</td>
+                    <td>Resistencia de Materiales, Taller II</td>
+                    <td>Analizar una situación estructural simple, identificar esfuerzos o resolver una verificación básica.</td>
+                    <td>Los datos de carga del enunciado son inconsistentes (difieren entre dos fuentes). El equipo debe identificar el error, decidir qué dato usar y justificar su decisión técnica.</td>
+                    <td>Tablas de perfiles estructurales, calculadora, app de resistencia (PhyWiz), regla, lápiz, gráficos de esfuerzos, probetas de madera o metal.</td>
+                    <td class="center">25 pts</td>
+                    <td>Intermedio</td>
+                </tr>
+                <tr>
+                    <td>6. Instalaciones y solución técnica</td>
+                    <td>Instalaciones I-II</td>
+                    <td>Armar un baño de agua fría: identificar y seleccionar cañerías de PVC y termofusión, conectar artefactos sanitarios (inodoro, lavatorio, ducha) con sus respectivas llaves de paso, realizar pruebas de estanqueidad del sistema y verificar el correcto funcionamiento del circuito hidráulico. Reconocer componentes eléctricos básicos (busca polo, disyuntores) y ordenar un esquema o resolver un caso técnico sencillo de instalación.</td>
+                    <td>Una llave de paso presenta una fuga tras la prueba de estanqueidad. El equipo debe diagnosticar el origen de la fuga, desmontar la conexión defectuosa y reemplazar la junta o el componente dañado con los repuestos disponibles.</td>
+                    <td>Cañerías de PVC y termofusión, termofusora, cortatubos, adhesivo PVC, inodoro, lavatorio, ducha, llaves de paso, buscapolo, disyuntor, tanque de agua para prueba, cronómetro.</td>
+                    <td class="center">20 pts</td>
+                    <td>Intermedio - Avanzado</td>
+                </tr>
+                <tr>
+                    <td>7. Cómputo, rendimiento y costo</td>
+                    <td>Técnicas Instrumentales II, Cómputo y Presupuesto</td>
+                    <td>Calcular el metrado de azulejos de un baño, determinando superficie útil, cantidad de piezas y margen básico de desperdicio. Se excluye del piloto el cálculo de metro cuadrado de aulas y pasillos.</td>
+                    <td>El proveedor cambió la presentación del azulejo (pasó de 30×30 cm a 33×33 cm) después de realizado el cómputo inicial. El equipo debe recalcular la cantidad de piezas y el presupuesto con el nuevo formato.</td>
+                    <td>Calculadora, planilla electrónica (Excel/Google Sheets), catálogo de azulejos con precios, cinta métrica, lápiz, papel, teléfono con app de planilla.</td>
+                    <td class="center">30 pts</td>
+                    <td>Intermedio - Avanzado</td>
+                </tr>
+                <tr>
+                    <td>8. Organización y gestión de obra</td>
+                    <td>Organización y Gestión de Obras, Técnicas III</td>
+                    <td>Planificar secuencia, recursos, equipo, tiempos y control de una tarea de obra.</td>
+                    <td>Un trabajador clave (integrante del equipo) se retira simuladamente por emergencia. El equipo debe reasignar roles, redistribuir tareas y ajustar el cronograma en tiempo real.</td>
+                    <td>Planilla de planificación (papel o digital), cronómetro, diagrama de Gantt (plantilla), lista de tareas y responsables, teléfono con app de organización.</td>
+                    <td class="center">30 pts</td>
+                    <td>Avanzado</td>
+                </tr>
+                <tr>
+                    <td>9. Física aplicada en construcción</td>
+                    <td>Resistencia de Materiales, Taller, Ciencias Naturales</td>
+                    <td>Aplicar principios de palanca y poleas en situaciones de obra: calcular la ventaja mecánica de una palanca (ley de la palanca: F1 × d1 = F2 × d2), armar un sistema de poleas simple o compuesto para izaje de cargas, y registrar las fuerzas involucradas. Utilizar aplicaciones móviles de simuladores de física (PhyWiz, Physics Toolbox) para verificar resultados.</td>
+                    <td>Una polea del sistema compuesto se atasca durante el izaje. El equipo debe rediseñar el sistema de poleas con las piezas disponibles (convertir a sistema simple o cambiar la configuración) y completar la tarea.</td>
+                    <td>Poleas simples y compuestas, cuerda o cable de acero, masas calibradas (pesas), dinamómetro, regla, transportador, teléfono con app Physics Toolbox o PhyWiz, cronómetro, block de notas.</td>
+                    <td class="center">25 pts</td>
+                    <td>Intermedio - Avanzado</td>
+                </tr>
+                <tr>
+                    <td>10. Señalización y seguridad visual</td>
+                    <td>Seguridad Industrial, Dibujo Técnico, Plan Común</td>
+                    <td>Diseñar y crear señalizaciones de seguridad (prohibición, obligación, advertencia, evacuación) utilizando plantillas digitales en celular o dibujo manual. Identificar zonas de riesgo, delimitar áreas de circulación, montar las señalizaciones en el espacio de trabajo y verificar su visibilidad y comprensión por parte del equipo.</td>
+                    <td>Las señales colocadas fueron retiradas por otro equipo. El equipo debe diseñar nuevas señalizaciones con materiales distintos (reciclados, temporales) y colocarlas en ubicaciones alternativas, justificando los cambios.</td>
+                    <td>Cartulina, marcadores, regla, plantillas de señalización (formas y colores), teléfono con app de diseño (Canva), cinta adhesiva, palos de madera para soporte, impresora (opcional), cámara para registro.</td>
+                    <td class="center">20 pts</td>
+                    <td>Básico - Intermedio</td>
+                </tr>
+            </table>
+            </div>
+
+            <h3>Puntaje total de referencia</h3>
+            <p><strong>Puntaje acumulado sugerido:</strong> 245 puntos.</p>
+            <p class="small">La cantidad final de estaciones puede adaptarse al año, a la disponibilidad de docentes y al formato del piloto.</p>
+
+            <div class="callout">
+                <strong>Ajuste de alcance para el piloto:</strong> se priorizan tareas técnicas concretas y observables, como el armado seguro para medición de ventanas, el metrado de azulejos de un baño, la elaboración de plano en AutoCAD con acotación y corte longitudinal, el armado de un baño de agua fría con pruebas de estanqueidad, la aplicación de palancas y poleas en situación de obra, y el diseño de señalizaciones de seguridad. Para esta primera versión se elimina el cálculo de metro cuadrado de aulas y pasillos.
+            </div>
+        </section>
+
+        <section class="sheet">
+            <h2>7. Sistema de Puntaje e Indicadores</h2>
+            <h3>Dimensiónes de evaluación</h3>
+            <table>
+                <tr>
+                    <th>Dimensión</th>
+                    <th>Que valora</th>
+                    <th>Rango sugerido</th>
+                </tr>
+                <tr>
+                    <td>Indicadores personales</td>
+                    <td>Desempeño técnico individual, comprension, orden, precision y autonomia.</td>
+                    <td class="center">Escala por indicador: 0 = no logrado, 1 = logro inicial, 2 = logro aceptable, 3 = logro destacado</td>
+                </tr>
+                <tr>
+                    <td>Indicadores de equipo</td>
+                    <td>Coordinacion, distribucion de roles, comunicación y cumplimiento conjunto.</td>
+                    <td class="center">Escala por indicador: 0 = no logrado, 1 = logro inicial, 2 = logro aceptable, 3 = logro destacado</td>
+                </tr>
+                <tr>
+                    <td>Indicador de dificultad</td>
+                    <td>Nivel de complejidad del desafio segun curso y tipo de tarea.</td>
+                    <td class="center">Factor: 1 = básico, 2 = intermedio, 3 = avanzado</td>
+                </tr>
+            </table>
+
+            <h3>Escala general de interpretación</h3>
+            <table>
+                <tr>
+                    <th>Valor</th>
+                    <th>Significado</th>
+                    <th>Que debe evidenciar el estudiante o el equipo</th>
+                </tr>
+                <tr>
+                    <td class="center">0</td>
+                    <td>No logrado</td>
+                    <td>No realiza la tarea, la realiza de forma incorrecta o no demuestra comprension minima de la consigna.</td>
+                </tr>
+                <tr>
+                    <td class="center">1</td>
+                    <td>Logro inicial</td>
+                    <td>Realiza solo una parte de la tarea, con ayuda frecuente, errores notorios o escasa seguridad en el procedimiento.</td>
+                </tr>
+                <tr>
+                    <td class="center">2</td>
+                    <td>Logro aceptable</td>
+                    <td>Cumple la tarea principal de forma suficiente, con pocos errores y con manejo funcional del procedimiento esperado.</td>
+                </tr>
+                <tr>
+                    <td class="center">3</td>
+                    <td>Logro destacado</td>
+                    <td>Resuelve la tarea completa con precision, orden, autonomia y criterio técnico claramente observable.</td>
+                </tr>
+            </table>
+
+            <h3>Matriz de indicadores personales</h3>
+            <table>
+                <tr>
+                    <th>Indicador</th>
+                    <th>Descripción</th>
+                    <th>Puntaje referencial</th>
+                </tr>
+                <tr>
+                    <td>Precision tecnica</td>
+                    <td>Ejecuta o responde con exactitud segun consigna, dato, medida o calculo.</td>
+                    <td class="center">0, 1, 2, 3</td>
+                </tr>
+                <tr>
+                    <td>Procedimiento</td>
+                    <td>Ordena pasos, usa correctamente la cinta metrica o herramientas indicadas y justifica el modo de resolución.</td>
+                    <td class="center">0, 1, 2, 3</td>
+                </tr>
+                <tr>
+                    <td>Autonomia</td>
+                    <td>Actua con iniciativa y requiere menor dependencia de ayuda.</td>
+                    <td class="center">0, 1, 2, 3</td>
+                </tr>
+                <tr>
+                    <td>Presentacion tecnica</td>
+                    <td>Usa vocabulario, unidades, registro comprensible y deja constancia clara de hora de inicio y cierre cuando corresponda.</td>
+                    <td class="center">0, 1, 2, 3</td>
+                </tr>
+            </table>
+
+            <h3>Rúbrica explicita de indicadores personales</h3>
+            <table>
+                <tr>
+                    <th>Indicador</th>
+                    <th>0</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                </tr>
+                <tr>
+                    <td>Precision tecnica</td>
+                    <td>No obtiene el dato o el resultado es incorrecto.</td>
+                    <td>Obtiene datos parciales o con errores importantes.</td>
+                    <td>Obtiene datos correctos con pequenos errores no determinantes.</td>
+                    <td>Obtiene datos o resultados correctos con precision y control.</td>
+                </tr>
+                <tr>
+                    <td>Procedimiento</td>
+                    <td>No sigue la secuencia de trabajo ni usa bien las herramientas.</td>
+                    <td>Sigue la secuencia de manera incompleta y requiere mucha ayuda.</td>
+                    <td>Aplica la secuencia correcta con ayuda ocasional.</td>
+                    <td>Aplica la secuencia completa de forma ordenada, segura y justificada.</td>
+                </tr>
+                <tr>
+                    <td>Autonomia</td>
+                    <td>No puede avanzar sin asistencia constante.</td>
+                    <td>Avanza solo en acciones simples y depende de orientacion frecuente.</td>
+                    <td>Trabaja con relativa independencia y consulta solo en puntos clave.</td>
+                    <td>Trabaja con iniciativa propia y resuelve con seguridad la mayor parte de la tarea.</td>
+                </tr>
+                <tr>
+                    <td>Presentacion tecnica</td>
+                    <td>No registra adecuadamente ni comunica el trabajo realizado.</td>
+                    <td>Registra o comunica de forma confusa e incompleta.</td>
+                    <td>Registra y comunica de manera comprensible, con detalles suficientes.</td>
+                    <td>Registra y comunica con claridad, vocabulario técnico y orden formal.</td>
+                </tr>
+            </table>
+
+            <h3>Matriz de indicadores de equipo</h3>
+            <table>
+                <tr>
+                    <th>Indicador</th>
+                    <th>Descripción</th>
+                    <th>Puntaje referencial</th>
+                </tr>
+                <tr>
+                    <td>Distribucion de roles</td>
+                    <td>El equipo organiza responsabilidades de forma funcional.</td>
+                    <td class="center">0, 1, 2, 3</td>
+                </tr>
+                <tr>
+                    <td>Comunicacion</td>
+                    <td>Comparte información relevante y toma acuerdos operativos.</td>
+                    <td class="center">0, 1, 2, 3</td>
+                </tr>
+                <tr>
+                    <td>Cumplimiento del tiempo</td>
+                    <td>Inicia y finaliza la tarea en el tiempo previsto, registrando adecuadamente hora de inicio y cierre.</td>
+                    <td class="center">0, 1, 2, 3</td>
+                </tr>
+                <tr>
+                    <td>Orden y seguridad</td>
+                    <td>Mantiene vestimenta de seguridad adecuada, orden del puesto y limpieza de las herramientas al finalizar la estacion.</td>
+                    <td class="center">0, 1, 2, 3</td>
+                </tr>
+            </table>
+
+            <h3>Rúbrica explicita de indicadores de equipo</h3>
+            <table>
+                <tr>
+                    <th>Indicador</th>
+                    <th>0</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                </tr>
+                <tr>
+                    <td>Distribucion de roles</td>
+                    <td>No se definen funciones y el trabajo se desordena.</td>
+                    <td>Los roles se asignan de forma parcial o poco funcional.</td>
+                    <td>Los roles se distribuyen de manera suficiente para cumplir la tarea.</td>
+                    <td>Los roles se distribuyen claramente y cada integrante cumple su funcion.</td>
+                </tr>
+                <tr>
+                    <td>Comunicacion</td>
+                    <td>No hay intercambio util de información.</td>
+                    <td>La comunicación es limitada, confusa o tardia.</td>
+                    <td>La comunicación permite coordinar la mayor parte de la tarea.</td>
+                    <td>La comunicación es clara, oportuna y sostiene el trabajo conjunto.</td>
+                </tr>
+                <tr>
+                    <td>Cumplimiento del tiempo</td>
+                    <td>No logra concluir en el tiempo previsto.</td>
+                    <td>Concluye fuera de tiempo o con retraso importante.</td>
+                    <td>Concluye dentro del tiempo con pequenos ajustes o demoras menores.</td>
+                    <td>Concluye en tiempo y registra correctamente inicio y cierre.</td>
+                </tr>
+                <tr>
+                    <td>Orden y seguridad</td>
+                    <td>Trabaja con desorden, sin cuidado de seguridad ni limpieza final.</td>
+                    <td>Muestra intentos de orden y seguridad, pero con varias fallas.</td>
+                    <td>Mantiene condiciónes adecuadas de orden, seguridad y limpieza.</td>
+                    <td>Mantiene de forma constante orden, vestimenta de seguridad y herramientas limpias al cierre.</td>
+                </tr>
+            </table>
+
+            <h3>Escala de dificultad por curso</h3>
+            <table>
+                <tr>
+                    <th>Nivel</th>
+                    <th>Descripción</th>
+                    <th>Factor sugerido</th>
+                </tr>
+                <tr>
+                    <td>Básico</td>
+                    <td>Reconocimiento, lectura, orden, seguridad y procedimiento guiado.</td>
+                    <td class="center">1</td>
+                </tr>
+                <tr>
+                    <td>Intermedio</td>
+                    <td>Aplicacion, control, medición, calculo y resolución con menor guia.</td>
+                    <td class="center">2</td>
+                </tr>
+                <tr>
+                    <td>Avanzado</td>
+                    <td>Integracion, gestion, argumentacion tecnica y toma de decisiones.</td>
+                    <td class="center">3</td>
+                </tr>
+            </table>
+
+            <h3>Criterio explicito del indicador de dificultad</h3>
+            <table>
+                <tr>
+                    <th>Factor</th>
+                    <th>Cuando corresponde</th>
+                    <th>Que debio lograr la tarea para ubicarse en ese nivel</th>
+                </tr>
+                <tr>
+                    <td class="center">1</td>
+                    <td>Básico</td>
+                    <td>La tarea exige reconocimiento, ejecución guiada, uso inicial de herramientas y control simple del procedimiento.</td>
+                </tr>
+                <tr>
+                    <td class="center">2</td>
+                    <td>Intermedio</td>
+                    <td>La tarea exige aplicar procedimientos, medir, calcular, verificar datos y resolver con apoyo limitado.</td>
+                </tr>
+                <tr>
+                    <td class="center">3</td>
+                    <td>Avanzado</td>
+                    <td>La tarea exige integrar información, tomar decisiones, organizar recursos y justificar tecnicamente la resolución.</td>
+                </tr>
+            </table>
+
+            <div class="callout">
+                <strong>Fórmula sugerida de estacion:</strong><br>
+                Puntaje final = (puntaje personal + puntaje de equipo) x factor de dificultad.
+            </div>
+        </section>
+
+        <section class="sheet">
+            <h2>8. Cronograma General 2026-2031</h2>
+            <table>
+                <tr>
+                    <th>Año</th>
+                    <th>Fase</th>
+                    <th>Acciones principales</th>
+                    <th>Producto esperado</th>
+                </tr>
+                <tr>
+                    <td>2026</td>
+                    <td>Planificacion y piloto</td>
+                    <td>
+                        <ul>
+                            <li>Conformación del equipo organizador.</li>
+                            <li>Definición de estaciones, indicadores y roles docentes.</li>
+                            <li>Selección de evidencias por asignatura.</li>
+                            <li>Prueba piloto en noviembre con numero reducido de equipos y estaciones.</li>
+                        </ul>
+                    </td>
+                    <td>Piloto ejecutado y evaluado institucionalmente.</td>
+                </tr>
+                <tr>
+                    <td>2027</td>
+                    <td>Implementación inicial</td>
+                    <td>Ampliacion del numero de estaciones, ajuste de instrumentos y formalizacion anual.</td>
+                    <td>Competencia anual en version institucional basica.</td>
+                </tr>
+                <tr>
+                    <td>2028</td>
+                    <td>Consolidacion</td>
+                    <td>Mejora de tiempos, rubricas, registro de puntajes y roles por curso.</td>
+                    <td>Modelo estable y mejor documentado.</td>
+                </tr>
+                <tr>
+                    <td>2029</td>
+                    <td>Ampliacion</td>
+                    <td>Mayor complejidad de estaciones y posible participación de observadores externos.</td>
+                    <td>Competencia fortalecida con mayor visibilidad.</td>
+                </tr>
+                <tr>
+                    <td>2030</td>
+                    <td>Articulacion</td>
+                    <td>Integracion mas fuerte con proyectos de obra, computo y gestion.</td>
+                    <td>Experiencia con mayor autenticidad profesional.</td>
+                </tr>
+                <tr>
+                    <td>2031</td>
+                    <td>Evaluación y sostenibilidad</td>
+                    <td>Revision global del sexenio y definicion de continuidad institucional.</td>
+                    <td>Memoria tecnica y protocolo consolidado.</td>
+                </tr>
+            </table>
+
+            <h3>Piloto propuesto para noviembre de 2026</h3>
+            <div class="grid-2">
+                <div>
+                    <ul>
+                        <li>Duracion sugerida: una jornada institucional o dos medias jornadas.</li>
+                        <li>Participación inicial: tres equipos mixtos con representacion de 1.er, 2.do y 3.er curso.</li>
+                        <li>Estaciones recomendadas para piloto: 4 a 5 estaciones.</li>
+                        <li>Registro: planilla de puntaje, observacion docente y devolucion posterior.</li>
+                    </ul>
+                </div>
+                <div>
+                    <table>
+                        <tr><th>Estaciones piloto sugeridas</th><th>Puntaje</th></tr>
+                        <tr><td>Seguridad y organización inicial</td><td class="center">20</td></tr>
+                        <tr><td>Lectura e interpretación tecnica</td><td class="center">20</td></tr>
+                        <tr><td>Medición y replanteo</td><td class="center">25</td></tr>
+                        <tr><td>Computo, rendimiento y costo</td><td class="center">30</td></tr>
+                        <tr><td>Gestion del trabajo / cierre técnico</td><td class="center">25</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <h3>Calendario de reuniónes 2026</h3>
+            <table>
+                <tr>
+                    <th>Mes</th>
+                    <th>Reunion</th>
+                    <th>Participantes</th>
+                    <th>Proposito</th>
+                </tr>
+                <tr>
+                    <td>Marzo</td>
+                    <td>Reunion de apertura institucional</td>
+                    <td>Direccion, coordinacion, docentes técnicos</td>
+                    <td>Presentar el proyecto y definir la hoja de ruta anual.</td>
+                </tr>
+                <tr>
+                    <td>Abril</td>
+                    <td>Mesa tecnica de catedras</td>
+                    <td>Docentes por curso y asignatura</td>
+                    <td>Selecciónar estaciones, contenidos y responsables.</td>
+                </tr>
+                <tr>
+                    <td>Mayo</td>
+                    <td>Reunion de diseño de instrumentos</td>
+                    <td>Equipo técnico docente</td>
+                    <td>Validar indicadores, puntajes y planillas.</td>
+                </tr>
+                <tr>
+                    <td>Julio</td>
+                    <td>Reunion con padres y apoyo comunitario</td>
+                    <td>Padres, direccion, docentes</td>
+                    <td>Socializar el proyecto y solicitar apoyo logístico.</td>
+                </tr>
+                <tr>
+                    <td>Agosto</td>
+                    <td>Mesa de vinculación con empresas</td>
+                    <td>Empresas aliadas, direccion, docentes técnicos</td>
+                    <td>Gestionar apoyo en materiales, observacion o patrocinio técnico.</td>
+                </tr>
+                <tr>
+                    <td>Septiembre</td>
+                    <td>Reunion de conformación de equipos</td>
+                    <td>Estudiantes y docentes responsables</td>
+                    <td>Asignar integrantes, roles y cronograma de entrenamiento.</td>
+                </tr>
+                <tr>
+                    <td>Octubre</td>
+                    <td>Simulacion general</td>
+                    <td>Equipos, docentes y apoyo logístico</td>
+                    <td>Ensayar estaciones, tiempos y circulacion.</td>
+                </tr>
+                <tr>
+                    <td>Noviembre</td>
+                    <td>Ejecucion del piloto y reunión de cierre</td>
+                    <td>Todos los actores</td>
+                    <td>Desarrollar el piloto y evaluar ajustes para 2027.</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="sheet">
+            <h2>9. Equipo Técnico, Padres y Empresas</h2>
+            <h3>Equipo técnico docente</h3>
+            <table>
+                <tr>
+                    <th>Instancia</th>
+                    <th>Integracion sugerida</th>
+                    <th>Funcion</th>
+                </tr>
+                <tr>
+                    <td>Coordinacion general</td>
+                    <td>Docente referente del BTCC y equipo directivo</td>
+                    <td>Conducir la planificación general y articular con todas las catedras.</td>
+                </tr>
+                <tr>
+                    <td>Coordinacion pedagogica</td>
+                    <td>Representantes de 1.er, 2.do y 3.er curso</td>
+                    <td>Asegurar progresion de complejidad y coherencia curricular.</td>
+                </tr>
+                <tr>
+                    <td>Responsables de estaciones</td>
+                    <td>Docentes de asignaturas técnicas involucradas</td>
+                    <td>Diseñar, aplicar y evaluar cada estacion.</td>
+                </tr>
+                <tr>
+                    <td>Equipo de evaluación</td>
+                    <td>Docentes y posibles invitados técnicos</td>
+                    <td>Registrar puntajes y validar resultados.</td>
+                </tr>
+            </table>
+
+            <h3>Comision de padres de apoyo</h3>
+            <p>Se propone conformar una <strong>Comision de Padres de Apoyo al Proyecto</strong>, con funciones de colaboracion no tecnica pero fundamentales para la sostenibilidad del evento.</p>
+            <ul>
+                <li>Apoyo en recepcion, organización de espacios y asistencia general.</li>
+                <li>Colaboracion en logistica de hidratacion, orden y acompañamiento.</li>
+                <li>Participación en la socializacion del proyecto con las familias.</li>
+                <li>Apoyo en actividades de cierre o reconocimiento.</li>
+            </ul>
+
+            <h3>Mesa de enlace con empresas</h3>
+            <p>Se propone establecer una <strong>Mesa de Enlace con Empresas y Referentes del sector</strong> para fortalecer el vinculo entre escuela y entorno profesional.</p>
+            <table>
+                <tr>
+                    <th>Actor externo</th>
+                    <th>Aporte posible</th>
+                </tr>
+                <tr>
+                    <td>Empresas constructoras locales</td>
+                    <td>Materiales de apoyo, observacion tecnica, insumos o presencia institucional.</td>
+                </tr>
+                <tr>
+                    <td>Ferreterias / corralones</td>
+                    <td>Colaboracion con materiales demostrativos, premios o insumos de practica.</td>
+                </tr>
+                <tr>
+                    <td>Técnicos o maestros de obra invitados</td>
+                    <td>Observación, retroalimentación y legitimación de la experiencia.</td>
+                </tr>
+                <tr>
+                    <td>Egresados del BTCC</td>
+                    <td>Testimonios, acompañamiento y referencia profesional.</td>
+                </tr>
+            </table>
+
+            <h3>Rol de las empresas</h3>
+            <p>La participación de las empresas dentro del proyecto debe entenderse como un <strong>aporte de vinculación técnico-formativa</strong> y no como reemplazo de la responsabilidad pedagogica de la institución. Su presencia fortalece la pertinencia del proyecto al acercar criterios, materiales, referencias y demandas reales del sector productivo.</p>
+            <table>
+                <tr>
+                    <th>Dimensión</th>
+                    <th>Rol esperado de la empresa</th>
+                    <th>Alcance concreto</th>
+                </tr>
+                <tr>
+                    <td>Pertinencia tecnica</td>
+                    <td>Aportar referencias del trabajo real en obra, taller, medición, seguridad y organización.</td>
+                    <td>Validar que las estaciones y consignas se relacionen con situaciones técnicas plausibles y actuales.</td>
+                </tr>
+                <tr>
+                    <td>Asesoria y observacion</td>
+                    <td>Participar como observador invitado o asesor técnico externo cuando la institución lo considere oportuno.</td>
+                    <td>Brindar devoluciones breves sobre procedimientos, orden de trabajo, uso de materiales y criterios de calidad.</td>
+                </tr>
+                <tr>
+                    <td>Apoyo a recursos</td>
+                    <td>Colaborar con insumos, materiales demostrativos, herramientas no criticas o apoyo logístico.</td>
+                    <td>Facilitar muestras, descartes utiles, premios institucionales o apoyo puntual para estaciones de practica.</td>
+                </tr>
+                <tr>
+                    <td>Vinculacion escuela-entorno</td>
+                    <td>Acercar a los estudiantes al lenguaje profesional, a los perfiles ocupacionales y a las expectativas del sector.</td>
+                    <td>Compartir experiencias, charlas, visitas, criterios de empleabilidad y cultura de trabajo técnico responsable.</td>
+                </tr>
+                <tr>
+                    <td>Proyeccion institucional</td>
+                    <td>Respaldar la visibilidad del proyecto como experiencia formativa seria y articulada con el medio.</td>
+                    <td>Fortalecer la imagen del BTCC y abrir oportunidades futuras de cooperacion, pasantias o articulaciónes.</td>
+                </tr>
+            </table>
+
+            <h3>Funciones especificas de la mesa de empresas</h3>
+            <ul>
+                <li>Conocer el proyecto anual y sus objetivos formativos antes del piloto o de la competencia general.</li>
+                <li>Sugerir mejoras de realismo técnico en las estaciones, sin alterar la conduccion pedagogica del equipo docente.</li>
+                <li>Proponer apoyos concretos y viables en materiales, herramientas demostrativas o reconocimiento institucional.</li>
+                <li>Participar en jornadas de observacion, apertura, cierre o devolucion tecnica cuando sean convocadas formalmente.</li>
+                <li>Contribuir a vincular a la escuela con necesidades y estandares básicos del campo laboral local.</li>
+            </ul>
+
+            <div class="callout">
+                <strong>Criterio institucional:</strong> las empresas pueden acompañar, asesorar, observar y apoyar, pero la planificación, evaluación, seguridad, selección de indicadores y decisiones pedagogicas siguen bajo responsabilidad exclusiva de la institución y del equipo técnico docente.
+            </div>
+        </section>
+
+        <section class="sheet">
+            <h2>10. Roles, Recursos y Organización Operativa</h2>
+            <h3>Roles institucionales</h3>
+            <table>
+                <tr>
+                    <th>Rol</th>
+                    <th>Responsabilidad principal</th>
+                </tr>
+                <tr>
+                    <td>Coordinacion general</td>
+                    <td>Convocar, organizar cronograma, asegurar materiales y consolidar resultados.</td>
+                </tr>
+                <tr>
+                    <td>Responsables de estacion</td>
+                    <td>Diseñar la consigna, controlar el tiempo, aplicar indicadores y registrar puntajes.</td>
+                </tr>
+                <tr>
+                    <td>Equipo de apoyo logístico</td>
+                    <td>Preparar espacios, circulacion, materiales, señaletica y seguridad.</td>
+                </tr>
+                <tr>
+                    <td>Jurado o mesa de evaluación</td>
+                    <td>Validar consistencia del puntaje y observar desempeño general.</td>
+                </tr>
+            </table>
+
+            <h3>Recursos necesarios</h3>
+            <ul>
+                <li>Espacios de aula, patio, taller o sectores de practica.</li>
+                <li>Materiales de dibujo, medición, seguridad, calculo y taller.</li>
+                <li>Cinta metrica, herramientas manuales basicas y elementos de verificación.</li>
+                <li>Celulares con aplicaciónes de apoyo para medición, nivelacion, registro fotografico y organización de tareas.</li>
+                <li>Planillas impresas de estaciones e indicadores.</li>
+                <li>Cronometros, carteles, fichas, hojas de respuesta y tablas técnicas.</li>
+                <li>Equipo básico de seguridad y control de circulacion.</li>
+            </ul>
+
+            <h3>Condiciónes de seguridad</h3>
+            <ul>
+                <li>Toda estacion con actividad practica debe iniciar con consigna de seguridad.</li>
+                <li>Debe verificarse el uso de vestimenta de seguridad y EPP segun la tarea asignada.</li>
+                <li>Debe definirse zona de trabajo, zona de espera y zona de circulacion.</li>
+                <li>Cuando la tarea incluya medición, la cinta metrica debe utilizarse de forma correcta y segura.</li>
+                <li>El uso de EPP se incorporara como criterio evaluable cuando corresponda.</li>
+                <li>Al cierre de cada estacion se debe controlar la limpieza de las herramientas y del puesto de trabajo.</li>
+                <li>Ninguna estacion debe plantear riesgo fisico innecesario.</li>
+            </ul>
+
+            <div class="callout">
+                <strong>Condición organizativa clave:</strong> la competencia debe ser exigente desde el punto de vista técnico, pero completamente controlada desde el punto de vista pedagogico y de seguridad.
+            </div>
+        </section>
+
+        <section class="sheet">
+            <h2>11. Evaluación del Proyecto y Sostenibilidad</h2>
+            <h3>Evaluación del piloto 2026</h3>
+            <table>
+                <tr>
+                    <th>Criterio</th>
+                    <th>Pregunta de evaluación</th>
+                </tr>
+                <tr>
+                    <td>Pertinencia curricular</td>
+                    <td>Las estaciones respondieron a los aprendizajes esperados de cada curso?</td>
+                </tr>
+                <tr>
+                    <td>Viabilidad operativa</td>
+                    <td>Los tiempos, espacios y materiales fueron suficientes?</td>
+                </tr>
+                <tr>
+                    <td>Calidad de indicadores</td>
+                    <td>Los puntajes permitieron diferenciar desempeños de modo justo y comprensible?</td>
+                </tr>
+                <tr>
+                    <td>Participación estudiantil</td>
+                    <td>La modalidad genero involucramiento, motivacion y evidencia real de aprendizaje?</td>
+                </tr>
+                <tr>
+                    <td>Articulacion docente</td>
+                    <td>Las asignaturas aportaron efectivamente al proyecto sin superponerse?</td>
+                </tr>
+            </table>
+
+            <h3>Instrumentos de evaluación del proyecto</h3>
+            <ul>
+                <li>Registro de puntaje por estacion.</li>
+                <li>Planilla de observacion de organización y seguridad.</li>
+                <li>Acta de devolucion docente posterior al piloto.</li>
+                <li>Encuesta corta a estudiantes y docentes participantes.</li>
+                <li>Informe de cierre institucional con ajustes para el año siguiente.</li>
+            </ul>
+
+            <h3>Sostenibilidad 2027-2031</h3>
+            <p>La sostenibilidad del proyecto dependerá de su documentación anual, de la mejora continua de sus estaciones y de la asignación anticipada de responsables, cronograma, espacios y materiales. Se recomienda construir un <strong>protocolo institucional de competencia tecnica</strong> con anexos editables por año.</p>
+
+            <h3>Propuesta de cierre institucional</h3>
+            <p>Al final de cada edición se sugiere realizar un acto breve de reconocimiento por curso, por estacion destacada y por desempeño integral, priorizando el valor formativo del proceso por encima de la logica meramente competitiva.</p>
+        </section>
+
+        <section class="sheet">
+            <h2>12. Anexos Operativos</h2>
+            <h3>Glosario de siglas</h3>
+            <table>
+                <tr>
+                    <th>Sigla</th>
+                    <th>Significado</th>
+                </tr>
+                <tr>
+                    <td>BTCC</td>
+                    <td>Bachillerato Técnico en Construcciónes Civiles.</td>
+                </tr>
+                <tr>
+                    <td>EPP</td>
+                    <td>Equipo de Proteccion Personal.</td>
+                </tr>
+                <tr>
+                    <td>MEC</td>
+                    <td>Ministerio de Educacion y Ciencias.</td>
+                </tr>
+                <tr>
+                    <td>RSA</td>
+                    <td>Registro de Secuencia de Aprendizaje.</td>
+                </tr>
+                <tr>
+                    <td>TIC</td>
+                    <td>Tecnologias de la Información y la Comunicacion.</td>
+                </tr>
+            </table>
+
+            <h2>13. Matriz de acreditación individual por curso</h2>
+            <p>La competencia anual opera como <strong>examen final integrador</strong> del BTCC. Para acreditar cada curso, el estudiante debe cumplir los requisitos mínimos detallados a continuación. La evaluación es individual, aunque las estaciones se resuelvan en equipo.</p>
+
+            <h3>11.1 Condiciones generales de aprobación</h3>
+            <table>
+                <tr><th>Condición</th><th>Descripción</th></tr>
+                <tr><td>Participación activa</td><td>Cada estudiante debe haber rotado activamente por al menos el 70% de las estaciones del curso, asumiendo un rol personal verificable (operador, registrador, verificador de seguridad, comunicador).</td></tr>
+                <tr><td>Puntaje mínimo personal</td><td>Alcanzar al menos nivel "logro aceptable" (2) en los indicadores de precisión técnica y procedimiento en las estaciones obligatorias de su curso.</td></tr>
+                <tr><td>Seguridad</td><td>No registrar ningún "0" en el indicador de orden y seguridad. Una falla grave de seguridad (sin EPP, manipulación peligrosa) implica recuperación obligatoria.</td></tr>
+                <tr><td>Productos individuales</td><td>Entregar el informe técnico individual y aprobar la defensa oral (ver sección 12).</td></tr>
+            </table>
+
+            <h3>11.2 Estaciones obligatorias por curso</h3>
+            <table>
+                <tr><th>Curso</th><th>Estaciones obligatorias</th><th>Indicadores mínimos exigidos</th><th>Nivel mínimo</th></tr>
+                <tr>
+                    <td class="center">1.º</td>
+                    <td>1 (Seguridad), 3 (Materiales), 4 (Medición), 10 (Señalización)</td>
+                    <td>Precisión técnica, procedimiento, orden y seguridad</td>
+                    <td>Logro aceptable (2)</td>
+                </tr>
+                <tr>
+                    <td class="center">2.º</td>
+                    <td>1 (Seguridad), 4 (Medición), 5 (Resistencia), 6 (Instalaciones), 9 (Física aplicada)</td>
+                    <td>Precisión técnica, procedimiento, autonomía, orden y seguridad</td>
+                    <td>Logro aceptable (2) en precisión y procedimiento; al menos logro inicial (1) en autonomía</td>
+                </tr>
+                <tr>
+                    <td class="center">3.º</td>
+                    <td>2 (Lectura e interpretación), 6 (Instalaciones), 7 (Cómputo), 8 (Organización), 9 (Física aplicada)</td>
+                    <td>Precisión técnica, procedimiento, autonomía, presentación técnica, orden y seguridad</td>
+                    <td>Logro aceptable (2) en todas las dimensiones; al menos una estación de nivel avanzado con logro destacado (3)</td>
+                </tr>
+            </table>
+
+            <h3>11.3 Criterios de recuperación</h3>
+            <table>
+                <tr><th>Situación</th><th>Qué recupera</th><th>Formato de recuperación</th><th>Plazo</th></tr>
+                <tr><td>Estación no aprobada (puntaje menor a 2 en indicadores clave)</td><td>La estación específica o una equivalente</td><td>Nueva tarea guiada individual supervisada por el docente responsable, con consigna similar pero no idéntica.</td><td>Dentro de las dos semanas posteriores a la competencia</td></tr>
+                <tr><td>Falla grave de seguridad (0 en orden y seguridad)</td><td>Módulo de seguridad</td><td>Taller breve de seguridad (1 hora) + evaluación escrita de normas y procedimientos + demostración práctica supervisada.</td><td>Antes de la siguiente competencia o dentro de los 15 días hábiles</td></tr>
+                <tr><td>Informe técnico no entregado o insuficiente</td><td>Informe completo</td><td>Reelaboración del informe con retroalimentación docente y nueva presentación.</td><td>7 días hábiles desde la devolución</td></tr>
+                <tr><td>Defensa oral no aprobada</td><td>Sustentación oral</td><td>Nueva defensa ante mesa evaluadora con foco en las debilidades detectadas.</td><td>5 días hábiles desde la primera instancia</td></tr>
+            </table>
+
+            <div class="callout">
+                <strong>Nota importante:</strong> el estudiante que no acredite la competencia final en la instancia ordinaria podrá acceder a una instancia extraordinaria (examen global integrador) al cierre del año lectivo, de acuerdo con el reglamento institucional vigente.
+            </div>
+        </section>
+
+        <section class="sheet">
+            <h2>14. Productos finales obligatorios por estudiante</h2>
+            <p>Cada estudiante, de manera individual e independientemente del desempeño de su equipo, debe presentar y aprobar los siguientes productos finales para acreditar la competencia como examen final del BTCC.</p>
+
+            <h3>12.1 Informe técnico individual (2–3 páginas)</h3>
+            <table>
+                <tr><th>Sección</th><th>Contenido mínimo</th><th>Extensión sugerida</th></tr>
+                <tr><td>1. Introducción</td><td>Describir brevemente la estación seleccionada y el rol desempeñado.</td><td>1/2 página</td></tr>
+                <tr><td>2. Procedimiento</td><td>Explicar paso a paso cómo se resolvió la tarea, incluyendo herramientas, materiales y métodos utilizados.</td><td>1 página</td></tr>
+                <tr><td>3. Cálculos y resultados</td><td>Presentar los cálculos clave (mediciones, metrado, fuerzas, momentos, ventaja mecánica, etc.) con sus respectivas fórmulas y resultados numéricos.</td><td>1/2 página</td></tr>
+                <tr><td>4. Análisis de errores y mejoras</td><td>Identificar al menos un error o imprevisto ocurrido durante la estación, explicar cómo se resolvió y proponer una mejora para futuras ediciones.</td><td>1/2 página</td></tr>
+                <tr><td>5. Conclusión</td><td>Reflexión personal sobre lo aprendido y la importancia del trabajo en equipo y la seguridad.</td><td>1/4 página</td></tr>
+                <tr><td>Anexos</td><td>Fotografías, croquis, planillas, pantallazos de AutoCAD, etc.</td><td>Libre</td></tr>
+            </table>
+            <p><strong>Formato:</strong> escrito a computadora (Word, Google Docs) o manuscrito legible. Puede incluir la opción de ser presentado en formato digital (PDF) o impreso.</p>
+            <p><strong>Criterios de evaluación del informe:</strong></p>
+            <ul>
+                <li>Claridad y organización de la información (30%).</li>
+                <li>Corrección técnica de los cálculos y procedimientos (40%).</li>
+                <li>Capacidad de análisis crítico y propuesta de mejora (20%).</li>
+                <li>Presentación formal y ortografía (10%).</li>
+            </ul>
+
+            <h3>12.2 Defensa oral individual (5–7 minutos)</h3>
+            <p>Cada estudiante se presenta ante una mesa evaluadora compuesta por al menos dos docentes del área técnica. La defensa debe incluir:</p>
+            <table>
+                <tr><th>Componente</th><th>Descripción</th><th>Tiempo sugerido</th></tr>
+                <tr><td>1. Presentación del rol</td><td>Explicar qué rol cumplió en la competencia (operador, registrador, verificador de seguridad, comunicador) y cómo contribuyó al equipo.</td><td>2 min</td></tr>
+                <tr><td>2. Justificación técnica</td><td>Seleccionar y justificar una decisión técnica tomada durante la competencia (ej.: por qué eligió ese material, por qué usó ese procedimiento, cómo resolvió un imprevisto).</td><td>3 min</td></tr>
+                <tr><td>3. Preguntas de la mesa</td><td>Responder preguntas de los evaluadores sobre aspectos técnicos, de seguridad o de organización.</td><td>2 min</td></tr>
+            </table>
+            <p><strong>Criterios de evaluación de la defensa oral:</strong></p>
+            <ul>
+                <li>Dominio del tema y precisión técnica (40%).</li>
+                <li>Claridad y fluidez en la exposición (30%).</li>
+                <li>Capacidad de argumentación y respuesta a preguntas (20%).</li>
+                <li>Uso de vocabulario técnico apropiado (10%).</li>
+            </ul>
+
+            <h3>12.3 Portafolio o carpeta técnica</h3>
+            <p>El estudiante debe armar una carpeta física o digital que contenga las evidencias de su participación individual en la competencia:</p>
+            <ul>
+                <li>Copias de croquis de campo realizados durante las estaciones.</li>
+                <li>Pantallazos de planos en AutoCAD (si corresponde al curso).</li>
+                <li>Planillas de metrado o cómputo completadas.</li>
+                <li>Fotografías del estudiante en las estaciones donde se vea su participación activa.</li>
+                <li>Registro de hora de inicio y cierre por estación.</li>
+                <li>Ficha de autoevaluación del estudiante (anexo modelo).</li>
+            </ul>
+            <p><strong>Criterios de evaluación del portafolio:</strong> completo (40%), organizado (30%), con evidencia clara de participación individual (30%).</p>
+
+            <h3>12.4 Ponderación de la calificación final individual</h3>
+            <table>
+                <tr><th>Componente</th><th>Peso porcentual</th></tr>
+                <tr><td>Desempeño en estaciones (promedio de indicadores personales)</td><td class="center">60%</td></tr>
+                <tr><td>Informe técnico individual</td><td class="center">20%</td></tr>
+                <tr><td>Defensa oral individual</td><td class="center">10%</td></tr>
+                <tr><td>Portafolio o carpeta técnica</td><td class="center">10%</td></tr>
+                <tr><td><strong>Total</strong></td><td class="center"><strong>100%</strong></td></tr>
+            </table>
+
+            <div class="callout">
+                <strong>Condición de aprobación:</strong> para aprobar la competencia final, el estudiante debe obtener un promedio ponderado mínimo de 70% (escala 1–100) o 3 (escala 1–5), cumpliendo además con todas las condiciones de la sección 11 (matriz de acreditación).
+            </div>
+        </section>
+
+        <section class="sheet">
+            <h2>15. Vinculación con el perfil de egreso del BTCC</h2>
+            <p>La competencia anual se alinea con el perfil de egreso del <strong>Bachiller Técnico en Construcciones Civiles</strong> definido por el MEC. La siguiente tabla muestra cómo cada estación evidencia las capacidades del perfil de egreso.</p>
+
+            <h3>13.1 Perfil de egreso vs. Evidencias en la competencia</h3>
+            <table>
+                <tr><th>Capacidad del perfil de egreso</th><th>Estación que la evalúa</th><th>Indicador asociado</th></tr>
+                <tr><td>Interpreta y elabora planos técnicos de construcción</td><td>2 (Lectura e interpretación técnica)</td><td>Precisión técnica, presentación técnica</td></tr>
+                <tr><td>Selecciona y utiliza materiales de construcción según norma</td><td>3 (Materiales y sistemas constructivos)</td><td>Precisión técnica, procedimiento</td></tr>
+                <tr><td>Realiza mediciones y replanteos con instrumentos topográficos</td><td>4 (Medición y replanteo)</td><td>Precisión técnica, procedimiento, autonomía</td></tr>
+                <tr><td>Aplica principios de resistencia de materiales y física en obras</td><td>5 (Resistencia y control técnico), 9 (Física aplicada)</td><td>Precisión técnica, procedimiento</td></tr>
+                <tr><td>Instala y verifica sistemas sanitarios y eléctricos básicos</td><td>6 (Instalaciones y solución técnica)</td><td>Precisión técnica, procedimiento, orden y seguridad</td></tr>
+                <tr><td>Calcula cantidades de obra, costos y gestiona recursos</td><td>7 (Cómputo, rendimiento y costo), 8 (Organización y gestión)</td><td>Precisión técnica, autonomía, presentación técnica</td></tr>
+                <tr><td>Aplica normas de seguridad industrial y utiliza EPP</td><td>1 (Seguridad, organización y herramientas), 10 (Señalización)</td><td>Orden y seguridad, procedimiento</td></tr>
+                <tr><td>Utiliza TIC y herramientas digitales aplicadas a la construcción</td><td>2 (AutoCAD), 7 (Planilla electrónica), 9 (Apps de física)</td><td>Autonomía, presentación técnica</td></tr>
+                <tr><td>Se comunica técnicamente de forma oral y escrita</td><td>Informe técnico, Defensa oral</td><td>Presentación técnica, comunicación</td></tr>
+                <tr><td>Trabaja en equipo y organiza tareas en obra</td><td>Todas las estaciones (indicadores de equipo)</td><td>Distribución de roles, comunicación, cumplimiento del tiempo</td></tr>
+            </table>
+
+            <h3>13.2 Alineación normativa</h3>
+            <div class="callout">
+                <p>La presente competencia anual se enmarca en el <strong>Diseño Curricular del Bachillerato Técnico en Construcciones Civiles</strong> aprobado por el <strong>Ministerio de Educación y Ciencias (MEC)</strong> de la República del Paraguay, y opera como <strong>instancia integradora final equivalente al examen práctico-profesional de cierre de ciclo</strong>, complementando las evaluaciones parciales y los trabajos prácticos de cada asignatura técnica.</p>
+                <p><strong>Referencia normativa:</strong> Resolución MEC N.° 5414/2023 y sus modificatorias, que establece los documentos de tenencia obligatoria para instituciones educativas de Educación Media Técnica.</p>
+            </div>
+        </section>
+
+        <section class="sheet">
+            <h2>16. Escala de calificación final y traducción a acta</h2>
+            <p>El siguiente sistema transforma el desempeño del estudiante en la competencia en una calificación numérica para su registro en el libro de calificaciones y en el acta de evaluación final.</p>
+
+            <h3>14.1 Escala de calificación</h3>
+            <table>
+                <tr><th>Rango porcentual</th><th>Escala 1–5</th><th>Concepto</th><th>Corresponde a</th></tr>
+                <tr><td>90% – 100%</td><td class="center">5</td><td>Desempeño destacado</td><td>Logro destacado (3) en todas las dimensiones; mención de "Desempeño destacado BTCC"</td></tr>
+                <tr><td>80% – 89%</td><td class="center">4</td><td>Desempeño satisfactorio</td><td>Logro aceptable (2) o superior en todas las estaciones obligatorias</td></tr>
+                <tr><td>70% – 79%</td><td class="center">3</td><td>Desempeño suficiente</td><td>Logro aceptable (2) en precisión técnica y procedimiento en estaciones obligatorias</td></tr>
+                <tr><td>60% – 69%</td><td class="center">2</td><td>Desempeño insuficiente</td><td>No alcanza el mínimo en una o más estaciones obligatorias; requiere recuperación</td></tr>
+                <tr><td>Menos de 60%</td><td class="center">1</td><td>No acreditado</td><td>No cumple las condiciones mínimas de aprobación; debe recursar la competencia</td></tr>
+            </table>
+
+            <h3>14.2 Cálculo de la calificación final</h3>
+            <p>La calificación final individual se calcula mediante la siguiente fórmula:</p>
+            <div class="callout">
+                <p><strong>Calificación final = (P<sub>est</sub> × 0.60) + (P<sub>inf</sub> × 0.20) + (P<sub>oral</sub> × 0.10) + (P<sub>port</sub> × 0.10)</strong></p>
+                <p>Donde:</p>
+                <ul>
+                    <li>P<sub>est</sub> = Promedio de puntaje en indicadores personales de las estaciones obligatorias (escala 1–100).</li>
+                    <li>P<sub>inf</sub> = Puntaje del informe técnico individual (escala 1–100).</li>
+                    <li>P<sub>oral</sub> = Puntaje de la defensa oral (escala 1–100).</li>
+                    <li>P<sub>port</sub> = Puntaje del portafolio o carpeta técnica (escala 1–100).</li>
+                </ul>
+            </div>
+
+            <h3>14.3 Mención de desempeño destacado BTCC</h3>
+            <p>Se otorgará la <strong>Mención de Desempeño Destacado BTCC</strong> al estudiante que cumpla simultáneamente:</p>
+            <ul>
+                <li>Calificación final ≥ 90% (escala 5).</li>
+                <li>Logro destacado (3) en precisión técnica y procedimiento en al menos una estación de nivel avanzado.</li>
+                <li>Sin ninguna incidencia de seguridad (ni un "0" en orden y seguridad).</li>
+                <li>Informe técnico y defensa oral con calificación ≥ 85%.</li>
+            </ul>
+
+            <h3>14.4 Modelo de acta de evaluación final</h3>
+            <table>
+                <tr><th>N.°</th><th>Estudiante</th><th>Curso</th><th>Puntaje estaciones (60%)</th><th>Informe (20%)</th><th>Defensa oral (10%)</th><th>Portafolio (10%)</th><th>Calificación final</th><th>Escala 1–5</th><th>Mención</th></tr>
+                <tr><td class="center">1</td><td></td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td></tr>
+                <tr><td class="center">2</td><td></td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td></tr>
+                <tr><td class="center">3</td><td></td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td></tr>
+                <tr><td class="center">...</td><td></td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td></tr>
+                <tr><td><strong>Firma del docente:</strong> _________________________</td><td colspan="9"><strong>Firma del director:</strong> _________________________</td></tr>
+            </table>
+        </section>
+
+        <section class="sheet">
+            <h2>17. Garantías de validez y fiabilidad de la evaluación</h2>
+            <p>Para asegurar que la evaluación sea justa, replicable y técnicamente sólida, el proyecto contempla los siguientes mecanismos de control.</p>
+
+            <h3>15.1 Capacitación de evaluadores</h3>
+            <table>
+                <tr><th>Actividad</th><th>Descripción</th><th>Responsable</th></tr>
+                <tr><td>Taller de calibración de rúbricas</td><td>Sesión práctica de 2 horas donde los docentes evaluadores aplican las rúbricas a casos simulados (videos, fotos, registros escritos) y discuten discrepancias hasta alcanzar consistencia en la puntuación.</td><td>Coordinación general del proyecto</td></tr>
+                <tr><td>Manual del evaluador</td><td>Documento breve con ejemplos concretos de cada nivel de logro (0–3) para cada indicador, acompañado de evidencias visuales de referencia.</td><td>Equipo técnico docente</td></tr>
+                <tr><td>Reunión post-evaluación</td><td>Al cierre de la competencia, los evaluadores contrastan resultados y ajustan criterios para futuras ediciones, registrando las decisiones en un acta breve.</td><td>Coordinación general</td></tr>
+            </table>
+
+            <h3>15.2 Estrategias para evitar sesgos</h3>
+            <ul>
+                <li><strong>Doble evaluador:</strong> las estaciones críticas (Medición, Instalaciones, Cómputo, Organización) cuentan con al menos dos evaluadores por estación. Si no es posible por disponibilidad, se rota al evaluador entre equipos cada media jornada.</li>
+                <li><strong>Registro cruzado:</strong> cada evaluador registra puntajes en planillas independientes y se cotejan al finalizar la jornada. Las discrepancias mayores a 1 punto se discuten y resuelven con el coordinador.</li>
+                <li><strong>Anonimato parcial:</strong> los estudiantes usan un código de identificación (no su nombre) en las planillas de registro de producto individual, para que el evaluador del informe no conozca la identidad del autor.</li>
+                <li><strong>Evaluación externa:</strong> en la medida de lo posible, se invita a un profesional del sector (ingeniero, arquitecto, técnico) como observador externo que pueda validar los criterios aplicados.</li>
+            </ul>
+
+            <h3>15.3 Registro y archivo de evidencias</h3>
+            <table>
+                <tr><th>Evidencia</th><th>Formato</th><th>Tiempo de conservación</th></tr>
+                <tr><td>Planillas de puntaje por estación</td><td>Físico (escaneado) y digital (PDF)</td><td>Mínimo 2 años lectivos</td></tr>
+                <tr><td>Registros fotográficos y de video</td><td>Digital (carpeta por año)</td><td>Mínimo 2 años lectivos</td></tr>
+                <tr><td>Informes técnicos individuales</td><td>Físico o digital (PDF)</td><td>Mínimo 2 años lectivos</td></tr>
+                <tr><td>Actas de evaluación final</td><td>Físico (firmado) y digital</td><td>Permanente (archivo institucional)</td></tr>
+                <tr><td>Registro de asistencia y rotación</td><td>Físico y digital</td><td>Mínimo 2 años lectivos</td></tr>
+            </table>
+
+            <h3>15.4 Evaluación metaevaluativa</h3>
+            <div class="callout">
+                <p>Al cierre de cada año lectivo, la coordinación del proyecto realizará un análisis de correlación entre los resultados de la competencia integrada y el rendimiento anual de cada estudiante en las asignaturas técnicas. Este análisis tiene como objetivo:</p>
+                <ul>
+                    <li>Verificar la coherencia entre ambas evaluaciones (si un estudiante con buen rendimiento anual obtiene un desempeño bajo en la competencia, se analizan las causas en consejo de grado).</li>
+                    <li>Detectar sesgos o desajustes en los instrumentos de evaluación de la competencia.</li>
+                    <li>Ajustar las rúbricas, los indicadores y los niveles de dificultad para la edición siguiente.</li>
+                    <li>Documentar hallazgos y mejoras en un informe de cierre institucional.</li>
+                </ul>
+                <p>Este proceso garantiza la mejora continua del proyecto y la validez de la competencia como instrumento de evaluación final del BTCC.</p>
+            </div>
+        </section>
+
+        <section class="sheet">
+            <h3>Anexo A. Modelo de ficha de estacion</h3>
+            <table>
+                <tr><th>Campo</th><th>Contenido sugerido</th></tr>
+                <tr><td>Nombre de estacion</td><td>Ej.: Medición y replanteo</td></tr>
+                <tr><td>Asignaturas vinculadas</td><td>Topografia, Taller, Técnicas Instrumentales</td></tr>
+                <tr><td>Curso / nivel</td><td>1.er, 2.do o 3.er curso</td></tr>
+                <tr><td>Consigna</td><td>Descripción clara de la tarea a resolver</td></tr>
+                <tr><td>Tiempo máximo</td><td>Ej.: 12 minutos</td></tr>
+                <tr><td>Materiales</td><td>Instrumentos y soportes necesarios</td></tr>
+                <tr><td>Indicadores personales</td><td>Precision, procedimiento, autonomia, presentacion</td></tr>
+                <tr><td>Indicadores de equipo</td><td>Roles, comunicación, tiempo, orden y seguridad</td></tr>
+                <tr><td>Factor de dificultad</td><td>1.0 / 1.5 / 2.0</td></tr>
+            </table>
+        </section>
+
+        <section class="sheet">
+            <h3>Anexo B. Distribucion de puntaje de referencia por estacion</h3>
+            <table>
+                <tr>
+                    <th>Componente</th>
+                    <th>Puntaje sugerido</th>
+                </tr>
+                <tr>
+                    <td>Indicadores personales</td>
+                    <td class="center">10</td>
+                </tr>
+                <tr>
+                    <td>Indicadores de equipo</td>
+                    <td class="center">10</td>
+                </tr>
+                <tr>
+                    <td>Bonificacion o ajuste por dificultad</td>
+                    <td class="center">segun factor</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="sheet">
+            <h3>Anexo C. Asignaturas y posibles aportes al proyecto</h3>
+            <table>
+                <tr>
+                    <th>Asignatura</th>
+                    <th>Aporte sugerido</th>
+                </tr>
+                <tr><td>Dibujo Técnico</td><td>Lectura de planos, simbología, croquis y organización grafica.</td></tr>
+                <tr><td>Materiales de Construcción</td><td>Selección, identificacion y uso técnico de materiales.</td></tr>
+                <tr><td>Seguridad Industrial</td><td>EPP, riesgos, orden del puesto y prevencion.</td></tr>
+                <tr><td>Taller de Construcciónes I-II-III</td><td>Resolución practica, ejecución, manipulacion y procedimiento.</td></tr>
+                <tr><td>Técnicas I-II-III</td><td>Articulacion transversal de contenidos técnicos.</td></tr>
+                <tr><td>Técnicas Instrumentales / II</td><td>Metodo, tiempos, rendimiento, organización y computo.</td></tr>
+                <tr><td>Resistencia de Materiales</td><td>Análisis estructural básico y control técnico.</td></tr>
+                <tr><td>Topografia</td><td>Medición, trazado, replanteo y verificación.</td></tr>
+                <tr><td>Instalaciones I-II</td><td>Armado de circuitos sanitarios de agua fría, identificación de componentes, pruebas de estanqueidad, uso del busca polo y elementos de protección eléctrica.</td></tr>
+                <tr><td>Física aplicada en construcción</td><td>Principios de palanca y poleas, cálculo de ventaja mecánica, sistemas de izaje de cargas y simulaciones con aplicaciones móviles.</td></tr>
+                <tr><td>Señalización y seguridad visual</td><td>Diseño y creación de carteles de seguridad, identificación de zonas de riesgo, circulación y normas visuales.</td></tr>
+                <tr><td>Computo y Presupuesto</td><td>Estimación de cantidades, costos y organización económica.</td></tr>
+                <tr><td>Organización y Gestion de Obras</td><td>Secuencia operativa, recursos, roles y planificación.</td></tr>
+                <tr><td>Plan Común - Redacción de Informes Técnicos</td><td>Registro formal del proceso, redacción de resultados, conclusiones y presentación técnica escrita.</td></tr>
+                <tr><td>Plan Común - Señalética</td><td>Diseño de carteles, identificación de áreas, circulación y normas visuales de seguridad para las estaciones.</td></tr>
+                <tr><td>Plan Común - Guaraní</td><td>Apoyo a la comunicación contextual, comprensión de consignas y vinculación con la comunidad.</td></tr>
+                <tr><td>Plan Común - Castellano</td><td>Redacción de informes, notas, actas y presentación oral formal de resultados.</td></tr>
+                <tr><td>Plan Común - Matemática</td><td>Cálculos, conversiones, escalas, superficies y verificación numérica del trabajo técnico.</td></tr>
+                <tr><td>Plan Común - Educación Vial</td><td>Circulación segura, señalización preventiva y ordenamiento de desplazamientos en el espacio de trabajo.</td></tr>
+                <tr><td>Plan Común - Ciencias Naturales</td><td>Cuidado del cuerpo, higiene, ambiente, materiales y prevención de riesgos.</td></tr>
+                <tr><td>Plan Común - Inglés</td><td>Comprensión de vocabulario técnico básico en herramientas, etiquetas y simbología.</td></tr>
+                <tr><td>Plan Común - Historia y Geografía</td><td>Relación del proyecto con el territorio, la comunidad y el entorno construido local.</td></tr>
+                <tr><td>Plan Común - Educación Física</td><td>Postura, coordinación, trabajo corporal, resistencia y cooperación durante tareas prácticas.</td></tr>
+                <tr><td>Aplicaciones en Celulares para la Construcción</td><td>Apoyo en medición, nivelación, registro fotográfico, croquis digital, cálculo rápido, control de tiempo y organización de tareas en obra.</td></tr>
+            </table>
+        </section>
+
+        <section class="sheet">
+            <h3>Anexo D. Grilla por alumno, equipo y estación</h3>
+            <p>La siguiente grilla está diseñada para su aplicación directa durante el piloto o durante la competencia anual. Permite registrar de manera simultánea el desempeño individual del alumno, el rendimiento del equipo y el resultado general de la estación.</p>
+
+            <h4>Grilla 1. Registro por alumno</h4>
+            <table>
+                <tr>
+                    <th>N.°</th>
+                    <th>Alumno</th>
+                    <th>Curso</th>
+                    <th>Equipo</th>
+                    <th>Estación</th>
+                    <th>Precisión técnica</th>
+                    <th>Procedimiento</th>
+                    <th>Autonomía</th>
+                    <th>Presentación técnica</th>
+                    <th>Total alumno</th>
+                    <th>Observaciónes</th>
+                </tr>
+                <tr><td class="center">1</td><td></td><td></td><td></td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td></tr>
+                <tr><td class="center">2</td><td></td><td></td><td></td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td></tr>
+                <tr><td class="center">3</td><td></td><td></td><td></td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td></tr>
+                <tr><td class="center">4</td><td></td><td></td><td></td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td></tr>
+                <tr><td class="center">5</td><td></td><td></td><td></td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td></tr>
+            </table>
+
+            <h4>Grilla 2. Registro por equipo</h4>
+            <table>
+                <tr>
+                    <th>Equipo</th>
+                    <th>Estación</th>
+                    <th>Distribución de roles</th>
+                    <th>Comunicación</th>
+                    <th>Cumplimiento del tiempo</th>
+                    <th>Orden y seguridad</th>
+                    <th>Total equipo</th>
+                    <th>Hora de inicio</th>
+                    <th>Hora de cierre</th>
+                    <th>Observaciónes</th>
+                </tr>
+                <tr><td>Equipo A</td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td></tr>
+                <tr><td>Equipo B</td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td></tr>
+                <tr><td>Equipo C</td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td></tr>
+            </table>
+
+            <h4>Grilla 3. Registro general por estación</h4>
+            <table>
+                <tr>
+                    <th>Estación</th>
+                    <th>Curso / nivel</th>
+                    <th>Responsable</th>
+                    <th>Equipo participante</th>
+                    <th>Total alumno</th>
+                    <th>Total equipo</th>
+                    <th>Factor dificultad</th>
+                    <th>Total final estación</th>
+                    <th>Resultado</th>
+                    <th>Observaciónes técnicas</th>
+                </tr>
+                <tr><td>1. Seguridad y organización inicial</td><td></td><td></td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td><td></td></tr>
+                <tr><td>2. Lectura e interpretación técnica</td><td></td><td></td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td><td></td></tr>
+                <tr><td>3. Materiales y sistemas constructivos</td><td></td><td></td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td><td></td></tr>
+                <tr><td>4. Medición y replanteo</td><td></td><td></td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td><td></td></tr>
+                <tr><td>5. Resistencia y control técnico</td><td></td><td></td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td><td></td></tr>
+                <tr><td>6. Instalaciones y solución técnica</td><td></td><td></td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td><td></td></tr>
+                <tr><td>7. Cómputo, rendimiento y costo</td><td></td><td></td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td><td></td></tr>
+                <tr><td>8. Organización y gestión de obra</td><td></td><td></td><td></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="center"></td><td></td><td></td></tr>
+            </table>
+
+            <div class="callout">
+                <strong>Criterio de uso:</strong> cada indicador debe calificarse con la escala 0, 1, 2 o 3, conforme a las rúbricas del documento. El total del alumno y el total del equipo se integran luego en la grilla general de estación, donde se aplica el factor de dificultad correspondiente.
+            </div>
+        </section>
+
+        <section class="sheet">
+            <h3>Anexo E. Planilla de docentes por asignatura</h3>
+            <p>La siguiente planilla permite identificar a los docentes involucrados por asignatura, curso, función dentro del proyecto y responsabilidad específica en estaciones, instrumentos o acompañamiento.</p>
+            <table>
+                <tr>
+                    <th>N.°</th>
+                    <th>Asignatura</th>
+                    <th>Curso</th>
+                    <th>Docente responsable</th>
+                    <th>Función en el proyecto</th>
+                    <th>Estación / tarea vinculada</th>
+                    <th>Turno</th>
+                    <th>Teléfono / contacto</th>
+                    <th>Firma</th>
+                </tr>
+                <tr><td class="center">1</td><td>Dibujo Técnico I</td><td>1.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">2</td><td>Materiales de Construcción</td><td>1.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">3</td><td>Seguridad Industrial</td><td>1.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">4</td><td>Taller de Construcciónes I</td><td>1.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">5</td><td>Técnicas I</td><td>1.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">6</td><td>Técnicas Instrumentales</td><td>1.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">7</td><td>Resistencia de Materiales</td><td>2.do curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">8</td><td>Técnicas Instrumentales II</td><td>2.do curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">9</td><td>Instalaciones I</td><td>2.do curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">10</td><td>Topografía</td><td>2.do curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">11</td><td>Taller de Construcciónes II</td><td>2.do curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">12</td><td>Técnicas II</td><td>2.do curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">13</td><td>Cómputo y Presupuesto</td><td>3.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">14</td><td>Instalaciones II</td><td>3.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">15</td><td>Organización y Gestión de Obras</td><td>3.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">16</td><td>Taller de Construcciónes III</td><td>3.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">17</td><td>Técnicas III</td><td>3.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">18</td><td>Plan Común - Redacción de Informes Técnicos</td><td>1.er, 2.do y 3.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">19</td><td>Plan Común - Señalética</td><td>1.er, 2.do y 3.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">20</td><td>Plan Común - Guaraní</td><td>1.er, 2.do y 3.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">21</td><td>Plan Común - Castellano</td><td>1.er, 2.do y 3.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">22</td><td>Plan Común - Matemática</td><td>1.er, 2.do y 3.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">23</td><td>Plan Común - Educación Vial</td><td>1.er, 2.do y 3.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">24</td><td>Plan Común - Ciencias Naturales</td><td>1.er, 2.do y 3.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">25</td><td>Plan Común - Inglés</td><td>1.er, 2.do y 3.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">26</td><td>Plan Común - Historia y Geografía</td><td>1.er, 2.do y 3.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="center">27</td><td>Plan Común - Educación Física</td><td>1.er, 2.do y 3.er curso</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            </table>
+
+            <div class="callout">
+                <strong>Criterio de uso:</strong> en la columna “Función en el proyecto” puede consignarse, por ejemplo: responsable de estación, apoyo técnico, evaluador, redactor de informe, apoyo logístico, señalización, seguridad, acompañamiento pedagógico o coordinación de equipo.
+            </div>
+        </section>
+
+        <section class="sheet">
+            <h3>Anexo F. Modelo de nota para empresas, padres y autoridades</h3>
+            <div class="callout">
+                <p><strong>Institución:</strong> Colegio Nacional Defensores del Chaco</p>
+                <p><strong>Dependencia:</strong> Bachillerato Técnico en Construcciónes Civiles (BTCC)</p>
+                <p><strong>Dirección del establecimiento:</strong> AMERICA Y RUDECINDO MEZA Y CURUPAYTY, VILLA HAYES, ZONA URBANA VILLA HAYES.</p>
+                <p><strong>Código de local:</strong> 1504006</p>
+                <p><strong>Teléfono:</strong> 0226-262480</p>
+                <p><strong>Proyectista:</strong> Prof. Christhian Keim</p>
+                <p><strong>Lugar y fecha:</strong> ............................................................</p>
+                <p><strong>Nota N.°:</strong> ............................................................</p>
+            </div>
+            <p><strong>A:</strong> Empresas aliadas, Padres de Familia y Autoridades Educativas e Institucionales</p>
+            <p><strong>Asunto:</strong> Presentación del <strong>Obratec 2026</strong> – Competencia Integrada de Habilidades Técnicas BTCC</p>
+            <p>De nuestra mayor consideracion:</p>
+            <p>Nos dirigimos a ustedes, en nombre del <strong>Colegio Nacional Defensores del Chaco</strong> y del <strong>Bachillerato Técnico en Construcciónes Civiles (BTCC)</strong>, a fin de presentar el proyecto <strong>Obratec 2026</strong>, previsto para el periodo <strong>2026-2031</strong>, siendo el año 2026 una etapa de planificación institucional y de implementación piloto en el mes de noviembre.</p>
+            <p>El proyecto tiene como finalidad articular los aprendizajes técnicos de <strong>1.er, 2.do y 3.er curso</strong> mediante estaciones de trabajo, indicadores personales y de equipo, y tareas concretas vinculadas con medición, seguridad, representacion grafica, computo, organización y resolución técnico-practica.</p>
+            <p>En este marco, consideramos fundamental contar con el acompañamiento de la comunidad educativa y del entorno institucional y productivo, ya sea a traves de apoyo logístico, observacion tecnica, difusion, colaboracion material o participación en actividades de socializacion y cierre.</p>
+            <p>Por medio de la presente, invitamos a ustedes a conocer, acompañar y respaldar esta iniciativa, que busca fortalecer la formación tecnica de nuestros estudiantes, consolidar la articulación entre asignaturas y proyectar institucionalmente el trabajo del BTCC en beneficio de la comunidad.</p>
+            <p>Sin otro particular, y agradeciendo desde ya su atencion y valiosa colaboracion, les saludamos con distinguida consideracion.</p>
+            <p><strong>Firma:</strong> ............................................................</p>
+            <p><strong>Nombre y cargo:</strong> ............................................................</p>
+            <p><strong>Sello institucional</strong></p>
+        </section>
+
+        <section class="sheet">
+            <h3>Anexo G. Modelo de nota al Intendente para declaracion de interes municipal</h3>
+            <div class="callout">
+                <p><strong>Institución:</strong> Colegio Nacional Defensores del Chaco</p>
+                <p><strong>Dependencia:</strong> Bachillerato Técnico en Construcciónes Civiles (BTCC)</p>
+                <p><strong>Dirección del establecimiento:</strong> AMERICA Y RUDECINDO MEZA Y CURUPAYTY, VILLA HAYES, ZONA URBANA VILLA HAYES.</p>
+                <p><strong>Código de local:</strong> 1504006</p>
+                <p><strong>Teléfono:</strong> 0226-262480</p>
+                <p><strong>Proyectista:</strong> Prof. Christhian Keim</p>
+                <p><strong>Lugar y fecha:</strong> ............................................................</p>
+                <p><strong>Nota N.°:</strong> ............................................................</p>
+            </div>
+            <p><strong>Senor Intendente Municipal</strong></p>
+            <p><strong>Municipalidad de:</strong> ............................................................</p>
+            <p><strong>Presente</strong></p>
+            <p><strong>Asunto:</strong> Solicitud de declaración de interés municipal del proyecto <strong>Obratec 2026</strong></p>
+            <p>De nuestra mayor consideracion:</p>
+            <p>Nos dirigimos a usted, en representacion del <strong>Colegio Nacional Defensores del Chaco</strong> y del <strong>Bachillerato Técnico en Construcciónes Civiles (BTCC)</strong>, con el objeto de solicitar la <strong>declaración de interés municipal</strong> del proyecto <strong>Obratec 2026 – Competencia Integrada de Habilidades Técnicas BTCC</strong>.</p>
+            <p>La propuesta tiene como proposito fortalecer la formación tecnica de los estudiantes de los tres cursos del BTCC, mediante una experiencia anual de integración curricular basada en estaciones de trabajo, resolución de tareas reales, seguridad, organización, computo, medición, dibujo técnico y evaluación por desempeño. Para el año 2026 se preve una etapa de planificación institucional y la ejecución de un piloto en el mes de noviembre.</p>
+            <p>Consideramos que esta iniciativa posee un alto valor educativo, formativo y comunitario, ya que promueve capacidades técnicas, trabajo colaborativo, cultura de seguridad, vinculación con el entorno productivo y fortalecimiento de la identidad institucional y local.</p>
+            <p>En razon de ello, solicitamos a la Intendencia Municipal tenga a bien declarar de interes municipal esta propuesta, como forma de acompañamiento institucional y reconocimiento al esfuerzo educativo orientado al desarrollo de capacidades técnicas de la juventud.</p>
+            <p>Adjuntamos a la presente el documento marco del proyecto para su conocimiento y consideracion.</p>
+            <p>Sin otro particular, y esperando una respuesta favorable, hacemos propicia la ocasion para saludarle con nuestra mas alta estima y respeto.</p>
+            <p><strong>Firma:</strong> ............................................................</p>
+            <p><strong>Nombre y cargo:</strong> ............................................................</p>
+            <p><strong>Sello institucional</strong></p>
+
+            <div class="callout">
+                <strong>Cierre del documento:</strong> este proyecto se presenta como marco institucional para la planificación 2026 y como base de ejecución del piloto de noviembre de 2026, con proyeccion de implementación progresiva hasta 2031.
+            </div>
+        </section>
+    </div>
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>

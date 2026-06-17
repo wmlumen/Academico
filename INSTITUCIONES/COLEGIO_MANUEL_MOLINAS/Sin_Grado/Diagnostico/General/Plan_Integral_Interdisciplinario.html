@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Integral - Acciones Interdisciplinarias</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background: #f0f2f5; padding: 20px; }
+        
+        .container { max-width: 1000px; margin: 0 auto; }
+        
+        .header { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); color: white; padding: 25px; border-radius: 12px; margin-bottom: 20px; text-align: center; }
+        .header h1 { font-size: 1.8rem; margin-bottom: 5px; }
+        
+        .section { background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .section-title { font-size: 1.2rem; color: #1e3a5f; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid #e0e0e0; }
+        .section-subtitle { font-size: 1rem; color: #b45309; margin: 15px 0 10px 0; font-weight: 600; }
+        
+        .highlight-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .highlight-box.green { background: #d1fae5; border-left-color: #10b981; }
+        .highlight-box.red { background: #fee2e2; border-left-color: #ef4444; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9rem; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background: #1e3a5f; color: white; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        
+        .action-item { display: flex; gap: 10px; margin-bottom: 12px; padding: 12px; background: #f9fafb; border-radius: 8px; border-left: 3px solid #2d5a87; }
+        .action-priority { padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; }
+        .priority-high { background: #fee2e2; color: #dc2626; }
+        .priority-medium { background: #fef3c7; color: #b45309; }
+        .priority-low { background: #d1fae5; color: #047857; }
+        
+        .subject-card { background: white; border: 2px solid #e0e0e0; border-radius: 12px; padding: 15px; margin-bottom: 15px; }
+        .subject-card.castellano { border-color: #2563eb; }
+        .subject-card.matematica { border-color: #059669; }
+        .subject-card.ciencias { border-color: #dc2626; }
+        
+        .subject-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .subject-icon { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .castellano .subject-icon { background: #dbeafe; }
+        .matematica .subject-icon { background: #d1fae5; }
+        .ciencias .subject-icon { background: #fee2e2; }
+        
+        .recommendation-list { list-style: none; }
+        .recommendation-list li { padding: 8px 0; border-bottom: 1px solid #eee; display: flex; align-items: flex-start; gap: 8px; }
+        .recommendation-list li::before { content: "→"; color: #2d5a87; font-weight: bold; }
+        
+        .footer { text-align: center; margin-top: 20px; padding: 15px; color: #666; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 PLAN INTEGRAL DE MEJORA INTERDISCIPLINARIO</h1>
+            <p>I MM I 2026 - Coordanación entre Asignaturas</p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🔴 HALLAZGOS DEL DIAGNÓSTICO (Prioritarios)</div>
+            
+            <div class="highlight-box red">
+                <strong>7mo TM - Criticales (68% A Mejorar)</strong>
+                <ul style="margin-top:8px;padding-left:20px;">
+                    <li>Lagunas en conocimientos previos (37 estudiantes)</li>
+                    <li>Se bloquea ante desafíos matemáticos (18 estudiantes)</li>
+                    <li>Desafía activamente la autoridad (16 estudiantes)</li>
+                    <li>Se distrae con dispositivos electrónicos (16 estudiantes)</li>
+                    <li>Se rinde fácilmente ante la frustración (19 estudiantes)</li>
+                    <li>Expresa inseguridad constante "no puedo" (19 estudiantes)</li>
+                    <li>Abandona proyectos a mitad de camino (19 estudiantes)</li>
+                    <li>Trabaja de forma aislada (14 estudiantes)</li>
+                </ul>
+            </div>
+            
+            <div class="highlight-box">
+                <strong>9no TM - Áreas Críticas (55% A Mejorar)</strong>
+                <ul style="margin-top:8px;padding-left:20px;">
+                    <li>Interrumpe constantemente el flujo de clase (26 estudiantes)</li>
+                    <li>Fomenta el desorden en el grupo (22 estudiantes)</li>
+                    <li>Requiere estímulos externos para trabajar (16 estudiantes)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📝 ACCIONES RECOMENDADAS PARA EL INFORME</div>
+            
+            <h3 class="section-subtitle">1. Estructurales (para TODAS las asignaturas)</h3>
+            <div class="action-item">
+                <span class="action-priority priority-high">ALTA</span>
+                <div><strong>Formato único de informe</strong> - Plantilla estandarizada para todas las asignaturas del tercer ciclo</div>
+            </div>
+            <div class="action-item">
+                <span class="action-priority priority-high">ALTA</span>
+                <div><strong>Coordinación semanal</strong> - Reunión semanal entre docentes del ciclo para unificar criterios</div>
+            </div>
+            <div class="action-item">
+                <span class="action-priority priority-medium">MEDIA</span>
+                <div><strong>Base de datos compartida</strong> - Sistema digital para registrar indicadores por estudiante</div>
+            </div>
+            
+            <h3 class="section-subtitle">2. Metodológicas (por Asignatura)</h3>
+            <table>
+                <tr><th>Acción</th><th>Prioridad</th><th>Castellano</th><th>Matemática</th><th>Ciencias</th><th>Ética</th></tr>
+                <tr><td>Pensamiento creativo y algebraico</td><td>ALTA</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                <tr><td>Aprendizaje basado en proyectos</td><td>ALTA</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                <tr><td>Tutoría entre pares</td><td>ALTA</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                <tr><td>Trabajo colaborativo/equipo</td><td>ALTA</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                <tr><td>Aulas de refuerzo</td><td>MEDIA</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                <tr><td>Taller de expresión oral</td><td>ALTA</td><td>✓</td><td>-</td><td>- </td><td>✓</td></tr>
+                <tr><td>Club de lectura</td><td>MEDIA</td><td>✓</td><td>-</td><td>- </td><td>- </td></tr>
+                <tr><td>Resolución de problemas</td><td>ALTA</td><td>-</td><td>✓</td><td>✓</td><td>- </td></tr>
+                <tr><td>Laboratorio/prácticas</td><td>ALTA</td><td>-</td><td>-</td><td>✓</td><td>- </td></tr>
+                <tr><td>Diario de logros</td><td>MEDIA</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                <tr><td>Reto matemático</td><td>ALTA</td><td>-</td><td>✓</td><td>- </td><td>- </td></tr>
+                <tr><td>Proyectos investigación</td><td>ALTA</td><td>-</td><td>-</td><td>✓</td><td>- </td></tr>
+                <tr><td>Taller resiliencia</td><td>MEDIA</td><td>-</td><td>-</td><td>- </td><td>✓</td></tr>
+                <tr><td>Ferias de ciencias</td><td>MEDIA</td><td>-</td><td>-</td><td>✓</td><td>- </td></tr>
+                <tr><td>Debate/discusión</td><td>MEDIA</td><td>✓</td><td>-</td><td>- </td><td>✓</td></tr>
+                <tr><td>Olimpiadas académicas</td><td>MEDIA</td><td>✓</td><td>✓</td><td>✓</td><td>- </td></tr>
+            </table>
+            
+            <h3 class="section-subtitle">3. Seguimiento (por Asignatura)</h3>
+            <table>
+                <tr><th>Acción</th><th>Prioridad</th><th>Castellano</th><th>Matemática</th><th>Ciencias</th><th>Ética</th></tr>
+                <tr><td>Fichas de seguimiento individual</td><td>ALTA</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                <tr><td>Registro conductual por clase</td><td>ALTA</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                <tr><td>Reuniones de padres</td><td>MEDIA</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                <tr><td>Plataforma digital de notas</td><td>MEDIA</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                <tr><td>Autoevaluación del estudiante</td><td>MEDIA</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                <tr><td>Registro de intervención conductual</td><td>ALTA</td><td>- </td><td>- </td><td>- </td><td>✓</td></tr>
+                <tr><td>Pruebas diagnósticas</td><td>ALTA</td><td>✓</td><td>✓</td><td>✓</td><td>- </td></tr>
+                <tr><td>Portafolio del estudiante</td><td>MEDIA</td><td>✓</td><td>✓</td><td>✓</td><td>- </td></tr>
+                <tr><td>Boletín informativo</td><td>MEDIA</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                <tr><td>Reunión semanal de coordinación</td><td>ALTA</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📚 COORDINACIÓN POR ASIGNATURA - TERCER CICLO (Paraguay)</div>
+            <p style="color:#666;margin-bottom:15px;">Grados: 7mo, 8vo, 9vo Educación Básica</p>
+            
+            <div class="subject-card Castellano">
+                <div class="subject-header">
+                    <div class="subject-icon">📖</div>
+                    <h3>CASTELLANO / LENGUAJE</h3>
+                </div>
+                <table>
+                    <tr><th>Problema Detectado</th><th>Qué debe trabajar</th><th>Actividad Conjunta</th></tr>
+                    <tr><td>Dificultades de expresión oral/escrita</td><td>Lenguaje escrito y oral</td><td>Taller de expresión oral mensual</td></tr>
+                    <tr><td>Rechazo a la lectura</td><td>Hábitos lectores</td><td>Club de lectura interdisciplinario</td></tr>
+                    <tr><td>Se rinde "no puedo" (frustración)</td><td>Autoexpresión escrita</td><td>Diario de logros - Castellano</td></tr>
+                    <tr><td>Aislamiento</td><td>Debate y discusión</td><td>Concurso de oratoria</td></tr>
+                </table>
+            </div>
+            
+            <div class="subject-card matematica">
+                <div class="subject-header">
+                    <div class="subject-icon">🔢</div>
+                    <h3>MATEMÁTICA</h3>
+                </div>
+                <table>
+                    <tr><th>Problema Detectado</th><th>Qué debe trabajar</th><th>Actividad Conjunta</th></tr>
+                    <tr><td>Se bloquea ante desafíos matemáticos</td><td>Resolución de problemas</td><td>Desafío matemático</td></tr>
+                    <tr><td>Lagunas en conocimientos previos</td><td>Bases matemáticas</td><td>Refuerzos cruzados</td></tr>
+                    <tr><td>Abandona proyectos</td><td>Perseverancia</td><td>Proyectos por etapas</td></tr>
+                    <tr><td>Trabaja aislado</td><td>Colaboración matemática</td><td>Olimpiadas por equipos</td></tr>
+                </table>
+            </div>
+            
+            <div class="subject-card ciencias">
+                <div class="subject-header">
+                    <div class="subject-icon">🔬</div>
+                    <h3>CIENCIAS NATURALES / BIOLOGÍA / FÍSICA / QUÍMICA</h3>
+                </div>
+                <table>
+                    <tr><th>Problema Detectado</th><th>Qué debe trabajar</th><th>Actividad Conjunta</th></tr>
+                    <tr><td>Lagunas en conocimientos</td><td>Base científica</td><td>Laboratorio integrado</td></tr>
+                    <tr><td>Se rinde fácilmente</td><td>Método científico</td><td>Proyectos de investigación</td></tr>
+                    <tr><td>Trabaja aislado</td><td>Trabajo en equipo</td><td>Ferias de ciencias por grupos</td></tr>
+                    <tr><td>Requiere supervisión</td><td>Autonomía experimental</td><td>Prácticas supervisadas</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🤝 MATRIZ DE COORDINACIÓN INTERDISCIPLINARIA</div>
+            
+            <table>
+                <tr>
+                    <th>Indicador del Diagnóstico</th>
+                    <th>Castellano</th>
+                    <th>Matemática</th>
+                    <th>Ciencias</th>
+                    <th>Ética/Cívica</th>
+                </tr>
+                <tr>
+                    <td>Lagunas conocimientos previos</td>
+                    <td>Comprensión lectora</td>
+                    <td>Refuerzos básicos</td>
+                    <td>Base científica</td>
+                    <td>Refuerzos general</td>
+                </tr>
+                <tr>
+                    <td>Se bloquea/frustra fácil</td>
+                    <td>Escritura creativa</td>
+                    <td>Problemas graduales</td>
+                    <td>Experimentos simples</td>
+                    <td>Taller resiliencia</td>
+                </tr>
+                <tr>
+                    <td>Abandona proyectos</td>
+                    <td>Proyectos Writing</td>
+                    <td>Matemática aplicada</td>
+                    <td>Proyectos científicos</td>
+                    <td>Proyectos sociales</td>
+                </tr>
+                <tr>
+                    <td>Trabaja aislado</td>
+                    <td>Grupos de lectura</td>
+                    <td>Trabajo en equipo</td>
+                    <td>Laboratorio grupal</td>
+                    <td>Trabajo comunitario</td>
+                </tr>
+                <tr>
+                    <td>Desafía autoridad</td>
+                    <td>Debate respetuoso</td>
+                    <td>Normas de aula</td>
+                    <td>Protocolos de laboratorio</td>
+                    <td>Convivencia</td>
+                </tr>
+                <tr>
+                    <td>Usa mal tecnología</td>
+                    <td>Digital writing</td>
+                    <td>Herramientas digital</td>
+                    <td>Simulaciones</td>
+                    <td>Uso responsable</td>
+                </tr>
+                <tr>
+                    <td>No trabaja sin estímulo</td>
+                    <td>Temas interesantes</td>
+                    <td>Aplicaciones reales</td>
+                    <td>Experimentos reales</td>
+                    <td>Iniciativa propia</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📅 CRONOGRAMA DE COORDINACIÓN</div>
+            
+            <table>
+                <tr><th>Fecha</th><th>Actividad</th><th>Participantes</th><th>Objetivo</th></tr>
+                <tr><td>Marzo - Semana 1</td><td>Reunión de docentes ciclo</td><td>Todas las asignaturas</td><td>Unificar criterios</td></tr>
+                <tr><td>Marzo - Semana 3</td><td>Diagnóstico inicial integrado</td><td>Castellano, Matemática, Ciencias</td><td>Identificar necesidades</td></tr>
+                <tr><td>Abril - Semana 1</td><td>Taller interdisciplinario</td><td>Estudiantes 7mo-9no</td><td>Trabajo colaborativo</td></tr>
+                <tr><td>Mayo - Semana 2</td><td>Seguimiento 1er mes</td><td>Docentes ciclo</td><td>Revisar avances</td></tr>
+                <tr><td>Junio - Semana 1</td><td>Expociencias + Oralia</td><td>Integrado</td><td>Mostrar proyectos</td></tr>
+                <tr><td>Julio - Semana 1</td><td>Evaluación midterm</td><td>Todas las asignaturas</td><td>Diagnosticar mejora</td></tr>
+                <tr><td>Septiembre - Semana 2</td><td>Feria de proyectos</td><td>Integrado</td><td>Presentaciones</td></tr>
+                <tr><td>Noviembre - Semana 1</td><td>Evaluación final</td><td>Todas las asignaturas</td><td>Cierre y planificación 2027</td></tr>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p><strong>Documento generado para:</strong> I MM I 2026</p>
+            <p><strong>Para coordinar con:</strong> Docentes de Castellano, Matemática, Ciencias y Formación Ética</p>
+            <p><strong>Fecha:</strong> Marzo 2026</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Documental - 2.do Curso BTCC</title>
+    <style>
+        :root {
+            --bg: #f4f7fb;
+            --ink: #172133;
+            --muted: #5a687c;
+            --line: #d8e0ea;
+            --brand: #0f4c81;
+            --soft: #e8f1fb;
+            --ok: #1f7a4c;
+            --warn: #b45309;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.5;
+            padding: 22px;
+        }
+        .page { max-width: 1180px; margin: 0 auto; }
+        .hero, .panel {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        .hero { border-left: 8px solid var(--brand); }
+        h1, h2, h3 { margin: 0 0 10px; }
+        p, li, td, th { font-size: 14px; }
+        .muted { color: var(--muted); }
+        .topnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .topnav a {
+            display: inline-block;
+            text-decoration: none;
+            background: var(--soft);
+            color: var(--brand);
+            border: 1px solid #bfd2e7;
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid var(--line);
+            padding: 9px 10px;
+            vertical-align: top;
+        }
+        th {
+            background: var(--soft);
+            text-align: left;
+        }
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .ok { background: #e7f6ed; color: var(--ok); }
+        .warn { background: #fff3e6; color: var(--warn); }
+        .cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        code {
+            background: #f6f8fb;
+            border: 1px solid #e1e7ef;
+            border-radius: 6px;
+            padding: 1px 5px;
+        }
+        @media (max-width: 900px) {
+            .cols { grid-template-columns: 1fr; }
+        }
+    </style>
+
+<link rel="stylesheet" href="../nav/nav.css">
+
+<script src="../nav/runtime.js"></script>
+</head>
+<body>
+    <div class="page">
+        <nav class="topnav" aria-label="Navegación principal">
+            <a href="../index.html">Inicio</a>
+            <a href="Resistencia_Materiales/resistencia_materiales.html">Plan anual RM</a>
+            <a href="Resistencia_Materiales/plan_de_clase_resistencia_materiales.html">Plan de clase RM</a>
+            <a href="Resistencia_Materiales/fichas_estudiante_html/index_fichas_estudiante.html">Fichas RM</a>
+            <a href="Tecnicas_Instrumentales_II/tecnicas_instrumentales_ii.html">Plan anual Técnicas II</a>
+            <a href="Tecnicas_Instrumentales_II/plan_de_clase_tecnicas_instrumentales_ii.html">Plan de clase Técnicas II</a>
+        </nav>
+
+        <section class="hero">
+            <h1>Mapa Documental - 2.do Curso BTCC</h1>
+            <p class="muted">Revisión consolidada de documentos obligatorios, materiales desarrollados, limpieza realizada y faltantes pendientes por cátedra.</p>
+            <p><strong>Fecha:</strong> 2026-06-03</p>
+        </section>
+
+        <section class="panel">
+            <h2>2. Del Docente</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ítem</th>
+                        <th>Descripción</th>
+                        <th>Estado en 2.do Curso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2.1. Programas de estudio</td>
+                        <td>Documento base por cátedra con capacidades, contenidos y referencia curricular.</td>
+                        <td><code>Resistencia de Materiales</code> y <code>Técnicas II</code> ya cuentan con base anual y desarrollo documental. <code>Instalaciones I</code>, <code>Taller Construcciones II</code> y <code>Topografía</code> siguen parciales.</td>
+                    </tr>
+                    <tr>
+                        <td>2.2. Plan Anual - Plan Sintético Semanal</td>
+                        <td>Debe existir un plan anual y un documento operativo por semanas o secuencia breve.</td>
+                        <td><code>Resistencia de Materiales</code> y <code>Técnicas II</code> ya lo tienen. En las demás cátedras sigue pendiente.</td>
+                    </tr>
+                    <tr>
+                        <td>2.3. Planilla de Asistencia</td>
+                        <td>Registro sistemático de asistencia del grupo.</td>
+                        <td><code>Resistencia de Materiales</code> y <code>Técnicas II</code> ya tienen planilla propia. En las demás cátedras sigue pendiente.</td>
+                    </tr>
+                    <tr>
+                        <td>2.4. Procedimiento e instrumento de desarrollo y valoración</td>
+                        <td>Planilla de proceso, instrumentos específicos, prueba diagnóstica, plan de mejora y registro anecdótico.</td>
+                        <td><code>Resistencia de Materiales</code> y <code>Técnicas II</code> ya cuentan con planilla de proceso, instrumentos, prueba diagnóstica, plan de mejora y registro anecdótico. En las demás cátedras sigue pendiente.</td>
+                    </tr>
+                    <tr>
+                        <td>CAC Observación</td>
+                        <td>Para estudiantes con discapacidad, el docente se regirá por la normativa vigente.</td>
+                        <td>Conviene mantener esta observación visible en todos los planes e instrumentos nuevos que aún falten generar.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="panel">
+            <h2>Limpieza realizada</h2>
+            <ul>
+                <li>Se eliminó el duplicado exacto <code>01_Guia_Estudiante_Resistencia_Materiales_2do_BTCC (1).docx</code>.</li>
+                <li>Se eliminó la carpeta extraída del paquete de guía por redundancia.</li>
+                <li>Se mantuvo <code>Paquete_Guia_Estudiante_Resistencia_Materiales_2do_BTCC.zip</code> como respaldo completo.</li>
+                <li>Se eliminó <code>Resistencia_Materiales_Plan.md</code> por estar superado por los documentos vigentes.</li>
+                <li>Se dejaron visibles en <code>Resistencia_Materiales</code> los instrumentos, apoyos y planillas útiles.</li>
+            </ul>
+        </section>
+
+        <section class="panel">
+            <h2>Estado por cátedra</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cátedra</th>
+                        <th>Plan anual</th>
+                        <th>Plan de clase</th>
+                        <th>Material estudiante</th>
+                        <th>Instrumentos</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Resistencia de Materiales</td>
+                        <td>MD + HTML + DOCX</td>
+                        <td>MD + HTML</td>
+                        <td>MD + HTML + DOCX</td>
+                        <td>Ejercitario + rúbricas + RSA + diagnóstica + mejora + asistencia + anecdótico</td>
+                        <td><span class="tag ok">Completo</span></td>
+                    </tr>
+                    <tr>
+                        <td>Instalaciones I</td>
+                        <td>MD</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td><span class="tag warn">Parcial</span></td>
+                    </tr>
+                    <tr>
+                        <td>Taller Construcciones II</td>
+                        <td>MD</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td><span class="tag warn">Parcial</span></td>
+                    </tr>
+                    <tr>
+                        <td>Técnicas Instrumentales II</td>
+                        <td>MD + HTML</td>
+                        <td>MD + HTML</td>
+                        <td>MD + HTML</td>
+                        <td>Diagnóstica + mejora + asistencia + anecdótico</td>
+                        <td><span class="tag ok">Completo</span></td>
+                    </tr>
+                    <tr>
+                        <td>Topografía</td>
+                        <td>MD</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td><span class="tag warn">Parcial</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div class="cols">
+            <section class="panel">
+                <h2>Inventario numerado de Resistencia de Materiales</h2>
+                <ol>
+                    <li>Plan anual
+                        <div class="muted"><code>Plan_Anual_Resistencia_Materiales.md</code>, <code>resistencia_materiales.html</code>, <code>Plan_Anual_Resistencia_de_Materiales_2do_Curso_BTCC.docx</code></div>
+                    </li>
+                    <li>Plan de clase
+                        <div class="muted"><code>Plan_de_Clase_Desarrollado_Resistencia_Materiales.md</code>, <code>plan_de_clase_resistencia_materiales.html</code></div>
+                    </li>
+                    <li>Material del estudiante
+                        <div class="muted"><code>Material_del_Estudiante_Resistencia_Materiales.md</code>, <code>material_del_estudiante_resistencia_materiales.html</code>, <code>01_Guia_Estudiante_Resistencia_Materiales_2do_BTCC.docx</code></div>
+                    </li>
+                    <li>Instrumentos y apoyos
+                        <div class="muted"><code>02_Ejercitario...</code>, <code>03_Rubricas...</code>, <code>04_Notas...</code>, <code>05_Planilla...csv/xlsx</code></div>
+                    </li>
+                    <li>Documentos obligatorios del docente
+                        <div class="muted"><code>06_Plan_Sintetico_Semanal...</code>, <code>07_Planilla_Asistencia...</code>, <code>08_Prueba_Diagnostica...</code>, <code>09_Plan_de_Mejora...</code>, <code>10_Registro_Anecdotico...</code></div>
+                    </li>
+                    <li>Fichas por tema
+                        <div class="muted"><code>tema_01</code> a <code>tema_09</code> + <code>index_fichas_estudiante.html</code></div>
+                    </li>
+                    <li>Gráficos y recursos visuales
+                        <div class="muted"><code>graficos_material_alumno/01</code> a <code>10</code></div>
+                    </li>
+                    <li>Referencias
+                        <div class="muted">PDF y DOC del plan específico y material de apoyo</div>
+                    </li>
+                    <li>Scripts
+                        <div class="muted">generación y apoyo gráfico</div>
+                    </li>
+                    <li>Respaldo
+                        <div class="muted"><code>Paquete_Guia_Estudiante_Resistencia_Materiales_2do_BTCC.zip</code></div>
+                    </li>
+                </ol>
+            </section>
+
+            <section class="panel">
+                <h2>Inventario resumido de Técnicas Instrumentales II</h2>
+                <ol>
+                    <li>Plan anual
+                        <div class="muted"><code>Plan_Anual_Tecnicas_Instrumentales_II.md</code>, <code>tecnicas_instrumentales_ii.html</code></div>
+                    </li>
+                    <li>Plan de clase
+                        <div class="muted"><code>Plan_de_Clase_Desarrollado_Tecnicas_Instrumentales_II.md</code>, <code>plan_de_clase_tecnicas_instrumentales_ii.html</code></div>
+                    </li>
+                    <li>Material del estudiante
+                        <div class="muted"><code>Material_del_Estudiante_Tecnicas_Instrumentales_II.md</code>, <code>material_del_estudiante_tecnicas_instrumentales_ii.html</code></div>
+                    </li>
+                    <li>Documentos obligatorios del docente
+                        <div class="muted"><code>06_Plan_Sintetico_Semanal...</code>, <code>07_Planilla_Asistencia...</code>, <code>08_Prueba_Diagnostica...</code>, <code>09_Plan_de_Mejora...</code>, <code>10_Registro_Anecdotico...</code></div>
+                    </li>
+                    <li>Estado
+                        <div class="muted">Documentación obligatoria generada y organizada en carpeta propia.</div>
+                    </li>
+                </ol>
+            </section>
+        </div>
+
+        <div class="cols">
+            <section class="panel">
+                <h2>Faltantes detectados</h2>
+                <ol>
+                    <li>Instalaciones I
+                        <div class="muted">Falta HTML del plan anual, plan de clase, material del estudiante e instrumentos.</div>
+                    </li>
+                    <li>Taller Construcciones II
+                        <div class="muted">Falta HTML del plan anual, plan de clase, material del estudiante e instrumentos.</div>
+                    </li>
+                    <li>Topografía
+                        <div class="muted">Falta HTML del plan anual, plan de clase, material del estudiante e instrumentos.</div>
+                    </li>
+                </ol>
+            </section>
+
+            <section class="panel">
+                <h2>Pendiente opcional</h2>
+                <ol>
+                    <li>Generar <code>DOCX</code> actualizado del plan de clase de <code>Resistencia de Materiales</code>.</li>
+                    <li>Generar <code>DOCX</code> actualizado del material del estudiante de <code>Resistencia de Materiales</code>.</li>
+                    <li>Unificar numeración final de carpetas y archivos de todas las cátedras del <code>2_Curso</code>.</li>
+                </ol>
+            </section>
+        </div>
+    </div>
+
+<script src="../nav/nav.js"></script>
+</body>
+</html>

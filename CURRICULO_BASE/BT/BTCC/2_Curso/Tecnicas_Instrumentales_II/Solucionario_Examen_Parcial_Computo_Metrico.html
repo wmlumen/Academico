@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solucionario: Examen Parcial Cómputo Métrico</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Segoe UI", Tahoma, sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; }
+        header { background: linear-gradient(135deg, #0f4c81 0%, #667eea 100%); color: white; padding: 30px 20px; text-align: center; }
+        header h1 { font-size: 2em; margin-bottom: 10px; }
+        nav { background: #333; padding: 0; position: sticky; top: 0; z-index: 100; }
+        nav a { display: inline-block; color: white; text-decoration: none; padding: 12px 15px; transition: background 0.3s; }
+        nav a:hover { background: #667eea; }
+        nav a.active { background: #667eea; border-bottom: 3px solid white; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        .breadcrumb { padding: 15px 20px; background: white; margin-bottom: 20px; border-radius: 5px; font-size: 0.9em; color: #666; }
+        .content { background: white; padding: 30px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        h2 { color: #0f4c81; margin: 30px 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #667eea; }
+        h3 { color: #667eea; margin: 20px 0 10px 0; }
+        h4 { color: #666; margin: 15px 0 8px 0; }
+        .solution-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px; margin: 15px 0; border-radius: 3px; }
+        .formula { background: #e7f3ff; border-left: 4px solid #2196F3; padding: 12px; margin: 12px 0; font-family: "Courier New", monospace; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        table th { background: #667eea; color: white; padding: 12px; text-align: left; }
+        table td { padding: 12px; border-bottom: 1px solid #ddd; }
+        ul, ol { margin: 15px 0 15px 30px; }
+        li { margin: 8px 0; }
+        .rubrica { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; }
+        .points { color: #28a745; font-weight: bold; }
+        .note { background: #d1ecf1; border-left: 4px solid #17a2b8; padding: 12px; margin: 12px 0; }
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; }
+        .nav-buttons a { display: inline-block; padding: 12px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 5px; }
+        footer { background: #333; color: white; padding: 20px; text-align: center; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📖 Solucionario: Examen Parcial Cómputo Métrico</h1>
+        <p>Documento para Docente — Técnicas Instrumentales II</p>
+    </header>
+    
+    <nav>
+        <a href="index.html">🏠 Inicio</a>
+        <a href="material_del_estudiante_tecnicas_instrumentales_ii.html">📖 Material</a>
+        <a href="Examen_Parcial_Calculo_Metrico.html">✅ Examen</a>
+        <a href="Ejercicios_Practica_Computo_Metrico.html">💪 Ejercicios</a>
+        <a href="Solucionario_Examen_Parcial_Computo_Metrico.html" class="active">📖 Solucionario</a>
+    </nav>
+    
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Inicio</a> > <strong>Solucionario</strong>
+        </div>
+        
+        <div class="content">
+            <h2>Cálculos Fundamentales</h2>
+            
+            <div class="solution-box">
+                <h3>Datos Base del Proyecto</h3>
+                <p><strong>Superficie construida:</strong> 6.00 × 6.00 = <span class="points">36.00 m²</span></p>
+                <p><strong>Superficie de limpieza:</strong> (6.00 + 2×1.00) × (6.00 + 2×1.00) = 8.00 × 8.00 = <span class="points">64.00 m²</span></p>
+                <p><strong>Perímetro:</strong> 2 × (6.00 + 6.00) = <span class="points">24.00 m</span></p>
+            </div>
+            
+            <h2>Parte I: Conceptos Teóricos</h2>
+            
+            <div class="rubrica">
+                <h4>Pregunta 0.1 (5 pts): Definición de Cómputo Métrico</h4>
+                <p><strong>Respuesta modelo:</strong></p>
+                <p>El cómputo métrico es la determinación y cuantificación de la cantidad de trabajos y materiales necesarios para la ejecución de un proyecto de construcción. Es un proceso sistemático de medición que traduce los planos y especificaciones técnicas en números concretos.</p>
+                <p><strong>Dos razones de importancia:</strong></p>
+                <ol>
+                    <li>Permite calcular el costo total del proyecto mediante presupuestación acertada.</li>
+                    <li>Facilita la compra exacta de materiales, evitando desperdicios y costos innecesarios.</li>
+                </ol>
+                <p><span class="points">3 pts</span> definición clara + <span class="points">2 pts</span> dos razones = <span class="points">5 pts</span></p>
+            </div>
+            
+            <div class="rubrica">
+                <h4>Pregunta 0.2 (5 pts): Completar Espacios</h4>
+                <p><strong>Respuestas:</strong></p>
+                <ul>
+                    <li>El <strong>área</strong> de una obra se mide en metros cuadrados (m²).</li>
+                    <li>El <strong>volumen</strong> se calcula en metros cúbicos (m³).</li>
+                    <li>El "descuento de aberturas" se aplica al cálculo de <strong>mampostería (o muros)</strong>.</li>
+                </ul>
+                <p><span class="points">1.67 pts</span> cada respuesta correcta ≈ <span class="points">5 pts</span></p>
+            </div>
+            
+            <h2>Parte II: Ejercicios de Cómputo</h2>
+            
+            <h3>Bloque A: Limpieza y Excavación (18 pts)</h3>
+            
+            <div class="rubrica">
+                <h4>Pregunta 1.1 (9 pts): Superficie de Limpieza</h4>
+                <p><strong>Cálculo paso-a-paso:</strong></p>
+                <div class="formula">
+                    Superficie limpieza = (Largo + 2 × margen) × (Ancho + 2 × margen)<br>
+                    Superficie limpieza = (6.00 + 2 × 1.00) × (6.00 + 2 × 1.00)<br>
+                    Superficie limpieza = (6.00 + 2.00) × (6.00 + 2.00)<br>
+                    Superficie limpieza = 8.00 × 8.00<br>
+                    <strong>Resultado: 64.00 m²</strong>
+                </div>
+                <p><strong>Explicación:</strong> La planta del edificio es 6 × 6 = 36 m². Se agregan 1 m de margen a cada lado para almacenamiento de materiales, zona de tránsito, acopio de escombros y espacio de maniobra.</p>
+                <p><span class="points">3 pts</span> fórmula + <span class="points">3 pts</span> cálculo + <span class="points">3 pts</span> explicación = <span class="points">9 pts</span></p>
+            </div>
+            
+            <div class="rubrica">
+                <h4>Pregunta 1.2 (9 pts): Volumen de Excavación</h4>
+                <p><strong>Paso 1: Cálculo del perímetro</strong></p>
+                <div class="formula">
+                    Perímetro = 2 × (Largo + Ancho)<br>
+                    Perímetro = 2 × (6.00 + 6.00)<br>
+                    Perímetro = 2 × 12.00<br>
+                    <strong>Perímetro = 24.00 m</strong>
+                </div>
+                <p><strong>Paso 2: Fórmula de volumen</strong></p>
+                <div class="formula">
+                    Volumen = Perímetro × Ancho de zanja × Profundidad<br>
+                    Volumen = 24.00 × 0.40 × 0.60<br>
+                    Volumen = 24.00 × 0.24<br>
+                    <strong>Volumen = 5.76 m³</strong>
+                </div>
+                <p><span class="points">3 pts</span> perímetro + <span class="points">4 pts</span> fórmula + <span class="points">2 pts</span> respuesta = <span class="points">9 pts</span></p>
+            </div>
+            
+            <h3>Bloque B: Cimiento (8 pts)</h3>
+            
+            <div class="rubrica">
+                <h4>Pregunta 2.1 (8 pts): Volumen de Cimiento</h4>
+                <p><strong>Cálculo:</strong></p>
+                <div class="formula">
+                    Volumen cimiento = Perímetro × Ancho cimiento × Profundidad<br>
+                    Volumen cimiento = 24.00 × 0.40 × 0.60<br>
+                    <strong>Volumen cimiento = 5.76 m³</strong>
+                </div>
+                <p><strong>Explicación sobre fórmula similar:</strong></p>
+                <p>"Se utiliza la misma fórmula que la excavación porque la zanja tiene exactamente las mismas dimensiones que el cimiento que se va a colocar dentro de ella."</p>
+                <p><span class="points">4 pts</span> cálculo correcto + <span class="points">3 pts</span> explicación + <span class="points">1 pt</span> precisión = <span class="points">8 pts</span></p>
+            </div>
+            
+            <h3>Bloque C: Mampostería, Aberturas y Muros (18 pts)</h3>
+            
+            <div class="rubrica">
+                <h4>Pregunta 3.1 (6 pts): Área Bruta de Muros</h4>
+                <div class="formula">
+                    Área bruta = Perímetro × Altura del muro<br>
+                    Área bruta = 24.00 × 2.80<br>
+                    <strong>Área bruta = 67.20 m²</strong>
+                </div>
+                <p><span class="points">2 pts</span> fórmula + <span class="points">3 pts</span> cálculo + <span class="points">1 pt</span> unidad = <span class="points">6 pts</span></p>
+            </div>
+            
+            <div class="rubrica">
+                <h4>Pregunta 3.2 (8 pts): Área Total de Aberturas</h4>
+                <p><strong>Desglose de cálculos:</strong></p>
+                <ol>
+                    <li><strong>Puertas:</strong> 2 × (0.80 × 2.10) = 2 × 1.68 = <span class="points">3.36 m²</span></li>
+                    <li><strong>Ventanas principales:</strong> 2 × (1.20 × 1.00) = 2 × 1.20 = <span class="points">2.40 m²</span></li>
+                    <li><strong>Ventana de baño:</strong> 1 × (0.60 × 0.40) = <span class="points">0.24 m²</span></li>
+                </ol>
+                <p><strong>Total aberturas = 3.36 + 2.40 + 0.24 = <span class="points">6.00 m²</span></strong></p>
+                <p><span class="points">6 pts</span> cálculo de cada abertura + <span class="points">2 pts</span> total = <span class="points">8 pts</span></p>
+            </div>
+            
+            <div class="rubrica">
+                <h4>Pregunta 3.3 (4 pts): Área Neta de Muros</h4>
+                <div class="formula">
+                    Área neta = Área bruta − Área de aberturas<br>
+                    Área neta = 67.20 − 6.00<br>
+                    <strong>Área neta = 61.20 m²</strong>
+                </div>
+                <p><span class="points">1 pt</span> fórmula + <span class="points">2 pts</span> cálculo + <span class="points">1 pt</span> respuesta = <span class="points">4 pts</span></p>
+            </div>
+            
+            <h3>Bloque D: Revoque e Interiores (12 pts)</h3>
+            
+            <div class="rubrica">
+                <h4>Pregunta 4.1 (6 pts): Cantidad Total de Revoque</h4>
+                <p><strong>Cálculo:</strong></p>
+                <div class="formula">
+                    Revoque interior = Área neta × 1 = 61.20 m²<br>
+                    Revoque exterior = Área neta × 1 = 61.20 m²<br>
+                    Revoque total = 61.20 × 2 = <span class="points">122.40 m²</span>
+                </div>
+                <p><strong>Explicación:</strong> Se multiplica por 2 porque el revoque se aplica tanto al interior como al exterior del muro.</p>
+                <p><span class="points">2 pts</span> interior/exterior + <span class="points">2 pts</span> fórmula + <span class="points">2 pts</span> cálculo = <span class="points">6 pts</span></p>
+            </div>
+            
+            <div class="rubrica">
+                <h4>Pregunta 4.2 (6 pts): Contrapiso</h4>
+                <p><strong>Parte a) Superficie útil:</strong></p>
+                <p>La superficie a cubrir es la planta del edificio.</p>
+                <p><strong>Superficie = 6.00 × 6.00 = 36.00 m²</strong> <span class="points">(2 pts)</span></p>
+                <p><strong>Parte b) Volumen:</strong></p>
+                <div class="formula">
+                    Volumen = Superficie × Espesor<br>
+                    Volumen = 36.00 × 0.10<br>
+                    <strong>Volumen = 3.60 m³</strong>
+                </div>
+                <p><span class="points">(3 pts)</span> + <span class="points">(1 pt)</span> presentación = <span class="points">6 pts</span></p>
+            </div>
+            
+            <h3>Bloque E: Materiales (14 pts)</h3>
+            
+            <div class="rubrica">
+                <h4>Pregunta 5.1 (5 pts): Cantidad de Ladrillos</h4>
+                <div class="formula">
+                    Cantidad = Área neta de muros × Ladrillos por m²<br>
+                    Cantidad = 61.20 × 60<br>
+                    <strong>Cantidad = 3,672 unidades</strong>
+                </div>
+                <p><span class="points">2 pts</span> fórmula + <span class="points">2 pts</span> cálculo + <span class="points">1 pt</span> unidad = <span class="points">5 pts</span></p>
+            </div>
+            
+            <div class="rubrica">
+                <h4>Pregunta 5.2 (5 pts): Cemento para Revoque</h4>
+                <p><strong>Cálculo de cantidad:</strong></p>
+                <div class="formula">
+                    Cemento = Revoque total × Consumo por m²<br>
+                    Cemento = 122.40 × 4.5<br>
+                    <strong>Cemento = 550.80 kg</strong>
+                </div>
+                <p><strong>Cálculo de bolsas:</strong></p>
+                <div class="formula">
+                    Bolsas = 550.80 ÷ 50 = 11.016<br>
+                    <strong>Bolsas necesarias = 12 (redondeo al alza)</strong>
+                </div>
+                <p><span class="points">2 pts</span> cantidad + <span class="points">2 pts</span> división + <span class="points">1 pt</span> redondeo = <span class="points">5 pts</span></p>
+            </div>
+            
+            <div class="rubrica">
+                <h4>Pregunta 5.3 (4 pts): Volumen de Arena</h4>
+                <div class="formula">
+                    Arena = Revoque total × Factor de arena<br>
+                    Arena = 122.40 × 0.015<br>
+                    <strong>Arena = 1.836 m³</strong>
+                </div>
+                <p><span class="points">2 pts</span> fórmula + <span class="points">1 pt</span> cálculo + <span class="points">1 pt</span> respuesta = <span class="points">4 pts</span></p>
+            </div>
+            
+            <h3>Bloque F: Productividad y Jornales (8 pts)</h3>
+            
+            <div class="rubrica">
+                <h4>Pregunta 6.1 (8 pts): Jornales Necesarios</h4>
+                <p><strong>Datos:</strong></p>
+                <ul>
+                    <li>Área neta de muros: 61.20 m²</li>
+                    <li>Rendimiento por oficial: 8 m²/día</li>
+                </ul>
+                <p><strong>Cálculo:</strong></p>
+                <div class="formula">
+                    Jornales = Área neta ÷ Rendimiento<br>
+                    Jornales = 61.20 ÷ 8.00<br>
+                    Jornales = 7.65
+                </div>
+                <p><strong>Redondeo:</strong></p>
+                <p>Como no se puede contratar 0.65 de un jornal, se redondea <strong>al alza: 7.65 → 8 jornales</strong></p>
+                <p><strong>Justificación:</strong> Si se contrataran solo 7 jornales, faltarían 5.20 m² sin ejecutar.</p>
+                <p><span class="points">2 pts</span> datos + <span class="points">2 pts</span> fórmula + <span class="points">2 pts</span> cálculo + <span class="points">2 pts</span> redondeo = <span class="points">8 pts</span></p>
+            </div>
+            
+            <h2>Parte III: Análisis y Aplicación (20 pts)</h2>
+            
+            <div class="rubrica">
+                <h4>Pregunta 7.1 (7 pts): Análisis de Descuentos</h4>
+                <p><strong>Respuesta esperada:</strong></p>
+                <p>"El descuento de aberturas es crítico porque si no se restara el área de puertas y ventanas del área bruta, se estaría comprando mampostería para zonas donde no hay muro. Esto ocasionaría un gasto innecesario de materiales y dinero. Por ejemplo, en esta vivienda, si NO se descontaran los 6.00 m² de aberturas, se comprarían 60 × 6.00 = 360 ladrillos de más (desperdicio total)."</p>
+                <p><span class="points">3 pts</span> concepto + <span class="points">2 pts</span> consecuencias + <span class="points">2 pts</span> ejemplo = <span class="points">7 pts</span></p>
+            </div>
+            
+            <div class="rubrica">
+                <h4>Pregunta 7.2 (7 pts): Coeficiente de Desperdicio</h4>
+                <p><strong>Dos razones válidas:</strong></p>
+                <ol>
+                    <li><strong>Roturas en transporte:</strong> Los ladrillos se rompen durante el transporte desde la fábrica a la obra (5-7% de pérdida).</li>
+                    <li><strong>Roturas en colocación:</strong> Durante la colocación, algunos ladrillos se parten por golpes, cortado o manipulación incorrecta (2-3% de pérdida).</li>
+                    <li><strong>Ajustes y adaptaciones:</strong> En puertas, ventanas y esquinas se requieren fracturas de ladrillos (1-2% de pérdida).</li>
+                </ol>
+                <p><span class="points">3.5 pts</span> cada razón clara = <span class="points">7 pts</span></p>
+            </div>
+            
+            <div class="rubrica">
+                <h4>Pregunta 7.3 (6 pts): Optimización de Recursos</h4>
+                <p><strong>Respuesta esperada:</strong></p>
+                <p>Con 10 jornales disponibles (y 8 necesarios para muros), quedan <strong>2 jornales extra</strong> que podrían utilizarse en:</p>
+                <ol>
+                    <li><strong>Revoque interior y exterior:</strong> Con 2 oficiales, se pueden revocar 16 m² (2 × 8 m²). El total es 122.40 m², por lo que estos 2 jornales avanzan parcialmente en esta tarea.</li>
+                    <li><strong>Preparación de suelo y contrapiso:</strong> Colocación de contrapiso de cascotes (3.60 m³) y preparación para piso final.</li>
+                </ol>
+                <p><span class="points">2 pts</span> identificación de jornales extra + <span class="points">2 pts</span> dos actividades + <span class="points">2 pts</span> justificación = <span class="points">6 pts</span></p>
+            </div>
+            
+            <h2>Rúbrica de Corrección Global</h2>
+            
+            <table>
+                <tr>
+                    <th>Aspecto</th>
+                    <th>Puntos</th>
+                    <th>Criterio de Evaluación</th>
+                </tr>
+                <tr>
+                    <td>Conceptos teóricos (Parte I)</td>
+                    <td>10</td>
+                    <td>Definición correcta; identificación de conceptos clave</td>
+                </tr>
+                <tr>
+                    <td>Cálculos numéricos exactos</td>
+                    <td>40</td>
+                    <td>Respuestas correctas con unidades; máximo 2 decimales</td>
+                </tr>
+                <tr>
+                    <td>Fórmulas y procedimiento</td>
+                    <td>20</td>
+                    <td>Trabajo paso-a-paso; fórmulas correctas; desglose de operaciones</td>
+                </tr>
+                <tr>
+                    <td>Descuentos y aplicaciones</td>
+                    <td>15</td>
+                    <td>Descuentos correctos; redondeos al alza en jornales y bolsas</td>
+                </tr>
+                <tr>
+                    <td>Fundamentación conceptual (Parte III)</td>
+                    <td>10</td>
+                    <td>Justificación de descuentos; explicación de desperdicios; propuestas</td>
+                </tr>
+                <tr>
+                    <td>Orden, limpieza y presentación</td>
+                    <td>5</td>
+                    <td>Examen legible; márgenes; sin borrones innecesarios</td>
+                </tr>
+                <tr>
+                    <th colspan="3" style="text-align: center; background: #667eea; color: white;">TOTAL: 100 puntos</th>
+                </tr>
+            </table>
+            
+            <h2>Notas Finales para el Docente</h2>
+            
+            <div class="note">
+                <h4>Tolerancia en cálculos:</h4>
+                <p>Aceptar variaciones de ±0.05 m² o m³ por redondeo.</p>
+            </div>
+            
+            <div class="note">
+                <h4>Redondeo estricto:</h4>
+                <p>Exigir siempre redondeo al alza en materiales y jornales (no al más cercano).</p>
+                <p>Ejemplo: 7.65 → 8 (correcto) | 7.65 → 7.7 (incorrecto)</p>
+            </div>
+            
+            <div class="note">
+                <h4>Evaluación de justificación:</h4>
+                <p>Valorar explícitamente las respuestas que justifiquen "por qué" además del "cuánto".</p>
+            </div>
+            
+            <div class="note">
+                <h4>Tiempo de corrección:</h4>
+                <p>Aproximadamente 5-10 minutos por examen.</p>
+            </div>
+            
+            <div class="nav-buttons">
+                <a href="index.html">← Volver al Índice</a>
+                <a href="Examen_Parcial_Calculo_Metrico.html">← Ir a Examen</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p><strong>Técnicas Instrumentales II</strong> — Colegio Nacional Defensores del Chaco © 2026</p>
+        <p>Para docentes — Documento confidencial</p>
+    </footer>
+</body>
+</html>

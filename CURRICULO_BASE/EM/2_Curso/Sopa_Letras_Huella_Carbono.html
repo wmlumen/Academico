@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad: Sopa de Letras Ambiental</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            border: 4px double #2e7d32;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
+        }
+        h1 { color: #2e7d32; text-transform: uppercase; margin-bottom: 5px; }
+        .instructions { font-style: italic; color: #666; margin-bottom: 20px; }
+
+        .game-container {
+            display: grid;
+            grid-template-columns: auto 250px;
+            gap: 30px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        #word-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 35px);
+            grid-template-rows: repeat(12, 35px);
+            gap: 5px;
+            user-select: none;
+        }
+
+        .letter {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            background: #fff;
+            transition: all 0.2s;
+        }
+
+        .letter:hover { background: #e8f5e9; }
+        .letter.selected { background: #81c784; color: white; border-color: #2e7d32; }
+        .letter.found { background: #2e7d32; color: white; }
+
+        .word-list {
+            border-left: 2px solid #e8f5e9;
+            padding-left: 20px;
+        }
+
+        .word-list h3 { color: #2e7d32; margin-top: 0; }
+        .word-list ul { list-style: none; padding: 0; }
+        .word-list li {
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+            transition: 0.3s;
+        }
+        .word-list li.found {
+            text-decoration: line-through;
+            color: #ccc;
+        }
+
+        .btn-container { margin-top: 30px; display: flex; gap: 10px; }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-print { background: #2e7d32; color: white; }
+        .btn-reset { background: #ddd; color: #333; }
+
+        @media print {
+            .btn-container, .instructions { display: none; }
+            body { background: white; padding: 0; }
+            .game-container { box-shadow: none; border: 1px solid #eee; }
+            .letter { border: 1px solid #333; color: black !important; background: white !important; }
+        }
+
+        /* Estilos para el Modo Blanco y Negro */
+        body.bw-mode {
+            background-color: white !important;
+            color: black !important;
+        }
+        .bw-mode header {
+            background-color: white !important;
+            color: black !important;
+            border-color: black !important;
+        }
+        .bw-mode h1 {
+            color: black !important;
+        }
+        .bw-mode .instructions {
+            color: black !important;
+        }
+        .bw-mode .game-container {
+            background: white !important;
+            box-shadow: none !important;
+            border-color: black !important;
+        }
+        .bw-mode #word-grid, .bw-mode .letter {
+            border-color: black !important;
+            background: white !important;
+            color: black !important;
+        }
+        .bw-mode .letter.selected {
+            background: #ccc !important;
+        }
+        .bw-mode .letter.found {
+            background: #999 !important;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="text-align: center;">
+        <div style="font-weight: bold;">MINISTERIO DE EDUCACIÓN Y CIENCIAS</div>
+        <div style="font-weight: bold; margin-bottom: 5px;">COLEGIO NACIONAL "DON JORGE GAYOSO"</div>
+        <h1 style="margin: 0;">Sopa de Letras: Mitigación</h1>
+        <p class="instructions" style="margin: 0;">Encuentra los términos relacionados con la reducción de la huella de carbono.</p>
+    </div>
+</header>
+
+<div class="game-container">
+    <div id="word-grid">
+        <!-- Generado por JS -->
+    </div>
+
+    <div class="word-list">
+        <h3>Palabras:</h3>
+        <ul id="list-items">
+            <!-- Generado por JS -->
+        </ul>
+    </div>
+</div>
+
+<div class="btn-container">
+    <button class="btn-reset" onclick="location.reload()">Reiniciar</button>
+    <button class="btn-print" onclick="window.print()">Versión para Imprimir</button>
+    <button class="btn-bw" onclick="toggleBlackAndWhiteMode()" style="padding: 10px 20px; background: #555; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">
+        Modo Blanco y Negro
+    </button>
+</div>
+
+<script>
+    const words = ["MITIGACION", "ADAPTACION", "SUMIDEROS", "CICLOVIDA", "PROXIMIDAD", "EMISIONES", "CARBONO", "HUELLA", "AMBIENTE", "CLIMA"];
+    const size = 12;
+    const grid = Array(size).fill().map(() => Array(size).fill(''));
+    
+    // Rellenar con palabras (Simplificado para este ejemplo)
+    function placeWords() {
+        words.forEach(word => {
+            let placed = false;
+            while (!placed) {
+                const rand = Math.random();
+                const direction = rand < 0.33 ? 'H' : (rand < 0.66 ? 'V' : 'D');
+                const row = Math.floor(Math.random() * size);
+                const col = Math.floor(Math.random() * size);
+                
+                if (direction === 'H' && col + word.length <= size) {
+                    let canPlace = true;
+                    for(let i=0; i<word.length; i++) if(grid[row][col+i] !== '' && grid[row][col+i] !== word[i]) canPlace = false;
+                    if(canPlace) {
+                        for(let i=0; i<word.length; i++) grid[row][col+i] = word[i];
+                        placed = true;
+                    }
+                } else if (direction === 'V' && row + word.length <= size) {
+                    let canPlace = true;
+                    for(let i=0; i<word.length; i++) if(grid[row+i][col] !== '' && grid[row+i][col] !== word[i]) canPlace = false;
+                    if(canPlace) {
+                        for(let i=0; i<word.length; i++) grid[row+i][col] = word[i];
+                        placed = true;
+                    }
+                } else if (direction === 'D' && row + word.length <= size && col + word.length <= size) {
+                    let canPlace = true;
+                    for(let i=0; i<word.length; i++) if(grid[row+i][col+i] !== '' && grid[row+i][col+i] !== word[i]) canPlace = false;
+                    if(canPlace) {
+                        for(let i=0; i<word.length; i++) grid[row+i][col+i] = word[i];
+                        placed = true;
+                    }
+                }
+            }
+        });
+
+        // Rellenar huecos
+        const letters = "ABCDEGHILMNOPRSTUV";
+        for(let r=0; r<size; r++) {
+            for(let c=0; c<size; c++) {
+                if(grid[r][c] === '') grid[r][c] = letters[Math.floor(Math.random()*letters.length)];
+            }
+        }
+    }
+
+    function render() {
+        const gridEl = document.getElementById('word-grid');
+        const listEl = document.getElementById('list-items');
+
+        grid.forEach((row, r) => {
+            row.forEach((char, c) => {
+                const div = document.createElement('div');
+                div.className = 'letter';
+                div.textContent = char;
+                div.onclick = () => toggleSelect(div, char, r, c);
+                gridEl.appendChild(div);
+            });
+        });
+
+        words.sort().forEach(word => {
+            const li = document.createElement('li');
+            li.textContent = word;
+            li.id = `word-${word.replace(/\s+/g, '-')}`; // Replace spaces for valid IDs
+            listEl.appendChild(li);
+        });
+    }
+
+    let selection = [];
+    function toggleSelect(el, char, r, c) {
+        if (el.classList.contains('found')) return;
+        
+        el.classList.toggle('selected');
+        const index = selection.findIndex(s => s.r === r && s.c === c);
+        
+        if (index > -1) {
+            selection.splice(index, 1);
+        } else {
+            selection.push({ char, r, c, el });
+        }
+        
+        checkSelection();
+    }
+
+    function checkSelection() {
+        const currentWord = selection.map(s => s.char).join('');
+        const reversedWord = currentWord.split('').reverse().join('');
+        
+        words.forEach(word => { // Using original word for check
+            if ((currentWord === word || reversedWord === word) && !document.getElementById(`word-${word.replace(/\s+/g, '-')}`).classList.contains('found')) {
+                // Palabra encontrada
+                selection.forEach(s => {
+                    s.el.classList.remove('selected');
+                    s.el.classList.add('found');
+                });
+                document.getElementById(`word-${word.replace(/\s+/g, '-')}`).classList.add('found');
+                selection = [];
+                
+                if (document.querySelectorAll('.word-list li.found').length === words.length) {
+                    alert("¡Excelente! Has encontrado todos los conceptos de mitigación.");
+                }
+            }
+        });
+    }
+
+    function toggleBlackAndWhiteMode() {
+        document.body.classList.toggle('bw-mode');
+    }
+
+    placeWords();
+    render();
+</script>
+
+</body>
+</html>

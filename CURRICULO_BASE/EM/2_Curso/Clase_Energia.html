@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase: Energía</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background-color: #f4f7f4; }
+        header { background: #fff; color: #2e7d32; border: 4px double #2e7d32; padding: 20px; border-radius: 8px; text-align: center; margin-bottom: 20px; }
+        h1 { color: #2e7d32; text-transform: uppercase; margin: 0; }
+        h2 { color: #2e7d32; border-bottom: 2px solid #a5d6a7; padding-bottom: 10px; }
+        section { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; background: #e8f5e9; padding: 15px; border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f1f8e9; }
+        .timeline { border-left: 4px solid #81c784; padding-left: 20px; margin-left: 10px; }
+        .time-block { margin-bottom: 25px; }
+        .time-badge { background: #2e7d32; color: white; padding: 2px 10px; border-radius: 4px; font-weight: bold; font-size: 0.9em; }
+        .calc-box { background: #fff3e0; border: 2px solid #e65100; border-radius: 8px; padding: 15px; margin: 10px 0; }
+        .tip-box { background: #e8f5e9; border: 2px solid #2e7d32; border-radius: 8px; padding: 15px; margin: 10px 0; }
+        .btn-container { margin-top: 20px; text-align: center; }
+        button { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 0 5px; }
+        .btn-print { background: #2e7d32; color: white; }
+        .btn-bw { background: #555; color: white; }
+        body.bw-mode { background: white !important; color: black !important; }
+        .bw-mode header, .bw-mode section { background: white !important; border-color: black !important; color: black !important; box-shadow: none !important; }
+        .bw-mode h1, .bw-mode h2 { color: black !important; }
+        .bw-mode h2 { border-bottom-color: black !important; }
+        .bw-mode .info-grid { background: #f0f0f0 !important; border: 1px solid black !important; }
+        .bw-mode table, .bw-mode th, .bw-mode td { border-color: black !important; background: white !important; color: black !important; }
+        .bw-mode th { background: #e0e0e0 !important; }
+        .bw-mode .calc-box { background: #f5f5f5 !important; border-color: black !important; }
+        .bw-mode .tip-box { background: #f5f5f5 !important; border-color: black !important; }
+        .bw-mode .time-badge { background: black !important; }
+        @media print { .btn-container { display: none; } body { padding: 0; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="font-weight: bold;">MINISTERIO DE EDUCACIÓN Y CIENCIAS</div>
+    <div style="font-weight: bold; margin-bottom: 5px;">COLEGIO NACIONAL "DON JORGE GAYOSO"</div>
+    <h1 style="margin: 0;">Educación Ambiental: Energía</h1>
+    <p style="margin: 0;">Cálculo de consumo energético y medidas de ahorro</p>
+</header>
+
+<section>
+    <h2>Datos Generales</h2>
+    <div class="info-grid">
+        <div><strong>Nivel:</strong> 2.º Curso Educación Media</div>
+        <div><strong>Duración:</strong> 80 minutos</div>
+        <div><strong>Área:</strong> Educación Ambiental</div>
+        <div><strong>Año Lectivo:</strong> 2026</div>
+    </div>
+    <p><strong>Propósito:</strong> Que los estudiantes calculen el consumo energético de un aula y propongan medidas concretas de ahorro, comprendiendo la relación entre consumo de energía, emisiones de carbono y cambio climático.</p>
+</section>
+
+<section>
+    <h2>Objetivos de Aprendizaje</h2>
+    <ul>
+        <li>Comprender los conceptos de potencia, energía y kilowatt-hora (kWh).</li>
+        <li>Calcular el consumo energético de los equipos y luminarias del aula.</li>
+        <li>Identificar oportunidades de ahorro energético en el entorno escolar.</li>
+        <li>Elaborar un registro de consumo con propuestas de mejora viables.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Desarrollo de la Clase</h2>
+    <div class="timeline">
+        <div class="time-block">
+            <span class="time-badge">15 min</span>
+            <h3>Inicio: ¿De dónde viene nuestra energía?</h3>
+            <p>El docente pregunta: <em>"¿Qué aparatos eléctricos hay en este salón?"</em></p>
+            <p>Breve explicación de la matriz energética paraguaya (mayoritariamente hidroeléctrica - Itaipú, Yacyretá) y su relación con emisiones de carbono.</p>
+        </div>
+        <div class="time-block">
+            <span class="time-badge">30 min</span>
+            <h3>Desarrollo: Cálculo de Consumo</h3>
+            <div class="calc-box">
+                <h3 style="margin-top: 0;">Fórmula de Cálculo</h3>
+                <p><strong>Energía (kWh) = Potencia (kW) × Tiempo (horas)</strong></p>
+                <p><strong>Costo = Energía (kWh) × Tarifa (Gs/kWh)</strong></p>
+            </div>
+            <p><strong>Actividad Grupal:</strong> Los estudiantes realizan un relevamiento de los artefactos eléctricos del aula y registran:</p>
+            <table>
+                <tr><th>Artefacto</th><th>Cantidad</th><th>Potencia (W)</th><th>Horas/día</th><th>Días/semana</th><th>Consumo semanal (kWh)</th></tr>
+                <tr><td>Tubos LED</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Ventiladores</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Computadora</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Proyector</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Cargadores</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td colspan="4"><strong>Total semanal (kWh)</strong></td><td></td><td></td></tr>
+            </table>
+            <p>El docente proporciona los datos de potencia de referencia y la tarifa eléctrica promedio (~300 Gs/kWh).</p>
+        </div>
+        <div class="time-block">
+            <span class="time-badge">20 min</span>
+            <h3>Aplicación: Propuesta de Ahorro</h3>
+            <div class="tip-box">
+                <h3 style="margin-top: 0;">Medidas de Ahorro Energético</h3>
+                <ul>
+                    <li>Apagar luces al salir del aula (ahorro: ~30%).</li>
+                    <li>Desconectar cargadores y equipos en standby.</li>
+                    <li>Aprovechar luz natural (abrir cortinas/persianas).</li>
+                    <li>Usar ventiladores en vez de aire acondicionado.</li>
+                    <li>Mantener limpias las lámparas para mayor eficiencia.</li>
+                    <li>Reducir horas de uso de proyectores y computadoras.</li>
+                </ul>
+            </div>
+            <p><strong>Actividad:</strong> Cada grupo calcula el ahorro potencial (en kWh y en Gs) si implementaran las medidas propuestas durante un mes.</p>
+        </div>
+        <div class="time-block">
+            <span class="time-badge">15 min</span>
+            <h3>Cierre: Socialización</h3>
+            <p>Los grupos comparten sus registros de consumo y propuestas. Se consolidan las mejores ideas para crear una "Guía de Ahorro Energético del Aula".</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Evaluación y Seguimiento</h2>
+    <p><strong>Indicadores de Logro:</strong></p>
+    <ul>
+        <li>Calcula correctamente el consumo energético de los artefactos del aula.</li>
+        <li>Identifica medidas de ahorro viables y cuantifica su impacto.</li>
+        <li>Propone un plan de acción realista para reducir el consumo.</li>
+    </ul>
+    <p><strong>Instrumentos:</strong> Lista de cotejo del registro de consumo y rúbrica de la propuesta de ahorro.</p>
+    <p><strong>Evidencia Mínima:</strong> Registro de consumo y propuesta.</p>
+</section>
+
+<section style="border-left: 5px solid #2e7d32;">
+    <h2>Material de Planificación</h2>
+    <p><strong>Capacidad:</strong> Calcula consumo energético de un aula y sugiere medidas de ahorro.</p>
+    <p><strong>Evidencia:</strong> Registro de consumo y propuesta.</p>
+</section>
+
+<div class="btn-container">
+    <button class="btn-print" onclick="window.print()">Imprimir</button>
+    <button class="btn-bw" onclick="toggleBW()">Modo Blanco y Negro</button>
+</div>
+
+<script>
+    function toggleBW() { document.body.classList.toggle('bw-mode'); }
+</script>
+</body>
+</html>

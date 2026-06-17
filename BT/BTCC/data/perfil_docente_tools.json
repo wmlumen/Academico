@@ -1,0 +1,228 @@
+{
+  "tecnicas": [
+    {
+      "icon": "📋",
+      "name": "Plan Anual",
+      "desc": "Fundamentacion, capacidades, cronograma",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/tecnicas_instrumentales_ii.html"
+    },
+    {
+      "icon": "📋",
+      "name": "Plan de Clase",
+      "desc": "Secuencia mensual de temas",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/plan_de_clase_tecnicas_instrumentales_ii.html"
+    },
+    {
+      "icon": "📋",
+      "name": "Plan Sintetico",
+      "desc": "Distribucion clase por clase",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/06_plan_sintetico_semanal_tecnicas_instrumentales_ii.html"
+    },
+    {
+      "icon": "📚",
+      "name": "Material del Estudiante",
+      "desc": "Guia completa del curso",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/material_del_estudiante_tecnicas_instrumentales_ii.html"
+    },
+    {
+      "icon": "📚",
+      "name": "Fichas del Estudiante",
+      "desc": "9 temas · 35 clases",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/fichas_estudiante_html/index_fichas_estudiante.html"
+    },
+    {
+      "icon": "📝",
+      "name": "Prueba Diagnostica",
+      "desc": "Evaluacion inicial",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/08_prueba_diagnostica_tecnicas_instrumentales_ii.html"
+    },
+    {
+      "icon": "📝",
+      "name": "RSA por Indicadores",
+      "desc": "Seguimiento academico individual",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/12_rsa_individual_tecnicas.html"
+    },
+    {
+      "icon": "📝",
+      "name": "Rubricas",
+      "desc": "Criterios de evaluacion",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/03_Rubricas_y_Correspondencia.md"
+    },
+    {
+      "icon": "📝",
+      "name": "Planilla de Proceso RSA",
+      "desc": "Registro de seguimiento academico",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/05_planilla_proceso_rsa_tecnicas_instrumentales_ii.html"
+    },
+    {
+      "icon": "📝",
+      "name": "Examenes",
+      "desc": "Evaluaciones parciales",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/Examen_Parcial_Calculo_Metrico.html"
+    },
+    {
+      "icon": "📊",
+      "name": "Planilla Asistencia",
+      "desc": "Registro de presencia (P/A/AJ/F)",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/07_planilla_asistencia_tecnicas_instrumentales_ii.html"
+    },
+    {
+      "icon": "📊",
+      "name": "Plan de Mejora",
+      "desc": "Estrategias de apoyo",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/09_plan_de_mejora_tecnicas_instrumentales_ii.html"
+    },
+    {
+      "icon": "📊",
+      "name": "Registro Anecdotico",
+      "desc": "Incidencias",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/10_registro_anecdotico_tecnicas_instrumentales_ii.html"
+    },
+    {
+      "icon": "📊",
+      "name": "Planilla Calificaciones",
+      "desc": "Registro de notas",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/11_planilla_calificaciones_tecnicas_instrumentales_ii.html"
+    },
+    {
+      "icon": "📊",
+      "name": "Registro Asistencia y Temas",
+      "desc": "Control por jornada",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/14_registro_clases_tecnicas.html"
+    },
+    {
+      "icon": "📊",
+      "name": "Perfil del Estudiante",
+      "desc": "Panel consolidado",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/15_perfil_estudiante_tecnicas.html"
+    },
+    {
+      "icon": "📊",
+      "name": "Planilla de Proceso",
+      "desc": "70% RSA + 30% Proyectos",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/16_planilla_proceso_tecnicas.html"
+    },
+    {
+      "icon": "📊",
+      "name": "Control de Temas",
+      "desc": "Avance del plan",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/13_control_temas_adecuaciones_tecnicas.html"
+    },
+    {
+      "icon": "📝",
+      "name": "Notas del Docente",
+      "desc": "Reproduccion y observaciones",
+      "href": "2_Curso/Tecnicas_Instrumentales_II/04_Notas_Docente_Reproduccion.md"
+    }
+  ],
+  "resistencia": [
+    {
+      "icon": "📋",
+      "name": "Plan Anual",
+      "desc": "Fundamentacion, capacidades, cronograma",
+      "href": "2_Curso/Resistencia_Materiales/resistencia_de_materiales.html"
+    },
+    {
+      "icon": "📋",
+      "name": "Plan de Clase",
+      "desc": "Secuencia mensual de temas",
+      "href": "2_Curso/Resistencia_Materiales/plan_de_clase_resistencia_de_materiales.html"
+    },
+    {
+      "icon": "📋",
+      "name": "Plan Sintetico",
+      "desc": "Distribucion clase por clase",
+      "href": "2_Curso/Resistencia_Materiales/06_plan_sintetico_semanal_resistencia_de_materiales.html"
+    },
+    {
+      "icon": "📚",
+      "name": "Material del Estudiante",
+      "desc": "Guia completa del curso",
+      "href": "2_Curso/Resistencia_Materiales/material_del_estudiante_resistencia_de_materiales.html"
+    },
+    {
+      "icon": "📚",
+      "name": "Fichas del Estudiante",
+      "desc": "8 temas",
+      "href": "2_Curso/Resistencia_Materiales/fichas_estudiante_html/index_fichas_estudiante.html"
+    },
+    {
+      "icon": "📝",
+      "name": "Prueba Diagnostica",
+      "desc": "Evaluacion inicial",
+      "href": "2_Curso/Resistencia_Materiales/08_prueba_diagnostica_resistencia_de_materiales.html"
+    },
+    {
+      "icon": "📝",
+      "name": "RSA por Indicadores",
+      "desc": "Seguimiento academico individual",
+      "href": "2_Curso/Resistencia_Materiales/12_rsa_individual_resistencia.html"
+    },
+    {
+      "icon": "📝",
+      "name": "Rubricas",
+      "desc": "Criterios de evaluacion",
+      "href": "2_Curso/Resistencia_Materiales/03_Rubricas_y_Correspondencia.md"
+    },
+    {
+      "icon": "📝",
+      "name": "Planilla de Proceso RSA",
+      "desc": "Registro de seguimiento",
+      "href": "2_Curso/Resistencia_Materiales/05_planilla_proceso_rsa_resistencia_de_materiales.html"
+    },
+    {
+      "icon": "📊",
+      "name": "Planilla Asistencia",
+      "desc": "Registro de presencia",
+      "href": "2_Curso/Resistencia_Materiales/07_planilla_asistencia_resistencia_materiales.html"
+    },
+    {
+      "icon": "📊",
+      "name": "Plan de Mejora",
+      "desc": "Estrategias de apoyo",
+      "href": "2_Curso/Resistencia_Materiales/09_plan_de_mejora_resistencia_de_materiales.html"
+    },
+    {
+      "icon": "📊",
+      "name": "Registro Anecdotico",
+      "desc": "Incidencias",
+      "href": "2_Curso/Resistencia_Materiales/10_registro_anecdotico_resistencia_de_materiales.html"
+    },
+    {
+      "icon": "📊",
+      "name": "Planilla Calificaciones",
+      "desc": "Registro de notas",
+      "href": "2_Curso/Resistencia_Materiales/11_planilla_calificaciones_resistencia_de_materiales.html"
+    },
+    {
+      "icon": "📊",
+      "name": "Registro Asistencia y Temas",
+      "desc": "Control por jornada",
+      "href": "2_Curso/Resistencia_Materiales/14_registro_clases_resistencia.html"
+    },
+    {
+      "icon": "📊",
+      "name": "Perfil del Estudiante",
+      "desc": "Panel consolidado",
+      "href": "2_Curso/Resistencia_Materiales/15_perfil_estudiante_resistencia.html"
+    },
+    {
+      "icon": "📊",
+      "name": "Planilla de Proceso",
+      "desc": "70% RSA + 30% Proyectos",
+      "href": "2_Curso/Resistencia_Materiales/16_planilla_proceso_resistencia.html"
+    },
+    {
+      "icon": "📊",
+      "name": "Control de Temas",
+      "desc": "Avance del plan",
+      "href": "2_Curso/Resistencia_Materiales/13_control_temas_adecuaciones_resistencia.html"
+    },
+    {
+      "icon": "📝",
+      "name": "Notas del Docente",
+      "desc": "Reproduccion y observaciones",
+      "href": "2_Curso/Resistencia_Materiales/04_Notas_Docente_Reproduccion.md"
+    }
+  ]
+}

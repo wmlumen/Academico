@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Clase Desarrollado - Resistencia de Materiales</title>
+    <style>
+        :root {
+            --border: #1f2937;
+            --grid: #6b7280;
+            --head: #dbeafe;
+            --section: #eff6ff;
+            --bg: #f8fafc;
+            --text: #111827;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 18px;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            line-height: 1.45;
+        }
+
+        .topbar {
+            max-width: 1400px;
+            margin: 0 auto 14px;
+        }
+
+        .topnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px;
+            background: #fff;
+            border: 1px solid var(--grid);
+        }
+
+        .topnav a {
+            display: inline-block;
+            padding: 8px 12px;
+            border: 1px solid #93c5fd;
+            background: #eff6ff;
+            color: #1e3a8a;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .topnav a:hover {
+            background: #dbeafe;
+        }
+
+        .sheet {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border: 2px solid var(--border);
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .title h1 {
+            margin: 0 0 8px;
+            font-size: 24px;
+            text-transform: uppercase;
+        }
+
+        .title p {
+            margin: 3px 0;
+            font-size: 14px;
+        }
+
+        h2, h3, h4 {
+            margin: 18px 0 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+
+        th, td {
+            border: 1px solid var(--grid);
+            padding: 8px 10px;
+            vertical-align: top;
+            font-size: 12.5px;
+        }
+
+        th {
+            background: var(--head);
+            text-align: left;
+        }
+
+        .section-row th {
+            background: var(--section);
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+
+        .block {
+            border: 1px solid var(--grid);
+            padding: 14px;
+            margin-top: 14px;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        li { margin-bottom: 4px; }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        @media (max-width: 900px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+            }
+
+            .topbar {
+                display: none;
+            }
+
+            .sheet {
+                max-width: none;
+                border: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <nav class="topnav" aria-label="Navegacion principal">
+            <a href="../../index.html">Inicio</a>
+            <a href="resistencia_materiales.html">Plan anual</a>
+            <a href="material_del_estudiante_resistencia_materiales.html">Guia del estudiante</a>
+            <a href="fichas_estudiante_html/index_fichas_estudiante.html">Fichas por tema</a>
+        </nav>
+    </div>
+    <div class="sheet">
+        <div class="title">
+            <h1>Plan de Clase Desarrollado e Instrumentos Evaluativos</h1>
+            <p><strong>Cátedra:</strong> Resistencia de Materiales</p>
+            <p><strong>Bachillerato:</strong> Técnico en Construcciones Civiles (BTCC) | <strong>Curso:</strong> Segundo Curso</p>
+            <p><strong>Institución:</strong> Colegio Nacional Defensores del Chaco | <strong>Turno:</strong> Mañana | <strong>Sección:</strong> A</p>
+            <p><strong>Docente:</strong> Christhian Keim | <strong>Año lectivo:</strong> 2026 | <strong>Carga horaria anual:</strong> 144 horas cátedra</p>
+        </div>
+
+        <table>
+            <tr class="section-row"><th>Presentación</th></tr>
+            <tr>
+                <td>Este documento desarrolla el plan de clase anual de la cátedra de Resistencia de Materiales, tomando como base el plan anual vigente. Incluye planes de clase por meses, secuencias didácticas, indicadores, evidencias, estrategias evaluativas e instrumentos de aplicación docente.</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr class="section-row"><th>Organización General</th></tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li>Capacidad a desarrollar.</li>
+                        <li>Contenidos.</li>
+                        <li>Propósito de aprendizaje.</li>
+                        <li>Secuencia didáctica: inicio, desarrollo y cierre.</li>
+                        <li>Indicadores de logro.</li>
+                        <li>Estrategias evaluativas.</li>
+                        <li>Recursos didácticos.</li>
+                        <li>Evidencias esperadas.</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr class="section-row"><th colspan="4">3. Cronograma de Desarrollo de Temas</th></tr>
+            <tr>
+                <th style="width: 8%;">N.º</th>
+                <th style="width: 20%;">Mes</th>
+                <th>Tema / Eje de desarrollo</th>
+                <th style="width: 14%;">Carga horaria</th>
+            </tr>
+            <tr><td>1</td><td>Marzo</td><td>Introducción a la Resistencia de Materiales y seguridad técnica</td><td>16 h</td></tr>
+            <tr><td>2</td><td>Abril</td><td>Fuerzas, resultantes y momento de una fuerza</td><td>16 h</td></tr>
+            <tr><td>3</td><td>Mayo</td><td>Equilibrio, vínculos y reacciones de apoyo</td><td>16 h</td></tr>
+            <tr><td>4</td><td>Junio</td><td>Tracción, compresión y Ley de Hooke</td><td>16 h</td></tr>
+            <tr><td>5</td><td>Julio</td><td>Cortante y momento flector en vigas simples</td><td>12 h</td></tr>
+            <tr><td>6</td><td>Agosto</td><td>Flexión, eje neutro y propiedades geométricas de secciones</td><td>20 h</td></tr>
+            <tr><td>7</td><td>Septiembre</td><td>Materiales estructurales, pilares, columnas, muros y cerchas</td><td>16 h</td></tr>
+            <tr><td>8</td><td>Octubre</td><td>Hormigón armado y puntos críticos de control</td><td>16 h</td></tr>
+            <tr><td>9</td><td>Noviembre</td><td>Integración, memoria de cálculo y defensa técnica</td><td>16 h</td></tr>
+        </table>
+
+        <table>
+            <tr class="section-row"><th>4. Planes de Clase Desarrollados</th></tr>
+        </table>
+
+        <div class="block">
+            <h3>4.1 Tema 1 - Marzo - 16 horas</h3>
+            <div class="two-col">
+                <div>
+                    <h4>Capacidad</h4>
+                    <ul>
+                        <li>Interpreta la finalidad de la Resistencia de Materiales como estudio de sólidos deformables.</li>
+                        <li>Reconoce fuerzas, cargas, acciones y vectores aplicados a estructuras.</li>
+                    </ul>
+                    <h4>Contenidos</h4>
+                    <ul>
+                        <li>Definición e importancia de la resistencia de materiales.</li>
+                        <li>Cargas estáticas y dinámicas.</li>
+                        <li>Magnitud, dirección y sentido de una fuerza.</li>
+                        <li>Unidades.</li>
+                        <li>Seguridad en laboratorio y taller.</li>
+                    </ul>
+                    <h4>Propósito</h4>
+                    <p>Comprender el campo de estudio de la asignatura y establecer los conceptos iniciales necesarios para el análisis técnico de elementos estructurales.</p>
+                </div>
+                <div>
+                    <h4>Secuencia didáctica</h4>
+                    <p><strong>Inicio:</strong> recuperación de saberes previos, observación de imágenes de estructuras y diálogo sobre fallas estructurales.</p>
+                    <p><strong>Desarrollo:</strong> lectura guiada, explicación de conceptos, representación de fuerzas, clasificación de cargas, elaboración de glosario técnico y ejercicios de vectores.</p>
+                    <p><strong>Cierre:</strong> síntesis oral, revisión colectiva de ejemplos y registro de conclusiones en carpeta.</p>
+                    <h4>Indicadores</h4>
+                    <ul>
+                        <li>Define fuerza, carga, esfuerzo, tensión y deformación.</li>
+                        <li>Representa fuerzas mediante vectores.</li>
+                        <li>Explica la relación entre seguridad estructural y resistencia de materiales.</li>
+                    </ul>
+                </div>
+            </div>
+            <table>
+                <tr>
+                    <th>Estrategias evaluativas</th>
+                    <th>Recursos didácticos</th>
+                    <th>Evidencias esperadas</th>
+                </tr>
+                <tr>
+                    <td>Diagnóstico escrito, lista de cotejo del glosario, ejercicios en carpeta y observación para RSA.</td>
+                    <td>Pizarra, regla, calculadora, cuadernillo, láminas de estructuras, proyector, normas básicas de seguridad.</td>
+                    <td>Glosario técnico inicial, ejercicios de vectores y registro de normas de seguridad.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="block">
+            <h3>4.2 Tema 2 - Abril - 16 horas</h3>
+            <p><strong>Capacidad:</strong> Calcula resultantes de fuerzas concurrentes y no concurrentes. Comprende el momento de una fuerza y su efecto de rotación.</p>
+            <p><strong>Contenidos:</strong> suma y descomposición de fuerzas, fuerzas concurrentes, paralelas y coplanares, momento respecto a un punto, par de fuerzas y teorema de Varignon.</p>
+            <p><strong>Propósito:</strong> desarrollar la capacidad de representar, componer y analizar sistemas de fuerzas aplicados a estructuras simples.</p>
+            <p><strong>Secuencia:</strong> inicio con repaso de vectores; desarrollo con demostraciones, resolución escalonada y trabajo en parejas; cierre con corrección colectiva y reflexión sobre la utilidad del momento.</p>
+            <table>
+                <tr>
+                    <th>Indicadores</th>
+                    <th>Estrategias evaluativas</th>
+                    <th>Recursos didácticos</th>
+                    <th>Evidencias</th>
+                </tr>
+                <tr>
+                    <td>Calcula resultantes por métodos analíticos y gráficos, determina momentos y controla unidades.</td>
+                    <td>Prueba práctica de cálculo, portafolio de ejercicios y rúbrica de resolución de problemas.</td>
+                    <td>Dinamómetros, regla, escuadra, calculadora científica, hojas milimetradas y simulador sencillo.</td>
+                    <td>Ejercicios resueltos, portafolio de problemas y registro de procedimientos.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="block">
+            <h3>4.3 Tema 3 - Mayo - 16 horas</h3>
+            <p><strong>Capacidad:</strong> Aplica condiciones de equilibrio en el plano. Analiza vínculos y calcula reacciones en apoyos de estructuras simples.</p>
+            <p><strong>Contenidos:</strong> condiciones de equilibrio, tipos de apoyos, diagramas de cuerpo libre y reacciones de apoyo.</p>
+            <p><strong>Propósito:</strong> aplicar las leyes del equilibrio para interpretar y resolver casos básicos de estática en estructuras sencillas.</p>
+            <p><strong>Secuencia:</strong> inicio con repaso de resultantes y momentos; desarrollo con modelado de vigas, diagramas de cuerpo libre y resolución de problemas; cierre con defensa breve de procedimientos.</p>
+            <table>
+                <tr>
+                    <th>Indicadores</th>
+                    <th>Estrategias evaluativas</th>
+                    <th>Recursos didácticos</th>
+                    <th>Evidencias</th>
+                </tr>
+                <tr>
+                    <td>Dibuja correctamente diagramas de cuerpo libre, identifica cargas y obtiene reacciones coherentes.</td>
+                    <td>Ejercitario individual, control de carpeta, defensa oral breve y observación para RSA.</td>
+                    <td>Pizarra, tarjetas de cargas, modelos de vigas, planillas de ejercicios, computadora y proyector.</td>
+                    <td>Diagramas de cuerpo libre, ejercicios de reacciones y carpeta técnica actualizada.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="block">
+            <h3>4.4 Tema 4 - Junio - 16 horas</h3>
+            <p><strong>Capacidad:</strong> Analiza elementos sometidos a tracción y compresión. Relaciona carga, área, tensión, deformación y módulo de elasticidad.</p>
+            <p><strong>Contenidos:</strong> esfuerzo axil, tensión normal, deformación unitaria, Ley de Hooke, módulo de elasticidad y comportamiento básico de madera, acero y hormigón.</p>
+            <p><strong>Propósito:</strong> comprender el comportamiento de piezas sometidas a cargas axiales y aplicar relaciones básicas entre carga, sección y deformación.</p>
+            <p><strong>Secuencia:</strong> inicio con observación de piezas reales; desarrollo con explicación de fórmulas, lectura de gráficos y comparación de materiales; cierre con conclusiones técnicas.</p>
+            <table>
+                <tr>
+                    <th>Indicadores</th>
+                    <th>Estrategias evaluativas</th>
+                    <th>Recursos didácticos</th>
+                    <th>Evidencias</th>
+                </tr>
+                <tr>
+                    <td>Diferencia tracción y compresión, calcula tensión y deformación e interpreta la proporcionalidad elástica.</td>
+                    <td>Informe corto de ensayo o simulación, prueba de problemas y lista de cotejo del uso de fórmulas y unidades.</td>
+                    <td>Probetas, muestras de madera, acero y hormigón, calculadora, tablas técnicas, laboratorio y hojas de informe.</td>
+                    <td>Informe de observación, ejercicios de cálculo y cuadro comparativo de materiales.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="block">
+            <h3>4.5 Tema 5 - Julio - 12 horas</h3>
+            <p><strong>Capacidad:</strong> Identifica esfuerzo cortante y momento flector en piezas de plano medio. Representa leyes de esfuerzos en vigas simples.</p>
+            <p><strong>Contenidos:</strong> cortante directo, fuerzas internas, diagramas de esfuerzo normal, cortante y momento flector, cargas puntuales y repartidas.</p>
+            <p><strong>Propósito:</strong> introducir el análisis interno de vigas y representar gráficamente la distribución de esfuerzos básicos.</p>
+            <p><strong>Secuencia:</strong> inicio con repaso de reacciones; desarrollo con seccionamiento conceptual y construcción de diagramas; cierre con revisión de signos y escalas.</p>
+            <table>
+                <tr>
+                    <th>Indicadores</th>
+                    <th>Estrategias evaluativas</th>
+                    <th>Recursos didácticos</th>
+                    <th>Evidencias</th>
+                </tr>
+                <tr>
+                    <td>Identifica esfuerzos internos, traza diagramas correctamente y relaciona carga, cortante y momento.</td>
+                    <td>Trabajo práctico en clase, portafolio de diagramas y evaluación formativa con retroalimentación.</td>
+                    <td>Plantillas de vigas, papel milimetrado, pizarra, calculadora, reglas y software de verificación.</td>
+                    <td>Diagramas de esfuerzos y portafolio de ejercicios.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="block">
+            <h3>4.6 Tema 6 - Agosto - 20 horas</h3>
+            <p><strong>Capacidad:</strong> Analiza el comportamiento de un elemento estructural sujeto a flexión. Calcula propiedades básicas de secciones y reconoce fibras comprimidas y traccionadas.</p>
+            <p><strong>Contenidos:</strong> flexión simple, eje neutro, tensión de flexión, centroide, área, momento de inercia y criterios de rigidez y seguridad.</p>
+            <p><strong>Propósito:</strong> comprender la relación entre geometría de la sección y resistencia a la flexión.</p>
+            <p><strong>Secuencia:</strong> inicio con observación de perfiles; desarrollo con cálculo de propiedades geométricas y análisis de secciones; cierre con síntesis comparativa entre perfiles.</p>
+            <table>
+                <tr>
+                    <th>Indicadores</th>
+                    <th>Estrategias evaluativas</th>
+                    <th>Recursos didácticos</th>
+                    <th>Evidencias</th>
+                </tr>
+                <tr>
+                    <td>Localiza eje neutro, calcula propiedades geométricas simples e interpreta la influencia de la forma de la sección.</td>
+                    <td>Prueba escrita con ejercicios, rúbrica de procedimiento e informe de observación de modelos.</td>
+                    <td>Perfiles, varillas, madera, muestras de vigas, tablas de propiedades, calculadora e instrumentos de medición.</td>
+                    <td>Ejercicios de flexión, cálculo de secciones e informe breve.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="block">
+            <h3>4.7 Tema 7 - Septiembre - 16 horas</h3>
+            <p><strong>Capacidad:</strong> Determina propiedades mecánicas básicas de madera, acero y hormigón. Clasifica pilares, columnas, muros, cerchas, andamios y encofrados según su función resistente.</p>
+            <p><strong>Contenidos:</strong> propiedades resistentes, pandeo introductorio, tipos de pilares y columnas, muros portantes, cerchas y andamios.</p>
+            <p><strong>Propósito:</strong> relacionar materiales y elementos estructurales con su función resistente y condiciones de uso.</p>
+            <p><strong>Secuencia:</strong> inicio con presentación de fotografías; desarrollo con análisis de fichas técnicas, comparación de materiales y clasificación de elementos; cierre con cuadro comparativo y conclusiones.</p>
+            <table>
+                <tr>
+                    <th>Indicadores</th>
+                    <th>Estrategias evaluativas</th>
+                    <th>Recursos didácticos</th>
+                    <th>Evidencias</th>
+                </tr>
+                <tr>
+                    <td>Selecciona materiales según solicitación, diferencia funciones resistentes y reconoce riesgos de pandeo y sobrecarga.</td>
+                    <td>Cuadro comparativo, exposición grupal y lista de cotejo de observación técnica.</td>
+                    <td>Muestras de materiales, fichas técnicas, fotografías de obra, catálogos, normas de seguridad y proyector.</td>
+                    <td>Cuadro comparativo, exposición breve y registro de observación.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="block">
+            <h3>4.8 Tema 8 - Octubre - 16 horas</h3>
+            <p><strong>Capacidad:</strong> Reconoce el comportamiento conjunto acero-hormigón. Distingue solicitaciones y puntos críticos de control en elementos de hormigón armado de baja complejidad.</p>
+            <p><strong>Contenidos:</strong> función del hormigón y del acero, adherencia, zonas traccionadas y comprimidas, vigas, losas, pilares y control de ejecución.</p>
+            <p><strong>Propósito:</strong> comprender la lógica resistente del hormigón armado y su control técnico básico.</p>
+            <p><strong>Secuencia:</strong> inicio con presentación de planos o muestras; desarrollo con identificación de armaduras y control de obra; cierre con síntesis gráfica y socialización.</p>
+            <table>
+                <tr>
+                    <th>Indicadores</th>
+                    <th>Estrategias evaluativas</th>
+                    <th>Recursos didácticos</th>
+                    <th>Evidencias</th>
+                </tr>
+                <tr>
+                    <td>Explica el trabajo del acero en tracción, identifica armaduras y señala puntos críticos de control.</td>
+                    <td>Análisis de plano o detalle, práctica de identificación de armaduras y rúbrica de informe técnico.</td>
+                    <td>Planos de H° A°, varillas, alambre, separadores, fichas de control, maqueta y EPP.</td>
+                    <td>Informe técnico breve, identificación de armaduras y registro de control.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="block">
+            <h3>4.9 Tema 9 - Noviembre - 16 horas</h3>
+            <p><strong>Capacidad:</strong> Integra conocimientos de cargas, equilibrio, esfuerzos y materiales para verificar una estructura simple y comunicar resultados técnicos.</p>
+            <p><strong>Contenidos:</strong> diseño y verificación simplificada de una viga, columna o cercha, memoria de cálculo básica, presentación de resultados y repaso general.</p>
+            <p><strong>Propósito:</strong> integrar los contenidos del año mediante una actividad de aplicación técnica y comunicación estructurada de resultados.</p>
+            <p><strong>Secuencia:</strong> inicio con revisión general; desarrollo con proyecto grupal, elaboración de memoria y tutorías; cierre con defensa técnica, autoevaluación y coevaluación.</p>
+            <table>
+                <tr>
+                    <th>Indicadores</th>
+                    <th>Estrategias evaluativas</th>
+                    <th>Recursos didácticos</th>
+                    <th>Evidencias</th>
+                </tr>
+                <tr>
+                    <td>Elabora memoria de cálculo ordenada, justifica cargas y esfuerzos y presenta conclusiones con lenguaje técnico adecuado.</td>
+                    <td>Proyecto integrador, defensa oral, autoevaluación, coevaluación y evaluación sumativa final.</td>
+                    <td>Computadora, calculadora, plantillas de memoria, planos, tablas técnicas, rúbrica y materiales de maqueta.</td>
+                    <td>Proyecto integrador completo, memoria de cálculo y defensa oral.</td>
+                </tr>
+            </table>
+        </div>
+
+        <table>
+            <tr class="section-row"><th>5. Anexos de Instrumentos Evaluativos</th></tr>
+        </table>
+
+        <table>
+            <tr class="section-row"><th colspan="4">Anexo 1. Prueba Diagnóstica Inicial</th></tr>
+            <tr>
+                <td colspan="4">
+                    <ol>
+                        <li>Defina con sus palabras: fuerza, carga y estructura.</li>
+                        <li>Dibuje un vector indicando magnitud, dirección y sentido.</li>
+                        <li>Indique dos ejemplos de carga en una obra.</li>
+                        <li>Resuelva una suma simple de fuerzas en el mismo sentido.</li>
+                        <li>Mencione dos normas básicas de seguridad para taller o laboratorio.</li>
+                    </ol>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr class="section-row"><th colspan="4">Anexo 2. Lista de Cotejo para Glosario Técnico</th></tr>
+            <tr><th>Criterio</th><th>Sí</th><th>No</th><th>Observaciones</th></tr>
+            <tr><td>Incluye los términos solicitados</td><td></td><td></td><td></td></tr>
+            <tr><td>Define con claridad cada término</td><td></td><td></td><td></td></tr>
+            <tr><td>Utiliza lenguaje técnico adecuado</td><td></td><td></td><td></td></tr>
+            <tr><td>Presenta orden y limpieza</td><td></td><td></td><td></td></tr>
+            <tr><td>Entrega en la fecha establecida</td><td></td><td></td><td></td></tr>
+        </table>
+
+        <table>
+            <tr class="section-row"><th colspan="4">Anexo 3. Lista de Cotejo de Seguridad</th></tr>
+            <tr><th>Criterio</th><th>Sí</th><th>No</th><th>Observaciones</th></tr>
+            <tr><td>Usa correctamente EPP cuando corresponde</td><td></td><td></td><td></td></tr>
+            <tr><td>Mantiene orden en su puesto de trabajo</td><td></td><td></td><td></td></tr>
+            <tr><td>Manipula materiales e instrumentos con cuidado</td><td></td><td></td><td></td></tr>
+            <tr><td>Sigue indicaciones del docente</td><td></td><td></td><td></td></tr>
+            <tr><td>Respeta normas de seguridad del aula/taller</td><td></td><td></td><td></td></tr>
+        </table>
+
+        <table>
+            <tr class="section-row"><th colspan="5">Anexo 4. Rúbrica de Resolución de Problemas</th></tr>
+            <tr><th>Criterio</th><th>4 - Alto</th><th>3 - Medio</th><th>2 - Básico</th><th>1 - Inicial</th></tr>
+            <tr><td>Comprensión del problema</td><td>Interpreta completamente</td><td>Interpreta casi todo</td><td>Interpreta parcialmente</td><td>No interpreta</td></tr>
+            <tr><td>Procedimiento</td><td>Ordenado y correcto</td><td>Menores errores</td><td>Varias omisiones</td><td>Desordenado</td></tr>
+            <tr><td>Uso de fórmulas y unidades</td><td>Correcto y preciso</td><td>Pocos errores</td><td>Errores frecuentes</td><td>Incorrecto</td></tr>
+            <tr><td>Resultado y conclusión</td><td>Correcto y fundamentado</td><td>Correcto sin justificar del todo</td><td>Parcial</td><td>Incorrecto</td></tr>
+        </table>
+
+        <table>
+            <tr class="section-row"><th colspan="8">Anexo 5. Registro de Observación para RSA</th></tr>
+            <tr><th>Fecha</th><th>Estudiante</th><th>Participación</th><th>Procedimiento</th><th>Uso de unidades</th><th>Orden y limpieza</th><th>Seguridad</th><th>Observaciones</th></tr>
+            <tr><td>____ / ____ / 2026</td><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>____ / ____ / 2026</td><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>____ / ____ / 2026</td><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </table>
+
+        <table>
+            <tr class="section-row"><th colspan="4">Anexo 6. Control de Carpeta Técnica</th></tr>
+            <tr><th>Criterio</th><th>Sí</th><th>No</th><th>Observaciones</th></tr>
+            <tr><td>Contiene fecha y tema</td><td></td><td></td><td></td></tr>
+            <tr><td>Presenta ejercicios completos</td><td></td><td></td><td></td></tr>
+            <tr><td>Usa símbolos y unidades correctamente</td><td></td><td></td><td></td></tr>
+            <tr><td>Incluye correcciones</td><td></td><td></td><td></td></tr>
+            <tr><td>Mantiene orden y legibilidad</td><td></td><td></td><td></td></tr>
+        </table>
+
+        <table>
+            <tr class="section-row"><th>Anexo 7. Guía de Informe de Ensayo o Simulación</th></tr>
+            <tr>
+                <td>
+                    Título, fecha, objetivo, material o elemento observado, procedimiento, resultados, interpretación técnica y conclusión.
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr class="section-row"><th colspan="5">Anexo 8. Rúbrica para Exposición Oral</th></tr>
+            <tr><th>Criterio</th><th>4 - Alto</th><th>3 - Medio</th><th>2 - Básico</th><th>1 - Inicial</th></tr>
+            <tr><td>Dominio del contenido</td><td>Explica con seguridad</td><td>Explica con apoyo</td><td>Explicación incompleta</td><td>No domina</td></tr>
+            <tr><td>Lenguaje técnico</td><td>Preciso</td><td>Aceptable</td><td>Escaso</td><td>Incorrecto</td></tr>
+            <tr><td>Claridad y organización</td><td>Muy clara</td><td>Clara</td><td>Poco clara</td><td>Desordenada</td></tr>
+            <tr><td>Uso de apoyos</td><td>Pertinente</td><td>Suficiente</td><td>Limitado</td><td>No utiliza</td></tr>
+        </table>
+
+        <table>
+            <tr class="section-row"><th colspan="5">Anexo 9. Rúbrica del Proyecto Integrador</th></tr>
+            <tr><th>Criterio</th><th>4 - Alto</th><th>3 - Medio</th><th>2 - Básico</th><th>1 - Inicial</th></tr>
+            <tr><td>Croquis y presentación</td><td>Excelente</td><td>Buena</td><td>Aceptable</td><td>Deficiente</td></tr>
+            <tr><td>Cálculos y procedimientos</td><td>Correctos y completos</td><td>Pocos errores</td><td>Errores importantes</td><td>Muy insuficientes</td></tr>
+            <tr><td>Interpretación técnica</td><td>Fundamentada</td><td>Parcialmente fundamentada</td><td>Débil</td><td>No fundamenta</td></tr>
+            <tr><td>Defensa oral</td><td>Clara y sólida</td><td>Clara</td><td>Parcial</td><td>Deficiente</td></tr>
+            <tr><td>Trabajo en equipo</td><td>Muy colaborativo</td><td>Colaborativo</td><td>Irregular</td><td>Escaso</td></tr>
+        </table>
+
+        <table>
+            <tr class="section-row"><th>Anexo 10. Ficha de Autoevaluación</th></tr>
+            <tr>
+                <td>
+                    <ol>
+                        <li>¿Qué conceptos comprendí mejor?</li>
+                        <li>¿En qué procedimiento tuve más dificultades?</li>
+                        <li>¿Cómo fue mi participación en clase?</li>
+                        <li>¿Respeté normas de seguridad y orden?</li>
+                        <li>¿Qué necesito reforzar?</li>
+                    </ol>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr class="section-row"><th colspan="4">Anexo 11. Ficha de Coevaluación</th></tr>
+            <tr><th>Criterio</th><th>Siempre</th><th>A veces</th><th>No</th></tr>
+            <tr><td>Cumplió su rol</td><td></td><td></td><td></td></tr>
+            <tr><td>Colaboró con el grupo</td><td></td><td></td><td></td></tr>
+            <tr><td>Respetó acuerdos</td><td></td><td></td><td></td></tr>
+            <tr><td>Aportó ideas y procedimientos</td><td></td><td></td><td></td></tr>
+        </table>
+
+        <table>
+            <tr class="section-row"><th>Anexo 12. Plantilla de Memoria de Cálculo Básica</th></tr>
+            <tr>
+                <td>Título del problema, datos, esquema o croquis, fórmulas utilizadas, desarrollo del cálculo, resultado final, interpretación técnica y conclusión.</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr class="section-row"><th>6. Observación Final</th></tr>
+            <tr>
+                <td>Este documento puede aplicarse como guía operativa anual de la cátedra y admite ajustes según el ritmo del grupo, la disponibilidad institucional, las actividades complementarias y las decisiones de coordinación técnica.</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

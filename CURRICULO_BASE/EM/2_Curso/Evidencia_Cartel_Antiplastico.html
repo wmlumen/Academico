@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidencia: Campaña Anti-Plástico</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.5; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background: #fff; }
+        .header-box { border: 4px double #2e7d32; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center; }
+        .header-box h1 { color: #2e7d32; text-transform: uppercase; margin: 5px 0; font-size: 1.3em; }
+        .student-info { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0; font-size: 0.95em; }
+        h2 { background: #e8f5e9; color: #2e7d32; padding: 8px; font-size: 1.1em; border-left: 5px solid #2e7d32; }
+        .example-box { background: #fffde7; border: 2px dashed #f9a825; padding: 12px; margin: 10px 0; border-radius: 5px; font-size: 0.9em; }
+        .example-box h4 { color: #f57f17; margin: 0 0 5px 0; }
+        .poster-space { border: 2px dashed #999; min-height: 250px; margin: 10px 0; text-align: center; padding: 20px; background: #fafafa; border-radius: 5px; }
+        .guide { background: #f3e5f5; border-left: 5px solid #7b1fa2; padding: 10px; margin: 10px 0; font-size: 0.9em; }
+        .footer { margin-top: 30px; text-align: center; font-size: 0.8em; color: #666; border-top: 1px solid #eee; padding-top: 10px; }
+        .btn-container { text-align: center; margin-bottom: 15px; }
+        button { padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 0 4px; }
+        .btn-print { background: #2e7d32; color: white; }
+        .btn-bw { background: #555; color: white; }
+        body.bw-mode { background: white !important; color: black !important; }
+        .bw-mode .header-box { border-color: black !important; }
+        .bw-mode h1 { color: black !important; }
+        .bw-mode h2 { background: #f0f0f0 !important; color: black !important; border-left-color: black !important; }
+        .bw-mode .example-box { background: #f5f5f5 !important; border-color: black !important; }
+        .bw-mode .example-box h4 { color: black !important; }
+        @media print { .btn-container { display: none; } body { padding: 10px; } }
+    </style>
+</head>
+<body>
+
+<div class="btn-container">
+    <button class="btn-print" onclick="window.print()">Imprimir</button>
+    <button class="btn-bw" onclick="document.body.classList.toggle('bw-mode')">Modo B/N</button>
+</div>
+
+<div class="header-box">
+    <div style="font-weight: bold;">MINISTERIO DE EDUCACIÓN Y CIENCIAS</div>
+    <div style="font-weight: bold;">COLEGIO NACIONAL "DON JORGE GAYOSO"</div>
+    <h1>Campaña Anti-Plástico: Borrador del Póster</h1>
+</div>
+
+<div class="student-info">
+    <div><strong>Nombre:</strong> _____________________________________</div>
+    <div><strong>Curso:</strong> 2.º BTCA</div>
+    <div><strong>Fecha:</strong> ____/____/2026</div>
+</div>
+
+<div class="guide">
+    <strong>Consigna:</strong> Diseñá un póster/campaña visual para concientizar sobre la reducción de plásticos en el centro educativo. Incluí: un eslogan llamativo, 3 datos impactantes, 3 alternativas viables y un diseño visual atractivo.
+</div>
+
+<div class="example-box">
+    <h4>Ejemplo de Póster</h4>
+    <div style="border: 2px solid #2e7d32; padding: 15px; border-radius: 5px; text-align: center;">
+        <h3 style="color: #2e7d32; text-transform: uppercase; margin: 5px 0;">"Plástico: Fuera de mi Escuela"</h3>
+        <p style="font-size: 0.85em; font-weight: bold;">Datos impactantes:</p>
+        <ul style="text-align: left; font-size: 0.85em;">
+            <li>Solo el 9% del plástico se recicla a nivel mundial.</li>
+            <li>Para 2050 habrá más plástico que peces en el mar.</li>
+            <li>Una botella plástica tarda 450 años en degradarse.</li>
+        </ul>
+        <p style="font-size: 0.85em; font-weight: bold;">Alternativas:</p>
+        <ul style="text-align: left; font-size: 0.85em;">
+            <li>Usá tu botella reutilizable.</li>
+            <li>Llevá tu bolsa de tela.</li>
+            <li>Comprá a granel con envases propios.</li>
+        </ul>
+        <p style="font-size: 0.8em; margin-top: 5px; font-style: italic;">"Pequeños cambios, grandes resultados" - 2.º BTCA</p>
+    </div>
+</div>
+
+<h2>Mi Póster (Borrador)</h2>
+<div class="poster-space">
+    <p style="color: #999; margin-top: 100px;">Dibujá acá el diseño de tu póster.<br>Incluí eslogan, datos visuales y alternativas.</p>
+</div>
+
+<h2>Mensaje Central</h2>
+<div style="border: 1px solid #ddd; min-height: 60px; padding: 10px; margin: 10px 0;"></div>
+
+<h2>Alternativas para la Institución</h2>
+<table>
+    <tr><th>N.º</th><th>Alternativa</th><th>¿Cómo implementarlo?</th></tr>
+    <tr><td>1</td><td></td><td></td></tr>
+    <tr><td>2</td><td></td><td></td></tr>
+    <tr><td>3</td><td></td><td></td></tr>
+</table>
+
+<div class="footer">Educación Ambiental - MEC 2026 | Evidencia Mínima: Campaña/Póster anti-plástico</div>
+
+</body>
+</html>

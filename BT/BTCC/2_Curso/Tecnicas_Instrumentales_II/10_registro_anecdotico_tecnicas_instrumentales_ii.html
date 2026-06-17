@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro Anecdotico — Técnicas Instrumentales II</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,sans-serif;background:#f0f4fa;color:#172133;padding:16px}
+.wrap{max-width:1200px;margin:0 auto}
+
+.header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:16px 22px;border-radius:14px;margin-bottom:14px}
+.header h1{margin:0;font-size:20px}
+.header p{margin:4px 0 0;font-size:13px;opacity:.9}
+
+.controls{background:#fff;border:1px solid #d8e3ef;border-radius:12px;padding:10px 14px;margin-bottom:14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;box-shadow:0 2px 8px rgba(23,33,51,0.06)}
+.controls label{font-size:13px;font-weight:600;color:#2a405c}
+.controls select{padding:7px 10px;border:1px solid #b6c6da;border-radius:8px;font-size:13px;background:#fff;flex:1;min-width:200px}
+.controls .total{font-size:12px;color:#5a687c;margin-left:auto}
+
+.record-card{background:#fff;border:1px solid #d8e3ef;border-radius:12px;margin-bottom:12px;overflow:hidden;box-shadow:0 2px 8px rgba(23,33,51,0.04)}
+.record-card .rec-head{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#f5f9ff;border-bottom:1px solid #d8e3ef}
+.record-card .rec-head .stu-name{font-weight:700;font-size:14px;color:#0f4c81}
+.record-card .rec-head .rec-count{font-size:12px;color:#5a687c}
+.record-card .rec-body{padding:10px 14px}
+
+/* Ficha de registro individual */
+.rec-item{border:1px solid #e8ecf0;border-radius:10px;margin-bottom:10px;overflow:hidden}
+.rec-item:last-child{margin-bottom:0}
+.rec-item .rec-summary{display:flex;align-items:center;gap:10px;padding:8px 12px;background:#fafafa;cursor:pointer;transition:background .12s}
+.rec-item .rec-summary:hover{background:#f0f4fa}
+.rec-item .rec-summary .rec-date{font-weight:700;font-size:13px;color:#0f4c81;min-width:80px}
+.rec-item .rec-summary .rec-preview{font-size:12px;color:#4d6177;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rec-item .rec-summary .rec-toggle{font-size:12px;color:#8899aa}
+.rec-item .rec-summary .rec-del{background:none;border:none;color:#c62828;cursor:pointer;font-size:16px;opacity:.4;padding:0 4px}
+.rec-item .rec-summary .rec-del:hover{opacity:1}
+.rec-item .rec-detail{display:none;padding:10px 14px;border-top:1px solid #e8ecf0}
+.rec-item .rec-detail.open{display:block}
+
+.rec-detail .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.rec-detail .field-grid .full{grid-column:1/-1}
+.rec-detail label{display:block;font-size:11px;font-weight:600;color:#4d6177;margin-bottom:2px}
+.rec-detail input,.rec-detail textarea{width:100%;padding:6px 8px;border:1px solid #d8e0ea;border-radius:6px;font-size:12px;background:#fff;font-family:inherit;transition:border .15s}
+.rec-detail input:focus,.rec-detail textarea:focus{border-color:#0f4c81;outline:none;box-shadow:0 0 0 2px rgba(15,76,129,0.12)}
+.rec-detail textarea{resize:vertical;min-height:40px}
+
+/* Tabs / Selectores de acción */
+.tag-group{display:flex;gap:6px;flex-wrap:wrap}
+.tag-group label{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:2px solid #d8e0ea;background:#fff;transition:all .12s}
+.tag-group input{display:none}
+.tag-group input:checked+label.pos{background:#e8f5e9;border-color:#2e7d32;color:#1b5e20}
+.tag-group input:checked+label.neg{background:#ffebee;border-color:#c62828;color:#b71c1c}
+.tag-group input:checked+label.si{background:#e8f5e9;border-color:#2e7d32;color:#1b5e20}
+.tag-group input:checked+label.no{background:#f5f5f5;border-color:#9e9e9e;color:#616161}
+
+/* Badge en resumen */
+.rec-summary .badge-tipo{font-size:10px;padding:2px 8px;border-radius:4px;font-weight:700}
+.rec-summary .badge-tipo.pos{background:#e8f5e9;color:#1b5e20;border:1px solid #a5d6a7}
+.rec-summary .badge-tipo.neg{background:#ffebee;color:#b71c1c;border:1px solid #ef9a9a}
+.rec-summary .badge-flag{font-size:10px;padding:2px 6px;border-radius:3px;font-weight:600}
+.rec-summary .badge-flag.llamar{background:#fff3e0;color:#e65100}
+.rec-summary .badge-flag.dir{background:#e3f2fd;color:#0d47a1}
+.rec-summary .badge-reincidencia{font-size:10px;padding:2px 8px;border-radius:4px;font-weight:700;background:#fff3e0;color:#e65100;border:1px solid #ffcc80}
+.rec-summary .badge-reincidencia .count{background:#e65100;color:#fff;border-radius:10px;padding:0 6px;margin-left:3px;font-size:9px}
+.rec-item .reincidencia-box{display:none;padding:8px 14px;background:#fff8e1;border-top:2px dashed #ffcc80;margin-top:0}
+.rec-item .reincidencia-box.show{display:block}
+.rec-item .reincidencia-box label{font-size:11px;font-weight:600;color:#e65100;display:block;margin-bottom:4px}
+.rec-item .reincidencia-box textarea{width:100%;padding:6px 8px;border:1px solid #ffe0b2;border-radius:6px;font-size:12px;background:#fff;font-family:inherit;resize:vertical;min-height:50px}
+.rec-item .reincidencia-box textarea:focus{border-color:#e65100;outline:none}
+
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s}
+.btn.pri{background:#0f4c81;color:#fff}
+.btn.pri:hover{background:#1a5f9a}
+.btn.sec{background:#e8f1fb;color:#0f4c81;border:1px solid #c8d9ea}
+.btn.sec:hover{background:#d4e4f5}
+.btn.add{background:#2e7d32;color:#fff}
+.btn.add:hover{background:#1b5e20}
+
+.empty-state{text-align:center;padding:40px 20px;color:#8899aa;font-size:14px}
+
+/* ===== MODAL ===== */
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);backdrop-filter:blur(3px);z-index:9999;display:flex;align-items:center;justify-content:center}
+.modal-box{background:#fff;border-radius:16px;padding:24px;max-width:520px;width:90%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.25)}
+.modal-box h3{margin:0 0 4px;font-size:17px;color:#0f4c81}
+.modal-field{margin-bottom:12px}
+.modal-field label{display:block;font-size:12px;font-weight:600;color:#4d6177;margin-bottom:4px}
+.modal-field .req{color:#c62828}
+.modal-field input[type=date]{width:100%;padding:8px 10px;border:1px solid #b6c6da;border-radius:8px;font-size:13px}
+.modal-field textarea{width:100%;padding:8px 10px;border:1px solid #b6c6da;border-radius:8px;font-size:13px;font-family:inherit;resize:vertical}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
+.modal-error{color:#c62828;font-size:12px;margin-top:8px;display:none}
+
+@media(max-width:700px){
+  .rec-detail .field-grid{grid-template-columns:1fr}
+}
+</style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+
+<script src="../../nav/runtime.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>📋 Registro Anecdotico</h1>
+  <p>Tecnicas Instrumentales II · 2.do Curso BTCC · Incidencias, observaciones y seguimiento por alumno</p>
+</div>
+
+<div class="controls">
+  <label>Filtrar alumno:</label>
+  <select id="studentFilter" onchange="renderizar()">
+    <option value="all">Todos los alumnos</option>
+  </select>
+  <button class="btn add" onclick="agregarRegistro()">+ Nuevo registro</button>
+  <span class="total" id="totalRegistros">0 registros</span>
+</div>
+
+<div id="recordsContainer"></div>
+
+<!-- MODAL para nuevo registro (campos obligatorios) -->
+<div class="modal-overlay" id="modalNew" style="display:none">
+  <div class="modal-box">
+    <h3>📝 Nuevo registro anecdótico</h3>
+    <p style="font-size:13px;color:#5a687c;margin:0 0 14px">Completá los campos obligatorios para crear el registro.</p>
+    <div class="modal-field"><label>Alumno <span class="req">*</span></label><span id="modalStudent" style="font-weight:600;font-size:14px"></span></div>
+    <div class="modal-field"><label>Fecha <span class="req">*</span></label><input type="date" id="modalFecha"></div>
+    <div class="modal-field"><label>Tipo <span class="req">*</span></label>
+      <div class="tag-group">
+        <input type="radio" name="modalTipo" id="modalTipoPos" value="positiva"><label class="pos" for="modalTipoPos">✅ Positiva</label>
+        <input type="radio" name="modalTipo" id="modalTipoNeg" value="negativa"><label class="neg" for="modalTipoNeg">⚠️ Negativa</label>
+      </div>
+    </div>
+    <div class="modal-field"><label>Llamar a padres/tutores</label>
+      <div class="tag-group">
+        <input type="radio" name="modalPadres" id="modalPadresSi" value="si"><label class="si" for="modalPadresSi">Sí</label>
+        <input type="radio" name="modalPadres" id="modalPadresNo" value="no" checked><label class="no" for="modalPadresNo">No</label>
+      </div>
+    </div>
+    <div class="modal-field"><label>Comunicado a Dirección</label>
+      <div class="tag-group">
+        <input type="radio" name="modalDir" id="modalDirSi" value="si"><label class="si" for="modalDirSi">Sí</label>
+        <input type="radio" name="modalDir" id="modalDirNo" value="no" checked><label class="no" for="modalDirNo">No</label>
+      </div>
+    </div>
+    <div class="modal-field"><label>Situación observada <span class="req">*</span></label><textarea id="modalSituacion" rows="3" placeholder="Describí la situación..."></textarea></div>
+    <div class="modal-field"><label>¿Es reincidencia?</label>
+      <div class="tag-group">
+        <input type="radio" name="modalRein" id="modalReinSi" value="si" onchange="document.getElementById('modalReinDet').style.display=this.checked?'block':'none'"><label class="neg" for="modalReinSi">🔄 Sí</label>
+        <input type="radio" name="modalRein" id="modalReinNo" value="no" checked onchange="document.getElementById('modalReinDet').style.display=this.checked?'none':'block'"><label class="no" for="modalReinNo">No</label>
+      </div>
+    </div>
+    <div class="modal-field" id="modalReinDet" style="display:none"><label>Detalle de reincidencia</label><textarea rows="2" id="modalReinDetalle" placeholder="Explicar en qué consiste..."></textarea></div>
+    <div class="modal-actions">
+      <button class="btn sec" onclick="cerrarModal()">Cancelar</button>
+      <button class="btn add" onclick="crearDesdeModal()">✅ Crear registro</button>
+    </div>
+    <div class="modal-error" id="modalError"></div>
+  </div>
+</div>
+
+</div>
+
+<script src="../../data/alumnos_tecnicas.js"></script>
+<script>
+// ===== DATOS =====
+var ANEC_KEY = 'reg_anecdotico_tecnicas';
+var RECORDS = {}; // { "s1": [ {id, fecha, situacion, contexto, accion, seguimiento, responsable, resultado, observaciones} ] }
+
+function cargar() {
+  try { var s = localStorage.getItem(ANEC_KEY); if(s) RECORDS = JSON.parse(s); } catch(e) { RECORDS = {}; }
+}
+function guardar() {
+  localStorage.setItem(ANEC_KEY, JSON.stringify(RECORDS));
+}
+
+// ===== GENERAR ID =====
+function genId() { return 'r' + Date.now() + '_' + Math.random().toString(36).substr(2,4); }
+
+// ===== AGREGAR REGISTRO (MODAL con campos obligatorios) =====
+var _modalStuId = null;
+
+function agregarRegistro(stuId) {
+  if(!stuId || stuId === 'all') {
+    var sel = document.getElementById('studentFilter');
+    stuId = sel.value;
+    if(stuId === 'all') {
+      // Mostrar selector en modal
+      var opts = [];
+      STUDENTS.forEach(function(s) { opts.push(s.num + '. ' + s.name); });
+      var input = prompt('Ingresa el nombre o numero del alumno:\n' + opts.join('\n'));
+      if(!input) return;
+      var match = null;
+      STUDENTS.forEach(function(s) {
+        if(s.name.toLowerCase().indexOf(input.toLowerCase()) !== -1 || String(s.num) === input.trim()) match = 's' + s.num;
+      });
+      if(!match) { alert('Alumno no encontrado.'); return; }
+      stuId = match;
+    }
+  }
+  // Abrir modal con campos obligatorios
+  _modalStuId = stuId;
+  var student = null;
+  STUDENTS.forEach(function(s) { if('s' + s.num === stuId) student = s; });
+  document.getElementById('modalStudent').textContent = student ? student.num + '. ' + student.name : stuId;
+  document.getElementById('modalFecha').value = new Date().toISOString().split('T')[0];
+  document.getElementById('modalTipoPos').checked = false;
+  document.getElementById('modalTipoNeg').checked = false;
+  document.getElementById('modalPadresNo').checked = true;
+  document.getElementById('modalDirNo').checked = true;
+  document.getElementById('modalSituacion').value = '';
+  document.getElementById('modalReinNo').checked = true;
+  document.getElementById('modalReinDet').style.display = 'none';
+  document.getElementById('modalReinDetalle').value = '';
+  document.getElementById('modalError').style.display = 'none';
+  document.getElementById('modalNew').style.display = 'flex';
+}
+
+function cerrarModal() {
+  document.getElementById('modalNew').style.display = 'none';
+  _modalStuId = null;
+}
+
+function crearDesdeModal() {
+  var fecha = document.getElementById('modalFecha').value;
+  var tipo = document.querySelector('input[name="modalTipo"]:checked');
+  var situacion = document.getElementById('modalSituacion').value.trim();
+  var errorEl = document.getElementById('modalError');
+
+  // Validar campos obligatorios
+  var errores = [];
+  if(!fecha) errores.push('Fecha');
+  if(!tipo) errores.push('Tipo');
+  if(!situacion) errores.push('Situación observada');
+  if(errores.length) {
+    errorEl.textContent = 'Completá los campos obligatorios: ' + errores.join(', ') + '.';
+    errorEl.style.display = 'block';
+    return;
+  }
+  errorEl.style.display = 'none';
+
+  var stuId = _modalStuId;
+  if(!RECORDS[stuId]) RECORDS[stuId] = [];
+
+  var llamarPadres = document.querySelector('input[name="modalPadres"]:checked');
+  var comunicadoDir = document.querySelector('input[name="modalDir"]:checked');
+  var reincidencia = document.querySelector('input[name="modalRein"]:checked');
+
+  var newRec = {
+    id: genId(),
+    fecha: fecha,
+    tipo: tipo.value,
+    llamarPadres: llamarPadres ? llamarPadres.value : '',
+    comunicadoDir: comunicadoDir ? comunicadoDir.value : '',
+    reincidencia: reincidencia ? reincidencia.value : '',
+    reincidenciaDetalle: document.getElementById('modalReinDetalle').value || '',
+    situacion: situacion,
+    contexto: '',
+    accion: '',
+    seguimiento: '',
+    responsable: '',
+    resultado: '',
+    observaciones: ''
+  };
+  RECORDS[stuId].push(newRec);
+  guardar();
+  sincronizarCalendario(newRec, stuId);
+  cerrarModal();
+  renderizar();
+  // Auto expandir el nuevo
+  expandirRegistro(stuId, RECORDS[stuId].length - 1);
+}
+
+function eliminarRegistro(stuId, idx) {
+  if(!confirm('Eliminar este registro anecdótico?')) return;
+  var rec = RECORDS[stuId][idx];
+  RECORDS[stuId].splice(idx, 1);
+  if(RECORDS[stuId].length === 0) delete RECORDS[stuId];
+  guardar();
+  eliminarDeCalendario(rec ? rec.id : null);
+  renderizar();
+}
+
+// ===== SINCRO CALENDARIO =====
+function sincronizarCalendario(rec, stuId) {
+  if(!rec || !rec.fecha || !rec.tipo) return;
+  var parts = rec.fecha.split('-');
+  if(parts.length !== 3) return;
+  var year = parseInt(parts[0], 10);
+  var month = parseInt(parts[1], 10);
+  var day = parseInt(parts[2], 10);
+  if(year !== 2026) return;
+
+  var calKey = 'calendario_2026_anec_tecnicas';
+  var eventos = [];
+  try { var c = localStorage.getItem(calKey); if(c) eventos = JSON.parse(c); } catch(e) {}
+
+  // Quitar evento previo del mismo id si existe
+  eventos = eventos.filter(function(e) { return e.id !== rec.id; });
+
+  // Buscar nombre del alumno
+  var nombre = stuId;
+  STUDENTS.forEach(function(s) { if('s' + s.num === stuId) nombre = s.name; });
+
+  eventos.push({
+    id: rec.id,
+    day: day,
+    month: month,
+    year: year,
+    name: (rec.tipo === 'positiva' ? '✅ ' : '⚠️ ') + 'Anec: ' + nombre + ' — ' + (rec.situacion || '').substring(0, 40),
+    tipo: rec.tipo === 'positiva' ? 'actividad_gremial' : 'otro',
+    color: rec.tipo === 'positiva' ? '#2e7d32' : '#c62828'
+  });
+
+  localStorage.setItem(calKey, JSON.stringify(eventos));
+}
+
+function eliminarDeCalendario(recId) {
+  if(!recId) return;
+  var calKey = 'calendario_2026_anec_tecnicas';
+  try {
+    var eventos = JSON.parse(localStorage.getItem(calKey) || '[]');
+    eventos = eventos.filter(function(e) { return e.id !== recId; });
+    localStorage.setItem(calKey, JSON.stringify(eventos));
+  } catch(e) {}
+}
+
+// Al modificar fecha o tipo inline, actualizar calendario
+function guardarCampoConCalendario(stuId, idx, campo, valor) {
+  if(!RECORDS[stuId] || !RECORDS[stuId][idx]) return;
+  RECORDS[stuId][idx][campo] = valor;
+  guardar();
+  actualizarTotal();
+  if(campo === 'fecha' || campo === 'tipo' || campo === 'situacion') {
+    sincronizarCalendario(RECORDS[stuId][idx], stuId);
+  }
+}
+
+function expandirRegistro(stuId, idx) {
+  var el = document.getElementById('det_' + stuId + '_' + idx);
+  if(el) {
+    el.classList.toggle('open');
+    var arrow = document.getElementById('arr_' + stuId + '_' + idx);
+    if(arrow) arrow.textContent = el.classList.contains('open') ? '▼' : '▶';
+  }
+}
+
+function guardarCampo(stuId, idx, campo, valor) {
+  if(!RECORDS[stuId] || !RECORDS[stuId][idx]) return;
+  RECORDS[stuId][idx][campo] = valor;
+  guardar();
+  actualizarTotal();
+}
+
+function mostrarReincidencia(sid, idx, boxId) {
+  var el = document.getElementById(boxId);
+  if(el) {
+    var show = document.getElementById('rein_si_' + sid + '_' + idx);
+    if(show && show.checked) el.classList.add('show');
+    else el.classList.remove('show');
+  }
+}
+
+function actualizarTotal() {
+  var total = 0;
+  Object.keys(RECORDS).forEach(function(k) { total += RECORDS[k].length; });
+  document.getElementById('totalRegistros').textContent = total + ' registro(s)';
+}
+
+// ===== RENDERIZAR =====
+function renderizar() {
+  var container = document.getElementById('recordsContainer');
+  var filter = document.getElementById('studentFilter').value;
+  var html = '';
+  var total = 0;
+
+  STUDENTS.forEach(function(s) {
+    var sid = 's' + s.num;
+    if(filter !== 'all' && filter !== sid) return;
+    var records = RECORDS[sid] || [];
+    total += records.length;
+    if(records.length === 0 && filter === 'all') return; // No mostrar si no tiene registros en vista general
+
+    html += '<div class="record-card">';
+    html += '<div class="rec-head">';
+    html += '<span class="stu-name">' + s.num + '. ' + s.name + '</span>';
+    html += '<span class="rec-count">' + records.length + ' registro(s) <button class="btn add" style="padding:4px 10px;font-size:11px;margin-left:8px" onclick="agregarRegistro(\'' + sid + '\')">+ Agregar</button></span>';
+    html += '</div><div class="rec-body">';
+
+    if(records.length === 0) {
+      html += '<div class="empty-state">Sin registros anecdóticos. Hacé clic en "+ Agregar" para crear el primero.</div>';
+    } else {
+      records.forEach(function(r, idx) {
+        var fechaStr = r.fecha || '—';
+        var preview = r.situacion ? r.situacion.substring(0, 60) + (r.situacion.length > 60 ? '...' : '') : '(sin descripción)';
+        var tipoBadge = r.tipo === 'positiva' ? '<span class="badge-tipo pos">✅ Positiva</span>' : (r.tipo === 'negativa' ? '<span class="badge-tipo neg">⚠️ Negativa</span>' : '');
+        var padreFlag = r.llamarPadres === 'si' ? '<span class="badge-flag llamar" title="Requiere llamar a padres">📞 Padres</span>' : '';
+        var dirFlag = r.comunicadoDir === 'si' ? '<span class="badge-flag dir" title="Comunicado a Dirección">🏫 Dirección</span>' : '';
+        var reinciBadge = '';
+        if(r.reincidencia === 'si') {
+          var cant = 1; // contar reincidencias previas del mismo alumno
+          for(var kk = 0; kk < idx; kk++) { if(records[kk].reincidencia === 'si') cant++; }
+          reinciBadge = '<span class="badge-reincidencia">🔄 Reincidencia <span class="count">' + cant + 'ª</span></span>';
+        }
+        html += '<div class="rec-item">';
+        html += '<div class="rec-summary" onclick="expandirRegistro(\'' + sid + '\',' + idx + ')">';
+        html += '<span class="rec-date">' + fechaStr + '</span>';
+        html += reinciBadge + tipoBadge + padreFlag + dirFlag;
+        html += '<span class="rec-preview">' + preview.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</span>';
+        html += '<span class="rec-toggle" id="arr_' + sid + '_' + idx + '">▶</span>';
+        html += '<button class="rec-del" onclick="event.stopPropagation();eliminarRegistro(\'' + sid + '\',' + idx + ')" title="Eliminar">✕</button>';
+        html += '</div>';
+        html += '<div class="rec-detail" id="det_' + sid + '_' + idx + '">';
+        html += '<div class="field-grid">';
+        html += '<div><label>Fecha</label><input type="date" value="' + r.fecha + '" onchange="guardarCampoConCalendario(\'' + sid + '\',' + idx + ',\'fecha\',this.value)"></div>';
+        html += '<div><label>Responsable</label><input type="text" value="' + (r.responsable||'').replace(/"/g,'&quot;') + '" onchange="guardarCampo(\'' + sid + '\',' + idx + ',\'responsable\',this.value)" placeholder="Docente, CAC..."></div>';
+        // Tipo: Positivo / Negativo
+        html += '<div><label>Tipo</label><div class="tag-group">';
+        html += '<input type="radio" name="tipo_' + sid + '_' + idx + '" id="tipo_pos_' + sid + '_' + idx + '" value="positiva" ' + (r.tipo==='positiva'?'checked':'') + ' onchange="guardarCampoConCalendario(\'' + sid + '\',' + idx + ',\'tipo\',this.value)"><label class="pos" for="tipo_pos_' + sid + '_' + idx + '">✅ Positiva</label>';
+        html += '<input type="radio" name="tipo_' + sid + '_' + idx + '" id="tipo_neg_' + sid + '_' + idx + '" value="negativa" ' + (r.tipo==='negativa'?'checked':'') + ' onchange="guardarCampoConCalendario(\'' + sid + '\',' + idx + ',\'tipo\',this.value)"><label class="neg" for="tipo_neg_' + sid + '_' + idx + '">⚠️ Negativa</label>';
+        html += '</div></div>';
+        // Llamar a padres
+        html += '<div><label>Llamar a padres/tutores</label><div class="tag-group">';
+        html += '<input type="radio" name="padres_' + sid + '_' + idx + '" id="padres_si_' + sid + '_' + idx + '" value="si" ' + (r.llamarPadres==='si'?'checked':'') + ' onchange="guardarCampo(\'' + sid + '\',' + idx + ',\'llamarPadres\',this.value)"><label class="si" for="padres_si_' + sid + '_' + idx + '">Sí</label>';
+        html += '<input type="radio" name="padres_' + sid + '_' + idx + '" id="padres_no_' + sid + '_' + idx + '" value="no" ' + (r.llamarPadres==='no'?'checked':'') + ' onchange="guardarCampo(\'' + sid + '\',' + idx + ',\'llamarPadres\',this.value)"><label class="no" for="padres_no_' + sid + '_' + idx + '">No</label>';
+        html += '</div></div>';
+        // Comunicado a Dirección
+        html += '<div><label>Comunicado a Dirección</label><div class="tag-group">';
+        html += '<input type="radio" name="dir_' + sid + '_' + idx + '" id="dir_si_' + sid + '_' + idx + '" value="si" ' + (r.comunicadoDir==='si'?'checked':'') + ' onchange="guardarCampo(\'' + sid + '\',' + idx + ',\'comunicadoDir\',this.value)"><label class="si" for="dir_si_' + sid + '_' + idx + '">Sí</label>';
+        html += '<input type="radio" name="dir_' + sid + '_' + idx + '" id="dir_no_' + sid + '_' + idx + '" value="no" ' + (r.comunicadoDir==='no'?'checked':'') + ' onchange="guardarCampo(\'' + sid + '\',' + idx + ',\'comunicadoDir\',this.value)"><label class="no" for="dir_no_' + sid + '_' + idx + '">No</label>';
+        html += '</div></div>';
+        // Reincidencia
+        html += '<div><label>¿Es reincidencia?</label><div class="tag-group">';
+        html += '<input type="radio" name="rein_' + sid + '_' + idx + '" id="rein_si_' + sid + '_' + idx + '" value="si" ' + (r.reincidencia==='si'?'checked':'') + ' onchange="guardarCampo(\'' + sid + '\',' + idx + ',\'reincidencia\',this.value);mostrarReincidencia(\'' + sid + '\',' + idx + ',\'rein_box_' + sid + '_' + idx + '\')"><label class="neg" for="rein_si_' + sid + '_' + idx + '">🔄 Sí</label>';
+        html += '<input type="radio" name="rein_' + sid + '_' + idx + '" id="rein_no_' + sid + '_' + idx + '" value="no" ' + (r.reincidencia==='no'||!r.reincidencia?'checked':'') + ' onchange="guardarCampo(\'' + sid + '\',' + idx + ',\'reincidencia\',this.value);mostrarReincidencia(\'' + sid + '\',' + idx + ',\'rein_box_' + sid + '_' + idx + '\')"><label class="no" for="rein_no_' + sid + '_' + idx + '">No</label>';
+        html += '</div></div>';
+        html += '<div class="full"><label>Situación observada</label><textarea rows="2" onchange="guardarCampoConCalendario(\'' + sid + '\',' + idx + ',\'situacion\',this.value)" placeholder="Describir la situación...">' + (r.situacion||'').replace(/</g,'&lt;') + '</textarea></div>';
+        html += '<div class="full"><label>Contexto / Clase</label><input type="text" value="' + (r.contexto||'').replace(/"/g,'&quot;') + '" onchange="guardarCampo(\'' + sid + '\',' + idx + ',\'contexto\',this.value)" placeholder="Materia, tema, fecha..."></div>';
+        html += '<div class="full"><label>Acción inmediata</label><textarea rows="2" onchange="guardarCampo(\'' + sid + '\',' + idx + ',\'accion\',this.value)" placeholder="Qué se hizo en el momento...">' + (r.accion||'').replace(/</g,'&lt;') + '</textarea></div>';
+        html += '<div class="full"><label>Seguimiento acordado</label><textarea rows="2" onchange="guardarCampo(\'' + sid + '\',' + idx + ',\'seguimiento\',this.value)" placeholder="Compromisos, próximos pasos...">' + (r.seguimiento||'').replace(/</g,'&lt;') + '</textarea></div>';
+        html += '<div class="full"><label>Resultado / Cierre</label><textarea rows="2" onchange="guardarCampo(\'' + sid + '\',' + idx + ',\'resultado\',this.value)" placeholder="Cómo se resolvió...">' + (r.resultado||'').replace(/</g,'&lt;') + '</textarea></div>';
+        html += '<div class="full"><label>Observaciones CAC</label><textarea rows="2" onchange="guardarCampo(\'' + sid + '\',' + idx + ',\'observaciones\',this.value)" placeholder="Notas del departamento de orientación...">' + (r.observaciones||'').replace(/</g,'&lt;') + '</textarea></div>';
+        html += '</div>'; // cierra field-grid
+        // Caja de reincidencia (detalle expandible)
+        html += '<div class="reincidencia-box' + (r.reincidencia==='si'?' show':'') + '" id="rein_box_' + sid + '_' + idx + '">';
+        html += '<label>🔄 Detalle de reincidencia</label>';
+        html += '<textarea rows="2" placeholder="Explicar en qué consiste la reincidencia, cuándo ocurrió antes, qué se hizo, etc." onchange="guardarCampo(\'' + sid + '\',' + idx + ',\'reincidenciaDetalle\',this.value)">' + (r.reincidenciaDetalle||'').replace(/</g,'&lt;') + '</textarea>';
+        html += '</div></div></div>'; // cierra reincidencia-box + rec-detail + rec-item
+      });
+    }
+
+    html += '</div></div>';
+  });
+
+  container.innerHTML = html || '<div class="empty-state">No hay alumnos con registros anecdóticos.</div>';
+  actualizarTotal();
+}
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded', function() {
+  // Cargar alumnos en el filter
+  var sel = document.getElementById('studentFilter');
+  STUDENTS.forEach(function(s) {
+    sel.innerHTML += '<option value="s' + s.num + '">' + s.num + '. ' + s.name + '</option>';
+  });
+  cargar();
+  renderizar();
+});
+</script>
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>

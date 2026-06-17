@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios de Práctica: Cómputo Métrico</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Segoe UI", Tahoma, sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; }
+        header { background: linear-gradient(135deg, #0f4c81 0%, #667eea 100%); color: white; padding: 30px 20px; text-align: center; }
+        header h1 { font-size: 2em; margin-bottom: 10px; }
+        nav { background: #333; padding: 0; position: sticky; top: 0; z-index: 100; }
+        nav a { display: inline-block; color: white; text-decoration: none; padding: 12px 15px; transition: background 0.3s; }
+        nav a:hover { background: #667eea; }
+        nav a.active { background: #667eea; border-bottom: 3px solid white; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        .breadcrumb { padding: 15px 20px; background: white; margin-bottom: 20px; border-radius: 5px; font-size: 0.9em; color: #666; }
+        .content { background: white; padding: 30px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        h2 { color: #0f4c81; margin: 30px 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #667eea; }
+        h3 { color: #667eea; margin: 20px 0 10px 0; }
+        h4 { color: #666; margin: 15px 0 8px 0; }
+        .exercise { background: #f9f9f9; border-left: 4px solid #667eea; padding: 15px; margin: 20px 0; border-radius: 3px; }
+        .exercise h4 { margin-top: 0; color: #0f4c81; }
+        .solution { background: #d4edda; border-left: 4px solid #28a745; padding: 15px; margin: 15px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        table th { background: #667eea; color: white; padding: 12px; text-align: left; }
+        table td { padding: 12px; border-bottom: 1px solid #ddd; }
+        ul, ol { margin: 15px 0 15px 30px; }
+        li { margin: 8px 0; }
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; }
+        .nav-buttons a { display: inline-block; padding: 12px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 5px; }
+        footer { background: #333; color: white; padding: 20px; text-align: center; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>💪 Ejercicios de Práctica: Cómputo Métrico</h1>
+        <p>Técnicas Instrumentales II — Segundo Curso BTCC</p>
+    </header>
+    
+    <nav>
+        <a href="index.html">🏠 Inicio</a>
+        <a href="material_del_estudiante_tecnicas_instrumentales_ii.html">📖 Material</a>
+        <a href="Examen_Parcial_Calculo_Metrico.html">✅ Examen</a>
+        <a href="Ejercicios_Practica_Computo_Metrico.html" class="active">💪 Ejercicios</a>
+        <a href="Solucionario_Examen_Parcial_Computo_Metrico.html">📖 Solucionario</a>
+    </nav>
+    
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Inicio</a> > <strong>Ejercicios de Práctica</strong>
+        </div>
+        
+        <div class="content">
+            <h2>Instrucciones</h2>
+            <ul>
+                <li>Resuelva los ejercicios en su cuaderno o en una hoja de cálculo.</li>
+                <li>Muestre todos los cálculos y fórmulas.</li>
+                <li>Los ejercicios aumentan gradualmente en dificultad.</li>
+                <li>Verifique sus resultados con las soluciones esperadas.</li>
+            </ul>
+            
+            <h2>Ejercicio 1: Caso Simple — Habitación Rectangular</h2>
+            <div class="exercise">
+                <h4>Datos:</h4>
+                <ul>
+                    <li>Largo: 4.00 m</li>
+                    <li>Ancho: 3.50 m</li>
+                    <li>Altura de muro: 2.60 m</li>
+                    <li>Espesor de muro: 0.15 m</li>
+                    <li>1 puerta de 0.80 m × 2.10 m</li>
+                    <li>1 ventana de 1.20 m × 0.80 m</li>
+                </ul>
+                <h4>Preguntas:</h4>
+                <ol>
+                    <li>Calcule el perímetro (m).</li>
+                    <li>Calcule el área bruta de muros (m²).</li>
+                    <li>Calcule el área total de aberturas (m²).</li>
+                    <li>Calcule el área neta de muros (m²).</li>
+                    <li>Calcule la cantidad de revoque (m²) considerando interior y exterior.</li>
+                    <li>¿Cuántos ladrillos se necesitan? (usar 60 ladrillos/m²).</li>
+                    <li>¿Cuánto cemento para revoque? (usar 4.5 kg/m²).</li>
+                </ol>
+                <div class="solution">
+                    <h4>✅ Respuestas Esperadas:</h4>
+                    <ol>
+                        <li>Perímetro = 15.00 m</li>
+                        <li>Área bruta = 39.00 m²</li>
+                        <li>Aberturas = 2.65 m²</li>
+                        <li>Área neta = 36.35 m²</li>
+                        <li>Revoque = 72.70 m²</li>
+                        <li>Ladrillos = 2,181 unidades</li>
+                        <li>Cemento = 327.15 kg ≈ 7 bolsas de 50 kg</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <h2>Ejercicio 2: Caso Intermedio — Vivienda de 5m × 5m</h2>
+            <div class="exercise">
+                <h4>Datos:</h4>
+                <ul>
+                    <li>Largo: 5.00 m | Ancho: 5.00 m</li>
+                    <li>Altura de muro: 2.70 m</li>
+                    <li>Espesor de muro: 0.15 m</li>
+                    <li>Cimiento: 0.35 m × 0.55 m</li>
+                    <li>Aberturas: 1 puerta (0.75 × 2.00 m), 2 ventanas (1.00 × 0.80 m)</li>
+                    <li>Margen de limpieza: 0.80 m por lado</li>
+                </ul>
+                <h4>Preguntas:</h4>
+                <ol>
+                    <li>Superficie de limpieza (m²).</li>
+                    <li>Volumen de excavación para cimientos (m³).</li>
+                    <li>Volumen de cimiento (m³).</li>
+                    <li>Área neta de muros (m²).</li>
+                    <li>Revoque total (m²).</li>
+                    <li>Total de ladrillos (usar 60/m²).</li>
+                    <li>Cemento para revoque (kg) y bolsas de 50 kg.</li>
+                    <li>Jornales necesarios (rendimiento 8 m²/día).</li>
+                </ol>
+                <div class="solution">
+                    <h4>✅ Respuestas Esperadas:</h4>
+                    <ol>
+                        <li>Limpieza = 41.29 m²</li>
+                        <li>Excavación = 3.41 m³</li>
+                        <li>Cimiento = 3.41 m³</li>
+                        <li>Área neta = 51.05 m²</li>
+                        <li>Revoque = 102.10 m²</li>
+                        <li>Ladrillos = 3,063 unidades</li>
+                        <li>Cemento = 459.45 kg ≈ 10 bolsas</li>
+                        <li>Jornales = 7 (redondeo al alza de 6.38)</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <h2>Ejercicio 3: Caso Complejo — Edificio de Dos Plantas</h2>
+            <div class="exercise">
+                <h4>Datos (Planta Baja):</h4>
+                <ul>
+                    <li>Largo: 8.00 m | Ancho: 6.00 m</li>
+                    <li>Altura de muro (planta baja): 3.00 m</li>
+                    <li>Espesor de muro: 0.20 m (muros portantes)</li>
+                    <li>Cimiento: 0.50 m × 0.70 m</li>
+                    <li>Aberturas: 2 puertas (0.90 × 2.30 m), 4 ventanas (1.50 × 1.00 m), 1 puerta garaje (2.50 × 2.10 m)</li>
+                </ul>
+                <h4>Preguntas:</h4>
+                <ol>
+                    <li>Perímetro (m).</li>
+                    <li>Volumen de excavación (m³).</li>
+                    <li>Volumen de cimiento (m³).</li>
+                    <li>Área bruta de muros (m²).</li>
+                    <li>Área total de aberturas (m²) — enumerando cada tipo.</li>
+                    <li>Área neta de muros (m²).</li>
+                    <li>Revoque total (m²).</li>
+                    <li>Cantidad de ladrillos (usar 60/m²).</li>
+                    <li>Cemento para revoque y bolsas.</li>
+                    <li>Jornales (rendimiento 7 m²/día).</li>
+                </ol>
+                <div class="solution">
+                    <h4>✅ Respuestas Esperadas:</h4>
+                    <ol>
+                        <li>Perímetro = 28.00 m</li>
+                        <li>Excavación = 9.80 m³</li>
+                        <li>Cimiento = 9.80 m³</li>
+                        <li>Área bruta = 84.00 m²</li>
+                        <li>Aberturas = 15.39 m²</li>
+                        <li>Área neta = 68.61 m²</li>
+                        <li>Revoque = 137.22 m²</li>
+                        <li>Ladrillos = 4,116 unidades</li>
+                        <li>Cemento = 617.49 kg ≈ 13 bolsas</li>
+                        <li>Jornales = 10 (redondeo de 9.80)</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <h2>Ejercicio 4: Análisis de Caso Real (Vivienda de 36 m²)</h2>
+            <div class="exercise">
+                <h4>Preguntas Iniciales (Sin Calcular):</h4>
+                <ol>
+                    <li>Sin calcular todavía, ¿cuál es el perímetro del edificio?</li>
+                    <li>¿Cuáles son las tres dimensiones que definen una abertura?</li>
+                    <li>¿Por qué el revoque se calcula multiplicando por 2?</li>
+                    <li>Si el área neta de muros fuera 100 m², ¿cuántos ladrillos necesitaría?</li>
+                </ol>
+                <div class="solution">
+                    <h4>✅ Respuestas Esperadas:</h4>
+                    <ol>
+                        <li>Perímetro = 24.00 m</li>
+                        <li>Ancho × Alto (para cada abertura)</li>
+                        <li>Porque hay dos caras del muro (interior y exterior)</li>
+                        <li>Ladrillos = 100 × 60 = 6,000 unidades</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <h2>Ejercicio 5: Problemas Conceptuales</h2>
+            <div class="exercise">
+                <h4>Pregunta 1:</h4>
+                <p>Un maestro olvida descontar las aberturas al calcular ladrillos. La vivienda tiene 60 m² netos de muro y 5 m² de aberturas.</p>
+                <ul>
+                    <li>¿Cuántos ladrillos de más compraría? (usar 60 ladrillos/m²)</li>
+                    <li>¿Cuál sería el costo extra si un ladrillo cuesta 500 Gs.?</li>
+                </ul>
+                <div class="solution">
+                    <h4>✅ Respuesta Esperada:</h4>
+                    <p>Ladrillos extra = 5 × 60 = 300 unidades</p>
+                    <p>Costo extra = 300 × 500 = 150,000 Gs.</p>
+                </div>
+            </div>
+            
+            <div class="exercise">
+                <h4>Pregunta 2:</h4>
+                <p>El rendimiento de un oficial baja de 8 m²/día a 6 m²/día por condiciones climáticas. Si debe revocar 122 m²:</p>
+                <ul>
+                    <li>Con rendimiento de 8 m²/día, ¿cuántos jornales?</li>
+                    <li>Con rendimiento de 6 m²/día, ¿cuántos jornales?</li>
+                    <li>¿Cuántos jornales adicionales son necesarios?</li>
+                </ul>
+                <div class="solution">
+                    <h4>✅ Respuesta Esperada:</h4>
+                    <p>A 8 m²/día: 16 jornales | A 6 m²/día: 21 jornales | Diferencia: 5 jornales</p>
+                </div>
+            </div>
+            
+            <h2>Autoevaluación</h2>
+            <p>Después de resolver los ejercicios, verifique:</p>
+            <ul>
+                <li>☐ Puedo calcular perímetros de plantas irregulares.</li>
+                <li>☐ Entiendo por qué se descuentan las aberturas.</li>
+                <li>☐ Aplico correctamente las fórmulas de volumen.</li>
+                <li>☐ Sé redondear correctamente al alza (jornales, bolsas).</li>
+                <li>☐ Me siento seguro para el examen parcial.</li>
+            </ul>
+            
+            <div class="nav-buttons">
+                <a href="index.html">← Volver al Índice</a>
+                <a href="Examen_Parcial_Calculo_Metrico.html">Ir a Examen →</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p><strong>Técnicas Instrumentales II</strong> — Colegio Nacional Defensores del Chaco © 2026</p>
+    </footer>
+</body>
+</html>

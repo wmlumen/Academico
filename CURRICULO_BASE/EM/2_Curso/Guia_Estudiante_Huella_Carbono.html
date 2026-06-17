@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía del Estudiante: Huella de Carbono</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+        }
+        .header-box {
+            border: 4px double #2e7d32;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        .student-info {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: #2e7d32;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.4em;
+            margin-top: 0;
+        }
+        h2 {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 8px;
+            font-size: 1.1em;
+            border-left: 5px solid #2e7d32;
+        }
+        .concept-box {
+            background-color: #f9f9f9;
+            border: 1px dashed #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #999;
+            padding: 15px;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f1f8e9;
+        }
+        .activity-space {
+            border: 1px solid #ddd;
+            min-height: 100px;
+            margin-top: 10px;
+            padding: 10px;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 0.8em;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+        /* Estilos para la Sopa de Letras Integrada */
+        .game-container {
+            display: grid;
+            grid-template-columns: auto 180px;
+            gap: 20px;
+            background: #fff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        #word-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 30px);
+            grid-template-rows: repeat(12, 30px);
+            gap: 3px;
+            user-select: none;
+        }
+        .letter {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .letter.selected { background: #81c784; color: white; }
+        .letter.found { background: #2e7d32; color: white; }
+        .word-list ul { list-style: none; padding: 0; font-size: 0.85em; columns: 1; }
+        .word-list li.found { text-decoration: line-through; color: #ccc; }
+
+        @media print {
+            body { padding: 0; }
+            .no-print { display: none; }
+            .letter { border: 1px solid #000 !important; color: #000 !important; background: transparent !important; }
+            .game-container { border: 1px solid #000; }
+        }
+
+        /* Estilos para el Modo Blanco y Negro */
+        body.bw-mode {
+            background-color: white !important;
+            color: black !important;
+        }
+        .bw-mode .header-box {
+            border-color: black !important;
+            background-color: white !important;
+            color: black !important;
+        }
+        .bw-mode h1, .bw-mode h2 {
+            color: black !important;
+        }
+        .bw-mode h2 {
+            background-color: #f0f0f0 !important; /* Un gris muy claro */
+            border-left-color: black !important;
+        }
+        .bw-mode .concept-box {
+            background-color: #f8f8f8 !important;
+            border-color: black !important;
+            color: black !important;
+        }
+        .bw-mode table, .bw-mode th, .bw-mode td {
+            border-color: black !important;
+            background-color: white !important;
+            color: black !important;
+        }
+        .bw-mode th {
+            background-color: #e0e0e0 !important;
+        }
+        .bw-mode .activity-space {
+            border-color: black !important;
+            background-color: white !important;
+        }
+        .bw-mode .activity-space[style*="border: 2px solid #2e7d32"] { /* Específico para el compromiso */
+            border-color: black !important;
+            background-color: #e0e0e0 !important;
+        }
+        .bw-mode .game-container, .bw-mode .letter {
+            border-color: black !important;
+            background-color: white !important;
+            color: black !important;
+        }
+        .bw-mode .letter.selected {
+            background-color: #ccc !important; /* Gris para seleccionado */
+            color: black !important;
+            border-color: black !important;
+        }
+        .bw-mode .letter.found {
+            background-color: #999 !important; /* Gris más oscuro para encontrado */
+            color: white !important;
+            border-color: black !important;
+        }
+        .bw-mode .word-list li.found {
+            color: #666 !important;
+        }
+        .bw-mode .footer {
+            color: black !important;
+            border-top-color: black !important;
+        }
+        .bw-mode .btn-print, .bw-mode .btn-bw {
+            background-color: black !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-box">
+    <div style="text-align: center; margin-bottom: 15px;">
+        <div style="font-weight: bold;">MINISTERIO DE EDUCACIÓN Y CIENCIAS</div>
+        <div style="font-weight: bold;">COLEGIO NACIONAL "DON JORGE GAYOSO"</div>
+        <h1 style="margin: 5px 0 0 0; font-size: 1.4em;">Guía de Trabajo: Huella de Carbono</h1>
+    </div>
+    <div class="student-info">
+        <div><strong>Nombre:</strong> ________________________________________________</div>
+        <div><strong>Curso:</strong> 2.º BACHILLERATO TECNICO EN CIENCIAS AMBIENTALES (BTCA)</div>
+    </div>
+    <div class="student-info">
+        <div><strong>Área:</strong> Educación Ambiental</div>
+        <div><strong>Fecha:</strong> ____/____/2026</div>
+    </div>
+</div>
+
+<div class="concept-box">
+    <strong>¿Qué es la Huella de Carbono?</strong> Es la medida del impacto que tienen nuestras actividades diarias en el medio ambiente, expresada en la cantidad de gases de efecto invernadero (como el CO2) que producimos al usar energía, transporte o consumir productos.
+</div>
+    
+<section>
+    <h2>1. Diagnóstico Individual: Mis hábitos diarios</h2>
+    <p>Completa el siguiente cuadro identificando acciones de tu rutina actual y cómo podrías mejorarlas:</p>
+    <table>
+        <thead>
+            <tr>
+                <th width="50%">Acciones que generan emisiones</th>
+                <th width="50%">Acciones de mitigación (Reducción)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><em>Ejemplo: Dejar la TV encendida sin verla.</em></td>
+                <td><em>Ejemplo: Desenchufar aparatos al salir.</em></td>
+            </tr>
+            <tr style="height: 60px;"><td></td><td></td></tr>
+            <tr style="height: 60px;"><td></td><td></td></tr>
+            <tr style="height: 60px;"><td></td><td></td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2>2. Trabajo Grupal: Plan de Acción del Curso</h2>
+    <p>En equipo, propongan estrategias realistas para implementar en la institución:</p>
+    
+    <strong>Acciones Colectivas (Escuela/Aula):</strong>
+    <div class="activity-space">
+        1. __________________________________________________________________________<br><br>
+        2. __________________________________________________________________________<br><br>
+        3. __________________________________________________________________________
+    </div>
+
+    <p><strong>Nuestro Compromiso de Curso:</strong></p>
+    <div class="activity-space" style="border: 2px solid #2e7d32; background-color: #f1f8e9;">
+        "Nosotros, los estudiantes del 2.º curso, nos comprometemos a..."
+    </div>
+</section>
+
+<section>
+    <h2>3. Diseño del Afiche (Borrador)</h2>
+    <p>Utiliza este espacio para bocetar el mensaje central y el dibujo que incluirán en su afiche institucional:</p>
+    <div class="activity-space" style="height: 150px;">
+        <!-- Espacio para dibujo/esquema -->
+    </div>
+</section>
+
+<section>
+    <h2>4. Auditoría Escolar Ambiental</h2>
+    <p>Realiza un recorrido por la institución y completa la siguiente lista de cotejo para diagnosticar nuestra situación actual:</p>
+    <table>
+        <tr><th>Indicador de Observación</th><th>Sí</th><th>No</th><th>Observaciones</th></tr>
+        <tr><td>1. ¿Existen contenedores diferenciados para residuos?</td><td></td><td></td><td></td></tr>
+        <tr><td>2. ¿Se observa desperdicio de agua en grifos o sanitarios?</td><td></td><td></td><td></td></tr>
+        <tr><td>3. ¿Las luces permanecen encendidas en aulas vacías?</td><td></td><td></td><td></td></tr>
+        <tr><td>4. ¿Hay presencia de plásticos de un solo uso en la cantina?</td><td></td><td></td><td></td></tr>
+        <tr><td>5. ¿Existen áreas verdes cuidadas por los estudiantes?</td><td></td><td></td><td></td></tr>
+        <tr><td>6. ¿Se aprovecha la luz natural en los pasillos/aulas?</td><td></td><td></td><td></td></tr>
+        <tr><td>7. ¿Se utiliza papel reciclado o ambas caras para avisos?</td><td></td><td></td><td></td></tr>
+        <tr><td>8. ¿Hay cartelería educativa sobre el cuidado ambiental?</td><td></td><td></td><td></td></tr>
+        <tr><td>9. ¿El entorno escolar está libre de basura acumulada?</td><td></td><td></td><td></td></tr>
+        <tr><td>10. ¿Los estudiantes conocen el plan ambiental del colegio?</td><td></td><td></td><td></td></tr>
+    </table>
+</section>
+
+<section>
+    <h2>5. Cierre: Sopa de Letras Ambiental</h2>
+    <p>Encuentra los términos clave discutidos en clase:</p>
+    <div class="game-container">
+        <div id="word-grid"></div>
+        <div class="word-list">
+            <ul id="list-items"></ul>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>6. Tarea de Observación en Casa</h2>
+    <p>Durante las próximas 24 horas, observa tu hogar y responde:</p>
+    <ul>
+        <li>¿Cuál es la fuente de mayor consumo eléctrico en tu familia? ____________________</li>
+        <li>¿Qué residuo es el que más se genera en la cocina? ____________________________</li>
+        <li>Escribe un cambio sencillo que propongas a tu familia: __________________________</li>
+    </ul>
+</section>
+
+<div class="footer">
+    "Mucha gente pequeña, en lugares pequeños, haciendo cosas pequeñas, puede cambiar el mundo."<br>
+    <strong>Educación Ambiental - MEC 2026</strong>
+</div>
+
+<div class="no-print" style="margin-top: 20px; text-align: center;">
+    <button onclick="window.print()" style="padding: 10px 20px; background: #2e7d32; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Imprimir Guía
+    </button>
+    <button class="btn-bw" onclick="toggleBlackAndWhiteMode()" style="padding: 10px 20px; background: #555; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">
+        Modo Blanco y Negro
+    </button>
+</div>
+
+<script>
+    const words = ["MITIGACION", "ADAPTACION", "SUMIDEROS", "CICLOVIDA", "PROXIMIDAD", "EMISIONES", "CARBONO", "HUELLA", "AMBIENTE", "CLIMA"];
+    const size = 12;
+    const grid = Array(size).fill().map(() => Array(size).fill(''));
+    
+    function placeWords() {
+        words.forEach(word => {
+            let placed = false;
+            while (!placed) {
+                const rand = Math.random();
+                const direction = rand < 0.33 ? 'H' : (rand < 0.66 ? 'V' : 'D');
+                const row = Math.floor(Math.random() * size);
+                const col = Math.floor(Math.random() * size);
+                
+                if (direction === 'H' && col + word.length <= size) {
+                    let canPlace = true;
+                    for(let i=0; i<word.length; i++) if(grid[row][col+i] !== '' && grid[row][col+i] !== word[i]) canPlace = false;
+                    if(canPlace) {
+                        for(let i=0; i<word.length; i++) grid[row][col+i] = word[i];
+                        placed = true;
+                    }
+                } else if (direction === 'V' && row + word.length <= size) {
+                    let canPlace = true;
+                    for(let i=0; i<word.length; i++) if(grid[row+i][col] !== '' && grid[row+i][col] !== word[i]) canPlace = false;
+                    if(canPlace) {
+                        for(let i=0; i<word.length; i++) grid[row+i][col] = word[i];
+                        placed = true;
+                    }
+                } else if (direction === 'D' && row + word.length <= size && col + word.length <= size) {
+                    let canPlace = true;
+                    for(let i=0; i<word.length; i++) if(grid[row+i][col+i] !== '' && grid[row+i][col+i] !== word[i]) canPlace = false;
+                    if(canPlace) {
+                        for(let i=0; i<word.length; i++) grid[row+i][col+i] = word[i];
+                        placed = true;
+                    }
+                }
+            }
+        });
+
+        const letters = "ABCDEGHILMNOPRSTUV";
+        for(let r=0; r<size; r++) {
+            for(let c=0; c<size; c++) {
+                if(grid[r][c] === '') grid[r][c] = letters[Math.floor(Math.random()*letters.length)];
+            }
+        }
+    }
+
+    function render() {
+        const gridEl = document.getElementById('word-grid');
+        const listEl = document.getElementById('list-items');
+        grid.forEach((row, r) => {
+            row.forEach((char, c) => {
+                const div = document.createElement('div');
+                div.className = 'letter';
+                div.textContent = char;
+                div.onclick = () => toggleSelect(div, char, r, c);
+                gridEl.appendChild(div);
+            });
+        });
+        words.sort().forEach(word => {
+            const li = document.createElement('li');
+            li.textContent = word;
+            li.id = `word-${word.replace(/\s+/g, '-')}`; // Replace spaces for valid IDs
+            listEl.appendChild(li);
+        });
+    }
+
+    let selection = [];
+    function toggleSelect(el, char, r, c) {
+        if (el.classList.contains('found')) return;
+        el.classList.toggle('selected');
+        const index = selection.findIndex(s => s.r === r && s.c === c);
+        if (index > -1) { selection.splice(index, 1); } else { selection.push({ char, r, c, el }); }
+        checkSelection();
+    }
+
+    function checkSelection() {
+        const currentWord = selection.map(s => s.char).join('');
+        const reversedWord = currentWord.split('').reverse().join('');
+        words.forEach(word => {
+            if ((currentWord === word || reversedWord === word) && !document.getElementById(`word-${word.replace(/\s+/g, '-')}`).classList.contains('found')) {
+                selection.forEach(s => { s.el.classList.remove('selected'); s.el.classList.add('found'); });
+                document.getElementById(`word-${word.replace(/\s+/g, '-')}`).classList.add('found');
+                selection = [];
+            }
+        });
+    }
+
+    function toggleBlackAndWhiteMode() {
+        document.body.classList.toggle('bw-mode');
+    }
+    placeWords();
+    render();
+</script>
+</body>
+</html>

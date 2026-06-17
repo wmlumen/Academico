@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 5</title>
+<style>
+body{font-family:"Segoe UI",Tahoma,sans-serif;color:#172133;background:#fff;margin:0;padding:20px;line-height:1.42}
+.topnav,.pager{max-width:900px;margin:0 auto 14px;display:flex;flex-wrap:wrap;gap:8px}
+.topnav a,.pager a{display:inline-block;text-decoration:none;background:#e8f1fb;color:#0f4c81;border:1px solid #c8d9ea;padding:8px 12px;font-size:13px;font-weight:700}
+.pager{justify-content:space-between;margin-top:18px}
+.sheet{max-width:900px;margin:0 auto;border:1px solid #d8e0ea;padding:22px}
+.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+h1{margin:0 0 10px;color:#0f4c81}
+h2{font-size:16px;color:#183a5a;margin:14px 0 6px}
+p,li,td,th{font-size:14px}
+table{width:100%;border-collapse:collapse;margin-top:8px}
+th,td{border:1px solid #d8e0ea;padding:8px 10px;vertical-align:top}
+th{background:#e8f1fb;text-align:left}
+img{max-width:100%;display:block;margin:8px auto;border:1px solid #d8e0ea;padding:6px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+@media print{body{padding:0}.topnav,.pager{display:none}.sheet{border:none;max-width:none;padding:0}}
+</style>
+</head>
+<body>
+<nav class="topnav" aria-label="Navegacion principal"><a href="../../../index.html">Inicio</a><a href="../plan_de_clase_resistencia_materiales.html">Plan de clase</a><a href="../material_del_estudiante_resistencia_materiales.html">Guia completa</a><a href="index_fichas_estudiante.html">Fichas</a></nav>
+<section class="sheet">
+<h1>Tema 5. Cortante y Momento Flector</h1>
+<p><strong>Capacidad:</strong> Identifica esfuerzo cortante y momento flector en piezas de plano medio. Representa leyes de esfuerzos en vigas simples.</p>
+<p><strong>Propósito:</strong> Reconocer esfuerzos internos y representar diagramas básicos en vigas simples.</p>
+<div class="grid">
+<div>
+<h2>Desarrollo conceptual</h2>
+<p>Cuando una viga está cargada aparecen esfuerzos internos. El <strong>cortante</strong> se asocia al deslizamiento entre secciones y el <strong>momento flector</strong> a la curvatura del elemento.</p>
+<h2>Lectura guiada</h2>
+<p>Cuando una viga soporta cargas, en su interior no aparece un solo tipo de respuesta. El cortante intenta que una parte de la sección se deslice respecto de la otra. El momento flector provoca curvatura y hace que la pieza se doble.</p>
+<p>Si la viga muestra un descenso en el centro, se está manifestando el efecto del momento flector. Si aparecen fisuras inclinadas cerca de los apoyos, puede haber problemas asociados al cortante.</p>
+<h2>Definiciones clave</h2>
+<ul><li><strong>Cortante:</strong> esfuerzo interno que tiende a cortar una sección.</li><li><strong>Momento flector:</strong> esfuerzo que curva la viga.</li><li><strong>Esfuerzo interno:</strong> reacción resistente dentro del material.</li></ul>
+<h2>Comparación técnica</h2>
+<table><tr><th>Cortante</th><th>Momento flector</th></tr><tr><td>Tiende a cortar</td><td>Tiende a curvar</td></tr><tr><td>Se analiza por secciones</td><td>Se asocia a la flexión</td></tr></table>
+</div>
+<div>
+<h2>Gráfico</h2>
+<img src="../graficos_material_alumno/07_cortante_momento.svg" alt="Cortante y momento flector">
+<p><strong>Explicación del gráfico:</strong> la viga recibe una carga <code>P</code>. En una sección interna aparecen el cortante <code>V</code>, que intenta deslizar, y el momento <code>M</code>, que produce curvatura. La zona central suele ser importante para el momento flector.</p>
+<p><strong>Ejemplo aplicado:</strong> en una viga de techo cargada con tejas o chapas, el cortante suele ser significativo cerca de los apoyos y el momento flector en el tramo central.</p>
+</div>
+</div>
+<h2>Ejercitario</h2>
+<ol><li>Define cortante.</li><li>Define momento flector.</li><li>¿Dónde se espera mayor flexión en una viga con carga central?</li><li>Explica por qué estos esfuerzos importan en obra.</li></ol>
+<nav class="pager" aria-label="Navegacion entre temas"><a href="tema_04_traccion_compresion_hooke.html">Tema anterior</a><a href="tema_06_flexion_propiedades_geometricas.html">Siguiente tema</a></nav>
+</section>
+</body>
+</html>

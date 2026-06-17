@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examen Sumativo — Resistencia de Materiales</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,sans-serif;background:#f0f4fa;color:#172133}
+.wrap{max-width:1500px;margin:0 auto;padding:16px}
+
+.header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:16px 22px;border-radius:14px;margin-bottom:12px}
+.header h1{margin:0;font-size:20px}
+.header p{margin:4px 0 0;font-size:13px;opacity:.9}
+
+.controls{background:#fff;border:1px solid #d8e3ef;border-radius:12px;padding:10px 14px;margin-bottom:14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;box-shadow:0 2px 8px rgba(23,33,51,0.06)}
+.controls .stats{display:flex;gap:16px;font-size:12px;margin-left:auto}
+.controls .stats span{padding:3px 10px;border-radius:6px;background:#f0f4fa}
+
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#e8f1fb;color:#0f4c81;font-weight:600;padding:7px 6px;text-align:left;border-bottom:2px solid #c8d9ea;font-size:11px;white-space:nowrap}
+td{padding:5px 6px;border-bottom:1px solid #e8ecf0;vertical-align:middle}
+tr:hover td{background:#fafcff}
+
+.num-input{width:44px;padding:2px 4px;border:1px solid #d8e0ea;border-radius:3px;text-align:center;font-size:11px;background:#fff}
+.num-input:focus{border-color:#0f4c81;outline:none;box-shadow:0 0 0 2px rgba(15,76,129,0.12)}
+
+.mes-section{background:#fff;border:1px solid #d8e3ef;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(23,33,51,0.04);margin-bottom:14px}
+.mes-header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:9px 14px;font-size:14px;font-weight:700;display:flex;justify-content:space-between}
+
+.exam-header{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 12px;background:#e3f2fd;border-bottom:1px solid #90caf9}
+.exam-header input{padding:4px 7px;border:1px solid #90caf9;border-radius:5px;font-size:12px}
+.exam-header .exam-nombre{flex:2;min-width:150px}
+.exam-header button{padding:4px 10px;border:none;border-radius:5px;font-size:11px;font-weight:600;cursor:pointer}
+.btn-add{background:#0f4c81;color:#fff}
+.btn-add:hover{background:#1a5f9a}
+.btn-del{background:#ffcdd2;color:#b71c1c}
+.btn-del:hover{background:#ef9a9a}
+.btn-sec{background:#e8f1fb;color:#0f4c81;border:1px solid #c8d9ea}
+
+.grade-badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:13px;font-weight:800;min-width:30px;text-align:center}
+.grade-1{background:#ffebee;color:#b71c1c}
+.grade-2{background:#fff3e0;color:#e65100}
+.grade-3{background:#fff8e1;color:#f57f17}
+.grade-4{background:#e8f5e9;color:#2e7d32}
+.grade-5{background:#e8f5e9;color:#1b5e20;border:2px solid #4caf50}
+
+.exigencia-bar{display:flex;align-items:center;gap:10px;padding:8px 14px;background:#f5f9ff;border-bottom:1px solid #c8d9ea;font-size:12px}
+.exigencia-bar label{font-weight:600;color:#0f4c81}
+.exigencia-bar select{padding:3px 8px;border:1px solid #c8d9ea;border-radius:5px;font-size:12px;background:#fff}
+
+@media(max-width:900px){
+  .sticky-col{position:static}
+  .controls{flex-direction:column;align-items:stretch}
+  .controls .stats{margin-left:0}
+}
+@media print{.controls{display:none}.mes-section{break-inside:avoid;box-shadow:none}}
+</style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+
+<script src="../../nav/runtime.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>📝 Examen Sumativo — Carga de Puntajes</h1>
+  <p>Resistencia de Materiales · 2.do Curso BTCC</p>
+</div>
+
+<div class="controls">
+  <span style="font-size:12px;color:#4d6177">🔗 <a href="https://calificaciones-py.vercel.app/" target="_blank" style="color:#0f4c81;font-weight:600">Escala de Calificaciones</a> — calculadora oficial de notas</span>
+  <span class="stats">
+    <span>📋 <strong id="totalExams">0</strong> exámenes</span>
+    <span>📊 <strong id="totalMaxSum">0</strong> pts totales</span>
+  </span>
+  <button onclick="if(confirm('¿Limpiar todos los exámenes y puntajes?')){localStorage.removeItem('examen_sumativo_resistencia');location.reload()}" style="padding:4px 10px;border:none;border-radius:6px;background:#ffcdd2;color:#b71c1c;font-size:11px;font-weight:600;cursor:pointer">🗑️ Limpiar datos</button>
+</div>
+
+<!-- ===== SECCIÓN: EXÁMENES ===== -->
+<div class="mes-section">
+  <div class="mes-header">📝 Exámenes Sumativos <span class="count" id="examCount" style="font-size:12px;opacity:.8">0 examen(es)</span></div>
+  <div class="exam-header">
+    <input type="text" id="newExamName" class="exam-nombre" placeholder="Nombre del examen (ej: Parcial 1)">
+    <input type="date" id="newExamDate" style="padding:4px 7px;border:1px solid #90caf9;border-radius:5px;font-size:12px">
+    <input type="number" id="newExamMax" placeholder="Pts máx." style="width:70px;padding:4px 7px;border:1px solid #90caf9;border-radius:5px;font-size:12px;text-align:center" value="10" min="1" step="1">
+    <button class="btn-add" onclick="agregarExamen()">➕ Agregar examen</button>
+  </div>
+  <div class="exigencia-bar">
+    <label>Nivel de exigencia:</label>
+    <select id="exigenciaSelect" onchange="renderExamenes()">
+      <option value="50">50%</option>
+      <option value="60">60%</option>
+      <option value="70" selected>70%</option>
+      <option value="80">80%</option>
+    </select>
+    <span style="color:#8899aa;font-size:11px">Criterio general de promoción · Mínimo para aprobar</span>
+  </div>
+  <div style="overflow-x:auto">
+    <table>
+      <thead><tr id="examHeaderRow"></tr></thead>
+      <tbody id="examBody"></tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+
+<script src="../../data/alumnos_resistencia.js"></script>
+<script>
+// ============================================================
+// ALGORITMO DE CALIFICACIONES (desde calificaciones-py.vercel.app)
+// ============================================================
+var DESCRIPTORES = {1:'Insuficiente',2:'Aceptable',3:'Bueno',4:'Muy bueno',5:'Excelente'};
+
+function calcularCalificacion(N, scoreRaw, exigenciaPct) {
+  var LS = N;
+  var LI = Math.ceil((exigenciaPct / 100) * N);
+  if (LI < 1) LI = 1;
+  if (LI > LS) LI = LS;
+
+  var points = LS - LI + 1;
+  var grade = 1;
+  var porcentaje = (scoreRaw / N) * 100;
+
+  if (points > 0) {
+    var base = Math.floor(points / 4);
+    var rem = points % 4;
+    var sizes = [base, base, base, base];
+    if (rem === 1) sizes[1] += 1;
+    else if (rem === 2) { sizes[1] += 1; sizes[2] += 1; }
+    else if (rem === 3) { sizes[1] += 1; sizes[2] += 1; sizes[0] += 1; }
+
+    var remaining = points;
+    for (var i = 0; i < sizes.length; i++) {
+      if (remaining <= 0) sizes[i] = 0;
+      else if (sizes[i] === 0 && remaining > 0) { sizes[i] = 1; remaining -= 1; }
+      else remaining -= sizes[i];
+    }
+
+    var start = LI;
+    var seg2 = sizes[0] > 0 ? [start, start + sizes[0] - 1] : null;
+    start = seg2 ? seg2[1] + 1 : start;
+    var seg3 = sizes[1] > 0 ? [start, start + sizes[1] - 1] : null;
+    start = seg3 ? seg3[1] + 1 : start;
+    var seg4 = sizes[2] > 0 ? [start, start + sizes[2] - 1] : null;
+    start = seg4 ? seg4[1] + 1 : start;
+    var seg5 = sizes[3] > 0 ? [start, LS] : null;
+
+    var ranges = [[1, LI - 1], seg2, seg3, seg4, seg5];
+    for (var i = 0; i < ranges.length; i++) {
+      var range = ranges[i];
+      if (range && scoreRaw >= range[0] && scoreRaw <= range[1]) { grade = i + 1; break; }
+    }
+  }
+
+  return { calificacion: grade, descriptor: DESCRIPTORES[grade], porcentaje: parseFloat(porcentaje.toFixed(2)) };
+}
+
+function renderGradeBadge(grade) {
+  var cls = 'grade-badge grade-' + grade;
+  return '<span class="' + cls + '">' + grade + '</span>';
+}
+
+// ===== CONFIG =====
+var EXAM_KEY = 'examen_sumativo_resistencia';
+
+// ===== DATOS =====
+var EXAMS = [];
+var SCORES = {};
+
+function cargarDatos() {
+  try {
+    var s = localStorage.getItem(EXAM_KEY);
+    if(s) {
+      var data = JSON.parse(s);
+      EXAMS = data.exams || [];
+      SCORES = data.scores || {};
+      var ex = localStorage.getItem(EXAM_KEY + '_exigencia');
+      if(ex) document.getElementById('exigenciaSelect').value = ex;
+      return;
+    }
+  } catch(e) {}
+  EXAMS = [
+    { id: 'e1', name: 'Parcial 1', date: '2026-05-15', maxScore: 20 },
+    { id: 'e2', name: 'Parcial 2', date: '2026-08-20', maxScore: 20 }
+  ];
+  guardarDatos();
+}
+
+function guardarDatos() {
+  localStorage.setItem(EXAM_KEY, JSON.stringify({ exams: EXAMS, scores: SCORES }));
+  localStorage.setItem(EXAM_KEY + '_exigencia', document.getElementById('exigenciaSelect').value);
+}
+
+function agregarExamen() {
+  var name = document.getElementById('newExamName').value.trim();
+  var date = document.getElementById('newExamDate').value;
+  var max = parseFloat(document.getElementById('newExamMax').value) || 0;
+  if(!name) { alert('Escribí el nombre del examen.'); return; }
+  if(max <= 0) { alert('El puntaje máximo debe ser mayor a 0.'); return; }
+  EXAMS.push({ id: 'e' + Date.now(), name: name, date: date, maxScore: max });
+  guardarDatos();
+  document.getElementById('newExamName').value = '';
+  document.getElementById('newExamDate').value = '';
+  document.getElementById('newExamMax').value = '10';
+  renderTodo();
+}
+
+function eliminarExamen(id) {
+  if(!confirm('¿Eliminar este examen y todos sus puntajes?')) return;
+  EXAMS = EXAMS.filter(function(e){ return e.id !== id; });
+  Object.keys(SCORES).forEach(function(sid) {
+    delete SCORES[sid][id];
+  });
+  guardarDatos();
+  renderTodo();
+}
+
+function setScore(examId, sNum, val) {
+  var sid = 's' + sNum;
+  if(!SCORES[sid]) SCORES[sid] = {};
+  SCORES[sid][examId] = parseFloat(val) || 0;
+  guardarDatos();
+  renderTotales();
+}
+
+// ===== RENDER =====
+function renderTodo() {
+  renderExamenes();
+  document.getElementById('totalExams').textContent = EXAMS.length;
+  document.getElementById('examCount').textContent = EXAMS.length + ' examen(es)';
+  var totalMax = 0;
+  EXAMS.forEach(function(e){ totalMax += e.maxScore; });
+  document.getElementById('totalMaxSum').textContent = totalMax;
+}
+
+function renderExamenes() {
+  var exigencia = parseInt(document.getElementById('exigenciaSelect').value) || 70;
+  guardarDatos();
+
+  var hRow = document.getElementById('examHeaderRow');
+  var hHtml = '<th style="min-width:150px;position:sticky;left:0;background:#e8f1fb;z-index:3">Alumno</th>';
+  EXAMS.forEach(function(exam) {
+    var dateLabel = exam.date ? exam.date.split('-')[2] + '/' + exam.date.split('-')[1] : '';
+    hHtml += '<th style="text-align:center;min-width:60px;font-size:10px" title="' + exam.name + '">' + exam.name.substring(0,14) + (exam.name.length>14?'...':'') + '<br><small style="font-weight:400;font-size:9px;color:#4d6177">' + dateLabel + ' (' + exam.maxScore + ' pts)</small></th>';
+  });
+  hHtml += '<th style="text-align:center;min-width:45px;font-size:10px">Total<br><small>pts</small></th>';
+  hHtml += '<th style="text-align:center;min-width:45px;font-size:10px">%</th>';
+  hHtml += '<th style="text-align:center;min-width:50px;font-size:10px">Nota</th>';
+  hHtml += '<th style="text-align:center;width:40px">✕</th>';
+  hRow.innerHTML = hHtml;
+
+  var body = document.getElementById('examBody');
+  var bHtml = '';
+
+  STUDENTS.forEach(function(s) {
+    var sid = 's' + s.num;
+    var total = 0;
+    var totalMax = 0;
+
+    bHtml += '<tr>';
+    bHtml += '<td style="position:sticky;left:0;background:#fff;font-weight:600;border-right:2px solid #e8ecf0">' + s.num + '. ' + s.name.split(',')[0] + '</td>';
+
+    EXAMS.forEach(function(exam) {
+      var val = (SCORES[sid] && SCORES[sid][exam.id]) ? SCORES[sid][exam.id] : 0;
+      total += parseFloat(val) || 0;
+      totalMax += exam.maxScore;
+      bHtml += '<td style="text-align:center"><input type="number" class="num-input" step="0.5" min="0" max="' + exam.maxScore + '" value="' + val + '" onchange="setScore(\'' + exam.id + '\',' + s.num + ',this.value)"></td>';
+    });
+
+    var pct = totalMax > 0 ? (total / totalMax * 100) : 0;
+    var escala = calcularCalificacion(totalMax, total, exigencia);
+
+    bHtml += '<td style="text-align:center;font-weight:700;font-size:13px">' + total.toFixed(1) + '</td>';
+    bHtml += '<td style="text-align:center;font-weight:700;font-size:12px' + (pct >= exigencia ? ';color:#1b5e20' : ';color:#b71c1c') + '">' + pct.toFixed(1) + '%</td>';
+    bHtml += '<td style="text-align:center">' + renderGradeBadge(escala.calificacion) + '<br><span style="font-size:9px;color:#5a687c">' + escala.descriptor + '</span></td>';
+    bHtml += '<td></td>';
+    bHtml += '</tr>';
+  });
+
+  body.innerHTML = bHtml;
+}
+
+function renderTotales() {
+  renderExamenes();
+}
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded', function() {
+  cargarDatos();
+  renderTodo();
+});
+</script>
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+{
+  "year": 2026,
+  "cursoActual": "2",
+  "materiaActual": "tecnicas",
+  "cursos": {
+    "1": {
+      "nombre": "1° Curso BTCC",
+      "alumnos": "data/alumnos_1_curso.js",
+      "materias": [
+        {
+          "id": "dibujo_tecnico_i",
+          "nombre": "Dibujo Técnico I",
+          "dias": [
+            "LU",
+            "MI",
+            "VI"
+          ]
+        },
+        {
+          "id": "materiales_construccion",
+          "nombre": "Materiales de Construcción",
+          "dias": [
+            "MA",
+            "JU"
+          ]
+        },
+        {
+          "id": "seguridad_industrial",
+          "nombre": "Seguridad Industrial",
+          "dias": [
+            "MI"
+          ]
+        },
+        {
+          "id": "taller_construcciones_i",
+          "nombre": "Taller de Construcciones I",
+          "dias": [
+            "JU",
+            "VI"
+          ]
+        },
+        {
+          "id": "tecnicas_i",
+          "nombre": "Técnicas I",
+          "dias": [
+            "LU",
+            "MA"
+          ]
+        },
+        {
+          "id": "tecnicas_instrumentales",
+          "nombre": "Técnicas Instrumentales",
+          "dias": [
+            "MI",
+            "JU"
+          ]
+        }
+      ]
+    },
+    "2": {
+      "nombre": "2° Curso BTCC",
+      "alumnos": "data/alumnos_2_curso.js",
+      "materias": [
+        {
+          "id": "tecnicas",
+          "nombre": "Técnicas Instrumentales II",
+          "dias": [
+            "MI",
+            "JU"
+          ]
+        },
+        {
+          "id": "resistencia",
+          "nombre": "Resistencia de Materiales",
+          "dias": [
+            "MA",
+            "MI"
+          ]
+        },
+        {
+          "id": "instalaciones_i",
+          "nombre": "Instalaciones I",
+          "dias": [
+            "LU",
+            "VI"
+          ]
+        },
+        {
+          "id": "taller_construcciones_ii",
+          "nombre": "Taller de Construcciones II",
+          "dias": [
+            "JU",
+            "VI"
+          ]
+        },
+        {
+          "id": "topografia",
+          "nombre": "Topografía",
+          "dias": [
+            "MA",
+            "JU"
+          ]
+        }
+      ]
+    },
+    "3": {
+      "nombre": "3° Curso BTCC",
+      "alumnos": "data/alumnos_3_curso.js",
+      "materias": [
+        {
+          "id": "computo_presupuesto",
+          "nombre": "Cómputo y Presupuesto",
+          "dias": [
+            "LU",
+            "MI"
+          ]
+        },
+        {
+          "id": "instalaciones_ii",
+          "nombre": "Instalaciones II",
+          "dias": [
+            "MA",
+            "JU"
+          ]
+        },
+        {
+          "id": "organizacion_gestion_obras",
+          "nombre": "Organización y Gestión de Obras",
+          "dias": [
+            "MI",
+            "VI"
+          ]
+        },
+        {
+          "id": "taller_construcciones_iii",
+          "nombre": "Taller de Construcciones III",
+          "dias": [
+            "LU",
+            "JU"
+          ]
+        },
+        {
+          "id": "tecnicas_iii",
+          "nombre": "Técnicas III",
+          "dias": [
+            "MA",
+            "MI"
+          ]
+        }
+      ]
+    }
+  }
+}

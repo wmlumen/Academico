@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resistencia de Materiales â€” Portal del 2.do Curso</title>
+<style>
+/* ===== RESET ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,sans-serif;background:#f0f4fa;color:#172133;line-height:1.5}
+
+/* ===== LAYOUT ===== */
+.wrap{max-width:1160px;margin:0 auto;padding:20px 24px 40px}
+
+/* ===== HEADER ===== */
+header{background:linear-gradient(135deg,#0f4c81 0%,#1e6fb0 100%);color:#fff;padding:28px 24px;border-radius:14px;box-shadow:0 8px 28px rgba(15,76,129,0.2)}
+header h1{margin:0 0 6px;font-size:2rem}
+header p{margin:0;font-size:14px;opacity:.9}
+
+/* ===== ROLE TOGGLE ===== */
+.role-bar{display:flex;align-items:center;gap:10px;margin:18px 0;padding:12px 18px;background:#fff;border:1px solid #d8e3ef;border-radius:12px;flex-wrap:wrap}
+.role-bar label{font-size:14px;font-weight:600;color:#2a405c}
+.toggle-group{display:flex;border:2px solid #c8d9ea;border-radius:10px;overflow:hidden}
+.toggle-group button{border:none;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;background:#fff;color:#4d6177}
+.toggle-group button.active{background:#0f4c81;color:#fff}
+.toggle-group button:not(.active):hover{background:#e8f1fb}
+.role-hint{font-size:13px;color:#5a687c;margin-left:auto;padding:6px 12px;background:#f0f7ff;border-radius:8px}
+
+/* ===== SECTION ===== */
+.section{margin-top:20px}
+.section-title{font-size:1.2rem;color:#0f4c81;margin:0 0 12px;padding:0 0 8px;border-bottom:2px solid #d8e3ef}
+
+/* ===== CARDS GRID ===== */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.card{background:#fff;border:1px solid #d8e3ef;border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(23,33,51,0.06);transition:box-shadow .2s}
+.card:hover{box-shadow:0 6px 20px rgba(15,76,129,0.1)}
+.card-head{padding:14px 16px 10px}
+.card-head h3{margin:0 0 4px;font-size:15px;color:#0f4c81}
+.card-head p{margin:0;font-size:13px;color:#5a687c}
+.card-body{padding:8px 16px 16px}
+.card-body p{margin:0 0 12px;font-size:13px;color:#4d6177}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.links a{text-decoration:none;padding:8px 12px;border-radius:8px;font-size:13px;font-weight:700;transition:all .15s}
+.links .pri{background:#0f4c81;color:#fff}
+.links .pri:hover{background:#1a5f9a}
+.links .sec{background:#e8f1fb;color:#0f4c81;border:1px solid #c8d9ea}
+.links .sec:hover{background:#d4e4f5}
+.links .ter{background:#f0f4fa;color:#4d6177;border:1px solid #d8e3ef;font-size:12px}
+.links .ter:hover{background:#e4ebf5}
+
+/* ===== SUB-FICHA LINKS ===== */
+.sub-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;padding-top:10px;border-top:1px solid #edf2f8}
+.sub-links a{font-size:12px;padding:4px 10px;background:#f5f9ff;color:#0f4c81;border:1px solid #c8d9ea;border-radius:6px;text-decoration:none;transition:all .15s}
+.sub-links a:hover{background:#d4e4f5}
+
+/* ===== SVG BADGE ===== */
+.svg-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7;padding:2px 8px;border-radius:6px;margin-top:8px}
+
+/* ===== DOCENTE-ONLY ===== */
+.docente-only{display:none}
+body.rol-docente .docente-only{display:block}
+body.rol-docente .docente-only-inline{display:inline-flex}
+
+/* ===== ALUMNO-ONLY ===== */
+.alumno-only{display:none}
+body.rol-alumno .alumno-only{display:block}
+
+/* ===== FOOTER ===== */
+footer{margin-top:28px;padding-top:16px;border-top:1px solid #d8e3ef;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:#5a687c}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:720px){
+  .wrap{padding:14px}
+  header h1{font-size:1.6rem}
+  .role-bar{flex-direction:column;align-items:stretch}
+  .role-hint{margin-left:0;text-align:center}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+
+<script src="../../nav/runtime.js"></script>
+</head>
+<body class="rol-docente">
+
+<div class="wrap">
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <h1>Resistencia de Materiales</h1>
+    <p>Bachillerato TÃ©cnico en Construcciones Civiles (BTCC) Â· 2.do Curso</p>
+    <p>Colegio Nacional Defensores del Chaco Â· Docente: Christhian Keim Â· AÃ±o 2026</p>
+  </header>
+
+  <!-- ===== ROLE TOGGLE ===== -->
+  <div class="role-bar">
+    <label>Acceder como:</label>
+    <div class="toggle-group" id="roleToggle">
+      <button data-role="docente" class="active">ðŸ‘¨â€ðŸ« Docente</button>
+      <button data-role="alumno">ðŸ‘¨â€ðŸŽ“ Alumno</button>
+    </div>
+    <span class="role-hint" id="roleHint">Vista completa Â· todos los documentos</span>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- â–¼ CONTENIDO SOLO DOCENTE                                  -->
+  <!-- ======================================================== -->
+  <div class="docente-only">
+
+    <!-- I. PLANIFICACIÃ“N -->
+    <section class="section">
+      <h2 class="section-title">ðŸ“‹ PlanificaciÃ³n</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-head"><h3>Plan Anual</h3><p>FundamentaciÃ³n, capacidades, cronograma</p></div>
+          <div class="card-body">
+            <p>Documento base de la cÃ¡tedra. Contiene la planificaciÃ³n anual completa con contenidos, indicadores y evaluaciÃ³n.</p>
+            <div class="links">
+              <a href="resistencia_materiales.html" class="pri">Ver HTML</a>
+              <a href="Plan_Anual_Resistencia_Materiales.md" class="sec">Markdown</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Plan de Clase Desarrollado</h3><p>Secuencia mensual de temas</p></div>
+          <div class="card-body">
+            <p>Cronograma detallado con capacidades, indicadores, evaluaciÃ³n y recursos por mes.</p>
+            <div class="links">
+              <a href="plan_de_clase_resistencia_materiales.html" class="pri">Ver HTML</a>
+              <a href="Plan_de_Clase_Desarrollado_Resistencia_Materiales.md" class="sec">Markdown</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Plan SintÃ©tico Semanal</h3><p>DistribuciÃ³n clase por clase</p></div>
+          <div class="card-body">
+            <p>Desglose semanal con fechas, contenidos y actividades planificadas.</p>
+            <div class="links">
+              <a href="06_plan_sintetico_semanal_resistencia_materiales.html" class="pri">Ver HTML</a>
+              <a href="06_Plan_Sintetico_Semanal_Resistencia_Materiales.md" class="sec">Markdown</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- II. MATERIAL DIDÃCTICO -->
+    <section class="section">
+      <h2 class="section-title">ðŸ“š Material DidÃ¡ctico</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-head"><h3>Material del Estudiante</h3><p>GuÃ­a completa del curso</p></div>
+          <div class="card-body">
+            <p>GuÃ­a de aprendizaje con desarrollo conceptual, grÃ¡ficos explicados, ejercitario graduado y bibliografÃ­a.</p>
+            <div class="links">
+              <a href="material_del_estudiante_resistencia_materiales.html" class="pri">Ver HTML</a>
+              <a href="Material_del_Estudiante_Resistencia_Materiales.md" class="sec">Markdown</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Ejercitario</h3><p>Banco de ejercicios</p></div>
+          <div class="card-body">
+            <p>Ejercicios prÃ¡cticos organizados por tema para la resoluciÃ³n de problemas de resistencia de materiales.</p>
+            <div class="links">
+              <a href="02_Ejercitario_Resistencia_Materiales.md" class="pri">Ver Markdown</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Fichas del Estudiante</h3><p>9 temas</p></div>
+          <div class="card-body">
+            <p>Fichas separadas por tema con desarrollo conceptual, grÃ¡ficos y ejercicios.</p>
+            <div class="links">
+              <a href="fichas_estudiante_html/index_fichas_estudiante.html" class="pri">Ir a fichas</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>GrÃ¡ficos SVG</h3><p>Soporte visual para fichas</p></div>
+          <div class="card-body">
+            <p>Diagramas de esfuerzos, vigas y propiedades geomÃ©tricas generados con Python.</p>
+            <div class="links">
+              <a href="graficos_material_alumno/" class="sec">Ver carpeta</a>
+              <a href="generar_graficos_material_alumno.py" class="ter">ðŸ”§ Script</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>GuÃ­a del Estudiante (Word)</h3><p>Paquete descargable</p></div>
+          <div class="card-body">
+            <p>VersiÃ³n editable en Word y paquete ZIP con la guÃ­a completa del estudiante.</p>
+            <div class="links">
+              <a href="01_Guia_Estudiante_Resistencia_Materiales_2do_BTCC.docx" class="sec">ðŸ“„ DOCX</a>
+              <a href="Paquete_Guia_Estudiante_Resistencia_Materiales_2do_BTCC.zip" class="sec">ðŸ“¦ ZIP</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- III. EVALUACIÃ“N -->
+    <section class="section">
+      <h2 class="section-title">ðŸ“ EvaluaciÃ³n</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-head"><h3>Prueba DiagnÃ³stica</h3><p>EvaluaciÃ³n inicial</p></div>
+          <div class="card-body">
+            <p>Instrumento para evaluar conocimientos previos al inicio del curso.</p>
+            <div class="links">
+              <a href="08_prueba_diagnostica_resistencia_materiales.html" class="pri">Ver HTML</a>
+              <a href="08_Prueba_Diagnostica_Resistencia_Materiales.md" class="sec">Markdown</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>RÃºbricas y Correspondencia</h3><p>Criterios de evaluaciÃ³n</p></div>
+          <div class="card-body">
+            <p>RÃºbricas analÃ­ticas y tabla de correspondencia con indicadores del plan de clase.</p>
+            <div class="links">
+              <a href="03_Rubricas_y_Correspondencia.md" class="pri">Ver Markdown</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Planilla de Proceso RSA</h3><p>Registro de seguimiento acadÃ©mico</p></div>
+          <div class="card-body">
+            <p>Planilla de proceso con indicadores por capacidad para el seguimiento del alumno.</p>
+            <div class="links">
+              <a href="05_Planilla_Proceso_RSA_Resistencia_Materiales.csv" class="pri">Ver CSV</a>
+              <a href="05_Planilla_Proceso_RSA_Resistencia_Materiales.xlsx" class="sec">ðŸ“Š Excel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IV. SEGUIMIENTO -->
+    <section class="section">
+      <h2 class="section-title">ðŸ“Š Seguimiento y GestiÃ³n</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-head"><h3>Planilla de Asistencia</h3><p>Registro de presencia</p></div>
+          <div class="card-body">
+            <div class="links">
+              <a href="07_planilla_asistencia_resistencia_materiales.html" class="pri">Ver HTML</a>
+              <a href="07_Planilla_Asistencia_Resistencia_Materiales.csv" class="sec">CSV</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Plan de Mejora</h3><p>Estrategias de apoyo</p></div>
+          <div class="card-body">
+            <p>Plan de intervenciÃ³n para alumnos con dificultades en el aprendizaje.</p>
+            <div class="links">
+              <a href="09_plan_de_mejora_resistencia_materiales.html" class="pri">Ver HTML</a>
+              <a href="09_Plan_de_Mejora_Resistencia_Materiales.md" class="sec">Markdown</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Registro Anecdotico</h3><p>Incidencias</p></div>
+          <div class="card-body">
+            <div class="links">
+              <a href="10_registro_anecdotico_resistencia_materiales.html" class="pri">Ver HTML</a>
+              <a href="10_Registro_Anecdotico_Resistencia_Materiales.csv" class="sec">CSV</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Planilla de Calificaciones</h3><p>Registro de notas</p></div>
+          <div class="card-body">
+            <p>Planilla de calificaciones por tema con espacios editables, promedios por semestre, nota final y recuperaciÃ³n.</p>
+            <div class="links">
+              <a href="11_planilla_calificaciones_resistencia_materiales.html" class="pri">Ver HTML</a>
+              <a href="11_planilla_calificaciones_resistencia_materiales.csv" class="sec">CSV (Excel)</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>RSA por Indicadores</h3><p>Seguimiento acadÃ©mico individual</p></div>
+          <div class="card-body">
+            <p>Registro de seguimiento por estudiante con 9 indicadores, cada uno con 3 revisiones durante el aÃ±o. Incluye filtro y bÃºsqueda.</p>
+            <div class="links">
+              <a href="12_rsa_individual_resistencia.html" class="pri">Ver RSA</a>
+            </div>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="card-head">
+            <h3>📋 Registro de Asistencia y Temas</h3>
+            <p>Control de asistencia y temas desarrollados por jornada</p>
+          </div>
+          <div class="card-actions">
+            <p>Registro por bloque horario (13:00-15:10 / 15:10-17:20). Se guarda automáticamente.</p>
+            <a href="14_registro_clases_resistencia.html" class="pri">Abrir registro</a>
+          </div>
+        </div>
+      <div class="doc-card">
+        <div class="card-head">
+          <h3>🧑‍🎓 Perfil del Estudiante</h3>
+          <p>Panel consolidado de avance académico y asistencia</p>
+        </div>
+        <div class="card-actions">
+          <p>Resumen por alumno: indicadores aprobados, puntaje, asistencia y ausencias.</p>
+          <a href="15_perfil_estudiante_resistencia.html" class="pri">Ver perfil</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="card-head">
+          <h3>📊 Planilla de Proceso</h3>
+          <p>70% RSA + 30% Proyectos Institucionales · Res. 1525</p>
+        </div>
+        <div class="card-actions">
+          <p>Consolidado de competencias nacionales e institucionales con ponderación. Mínimo 70% para aprobar.</p>
+          <a href="16_planilla_proceso_resistencia.html" class="pri">Ver planilla</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="card-head">
+          <h3>📝 Examen Sumativo</h3>
+          <p>Carga de puntajes de exámenes</p>
+        </div>
+        <div class="card-actions">
+          <p>Planilla para cargar los puntajes obtenidos por cada alumno en exámenes parciales. Convierte automáticamente a nota 1-5 según la escala de calificaciones.</p>
+          <a href="17_examen_sumativo_resistencia.html" class="pri">Cargar puntajes</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="card-head">
+          <h3>📊 Planilla Integrada — Final de Etapa</h3>
+          <p>RSA + Proyectos + Exámenes · Escala 1-5</p>
+        </div>
+        <div class="card-actions">
+          <p>Consolidado final que integra RSA, Proyectos Institucionales y Exámenes Sumativos con pesos configurables. Calcula nota según la escala oficial de calificaciones.</p>
+          <a href="18_planilla_integrada_resistencia.html" class="pri">Ver planilla integrada</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="card-head">
+          <h3>📋 Competencias Transversales</h3>
+          <p>Evaluación por criterios actitudinales, académicos y socioemocionales</p>
+        </div>
+        <div class="card-actions">
+          <p>Registro de competencias vinculado al Registro Anecdotico. Marca los logros de cada alumno en 28 criterios.</p>
+          <a href="19_competencias_transversales_resistencia.html" class="pri">Ver competencias</a>
+        </div>
+      </div>
+        <div class="card">
+          <div class="card-head"><h3>Control de Temas y Adecuaciones</h3><p>Avance del plan y adecuaciones</p></div>
+          <div class="card-body">
+            <p>Marque los temas desarrollados del Plan Anual, registre fechas de inicio/cierre y agregue adecuaciones curriculares realizadas.</p>
+            <div class="links">
+              <a href="13_control_temas_adecuaciones_resistencia.html" class="pri">Ver control</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Notas del Docente</h3><p>ReproducciÃ³n y observaciones</p></div>
+          <div class="card-body">
+            <p>Notas internas del docente para la reproducciÃ³n del paquete didÃ¡ctico.</p>
+            <div class="links">
+              <a href="04_Notas_Docente_Reproduccion.md" class="pri">Ver Markdown</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Scripts Python</h3><p>Herramientas de cÃ¡lculo</p></div>
+          <div class="card-body">
+            <p>Scripts para visualizaciÃ³n de esfuerzos, deflexiÃ³n de vigas y generaciÃ³n de grÃ¡ficos.</p>
+            <div class="links">
+              <a href="deflexion_viga.py" class="ter">ðŸ”§ deflexion_viga.py</a>
+              <a href="visualizacion_esfuerzos.py" class="ter">ðŸ”§ visualizacion_esfuerzos.py</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- â–² FIN DOCENTE ONLY â–² -->
+
+  <!-- ======================================================== -->
+  <!-- â–¼ CONTENIDO COMPARTIDO (Docente + Alumno)                -->
+  <!-- ======================================================== -->
+
+  <!-- V. FICHAS POR TEMA (visible para ambos roles) -->
+  <section class="section">
+    <h2 class="section-title">ðŸ“– Fichas del Estudiante por Tema</h2>
+    <p style="margin:0 0 14px;color:#4d6177;font-size:14px">
+      Acceso directo a cada tema. Las fichas incluyen desarrollo conceptual, grÃ¡ficos y ejercicios.
+      <span class="svg-badge">ðŸŽ¨ Incluye grÃ¡ficos SVG</span>
+    </p>
+    <div class="grid">
+      <div class="card">
+        <div class="card-head"><h3>Tema 1 â€” IntroducciÃ³n</h3><p>Conceptos fundamentales</p></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_01_introduccion.html" class="pri">Abrir ficha</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Tema 2 â€” Fuerzas, resultantes y momento</h3><p>EstÃ¡tica aplicada</p></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_02_fuerzas_resultantes_momento.html" class="pri">Abrir ficha</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Tema 3 â€” Equilibrio, vÃ­nculos y reacciones</h3><p>AnÃ¡lisis estructural</p></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_03_equilibrio_vinculos_reacciones.html" class="pri">Abrir ficha</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Tema 4 â€” TracciÃ³n, compresiÃ³n y Ley de Hooke</h3><p>Esfuerzos axiales</p></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_04_traccion_compresion_hooke.html" class="pri">Abrir ficha</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Tema 5 â€” Cortante y momento flector</h3><p>Diagramas de esfuerzos</p></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_05_cortante_momento_flector.html" class="pri">Abrir ficha</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Tema 6 â€” FlexiÃ³n y propiedades geomÃ©tricas</h3><p>Resistencia a flexiÃ³n</p></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_06_flexion_propiedades_geometricas.html" class="pri">Abrir ficha</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Tema 7 â€” Materiales, muros y cerchas</h3><p>Elementos estructurales</p></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_07_materiales_muros_cerchas.html" class="pri">Abrir ficha</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Tema 8 â€” HormigÃ³n armado y control tÃ©cnico</h3><p>HA y calidad</p></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_08_hormigon_armado_control.html" class="pri">Abrir ficha</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Tema 9 â€” IntegraciÃ³n y memoria de cÃ¡lculo</h3><p>Caso integrador final</p></div>
+        <div class="card-body">
+          <div class="links">
+            <a href="fichas_estudiante_html/tema_09_integracion_memoria_calculo.html" class="pri">Abrir ficha</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ALUMNO LOGIN ===== -->
+  <div class="alumno-only">
+    <section class="section">
+      <h2 class="section-title">Mi Perfil</h2>
+      <div class="grid">
+        <div class="card" id="loginCard">
+          <div class="card-head"><h3>Iniciar sesión</h3><p>Ingresá con tu nombre y contraseña</p></div>
+          <div class="card-body" id="loginFormContainer">
+            <p style="margin:0 0 12px;font-size:13px;color:#4d6177">Seleccioná tu nombre de la lista e ingresá la contraseña que te entregó el profesor.</p>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <select id="alumnoSelector" style="padding:10px 12px;border:1px solid #c8d9ea;border-radius:8px;font-size:14px;background:#fff">
+                <option value="">— Seleccioná tu nombre —</option>
+              </select>
+              <input type="password" id="alumnoPassword" placeholder="Contraseña" style="padding:10px 12px;border:1px solid #c8d9ea;border-radius:8px;font-size:14px;background:#fff">
+              <button onclick="loginAlumno()" style="padding:10px;border:none;border-radius:8px;background:#0f4c81;color:#fff;font-size:14px;font-weight:700;cursor:pointer">🔑 Acceder a mi perfil</button>
+              <div id="loginError" style="color:#c62828;font-size:13px;font-weight:600;display:none;padding:6px 10px;background:#ffebee;border-radius:6px"></div>
+            </div>
+          </div>
+          <div class="card-body" id="loginSuccessContainer" style="display:none">
+            <p style="margin:0 0 12px;font-size:14px;font-weight:600;color:#1b5e20" id="loginWelcome"></p>
+            <div class="links">
+              <a href="" id="loginProfileLink" class="pri">📊 Ver mi perfil</a>
+              <button onclick="logoutAlumno()" class="sec" style="padding:8px 12px;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;background:#e8f1fb;color:#0f4c81;border:1px solid #c8d9ea">🚪 Cerrar sesión</button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Material del Estudiante</h3><p>Guía completa del curso</p></div>
+          <div class="card-body">
+            <p>Mapa anual, criterios, procedimientos base y orientaciones generales.</p>
+            <div class="links">
+              <a href="material_del_estudiante_resistencia_materiales.html" class="pri">Ver material</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Fichas del Estudiante</h3><p>Temas con desarrollo conceptual</p></div>
+          <div class="card-body">
+            <p>Acceso directo a cada ficha de estudio con gráficos SVG y ejercicios.</p>
+            <div class="links">
+              <a href="fichas_estudiante_html/index_fichas_estudiante.html" class="pri">Ir a fichas</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <span>Colegio Nacional Defensores del Chaco · BTCC 2.do Curso</span>
+    <span>Docente: Christhian Keim · <a href="fichas_estudiante_html/index_fichas_estudiante.html" style="color:#0f4c81">Vista fichas</a></span>
+  </footer>
+
+</div>
+
+<!-- ===== JAVASCRIPT: ROLE TOGGLE + LOGIN ===== -->
+<script src="../../data/credenciales_alumnos.js"></script>
+<script>
+(function(){
+  const body = document.body;
+  const toggle = document.getElementById('roleToggle');
+  const hint = document.getElementById('roleHint');
+  const btns = toggle.querySelectorAll('button');
+
+  const hints = {
+    docente: '👨‍🏫 Vista completa · todos los documentos',
+    alumno:  '👨‍🎓 Vista alumno · iniciá sesión para ver tu perfil'
+  };
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', function(){
+      const role = this.dataset.role;
+      btns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      body.className = 'rol-' + role;
+      hint.textContent = hints[role] || '';
+    });
+  });
+})();
+
+// ===== LOGIN DE ALUMNO =====
+function cargarSelectorAlumnos() {
+  var sel = document.getElementById('alumnoSelector');
+  if(!sel) return;
+  CREDENCIALES.forEach(function(c) {
+    var opt = document.createElement('option');
+    opt.value = c.num;
+    opt.textContent = c.num + '. ' + c.name.split(',')[0];
+    sel.appendChild(opt);
+  });
+}
+
+function loginAlumno() {
+  var num = parseInt(document.getElementById('alumnoSelector').value);
+  var pass = document.getElementById('alumnoPassword').value;
+  var error = document.getElementById('loginError');
+
+  if(!num) { error.textContent = 'Seleccioná tu nombre de la lista.'; error.style.display = 'block'; return; }
+  if(!pass) { error.textContent = 'Ingresá tu contraseña.'; error.style.display = 'block'; return; }
+
+  if(validarCredencial(num, pass)) {
+    error.style.display = 'none';
+    localStorage.setItem('alumno_login', JSON.stringify({ num: num, name: obtenerAlumnoPorNumero(num).name, time: Date.now() }));
+    mostrarBienvenida(num);
+  } else {
+    error.textContent = 'Contraseña incorrecta. Consultá con tu profesor.';
+    error.style.display = 'block';
+  }
+}
+
+function mostrarBienvenida(num) {
+  var alumno = obtenerAlumnoPorNumero(num);
+  if(!alumno) return;
+  document.getElementById('loginFormContainer').style.display = 'none';
+  document.getElementById('loginWelcome').textContent = '👋 Bienvenido/a, ' + alumno.name.split(',')[0] + '!';
+  document.getElementById('loginProfileLink').href = '15_perfil_estudiante_resistencia.html#' + num;
+  document.getElementById('loginSuccessContainer').style.display = 'block';
+}
+
+function logoutAlumno() {
+  localStorage.removeItem('alumno_login');
+  document.getElementById('loginSuccessContainer').style.display = 'none';
+  document.getElementById('loginFormContainer').style.display = 'block';
+  document.getElementById('alumnoPassword').value = '';
+}
+
+function verificarSesionAlumno() {
+  try {
+    var s = localStorage.getItem('alumno_login');
+    if(s) {
+      var data = JSON.parse(s);
+      mostrarBienvenida(data.num);
+    }
+  } catch(e) {}
+}
+
+cargarSelectorAlumnos();
+verificarSesionAlumno();
+</script>
+
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>

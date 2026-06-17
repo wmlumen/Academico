@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil del Estudiante — Técnicas Instrumentales II</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,sans-serif;background:#f0f4fa;color:#172133;padding:16px}
+.wrap{max-width:1100px;margin:0 auto}
+
+.header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:16px 22px;border-radius:14px;margin-bottom:14px}
+.header h1{margin:0;font-size:20px}
+.header p{margin:4px 0 0;font-size:13px;opacity:.9}
+
+.controls{background:#fff;border:1px solid #d8e3ef;border-radius:12px;padding:10px 14px;margin-bottom:14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;box-shadow:0 2px 8px rgba(23,33,51,0.06)}
+.controls label{font-size:13px;font-weight:600;color:#2a405c}
+.controls select{padding:7px 10px;border:1px solid #b6c6da;border-radius:8px;font-size:13px;background:#fff;flex:1;min-width:200px}
+
+.profile-section{background:#fff;border:1px solid #d8e3ef;border-radius:12px;margin-bottom:16px;overflow:hidden;box-shadow:0 2px 8px rgba(23,33,51,0.04)}
+
+/* INFO CARD */
+.info-card{display:flex;flex-wrap:wrap;gap:16px;padding:16px 20px;background:linear-gradient(135deg,#f5f9ff,#e8f1fb)}
+.info-card .avatar{width:56px;height:56px;border-radius:50%;background:#0f4c81;color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700}
+.info-card .datos{flex:1}
+.info-card .datos h2{font-size:18px;margin:0 0 4px}
+.info-card .datos .meta{font-size:13px;color:#4d6177;display:flex;flex-wrap:wrap;gap:12px}
+.info-card .datos .meta span{background:#fff;padding:2px 10px;border-radius:6px;border:1px solid #d8e0ea}
+
+/* SUMMARY GRID */
+.sum-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;padding:14px 20px}
+.sum-card{border-radius:10px;padding:12px 14px;text-align:center}
+.sum-card .num{font-size:28px;font-weight:700}
+.sum-card .label{font-size:12px;font-weight:600;margin-top:2px}
+.sum-card.ok{background:#e8f5e9;color:#1b5e20}
+.sum-card.fail{background:#ffebee;color:#b71c1c}
+.sum-card.info{background:#e3f2fd;color:#0d47a1}
+.sum-card.warn{background:#fff3e0;color:#e65100}
+
+/* TABLE */
+table.data{width:100%;border-collapse:collapse;font-size:13px}
+table.data th{background:#e8f1fb;color:#0f4c81;font-weight:600;padding:8px 10px;text-align:left;border-bottom:2px solid #c8d9ea;font-size:12px}
+table.data td{padding:7px 10px;border-bottom:1px solid #e8ecf0}
+table.data tr:hover td{background:#f5f9ff}
+.badge{display:inline-block;padding:1px 8px;border-radius:4px;font-size:12px;font-weight:700}
+.badge.l{background:#c8e6c9;color:#1b5e20}
+.badge.nl{background:#ffcdd2;color:#b71c1c}
+.badge.ep{background:#fff9c4;color:#f57f17}
+.badge.pend{background:#f5f5f5;color:#9e9e9e}
+.asis-true{color:#2e7d32;font-weight:600}
+.asis-false{color:#c62828;font-weight:600}
+
+.section-title{padding:10px 16px;font-size:14px;font-weight:700;color:#0f4c81;background:#f5f9ff;border-bottom:1px solid #d8e3ef;display:flex;align-items:center;gap:8px}
+
+@media(max-width:700px){
+  .info-card{flex-direction:column;align-items:center;text-align:center}
+  .sum-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media print{body{padding:0}.controls{display:none}}
+</style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+
+<script src="../../nav/runtime.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>🧑‍🎓 Perfil del Estudiante</h1>
+  <p>Técnicas Instrumentales II · 2.do Curso BTCC · Datos consolidados de RSA y Asistencia</p>
+</div>
+
+<div class="controls">
+  <label>Seleccionar alumno:</label>
+  <select id="studentSelect" onchange="mostrarPerfil()">
+    <option value="">— Seleccionar —</option>
+  </select>
+</div>
+
+<div id="profileContainer">
+  <div style="text-align:center;padding:60px 20px;color:#8899aa;font-size:15px">
+    🔍 Seleccioná un alumno para ver su perfil académico completo.
+  </div>
+</div>
+
+</div>
+
+<script src="../../data/alumnos_tecnicas.js"></script>
+<script src="../../data/indicadores_tecnicas.js"></script>
+<script>
+// ===== CONFIG =====
+var RSA_KEY = 'rsa_tecnicas_state';
+var ASIS_KEY = 'reg_clases_tecnicas';
+var BLOQUES = ['b1','b2'];
+
+// ===== LOCALSTORAGE =====
+function getRSA() {
+  try { return JSON.parse(localStorage.getItem(RSA_KEY)) || {}; } catch(e) { return {}; }
+}
+function getAsis() {
+  try { return JSON.parse(localStorage.getItem(ASIS_KEY)) || {}; } catch(e) { return {}; }
+}
+
+// ===== OBTENER STATUS DE UNA REVISIÓN =====
+function getRevStatus(rsa, prefix, suf) {
+  var name = prefix + suf;
+  var radioId = rsa['r_' + name];
+  if(!radioId) return null;
+  if(radioId.indexOf('_l') > 0) return 'L';
+  if(radioId.indexOf('_ep') > 0) return 'EP';
+  if(radioId.indexOf('_nl') > 0) return 'NL';
+  return null;
+}
+
+// ===== COMPUTAR FINAL (misma lógica que el RSA) =====
+function computeFinal(r1, r2, r3, r4) {
+  if(r4) {
+    if(r4 === 'L')  return {final:'L', pts:1};
+    if(r4 === 'NL') return {final:'NL', pts:0};
+    if(r4 === 'EP') return {final:'—', pts:'—'};
+  }
+  if(!r1 || !r2 || !r3) return {final:'—', pts:'—'};
+  var countL = 0;
+  [r1,r2,r3].forEach(function(r){if(r==='L')countL++;});
+  if(r3 === 'EP') return {final:'—', pts:'—'};
+  if(r3 === 'NL') return {final:'NL', pts:0};
+  if(r3 === 'L') {
+    if(countL >= 2) return {final:'L', pts:1};
+    if(countL === 1) return {final:'?', pts:'—'};
+  }
+  return {final:'—', pts:'—'};
+}
+
+// ===== MOSTRAR PERFIL =====
+function mostrarPerfil() {
+  var sid = document.getElementById('studentSelect').value;
+  var container = document.getElementById('profileContainer');
+  if(!sid) {
+    container.innerHTML = '<div style="text-align:center;padding:60px 20px;color:#8899aa;font-size:15px">🔍 Seleccioná un alumno para ver su perfil académico completo.</div>';
+    return;
+  }
+
+  // Buscar alumno
+  var sNum = parseInt(sid.replace('s',''));
+  var student = STUDENTS.find(function(s){return s.num===sNum;});
+  if(!student) { container.innerHTML = '<div style="color:#c62828">Alumno no encontrado</div>'; return; }
+
+  // Cargar datos
+  var rsa = getRSA();
+  var asis = getAsis();
+
+  // ---- INFO BÁSICA ----
+  var html = '';
+
+  // ---- RSA: recorrer indicadores ----
+  var indRows = '';
+  var aprobados = 0;
+  var totalPts = 0;
+  var totalInd = INDICATORS.length;
+
+  INDICATORS.forEach(function(ind, ti) {
+    var prefix = sid + 't' + (ti+1);
+    var r1 = getRevStatus(rsa, prefix, '');
+    var r2 = getRevStatus(rsa, prefix, 'b');
+    var r3 = getRevStatus(rsa, prefix, 'c');
+    var r4 = getRevStatus(rsa, prefix, 'd');
+    var res = computeFinal(r1, r2, r3, r4);
+
+    var badgeCls = 'pend';
+    var badgeTxt = '—';
+    if(res.final === 'L') { badgeCls = 'l'; badgeTxt = 'L'; aprobados++; totalPts += res.pts; }
+    else if(res.final === 'NL') { badgeCls = 'nl'; badgeTxt = 'NL'; }
+    else if(res.final === '?') { badgeCls = 'ep'; badgeTxt = '?'; }
+
+    var ptsTxt = (res.pts === 1 || res.pts === 0) ? res.pts : '—';
+
+    indRows += '<tr>';
+    indRows += '<td>' + ind.tema + '</td>';
+    indRows += '<td><span class="badge ' + badgeCls + '">' + badgeTxt + '</span></td>';
+    indRows += '<td style="text-align:center">' + ptsTxt + '</td>';
+    indRows += '<td>' + (r1 ? '<span class="badge ' + (r1==='L'?'l':r1==='NL'?'nl':'ep') + '">' + r1 + '</span>' : '<span class="badge pend">—</span>') + '</td>';
+    indRows += '<td>' + (r2 ? '<span class="badge ' + (r2==='L'?'l':r2==='NL'?'nl':'ep') + '">' + r2 + '</span>' : '<span class="badge pend">—</span>') + '</td>';
+    indRows += '<td>' + (r3 ? '<span class="badge ' + (r3==='L'?'l':r3==='NL'?'nl':'ep') + '">' + r3 + '</span>' : '<span class="badge pend">—</span>') + '</td>';
+    indRows += '</tr>';
+  });
+
+  // ---- ASISTENCIA ----
+  var totalJornadas = 0;
+  var totalAsist = 0;
+  var ausencias = [];
+  var si = sNum - 1; // index del alumno en el array
+
+  Object.keys(asis).forEach(function(dateKey) {
+    var jornada = asis[dateKey];
+    BLOQUES.forEach(function(blkId) {
+      var blk = jornada[blkId];
+      if(blk && blk.asis) {
+        totalJornadas++;
+        if(blk.asis[si]) totalAsist++;
+        else ausencias.push({ date: dateKey, bloque: blkId });
+      }
+    });
+  });
+
+  var totalAusentes = totalJornadas - totalAsist;
+  var porcAsist = totalJornadas > 0 ? Math.round(totalAsist / totalJornadas * 100) : 0;
+
+  // ---- RENDER ----
+  html += '<div class="profile-section">';
+  html += '<div class="info-card">';
+  html += '<div class="avatar">' + student.num + '</div>';
+  html += '<div class="datos">';
+  html += '<h2>' + student.name + '</h2>';
+  html += '<div class="meta">';
+  html += '<span>📋 N.° ' + student.num + '</span>';
+  html += '<span>🆔 Doc. ' + student.doc + '</span>';
+  html += '</div></div></div>';
+
+  // Summary cards
+  html += '<div class="sum-grid">';
+  html += '<div class="sum-card ok"><div class="num">' + aprobados + '/' + totalInd + '</div><div class="label">✅ Indicadores aprobados</div></div>';
+  html += '<div class="sum-card info"><div class="num">' + totalPts + '</div><div class="label">⭐ Puntaje total</div></div>';
+  html += '<div class="sum-card ' + (porcAsist >= 75 ? 'ok' : 'fail') + '"><div class="num">' + porcAsist + '%</div><div class="label">📅 Asistencia</div></div>';
+  html += '<div class="sum-card ' + (totalAusentes > 0 ? 'warn' : 'ok') + '"><div class="num">' + totalAusentes + '</div><div class="label">❌ Ausencias</div></div>';
+  html += '</div>';
+
+  // Tabla RSA
+  html += '<div class="section-title">📋 RSA — Indicadores por capacidad</div>';
+  html += '<table class="data"><thead><tr>';
+  html += '<th>Indicador</th><th>Final</th><th style="text-align:center">Pts</th><th>1.ª Rev</th><th>2.ª Rev</th><th>3.ª Rev</th>';
+  html += '</tr></thead><tbody>' + indRows + '</tbody></table>';
+
+  // Asistencia detallada
+  html += '<div class="section-title">📅 Asistencia — Detalle de ausencias</div>';
+  if(ausencias.length === 0) {
+    html += '<div style="padding:14px 16px;color:#2e7d32;font-weight:600">✅ Sin ausencias registradas.</div>';
+  } else {
+    html += '<table class="data"><thead><tr><th>Fecha</th><th>Bloque</th></tr></thead><tbody>';
+    ausencias.forEach(function(a) {
+      var blkLabel = a.bloque === 'b1' ? '1.er Bloque (13:00-15:10)' : '2.do Bloque (15:10-17:20)';
+      html += '<tr><td>' + a.date + '</td><td class="asis-false">❌ ' + blkLabel + '</td></tr>';
+    });
+    html += '</tbody></table>';
+  }
+
+  // ---- REGISTRO ANECDOTICO ----
+  var anecKey = 'reg_anecdotico_tecnicas';
+  var anecData = {};
+  try { var a = localStorage.getItem(anecKey); if(a) anecData = JSON.parse(a); } catch(e) {}
+  var anecRecords = anecData[sid] || [];
+
+  html += '<div class="section-title">📋 Registro Anecdotico <span style="font-weight:400;font-size:12px;color:#5a687c">(' + anecRecords.length + ' registro(s))</span></div>';
+  if(anecRecords.length === 0) {
+    html += '<div style="padding:14px 16px;color:#8899aa">Sin registros anecdóticos.</div>';
+  } else {
+    html += '<table class="data"><thead><tr><th>Fecha</th><th>Tipo</th><th>Situación</th><th>Acción</th><th>Resultado</th></tr></thead><tbody>';
+    anecRecords.forEach(function(r) {
+      var tipoBadge = r.tipo === 'positiva' ? '<span class="badge l">✅ Positiva</span>' : (r.tipo === 'negativa' ? '<span class="badge nl">⚠️ Negativa</span>' : '<span class="badge pend">—</span>');
+      var flags = [];
+      if(r.llamarPadres === 'si') flags.push('📞 Llamar padres');
+      if(r.comunicadoDir === 'si') flags.push('🏫 Comunicado a Dirección');
+      if(r.reincidencia === 'si') flags.push('🔄 Reincidencia');
+      var flagHtml = flags.length ? '<br><span style="font-size:11px;color:#5a687c">' + flags.join(' · ') + '</span>' : '';
+      var reinciDet = r.reincidencia === 'si' && r.reincidenciaDetalle ? '<br><span style="font-size:11px;color:#e65100;font-style:italic">🔄 ' + r.reincidenciaDetalle + '</span>' : '';
+      html += '<tr>';
+      html += '<td style="white-space:nowrap;font-weight:600">' + (r.fecha || '—') + '</td>';
+      html += '<td>' + tipoBadge + flagHtml + '</td>';
+      html += '<td>' + (r.situacion || '—') + (r.contexto ? '<br><span style="font-size:11px;color:#8899aa">' + r.contexto + '</span>' : '') + reinciDet + '</td>';
+      html += '<td>' + (r.accion || '—') + '</td>';
+      html += '<td>' + (r.resultado || (r.seguimiento ? 'En seguimiento: ' + r.seguimiento : '—')) + '</td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table>';
+  }
+
+  // ---- COMPETENCIAS TRANSVERSALES ----
+  var COMP_KEY = 'competencias_tecnicas';
+  var compData = {};
+  try { var cs = localStorage.getItem(COMP_KEY); if(cs) compData = JSON.parse(cs); } catch(e) {}
+  var compAlumno = compData[sid] || {};
+  var compLogros = 0, compTotal = 28;
+  Object.keys(compAlumno).forEach(function(cid) { if(compAlumno[cid]) compLogros++; });
+  var compPct = compTotal > 0 ? Math.round(compLogros / compTotal * 100) : 0;
+
+  html += '<div class="section-title">⭐ Competencias Transversales <span style="font-weight:400;font-size:12px;color:#5a687c">(' + compLogros + '/' + compTotal + ' logros — ' + compPct + '%)</span></div>';
+  html += '<div style="padding:10px 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:6px;font-size:12px">';
+  var cats = {'📘 Académica':[],'👥 Conductual':[],'💡 Socio‑Emocional':[],'🚀 Actitudinal':[]};
+  var CRITERIOS = [
+    {id:'a1',cat:'📘 Académica',name:'Domina conceptos clave'},{id:'a2',cat:'📘 Académica',name:'Aplica comprensión crítica'},{id:'a3',cat:'📘 Académica',name:'Entrega tareas completas'},{id:'a4',cat:'📘 Académica',name:'Perseverancia matemática'},{id:'a5',cat:'📘 Académica',name:'Claridad oral/escrita'},{id:'a6',cat:'📘 Académica',name:'Interés por lectura'},{id:'a7',cat:'📘 Académica',name:'Autonomía y responsabilidad'},{id:'a8',cat:'📘 Académica',name:'Explora temas nuevos'},
+    {id:'c1',cat:'👥 Conductual',name:'Respeta normas'},{id:'c2',cat:'👥 Conductual',name:'Puntualidad'},{id:'c3',cat:'👥 Conductual',name:'Cuida materiales'},{id:'c4',cat:'👥 Conductual',name:'Escucha activa'},{id:'c5',cat:'👥 Conductual',name:'Lenguaje respetuoso'},{id:'c6',cat:'👥 Conductual',name:'Reconoce errores'},{id:'c7',cat:'👥 Conductual',name:'Tecnología educativa'},{id:'c8',cat:'👥 Conductual',name:'Colaboración grupal'},
+    {id:'s1',cat:'💡 Socio‑Emocional',name:'Resiliencia'},{id:'s2',cat:'💡 Socio‑Emocional',name:'Trabajo colaborativo'},{id:'s3',cat:'💡 Socio‑Emocional',name:'Empatía'},{id:'s4',cat:'💡 Socio‑Emocional',name:'Liderazgo positivo'},{id:'s5',cat:'💡 Socio‑Emocional',name:'Comunicación asertiva'},{id:'s6',cat:'💡 Socio‑Emocional',name:'Autoestima académica'},{id:'s7',cat:'💡 Socio‑Emocional',name:'Gestión emocional'},{id:'s8',cat:'💡 Socio‑Emocional',name:'Motiva a otros'},
+    {id:'t1',cat:'🚀 Actitudinal',name:'Curiosidad e iniciativa'},{id:'t2',cat:'🚀 Actitudinal',name:'Persistencia'},{id:'t3',cat:'🚀 Actitudinal',name:'Acepta retroalimentación'},{id:'t4',cat:'🚀 Actitudinal',name:'Concluye proyectos'}
+  ];
+  CRITERIOS.forEach(function(c) {
+    var logrado = compAlumno[c.id] || false;
+    if(cats[c.cat]) cats[c.cat].push({ name: c.name, ok: logrado });
+  });
+  Object.keys(cats).forEach(function(catName) {
+    var items = cats[catName];
+    if(items.length === 0) return;
+    html += '<div style="background:#f5f9ff;border-radius:8px;padding:8px 10px">';
+    html += '<div style="font-weight:700;font-size:11px;color:#0f4c81;margin-bottom:4px">' + catName + '</div>';
+    items.forEach(function(item) {
+      html += '<div style="display:flex;align-items:center;gap:4px;padding:2px 0;font-size:11px">';
+      html += item.ok ? '<span style="color:#2e7d32">✅</span>' : '<span style="color:#bdbdbd">⬜</span>';
+      html += '<span style="color:' + (item.ok ? '#172133' : '#9e9e9e') + '">' + item.name + '</span></div>';
+    });
+    html += '</div>';
+  });
+  html += '</div>';
+
+  // ---- TAREAS PENDIENTES (desde Perfil Docente) ----
+  var TAREAS = [];
+  try { var ts = localStorage.getItem('perfil_docente_tareas'); if(ts) TAREAS = JSON.parse(ts); } catch(e) {}
+  var tareasAlumno = TAREAS.filter(function(t) {
+    return t.status === 'pendiente' && (t.subject === 'tecnicas' || t.subject === 'ambas');
+  });
+
+  html += '<div class="section-title">📌 Tareas Pendientes <span style="font-weight:400;font-size:12px;color:#5a687c">(' + tareasAlumno.length + ' pendiente(s))</span></div>';
+  if(tareasAlumno.length === 0) {
+    html += '<div style="padding:14px 16px;color:#2e7d32;font-weight:600">✅ No hay tareas pendientes.</div>';
+  } else {
+    html += '<table class="data"><thead><tr><th>Entrega</th><th>Título</th><th>Descripción</th><th>Materia</th></tr></thead><tbody>';
+    tareasAlumno.forEach(function(t) {
+      var subjLabel = t.subject === 'ambas' ? '📚 Ambas' : '📘 Técnicas';
+      html += '<tr style="background:#fff8e1">';
+      html += '<td style="white-space:nowrap;font-weight:600;color:#e65100">' + (t.date || '—') + '</td>';
+      html += '<td><strong>📌 ' + t.title + '</strong></td>';
+      html += '<td>' + (t.desc || '—') + '</td>';
+      html += '<td>' + subjLabel + '</td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table>';
+  }
+
+  html += '</div>';
+
+  container.innerHTML = html;
+}
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded', function() {
+  var sel = document.getElementById('studentSelect');
+  STUDENTS.forEach(function(s) {
+    sel.innerHTML += '<option value="s' + s.num + '">' + s.num + '. ' + s.name + '</option>';
+  });
+
+  // Detectar alumno desde URL hash (ej: #12) o desde sesión guardada
+  var hash = window.location.hash.replace('#','');
+  if(hash) {
+    var num = parseInt(hash);
+    if(num) {
+      sel.value = 's' + num;
+      mostrarPerfil();
+    }
+  } else {
+    // Intentar desde sesión guardada
+    try {
+      var login = JSON.parse(localStorage.getItem('alumno_login'));
+      if(login && login.num) {
+        sel.value = 's' + login.num;
+        mostrarPerfil();
+      }
+    } catch(e) {}
+  }
+});
+</script>
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>

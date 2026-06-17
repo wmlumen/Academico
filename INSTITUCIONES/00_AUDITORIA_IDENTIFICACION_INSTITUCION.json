@@ -1,0 +1,2435 @@
+[
+  {
+    "institution": "CENTRO_EDUCATIVO_MARANGATU",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH CENTRO EDUC. MARANGATU 7 TT\\Informe de Diagnostico.htm",
+    "grade": "7_Grado",
+    "subject": "Diagnostico",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MARANGATU"
+    ]
+  },
+  {
+    "institution": "CENTRO_EDUCATIVO_MARANGATU",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH CENTRO EDUC. MARANGATU 7 TT\\VH CENTRO EDUCATIVO MARANGATU  CIENCIAS NATURALES 7no TT.xlsx.xlsx",
+    "grade": "7_Grado",
+    "subject": "Ciencias",
+    "turn": "Turno_TT",
+    "reasons": [
+      "filename:MARANGATU",
+      "path:MARANGATU",
+      "content:MARANGATU"
+    ]
+  },
+  {
+    "institution": "CENTRO_EDUCATIVO_MARANGATU",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH CENTRO EDUC. MARANGATU 7 TT\\Informe de Diagnostico.htm",
+    "grade": "7_Grado",
+    "subject": "Diagnostico",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MARANGATU"
+    ]
+  },
+  {
+    "institution": "CENTRO_EDUCATIVO_MARANGATU",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH CENTRO EDUC. MARANGATU 7 TT\\VH CENTRO EDUCATIVO MARANGATU  CIENCIAS NATURALES 7no TT.xlsx.xlsx",
+    "grade": "7_Grado",
+    "subject": "Ciencias",
+    "turn": "Turno_TT",
+    "reasons": [
+      "filename:MARANGATU",
+      "path:MARANGATU",
+      "content:MARANGATU"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\MANUEL MOLINAS\\ETICA 7MO I TT\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\MANUEL MOLINAS\\ETICA 7MO I TT\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\MANUEL MOLINAS\\ETICA 7mo TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "content:MANUAL MOLINA",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\MANUEL MOLINAS\\ETICA 7mo TM\\VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "filename:MANUEL MOLINAS",
+      "path:MANUEL MOLINAS",
+      "filename:MANUEL MOLINA",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\MANUEL MOLINAS\\Planilla.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\MANUEL MOLINAS\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\001 PLAN ANUAL ETICA 7MO MM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\01- PLAN ANUAL I Ética 7mo Grado 2026 VF.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\02_RSA_Registro_Secuencia_Aprendizaje_2026.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\03_Instrumentos_Evaluacion_Detalle_2026.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\04_Guia_Estructura_Google_Form_HTML.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 1 - Plan Anual Completo y Temas Integrados.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 2 - RSA Integral (Todos los Temas).xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 3 - Instrumentos Específicos (Cotejo y Rúbricas).xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 4 - PLANILLA DE CLASES.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 4 - Registro de Grado (Consolidado).xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 5 - Planilla de Proceso Molina 2025 V2.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 6 Plan Integral 2026 - Formación Ética 7mo - Molinas V5.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "content:MANUEL MOLINAS",
+      "path:MANUAL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Plan Anual Actualizado - Ética 7mo Grado I TM.pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Plan Anual y Registros de Evaluación Completo - Ética 7mo V4.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Planilla Principal.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\PLANILLA.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "content:MANUEL MOLINAS",
+      "path:MANUAL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA",
+      "content:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Que se quiere.txt",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\SEGUIMIENTO_ETICA_7MO_2026.xlsx.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "filename:MANUEL MOLINAS",
+      "path:MANUEL MOLINAS",
+      "path:MANUAL MOLINA",
+      "filename:MANUEL MOLINA",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\Planilla.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PCI MANUEL MOLINAS 2025.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "filename:MANUEL MOLINAS",
+      "path:MANUEL MOLINAS",
+      "content:MANUEL MOLINAS",
+      "filename:MANUEL MOLINA",
+      "path:MANUEL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PEI MOLINAS-2024 - 2028 (1).pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "content:MANUEL MOLINAS",
+      "path:MANUEL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PEI MOLINAS-2024 - 2028.pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "content:MANUEL MOLINAS",
+      "path:MANUEL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA 2024 - MM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA_2026.pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC MANUEL MOLINAS ETICA 7no TT.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "filename:MANUEL MOLINAS",
+      "path:MANUEL MOLINAS",
+      "filename:MANUEL MOLINA",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\ETICA 7MO I TT\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\ETICA 7MO I TT\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\ETICA 7mo TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "content:MANUAL MOLINA",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\ETICA 7mo TM\\VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "filename:MANUEL MOLINAS",
+      "path:MANUEL MOLINAS",
+      "filename:MANUEL MOLINA",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\PLANILLA DE DIAGNOSTICO I MM I 2026.xlsx",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\Planilla.xlsx",
+    "grade": "Sin_Grado",
+    "subject": "Sin_Asignatura",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\001 PLAN ANUAL ETICA 7MO MM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\01- PLAN ANUAL I Ética 7mo Grado 2026 VF.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\02_RSA_Registro_Secuencia_Aprendizaje_2026.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\03_Instrumentos_Evaluacion_Detalle_2026.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\04_Guia_Estructura_Google_Form_HTML.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 1 - Plan Anual Completo y Temas Integrados.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 2 - RSA Integral (Todos los Temas).xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 3 - Instrumentos Específicos (Cotejo y Rúbricas).xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 4 - PLANILLA DE CLASES.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 4 - Registro de Grado (Consolidado).xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 5 - Planilla de Proceso Molina 2025 V2.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 6 Plan Integral 2026 - Formación Ética 7mo - Molinas V5.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "content:MANUEL MOLINAS",
+      "path:MANUAL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Plan Anual Actualizado - Ética 7mo Grado I TM.pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Plan Anual y Registros de Evaluación Completo - Ética 7mo V4.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Planilla Principal.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\PLANILLA.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "content:MANUEL MOLINAS",
+      "path:MANUAL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA",
+      "content:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Que se quiere.txt",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\SEGUIMIENTO_ETICA_7MO_2026.xlsx.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\VH ESC MANUEL MOLINAS ETICA 7no TM - VF.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "filename:MANUEL MOLINAS",
+      "path:MANUEL MOLINAS",
+      "path:MANUAL MOLINA",
+      "filename:MANUEL MOLINA",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "filename:MANUEL MOLINAS",
+      "path:MANUEL MOLINAS",
+      "path:MANUAL MOLINA",
+      "filename:MANUEL MOLINA",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\001 PLAN ANUAL ETICA 7MO MM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\01- PLAN ANUAL I Ética 7mo Grado 2026 VF.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\02_RSA_Registro_Secuencia_Aprendizaje_2026.docx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\03_Instrumentos_Evaluacion_Detalle_2026.docx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\04_Guia_Estructura_Google_Form_HTML.docx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 1 - Plan Anual Completo y Temas Integrados.xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 2 - RSA Integral (Todos los Temas).xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 3 - Instrumentos Específicos (Cotejo y Rúbricas).xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 4 - PLANILLA DE CLASES.xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 4 - Registro de Grado (Consolidado).xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 5 - Planilla de Proceso Molina 2025 V2.xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 6 Plan Integral 2026 - Formación Ética 7mo - Molinas V5.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "content:MANUEL MOLINAS",
+      "path:MANUAL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Plan Anual Actualizado - Ética 7mo Grado I TM.pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Plan Anual y Registros de Evaluación Completo - Ética 7mo V4.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Planilla Principal.xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\PLANILLA.xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "content:MANUEL MOLINAS",
+      "path:MANUAL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA",
+      "content:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Que se quiere.txt",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\SEGUIMIENTO_ETICA_7MO_2026.xlsx.xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\VH ESC MANUEL MOLINAS ETICA 8vo TM.xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "filename:MANUEL MOLINAS",
+      "path:MANUEL MOLINAS",
+      "path:MANUAL MOLINA",
+      "filename:MANUEL MOLINA",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\001 PLAN ANUAL ETICA 7MO MM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+    "grade": "9_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\01- PLAN ANUAL I Ética 7mo Grado 2026 VF.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\02_RSA_Registro_Secuencia_Aprendizaje_2026.docx",
+    "grade": "9_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\03_Instrumentos_Evaluacion_Detalle_2026.docx",
+    "grade": "9_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\04_Guia_Estructura_Google_Form_HTML.docx",
+    "grade": "9_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 1 - Plan Anual Completo y Temas Integrados.xlsx",
+    "grade": "9_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 2 - RSA Integral (Todos los Temas).xlsx",
+    "grade": "9_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 3 - Instrumentos Específicos (Cotejo y Rúbricas).xlsx",
+    "grade": "9_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 4 - PLANILLA DE CLASES.xlsx",
+    "grade": "9_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 4 - Registro de Grado (Consolidado).xlsx",
+    "grade": "9_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 5 - Planilla de Proceso Molina 2025 V2.xlsx",
+    "grade": "9_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 6 Plan Integral 2026 - Formación Ética 7mo - Molinas V5.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "content:MANUEL MOLINAS",
+      "path:MANUAL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+    "grade": "9_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Plan Anual Actualizado - Ética 7mo Grado I TM.pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Plan Anual y Registros de Evaluación Completo - Ética 7mo V4.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Planilla Principal.xlsx",
+    "grade": "9_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+    "grade": "9_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\PLANILLA.xlsx",
+    "grade": "9_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "content:MANUEL MOLINAS",
+      "path:MANUAL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA",
+      "content:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Que se quiere.txt",
+    "grade": "9_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\SEGUIMIENTO_ETICA_7MO_2026.xlsx.xlsx",
+    "grade": "9_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUAL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "filename:MANUEL MOLINAS",
+      "path:MANUEL MOLINAS",
+      "path:MANUAL MOLINA",
+      "filename:MANUEL MOLINA",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PCI MANUEL MOLINAS 2025.docx",
+    "grade": "7_Grado",
+    "subject": "Institucional",
+    "turn": "Turno_TT",
+    "reasons": [
+      "filename:MANUEL MOLINAS",
+      "path:MANUEL MOLINAS",
+      "content:MANUEL MOLINAS",
+      "filename:MANUEL MOLINA",
+      "path:MANUEL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PEI MOLINAS-2024 - 2028 (1).pdf",
+    "grade": "1_Curso",
+    "subject": "Institucional",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "content:MANUEL MOLINAS",
+      "path:MANUEL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PEI MOLINAS-2024 - 2028.pdf",
+    "grade": "7_Grado",
+    "subject": "Institucional",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "content:MANUEL MOLINAS",
+      "path:MANUEL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA 2024 - MM.docx",
+    "grade": "7_Grado",
+    "subject": "Institucional",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA_2026 (1).pdf",
+    "grade": "1_Curso",
+    "subject": "Institucional",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA_2026.pdf",
+    "grade": "7_Grado",
+    "subject": "Institucional",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Data\\PLANILLA DE DIAGNOSTICO I MM I 2026.xlsx",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Diagnostico_Integrado_Keim_2026 - copia.html",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Diagnostico_Integrado_Keim_2026.html",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Docs\\PEI MOLINAS-2024 - 2028.pdf",
+    "grade": "7_Grado",
+    "subject": "Diagnostico",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "content:MANUEL MOLINAS",
+      "path:MANUEL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Docs\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Docs\\PLAN ANUAL ÉTICA 9º GRADO.doc",
+    "grade": "9_Grado",
+    "subject": "Etica",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Docs\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Docs\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+    "grade": "7_Grado",
+    "subject": "Diagnostico",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "content:MANUAL MOLINA",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Docs\\Ética - 8º grado.doc",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\HTML\\Informes_Diagnosticos_Panel.html",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\HTML\\panel_diagnostico.html",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\HTML\\panel_diagnostico_plan.html",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\HTML\\Plan_Integral_Interdisciplinario.html",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\HTML\\POA_2026_Formacion_Etica_Actualizado.html",
+    "grade": "Sin_Grado",
+    "subject": "Etica",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\MD\\7mo_TM.md",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\MD\\7mo_TT.md",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\MD\\8vo_TM.md",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\MD\\9no_TM.md",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Scripts\\export_all_sheets.ps1",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Scripts\\read_excel.ps1",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Scripts\\read_excel_full.ps1",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Scripts\\read_sheets.ps1",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_1_Hoja7.txt",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_2_Hoja9.txt",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_3_RESULTADO.txt",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_4_7mo. TM.txt",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_5_7mo. TT.txt",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_6_8vo. TM.txt",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_7_9no. TM.txt",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_8_Hoja10.txt",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_9_REGLAS.txt",
+    "grade": "Sin_Grado",
+    "subject": "Diagnostico",
+    "turn": "General",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT v2\\Prueba Diagnostica 7mo. Grado I TT MM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "content:MANUAL MOLINA",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT v2\\VH ESC MANUEL MOLINAS ETICA 7no TT.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "filename:MANUEL MOLINAS",
+      "path:MANUEL MOLINAS",
+      "filename:MANUEL MOLINA",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\Planilla.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PCI MANUEL MOLINAS 2025.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "filename:MANUEL MOLINAS",
+      "path:MANUEL MOLINAS",
+      "content:MANUEL MOLINAS",
+      "filename:MANUEL MOLINA",
+      "path:MANUEL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PEI MOLINAS-2024 - 2028 (1).pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "content:MANUEL MOLINAS",
+      "path:MANUEL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PEI MOLINAS-2024 - 2028.pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "content:MANUEL MOLINAS",
+      "path:MANUEL MOLINA",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA 2024 - MM.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA_2026.pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:MANUEL MOLINAS",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC MANUEL MOLINAS ETICA 7no TT.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "filename:MANUEL MOLINAS",
+      "path:MANUEL MOLINAS",
+      "filename:MANUEL MOLINA",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\~$VH ESC MANUEL MOLINAS ETICA 7no TT.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "filename:MANUEL MOLINAS",
+      "path:MANUEL MOLINAS",
+      "filename:MANUEL MOLINA",
+      "path:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_MANUEL_MOLINAS",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\Hoja 6 Plan Integral 2026 - Formación Ética 7mo - Molinas V5.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "content:MANUEL MOLINAS",
+      "content:MANUEL MOLINA"
+    ]
+  },
+  {
+    "institution": "COLEGIO_NACIONAL_DON_JORGE_GAYOSO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BCS FORMACION ETICA 2do. TT - copia\\Informe de Diagnostico.htm",
+    "grade": "2_Curso",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:JORGE GAYOSO",
+      "path:DON JORGE GAYOSO"
+    ]
+  },
+  {
+    "institution": "COLEGIO_NACIONAL_DON_JORGE_GAYOSO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BCS ORIENTACION 3RO. TM\\Informe de Diagnostico.htm",
+    "grade": "3_Curso",
+    "subject": "Orientacion",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:JORGE GAYOSO",
+      "path:DON JORGE GAYOSO"
+    ]
+  },
+  {
+    "institution": "COLEGIO_NACIONAL_DON_JORGE_GAYOSO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BTCA EDUCACION AMBIENTAL 1ro\\Informe de Diagnostico.htm",
+    "grade": "1_Curso",
+    "subject": "Educacion_Ambiental",
+    "turn": "General",
+    "reasons": [
+      "path:JORGE GAYOSO",
+      "path:DON JORGE GAYOSO"
+    ]
+  },
+  {
+    "institution": "COLEGIO_NACIONAL_DON_JORGE_GAYOSO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BTCA EDUCACION AMBIENTAL 2DO\\Informe de Diagnostico.htm",
+    "grade": "2_Curso",
+    "subject": "Educacion_Ambiental",
+    "turn": "General",
+    "reasons": [
+      "path:JORGE GAYOSO",
+      "path:DON JORGE GAYOSO"
+    ]
+  },
+  {
+    "institution": "COLEGIO_NACIONAL_DON_JORGE_GAYOSO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BTCA METODOLOGIA 1ro\\Informe de Diagnostico.htm",
+    "grade": "1_Curso",
+    "subject": "Metodologia",
+    "turn": "General",
+    "reasons": [
+      "path:JORGE GAYOSO",
+      "path:DON JORGE GAYOSO"
+    ]
+  },
+  {
+    "institution": "COLEGIO_NACIONAL_DON_JORGE_GAYOSO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BTCA SOCIOLOGIA URBANA Y RURAL 1ro\\Informe de Diagnostico.htm",
+    "grade": "1_Curso",
+    "subject": "Sociologia_Urbana_y_Rural",
+    "turn": "General",
+    "reasons": [
+      "path:JORGE GAYOSO",
+      "path:DON JORGE GAYOSO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC DEFENSORES CIENCIAS NATURALES 7 TT\\Informe de Diagnostico.htm",
+    "grade": "7_Grado",
+    "subject": "Ciencias",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:VH ESC DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC DEFENSORES CIENCIAS NATURALES 7 TT\\VH ESC DEFENSORES CIENCIAS NATURALES 7no TT.xlsx.xlsx",
+    "grade": "7_Grado",
+    "subject": "Ciencias",
+    "turn": "Turno_TT",
+    "reasons": [
+      "filename:VH ESC DEFENSORES",
+      "path:VH ESC DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC DEFENSORES DEL CHACO 8vo. TT\\caracteristicas_examen.md",
+    "grade": "8_Grado",
+    "subject": "Sin_Asignatura",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO",
+      "content:DEFENSORES DEL CHACO",
+      "path:VH ESC DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC DEFENSORES DEL CHACO 8vo. TT\\examen_etica_ciudadana.html",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO",
+      "content:DEFENSORES DEL CHACO",
+      "path:VH ESC DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC DEFENSORES DEL CHACO 8vo. TT\\hoja_respuestas_etica_ciudadana.html",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO",
+      "content:DEFENSORES DEL CHACO",
+      "path:VH ESC DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC DEFENSORES DEL CHACO 8vo. TT\\hoja_respuestas_profesor.html",
+    "grade": "8_Grado",
+    "subject": "Sin_Asignatura",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO",
+      "content:DEFENSORES DEL CHACO",
+      "path:VH ESC DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC DEFENSORES DEL CHACO 8vo. TT\\Nuevo Documento de texto.txt",
+    "grade": "8_Grado",
+    "subject": "Sin_Asignatura",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO",
+      "path:VH ESC DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BCS FORMACION ETICA 2do. TT - copia\\VH ESC DEFENSORES CIENCIAS NATURALES 7no TT.xlsx.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "filename:VH ESC DEFENSORES",
+      "path:VH ESC DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BCS ORIENTACION 3RO. TM\\VH ESC DEFENSORES CIENCIAS NATURALES 7no TT.xlsx.xlsx",
+    "grade": "7_Grado",
+    "subject": "Ciencias",
+    "turn": "Turno_TM",
+    "reasons": [
+      "filename:VH ESC DEFENSORES",
+      "path:VH ESC DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BTCA EDUCACION AMBIENTAL 1ro\\VH ESC DEFENSORES CIENCIAS NATURALES 7no TT.xlsx.xlsx",
+    "grade": "7_Grado",
+    "subject": "Ciencias",
+    "turn": "Turno_TT",
+    "reasons": [
+      "filename:VH ESC DEFENSORES",
+      "path:VH ESC DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BTCA EDUCACION AMBIENTAL 2DO\\VH ESC DEFENSORES CIENCIAS NATURALES 7no TT.xlsx.xlsx",
+    "grade": "7_Grado",
+    "subject": "Ciencias",
+    "turn": "Turno_TT",
+    "reasons": [
+      "filename:VH ESC DEFENSORES",
+      "path:VH ESC DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BTCA METODOLOGIA 1ro\\VH ESC DEFENSORES CIENCIAS NATURALES 7no TT.xlsx.xlsx",
+    "grade": "7_Grado",
+    "subject": "Ciencias",
+    "turn": "Turno_TT",
+    "reasons": [
+      "filename:VH ESC DEFENSORES",
+      "path:VH ESC DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BTCA SOCIOLOGIA URBANA Y RURAL 1ro\\VH ESC DEFENSORES CIENCIAS NATURALES 7no TT.xlsx.xlsx",
+    "grade": "7_Grado",
+    "subject": "Ciencias",
+    "turn": "Turno_TT",
+    "reasons": [
+      "filename:VH ESC DEFENSORES",
+      "path:VH ESC DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH COL. NAC. DEFENSORES DEL CHACO RESISTENCIA 2do. TM\\MATERIAL 1.pdf",
+    "grade": "1_Curso",
+    "subject": "Resistencia",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO",
+      "path:VH COL. NAC. DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH COL. NAC. DEFENSORES DEL CHACO RESISTENCIA 2do. TM\\RESISTENCIA T1.pdf",
+    "grade": "2_Curso",
+    "subject": "Resistencia",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO",
+      "path:VH COL. NAC. DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH COL. NAC. DEFENSORES DEL CHACO RESISTENCIA 2do. TM\\RESISTENCIA T2.pdf",
+    "grade": "2_Curso",
+    "subject": "Resistencia",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO",
+      "path:VH COL. NAC. DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH COL. NAC. DEFENSORES DEL CHACO TECNICAS INSTRUMENTALES 2do. TM\\MATERIAL 1.pdf",
+    "grade": "1_Curso",
+    "subject": "Tecnicas_Instrumentales",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO",
+      "path:VH COL. NAC. DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH COL. NAC. DEFENSORES DEL CHACO TECNICAS INSTRUMENTALES 2do. TM\\RESISTENCIA T1.pdf",
+    "grade": "2_Curso",
+    "subject": "Resistencia",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO",
+      "path:VH COL. NAC. DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH COL. NAC. DEFENSORES DEL CHACO TECNICAS INSTRUMENTALES 2do. TM\\RESISTENCIA T2.pdf",
+    "grade": "2_Curso",
+    "subject": "Resistencia",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO",
+      "path:VH COL. NAC. DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC DEFENSORES CIENCIAS NATURALES 7 TT\\Informe de Diagnostico.htm",
+    "grade": "7_Grado",
+    "subject": "Ciencias",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:VH ESC DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC DEFENSORES CIENCIAS NATURALES 7 TT\\VH ESC DEFENSORES CIENCIAS NATURALES 7no TT.xlsx.xlsx",
+    "grade": "7_Grado",
+    "subject": "Ciencias",
+    "turn": "Turno_TT",
+    "reasons": [
+      "filename:VH ESC DEFENSORES",
+      "path:VH ESC DEFENSORES"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\8° Libro Digital - FORMACIÓN ÉTICA Y CIUDADANA 8°.pdf",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\01- PLAN ANUAL I Ética 7mo Grado 2026 VF.docx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\02_RSA_Registro_Secuencia_Aprendizaje_2026.docx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\03_Instrumentos_Evaluacion_Detalle_2026.docx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\04_Guia_Estructura_Google_Form_HTML.docx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\Hoja 1 - Plan Anual Completo y Temas Integrados.xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\Hoja 2 - RSA Integral (Todos los Temas).xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\Hoja 3 - Instrumentos Específicos (Cotejo y Rúbricas).xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\Hoja 4 - PLANILLA DE CLASES.xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\Hoja 4 - Registro de Grado (Consolidado).xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\Hoja 5 - Planilla de Proceso Molina 2025 V2.xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\Plan Anual Actualizado - Ética 7mo Grado I TM.pdf",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TM",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\Plan Anual y Registros de Evaluación Completo - Ética 7mo V4.xlsx",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+    "grade": "7_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\Planilla Principal.xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "path:DEFENSORES DEL CHACO"
+    ]
+  },
+  {
+    "institution": "DEFENSORES_DEL_CHACO",
+    "source": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\VH ESC DEFENSORES DEL CHACO ETICA 8vo TT.xlsx",
+    "grade": "8_Grado",
+    "subject": "Etica",
+    "turn": "Turno_TT",
+    "reasons": [
+      "filename:DEFENSORES DEL CHACO",
+      "path:DEFENSORES DEL CHACO",
+      "content:DEFENSORES DEL CHACO",
+      "filename:VH ESC DEFENSORES",
+      "path:VH ESC DEFENSORES"
+    ]
+  }
+]

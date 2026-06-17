@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidencia: Portafolio Final</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.5; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background: #fff; }
+        .header-box { border: 4px double #2e7d32; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center; }
+        .header-box h1 { color: #2e7d32; text-transform: uppercase; margin: 5px 0; font-size: 1.3em; }
+        .student-info { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0; font-size: 0.95em; }
+        h2 { background: #e8f5e9; color: #2e7d32; padding: 8px; font-size: 1.1em; border-left: 5px solid #2e7d32; }
+        .example-box { background: #fffde7; border: 2px dashed #f9a825; padding: 12px; margin: 10px 0; border-radius: 5px; font-size: 0.9em; }
+        .example-box h4 { color: #f57f17; margin: 0 0 5px 0; }
+        .reflection-space { border: 1px solid #ddd; min-height: 80px; margin-top: 8px; padding: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { border: 1px solid #999; padding: 8px; text-align: left; }
+        th { background: #f1f8e9; }
+        .checklist { list-style: none; padding: 0; }
+        .checklist li { padding: 5px 0; }
+        .checklist li::before { content: "☐ "; font-size: 1.2em; }
+        .footer { margin-top: 30px; text-align: center; font-size: 0.8em; color: #666; border-top: 1px solid #eee; padding-top: 10px; }
+        .btn-container { text-align: center; margin-bottom: 15px; }
+        button { padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 0 4px; }
+        .btn-print { background: #2e7d32; color: white; }
+        .btn-bw { background: #555; color: white; }
+        body.bw-mode { background: white !important; color: black !important; }
+        .bw-mode .header-box { border-color: black !important; }
+        .bw-mode h1 { color: black !important; }
+        .bw-mode h2 { background: #f0f0f0 !important; color: black !important; border-left-color: black !important; }
+        .bw-mode th { background: #e0e0e0 !important; }
+        .bw-mode .example-box { background: #f5f5f5 !important; border-color: black !important; }
+        .bw-mode .example-box h4 { color: black !important; }
+        @media print { .btn-container { display: none; } body { padding: 10px; } }
+    </style>
+</head>
+<body>
+
+<div class="btn-container">
+    <button class="btn-print" onclick="window.print()">Imprimir</button>
+    <button class="btn-bw" onclick="document.body.classList.toggle('bw-mode')">Modo B/N</button>
+</div>
+
+<div class="header-box">
+    <div style="font-weight: bold;">MINISTERIO DE EDUCACIÓN Y CIENCIAS</div>
+    <div style="font-weight: bold;">COLEGIO NACIONAL "DON JORGE GAYOSO"</div>
+    <h1>Portafolio Final - Educación Ambiental</h1>
+    <p style="font-size: 0.9em; margin: 0;">2.º Curso BTCA - Año Lectivo 2026</p>
+</div>
+
+<div class="student-info">
+    <div><strong>Nombre:</strong> _____________________________________</div>
+    <div><strong>Curso:</strong> 2.º BTCA</div>
+    <div><strong>Fecha de entrega:</strong> ____/____/2026</div>
+</div>
+
+<h2>Lista de Verificación del Portafolio</h2>
+<ul class="checklist">
+    <li><strong>Carátula</strong> con nombre, curso y año</li>
+    <li><strong>RSA completo</strong> con todas las evidencias del año</li>
+    <li><strong>Sección 1:</strong> Resumen crítico (Modelos de Desarrollo)</li>
+    <li><strong>Sección 2:</strong> Mapa anotado o gráfico (Cambio Climático I)</li>
+    <li><strong>Sección 3:</strong> Lista de acciones (Mitigación y Adaptación)</li>
+    <li><strong>Sección 4:</strong> Ficha legal (Legislación II)</li>
+    <li><strong>Sección 5:</strong> Campaña/Póster anti-plástico (Consumo Responsable)</li>
+    <li><strong>Sección 6:</strong> Registro de consumo y propuesta (Energía)</li>
+    <li><strong>Sección 7:</strong> Informe de auditoría y Plan (Acción Institucional)</li>
+    <li><strong>Reflexión final</strong> (mínimo una página)</li>
+</ul>
+
+<h2>Ejemplo de Reflexión Final</h2>
+<div class="example-box">
+    <h4>Reflexión de ejemplo</h4>
+    <p><strong>¿Cuál fue el aprendizaje más significativo?</strong></p>
+    <p>El aprendizaje más significativo fue comprender que cada acción individual tiene un impacto colectivo. Antes pensaba que reciclar o ahorrar energía eran gestos pequeños que no cambiaban nada, pero ahora sé que si todos hacemos pequeños cambios, el impacto es enorme.</p>
+    <p><strong>¿Cambiaron tus hábitos personales?</strong></p>
+    <p>Sí. Empecé a apagar las luces al salir de casa, llevo mi botella reutilizable al colegio y separo los residuos en mi casa. Mi familia también se sumó a algunas de estas prácticas.</p>
+    <p><strong>¿Qué impacto tuvo el proyecto en la comunidad educativa?</strong></p>
+    <p>Logramos que la cantina reduzca los plásticos de un solo uso y que varias aulas se sumen a la campaña de ahorro energético. El colegio ahora tiene contenedores diferenciados gracias a nuestra propuesta.</p>
+</div>
+
+<h2>Mi Reflexión Final</h2>
+<p><strong>1. ¿Cuál fue el aprendizaje más significativo de este año?</strong></p>
+<div class="reflection-space"></div>
+<p><strong>2. ¿Cambiaron tus hábitos personales? ¿Cómo?</strong></p>
+<div class="reflection-space"></div>
+<p><strong>3. ¿Qué acciones del plan de mejora institucional se implementaron?</strong></p>
+<div class="reflection-space"></div>
+<p><strong>4. ¿Qué impacto creés que tuvo el proyecto en la comunidad educativa?</strong></p>
+<div class="reflection-space"></div>
+<p><strong>5. ¿Cómo aplicarás estos conocimientos en tu vida futura?</strong></p>
+<div class="reflection-space"></div>
+
+<div class="footer">Educación Ambiental - MEC 2026 | Evidencia Mínima: Portafolio final y reflexión</div>
+
+</body>
+</html>

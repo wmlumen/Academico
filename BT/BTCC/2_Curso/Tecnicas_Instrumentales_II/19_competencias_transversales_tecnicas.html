@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Competencias Transversales — Técnicas Instrumentales II</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,sans-serif;background:#f0f4fa;color:#172133}
+.wrap{max-width:1500px;margin:0 auto;padding:16px}
+
+.header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:16px 22px;border-radius:14px;margin-bottom:12px}
+.header h1{margin:0;font-size:20px}
+.header p{margin:4px 0 0;font-size:13px;opacity:.9}
+
+.controls{background:#fff;border:1px solid #d8e3ef;border-radius:12px;padding:10px 14px;margin-bottom:14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;box-shadow:0 2px 8px rgba(23,33,51,0.06)}
+.controls .stats{display:flex;gap:16px;font-size:12px;margin-left:auto}
+.controls .stats span{padding:3px 10px;border-radius:6px;background:#f0f4fa}
+
+table{width:100%;border-collapse:collapse;font-size:11.5px}
+th{background:#e8f1fb;color:#0f4c81;font-weight:600;padding:5px 5px;text-align:left;border-bottom:2px solid #c8d9ea;font-size:10px;white-space:nowrap}
+td{padding:4px 5px;border-bottom:1px solid #e8ecf0;vertical-align:middle}
+tr:hover td{background:#fafcff}
+
+.sticky-col{position:sticky;left:0;background:#fff;z-index:2}
+tr:hover .sticky-col{background:#f5f9ff}
+
+.mes-section{background:#fff;border:1px solid #d8e3ef;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(23,33,51,0.04);margin-bottom:14px}
+.mes-header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:9px 14px;font-size:14px;font-weight:700;display:flex;justify-content:space-between}
+
+.cat-header{background:#f5f9ff;font-weight:700;font-size:12px;color:#0f4c81;border-bottom:2px solid #c8d9ea}
+.cat-header td{padding:6px 10px;background:#e8f1fb}
+
+.check-cell{text-align:center;width:32px}
+.check-input{width:18px;height:18px;cursor:pointer;accent-color:#0f4c81}
+
+.resumen td{background:#fff8e1;font-weight:700;font-size:12px;border-top:2px solid #ffe0b2}
+
+@media(max-width:900px){
+  .sticky-col{position:static}
+  .controls{flex-direction:column;align-items:stretch}
+  .controls .stats{margin-left:0}
+}
+@media print{.controls{display:none}.mes-section{break-inside:avoid;box-shadow:none}}
+</style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+
+<script src="../../nav/runtime.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>📋 Competencias Transversales</h1>
+  <p>Técnicas Instrumentales II · 2.do Curso BTCC · Evaluación por criterios vinculada al Registro Anecdotico</p>
+</div>
+
+<div class="controls">
+  <span style="font-size:12px;color:#4d6177">🔗 Relacionado al <a href="10_registro_anecdotico_tecnicas_instrumentales_ii.html" style="color:#0f4c81;font-weight:600">Registro Anecdotico</a></span>
+  <span class="stats">
+    <span>📋 <strong id="totalCriterios">0</strong> criterios</span>
+    <span>⭐ <strong id="totalPtsPosibles">0</strong> pts posibles</span>
+  </span>
+  <button onclick="if(confirm('¿Limpiar todas las evaluaciones?')){localStorage.removeItem('competencias_tecnicas');location.reload()}" style="padding:4px 10px;border:none;border-radius:6px;background:#ffcdd2;color:#b71c1c;font-size:11px;font-weight:600;cursor:pointer">🗑️ Limpiar datos</button>
+</div>
+
+<!-- ===== TABLA DE COMPETENCIAS ===== -->
+<div class="mes-section">
+  <div class="mes-header">📋 Evaluación por Criterios <span style="font-size:12px;opacity:.8">Marcá los logros de cada alumno</span></div>
+  <div style="overflow-x:auto">
+    <table>
+      <thead><tr id="compHeaderRow"></tr></thead>
+      <tbody id="compBody"></tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+
+<script src="../../data/alumnos_tecnicas.js"></script>
+<script>
+// ============================================================
+// CRITERIOS DE COMPETENCIAS TRANSVERSALES
+// ============================================================
+var CRITERIOS = [
+  // Académica
+  { id: 'a1', cat: '📘 Académica', name: 'Domina los conceptos clave del grado.' },
+  { id: 'a2', cat: '📘 Académica', name: 'Aplica la comprensión más allá de la memorización.' },
+  { id: 'a3', cat: '📘 Académica', name: 'Entrega tareas completas y cuidadas.' },
+  { id: 'a4', cat: '📘 Académica', name: 'Enfrenta desafíos matemáticos con perseverancia.' },
+  { id: 'a5', cat: '📘 Académica', name: 'Se expresa con claridad oral y escrita.' },
+  { id: 'a6', cat: '📘 Académica', name: 'Muestra interés por la lectura.' },
+  { id: 'a7', cat: '📘 Académica', name: 'Avanza con autonomía y responsabilidad.' },
+  { id: 'a8', cat: '📘 Académica', name: 'Explora con entusiasmo temas nuevos.' },
+  // Conductual
+  { id: 'c1', cat: '👥 Conductual', name: 'Respeta las normas de convivencia.' },
+  { id: 'c2', cat: '👥 Conductual', name: 'Es puntual en todas sus obligaciones.' },
+  { id: 'c3', cat: '👥 Conductual', name: 'Cuida el material propio y ajeno.' },
+  { id: 'c4', cat: '👥 Conductual', name: 'Escucha con atención y favorece el orden.' },
+  { id: 'c5', cat: '👥 Conductual', name: 'Utiliza lenguaje respetuoso y constructivo.' },
+  { id: 'c6', cat: '👥 Conductual', name: 'Reconoce sus errores con honestidad.' },
+  { id: 'c7', cat: '👥 Conductual', name: 'Usa la tecnología con fines educativos.' },
+  { id: 'c8', cat: '👥 Conductual', name: 'Promueve el orden y la colaboración grupal.' },
+  // Socio-Emocional
+  { id: 's1', cat: '💡 Socio‑Emocional', name: 'Muestra resiliencia ante el fracaso.' },
+  { id: 's2', cat: '💡 Socio‑Emocional', name: 'Trabaja de forma colaborativa y equitativa.' },
+  { id: 's3', cat: '💡 Socio‑Emocional', name: 'Es empático con las necesidades ajenas.' },
+  { id: 's4', cat: '💡 Socio‑Emocional', name: 'Ejerce un liderazgo positivo y ético.' },
+  { id: 's5', cat: '💡 Socio‑Emocional', name: 'Se comunica de manera asertiva.' },
+  { id: 's6', cat: '💡 Socio‑Emocional', name: 'Mantiene una autoestima académica sólida.' },
+  { id: 's7', cat: '💡 Socio‑Emocional', name: 'Gestiona sus emociones con respeto y control.' },
+  { id: 's8', cat: '💡 Socio‑Emocional', name: 'Motiva a otros con apoyo y confianza.' },
+  // Actitudinal
+  { id: 't1', cat: '🚀 Actitudinal', name: 'Muestra curiosidad e iniciativa propia.' },
+  { id: 't2', cat: '🚀 Actitudinal', name: 'Es persistente en tareas complejas.' },
+  { id: 't3', cat: '🚀 Actitudinal', name: 'Acepta retroalimentación constructiva.' },
+  { id: 't4', cat: '🚀 Actitudinal', name: 'Mantiene proyectos hasta su conclusión.' }
+];
+
+var COMP_KEY = 'competencias_tecnicas';
+
+// ===== DATOS =====
+var SCORES = {}; // { s1: { a1: true, a2: false, ... }, ... }
+
+function cargarDatos() {
+  try {
+    var s = localStorage.getItem(COMP_KEY);
+    if(s) { SCORES = JSON.parse(s); return; }
+  } catch(e) {}
+  SCORES = {};
+  guardarDatos();
+}
+
+function guardarDatos() {
+  localStorage.setItem(COMP_KEY, JSON.stringify(SCORES));
+}
+
+function toggleCriterio(sid, cid, checked) {
+  if(!SCORES[sid]) SCORES[sid] = {};
+  SCORES[sid][cid] = checked;
+  guardarDatos();
+  actualizarResumen();
+}
+
+// ===== RENDER =====
+function renderTodo() {
+  var hRow = document.getElementById('compHeaderRow');
+  var hHtml = '<th style="min-width:180px;position:sticky;left:0;background:#e8f1fb;z-index:3">Criterio</th>';
+  STUDENTS.forEach(function(s) {
+    hHtml += '<th style="text-align:center;min-width:28px;font-size:9px" title="' + s.name + '">' + s.num + '</th>';
+  });
+  hHtml += '<th style="text-align:center;min-width:50px;font-size:10px">% logro</th>';
+  hRow.innerHTML = hHtml;
+
+  var body = document.getElementById('compBody');
+  var bHtml = '';
+  var currentCat = '';
+
+  var totalLogros = {};
+  STUDENTS.forEach(function(s) { totalLogros['s' + s.num] = { log: 0, tot: 0 }; });
+
+  CRITERIOS.forEach(function(crit) {
+    if(crit.cat !== currentCat) {
+      currentCat = crit.cat;
+      bHtml += '<tr class="cat-header"><td colspan="' + (STUDENTS.length + 2) + '">' + crit.cat + '</td></tr>';
+    }
+
+    bHtml += '<tr>';
+    bHtml += '<td style="position:sticky;left:0;background:#fff;border-right:2px solid #e8ecf0">' + crit.name + '</td>';
+
+    STUDENTS.forEach(function(s) {
+      var sid = 's' + s.num;
+      var checked = SCORES[sid] && SCORES[sid][crit.id] ? true : false;
+      totalLogros[sid].tot++;
+      if(checked) totalLogros[sid].log++;
+      bHtml += '<td class="check-cell"><input type="checkbox" class="check-input" ' + (checked ? 'checked' : '') + ' onchange="toggleCriterio(\'' + sid + '\',\'' + crit.id + '\',this.checked)"></td>';
+    });
+
+    bHtml += '<td></td></tr>';
+  });
+
+  // Fila resumen
+  bHtml += '<tr class="resumen"><td style="position:sticky;left:0;background:#fff8e1;font-weight:700">⭐ Total logros</td>';
+  STUDENTS.forEach(function(s) {
+    var sid = 's' + s.num;
+    var pct = totalLogros[sid].tot > 0 ? Math.round(totalLogros[sid].log / totalLogros[sid].tot * 100) : 0;
+    bHtml += '<td style="text-align:center;font-weight:700;font-size:14px;color:' + (pct >= 70 ? '#1b5e20' : '#b71c1c') + '">' + totalLogros[sid].log + '/' + totalLogros[sid].tot + '</td>';
+  });
+  bHtml += '<td style="text-align:center;font-weight:700">—</td></tr>';
+
+  body.innerHTML = bHtml;
+
+  document.getElementById('totalCriterios').textContent = CRITERIOS.length;
+  document.getElementById('totalPtsPosibles').textContent = CRITERIOS.length;
+}
+
+function actualizarResumen() {
+  renderTodo();
+}
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded', function() {
+  cargarDatos();
+  renderTodo();
+});
+</script>
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>

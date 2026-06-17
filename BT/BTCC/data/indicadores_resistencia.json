@@ -1,0 +1,47 @@
+[
+  {
+    "id": "t1",
+    "tema": "T1 — Introducción",
+    "indicador": "Reconoce la finalidad de la asignatura y los conceptos fundamentales de resistencia de materiales"
+  },
+  {
+    "id": "t2",
+    "tema": "T2 — Fuerzas, resultantes y momento",
+    "indicador": "Calcula resultantes por métodos analíticos y gráficos, determina momentos"
+  },
+  {
+    "id": "t3",
+    "tema": "T3 — Equilibrio, vínculos y reacciones",
+    "indicador": "Dibuja diagramas de cuerpo libre, identifica cargas y obtiene reacciones"
+  },
+  {
+    "id": "t4",
+    "tema": "T4 — Tracción, compresión y Ley de Hooke",
+    "indicador": "Diferencia tracción y compresión, calcula tensión y deformación"
+  },
+  {
+    "id": "t5",
+    "tema": "T5 — Cortante y momento flector",
+    "indicador": "Identifica esfuerzos internos y traza diagramas de cortante y momento"
+  },
+  {
+    "id": "t6",
+    "tema": "T6 — Flexión y propiedades geométricas",
+    "indicador": "Localiza eje neutro y calcula propiedades geométricas de secciones"
+  },
+  {
+    "id": "t7",
+    "tema": "T7 — Materiales, muros y cerchas",
+    "indicador": "Selecciona materiales según solicitación y clasifica elementos estructurales"
+  },
+  {
+    "id": "t8",
+    "tema": "T8 — Hormigón armado y control técnico",
+    "indicador": "Explica el trabajo del acero en tracción e identifica armaduras"
+  },
+  {
+    "id": "t9",
+    "tema": "T9 — Integración y memoria de cálculo",
+    "indicador": "Elabora memoria de cálculo ordenada y justifica cargas y esfuerzos"
+  }
+]

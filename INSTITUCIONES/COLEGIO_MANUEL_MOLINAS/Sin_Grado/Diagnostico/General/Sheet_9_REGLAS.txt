@@ -1,0 +1,8 @@
+﻿REGLAS|||||||
+|||||GRADO|TURNO|CANTIDAD
+Nota |VALORACION||||SEPTIMO |TM|37
+1|A mejorar||||SEPTIMO |TT|14
+2|A mejorar||||OCTAVO|TM|42
+3|Bueno||||NOVENO|TM|42
+4|Muy bueno ||||||
+5|Muy bueno ||||||

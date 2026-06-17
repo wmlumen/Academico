@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase: Modelos de Desarrollo</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background-color: #f4f7f4; }
+        header { background: #fff; color: #2e7d32; border: 4px double #2e7d32; padding: 20px; border-radius: 8px; text-align: center; margin-bottom: 20px; }
+        h1 { color: #2e7d32; text-transform: uppercase; margin: 0; }
+        h2 { color: #2e7d32; border-bottom: 2px solid #a5d6a7; padding-bottom: 10px; }
+        section { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; background: #e8f5e9; padding: 15px; border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f1f8e9; }
+        .timeline { border-left: 4px solid #81c784; padding-left: 20px; margin-left: 10px; }
+        .time-block { margin-bottom: 25px; }
+        .time-badge { background: #2e7d32; color: white; padding: 2px 10px; border-radius: 4px; font-weight: bold; font-size: 0.9em; }
+        .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .comparison > div { padding: 15px; border-radius: 8px; }
+        .industrial { background: #fff3e0; border: 2px solid #ff9800; }
+        .sustentable { background: #e8f5e9; border: 2px solid #4caf50; }
+        .btn-container { margin-top: 20px; text-align: center; }
+        button { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 0 5px; }
+        .btn-print { background: #2e7d32; color: white; }
+        .btn-bw { background: #555; color: white; }
+        body.bw-mode { background: white !important; color: black !important; }
+        .bw-mode header, .bw-mode section { background: white !important; border-color: black !important; color: black !important; box-shadow: none !important; }
+        .bw-mode h1, .bw-mode h2 { color: black !important; }
+        .bw-mode h2 { border-bottom-color: black !important; }
+        .bw-mode .info-grid { background: #f0f0f0 !important; border: 1px solid black !important; }
+        .bw-mode table, .bw-mode th, .bw-mode td { border-color: black !important; background: white !important; color: black !important; }
+        .bw-mode th { background: #e0e0e0 !important; }
+        .bw-mode .comparison > div { border-color: black !important; }
+        .bw-mode .industrial { background: #f5f5f5 !important; }
+        .bw-mode .sustentable { background: #f5f5f5 !important; }
+        .bw-mode .time-badge { background: black !important; }
+        @media print { .btn-container { display: none; } body { padding: 0; } .game-container { box-shadow: none; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="font-weight: bold;">MINISTERIO DE EDUCACIÓN Y CIENCIAS</div>
+    <div style="font-weight: bold; margin-bottom: 5px;">COLEGIO NACIONAL "DON JORGE GAYOSO"</div>
+    <h1 style="margin: 0;">Educación Ambiental: Modelos de Desarrollo</h1>
+    <p style="margin: 0;">Desarrollo Sustentable vs. Modelo Industrializado</p>
+</header>
+
+<section>
+    <h2>Datos Generales</h2>
+    <div class="info-grid">
+        <div><strong>Nivel:</strong> 2.º Curso Educación Media</div>
+        <div><strong>Duración:</strong> 80 minutos</div>
+        <div><strong>Área:</strong> Educación Ambiental</div>
+        <div><strong>Año Lectivo:</strong> 2026</div>
+    </div>
+    <p><strong>Propósito:</strong> Que los estudiantes analicen críticamente los modelos de desarrollo vigentes y comprendan las diferencias entre el modelo industrializado tradicional y el desarrollo sustentable, valorando alternativas viables para el Paraguay.</p>
+</section>
+
+<section>
+    <h2>Objetivos de Aprendizaje</h2>
+    <ul>
+        <li>Reconocer las características del modelo de desarrollo industrializado y sus impactos ambientales.</li>
+        <li>Identificar los principios del desarrollo sustentable y su aplicación en el contexto local.</li>
+        <li>Comparar ambos modelos mediante indicadores económicos, sociales y ambientales.</li>
+        <li>Elaborar un resumen crítico que refleje una postura fundamentada sobre el modelo más adecuado para Paraguay.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Desarrollo de la Clase</h2>
+    <div class="timeline">
+        <div class="time-block">
+            <span class="time-badge">15 min</span>
+            <h3>Inicio: Debate exploratorio</h3>
+            <p>Pregunta disparadora: <em>"¿Qué significa para vos que un país sea 'desarrollado'?"</em></p>
+            <p>Los estudiantes comparten ideas en lluvia colectiva. El docente registra conceptos clave en la pizarra: crecimiento económico, industria, tecnología, naturaleza, calidad de vida.</p>
+        </div>
+        <div class="time-block">
+            <span class="time-badge">30 min</span>
+            <h3>Desarrollo: Cuadro Comparativo</h3>
+            <p><strong>Explicación Teórica:</strong> Presentación de los dos modelos de desarrollo.</p>
+            <div class="comparison">
+                <div class="industrial">
+                    <h3 style="color: #e65100; margin-top: 0;">Modelo Industrializado</h3>
+                    <ul>
+                        <li>Prioriza el crecimiento económico y la producción masiva.</li>
+                        <li>Alto consumo de recursos no renovables.</li>
+                        <li>Generación intensiva de residuos y emisiones.</li>
+                        <li>Explotación sin límites de la naturaleza.</li>
+                        <li>Indicador clave: PIB (Producto Interno Bruto).</li>
+                    </ul>
+                </div>
+                <div class="sustentable">
+                    <h3 style="color: #2e7d32; margin-top: 0;">Desarrollo Sustentable</h3>
+                    <ul>
+                        <li>Equilibrio entre economía, sociedad y ambiente.</li>
+                        <li>Uso responsable de recursos renovables.</li>
+                        <li>Minimización de residuos y economía circular.</li>
+                        <li>Conservación de ecosistemas para futuras generaciones.</li>
+                        <li>Indicador clave: IDH (Índice de Desarrollo Humano).</li>
+                    </ul>
+                </div>
+            </div>
+            <p><strong>Actividad Individual:</strong> Cada estudiante completa una ficha comparativa con ejemplos concretos del contexto paraguayo.</p>
+        </div>
+        <div class="time-block">
+            <span class="time-badge">25 min</span>
+            <h3>Aplicación: Debate Estructurado</h3>
+            <p>División del curso en dos grupos. Consigna: <em>"¿Paraguay debería priorizar el desarrollo industrial o avanzar hacia un modelo sustentable?"</em></p>
+            <p>Cada grupo prepara 3 argumentos y debate durante 15 minutos. El docente modera y cierra con conclusiones.</p>
+        </div>
+        <div class="time-block">
+            <span class="time-badge">10 min</span>
+            <h3>Cierre: Resumen Crítico</h3>
+            <p>Los estudiantes redactan una reflexión individual respondiendo: <em>"¿Qué modelo de desarrollo considerás más viable para el Paraguay y por qué?"</em></p>
+            <p>Esta reflexión constituye la evidencia mínima del tema.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Evaluación y Seguimiento</h2>
+    <p><strong>Indicadores de Logro:</strong></p>
+    <ul>
+        <li>Diferencia correctamente las características de cada modelo de desarrollo.</li>
+        <li>Argumenta con fundamentos su postura en el debate.</li>
+        <li>Redacta un resumen crítico con coherencia y posición personal.</li>
+    </ul>
+    <p><strong>Instrumentos:</strong> Lista de cotejo para el debate y rúbrica para el resumen crítico.</p>
+    <p><strong>Evidencia Mínima:</strong> Resumen crítico del debate.</p>
+</section>
+
+<section style="border-left: 5px solid #2e7d32;">
+    <h2>Material de Planificación</h2>
+    <p><strong>Capacidad:</strong> Reconoce diferencias entre desarrollo sustentable y modelo industrializado.</p>
+    <p><strong>Evidencia:</strong> Resumen crítico del debate.</p>
+</section>
+
+<div class="btn-container">
+    <button class="btn-print" onclick="window.print()">Imprimir</button>
+    <button class="btn-bw" onclick="toggleBW()">Modo Blanco y Negro</button>
+</div>
+
+<script>
+    function toggleBW() { document.body.classList.toggle('bw-mode'); }
+</script>
+</body>
+</html>

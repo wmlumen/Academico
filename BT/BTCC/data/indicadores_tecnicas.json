@@ -1,0 +1,47 @@
+[
+  {
+    "id": "t1",
+    "tema": "T1 — Método de trabajo",
+    "indicador": "Ordena tareas de manera lógica y justifica la secuencia"
+  },
+  {
+    "id": "t2",
+    "tema": "T2 — Organización del puesto",
+    "indicador": "Detecta recorridos innecesarios y propone mejoras"
+  },
+  {
+    "id": "t3",
+    "tema": "T3 — Estudio de tiempos",
+    "indicador": "Registra y compara tiempos con orden"
+  },
+  {
+    "id": "t4",
+    "tema": "T4 — Rendimiento y costo MO",
+    "indicador": "Relaciona tiempo, cuadrilla y costo"
+  },
+  {
+    "id": "t5",
+    "tema": "T5 — Integración de etapa",
+    "indicador": "Integra conceptos con orden técnico"
+  },
+  {
+    "id": "t6",
+    "tema": "T6 — Cómputo de trabajos",
+    "indicador": "Calcula cantidades con unidad correcta"
+  },
+  {
+    "id": "t7",
+    "tema": "T7 — Cómputo de materiales",
+    "indicador": "Aplica tablas de consumo y controla resultados"
+  },
+  {
+    "id": "t8",
+    "tema": "T8 — Cómputo aplicado a HA",
+    "indicador": "Calcula volúmenes y cantidades con orden técnico"
+  },
+  {
+    "id": "t9",
+    "tema": "T9 — Integración final",
+    "indicador": "Comunica resultados con claridad y fundamento"
+  }
+]

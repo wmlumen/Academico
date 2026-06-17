@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidencia: Auditoría y Plan</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.5; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background: #fff; }
+        .header-box { border: 4px double #2e7d32; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center; }
+        .header-box h1 { color: #2e7d32; text-transform: uppercase; margin: 5px 0; font-size: 1.3em; }
+        .student-info { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0; font-size: 0.95em; }
+        h2 { background: #e8f5e9; color: #2e7d32; padding: 8px; font-size: 1.1em; border-left: 5px solid #2e7d32; }
+        .example-box { background: #fffde7; border: 2px dashed #f9a825; padding: 12px; margin: 10px 0; border-radius: 5px; font-size: 0.9em; }
+        .example-box h4 { color: #f57f17; margin: 0 0 5px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { border: 1px solid #999; padding: 8px; vertical-align: top; }
+        th { background: #f1f8e9; }
+        .fill-space { min-height: 40px; }
+        .guide { background: #f3e5f5; border-left: 5px solid #7b1fa2; padding: 10px; margin: 10px 0; font-size: 0.9em; }
+        .footer { margin-top: 30px; text-align: center; font-size: 0.8em; color: #666; border-top: 1px solid #eee; padding-top: 10px; }
+        .btn-container { text-align: center; margin-bottom: 15px; }
+        button { padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 0 4px; }
+        .btn-print { background: #2e7d32; color: white; }
+        .btn-bw { background: #555; color: white; }
+        body.bw-mode { background: white !important; color: black !important; }
+        .bw-mode .header-box { border-color: black !important; }
+        .bw-mode h1 { color: black !important; }
+        .bw-mode h2 { background: #f0f0f0 !important; color: black !important; border-left-color: black !important; }
+        .bw-mode th { background: #e0e0e0 !important; }
+        .bw-mode .example-box { background: #f5f5f5 !important; border-color: black !important; }
+        .bw-mode .example-box h4 { color: black !important; }
+        @media print { .btn-container { display: none; } body { padding: 10px; } }
+    </style>
+</head>
+<body>
+
+<div class="btn-container">
+    <button class="btn-print" onclick="window.print()">Imprimir</button>
+    <button class="btn-bw" onclick="document.body.classList.toggle('bw-mode')">Modo B/N</button>
+</div>
+
+<div class="header-box">
+    <div style="font-weight: bold;">MINISTERIO DE EDUCACIÓN Y CIENCIAS</div>
+    <div style="font-weight: bold;">COLEGIO NACIONAL "DON JORGE GAYOSO"</div>
+    <h1>Informe de Auditoría y Plan de Mejora</h1>
+</div>
+
+<div class="student-info">
+    <div><strong>Nombre:</strong> _____________________________________</div>
+    <div><strong>Curso:</strong> 2.º BTCA</div>
+    <div><strong>Fecha:</strong> ____/____/2026</div>
+</div>
+
+<div class="guide">
+    <strong>Consigna:</strong> Elegí un área de mejora (residuos, energía, agua o áreas verdes). Completá el informe de auditoría con los hallazgos y diseñá un plan de mejora con cronograma y responsables.
+</div>
+
+<div class="example-box">
+    <h4>Ejemplo - Auditoría de Residuos Plásticos</h4>
+    <table>
+        <tr><th>Componente</th><th>Descripción</th></tr>
+        <tr><td><strong>Problema detectado</strong></td><td>Alto consumo de botellas plásticas descartables en la cantina (~100 botellas/día).</td></tr>
+        <tr><td><strong>Objetivo</strong></td><td>Reducir en 50% el uso de plásticos descartables en 2 meses.</td></tr>
+        <tr><td><strong>Acciones</strong></td><td>1. Campaña de concientización. 2. Instalación de filtro de agua. 3. Venta de botellas reutilizables.</td></tr>
+        <tr><td><strong>Cronograma</strong></td><td>Octubre (semana 1: campaña, semana 2: filtro, semana 3-4: seguimiento)</td></tr>
+        <tr><td><strong>Responsables</strong></td><td>Comité Ambiental (3 estudiantes) + Dirección del colegio.</td></tr>
+        <tr><td><strong>Recursos</strong></td><td>Filtro de agua (300.000 Gs), afiches, botellas reutilizables.</td></tr>
+        <tr><td><strong>Indicador</strong></td><td>Reducción de botellas plásticas en la basura diaria de la cantina.</td></tr>
+    </table>
+</div>
+
+<h2>1. Informe de Auditoría</h2>
+<p><strong>Área evaluada:</strong> _________________________________________________</p>
+<table>
+    <tr><th>Indicador</th><th>Sí</th><th>No</th><th>Observaciones</th></tr>
+    <tr><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<h2>2. Plan de Mejora</h2>
+<table>
+    <tr><th width="25%">Componente</th><th>Descripción</th></tr>
+    <tr><td><strong>Problema</strong></td><td class="fill-space"></td></tr>
+    <tr><td><strong>Objetivo</strong></td><td></td></tr>
+    <tr><td><strong>Acciones</strong></td><td>1.<br>2.<br>3.</td></tr>
+    <tr><td><strong>Cronograma</strong></td><td></td></tr>
+    <tr><td><strong>Responsables</strong></td><td></td></tr>
+    <tr><td><strong>Recursos</strong></td><td></td></tr>
+    <tr><td><strong>Indicador</strong></td><td></td></tr>
+</table>
+
+<div class="footer">Educación Ambiental - MEC 2026 | Evidencia Mínima: Informe de auditoría y Plan</div>
+
+</body>
+</html>

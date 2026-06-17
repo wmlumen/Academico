@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil Docente</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,sans-serif;background:#f0f4fa;color:#172133}
+.wrap{max-width:1200px;margin:0 auto;padding:16px}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:20px 24px;border-radius:14px;margin-bottom:14px}
+.header h1{margin:0;font-size:20px}
+.header p{margin:4px 0 0;font-size:13px;opacity:.9}
+
+/* STATS ROW */
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.stat-card{background:#fff;border:1px solid #d8e3ef;border-radius:10px;padding:12px 16px;flex:1;min-width:120px;box-shadow:0 2px 8px rgba(23,33,51,0.04)}
+.stat-card .num{font-size:24px;font-weight:700;color:#0f4c81}
+.stat-card .label{font-size:11px;color:#5a687c;margin-top:2px}
+
+/* SUBJECT CARDS */
+.subj{background:#fff;border:1px solid #d8e3ef;border-radius:12px;margin-bottom:14px;overflow:hidden;box-shadow:0 2px 8px rgba(23,33,51,0.04)}
+.subj-head{padding:12px 16px;font-weight:700;font-size:15px;display:flex;justify-content:space-between;align-items:center}
+.subj-head.tec{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff}
+.subj-head.res{background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff}
+.subj-head .count{font-size:12px;opacity:.8;font-weight:400}
+.subj-body{padding:12px 16px}
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+.tool-item{display:flex;align-items:center;gap:10px;padding:8px 12px;background:#f5f9ff;border:1px solid #d8e3ef;border-radius:8px;text-decoration:none;color:#172133;transition:all .12s}
+.tool-item:hover{background:#e8f1fb;border-color:#b6c6da}
+.tool-item .icon{font-size:18px;width:24px;text-align:center}
+.tool-item .info{flex:1}
+.tool-item .info .name{font-size:13px;font-weight:600}
+.tool-item .info .desc{font-size:11px;color:#5a687c}
+
+/* HORARIOS SECTION */
+.horario-section{background:#fff;border:1px solid #d8e3ef;border-radius:12px;margin-bottom:14px;overflow:hidden;box-shadow:0 2px 8px rgba(23,33,51,0.04)}
+.horario-head{padding:12px 16px;background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;font-weight:700;font-size:15px;display:flex;justify-content:space-between;align-items:center}
+.horario-head .hint{font-size:11px;opacity:.8;font-weight:400}
+.horario-body{padding:12px 16px}
+.horario-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.horario-card{border:1px solid #d8e3ef;border-radius:10px;padding:12px;background:#f9fafc}
+.horario-card h4{margin:0 0 8px;font-size:14px;color:#0f4c81;display:flex;align-items:center;gap:6px}
+.horario-card.res h4{color:#2e7d32}
+.horario-card label{display:block;font-size:11px;font-weight:600;color:#4d6177;margin-top:6px;margin-bottom:2px}
+.horario-card select,.horario-card input{width:100%;padding:6px 8px;border:1px solid #b6c6da;border-radius:6px;font-size:12px;background:#fff}
+.horario-card .dias-wrap{display:flex;gap:3px;flex-wrap:wrap}
+.horario-card .dias-wrap label{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;border:2px solid #d8e0ea;background:#fff;transition:all .12s;margin:0}
+.horario-card .dias-wrap input{display:none}
+.horario-card .dias-wrap input:checked+label{background:#0f4c81;color:#fff;border-color:#0f4c81}
+.horario-card.res .dias-wrap input:checked+label{background:#2e7d32;border-color:#2e7d32}
+.horario-card .h-row{display:flex;gap:6px;align-items:center}
+.horario-card .h-row input{flex:1;min-width:0}
+.horario-card .h-row span{font-size:11px;color:#5a687c}
+.horario-card .bloque2{display:none;margin-top:6px;padding-top:6px;border-top:1px dashed #d8e0ea}
+.horario-card .bloque2.show{display:block}
+.btn-horario{background:#e8f1fb;color:#0f4c81;border:1px solid #c8d9ea;border-radius:6px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer;margin-top:8px}
+.btn-horario:hover{background:#d4e4f5}
+.horario-card.res .btn-horario{color:#2e7d32;border-color:#a5d6a7;background:#e8f5e9}
+.horario-card.res .btn-horario:hover{background:#c8e6c9}
+
+/* TASK SECTION */
+.task-section{background:#fff;border:1px solid #d8e3ef;border-radius:12px;margin-bottom:14px;overflow:hidden;box-shadow:0 2px 8px rgba(23,33,51,0.04)}
+.task-head{padding:12px 16px;background:linear-gradient(135deg,#e65100,#ff8f00);color:#fff;font-weight:700;font-size:15px}
+.task-body{padding:12px 16px}
+.task-form{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e8ecf0}
+.task-form input,.task-form select,.task-form textarea{padding:7px 10px;border:1px solid #b6c6da;border-radius:6px;font-size:13px;background:#fff}
+.task-form textarea{width:100%;min-height:60px;resize:vertical;font-family:inherit}
+.task-form .btn-task{background:#e65100;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer}
+.task-form .btn-task:hover{background:#bf360c}
+.task-list{list-style:none;padding:0}
+.task-list li{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid #e8ecf0;border-radius:8px;margin-bottom:6px;background:#fafafa}
+.task-list li .task-info{flex:1}
+.task-list li .task-info strong{font-size:13px;color:#172133}
+.task-list li .task-info span{font-size:11px;color:#5a687c;display:block}
+.task-list li .task-status{font-size:11px;padding:3px 8px;border-radius:4px;font-weight:600}
+.task-list li .task-status.pend{background:#fff3e0;color:#e65100}
+.task-list li .task-status.comp{background:#e8f5e9;color:#2e7d32}
+.task-list li .btn-del{background:none;border:none;color:#c62828;cursor:pointer;font-size:16px;opacity:.5}
+.task-list li .btn-del:hover{opacity:1}
+.task-badge{background:#e65100;color:#fff;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700}
+
+@media(max-width:700px){
+  .tool-grid{grid-template-columns:1fr}
+  .stats{flex-direction:column}
+}
+
+/* ===== PASSWORD SCREEN ===== */
+.password-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;display:flex;align-items:center;justify-content:center}
+.password-box{background:#fff;border-radius:16px;padding:32px;max-width:380px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3);text-align:center}
+.password-box h2{margin:0 0 6px;font-size:18px;color:#0f4c81}
+.password-box p{margin:0 0 20px;font-size:13px;color:#5a687c}
+.password-box .pw-input{width:100%;padding:12px 14px;border:2px solid #d8e0ea;border-radius:10px;font-size:16px;text-align:center;letter-spacing:4px;transition:border .15s}
+.password-box .pw-input:focus{border-color:#0f4c81;outline:none}
+.password-box .pw-error{color:#c62828;font-size:12px;margin-top:8px;display:none}
+.password-box .btn-pw{background:#0f4c81;color:#fff;border:none;border-radius:10px;padding:12px 24px;font-size:15px;font-weight:700;cursor:pointer;margin-top:14px;width:100%;transition:background .15s}
+.password-box .btn-pw:hover{background:#1a5f9a}
+.password-box .btn-pw:disabled{opacity:.5;cursor:not-allowed}
+</style>
+
+<link rel="stylesheet" href="nav/nav.css">
+
+<script src="nav/runtime.js"></script>
+</head>
+<body>
+<!-- PASSWORD SCREEN -->
+<div class="password-overlay" id="pwOverlay">
+  <div class="password-box">
+    <h2>🔒 Acceso Docente</h2>
+    <p>Ingresá tu Cédula o Contraseña para acceder al panel del docente.</p>
+    <p style="margin:-10px 0 16px;font-size:12px;color:#8899aa">Cédula y contraseña por defecto: <strong>1340130</strong> (podés cambiarla después)</p>
+    <input type="password" class="pw-input" id="pwInput" placeholder="Cédula o contraseña" onkeydown="if(event.key==='Enter')verificarPassword()">
+    <div class="pw-error" id="pwError">Contraseña incorrecta. Intentá de nuevo.</div>
+    <button class="btn-pw" id="pwBtn" onclick="verificarPassword()">Ingresar</button>
+  </div>
+</div>
+<div class="wrap" id="mainContent" style="display:none">
+
+<div class="header" style="display:flex;justify-content:space-between;align-items:center">
+  <div>
+    <h1 id="teacherProfileTitle">Perfil Docente</h1>
+    <p id="teacherProfileSubtitle">Panel del docente.</p>
+  </div>
+  <div style="display:flex;gap:6px;flex-shrink:0">
+    <button onclick="cambiarPassword()" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:8px;padding:6px 12px;font-size:11px;cursor:pointer">🔑 Cambiar cédula/contraseña</button>
+    <button onclick="cerrarSesion()" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:8px;padding:6px 12px;font-size:11px;cursor:pointer">🚪 Cerrar sesión</button>
+  </div>
+</div>
+
+<div class="stats" id="stats">
+  <div class="stat-card"><div class="num" id="totalAlumnos">42</div><div class="label">Alumnos (ambas materias)</div></div>
+  <div class="stat-card"><div class="num" id="totalIndicadores">18</div><div class="label">Indicadores (9 + 9)</div></div>
+  <div class="stat-card"><div class="num" id="totalTareas">0</div><div class="label">Tareas activas</div></div>
+  <div class="stat-card"><div class="num" id="totalHerramientas">0</div><div class="label">Herramientas</div></div>
+</div>
+
+<!-- CONFIGURACION DE HORARIOS -->
+<div class="horario-section">
+  <div class="horario-head">⏰ Configuración de Horarios <span class="hint">Establecé qué días y horarios se dicta cada cátedra</span></div>
+  <div class="horario-body">
+    <div class="horario-grid">
+      <div class="horario-card">
+        <h4>📐 Técnicas Instrumentales II</h4>
+        <label>Días de la semana</label>
+        <div class="dias-wrap" id="diasTec"></div>
+        <label>Hora inicio 1.er bloque</label>
+        <input type="time" id="tecIni1" value="13:00" onchange="guardarHorarios()">
+        <label>Hora fin 1.er bloque</label>
+        <input type="time" id="tecFin1" value="15:10" onchange="guardarHorarios()">
+        <button class="btn-horario" onclick="toggleBloque2('tec')" id="tecBtn2">+ Agregar 2.do bloque</button>
+        <div class="bloque2" id="tecBloque2">
+          <label>Hora inicio 2.do bloque</label>
+          <input type="time" id="tecIni2" value="15:10" onchange="guardarHorarios()">
+          <label>Hora fin 2.do bloque</label>
+          <input type="time" id="tecFin2" value="17:20" onchange="guardarHorarios()">
+        </div>
+      </div>
+      <div class="horario-card res">
+        <h4>🏗️ Resistencia de Materiales</h4>
+        <label>Días de la semana</label>
+        <div class="dias-wrap" id="diasRes"></div>
+        <label>Hora inicio 1.er bloque</label>
+        <input type="time" id="resIni1" value="13:00" onchange="guardarHorarios()">
+        <label>Hora fin 1.er bloque</label>
+        <input type="time" id="resFin1" value="15:10" onchange="guardarHorarios()">
+        <button class="btn-horario" onclick="toggleBloque2('res')" id="resBtn2">+ Agregar 2.do bloque</button>
+        <div class="bloque2" id="resBloque2">
+          <label>Hora inicio 2.do bloque</label>
+          <input type="time" id="resIni2" value="15:10" onchange="guardarHorarios()">
+          <label>Hora fin 2.do bloque</label>
+          <input type="time" id="resFin2" value="17:20" onchange="guardarHorarios()">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TECNICAS -->
+<div class="subj">
+  <div class="subj-head tec">Tecnicas Instrumentales II <span class="count">2.do Curso</span></div>
+  <div class="subj-body">
+    <div class="tool-grid" id="toolsTec"></div>
+  </div>
+</div>
+
+<!-- RESISTENCIA -->
+<div class="subj">
+  <div class="subj-head res">Resistencia de Materiales <span class="count">2.do Curso</span></div>
+  <div class="subj-body">
+    <div class="tool-grid" id="toolsRes"></div>
+  </div>
+</div>
+
+<!-- TAREAS / ASIGNACIONES -->
+<div class="task-section">
+  <div class="task-head">Tareas y Trabajos Practicos <span class="task-badge" id="taskBadge">0</span></div>
+  <div class="task-body">
+    <div class="task-form">
+      <input type="text" id="taskTitle" placeholder="Titulo de la tarea" style="flex:2;min-width:180px">
+      <select id="taskSubject" style="flex:1">
+        <option value="ambas">Ambas materias</option>
+        <option value="tecnicas">Solo Tecnicas</option>
+        <option value="resistencia">Solo Resistencia</option>
+      </select>
+      <input type="date" id="taskDate" style="flex:1">
+      <textarea id="taskDesc" placeholder="Descripcion de la tarea..."></textarea>
+      <button class="btn-task" onclick="crearTarea()">+ Asignar tarea</button>
+    </div>
+    <ul class="task-list" id="taskList"></ul>
+  </div>
+</div>
+
+<p style="text-align:center;font-size:12px;color:#8899aa;margin-top:10px">
+  <a href="index.html" style="color:#0f4c81">Volver al portal principal</a> ·
+  <a href="calendario_escolar_2026.html" style="color:#0f4c81">Calendario Escolar</a>
+</p>
+
+</div>
+
+<script>
+// ===== HERRAMIENTAS POR ASIGNATURA =====
+window.BTCC_APP = (window.BTCCRuntime && window.BTCCRuntime.loadJson('/data/app_config.json', null)) || { branding: {}, defaults: {} };
+var BTCC_APP = window.BTCC_APP;
+var SUBJECTS = (window.BTCCRuntime && window.BTCCRuntime.loadJson('/data/subjects_catalog.json', [])) || [];
+var TOOLS = SUBJECTS.reduce(function(acc, subject) { acc[subject.id] = subject.tools || []; return acc; }, {});
+function setTeacherBranding() {
+  document.title = (BTCC_APP.branding.shortName || 'Portal') + ' - Perfil Docente';
+  document.getElementById('teacherProfileTitle').textContent = 'Perfil Docente - ' + (BTCC_APP.branding.shortName || '');
+  document.getElementById('teacherProfileSubtitle').textContent = (BTCC_APP.branding.institutionName || '') + ' - Docente: ' + ((BTCC_APP.defaults && BTCC_APP.defaults.teacherName) || '');
+}
+
+// ===== RENDER HERRAMIENTAS =====
+function renderTools() {
+  var htmlTec = '', htmlRes = '', total = 0;
+  TOOLS.tecnicas.forEach(function(t) {
+    htmlTec += '<a class="tool-item" href="' + t.href + '"><span class="icon">' + t.icon + '</span><span class="info"><span class="name">' + t.name + '</span><span class="desc">' + t.desc + '</span></span></a>';
+    total++;
+  });
+  TOOLS.resistencia.forEach(function(t) {
+    htmlRes += '<a class="tool-item" href="' + t.href + '"><span class="icon">' + t.icon + '</span><span class="info"><span class="name">' + t.name + '</span><span class="desc">' + t.desc + '</span></span></a>';
+    total++;
+  });
+  document.getElementById('toolsTec').innerHTML = htmlTec;
+  document.getElementById('toolsRes').innerHTML = htmlRes;
+  document.getElementById('totalHerramientas').textContent = total;
+}
+
+// ===== TAREAS =====
+var TASKS = [];
+
+function cargarTareas() {
+  try { var s = localStorage.getItem('perfil_docente_tareas'); if(s) TASKS = JSON.parse(s); }
+  catch(e) { TASKS = []; }
+}
+
+function guardarTareas() {
+  localStorage.setItem('perfil_docente_tareas', JSON.stringify(TASKS));
+}
+
+function crearTarea() {
+  var title = document.getElementById('taskTitle').value.trim();
+  var subject = document.getElementById('taskSubject').value;
+  var date = document.getElementById('taskDate').value;
+  var desc = document.getElementById('taskDesc').value.trim();
+  if(!title) { alert('Escribi un titulo para la tarea.'); return; }
+  TASKS.unshift({
+    id: 't' + Date.now(),
+    title: title,
+    subject: subject,
+    date: date || 'Sin fecha',
+    desc: desc || '',
+    created: new Date().toISOString().split('T')[0],
+    status: 'pendiente'
+  });
+  guardarTareas();
+  document.getElementById('taskTitle').value = '';
+  document.getElementById('taskDesc').value = '';
+  document.getElementById('taskDate').value = '';
+  renderTareas();
+}
+
+function eliminarTarea(id) {
+  if(!confirm('Eliminar esta tarea?')) return;
+  TASKS = TASKS.filter(function(t){ return t.id !== id; });
+  guardarTareas();
+  renderTareas();
+}
+
+function toggleTareaStatus(id) {
+  TASKS.forEach(function(t) {
+    if(t.id === id) t.status = (t.status === 'pendiente' ? 'completado' : 'pendiente');
+  });
+  guardarTareas();
+  renderTareas();
+}
+
+function renderTareas() {
+  var list = document.getElementById('taskList');
+  var badge = document.getElementById('taskBadge');
+  var contar = document.getElementById('totalTareas');
+  var pendientes = 0;
+  var html = '';
+  TASKS.forEach(function(t) {
+    if(t.status === 'pendiente') pendientes++;
+    var subjLabel = {tecnicas:'Solo Tecnicas', resistencia:'Solo Resistencia', ambas:'Ambas materias'}[t.subject] || t.subject;
+    html += '<li>';
+    html += '<input type="checkbox" ' + (t.status==='completado'?'checked':'') + ' onchange="toggleTareaStatus(\'' + t.id + '\')" style="width:18px;height:18px;cursor:pointer;accent-color:#2e7d32">';
+    html += '<div class="task-info"><strong>' + t.title + '</strong>';
+    html += '<span>' + t.desc + ' · ' + subjLabel + ' · Entrega: ' + t.date + ' · Creada: ' + t.created + '</span></div>';
+    html += '<span class="task-status ' + (t.status==='pendiente'?'pend':'comp') + '">' + (t.status==='pendiente'?'Pendiente':'Completado') + '</span>';
+    html += '<button class="btn-del" onclick="eliminarTarea(\'' + t.id + '\')" title="Eliminar">✕</button>';
+    html += '</li>';
+  });
+  list.innerHTML = html || '<p style="color:#8899aa;font-size:13px;padding:10px 0">No hay tareas asignadas aun. Crea la primera!</p>';
+  badge.textContent = pendientes;
+  contar.textContent = TASKS.length;
+}
+
+// ===== PASSWORD =====
+var PW_KEY = 'perfil_docente_pw';
+
+function getPassword() {
+  try {
+    var saved = localStorage.getItem(PW_KEY);
+    if(saved) return saved;
+  } catch(e) {}
+  return '1340130'; // cédula/contraseña por defecto
+}
+
+function verificarPassword() {
+  var input = document.getElementById('pwInput');
+  var error = document.getElementById('pwError');
+  var btn = document.getElementById('pwBtn');
+  if(input.value === getPassword()) {
+    sessionStorage.setItem('perfil_docente_acceso', '1');
+    setTeacherBranding();
+    document.getElementById('pwOverlay').style.display = 'none';
+    document.getElementById('mainContent').style.display = '';
+    error.style.display = 'none';
+    input.value = '';
+  } else {
+    error.style.display = '';
+    input.value = '';
+    input.focus();
+    btn.disabled = true;
+    setTimeout(function(){ btn.disabled = false; }, 1500);
+  }
+}
+
+function cerrarSesion() {
+  sessionStorage.removeItem('perfil_docente_acceso');
+  document.getElementById('pwOverlay').style.display = 'flex';
+  document.getElementById('mainContent').style.display = 'none';
+  document.getElementById('pwInput').value = '';
+  document.getElementById('pwInput').focus();
+  document.getElementById('pwError').style.display = 'none';
+}
+
+function cambiarPassword() {
+  var actual = prompt('Ingresá la contraseña ACTUAL:');
+  if(!actual) return;
+  if(actual !== getPassword()) { alert('Contraseña actual incorrecta.'); return; }
+  var nueva = prompt('Ingresá la NUEVA contraseña:');
+  if(!nueva || nueva.length < 4) { alert('La contraseña debe tener al menos 4 caracteres.'); return; }
+  var confirma = prompt('Confirmá la nueva contraseña:');
+  if(nueva !== confirma) { alert('Las contraseñas no coinciden.'); return; }
+  localStorage.setItem(PW_KEY, nueva);
+  alert('Contraseña cambiada correctamente.');
+}
+
+// ===== HORARIOS =====
+var DIAS = [{v:'LU',l:'Lunes'},{v:'MA',l:'Martes'},{v:'MI',l:'Miércoles'},{v:'JU',l:'Jueves'},{v:'VI',l:'Viernes'},{v:'SA',l:'Sábado'}];
+var HORARIO_KEY = 'perfil_docente_horarios';
+
+function getHorarios() {
+  var h = {};
+  try { var s = localStorage.getItem(HORARIO_KEY); if(s) h = JSON.parse(s); } catch(e) {}
+  return h;
+}
+
+function guardarHorarios() {
+  var h = {
+    tec: {
+      dias: [],
+      ini1: document.getElementById('tecIni1').value,
+      fin1: document.getElementById('tecFin1').value,
+      ini2: document.getElementById('tecIni2').value,
+      fin2: document.getElementById('tecFin2').value,
+      bloque2: document.getElementById('tecBloque2').classList.contains('show')
+    },
+    res: {
+      dias: [],
+      ini1: document.getElementById('resIni1').value,
+      fin1: document.getElementById('resFin1').value,
+      ini2: document.getElementById('resIni2').value,
+      fin2: document.getElementById('resFin2').value,
+      bloque2: document.getElementById('resBloque2').classList.contains('show')
+    }
+  };
+  document.querySelectorAll('#diasTec input:checked').forEach(function(cb) { h.tec.dias.push(cb.value); });
+  document.querySelectorAll('#diasRes input:checked').forEach(function(cb) { h.res.dias.push(cb.value); });
+  localStorage.setItem(HORARIO_KEY, JSON.stringify(h));
+}
+
+function cargarHorarios() {
+  var h = getHorarios();
+  renderDias('diasTec', h.tec ? h.tec.dias : ['MI'], 'tec');
+  renderDias('diasRes', h.res ? h.res.dias : ['MI'], 'res');
+  if(h.tec) {
+    document.getElementById('tecIni1').value = h.tec.ini1 || '13:00';
+    document.getElementById('tecFin1').value = h.tec.fin1 || '15:10';
+    document.getElementById('tecIni2').value = h.tec.ini2 || '15:10';
+    document.getElementById('tecFin2').value = h.tec.fin2 || '17:20';
+    if(h.tec.bloque2) { document.getElementById('tecBloque2').classList.add('show'); document.getElementById('tecBtn2').textContent = '− Quitar 2.do bloque'; }
+  }
+  if(h.res) {
+    document.getElementById('resIni1').value = h.res.ini1 || '13:00';
+    document.getElementById('resFin1').value = h.res.fin1 || '15:10';
+    document.getElementById('resIni2').value = h.res.ini2 || '15:10';
+    document.getElementById('resFin2').value = h.res.fin2 || '17:20';
+    if(h.res.bloque2) { document.getElementById('resBloque2').classList.add('show'); document.getElementById('resBtn2').textContent = '− Quitar 2.do bloque'; }
+  }
+}
+
+function renderDias(containerId, seleccionados, prefix) {
+  var html = '';
+  DIAS.forEach(function(d) {
+    var checked = seleccionados.indexOf(d.v) !== -1 ? 'checked' : '';
+    var id = 'd_' + prefix + '_' + d.v;
+    html += '<input type="checkbox" id="' + id + '" value="' + d.v + '" ' + checked + ' onchange="guardarHorarios()">';
+    html += '<label for="' + id + '" title="' + d.l + '">' + d.v + '</label>';
+  });
+  document.getElementById(containerId).innerHTML = html;
+}
+
+function toggleBloque2(subj) {
+  var el = document.getElementById(subj + 'Bloque2');
+  var btn = document.getElementById(subj + 'Btn2');
+  el.classList.toggle('show');
+  btn.textContent = el.classList.contains('show') ? '− Quitar 2.do bloque' : '+ Agregar 2.do bloque';
+  guardarHorarios();
+}
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded', function() {
+  setTeacherBranding();
+  // Verificar acceso
+  if(sessionStorage.getItem('perfil_docente_acceso') === '1') {
+    document.getElementById('pwOverlay').style.display = 'none';
+    document.getElementById('mainContent').style.display = '';
+  } else {
+    document.getElementById('pwOverlay').style.display = 'flex';
+    document.getElementById('mainContent').style.display = 'none';
+    document.getElementById('pwInput').focus();
+  }
+  renderTools();
+  cargarHorarios();
+  cargarTareas();
+  renderTareas();
+});
+</script>
+
+<script src="nav/nav.js"></script>
+</body>
+</html>

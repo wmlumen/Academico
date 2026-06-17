@@ -1,0 +1,29 @@
+{
+  "branding": {
+    "shortName": "BTCC",
+    "institutionName": "Colegio Nacional Defensores del Chaco",
+    "programName": "Bachillerato Técnico en Construcciones Civiles",
+    "specialization": "Construcciones Civiles",
+    "academicYear": 2026,
+    "dashboardTitle": "Gestión Académica",
+    "dashboardDescription": "Portal interno de organización documental. Integra planes anuales, planes de clase, evaluación, seguimiento y documentos generales por curso y asignatura."
+  },
+  "defaults": {
+    "teacherName": "Christhian Keim",
+    "teacherDocument": "1340130",
+    "teacherSpecialty": "Ingeniería Civil"
+  },
+  "courses": [
+    { "key": "1_Curso", "label": "1.er curso" },
+    { "key": "2_Curso", "label": "2.do curso" },
+    { "key": "3_Curso", "label": "3.er curso" },
+    { "key": "general", "label": "Documentos generales" }
+  ],
+  "institutionalLinks": [
+    { "name": "Inicio", "href": "index.html", "only": "ambos" },
+    { "name": "Panel Institucional", "href": "panel_institucional.html", "only": "ambos" },
+    { "name": "Sistema de Asistencia", "href": "sistema_institucional_asistencia.html", "only": "docente" },
+    { "name": "Calendario Escolar", "href": "calendario_escolar_2026.html", "only": "ambos" },
+    { "name": "Perfil Docente", "href": "perfil_docente.html", "only": "docente" }
+  ]
+}

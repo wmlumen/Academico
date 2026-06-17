@@ -1,0 +1,93 @@
+Voy a crear un prompt detallado (en español) que puedas usar en una IA generativa para producir automáticamente: a) una versión imprimible del Plan Anual (capacidades por mes, evidencias mínimas y rúbrica), y b) documentos y recursos relacionados (cronograma, rúbricas, fichas de evidencias, guía de implementación). El prompt pedirá además coherencia pedagógica entre competencia, unidades, metodología y evaluación, y permitirá personalizar horas semanales, nivel y año lectivo.
+
+Prompt detallado (usar en ChatGPT, Gemini, Claude u otra IA)
+
+Genera, en español, un paquete completo y listo para imprimir que incluya: 1) una versión de 1 página del Plan Anual para el curso "Educación Ambiental — 2.º Curso Media" (2026) con capacidades por mes, evidencias mínimas y una rúbrica corta para el plan final; 2) un cronograma mensual ampliado (una línea por mes con actividades clave y producto esperado); 3) tres instrumentos docentes listos para usar: lista de cotejo para auditoría escolar, ficha de registro RSA (plantilla) y rúbrica detallada para evaluar el Plan de Mejora Institucional; 4) una breve guía (máx. 300 palabras) que explique cómo garantizar coherencia entre competencia, metodología y evaluación y cómo implementar el plan con 2–3 ajustes según carga horaria (2 h o 3 h semanales). Entregar todo en formato claro y profesional, usando listas y apartados, y limitando la extensión total a aproximadamente 800–1,000 palabras.
+
+Datos del curso (fija estos valores si no se proporcionan):
+
+Nivel: Educación Media General (BCCA).
+
+Curso: Educación Ambiental — 2.º Curso Media.
+
+Carga horaria semanal: 2–3 horas cátedra (indicar alternativas).
+
+Año lectivo: 2026.
+
+Competencia del curso: Analiza los modelos de desarrollo económico y social en relación al equilibrio ambiental, proponiendo estrategias de mitigación ante el cambio climático y promoviendo el consumo responsable en la sociedad paraguaya.
+
+Distribución mensual (usar el siguiente esquema; puedes ajustar títulos breves si hace falta):
+
+Marzo: Modelos de Desarrollo
+
+Abril: Cambio Climático I
+
+Mayo: Mitigación y Adaptación
+
+Junio: Legislación II
+
+Julio: Refuerzo
+
+Agosto: Consumo Responsable
+
+Septiembre: Energía y Sostenibilidad
+
+Octubre: Acción Institucional
+
+Noviembre: Cierre
+
+Requisitos obligatorios de salida:
+
+Portada de 1 página (A4) – Plan Anual resumido:
+
+Encabezado con curso, nivel, año y carga horaria.
+
+Tabla o lista: mes / capacidad (1–2 frases) / evidencia mínima (producto obligatorio).
+
+Rúbrica corta para el Plan de Mejora Institucional (3 criterios, 3 niveles: Excelente, Satisfactorio, Necesita refuerzo). Mantenerlo en máximo 1 página.
+
+Cronograma mensual ampliado (lista):
+
+Para cada mes: actividades clave (3–4 ítems), producto esperado (1 ítem), tiempo estimado (horas o sesiones).
+
+Instrumentos docentes listos para usar (textuales para copiar/pegar):
+
+Lista de cotejo para auditoría escolar (10 ítems Sí/No).
+
+Ficha RSA plantilla (campos: fecha, actividad, evidencia, rol, reflexión breve).
+
+Rúbrica detallada para evaluar el Plan de Mejora Institucional (3 criterios, descritores para Excelente/Satisfactorio/Necesita refuerzo).
+
+Guía de coherencia e implementación (máx. 300 palabras):
+
+Explica cómo cada unidad contribuye a la competencia.
+
+Indica cómo usar evidencias para evaluación continua.
+
+Ofrece 2–3 ajustes operativos según carga horaria (si 2 h/semana: priorizar trabajo fuera de clase y uso de TICs; si 3 h/semana: integrar sesiones prácticas en horario escolar).
+
+Recomendaciones prácticas (lista corta):
+
+6 consejos rápidos para registro de evidencias, trabajo en comunidad escolar y uso de TICs.
+
+Formato y estilo:
+
+Español claro, profesional y accesible.
+
+Usa listas numeradas y viñetas para claridad.
+
+Mantén la portada (item 1) en una sola página A4; los demás elementos pueden ocupar hasta 2 páginas adicionales pero la salida total no debe exceder ~1,000 palabras.
+
+Evita citas extensas de materiales con derechos de autor; cuando uses recursos externos, menciona solo la fuente (ej.: MADES) y su uso sin reproducir contenido protegido.
+
+Personalización opcional (si el usuario lo solicita después de ejecutar el prompt):
+
+Ajustar meses y contenidos, añadir estándares curriculares locales, indicar tamaño del grupo o recursos disponibles, traducir a otro idioma.
+
+Instrucciones de uso:
+
+Copia y pega este prompt en la IA que prefieras.
+
+Si deseas personalizar, reemplaza los datos del curso o añade especificaciones (p. ej. "grupo de 25 estudiantes", "sin acceso a internet").
+
+Pide: "Genera ahora" para obtener el paquete completo.

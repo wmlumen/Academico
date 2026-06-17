@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planilla de Asistencia - Tecnicas Instrumentales II</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,sans-serif;background:#f0f4fa;color:#172133;padding:14px}
+.wrap{max-width:1600px;margin:0 auto}
+
+.header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:16px 22px;border-radius:14px;margin-bottom:12px}
+.header h1{margin:0;font-size:20px}
+.header p{margin:4px 0 0;font-size:13px;opacity:.9}
+.header .schedule{font-size:12px;opacity:.8;margin-top:4px}
+
+.controls{background:#fff;border:1px solid #d8e3ef;border-radius:12px;padding:10px 14px;margin-bottom:12px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;box-shadow:0 2px 8px rgba(23,33,51,0.06)}
+.controls label{font-size:13px;font-weight:600;color:#2a405c}
+.controls select{padding:7px 10px;border:1px solid #b6c6da;border-radius:8px;font-size:13px;background:#fff;flex:1;min-width:140px}
+.controls .stats{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+.controls .stats .stat{padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600}
+.controls .stats .stat.p{background:#c8e6c9;color:#1b5e20}
+.controls .stats .stat.a{background:#ffcdd2;color:#b71c1c}
+.controls .stats .stat.aj{background:#fff9c4;color:#f57f17}
+.controls .stats .stat.f{background:#e3f2fd;color:#0d47a1}
+.controls .stats .stat.total{background:#e8eaf6;color:#283593}
+
+.mes-section{background:#fff;border:1px solid #d8e3ef;border-radius:12px;margin-bottom:12px;overflow:hidden;box-shadow:0 2px 8px rgba(23,33,51,0.04)}
+.mes-header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:9px 14px;font-size:15px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.mes-header .count{font-size:12px;opacity:.8;font-weight:400}
+
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#e8f1fb;color:#16304d;padding:6px 4px;border:1px solid #c8d9ea;font-size:11px;font-weight:700;text-align:center;position:sticky;top:0;z-index:2}
+th.stu-name{text-align:left;min-width:220px;position:sticky;left:0;z-index:3;background:#e8f1fb}
+td{border:1px solid #d8e0ea;padding:4px;text-align:center;vertical-align:middle}
+td.stu-name{text-align:left;padding:4px 8px;font-weight:600;font-size:11px;position:sticky;left:0;z-index:1;background:#fff}
+td.stu-num{font-size:11px;font-weight:700;width:28px}
+tr:hover td.stu-name{background:#f5f9ff}
+
+.asis-select{padding:2px;border:1.5px solid #d8e0ea;border-radius:4px;font-size:11px;font-weight:700;text-align:center;width:38px;height:28px;cursor:pointer;background:#fff;transition:all .12s}
+.asis-select:focus{outline:none;border-color:#0f4c81}
+.asis-select.val-P{background:#c8e6c9;border-color:#2e7d32;color:#1b5e20}
+.asis-select.val-A{background:#ffcdd2;border-color:#c62828;color:#b71c1c}
+.asis-select.val-AJ{background:#fff9c4;border-color:#f9a825;color:#f57f17}
+.asis-select.val-F{background:#e3f2fd;border-color:#1e88e5;color:#0d47a1}
+
+.resumen-row td{background:#f5f9ff;font-weight:700;font-size:11px}
+.resumen-row .total-p{color:#1b5e20}
+.resumen-row .total-a{color:#b71c1c}
+.resumen-row .total-aj{color:#f57f17}
+.resumen-row .total-f{color:#0d47a1}
+
+.no-schedule{text-align:center;padding:40px;color:#8899aa;font-size:14px}
+.no-schedule a{color:#0f4c81}
+
+@media print{body{background:#fff;padding:0}.controls{display:none}.mes-header{background:#0f4c81!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}th{background:#e8f1fb!important}.asis-select.val-P,.asis-select.val-A,.asis-select.val-AJ,.asis-select.val-F{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+
+<script src="../../nav/runtime.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>📋 Planilla de Asistencia</h1>
+  <p>Técnicas Instrumentales II · 2.do Curso BTCC · Códigos: P=Presente / A=Ausente / AJ=Ausente Justificado / F=Feriado</p>
+  <div class="schedule" id="scheduleInfo">Cargando horarios...</div>
+</div>
+
+<div class="controls">
+  <label>Filtrar mes:</label>
+  <select id="filterMonth" onchange="filtrarMes()"><option value="all">Todos los meses</option></select>
+  <button onclick="if(confirm('¿Resetear todos los datos de asistencia?')){localStorage.removeItem('asis_planilla_tecnicas');location.reload()}" style="padding:7px 14px;border:none;border-radius:8px;background:#ffcdd2;color:#b71c1c;font-size:12px;font-weight:600;cursor:pointer">🗑️ Limpiar datos</button>
+  <div class="stats" id="statsBar">
+    <span class="stat p">P: <strong id="totalP">0</strong></span>
+    <span class="stat a">A: <strong id="totalA">0</strong></span>
+    <span class="stat aj">AJ: <strong id="totalAJ">0</strong></span>
+    <span class="stat f">F: <strong id="totalF">0</strong></span>
+    <span class="stat total">% Asist: <strong id="pctAsist">0%</strong></span>
+  </div>
+</div>
+
+<div id="mainContainer">
+  <div class="no-schedule" id="loadingMsg">Cargando planilla de asistencia...</div>
+</div>
+
+</div>
+
+<script src="../../data/alumnos_tecnicas.js"></script>
+<script>
+var ASIS_KEY = 'asis_planilla_tecnicas';
+var DATA = {}; // { "LU 24/03/2026": { "s1": "P", "s2": "A", ... } }
+
+// Meses del ciclo
+var MESES_CICLO = ['Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre'];
+var MESES_NUM = {Marzo:3, Abril:4, Mayo:5, Junio:6, Julio:7, Agosto:8, Septiembre:9, Octubre:10, Noviembre:11};
+var MONTHS_NAME = {3:'Marzo',4:'Abril',5:'Mayo',6:'Junio',7:'Julio',8:'Agosto',9:'Septiembre',10:'Octubre',11:'Noviembre'};
+
+function cargarDatos() {
+  try { var s = localStorage.getItem(ASIS_KEY); if(s) DATA = JSON.parse(s); } catch(e) { DATA = {}; }
+}
+function guardarDatos() {
+  localStorage.setItem(ASIS_KEY, JSON.stringify(DATA));
+}
+
+// ===== GENERAR FECHAS =====
+function generarFechas() {
+  var h = {};
+  try { var s = localStorage.getItem('perfil_docente_horarios'); if(s) h = JSON.parse(s); } catch(e) {}
+  var cfg = h.tec || { dias: ['MI'], ini1: '13:00', fin1: '15:10', ini2: '15:10', fin2: '17:20', bloque2: true };
+  if(!cfg.dias || cfg.dias.length === 0) cfg.dias = ['MI'];
+
+  // Mapa día-semand → número (0=domingo)
+  var diaNum = {LU:1, MA:2, MI:3, JU:4, VI:5, SA:6};
+
+  var fechas = [];
+  var d = new Date(2026, 2, 1); // 1 Marzo 2026
+  var fin = new Date(2026, 10, 30); // 30 Nov 2026
+
+  while (d <= fin) {
+    var diaSem = ['DO','LU','MA','MI','JU','VI','SA'][d.getDay()];
+    if (cfg.dias.indexOf(diaSem) !== -1) {
+      var dateStr = formatDate(d);
+      fechas.push({ dateObj: new Date(d), dateStr: dateStr, diaSem: diaSem });
+    }
+    d.setDate(d.getDate() + 1);
+  }
+  return fechas;
+}
+
+function formatDate(d) {
+  var diaSem = ['DO','LU','MA','MI','JU','VI','SA'][d.getDay()];
+  var dd = String(d.getDate()).padStart(2,'0');
+  var mm = String(d.getMonth()+1).padStart(2,'0');
+  var yy = d.getFullYear();
+  return diaSem + ' ' + dd + '/' + mm + '/' + yy;
+}
+
+// ===== RENDER =====
+function renderizar() {
+  var container = document.getElementById('mainContainer');
+  var scheduleInfo = document.getElementById('scheduleInfo');
+
+  // Cargar horarios
+  var h = {};
+  try { var s = localStorage.getItem('perfil_docente_horarios'); if(s) h = JSON.parse(s); } catch(e) {}
+  var cfg = h.tec || { dias: ['MI'], ini1: '13:00', fin1: '15:10', ini2: '15:10', fin2: '17:20', bloque2: true };
+
+  var diasLabels = cfg.dias.map(function(d) {
+    var map = {LU:'Lunes',MA:'Martes',MI:'Miércoles',JU:'Jueves',VI:'Viernes',SA:'Sábado'};
+    return map[d] || d;
+  }).join(', ');
+  var horarioStr = diasLabels + ' ' + cfg.ini1 + '-' + cfg.fin1;
+  if (cfg.bloque2) horarioStr += ' y ' + cfg.ini2 + '-' + cfg.fin2;
+  scheduleInfo.textContent = '📅 ' + horarioStr + ' — Configurable desde el Perfil Docente';
+
+  if (!cfg.dias || cfg.dias.length === 0) {
+    container.innerHTML = '<div class="no-schedule">⚠️ No hay días configurados para esta materia. <a href="../../perfil_docente.html">Configurar horarios en el Perfil Docente</a></div>';
+    return;
+  }
+
+  var fechas = generarFechas();
+  if (fechas.length === 0) {
+    container.innerHTML = '<div class="no-schedule">No se generaron fechas para el ciclo lectivo 2026.</div>';
+    return;
+  }
+
+  // Agrupar por mes
+  var mesesMap = {};
+  fechas.forEach(function(f) {
+    var m = f.dateObj.getMonth() + 1;
+    if (!mesesMap[m]) mesesMap[m] = [];
+    mesesMap[m].push(f);
+  });
+
+  var html = '';
+  var filterOpts = '<option value="all">Todos los meses</option>';
+  var statsGlobal = { P:0, A:0, AJ:0, F:0, total:0 };
+
+  // Ordenar meses del ciclo
+  var mesesOrdenados = Object.keys(mesesMap).map(Number).sort(function(a,b){ return a-b; });
+
+  mesesOrdenados.forEach(function(m) {
+    var monthName = MONTHS_NAME[m] || 'Mes ' + m;
+    var monthId = 'mes_' + m;
+    filterOpts += '<option value="' + monthId + '">' + monthName + ' 2026</option>';
+
+    var fechasMes = mesesMap[m];
+    var diasHabilesMes = fechasMes.length;
+
+    var tblHtml = '<div class="tbl-wrap"><table><thead><tr>';
+    tblHtml += '<th class="stu-name" rowspan="2">N.°</th><th class="stu-name" rowspan="2">Apellidos y Nombres</th>';
+    fechasMes.forEach(function(f) {
+      var diaAbr = f.diaSem;
+      tblHtml += '<th title="' + f.dateStr + '">' + diaAbr + ' ' + f.dateStr.split(' ')[1] + '</th>';
+    });
+    tblHtml += '<th rowspan="2">%<br>Asist</th>';
+    tblHtml += '<th rowspan="2">P</th><th rowspan="2">A</th><th rowspan="2">AJ</th>';
+    tblHtml += '</tr><tr>';
+    fechasMes.forEach(function(f) {
+      tblHtml += '<th style="font-size:9px;font-weight:400;color:#5a687c;padding:2px 4px">' + f.dateStr.split('/')[1] + '/' + f.dateStr.split('/')[2].slice(0,2) + '</th>';
+    });
+    tblHtml += '</tr></thead><tbody>';
+
+    // Filas de estudiantes
+    var totalsRow = { P:0, A:0, AJ:0, F:0, habiles:0 };
+
+    STUDENTS.forEach(function(s) {
+      var sid = 's' + s.num;
+      tblHtml += '<tr>';
+      tblHtml += '<td class="stu-num">' + s.num + '</td>';
+      tblHtml += '<td class="stu-name">' + s.name + '</td>';
+
+      var presentes = 0, ausentes = 0, justificados = 0, feriados = 0, habiles = 0;
+
+      fechasMes.forEach(function(f) {
+        if (!DATA[f.dateStr]) DATA[f.dateStr] = {};
+        var val = DATA[f.dateStr][sid] || '';
+        var cls = val ? 'val-' + val : '';
+        tblHtml += '<td><select class="asis-select ' + cls + '" onchange="cambiarAsistencia(\'' + f.dateStr + '\',\'' + sid + '\',this)">';
+        ['','P','A','AJ','F'].forEach(function(opt) {
+          var sel = val === opt ? 'selected' : '';
+          tblHtml += '<option value="' + opt + '" ' + sel + '>' + (opt || '—') + '</option>';
+        });
+        tblHtml += '</select></td>';
+
+        if (val !== 'F') habiles++;
+        if (val === 'P') presentes++;
+        else if (val === 'A') ausentes++;
+        else if (val === 'AJ') justificados++;
+        else if (val === 'F') feriados++;
+      });
+
+      var pct = habiles > 0 ? Math.round((presentes + justificados) / habiles * 100) : 0;
+      tblHtml += '<td style="font-weight:700;font-size:12px;color:' + (pct >= 75 ? '#2e7d32' : '#c62828') + '">' + pct + '%</td>';
+      tblHtml += '<td style="font-weight:600;color:#2e7d32">' + presentes + '</td>';
+      tblHtml += '<td style="font-weight:600;color:#b71c1c">' + ausentes + '</td>';
+      tblHtml += '<td style="font-weight:600;color:#f57f17">' + justificados + '</td>';
+      tblHtml += '</tr>';
+
+      // Acumular stats del mes
+      totalsRow.P += presentes;
+      totalsRow.A += ausentes;
+      totalsRow.AJ += justificados;
+      totalsRow.F += feriados;
+      totalsRow.habiles += habiles;
+
+      // Acumular stats globales
+      statsGlobal.P += presentes;
+      statsGlobal.A += ausentes;
+      statsGlobal.AJ += justificados;
+      statsGlobal.F += feriados;
+      statsGlobal.total += habiles;
+    });
+
+    // Fila de totales del mes
+    var pctMes = totalsRow.habiles > 0 ? Math.round((totalsRow.P + totalsRow.AJ) / totalsRow.habiles * 100) : 0;
+    tblHtml += '<tr class="resumen-row">';
+    tblHtml += '<td colspan="2" style="font-weight:700;text-align:right;padding-right:10px">📊 Total mes</td>';
+    fechasMes.forEach(function(f) {
+      var diaTot = { P:0, A:0, AJ:0, F:0 };
+      STUDENTS.forEach(function(s) {
+        var v = DATA[f.dateStr] ? DATA[f.dateStr]['s' + s.num] : '';
+        if (v === 'P') diaTot.P++;
+        else if (v === 'A') diaTot.A++;
+        else if (v === 'AJ') diaTot.AJ++;
+        else if (v === 'F') diaTot.F++;
+      });
+      tblHtml += '<td style="font-size:9px;font-weight:600;padding:2px">';
+      if (diaTot.P > 0) tblHtml += '<span class="total-p">P' + diaTot.P + '</span> ';
+      if (diaTot.A > 0) tblHtml += '<span class="total-a">A' + diaTot.A + '</span> ';
+      if (diaTot.AJ > 0) tblHtml += '<span class="total-aj">AJ' + diaTot.AJ + '</span> ';
+      if (diaTot.F > 0) tblHtml += '<span class="total-f">F' + diaTot.F + '</span> ';
+      tblHtml += '</td>';
+    });
+    tblHtml += '<td style="font-weight:700;font-size:13px;color:' + (pctMes >= 75 ? '#2e7d32' : '#c62828') + '">' + pctMes + '%</td>';
+    tblHtml += '<td style="font-weight:700;color:#2e7d32">' + totalsRow.P + '</td>';
+    tblHtml += '<td style="font-weight:700;color:#b71c1c">' + totalsRow.A + '</td>';
+    tblHtml += '<td style="font-weight:700;color:#f57f17">' + totalsRow.AJ + '</td>';
+    tblHtml += '</tr>';
+
+    tblHtml += '</tbody></table></div>';
+    html += '<div class="mes-section" id="' + monthId + '">';
+    html += '<div class="mes-header">' + monthName + ' 2026 <span class="count">' + fechasMes.length + ' jornada(s) · ' + totalsRow.habiles + ' día(s) hábil(es)</span></div>';
+    html += tblHtml;
+    html += '</div>';
+  });
+
+  container.innerHTML = html;
+  document.getElementById('filterMonth').innerHTML = filterOpts;
+
+  // Stats globales (solo días hábiles)
+  document.getElementById('totalP').textContent = statsGlobal.P;
+  document.getElementById('totalA').textContent = statsGlobal.A;
+  document.getElementById('totalAJ').textContent = statsGlobal.AJ;
+  document.getElementById('totalF').textContent = statsGlobal.F;
+  var totalHabiles = statsGlobal.P + statsGlobal.A + statsGlobal.AJ;
+  var pctGlobal = totalHabiles > 0 ? Math.round((statsGlobal.P + statsGlobal.AJ) / totalHabiles * 100) : 0;
+  document.getElementById('pctAsist').textContent = pctGlobal + '% (sobre ' + totalHabiles + ' días hábiles)';
+
+  filtrarMes();
+}
+
+function cambiarAsistencia(dateStr, sid, el) {
+  if (!DATA[dateStr]) DATA[dateStr] = {};
+  DATA[dateStr][sid] = el.value;
+  guardarDatos();
+  // Actualizar color del select
+  el.className = 'asis-select' + (el.value ? ' val-' + el.value : '');
+}
+
+function filtrarMes() {
+  var val = document.getElementById('filterMonth').value;
+  document.querySelectorAll('.mes-section').forEach(function(s) {
+    s.style.display = (val === 'all' || s.id === val) ? '' : 'none';
+  });
+}
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded', function() {
+  cargarDatos();
+  renderizar();
+});
+</script>
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>

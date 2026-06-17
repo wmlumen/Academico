@@ -1,0 +1,33 @@
+{
+  "institution": "COLEGIO_NACIONAL_DON_JORGE_GAYOSO",
+  "source_file_count": 6,
+  "unique_content_count": 1,
+  "copied_entries": [
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_NACIONAL_DON_JORGE_GAYOSO\\2_Curso\\Etica\\General\\Informe de Diagnostico.htm",
+      "original_name": "Informe de Diagnostico.htm",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BCS FORMACION ETICA 2do. TT - copia\\Informe de Diagnostico.htm",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BCS ORIENTACION 3RO. TM\\Informe de Diagnostico.htm",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BTCA EDUCACION AMBIENTAL 1ro\\Informe de Diagnostico.htm",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BTCA EDUCACION AMBIENTAL 2DO\\Informe de Diagnostico.htm",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BTCA METODOLOGIA 1ro\\Informe de Diagnostico.htm",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BTCA SOCIOLOGIA URBANA Y RURAL 1ro\\Informe de Diagnostico.htm"
+      ],
+      "sha256": "d89d0f014cdaf17f5c814628770e8af08b8a3d549ebfdf7958435268456c128d"
+    }
+  ],
+  "deduplicated_content": [
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_NACIONAL_DON_JORGE_GAYOSO\\2_Curso\\Etica\\General\\Informe de Diagnostico.htm",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BCS ORIENTACION 3RO. TM\\Informe de Diagnostico.htm",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BTCA EDUCACION AMBIENTAL 1ro\\Informe de Diagnostico.htm",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BTCA EDUCACION AMBIENTAL 2DO\\Informe de Diagnostico.htm",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BTCA METODOLOGIA 1ro\\Informe de Diagnostico.htm",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\RM COL. NAC. DON JORGE GAYOSO BTCA SOCIOLOGIA URBANA Y RURAL 1ro\\Informe de Diagnostico.htm"
+      ]
+    }
+  ],
+  "same_name_different_content": []
+}

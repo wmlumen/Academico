@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="100%" height="100%" fill="white"/>
+  <text x="400" y="40" text-anchor="middle" font-family="Segoe UI, Arial" font-size="24" font-weight="700">Distribucion de esfuerzos por flexion</text>
+  <line x1="400" y1="100" x2="400" y2="410" stroke="#666" stroke-width="1.5"/>
+  <line x1="180" y1="255" x2="620" y2="255" stroke="#111" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="415" y="248" font-family="Segoe UI, Arial" font-size="16">Eje neutro</text>
+  <polygon points="400,125 560,125 560,155 400,155" fill="#ef4444" opacity="0.75"/>
+  <polygon points="400,175 520,175 520,205 400,205" fill="#f87171" opacity="0.75"/>
+  <polygon points="400,305 280,305 280,335 400,335" fill="#60a5fa" opacity="0.75"/>
+  <polygon points="400,355 240,355 240,385 400,385" fill="#2563eb" opacity="0.75"/>
+  <text x="575" y="145" font-family="Segoe UI, Arial" font-size="18" fill="#b91c1c">Traccion maxima</text>
+  <text x="95" y="375" font-family="Segoe UI, Arial" font-size="18" fill="#1d4ed8">Compresion maxima</text>
+  <text x="150" y="450" font-family="Segoe UI, Arial" font-size="18" fill="#333">El esfuerzo es cero en el eje neutro y aumenta hacia las fibras extremas.</text>
+</svg>

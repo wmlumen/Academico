@@ -1,0 +1,947 @@
+{
+  "institution": "COLEGIO_MANUEL_MOLINAS",
+  "source_file_count": 175,
+  "unique_content_count": 65,
+  "copied_entries": [
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\General\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+      "original_name": "LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\MANUEL MOLINAS\\ETICA 7MO I TT\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\ETICA 7MO I TT\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf"
+      ],
+      "sha256": "bb05bfc89327f4e5c1bdfcf512476acb7be1e806b52e52fc39dba25c0330fc5f"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\General\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+      "original_name": "PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\MANUEL MOLINAS\\ETICA 7MO I TT\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\ETICA 7MO I TT\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Docs\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\PLAN ANUAL ÉTICA 7º GRADO (1).doc"
+      ],
+      "sha256": "3bb8f26777f05a5ba5dbd7b261e2f560e52af81c78ada07a0930fc2640ffb032"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+      "original_name": "Prueba Diagnostica 7mo. Grado I TM MM.docx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\MANUEL MOLINAS\\ETICA 7mo TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\ETICA 7mo TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Docs\\Prueba Diagnostica 7mo. Grado I TM MM.docx"
+      ],
+      "sha256": "2b32476b059450a74e34c3c86cb6d8d5f0ffdc0b24e6aeed7f88b0a23c1bb917"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\vh esc manuel molinas etica 7no tm__V1.xlsx",
+      "original_name": "VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\MANUEL MOLINAS\\ETICA 7mo TM\\VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\ETICA 7mo TM\\VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx"
+      ],
+      "sha256": "7bd6c0f0d1916447f48b0ee142f8192e5ba08fcfe46c7a5d159dd0344451c501"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\Planilla.xlsx",
+      "original_name": "Planilla.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\MANUEL MOLINAS\\Planilla.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\Planilla.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\Planilla.xlsx"
+      ],
+      "sha256": "a3f8e9c491eef85c693166813c65ef60987c0a406012acc29945c6f5e5dec4bc"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\General\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+      "original_name": "POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\MANUEL MOLINAS\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Docs\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx"
+      ],
+      "sha256": "4db77c96114e9d686ed01f493e26f1c19904086b7fcc86408e3492e743fbec54"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\001 PLAN ANUAL ETICA 7MO MM.docx",
+      "original_name": "001 PLAN ANUAL ETICA 7MO MM.docx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\001 PLAN ANUAL ETICA 7MO MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\001 PLAN ANUAL ETICA 7MO MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\001 PLAN ANUAL ETICA 7MO MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\001 PLAN ANUAL ETICA 7MO MM.docx"
+      ],
+      "sha256": "b11e0ec8aff98e04bdf468efd931a02001d3648f4f49eae1b6bbb9ad0aa6c65e"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\01- PLAN ANUAL I Ética 7mo Grado 2026 VF.docx",
+      "original_name": "01- PLAN ANUAL I Ética 7mo Grado 2026 VF.docx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\01- PLAN ANUAL I Ética 7mo Grado 2026 VF.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\01- PLAN ANUAL I Ética 7mo Grado 2026 VF.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\01- PLAN ANUAL I Ética 7mo Grado 2026 VF.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\01- PLAN ANUAL I Ética 7mo Grado 2026 VF.docx"
+      ],
+      "sha256": "05952f6c01312ae2089bac5dba31350c3e791c4d007511c03927e34ea5c468b6"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\02_RSA_Registro_Secuencia_Aprendizaje_2026.docx",
+      "original_name": "02_RSA_Registro_Secuencia_Aprendizaje_2026.docx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\02_RSA_Registro_Secuencia_Aprendizaje_2026.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\02_RSA_Registro_Secuencia_Aprendizaje_2026.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\02_RSA_Registro_Secuencia_Aprendizaje_2026.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\02_RSA_Registro_Secuencia_Aprendizaje_2026.docx"
+      ],
+      "sha256": "ca8b7c5259e1cd3ff3cebd7d7037e1970b54b5740c3907ed6f1fb1fd9cdee97b"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\03_Instrumentos_Evaluacion_Detalle_2026.docx",
+      "original_name": "03_Instrumentos_Evaluacion_Detalle_2026.docx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\03_Instrumentos_Evaluacion_Detalle_2026.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\03_Instrumentos_Evaluacion_Detalle_2026.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\03_Instrumentos_Evaluacion_Detalle_2026.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\03_Instrumentos_Evaluacion_Detalle_2026.docx"
+      ],
+      "sha256": "4dc2135b2a76759cef3dd3ee2776f9a79d5cd973656ed4ce547bc95d9559633e"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\04_Guia_Estructura_Google_Form_HTML.docx",
+      "original_name": "04_Guia_Estructura_Google_Form_HTML.docx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\04_Guia_Estructura_Google_Form_HTML.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\04_Guia_Estructura_Google_Form_HTML.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\04_Guia_Estructura_Google_Form_HTML.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\04_Guia_Estructura_Google_Form_HTML.docx"
+      ],
+      "sha256": "3fd2e3edcce87328c1249b1aa41aaa1cfe208ed0f8c629530030b5a4b164499a"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Hoja 1 - Plan Anual Completo y Temas Integrados.xlsx",
+      "original_name": "Hoja 1 - Plan Anual Completo y Temas Integrados.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 1 - Plan Anual Completo y Temas Integrados.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 1 - Plan Anual Completo y Temas Integrados.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 1 - Plan Anual Completo y Temas Integrados.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 1 - Plan Anual Completo y Temas Integrados.xlsx"
+      ],
+      "sha256": "b24f141aa167354cac158331d149998bd92fb1f9bd8eeb7a60f937fe929f2a0e"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Hoja 2 - RSA Integral (Todos los Temas).xlsx",
+      "original_name": "Hoja 2 - RSA Integral (Todos los Temas).xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 2 - RSA Integral (Todos los Temas).xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 2 - RSA Integral (Todos los Temas).xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 2 - RSA Integral (Todos los Temas).xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 2 - RSA Integral (Todos los Temas).xlsx"
+      ],
+      "sha256": "4a2e5d67eecff40f0f1b8b092ccbfd0d0ff632b2190c6e37ebb7c89c55d28ea8"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Hoja 3 - Instrumentos Específicos (Cotejo y Rúbricas).xlsx",
+      "original_name": "Hoja 3 - Instrumentos Específicos (Cotejo y Rúbricas).xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 3 - Instrumentos Específicos (Cotejo y Rúbricas).xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 3 - Instrumentos Específicos (Cotejo y Rúbricas).xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 3 - Instrumentos Específicos (Cotejo y Rúbricas).xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 3 - Instrumentos Específicos (Cotejo y Rúbricas).xlsx"
+      ],
+      "sha256": "8689fa06f03e43b819bf008deee037f93e7898b0533fec2078884cb7a04f8c8e"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Hoja 4 - PLANILLA DE CLASES.xlsx",
+      "original_name": "Hoja 4 - PLANILLA DE CLASES.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 4 - PLANILLA DE CLASES.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 4 - PLANILLA DE CLASES.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 4 - PLANILLA DE CLASES.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 4 - PLANILLA DE CLASES.xlsx"
+      ],
+      "sha256": "9370e0aca3b27ab849c9d7f2712f0af550d4cb1e993c9b2f91e969183b8e0e44"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Hoja 4 - Registro de Grado (Consolidado).xlsx",
+      "original_name": "Hoja 4 - Registro de Grado (Consolidado).xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 4 - Registro de Grado (Consolidado).xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 4 - Registro de Grado (Consolidado).xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 4 - Registro de Grado (Consolidado).xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 4 - Registro de Grado (Consolidado).xlsx"
+      ],
+      "sha256": "f780fc46b46c49a139536ffa6eedad442084e233ac04b8310d4de93809510930"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Hoja 5 - Planilla de Proceso Molina 2025 V2.xlsx",
+      "original_name": "Hoja 5 - Planilla de Proceso Molina 2025 V2.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 5 - Planilla de Proceso Molina 2025 V2.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 5 - Planilla de Proceso Molina 2025 V2.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 5 - Planilla de Proceso Molina 2025 V2.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 5 - Planilla de Proceso Molina 2025 V2.xlsx"
+      ],
+      "sha256": "f3993714e23978761b0e8a58e5d3d4a2275e3376230412ce7936e3515c57fcb9"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\General\\Hoja 6 Plan Integral 2026 - Formación Ética 7mo - Molinas V5.xlsx",
+      "original_name": "Hoja 6 Plan Integral 2026 - Formación Ética 7mo - Molinas V5.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 6 Plan Integral 2026 - Formación Ética 7mo - Molinas V5.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 6 Plan Integral 2026 - Formación Ética 7mo - Molinas V5.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 6 Plan Integral 2026 - Formación Ética 7mo - Molinas V5.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 6 Plan Integral 2026 - Formación Ética 7mo - Molinas V5.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\Hoja 6 Plan Integral 2026 - Formación Ética 7mo - Molinas V5.xlsx"
+      ],
+      "sha256": "a94e2c4cca8cf5baeaea2dda5bdbd79df53a8a45e1075d291d702f8d2114db72"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Plan Anual Actualizado - Ética 7mo Grado I TM.pdf",
+      "original_name": "Plan Anual Actualizado - Ética 7mo Grado I TM.pdf",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Plan Anual Actualizado - Ética 7mo Grado I TM.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Plan Anual Actualizado - Ética 7mo Grado I TM.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Plan Anual Actualizado - Ética 7mo Grado I TM.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Plan Anual Actualizado - Ética 7mo Grado I TM.pdf"
+      ],
+      "sha256": "ddf013834ea16ca42b7b7e0c32ef5f73b4244bd4906bed14a878639271fcebac"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Plan Anual y Registros de Evaluación Completo - Ética 7mo V4.xlsx",
+      "original_name": "Plan Anual y Registros de Evaluación Completo - Ética 7mo V4.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Plan Anual y Registros de Evaluación Completo - Ética 7mo V4.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Plan Anual y Registros de Evaluación Completo - Ética 7mo V4.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Plan Anual y Registros de Evaluación Completo - Ética 7mo V4.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Plan Anual y Registros de Evaluación Completo - Ética 7mo V4.xlsx"
+      ],
+      "sha256": "cefb6fb5d4e34ac99e9cc673dbf9945d43a75d670991776d57d13f653da1af1e"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Planilla Principal.xlsx",
+      "original_name": "Planilla Principal.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Planilla Principal.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Planilla Principal.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Planilla Principal.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Planilla Principal.xlsx"
+      ],
+      "sha256": "8fc010bdd07422cc0d905cc8f1f98261eadabf1079f7bf91844d0dc3d1d0924a"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\PLANILLA.xlsx",
+      "original_name": "PLANILLA.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\PLANILLA.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\PLANILLA.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\PLANILLA.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\PLANILLA.xlsx"
+      ],
+      "sha256": "861cd1b86a77cf04d88bd2b94eaacf80c6507d6e603f38307afa7e9dc6b432b6"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Que se quiere.txt",
+      "original_name": "Que se quiere.txt",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Que se quiere.txt",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Que se quiere.txt",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Que se quiere.txt",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Que se quiere.txt"
+      ],
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\SEGUIMIENTO_ETICA_7MO_2026.xlsx.xlsx",
+      "original_name": "SEGUIMIENTO_ETICA_7MO_2026.xlsx.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\SEGUIMIENTO_ETICA_7MO_2026.xlsx.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\SEGUIMIENTO_ETICA_7MO_2026.xlsx.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\SEGUIMIENTO_ETICA_7MO_2026.xlsx.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\SEGUIMIENTO_ETICA_7MO_2026.xlsx.xlsx"
+      ],
+      "sha256": "cebb3daf995ec798d49adddb9f7f1f498c956e86c271dc3a19ba2db50846397c"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\vh esc manuel molinas etica 7no tm__V2.xlsx",
+      "original_name": "VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx"
+      ],
+      "sha256": "e5bbfb60a51cb5b42a04f0354d32820b1f1f36524d84f17ec84346e32c29802e"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\PCI MANUEL MOLINAS 2025.docx",
+      "original_name": "PCI MANUEL MOLINAS 2025.docx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PCI MANUEL MOLINAS 2025.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PCI MANUEL MOLINAS 2025.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PCI MANUEL MOLINAS 2025.docx"
+      ],
+      "sha256": "547dce9f84e01936f5fcf238dedaa610d306c0281c9cd93bb3d109284665dcd0"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\PEI MOLINAS-2024 - 2028 (1).pdf",
+      "original_name": "PEI MOLINAS-2024 - 2028 (1).pdf",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PEI MOLINAS-2024 - 2028 (1).pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PEI MOLINAS-2024 - 2028.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PEI MOLINAS-2024 - 2028 (1).pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PEI MOLINAS-2024 - 2028.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Docs\\PEI MOLINAS-2024 - 2028.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PEI MOLINAS-2024 - 2028 (1).pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PEI MOLINAS-2024 - 2028.pdf"
+      ],
+      "sha256": "9530915280abd723185ba591ad406de597ecc40a0ddb48b08d4fee26885ebb26"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\POA 2024 - MM.docx",
+      "original_name": "POA 2024 - MM.docx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA 2024 - MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA 2024 - MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA 2024 - MM.docx"
+      ],
+      "sha256": "9e059711b797ed1203e61a8ea5a524a2711d237d78b0b67e29689075200ec54a"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\POA_2026.pdf",
+      "original_name": "POA_2026.pdf",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA_2026.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA_2026 (1).pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA_2026.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA_2026.pdf"
+      ],
+      "sha256": "be619c6086d213a2e8340aa70e653ca987b057e4aad796b96e67e034ccda3528"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\vh esc manuel molinas etica 7no tt__V1.xlsx",
+      "original_name": "VH ESC MANUEL MOLINAS ETICA 7no TT.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC MANUEL MOLINAS ETICA 7no TT.xlsx"
+      ],
+      "sha256": "e5bd508a0c6c19689bf17243a2f7b5eba68df62a7aa3b1b65612afafc986b120"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\planilla de diagnostico i mm i 2026__V1.xlsx",
+      "original_name": "PLANILLA DE DIAGNOSTICO I MM I 2026.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\PLANILLA DE DIAGNOSTICO I MM I 2026.xlsx"
+      ],
+      "sha256": "0f883b97937435cb4ec7d7b626742f80518f8022a3bc9b4a081471ffeec3bd55"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Sin_Asignatura\\General\\Planilla.xlsx",
+      "original_name": "Planilla.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\Planilla.xlsx"
+      ],
+      "sha256": "dfc401cede88717ff3dbc02e1851833d89520dae763ba34ff1093f6ef1389aed"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\VH ESC MANUEL MOLINAS ETICA 7no TM - VF.xlsx",
+      "original_name": "VH ESC MANUEL MOLINAS ETICA 7no TM - VF.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\VH ESC MANUEL MOLINAS ETICA 7no TM - VF.xlsx"
+      ],
+      "sha256": "e9ef632434a5a6cb4da1e51723c278e26a5c7807c5b1a13d783f4baa5c63489c"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\vh esc manuel molinas etica 7no tm__V3.xlsx",
+      "original_name": "VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx"
+      ],
+      "sha256": "b9a9d2a677e1b72d61225f69023b4c0935d3f872aef282554014087894adebed"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\8_Grado\\Etica\\Turno_TM\\VH ESC MANUEL MOLINAS ETICA 8vo TM.xlsx",
+      "original_name": "VH ESC MANUEL MOLINAS ETICA 8vo TM.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\VH ESC MANUEL MOLINAS ETICA 8vo TM.xlsx"
+      ],
+      "sha256": "837c231438a481bf0a814fb81018af527e10a8d3f8c5309b99b9725226621813"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\planilla de diagnostico i mm i 2026__V2.xlsx",
+      "original_name": "PLANILLA DE DIAGNOSTICO I MM I 2026.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Data\\PLANILLA DE DIAGNOSTICO I MM I 2026.xlsx"
+      ],
+      "sha256": "6f009e9a457b917b86ac5a1a623f0670b925a7b916e68ea0799f420f4b3b2879"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\Diagnostico_Integrado_Keim_2026 - copia.html",
+      "original_name": "Diagnostico_Integrado_Keim_2026 - copia.html",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Diagnostico_Integrado_Keim_2026 - copia.html"
+      ],
+      "sha256": "c401c4f1c45623ecbcbc3dd7c0573da954f77aa2c6405e58e4d88934ae6c9d42"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\Diagnostico_Integrado_Keim_2026.html",
+      "original_name": "Diagnostico_Integrado_Keim_2026.html",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Diagnostico_Integrado_Keim_2026.html"
+      ],
+      "sha256": "f85000863485924698cc83d53665366f2d9af9649a3c2368d067a0be98d72357"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\9_Grado\\Etica\\General\\PLAN ANUAL ÉTICA 9º GRADO.doc",
+      "original_name": "PLAN ANUAL ÉTICA 9º GRADO.doc",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Docs\\PLAN ANUAL ÉTICA 9º GRADO.doc"
+      ],
+      "sha256": "5e0f81b94a6f0607409f61430728b69dd8f45fa5646b2cfcfd793808fc9e5b27"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\8_Grado\\Etica\\General\\Ética - 8º grado.doc",
+      "original_name": "Ética - 8º grado.doc",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Docs\\Ética - 8º grado.doc"
+      ],
+      "sha256": "116e1b85bae6233f89a90bf72e6b31713c8c35ea371eeb25ce243d81658f7291"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\Informes_Diagnosticos_Panel.html",
+      "original_name": "Informes_Diagnosticos_Panel.html",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\HTML\\Informes_Diagnosticos_Panel.html"
+      ],
+      "sha256": "50898df03e0af66410a2790fea03f319d5757611fb8638426beaea361033b7f3"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\panel_diagnostico.html",
+      "original_name": "panel_diagnostico.html",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\HTML\\panel_diagnostico.html"
+      ],
+      "sha256": "60b4cacd6835ec3b54c005c0973a6556863e7e7677b7d10f8bc3c9e9f9461f72"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\panel_diagnostico_plan.html",
+      "original_name": "panel_diagnostico_plan.html",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\HTML\\panel_diagnostico_plan.html"
+      ],
+      "sha256": "4be601ab6c07c44b039d163f7aee263d75c66f1d7c7a30d757fbca0c504a8e35"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\Plan_Integral_Interdisciplinario.html",
+      "original_name": "Plan_Integral_Interdisciplinario.html",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\HTML\\Plan_Integral_Interdisciplinario.html"
+      ],
+      "sha256": "aa58b34912c20f8bc7238bd09cc968c2bf28162ec0538e05512ec5573ac66622"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Etica\\General\\POA_2026_Formacion_Etica_Actualizado.html",
+      "original_name": "POA_2026_Formacion_Etica_Actualizado.html",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\HTML\\POA_2026_Formacion_Etica_Actualizado.html"
+      ],
+      "sha256": "31bec41f1bd1389728e50ba69e4f77cbac8f34de9f916898771482f70b683711"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\7mo_TM.md",
+      "original_name": "7mo_TM.md",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\MD\\7mo_TM.md"
+      ],
+      "sha256": "ecbc9628dc06f2284f57550c667880a15a177badd446d5aa4305120ae6845e8c"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\7mo_TT.md",
+      "original_name": "7mo_TT.md",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\MD\\7mo_TT.md"
+      ],
+      "sha256": "f1f3fa24da321d8da33ded948c10cd0c6034cd32775d9012600478e2643ec65d"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\8vo_TM.md",
+      "original_name": "8vo_TM.md",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\MD\\8vo_TM.md"
+      ],
+      "sha256": "b6042168a9e249e208059168583d4969f880e71f905f15a5ca014305167fe8f0"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\9no_TM.md",
+      "original_name": "9no_TM.md",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\MD\\9no_TM.md"
+      ],
+      "sha256": "a19695160af9e543b2b61edc0b28249cd3a64caf6c21ccee55cf7a7dc9facf13"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\export_all_sheets.ps1",
+      "original_name": "export_all_sheets.ps1",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Scripts\\export_all_sheets.ps1"
+      ],
+      "sha256": "37383fe246da27b7541e12e0d721ba5674fbb5e464f7f3a03c7c7bf4cb36a851"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\read_excel.ps1",
+      "original_name": "read_excel.ps1",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Scripts\\read_excel.ps1"
+      ],
+      "sha256": "d4bb5673457db3ff3a97c6a06d160e06ee653ae57c332e638b73dd7b16d8b4b0"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\read_excel_full.ps1",
+      "original_name": "read_excel_full.ps1",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Scripts\\read_excel_full.ps1"
+      ],
+      "sha256": "4387c3a6a161dfeeaadf374fdeec1beed19460f0ac1f0bfd34c1e8835c5efd41"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\read_sheets.ps1",
+      "original_name": "read_sheets.ps1",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Scripts\\read_sheets.ps1"
+      ],
+      "sha256": "fa1a6a7e59c03470ce98dcb44bd9119dd157b23fa6fe9368f463ca028bac1686"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\Sheet_1_Hoja7.txt",
+      "original_name": "Sheet_1_Hoja7.txt",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_1_Hoja7.txt"
+      ],
+      "sha256": "c42dc7c807d8be917208d43ca4f3c6363ba21fe87f861d8e6cd2587edd2745c0"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\Sheet_2_Hoja9.txt",
+      "original_name": "Sheet_2_Hoja9.txt",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_2_Hoja9.txt"
+      ],
+      "sha256": "7f15f48dc8204b1d424b9999de94685d6ecdd32d5219f72ecef0f9d937f0cba7"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\Sheet_3_RESULTADO.txt",
+      "original_name": "Sheet_3_RESULTADO.txt",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_3_RESULTADO.txt",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_8_Hoja10.txt"
+      ],
+      "sha256": "f01a374e9c81e3db89b3a42940c4d6a5447684986a1296e42bf13f196eed6295"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\Turno_TM\\Sheet_4_7mo. TM.txt",
+      "original_name": "Sheet_4_7mo. TM.txt",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_4_7mo. TM.txt"
+      ],
+      "sha256": "dd6def8283074575967f5da333a67d2252ded7fd394c0f6d30ab2819d4c5e5f1"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\Turno_TT\\Sheet_5_7mo. TT.txt",
+      "original_name": "Sheet_5_7mo. TT.txt",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_5_7mo. TT.txt"
+      ],
+      "sha256": "b6ed1176e017a9e0c7413b7727f18c97ce1be01b23b7f1e248f66c4fbde0caee"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\Turno_TM\\Sheet_6_8vo. TM.txt",
+      "original_name": "Sheet_6_8vo. TM.txt",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_6_8vo. TM.txt"
+      ],
+      "sha256": "b3356582f5ff107607ff6055a3f25a3681f1d81b0215bb3397d9dfe0bf1bbe04"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\Turno_TM\\Sheet_7_9no. TM.txt",
+      "original_name": "Sheet_7_9no. TM.txt",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_7_9no. TM.txt"
+      ],
+      "sha256": "4c725fc9fbeacd4f581d7761f9bf53ee48ba282c449419439cac98cd9d05069d"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\Sheet_9_REGLAS.txt",
+      "original_name": "Sheet_9_REGLAS.txt",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_9_REGLAS.txt"
+      ],
+      "sha256": "4a8d7f49ece4843ded83bdaea63c1e0ea72baa6d7b160113b7e936d59602a975"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\Prueba Diagnostica 7mo. Grado I TT MM.docx",
+      "original_name": "Prueba Diagnostica 7mo. Grado I TT MM.docx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT v2\\Prueba Diagnostica 7mo. Grado I TT MM.docx"
+      ],
+      "sha256": "4f09d7c8c3e2e12e209b8edaef90c3576e8eaf88edf9ca0b984089ef3140691f"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\vh esc manuel molinas etica 7no tt__V2.xlsx",
+      "original_name": "VH ESC MANUEL MOLINAS ETICA 7no TT.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT v2\\VH ESC MANUEL MOLINAS ETICA 7no TT.xlsx"
+      ],
+      "sha256": "9896ac600710d68072a5cf7b1bd563fd3103570a47668be72fa9b19f55cf015a"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\vh esc manuel molinas etica 7no tt__V3.xlsx",
+      "original_name": "VH ESC MANUEL MOLINAS ETICA 7no TT.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC MANUEL MOLINAS ETICA 7no TT.xlsx"
+      ],
+      "sha256": "fea7a0555f576b8ade531e98a5208c1b71a2a32d0aa6d1823092ee764317df29"
+    },
+    {
+      "target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\~$VH ESC MANUEL MOLINAS ETICA 7no TT.xlsx",
+      "original_name": "~$VH ESC MANUEL MOLINAS ETICA 7no TT.xlsx",
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\~$VH ESC MANUEL MOLINAS ETICA 7no TT.xlsx"
+      ],
+      "sha256": "fb030084d031b59e0ea37ccd125269c98c8edef8197da4e710913c118eb20bc3"
+    }
+  ],
+  "deduplicated_content": [
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\General\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\ETICA 7MO I TT\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\LIBRO DE RESPUESTA - Formación Ética y Ciudadana 7_260326_150623.pdf"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\General\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\ETICA 7MO I TT\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Docs\\PLAN ANUAL ÉTICA 7º GRADO (1).doc",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\PLAN ANUAL ÉTICA 7º GRADO (1).doc"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\ETICA 7mo TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Prueba Diagnostica 7mo. Grado I TM MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Docs\\Prueba Diagnostica 7mo. Grado I TM MM.docx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\ETICA 7mo TM\\VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\Planilla.xlsx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\Planilla.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\Planilla.xlsx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\General\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Docs\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\POA 2026 I ETICA I CHRISTHIAN KEIM.docx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\001 PLAN ANUAL ETICA 7MO MM.docx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\001 PLAN ANUAL ETICA 7MO MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\001 PLAN ANUAL ETICA 7MO MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\001 PLAN ANUAL ETICA 7MO MM.docx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\01- PLAN ANUAL I Ética 7mo Grado 2026 VF.docx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\01- PLAN ANUAL I Ética 7mo Grado 2026 VF.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\01- PLAN ANUAL I Ética 7mo Grado 2026 VF.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\01- PLAN ANUAL I Ética 7mo Grado 2026 VF.docx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\02_RSA_Registro_Secuencia_Aprendizaje_2026.docx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\02_RSA_Registro_Secuencia_Aprendizaje_2026.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\02_RSA_Registro_Secuencia_Aprendizaje_2026.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\02_RSA_Registro_Secuencia_Aprendizaje_2026.docx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\03_Instrumentos_Evaluacion_Detalle_2026.docx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\03_Instrumentos_Evaluacion_Detalle_2026.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\03_Instrumentos_Evaluacion_Detalle_2026.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\03_Instrumentos_Evaluacion_Detalle_2026.docx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\04_Guia_Estructura_Google_Form_HTML.docx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\04_Guia_Estructura_Google_Form_HTML.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\04_Guia_Estructura_Google_Form_HTML.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\04_Guia_Estructura_Google_Form_HTML.docx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Hoja 1 - Plan Anual Completo y Temas Integrados.xlsx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 1 - Plan Anual Completo y Temas Integrados.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 1 - Plan Anual Completo y Temas Integrados.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 1 - Plan Anual Completo y Temas Integrados.xlsx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Hoja 2 - RSA Integral (Todos los Temas).xlsx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 2 - RSA Integral (Todos los Temas).xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 2 - RSA Integral (Todos los Temas).xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 2 - RSA Integral (Todos los Temas).xlsx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Hoja 3 - Instrumentos Específicos (Cotejo y Rúbricas).xlsx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 3 - Instrumentos Específicos (Cotejo y Rúbricas).xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 3 - Instrumentos Específicos (Cotejo y Rúbricas).xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 3 - Instrumentos Específicos (Cotejo y Rúbricas).xlsx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Hoja 4 - PLANILLA DE CLASES.xlsx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 4 - PLANILLA DE CLASES.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 4 - PLANILLA DE CLASES.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 4 - PLANILLA DE CLASES.xlsx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Hoja 4 - Registro de Grado (Consolidado).xlsx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 4 - Registro de Grado (Consolidado).xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 4 - Registro de Grado (Consolidado).xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 4 - Registro de Grado (Consolidado).xlsx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Hoja 5 - Planilla de Proceso Molina 2025 V2.xlsx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 5 - Planilla de Proceso Molina 2025 V2.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 5 - Planilla de Proceso Molina 2025 V2.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 5 - Planilla de Proceso Molina 2025 V2.xlsx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\General\\Hoja 6 Plan Integral 2026 - Formación Ética 7mo - Molinas V5.xlsx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Hoja 6 Plan Integral 2026 - Formación Ética 7mo - Molinas V5.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Hoja 6 Plan Integral 2026 - Formación Ética 7mo - Molinas V5.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Hoja 6 Plan Integral 2026 - Formación Ética 7mo - Molinas V5.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC. DEFENSORES DEL CHACO ETICA 8vo TT\\Nueva carpeta\\Hoja 6 Plan Integral 2026 - Formación Ética 7mo - Molinas V5.xlsx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Plan Anual Actualizado - Ética 7mo Grado I TM.pdf",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Plan Anual Actualizado - Ética 7mo Grado I TM.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Plan Anual Actualizado - Ética 7mo Grado I TM.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Plan Anual Actualizado - Ética 7mo Grado I TM.pdf"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Plan Anual y Registros de Evaluación Completo - Ética 7mo V4.xlsx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Plan Anual y Registros de Evaluación Completo - Ética 7mo V4.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Plan Anual y Registros de Evaluación Completo - Ética 7mo V4.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Plan Anual y Registros de Evaluación Completo - Ética 7mo V4.xlsx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Planilla Principal.xlsx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Nueva carpeta\\Planilla Principal.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Nueva carpeta\\Planilla Principal.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Nueva carpeta\\Planilla Principal.xlsx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\PLANILLA.xlsx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\PLANILLA.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\PLANILLA.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\PLANILLA.xlsx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\Que se quiere.txt",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\Que se quiere.txt",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\Que se quiere.txt",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\Que se quiere.txt"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\SEGUIMIENTO_ETICA_7MO_2026.xlsx.xlsx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\SEGUIMIENTO_ETICA_7MO_2026.xlsx.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 8vo TM\\SEGUIMIENTO_ETICA_7MO_2026.xlsx.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\SEGUIMIENTO_ETICA_7MO_2026.xlsx.xlsx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\VH ESC MANUEL MOLINAS ETICA 7no TM__TMP_e5bbfb60.xlsx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 9no. TM\\VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\PCI MANUEL MOLINAS 2025.docx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PCI MANUEL MOLINAS 2025.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PCI MANUEL MOLINAS 2025.docx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\PEI MOLINAS-2024 - 2028 (1).pdf",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PEI MOLINAS-2024 - 2028.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PEI MOLINAS-2024 - 2028 (1).pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PEI MOLINAS-2024 - 2028.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Docs\\PEI MOLINAS-2024 - 2028.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PEI MOLINAS-2024 - 2028 (1).pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\PEI MOLINAS-2024 - 2028.pdf"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\POA 2024 - MM.docx",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA 2024 - MM.docx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA 2024 - MM.docx"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\POA_2026.pdf",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA_2026 (1).pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA_2026.pdf",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC EXC MANUEL MOLINAS I INSTITUCIONAL\\POA_2026.pdf"
+      ]
+    },
+    {
+      "kept_target": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\Sheet_3_RESULTADO.txt",
+      "duplicate_sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Text_Exports\\Sheet_8_Hoja10.txt"
+      ]
+    }
+  ],
+  "same_name_different_content": [
+    {
+      "folder": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM",
+      "name": "vh esc manuel molinas etica 7no tm.xlsx",
+      "versions": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\vh esc manuel molinas etica 7no tm__V1.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\vh esc manuel molinas etica 7no tm__V2.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\vh esc manuel molinas etica 7no tm__V3.xlsx"
+      ],
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\MANUEL MOLINAS\\ETICA 7mo TM\\VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC EXC MANUAL MOLINA ETICA 7mo TM\\VH ESC MANUEL MOLINAS ETICA 7no TM.xlsx"
+      ],
+      "combined_summary": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\vh esc manuel molinas etica 7no tm__COMBINADO.md",
+      "combined_workbook": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TM\\vh esc manuel molinas etica 7no tm__COMBINADO.xlsx"
+    },
+    {
+      "folder": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT",
+      "name": "vh esc manuel molinas etica 7no tt.xlsx",
+      "versions": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\vh esc manuel molinas etica 7no tt__V1.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\vh esc manuel molinas etica 7no tt__V2.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\vh esc manuel molinas etica 7no tt__V3.xlsx"
+      ],
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC2\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC MANUEL MOLINAS ETICA 7no TT.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT v2\\VH ESC MANUEL MOLINAS ETICA 7no TT.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS ETICA  7 TT\\VH ESC MANUEL MOLINAS ETICA 7no TT.xlsx"
+      ],
+      "combined_summary": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\vh esc manuel molinas etica 7no tt__COMBINADO.md",
+      "combined_workbook": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\7_Grado\\Etica\\Turno_TT\\vh esc manuel molinas etica 7no tt__COMBINADO.xlsx"
+    },
+    {
+      "folder": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General",
+      "name": "planilla de diagnostico i mm i 2026.xlsx",
+      "versions": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\planilla de diagnostico i mm i 2026__V1.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\planilla de diagnostico i mm i 2026__V2.xlsx"
+      ],
+      "sources": [
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\MANUEL MOLINAS\\PLANILLA DE DIAGNOSTICO I MM I 2026.xlsx",
+        "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\MEC\\VH ESC MANUEL MOLINAS DIAGNOSTICO\\Data\\PLANILLA DE DIAGNOSTICO I MM I 2026.xlsx"
+      ],
+      "combined_summary": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\planilla de diagnostico i mm i 2026__COMBINADO.md",
+      "combined_workbook": "C:\\Users\\HP 250 G10\\Documents\\GITHUT\\MEC\\INSTITUCIONES\\COLEGIO_MANUEL_MOLINAS\\Sin_Grado\\Diagnostico\\General\\planilla de diagnostico i mm i 2026__COMBINADO.xlsx"
+    }
+  ]
+}

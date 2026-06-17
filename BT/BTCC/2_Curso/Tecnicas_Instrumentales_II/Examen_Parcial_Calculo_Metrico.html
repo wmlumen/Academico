@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Parcial: Cómputo Métrico</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Segoe UI", Tahoma, sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; }
+        header { background: linear-gradient(135deg, #0f4c81 0%, #667eea 100%); color: white; padding: 30px 20px; text-align: center; }
+        header h1 { font-size: 2em; margin-bottom: 10px; }
+        nav { background: #333; padding: 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        nav a { display: inline-block; color: white; text-decoration: none; padding: 12px 15px; transition: background 0.3s; }
+        nav a:hover { background: #667eea; }
+        nav a.active { background: #667eea; border-bottom: 3px solid white; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        .breadcrumb { padding: 15px 20px; background: white; margin-bottom: 20px; border-radius: 5px; font-size: 0.9em; color: #666; }
+        .breadcrumb a { color: #667eea; text-decoration: none; }
+        .content { background: white; padding: 30px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        h2 { color: #0f4c81; margin: 30px 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #667eea; }
+        h3 { color: #667eea; margin: 20px 0 10px 0; }
+        h4 { color: #666; margin: 15px 0 8px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        table th { background: #667eea; color: white; padding: 12px; text-align: left; }
+        table td { padding: 12px; border-bottom: 1px solid #ddd; }
+        .question { background: #f9f9f9; border-left: 4px solid #667eea; padding: 15px; margin: 20px 0; border-radius: 3px; }
+        .question h4 { margin-top: 0; color: #0f4c81; }
+        .datos { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0; }
+        .datos h3 { color: #856404; }
+        ul, ol { margin: 15px 0 15px 30px; }
+        li { margin: 8px 0; }
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; }
+        .nav-buttons a { display: inline-block; padding: 12px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 5px; }
+        footer { background: #333; color: white; padding: 20px; text-align: center; font-size: 0.9em; }
+        .badge { display: inline-block; padding: 4px 8px; background: #667eea; color: white; border-radius: 3px; font-size: 0.8em; margin: 5px 3px 5px 0; }
+        .solution { background: #d4edda; border-left: 4px solid #28a745; padding: 15px; margin: 15px 0; display: none; }
+        .solution.show { display: block; }
+        .toggle-solution { background: #28a745; color: white; padding: 8px 12px; border-radius: 3px; cursor: pointer; display: inline-block; font-size: 0.9em; }
+    </style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+
+<script src="../../nav/runtime.js"></script>
+</head>
+<body>
+    <header>
+        <h1>📋 Examen Parcial: Cómputo Métrico Integral</h1>
+        <p>Técnicas Instrumentales II — Segundo Curso BTCC</p>
+        <p>Docente: Christhian Keim | Colegio Nacional Defensores del Chaco</p>
+    </header>
+    
+    <nav>
+        <a href="index.html">🏠 Inicio</a>
+        <a href="material_del_estudiante_tecnicas_instrumentales_ii.html">📖 Material</a>
+        <a href="Examen_Parcial_Calculo_Metrico.html" class="active">✅ Examen</a>
+        <a href="Ejercicios_Practica_Computo_Metrico.html">💪 Ejercicios</a>
+        <a href="Solucionario_Examen_Parcial_Computo_Metrico.html">📖 Solucionario</a>
+    </nav>
+    
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Inicio</a> > <strong>Examen Parcial</strong>
+        </div>
+        
+        <div class="content">
+            <h2>Instrucciones Generales</h2>
+            <ul>
+                <li>Duración: 120 minutos</li>
+                <li>Puntaje total: 100 puntos</li>
+                <li>Responda todas las preguntas mostrando cálculos, fórmulas y unidades.</li>
+                <li>Use la planilla proporcionada (Planilla_Calculos_Vivienda_36m2.csv) como referencia.</li>
+                <li>No se permite el uso de calculadora programable (solo científica básica).</li>
+                <li>Entregue el examen firmado con su nombre completo.</li>
+            </ul>
+            
+            <h2>Parte I: Conceptos Teóricos (10 pts)</h2>
+            
+            <div class="question">
+                <h4>Pregunta 0.1 (5 pts)</h4>
+                <p>Defina con sus palabras qué es el "cómputo métrico" y mencione dos razones por las que es importante en un proyecto de construcción.</p>
+            </div>
+            
+            <div class="question">
+                <h4>Pregunta 0.2 (5 pts)</h4>
+                <p>Complete los espacios en blanco:</p>
+                <ul>
+                    <li>El <strong>_________</strong> de una obra se mide en metros cuadrados (m²).</li>
+                    <li>El <strong>_________</strong> se calcula en metros cúbicos (m³) y es importante para zanjas y estructuras.</li>
+                    <li>El "descuento de aberturas" se aplica al cálculo de <strong>_________</strong> para obtener la cantidad neta de material.</li>
+                </ul>
+            </div>
+            
+            <h2>Parte II: Ejercicios de Cómputo (70 pts)</h2>
+            
+            <div class="datos">
+                <h3>DATOS DEL PROYECTO (válidos para todo el examen)</h3>
+                <p><strong>Vivienda Unifamiliar Prototipo:</strong></p>
+                <ul>
+                    <li>Planta: <strong>6.00 m × 6.00 m</strong> (superficie: 36.00 m²)</li>
+                    <li>Altura de muro: <strong>2.80 m</strong></li>
+                    <li>Espesor de muro: <strong>0.15 m</strong></li>
+                    <li>Cimiento: ancho 0.40 m × profundidad 0.60 m</li>
+                    <li>Margen de limpieza: <strong>1.00 m</strong> por lado</li>
+                </ul>
+                <p><strong>Aberturas (descontar de muros):</strong></p>
+                <ul>
+                    <li>2 puertas de 0.80 m × 2.10 m</li>
+                    <li>2 ventanas de 1.20 m × 1.00 m</li>
+                    <li>1 ventana de baño de 0.60 m × 0.40 m</li>
+                </ul>
+            </div>
+            
+            <h3>Bloque A: Limpieza y Excavación (18 pts)</h3>
+            
+            <div class="question">
+                <h4>Pregunta 1.1 (9 pts): Superficie de Limpieza</h4>
+                <p>Calcule la <strong>superficie total a limpiar</strong> (m²).</p>
+                <ul>
+                    <li>Muestre la fórmula utilizada.</li>
+                    <li>Explique por qué esta superficie es mayor a la de la planta del edificio.</li>
+                </ul>
+            </div>
+            
+            <div class="question">
+                <h4>Pregunta 1.2 (9 pts): Volumen de Excavación</h4>
+                <p>Calcule el <strong>volumen total de excavación</strong> (m³) para las zanjas de cimiento.</p>
+                <ul>
+                    <li>Considere: perímetro total de muros × ancho de zanja × profundidad.</li>
+                    <li>Desarrolle paso a paso.</li>
+                </ul>
+            </div>
+            
+            <h3>Bloque B: Cimiento (8 pts)</h3>
+            
+            <div class="question">
+                <h4>Pregunta 2.1 (8 pts): Volumen de Cimiento</h4>
+                <p>Calcule el <strong>volumen de cimiento de piedra bruta</strong> (m³).</p>
+                <ul>
+                    <li>Indique si utiliza la misma fórmula que en la excavación. ¿Por qué?</li>
+                    <li>Presente el resultado con precisión de 2 decimales.</li>
+                </ul>
+            </div>
+            
+            <h3>Bloque C: Mampostería, Aberturas y Muros (18 pts)</h3>
+            
+            <div class="question">
+                <h4>Pregunta 3.1 (6 pts): Área Bruta de Muros</h4>
+                <p>Calcule el <strong>área bruta de muros</strong> (m²).</p>
+                <p>Fórmula: perímetro total de muros × altura del muro.</p>
+            </div>
+            
+            <div class="question">
+                <h4>Pregunta 3.2 (8 pts): Área Total de Aberturas</h4>
+                <p>Calcule el <strong>área total de aberturas</strong> (m²).</p>
+                <ul>
+                    <li>Enumere cada abertura (puertas y ventanas) con su cálculo individual.</li>
+                    <li>Presente el total.</li>
+                </ul>
+            </div>
+            
+            <div class="question">
+                <h4>Pregunta 3.3 (4 pts): Área Neta de Muros</h4>
+                <p>Calcule el <strong>área neta de muros</strong> (m²).</p>
+                <p>Fórmula: Área bruta − Área de aberturas.</p>
+            </div>
+            
+            <h3>Bloque D: Revoque e Interiores (12 pts)</h3>
+            
+            <div class="question">
+                <h4>Pregunta 4.1 (6 pts): Cantidad Total de Revoque</h4>
+                <p>Calcule la <strong>cantidad total de revoque</strong> (m²).</p>
+                <ul>
+                    <li>Considere interior y exterior.</li>
+                    <li>Fórmula: Área neta de muros × 2.</li>
+                </ul>
+            </div>
+            
+            <div class="question">
+                <h4>Pregunta 4.2 (6 pts): Contrapiso</h4>
+                <p>Para el <strong>contrapiso de cascotes</strong> (espesor 0.10 m):</p>
+                <ul>
+                    <li>a) Indique la superficie a cubrir (m²).</li>
+                    <li>b) Calcule el volumen necesario (m³).</li>
+                </ul>
+            </div>
+            
+            <h3>Bloque E: Materiales (14 pts)</h3>
+            
+            <div class="question">
+                <h4>Pregunta 5.1 (5 pts): Cantidad de Ladrillos</h4>
+                <p>Calcule la <strong>cantidad de ladrillos</strong> necesarios.</p>
+                <ul>
+                    <li>Usar: 60 ladrillos/m² (rendimiento estándar).</li>
+                    <li>Fórmula: Área neta de muros × 60.</li>
+                </ul>
+            </div>
+            
+            <div class="question">
+                <h4>Pregunta 5.2 (5 pts): Cantidad de Cemento</h4>
+                <p>Calcule la <strong>cantidad de cemento</strong> para revoque.</p>
+                <ul>
+                    <li>Usar: 4.5 kg/m² (consumo estándar).</li>
+                    <li>Resultado en kg. ¿Cuántas bolsas de 50 kg son necesarias? (redondear al alza).</li>
+                </ul>
+            </div>
+            
+            <div class="question">
+                <h4>Pregunta 5.3 (4 pts): Volumen de Arena</h4>
+                <p>Estime el <strong>volumen de arena</strong> para revoque.</p>
+                <ul>
+                    <li>Usar: 0.015 m³/m² de revoque.</li>
+                    <li>Expresar en m³.</li>
+                </ul>
+            </div>
+            
+            <h3>Bloque F: Productividad y Jornales (8 pts)</h3>
+            
+            <div class="question">
+                <h4>Pregunta 6.1 (8 pts): Jornales Necesarios</h4>
+                <p>Si el <strong>rendimiento de un oficial</strong> es de <strong>8 m² de muro por día laboral</strong>:</p>
+                <ul>
+                    <li>¿Cuántos jornales se necesitan para terminar todas las paredes de la vivienda?</li>
+                    <li>Use el área neta de muros.</li>
+                    <li>Redondee al alza (no se puede contratar fracción de jornada).</li>
+                </ul>
+            </div>
+            
+            <h2>Parte III: Análisis y Aplicación (20 pts)</h2>
+            
+            <div class="question">
+                <h4>Pregunta 7.1 (7 pts): Análisis de Descuentos</h4>
+                <p>Responda brevemente (máximo 5 renglones):</p>
+                <ul>
+                    <li>¿Por qué es crítico el "descuento de aberturas" al calcular mampostería?</li>
+                    <li>¿Qué error se cometería si NO se descontaran las puertas y ventanas?</li>
+                </ul>
+            </div>
+            
+            <div class="question">
+                <h4>Pregunta 7.2 (7 pts): Coeficiente de Aporte y Desperdicio</h4>
+                <p>En la práctica, los maestros aplican un coeficiente de desperdicio (5–10%) al comprar ladrillos y otros materiales.</p>
+                <p>Mencione dos razones técnicas para esto.</p>
+            </div>
+            
+            <div class="question">
+                <h4>Pregunta 7.3 (6 pts): Optimización de Recursos</h4>
+                <ul>
+                    <li>Si se requieren 8 jornales para las paredes, y la obra tiene un presupuesto para 10 jornales, ¿qué otras actividades podrían incluirse?</li>
+                    <li>Mencione al menos dos actividades complementarias (revoque, preparación, limpieza, etc.).</li>
+                </ul>
+            </div>
+            
+            <div class="nav-buttons">
+                <a href="index.html">← Volver al Índice</a>
+                <a href="Solucionario_Examen_Parcial_Computo_Metrico.html">Ver Solucionario →</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p><strong>Técnicas Instrumentales II</strong> — Colegio Nacional Defensores del Chaco © 2026</p>
+        <p>Bachillerato Técnico en Construcciones Civiles | Docente: Christhian Keim</p>
+    </footer>
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>

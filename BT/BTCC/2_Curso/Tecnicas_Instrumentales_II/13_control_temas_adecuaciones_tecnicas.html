@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control de Temas — Técnicas Instrumentales II</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,sans-serif;background:#f0f4fa;color:#172133;padding:16px}
+.wrap{max-width:1100px;margin:0 auto}
+.header{background:linear-gradient(135deg,#0f4c81,#1e6fb0);color:#fff;padding:20px 24px;border-radius:14px;margin-bottom:16px}
+.header h1{margin:0;font-size:20px}
+.header p{margin:4px 0 0;font-size:14px;opacity:.9}
+
+.controls-bar{background:#fff;border:1px solid #d8e3ef;border-radius:12px;padding:10px 14px;margin-bottom:14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;box-shadow:0 2px 8px rgba(23,33,51,0.06)}
+.controls-bar label{font-size:13px;font-weight:600;color:#2a405c}
+.controls-bar button{padding:7px 14px;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s}
+.controls-bar .sync-btn{background:#e8f1fb;color:#0f4c81;border:1px solid #c8d9ea}
+.controls-bar .sync-btn:hover{background:#d4e4f5}
+.controls-bar .reset-btn{background:#ffebee;color:#c62828}
+.controls-bar .reset-btn:hover{background:#ffcdd2}
+.controls-bar .stats{display:flex;gap:10px;font-size:12px;margin-left:auto}
+.controls-bar .stats span{padding:3px 10px;border-radius:6px;background:#f0f4fa}
+
+.card{background:#fff;border:1px solid #d8e3ef;border-radius:14px;padding:18px;margin-bottom:18px;box-shadow:0 4px 16px rgba(23,33,51,0.06)}
+.card h2{font-size:17px;color:#0f4c81;margin:0 0 4px}
+.card p{font-size:13px;color:#4d6177;margin:0 0 14px}
+table{width:100%;border-collapse:collapse}
+th{background:#e8f1fb;color:#16304d;text-align:center;padding:10px 8px;border:1px solid #c8d9ea;font-size:13px;font-weight:700}
+td{border:1px solid #d8e0ea;padding:10px 8px;vertical-align:middle;font-size:13px}
+.tema-num{text-align:center;font-weight:700;width:50px}
+.tema-name{font-weight:600;color:#0f4c81}
+.mes-cell{text-align:center;color:#4d6177;font-size:12px}
+.check-cell{text-align:center}
+.check-cell input[type="checkbox"]{width:18px;height:18px;cursor:pointer;accent-color:#0f4c81}
+.fecha-cell{text-align:center}
+.fecha-cell input{width:90px;border:1px solid #b6c6da;border-radius:4px;padding:4px;text-align:center;font-size:12px}
+.obs-cell input{width:100%;border:1px solid #d8e0ea;border-radius:4px;padding:4px 6px;font-size:12px;border-style:dashed}
+.status-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:12px;font-weight:700}
+.status-badge.ok{background:#c8e6c9;color:#1b5e20}
+.status-badge.pend{background:#fff9c4;color:#f57f17}
+.status-badge.adec{background:#e3f2fd;color:#0d47a1}
+.status-badge.auto{background:#e0f2fe;color:#0369a1;font-size:10px;padding:2px 6px;margin-left:4px}
+
+.adec-row td{background:#f5f9ff}
+.adec-row .tema-name{color:#1565c0}
+.adec-header{background:#e3f2fd;font-weight:700;text-align:center;padding:10px;border:1px solid #90caf9;font-size:14px;color:#0d47a1}
+
+.add-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#0f4c81;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;margin-top:10px}
+.add-btn:hover{background:#1a5f9a}
+
+.resumen{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;padding:14px;background:#f5f9ff;border-radius:10px;border:1px solid #c8d9ea}
+.resumen-item{text-align:center}
+.resumen-item .num{font-size:24px;font-weight:700;color:#0f4c81}
+.resumen-item .label{font-size:12px;color:#4d6177}
+
+.firma{display:flex;justify-content:space-between;margin-top:18px;padding-top:14px;border-top:1px solid #d8e0ea}
+.firma div{text-align:center;width:40%}
+.firma .linea{border-bottom:1px solid #172133;display:block;margin-bottom:4px;height:36px}
+
+.notif{background:#fff3cd;border:1px solid #ffc107;color:#856404;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px;display:none}
+
+@media print{body{background:#fff;padding:0}.controls-bar{display:none}.header{background:#0f4c81!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}th{background:#e8f1fb!important}.card{break-inside:avoid;box-shadow:none}}
+</style>
+
+<link rel="stylesheet" href="../../nav/nav.css">
+
+<script src="../../nav/runtime.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>📌 Control de Temas Desarrollados y Adecuaciones Curriculares</h1>
+  <p>Técnicas Instrumentales II · 2.do Curso BTCC · Año 2026 · Los checkboxes se marcan automáticamente desde el Registro de Clases</p>
+</div>
+
+<div class="controls-bar">
+  <label>🔄 Sincronización:</label>
+  <button class="sync-btn" onclick="sincronizarDesdeRegistro()">↻ Sincronizar desde Registro de Clases</button>
+  <button class="reset-btn" onclick="if(confirm('¿Resetear los datos de sincronización manual? Se mantendrá la detección automática.')){localStorage.removeItem('ctrl_temas_tecnicas');location.reload()}">🗑️ Resetear datos</button>
+  <div class="stats">
+    <span>📅 <strong id="totalJornadas">0</strong> jornadas</span>
+    <span>✅ <strong id="numDesarrollados">0</strong>/<strong id="numTotal">9</strong></span>
+    <span id="pctAvance" style="font-weight:700">0%</span>
+  </div>
+</div>
+
+<div class="notif" id="notifSincro"></div>
+
+<!-- TEMAS DEL PLAN -->
+<div class="card">
+  <h2>📋 Temas del Plan Anual</h2>
+  <p>Los temas detectados en el Registro de Clases se marcan automáticamente (<span class="status-badge auto">auto</span>). Podés ajustar manualmente si es necesario.</p>
+  <table id="planTable">
+    <thead>
+      <tr>
+        <th style="width:5%">N.°</th>
+        <th style="width:22%">Tema</th>
+        <th style="width:8%">Mes</th>
+        <th style="width:6%">Horas</th>
+        <th style="width:10%">Desarrollado</th>
+        <th style="width:11%">Fecha inicio</th>
+        <th style="width:11%">Fecha cierre</th>
+        <th style="width:18%">Observaciones</th>
+      </tr>
+    </thead>
+    <tbody id="planBody">
+      <!-- Generado por JS -->
+    </tbody>
+  </table>
+</div>
+
+<!-- ADECUACIONES CURRICULARES -->
+<div class="card">
+  <h2>🔄 Adecuaciones Curriculares</h2>
+  <p>Registre aquí los temas adicionales o adaptaciones desarrolladas como adecuación curricular para estudiantes que lo requirieron.</p>
+  <table id="adecTable">
+    <thead>
+      <tr>
+        <th style="width:6%">N.°</th>
+        <th style="width:22%">Tema / Actividad</th>
+        <th style="width:10%">Tipo</th>
+        <th style="width:10%">Estudiantes</th>
+        <th style="width:10%">Desarrollado</th>
+        <th style="width:12%">Fecha inicio</th>
+        <th style="width:12%">Fecha cierre</th>
+        <th style="width:18%">Observaciones</th>
+      </tr>
+    </thead>
+    <tbody id="adecBody">
+      <!-- Generado por JS -->
+    </tbody>
+  </table>
+  <button class="add-btn" onclick="agregarAdecuacion()">+ Agregar adecuación</button>
+</div>
+
+<!-- RESUMEN -->
+<div class="card">
+  <h2>📊 Resumen de Avance</h2>
+  <div class="resumen" id="resumenBox">
+    <div class="resumen-item"><div class="num" id="resDesarrollados">0</div><div class="label">Temas desarrollados</div></div>
+    <div class="resumen-item"><div class="num" id="resPendientes">9</div><div class="label">Temas pendientes</div></div>
+    <div class="resumen-item"><div class="num" id="resAdecuaciones">0</div><div class="label">Adecuaciones registradas</div></div>
+    <div class="resumen-item"><div class="num" id="resAvance">0%</div><div class="label">Avance del Plan</div></div>
+  </div>
+</div>
+
+<!-- FIRMA -->
+<div class="firma">
+  <div><div class="linea"></div><strong>Docente</strong><br><span style="font-size:12px;color:#5a687c">Christhian Keim</span></div>
+  <div><div class="linea"></div><strong>Coordinación / Dirección</strong></div>
+  <div><div class="linea"></div><strong>Fecha</strong></div>
+</div>
+
+</div>
+
+<script>
+// ===== DATOS DEL PLAN (9 unidades) =====
+var TEMAS_PLAN = [
+    { id: 1, nombre: 'Método de trabajo',                                          mes: 'Marzo',     horas: '16 h', keywords: ['metodo','trabajo','metodologia'] },
+    { id: 2, nombre: 'Organización del puesto y movimiento de materiales',         mes: 'Abril',     horas: '16 h', keywords: ['organizacion','puesto','movimiento','materiales','recorrido'] },
+    { id: 3, nombre: 'Estudio de tiempos y muestreo',                              mes: 'Mayo',      horas: '16 h', keywords: ['tiempo','muestreo','observado','muestra'] },
+    { id: 4, nombre: 'Rendimiento y costo de mano de obra',                        mes: 'Junio',     horas: '16 h', keywords: ['rendimiento','costo','mano de obra','jornal','cuadrilla'] },
+    { id: 5, nombre: 'Integración de etapa (Examen Parcial)',                      mes: 'Julio',     horas: '12 h', keywords: ['integracion','etapa','examen','parcial','repaso'] },
+    { id: 6, nombre: 'Cómputo de trabajos',                                        mes: 'Agosto',    horas: '16 h', keywords: ['computo','trabajo','albanileria','revoque','piso','cubierta'] },
+    { id: 7, nombre: 'Cómputo de materiales',                                      mes: 'Septiembre',horas: '16 h', keywords: ['computo','material','consumo','tabla'] },
+    { id: 8, nombre: 'Cómputo aplicado al hormigón armado',                        mes: 'Octubre',   horas: '16 h', keywords: ['hormigon','acero','encofrado','dosificacion','armado'] },
+    { id: 9, nombre: 'Integración final',                                          mes: 'Noviembre', horas: '16 h', keywords: ['integracion','final','proyecto','presentacion'] }
+];
+
+var CTRL_KEY = 'ctrl_temas_tecnicas';
+var controlData = {}; // { "1": { checked: true/false, fechaInicio: "", fechaCierre: "", obs: "", autoDetected: true/false } }
+
+// ===== LOCALSTORAGE =====
+function cargarControl() {
+    try {
+        var s = localStorage.getItem(CTRL_KEY);
+        if (s) controlData = JSON.parse(s);
+    } catch(e) { controlData = {}; }
+}
+function guardarControl() {
+    localStorage.setItem(CTRL_KEY, JSON.stringify(controlData));
+}
+
+// ===== DETECTAR DESARROLLO DESDE REGISTRO DE CLASES =====
+function detectarDesdeRegistro() {
+    var raw = {};
+    try {
+        var s = localStorage.getItem('reg_clases_tecnicas');
+        if (s) raw = JSON.parse(s);
+    } catch(e) { raw = {}; }
+
+    // Extraer todos los temas del registro con sus fechas
+    var topicosPorFecha = {}; // { "tema": [fechas] }
+    Object.keys(raw).forEach(function(fechaKey) {
+        var blks = raw[fechaKey];
+        ['b1','b2'].forEach(function(bid) {
+            if (blks[bid] && blks[bid].tema) {
+                var t = blks[bid].tema.trim();
+                if (t) {
+                    if (!topicosPorFecha[t]) topicosPorFecha[t] = [];
+                    topicosPorFecha[t].push(fechaKey);
+                }
+            }
+        });
+    });
+
+    var jornadas = Object.keys(raw).length;
+    document.getElementById('totalJornadas').textContent = jornadas;
+
+    // Matchear cada unidad del plan con los temas del registro
+    TEMAS_PLAN.forEach(function(tema) {
+        // Si el usuario ya marcó manualmente y no es auto-detectado, respetar
+        var existente = controlData[tema.id] || {};
+        if (existente.autoDetected === false && existente.checked !== undefined) {
+            return; // fue marcado manualmente
+        }
+
+        var matchFound = false;
+        var fechasEncontradas = [];
+        var mejoresFechas = [];
+
+        Object.keys(topicosPorFecha).forEach(function(temaReg) {
+            var tLow = temaReg.toLowerCase();
+            var match = false;
+
+            // Coincidencia directa con el nombre de la unidad
+            if (tLow.indexOf(tema.nombre.toLowerCase()) !== -1) {
+                match = true;
+            }
+            // Coincidencia con keywords
+            if (!match) {
+                tema.keywords.forEach(function(kw) {
+                    if (tLow.indexOf(kw) !== -1) match = true;
+                });
+            }
+            // Coincidencia inversa
+            if (!match) {
+                var palabras = tLow.split(/\s+/);
+                palabras.forEach(function(pal) {
+                    if (pal.length > 4 && tema.nombre.toLowerCase().indexOf(pal) !== -1) match = true;
+                });
+            }
+
+            if (match) {
+                matchFound = true;
+                topicosPorFecha[temaReg].forEach(function(f) {
+                    if (fechasEncontradas.indexOf(f) === -1) fechasEncontradas.push(f);
+                });
+            }
+        });
+
+        // Ordenar fechas cronológicamente
+        fechasEncontradas.sort();
+
+        controlData[tema.id] = {
+            checked: matchFound,
+            fechaInicio: fechasEncontradas.length > 0 ? formatearFechaCorta(fechasEncontradas[0]) : (existente.fechaInicio || ''),
+            fechaCierre: fechasEncontradas.length > 0 ? formatearFechaCorta(fechasEncontradas[fechasEncontradas.length - 1]) : (existente.fechaCierre || ''),
+            obs: existente.obs || '',
+            autoDetected: true
+        };
+    });
+
+    guardarControl();
+}
+
+function formatearFechaCorta(fechaKey) {
+    // fechaKey: "LU 24/03/2026" → "24/03"
+    var parts = fechaKey.split(' ');
+    if (parts.length > 1) {
+        var fechaParts = parts[1].split('/');
+        if (fechaParts.length >= 2) return fechaParts[0] + '/' + fechaParts[1];
+    }
+    return fechaKey;
+}
+
+// ===== MARCAR MANUALMENTE =====
+function marcarManual(id, checked) {
+    if (!controlData[id]) controlData[id] = {};
+    controlData[id].checked = checked;
+    controlData[id].autoDetected = false;
+    guardarControl();
+    // Re-aplicar auto-detección solo para los no marcados manualmente
+    actualizarResumen();
+    mostrarNotificacion('Checkbox actualizado manualmente. Usá "Sincronizar" para re-detectar automáticamente.');
+}
+
+function guardarCampo(id, campo, valor) {
+    if (!controlData[id]) controlData[id] = {};
+    controlData[id][campo] = valor;
+    controlData[id].autoDetected = false;
+    guardarControl();
+}
+
+// ===== RENDERIZAR =====
+function renderizar() {
+    detectarDesdeRegistro();
+    renderPlan();
+    renderAdecuaciones();
+    actualizarResumen();
+}
+
+function renderPlan() {
+    var tbody = document.getElementById('planBody');
+    var html = '';
+
+    TEMAS_PLAN.forEach(function(t) {
+        var d = controlData[t.id] || {};
+        var checked = d.checked ? 'checked' : '';
+        var autoTag = d.autoDetected ? '<span class="status-badge auto">auto</span>' : '';
+        var rowClass = d.checked ? 'style="background:#fafff5"' : '';
+
+        html += '<tr ' + rowClass + '>';
+        html += '<td class="tema-num">' + t.id + '</td>';
+        html += '<td class="tema-name">' + t.nombre + ' ' + autoTag + '</td>';
+        html += '<td class="mes-cell">' + t.mes + '</td>';
+        html += '<td class="mes-cell">' + t.horas + '</td>';
+        html += '<td class="check-cell"><input type="checkbox" ' + checked + ' onchange="marcarManual(' + t.id + ', this.checked)"></td>';
+        html += '<td class="fecha-cell"><input type="text" value="' + (d.fechaInicio || '') + '" placeholder="__/__" onchange="guardarCampo(' + t.id + ',\'fechaInicio\',this.value)"></td>';
+        html += '<td class="fecha-cell"><input type="text" value="' + (d.fechaCierre || '') + '" placeholder="__/__" onchange="guardarCampo(' + t.id + ',\'fechaCierre\',this.value)"></td>';
+        html += '<td class="obs-cell"><input type="text" value="' + (d.obs || '').replace(/"/g,'&quot;') + '" placeholder="" onchange="guardarCampo(' + t.id + ',\'obs\',this.value)"></td>';
+        html += '</tr>';
+    });
+
+    tbody.innerHTML = html;
+    document.getElementById('numTotal').textContent = TEMAS_PLAN.length;
+}
+
+function renderAdecuaciones() {
+    var adecBody = document.getElementById('adecBody');
+    var adecData = [];
+    try {
+        var s = localStorage.getItem(CTRL_KEY + '_adec');
+        if (s) adecData = JSON.parse(s);
+    } catch(e) { adecData = []; }
+
+    if (adecData.length === 0) {
+        // Fila por defecto si no hay datos
+        adecData = [{
+            tema: 'Refuerzo de operaciones básicas',
+            tipo: 'Refuerzo',
+            estudiantes: '1-5-8',
+            checked: false,
+            fechaInicio: '',
+            fechaCierre: '',
+            obs: ''
+        }];
+    }
+
+    var html = '';
+    adecData.forEach(function(a, idx) {
+        var checked = a.checked ? 'checked' : '';
+        html += '<tr class="adec-row">';
+        html += '<td class="tema-num" style="color:#1565c0">' + (idx + 1) + '</td>';
+        html += '<td><input type="text" value="' + (a.tema || '').replace(/"/g,'&quot;') + '" placeholder="Ej: Refuerzo de operaciones básicas" style="width:100%;border:1px solid #b6c6da;border-radius:4px;padding:4px;font-size:12px" onchange="guardarAdecCampo(' + idx + ',\'tema\',this.value)"></td>';
+        html += '<td style="text-align:center"><select style="padding:4px;border:1px solid #b6c6da;border-radius:4px;font-size:12px" onchange="guardarAdecCampo(' + idx + ',\'tipo\',this.value)">';
+        ['Refuerzo','Ampliación','Adaptación','Nivelación'].forEach(function(opt) {
+            html += '<option ' + (a.tipo === opt ? 'selected' : '') + '>' + opt + '</option>';
+        });
+        html += '</select></td>';
+        html += '<td><input type="text" value="' + (a.estudiantes || '').replace(/"/g,'&quot;') + '" placeholder="Ej: 1-5-8" style="width:100%;border:1px solid #b6c6da;border-radius:4px;padding:4px;font-size:12px" onchange="guardarAdecCampo(' + idx + ',\'estudiantes\',this.value)"></td>';
+        html += '<td class="check-cell"><input type="checkbox" ' + checked + ' onchange="guardarAdecCampo(' + idx + ',\'checked\',this.checked)"></td>';
+        html += '<td class="fecha-cell"><input type="text" value="' + (a.fechaInicio || '') + '" placeholder="__/__" style="width:80px" onchange="guardarAdecCampo(' + idx + ',\'fechaInicio\',this.value)"></td>';
+        html += '<td class="fecha-cell"><input type="text" value="' + (a.fechaCierre || '') + '" placeholder="__/__" style="width:80px" onchange="guardarAdecCampo(' + idx + ',\'fechaCierre\',this.value)"></td>';
+        html += '<td class="obs-cell"><input type="text" value="' + (a.obs || '').replace(/"/g,'&quot;') + '" placeholder="" onchange="guardarAdecCampo(' + idx + ',\'obs\',this.value)"></td>';
+        html += '</tr>';
+    });
+    adecBody.innerHTML = html;
+}
+
+// ===== ADECUACIONES =====
+function guardarAdecData(data) {
+    localStorage.setItem(CTRL_KEY + '_adec', JSON.stringify(data));
+}
+
+function guardarAdecCampo(idx, campo, valor) {
+    var adecData = [];
+    try {
+        var s = localStorage.getItem(CTRL_KEY + '_adec');
+        if (s) adecData = JSON.parse(s);
+    } catch(e) { adecData = []; }
+    if (!adecData[idx]) adecData[idx] = {};
+    adecData[idx][campo] = valor;
+    guardarAdecData(adecData);
+    actualizarResumen();
+}
+
+function agregarAdecuacion() {
+    var adecData = [];
+    try {
+        var s = localStorage.getItem(CTRL_KEY + '_adec');
+        if (s) adecData = JSON.parse(s);
+    } catch(e) { adecData = []; }
+
+    adecData.push({
+        tema: '',
+        tipo: 'Refuerzo',
+        estudiantes: '',
+        checked: false,
+        fechaInicio: '',
+        fechaCierre: '',
+        obs: ''
+    });
+    guardarAdecData(adecData);
+    renderAdecuaciones();
+    actualizarResumen();
+}
+
+// ===== SINCRO MANUAL =====
+function sincronizarDesdeRegistro() {
+    // Resetear autoDetected para todos
+    TEMAS_PLAN.forEach(function(t) {
+        if (!controlData[t.id]) controlData[t.id] = {};
+        controlData[t.id].autoDetected = true;
+    });
+    guardarControl();
+    renderizar();
+    mostrarNotificacion('✅ Sincronizado correctamente desde el Registro de Clases.');
+
+    // Si no hay datos, mostrar mensaje
+    var jornadas = parseInt(document.getElementById('totalJornadas').textContent);
+    if (jornadas === 0) {
+        mostrarNotificacion('⚠️ No se encontraron jornadas en el Registro de Clases. Completá primero el registro de clases (14_registro_clases).');
+    }
+}
+
+function mostrarNotificacion(msg) {
+    var el = document.getElementById('notifSincro');
+    el.textContent = msg;
+    el.style.display = 'block';
+    setTimeout(function() { el.style.display = 'none'; }, 5000);
+}
+
+// ===== RESUMEN =====
+function actualizarResumen() {
+    var desarrollados = 0;
+    TEMAS_PLAN.forEach(function(t) {
+        var d = controlData[t.id] || {};
+        if (d.checked) desarrollados++;
+    });
+    var total = TEMAS_PLAN.length;
+    document.getElementById('numDesarrollados').textContent = desarrollados;
+    document.getElementById('resDesarrollados').textContent = desarrollados;
+    document.getElementById('resPendientes').textContent = total - desarrollados;
+    document.getElementById('pctAvance').textContent = Math.round(desarrollados / total * 100) + '%';
+    document.getElementById('resAvance').textContent = Math.round(desarrollados / total * 100) + '%';
+
+    var adecRows = document.querySelectorAll('#adecBody tr');
+    document.getElementById('resAdecuaciones').textContent = adecRows.length;
+}
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded', function() {
+    cargarControl();
+    renderizar();
+});
+</script>
+
+<script src="../../nav/nav.js"></script>
+</body>
+</html>
