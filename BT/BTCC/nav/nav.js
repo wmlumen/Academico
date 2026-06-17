@@ -9,9 +9,7 @@
   var depth = Math.max(0, segments.length - 1);
   var prefix = '';
 
-  if (depth >= 4) prefix = '../../../';
-  else if (depth === 3) prefix = '../../';
-  else if (depth === 2) prefix = '../';
+  for (var i = 0; i < depth; i++) prefix += '../';
 
   function loadJson(file, fallback) {
     return (window.BTCCRuntime && window.BTCCRuntime.loadJson(file, fallback)) || fallback;

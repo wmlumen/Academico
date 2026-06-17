@@ -4,64 +4,182 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plan Sintético Semanal - Técnicas Instrumentales II</title>
+    <link rel="stylesheet" href="../../nav/nav.css">
+    <script src="../../nav/runtime.js"></script>
     <style>
-        body { margin: 0; padding: 18px; background: #f5f7fb; color: #172133; font-family: "Segoe UI", Tahoma, sans-serif; }
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 18px; background: #f5f7fb; font-family: "Segoe UI", Tahoma, sans-serif; color: #172133; }
         .sheet { max-width: 1200px; margin: 0 auto; background: #fff; border: 1px solid #d8e0ea; padding: 20px; }
-        h1 { margin: 0 0 10px; color: #0f4c81; }
-        table { width: 100%; border-collapse: collapse; margin-top: 12px; }
-        th, td { border: 1px solid #d8e0ea; padding: 8px 10px; font-size: 13px; vertical-align: top; }
-        th { background: #e8f1fb; text-align: left; }
+        h1 { margin: 0 0 6px; color: #0f4c81; font-size: 22px; }
+        .sub { margin: 2px 0 0; font-size: 13px; color: #56657a; }
+        .bar { display: flex; align-items: center; gap: 12px; margin: 12px 0; padding: 10px 14px; background: #f0f4fa; border: 1px solid #d8e0ea; border-radius: 8px; flex-wrap: wrap; }
+        .bar label { font-size: 13px; font-weight: 600; }
+        .bar input { flex: 1; min-width: 200px; padding: 6px 10px; border: 1px solid #b6c6da; border-radius: 6px; font-size: 13px; }
+        .bar button { padding: 6px 14px; background: #0f4c81; color: #fff; border: none; border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; }
+        .bar button:hover { background: #1a5f9a; }
+        .bar .hint { font-size: 12px; color: #888; }
+        table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+        th, td { border: 1px solid #d8e0ea; padding: 7px 9px; font-size: 13px; vertical-align: top; }
+        th { background: #e8f1fb; text-align: left; position: sticky; top: 0; }
+        .ev-link { color: #0f4c81; font-weight: 600; text-decoration: none; }
+        .ev-link:hover { text-decoration: underline; }
+        .ev-link.ext::after { content: " \2197"; font-size: 11px; }
+        .ev-text { color: #4d6177; }
+        @media print { body { background: #fff; padding: 0; } .sheet { border: none; max-width: none; padding: 0; } .bar { display: none; } }
     </style>
-
-<link rel="stylesheet" href="../../nav/nav.css">
-
-<script src="../../nav/runtime.js"></script>
 </head>
 <body>
-    <section class="sheet">
-        <h1>Plan Sintético Semanal - Técnicas Instrumentales II</h1>
-        <table>
-            <thead><tr><th>Semana</th><th>Mes</th><th>Tema</th><th>Capacidad central</th><th>Evidencia</th></tr></thead>
-            <tbody>
-                <tr><td>1</td><td>Marzo</td><td>Presentación y diagnóstico</td><td>Reconoce la finalidad de la asignatura</td><td>Diagnóstico</td></tr>
-                <tr><td>2</td><td>Marzo</td><td>Método de trabajo</td><td>Organiza secuencia lógica</td><td>Cuadro de pasos</td></tr>
-                <tr><td>3</td><td>Marzo</td><td>Productividad</td><td>Relaciona método y eficiencia</td><td>Ejercicio breve</td></tr>
-                <tr><td>4</td><td>Marzo</td><td>Aplicación a tarea simple</td><td>Propone procedimiento de trabajo</td><td>Carpeta</td></tr>
-                <tr><td>5</td><td>Abril</td><td>Movimiento de materiales</td><td>Reconoce recorridos innecesarios</td><td>Croquis</td></tr>
-                <tr><td>6</td><td>Abril</td><td>Organización del puesto</td><td>Mejora disposición del puesto</td><td>Esquema</td></tr>
-                <tr><td>7</td><td>Abril</td><td>Seguridad y orden</td><td>Integra orden y productividad</td><td>Lista de cotejo</td></tr>
-                <tr><td>8</td><td>Abril</td><td>Caso aplicado</td><td>Propone mejora de proceso</td><td>Actividad</td></tr>
-                <tr><td>9</td><td>Mayo</td><td>Tiempos observados</td><td>Registra tiempos básicos</td><td>Planilla</td></tr>
-                <tr><td>10</td><td>Mayo</td><td>Muestreo</td><td>Observa procesos</td><td>Planilla</td></tr>
-                <tr><td>11</td><td>Mayo</td><td>Tiempos improductivos</td><td>Diferencia tiempos</td><td>Ejercicio</td></tr>
-                <tr><td>12</td><td>Mayo</td><td>Síntesis de la unidad</td><td>Integra estudio de tiempos</td><td>Registro</td></tr>
-                <tr><td>13</td><td>Junio</td><td>Jornal y cuadrilla</td><td>Relaciona mano de obra y tiempo</td><td>Cálculo</td></tr>
-                <tr><td>14</td><td>Junio</td><td>Rendimiento</td><td>Interpreta productividad</td><td>Planilla</td></tr>
-                <tr><td>15</td><td>Junio</td><td>Costo unitario</td><td>Calcula costo simple</td><td>Ejercicio</td></tr>
-                <tr><td>16</td><td>Junio</td><td>Caso aplicado</td><td>Resuelve problema de mano de obra</td><td>Carpeta</td></tr>
-                <tr><td>17</td><td>Julio</td><td>Repaso</td><td>Recupera conceptos de etapa</td><td>Actividad</td></tr>
-                <tr><td>18</td><td>Julio</td><td>Evaluación de etapa</td><td>Integra método, tiempo y costo</td><td>Evaluación</td></tr>
-                <tr><td>19</td><td>Agosto</td><td>Cómputo de albañilería</td><td>Calcula cantidades de trabajo</td><td>Ejercicio</td></tr>
-                <tr><td>20</td><td>Agosto</td><td>Revoques y pisos</td><td>Calcula superficies</td><td>Cómputo</td></tr>
-                <tr><td>21</td><td>Agosto</td><td>Cubiertas y revestimientos</td><td>Selecciona unidad de cómputo</td><td>Hoja técnica</td></tr>
-                <tr><td>22</td><td>Agosto</td><td>Síntesis de unidad</td><td>Corrige errores de medición</td><td>Carpeta</td></tr>
-                <tr><td>23</td><td>Septiembre</td><td>Cómputo de materiales</td><td>Relaciona consumo y trabajo</td><td>Planilla</td></tr>
-                <tr><td>24</td><td>Septiembre</td><td>Ladrillos y morteros</td><td>Calcula cantidades básicas</td><td>Ejercicio</td></tr>
-                <tr><td>25</td><td>Septiembre</td><td>Revestimientos y cubiertas</td><td>Estima materiales</td><td>Cómputo</td></tr>
-                <tr><td>26</td><td>Septiembre</td><td>Control de resultados</td><td>Verifica coherencia</td><td>Registro</td></tr>
-                <tr><td>27</td><td>Octubre</td><td>Volumen de hormigón</td><td>Calcula volumen</td><td>Planilla</td></tr>
-                <tr><td>28</td><td>Octubre</td><td>Acero</td><td>Estima cantidad básica</td><td>Ejercicio</td></tr>
-                <tr><td>29</td><td>Octubre</td><td>Encofrado</td><td>Calcula material requerido</td><td>Cómputo</td></tr>
-                <tr><td>30</td><td>Octubre</td><td>Dosificación básica</td><td>Relaciona materiales del hormigón</td><td>Hoja técnica</td></tr>
-                <tr><td>31</td><td>Noviembre</td><td>Integración final</td><td>Relaciona cómputo y método</td><td>Proyecto breve</td></tr>
-                <tr><td>32</td><td>Noviembre</td><td>Planilla integradora</td><td>Presenta datos ordenados</td><td>Planilla</td></tr>
-                <tr><td>33</td><td>Noviembre</td><td>Revisión</td><td>Corrige errores técnicos</td><td>Carpeta</td></tr>
-                <tr><td>34</td><td>Noviembre</td><td>Recuperación</td><td>Ajusta dificultades detectadas</td><td>Evidencia</td></tr>
-                <tr><td>35</td><td>Noviembre</td><td>Cierre del proceso</td><td>Sistematiza aprendizajes</td><td>Autoevaluación</td></tr>
-                <tr><td>36</td><td>Noviembre</td><td>Evaluación final</td><td>Comunica resultados técnicos</td><td>Prueba final</td></tr>
-            </tbody>
-        </table>
-    </section>
+<section class="sheet">
+    <h1>Plan Sintético Semanal — Técnicas Instrumentales II</h1>
+    <p class="sub">2.º Curso BTCC · Colegio Nacional Defensores del Chaco · 2026</p>
+
+    <div class="bar" id="controlsBar">
+        <label>🔗 Editar enlace:</label>
+        <input type="text" id="linkEditor" placeholder="https://drive.google.com/... o herramienta interna">
+        <button onclick="aplicarEnlace()">Aplicar a fila</button>
+        <span class="hint">Hacé clic en una fila para seleccionarla, luego pegá el link</span>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width:4%">#</th>
+                <th style="width:7%">Mes</th>
+                <th style="width:26%">Tema</th>
+                <th style="width:30%">Capacidad central</th>
+                <th style="width:20%">Actividad principal</th>
+                <th style="width:13%">Evidencia</th>
+            </tr>
+        </thead>
+        <tbody id="planBody"></tbody>
+    </table>
+</section>
+
+<script>
+// ===== DATOS =====
+// Cada fila: { s, mes, tema, capacidad, actividad, evidencia, enlace }
+// - enlace: ruta a herramienta interna (html) o URL externa (http/https)
+// - si enlace está vacío, se muestra solo texto
+var SEMANAS = [
+    { s:1,  mes:'Marzo',    tema:'Presentacion y diagnostico',                          capacidad:'Reconoce la finalidad de la asignatura',                            actividad:'Diagnostico inicial y normas',                                              evidencia:'Diagnostico',             enlace:'08_prueba_diagnostica_tecnicas_instrumentales_ii.html' },
+    { s:2,  mes:'Marzo',    tema:'Metodo de trabajo',                                    capacidad:'Organiza secuencia logica de pasos',                                   actividad:'Lectura guiada y esquema',                                                 evidencia:'Cuadro de pasos',          enlace:'fichas_estudiante_html/index_fichas_estudiante.html' },
+    { s:3,  mes:'Marzo',    tema:'Productividad y eficiencia',                            capacidad:'Relaciona metodo y eficiencia',                                        actividad:'Ejemplos de obra',                                                         evidencia:'Ejercicio breve',         enlace:'fichas_estudiante_html/index_fichas_estudiante.html' },
+    { s:4,  mes:'Marzo',    tema:'Aplicacion a tarea simple',                             capacidad:'Propone procedimiento de trabajo',                                     actividad:'Resolucion en clase',                                                      evidencia:'Carpeta',                 enlace:'12_rsa_individual_tecnicas.html' },
+    { s:5,  mes:'Abril',    tema:'Movimiento de materiales',                              capacidad:'Reconoce recorridos innecesarios',                                    actividad:'Observacion dirigida',                                                     evidencia:'Croquis',                 enlace:'fichas_estudiante_html/index_fichas_estudiante.html' },
+    { s:6,  mes:'Abril',    tema:'Organizacion del puesto de trabajo',                     capacidad:'Mejora disposicion del puesto',                                       actividad:'Rediseno del area',                                                         evidencia:'Esquema',                 enlace:'fichas_estudiante_html/index_fichas_estudiante.html' },
+    { s:7,  mes:'Abril',    tema:'Seguridad y orden',                                      capacidad:'Integra orden y productividad',                                       actividad:'Lista de cotejo',                                                          evidencia:'Lista de cotejo',         enlace:'12_rsa_individual_tecnicas.html' },
+    { s:8,  mes:'Abril',    tema:'Caso aplicado',                                          capacidad:'Propone mejora de proceso',                                            actividad:'Trabajo en grupos',                                                        evidencia:'Actividad',               enlace:'15_perfil_estudiante_tecnicas.html' },
+    { s:9,  mes:'Mayo',     tema:'Tiempos observados',                                    capacidad:'Registra tiempos basicos',                                             actividad:'Cronometraje simple',                                                      evidencia:'Planilla',                enlace:'16_planilla_proceso_tecnicas.html' },
+    { s:10, mes:'Mayo',     tema:'Muestreo',                                               capacidad:'Observa procesos de trabajo',                                          actividad:'Registro de datos',                                                         evidencia:'Planilla',                enlace:'16_planilla_proceso_tecnicas.html' },
+    { s:11, mes:'Mayo',     tema:'Tiempos improductivos',                                  capacidad:'Diferencia tiempos productivos e improductivos',                       actividad:'Clasificacion guiada',                                                     evidencia:'Ejercicio',               enlace:'fichas_estudiante_html/index_fichas_estudiante.html' },
+    { s:12, mes:'Mayo',     tema:'Sintesis de la unidad',                                  capacidad:'Integra estudio de tiempos',                                           actividad:'Puesta en comun',                                                          evidencia:'Registro',                enlace:'14_registro_clases_tecnicas.html' },
+    { s:13, mes:'Junio',    tema:'Jornal y cuadrilla',                                     capacidad:'Relaciona mano de obra y tiempo',                                      actividad:'Tabla de costos',                                                          evidencia:'Calculo',                 enlace:'fichas_estudiante_html/index_fichas_estudiante.html' },
+    { s:14, mes:'Junio',    tema:'Rendimiento',                                             capacidad:'Interpreta productividad de mano de obra',                             actividad:'Comparacion de datos',                                                      evidencia:'Planilla',                enlace:'16_planilla_proceso_tecnicas.html' },
+    { s:15, mes:'Junio',    tema:'Costo unitario',                                         capacidad:'Calcula costo simple de mano de obra',                                 actividad:'Resolucion de problemas',                                                  evidencia:'Ejercicio',               enlace:'fichas_estudiante_html/index_fichas_estudiante.html' },
+    { s:16, mes:'Junio',    tema:'Caso aplicado',                                          capacidad:'Resuelve problema de mano de obra',                                   actividad:'Trabajo integrador',                                                       evidencia:'Carpeta',                 enlace:'12_rsa_individual_tecnicas.html' },
+    { s:17, mes:'Julio',    tema:'Repaso',                                                  capacidad:'Recupera conceptos de la etapa',                                      actividad:'Taller de correccion',                                                     evidencia:'Actividad',               enlace:'15_perfil_estudiante_tecnicas.html' },
+    { s:18, mes:'Julio',    tema:'Evaluacion de etapa',                                    capacidad:'Integra metodo, tiempo y costo',                                       actividad:'Prueba parcial',                                                           evidencia:'Evaluacion',              enlace:'17_examen_sumativo_tecnicas.html' },
+    { s:19, mes:'Agosto',   tema:'Computo de albanileria',                                 capacidad:'Calcula cantidades de obra',                                           actividad:'Cubicacion de cerramiento',                                                 evidencia:'Ejercicio',               enlace:'fichas_estudiante_html/index_fichas_estudiante.html' },
+    { s:20, mes:'Agosto',   tema:'Revoques y pisos',                                       capacidad:'Calcula superficies de obra',                                          actividad:'Medicion de caso',                                                          evidencia:'Computo',                 enlace:'fichas_estudiante_html/index_fichas_estudiante.html' },
+    { s:21, mes:'Agosto',   tema:'Cubiertas y revestimientos',                              capacidad:'Selecciona unidad de computo adecuada',                               actividad:'Analisis de planos',                                                        evidencia:'Hoja tecnica',            enlace:'fichas_estudiante_html/index_fichas_estudiante.html' },
+    { s:22, mes:'Agosto',   tema:'Sintesis de unidad',                                     capacidad:'Corrige errores de medicion',                                         actividad:'Autocorreccion',                                                           evidencia:'Carpeta',                 enlace:'12_rsa_individual_tecnicas.html' },
+    { s:23, mes:'Septiembre',tema:'Computo de materiales',                                 capacidad:'Relaciona consumo y trabajo',                                         actividad:'Tabla de insumos',                                                          evidencia:'Planilla',                enlace:'16_planilla_proceso_tecnicas.html' },
+    { s:24, mes:'Septiembre',tema:'Ladrillos y morteros',                                  capacidad:'Calcula cantidades basicas',                                          actividad:'Ejercicio practico',                                                        evidencia:'Ejercicio',               enlace:'fichas_estudiante_html/index_fichas_estudiante.html' },
+    { s:25, mes:'Septiembre',tema:'Revestimientos y cubiertas',                             capacidad:'Estima materiales de obra',                                            actividad:'Resolucion de problemas',                                                  evidencia:'Computo',                 enlace:'fichas_estudiante_html/index_fichas_estudiante.html' },
+    { s:26, mes:'Septiembre',tema:'Control de resultados',                                  capacidad:'Verifica coherencia de calculo',                                      actividad:'Revision entre pares',                                                       evidencia:'Registro',                enlace:'14_registro_clases_tecnicas.html' },
+    { s:27, mes:'Octubre',  tema:'Volumen de hormigon',                                    capacidad:'Calcula volumen de obra',                                             actividad:'Cubicacion',                                                               evidencia:'Planilla',                enlace:'16_planilla_proceso_tecnicas.html' },
+    { s:28, mes:'Octubre',  tema:'Acero',                                                   capacidad:'Estima cantidad basica de acero',                                     actividad:'Tabla de pesos',                                                            evidencia:'Ejercicio',               enlace:'fichas_estudiante_html/index_fichas_estudiante.html' },
+    { s:29, mes:'Octubre',  tema:'Encofrado',                                               capacidad:'Calcula material requerido para encofrado',                           actividad:'Diseno de encofrado',                                                        evidencia:'Computo',                 enlace:'fichas_estudiante_html/index_fichas_estudiante.html' },
+    { s:30, mes:'Octubre',  tema:'Dosificacion basica',                                     capacidad:'Relaciona materiales del hormigon',                                   actividad:'Calculo de proporcion',                                                      evidencia:'Hoja tecnica',            enlace:'fichas_estudiante_html/index_fichas_estudiante.html' },
+    { s:31, mes:'Noviembre',tema:'Integracion final',                                       capacidad:'Relaciona computo y metodo de trabajo',                               actividad:'Proyecto breve',                                                            evidencia:'Proyecto breve',          enlace:'18_planilla_integrada_tecnicas.html' },
+    { s:32, mes:'Noviembre',tema:'Planilla integradora',                                    capacidad:'Presenta datos ordenados',                                            actividad:'Confeccion de planilla',                                                    evidencia:'Planilla',                enlace:'16_planilla_proceso_tecnicas.html' },
+    { s:33, mes:'Noviembre',tema:'Revision',                                                capacidad:'Corrige errores tecnicos',                                           actividad:'Analisis de errores',                                                       evidencia:'Carpeta',                 enlace:'12_rsa_individual_tecnicas.html' },
+    { s:34, mes:'Noviembre',tema:'Recuperacion',                                            capacidad:'Ajusta dificultades detectadas',                                     actividad:'Actividades diferenciadas',                                                 evidencia:'Evidencia',               enlace:'15_perfil_estudiante_tecnicas.html' },
+    { s:35, mes:'Noviembre',tema:'Cierre del proceso',                                      capacidad:'Sistematiza aprendizajes',                                            actividad:'Autoevaluacion',                                                           evidencia:'Autoevaluacion',          enlace:'19_competencias_transversales_tecnicas.html' },
+    { s:36, mes:'Noviembre',tema:'Evaluacion final',                                        capacidad:'Comunica resultados tecnicos',                                        actividad:'Prueba / defensa final',                                                    evidencia:'Prueba final',            enlace:'17_examen_sumativo_tecnicas.html' }
+];
+
+var filaSeleccionada = null;
+
+function renderEvidencia(ev, link) {
+    if (!link || link.trim() === '') {
+        return '<span class="ev-text">' + ev + '</span>';
+    }
+    var esExterno = link.match(/^https?:\/\//) ? true : false;
+    var target = esExterno ? ' target="_blank" rel="noopener"' : '';
+    var cls = esExterno ? 'ev-link ext' : 'ev-link';
+    return '<a href="' + link + '" class="' + cls + '"' + target + ' data-ev="' + ev + '">' + ev + '</a>';
+}
+
+function renderPlan() {
+    var tbody = document.getElementById('planBody');
+    var html = '';
+    SEMANAS.forEach(function(f, idx) {
+        var selAttr = 'data-idx="' + idx + '"';
+        html += '<tr ' + selAttr + ' style="cursor:pointer">';
+        html += '<td>' + f.s + '</td>';
+        html += '<td>' + f.mes + '</td>';
+        html += '<td><strong>' + f.tema + '</strong></td>';
+        html += '<td>' + f.capacidad + '</td>';
+        html += '<td>' + f.actividad + '</td>';
+        html += '<td>' + renderEvidencia(f.evidencia, f.enlace) + '</td>';
+        html += '</tr>';
+    });
+    tbody.innerHTML = html;
+
+    // Click para seleccionar fila
+    tbody.querySelectorAll('tr').forEach(function(tr) {
+        tr.addEventListener('click', function() {
+            tbody.querySelectorAll('tr').forEach(function(r) { r.style.background = ''; });
+            this.style.background = '#e8f4fd';
+            filaSeleccionada = parseInt(this.getAttribute('data-idx'), 10);
+            var f = SEMANAS[filaSeleccionada];
+            document.getElementById('linkEditor').value = f.enlace || '';
+            document.getElementById('linkEditor').focus();
+        });
+    });
+}
+
+function aplicarEnlace() {
+    if (filaSeleccionada === null || filaSeleccionada === undefined) {
+        alert('Seleccione una fila haciendo clic en ella primero.');
+        return;
+    }
+    var nuevoLink = document.getElementById('linkEditor').value.trim();
+    SEMANAS[filaSeleccionada].enlace = nuevoLink;
+    renderPlan();
+    // Re-seleccionar la misma fila
+    var tbody = document.getElementById('planBody');
+    var tr = tbody.querySelector('tr[data-idx="' + filaSeleccionada + '"]');
+    if (tr) {
+        tr.style.background = '#e8f4fd';
+    }
+    // Guardar en localStorage
+    try {
+        localStorage.setItem('plan_sintetico_tecnicas_enlaces', JSON.stringify(
+            SEMANAS.map(function(f) { return f.enlace; })
+        ));
+    } catch(e) {}
+}
+
+function cargarEnlacesGuardados() {
+    try {
+        var raw = localStorage.getItem('plan_sintetico_tecnicas_enlaces');
+        if (!raw) return;
+        var enlaces = JSON.parse(raw);
+        if (enlaces && enlaces.length === SEMANAS.length) {
+            SEMANAS.forEach(function(f, i) {
+                if (enlaces[i]) f.enlace = enlaces[i];
+            });
+        }
+    } catch(e) {}
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+    cargarEnlacesGuardados();
+    renderPlan();
+});
+</script>
 
 <script src="../../nav/nav.js"></script>
 </body>
