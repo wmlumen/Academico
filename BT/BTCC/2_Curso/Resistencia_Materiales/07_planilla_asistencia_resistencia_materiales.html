@@ -183,7 +183,13 @@ function renderizar() {
     var tblHtml = '<div class="tbl-wrap"><table><thead><tr>';
     tblHtml += '<th class="stu-name" rowspan="2">N.°</th><th class="stu-name" rowspan="2">Apellidos y Nombres</th>';
     fechasMes.forEach(function(f) {
-      tblHtml += '<th title="' + f.dateStr + '">' + f.diaSem + ' ' + f.dateStr.split(' ')[1] + '</th>';
+      tblHtml += '<th title="' + f.dateStr + '">' + f.diaSem + ' ' + f.dateStr.split(' ')[1] + '<br>';
+      tblHtml += '<span style="display:flex;gap:2px;justify-content:center;margin-top:3px">';
+      tblHtml += '<a href="#" onclick="marcarTodos(\'' + f.dateStr + '\',\'P\');return false" title="Marcar todos Presente" style="font-size:9px;padding:1px 5px;border-radius:3px;background:#c8e6c9;color:#1b5e20;text-decoration:none;font-weight:700">P</a>';
+      tblHtml += '<a href="#" onclick="marcarTodos(\'' + f.dateStr + '\',\'A\');return false" title="Marcar todos Ausente" style="font-size:9px;padding:1px 5px;border-radius:3px;background:#ffcdd2;color:#b71c1c;text-decoration:none;font-weight:700">A</a>';
+      tblHtml += '<a href="#" onclick="marcarTodos(\'' + f.dateStr + '\',\'AJ\');return false" title="Marcar todos Ausente Justificado" style="font-size:9px;padding:1px 5px;border-radius:3px;background:#fff9c4;color:#f57f17;text-decoration:none;font-weight:700">AJ</a>';
+      tblHtml += '</span>';
+      tblHtml += '</th>';
     });
     tblHtml += '<th rowspan="2">%<br>Asist</th>';
     tblHtml += '<th rowspan="2">P</th><th rowspan="2">A</th><th rowspan="2">AJ</th>';
@@ -286,6 +292,16 @@ function renderizar() {
   document.getElementById('pctAsist').textContent = pctGlobal + '% (sobre ' + totalHabiles + ' días hábiles)';
 
   filtrarMes();
+}
+
+function marcarTodos(dateStr, valor) {
+  if (!confirm('Marcar todos como ' + {P:'Presente',A:'Ausente',AJ:'Ausente Justificado'}[valor] + ' para el ' + dateStr + '?')) return;
+  if (!DATA[dateStr]) DATA[dateStr] = {};
+  STUDENTS.forEach(function(s) {
+    DATA[dateStr]['s' + s.num] = valor;
+  });
+  guardarDatos();
+  renderizar();
 }
 
 function cambiarAsistencia(dateStr, sid, el) {
