@@ -19,9 +19,11 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4fa;color:#172133;p
 .controls select,.controls input{padding:7px 10px;border:1px solid #b6c6da;border-radius:8px;font-size:13px;background:#fff;min-width:140px}
 .controls .stats{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
 .controls .stats .stat{padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600}
-.controls .stats .stat.l{background:#c8e6c9;color:#1b5e20}
-.controls .stats .stat.ep{background:#fff9c4;color:#f57f17}
-.controls .stats .stat.nl{background:#ffcdd2;color:#b71c1c}
+.controls .stats .stat.p{background:#c8e6c9;color:#1b5e20}
+.controls .stats .stat.a{background:#ffcdd2;color:#b71c1c}
+.controls .stats .stat.aj{background:#e3f2fd;color:#0d47a1}
+.controls .stats .stat.lt{background:#fff3e0;color:#e65100}
+.controls .stats .stat.sa{background:#f3e5f5;color:#6a1b9a}
 .controls .stats .stat.total{background:#e8eaf6;color:#283593}
 
 .tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
@@ -44,10 +46,11 @@ tr:hover td.stu-name{background:#f5f9ff}
 
 .asis-select{padding:2px;border:1.5px solid #d8e0ea;border-radius:4px;font-size:11px;font-weight:700;text-align:center;width:42px;height:28px;cursor:pointer;background:#fff;transition:all .12s}
 .asis-select:focus{outline:none;border-color:#0f4c81}
-.asis-select.val-L{background:#c8e6c9;border-color:#2e7d32;color:#1b5e20}
-.asis-select.val-EP{background:#fff9c4;border-color:#f9a825;color:#f57f17}
-.asis-select.val-NL{background:#ffcdd2;border-color:#c62828;color:#b71c1c}
-.asis-select.val-J{background:#e3f2fd;border-color:#1e88e5;color:#0d47a1}
+.asis-select.val-P{background:#c8e6c9;border-color:#2e7d32;color:#1b5e20}
+.asis-select.val-A{background:#ffcdd2;border-color:#c62828;color:#b71c1c}
+.asis-select.val-AJ{background:#e3f2fd;border-color:#1e88e5;color:#0d47a1}
+.asis-select.val-LT{background:#fff3e0;border-color:#e65100;color:#e65100}
+.asis-select.val-SA{background:#f3e5f5;border-color:#6a1b9a;color:#6a1b9a}
 
 .feriado{background:#fff3e0!important}
 .feriado th{background:#ffe0b2!important;color:#e65100}
@@ -82,7 +85,11 @@ tr:hover td.stu-name{background:#f5f9ff}
 /* Panel badge */
 .panel-badge{font-size:11px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.18);border-radius:8px;padding:4px 10px;margin-top:4px;display:inline-block}
 
-@media print{body{background:#fff;padding:0}.controls,.tabs{display:none}.mes-header{background:#0f4c81!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}th{background:#e8f1fb!important}.asis-select.val-L,.asis-select.val-EP,.asis-select.val-NL,.asis-select.val-J{-webkit-print-color-adjust:exact;print-color-adjust:exact}.cal-day.feriado,.cal-day.clase,.cal-day.conmemoracion{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+@media print{body{background:#fff;padding:0}.controls,.tabs{display:none}.mes-header{background:#0f4c81!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}th{background:#e8f1fb!important}.asis-select.val-P,.asis-select.val-A,.asis-select.val-AJ,.asis-select.val-LT,.asis-select.val-SA{-webkit-print-color-adjust:exact;print-color-adjust:exact}.cal-day.feriado,.cal-day.clase,.cal-day.conmemoracion{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+.btn{padding:10px 20px;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:#0f4c81;color:#fff}.btn-primary:hover{background:#1f6aa5}
+.btn-outline{background:#fff;color:#0f4c81;border:1px solid #b7c7dc}.btn-outline:hover{background:#f6faff}
+.form-group{display:flex;flex-direction:column;gap:4px}.form-group label{font-size:13px;font-weight:600;color:#2a405c}
 </style>
 <link rel="stylesheet" href="nav/nav.css">
 
@@ -95,7 +102,7 @@ tr:hover td.stu-name{background:#f5f9ff}
   <div>
     <h1 id="attendanceTitle">Sistema Institucional de Asistencia</h1>
     <p id="attendanceSubtitle">Seguimiento institucional.</p>
-    <p style="font-size:11px;opacity:.7;margin-top:2px">Códigos: L=Logrado / EP=En Proceso / NL=No Logrado / J=Justificado</p>
+    <p style="font-size:11px;opacity:.7;margin-top:2px">Códigos: P=Presente / A=Ausente / AJ=Ausente Justificado / LT=Llegada Tardía (hora) / SA=Salida Anticipada (hora + autorización)</p>
   </div>
   <div class="logo">
     <div id="attendanceShortName">Portal</div>
@@ -113,10 +120,12 @@ tr:hover td.stu-name{background:#f5f9ff}
   <button onclick="if(confirm('Resetear datos de asistencia de esta materia?')){var k=getStorageKey();localStorage.removeItem(k);cargarMateria()}" style="padding:7px 14px;border:none;border-radius:8px;background:#ffcdd2;color:#b71c1c;font-size:12px;font-weight:600;cursor:pointer">Limpiar</button>
   <button onclick="window.print()" style="padding:7px 14px;border:none;border-radius:8px;background:#e3f2fd;color:#0d47a1;font-size:12px;font-weight:600;cursor:pointer">Imprimir</button>
   <div class="stats" id="statsBar">
-    <span class="stat l">L: <strong id="totalL">0</strong></span>
-    <span class="stat ep">EP: <strong id="totalEP">0</strong></span>
-    <span class="stat nl">NL: <strong id="totalNL">0</strong></span>
-    <span class="stat total">% Logro: <strong id="pctLogro">0%</strong></span>
+    <span class="stat p">P: <strong id="totalP">0</strong></span>
+    <span class="stat a">A: <strong id="totalA">0</strong></span>
+    <span class="stat aj">AJ: <strong id="totalAJ">0</strong></span>
+    <span class="stat lt">LT: <strong id="totalLT">0</strong></span>
+    <span class="stat sa">SA: <strong id="totalSA">0</strong></span>
+    <span class="stat total">Total: <strong id="totalRegistros">0</strong></span>
   </div>
 </div>
 
@@ -157,12 +166,36 @@ function parseCursoNum(cursoStr) {
   return m ? m[1] : null;
 }
 
+function obtenerPanelData() {
+  var data = null;
+  // Nuevo formato: perfil_institucional → instituciones[]
+  try {
+    var s = localStorage.getItem('perfil_institucional');
+    if (s) {
+      var p = JSON.parse(s);
+      if (p && p.instituciones && p.instituciones.length > 0) {
+        data = p.instituciones[0]; // usar la primera institución
+        // Migrar vieja clave si existe
+        if (localStorage.getItem('panel_institucional')) localStorage.removeItem('panel_institucional');
+      }
+    }
+  } catch(e) {}
+  // Fallback: viejo formato
+  if (!data) {
+    try {
+      var s = localStorage.getItem('panel_institucional');
+      if (s) data = JSON.parse(s);
+    } catch(e) {}
+  }
+  return data;
+}
+
 function cargarConfigDesdePanel() {
   try {
-    var s = localStorage.getItem('panel_institucional');
-    if (!s) return null;
-    var panel = JSON.parse(s);
-    if (!panel.asignaturas || panel.asignaturas.length === 0) return null;
+    var panel = obtenerPanelData();
+    if (!panel) return null;
+    var asignaturas = panel.asignaturas;
+    if (!asignaturas || asignaturas.length === 0) return null;
 
     var config = {
       year: 2026,
@@ -171,7 +204,7 @@ function cargarConfigDesdePanel() {
       cursos: {}
     };
 
-    panel.asignaturas.forEach(function(asig) {
+    asignaturas.forEach(function(asig) {
       var cursoNum = parseCursoNum(asig.curso);
       if (!cursoNum) return;
       if (!config.cursos[cursoNum]) {
@@ -211,10 +244,10 @@ function cargarConfigDesdePanel() {
 // Determinar CONFIG final
 var CONFIG = cargarConfigDesdePanel() || CONFIG_HARDCODEADO;
 
-// Datos del docente desde Panel Institucional
+// Datos del docente desde Perfil Institucional
 var DOCENTE_NOMBRE = 'Prof. Christhian Keim'; // fallback
 try {
-  var pi = JSON.parse(localStorage.getItem('panel_institucional'));
+  var pi = obtenerPanelData();
   if (pi && pi.docentes && pi.docentes.length > 0) {
     DOCENTE_NOMBRE = pi.docentes[0].nombre;
   }
@@ -242,9 +275,9 @@ function guardarDatos() {
 function cargarCalendario() {
   if (CALENDARIO) return;
 
-  // Intentar cargar desde panel_institucional primero
+  // Intentar cargar desde Perfil Institucional primero
   try {
-    var pi = JSON.parse(localStorage.getItem('panel_institucional'));
+    var pi = obtenerPanelData();
     if (pi && pi.eventosCalendario && pi.eventosCalendario.length > 0) {
       // Convertir eventos del panel al formato del calendario
       var monthsMap = {};
@@ -540,7 +573,7 @@ function renderizar() {
           tblHtml += '<span style="font-size:16px;color:#e65100" title="' + ev.name + '"></span>';
         } else {
           tblHtml += '<select class="asis-select ' + cls + '" onchange="cambiarAsistencia(\'' + f.dateKey + '\',\'' + sid + '\',this)">';
-          ['','L','EP','NL'].forEach(function(opt) {
+          ['','P','A','AJ','LT','SA'].forEach(function(opt) {
             var sel = val === opt ? 'selected' : '';
             tblHtml += '<option value="' + opt + '" ' + sel + '>' + (opt || '—') + '</option>';
           });
@@ -549,53 +582,59 @@ function renderizar() {
         tblHtml += '</td>';
 
         if (!esFeriadoReal) habiles++;
-        if (val === 'L') logrados++;
-        else if (val === 'EP') enProceso++;
-        else if (val === 'NL') noLogrados++;
+        if (val === 'P') logrados++;
+        else if (val === 'A') noLogrados++;
+        else if (val === 'AJ') enProceso++;
+        else if (val === 'LT') logrados++;
+        else if (val === 'SA') logrados++;
       });
 
-      var pct = habiles > 0 ? Math.round((logrados + enProceso) / habiles * 100) : 0;
+      var pct = habiles > 0 ? Math.round(logrados / habiles * 100) : 0;
       tblHtml += '<td style="font-weight:700;font-size:12px;color:' + (pct >= 80 ? '#2e7d32' : pct >= 60 ? '#f57f17' : '#c62828') + '">' + pct + '%</td>';
-      tblHtml += '<td style="font-weight:600;color:#2e7d32">' + logrados + '</td>';
-      tblHtml += '<td style="font-weight:600;color:#f57f17">' + enProceso + '</td>';
-      tblHtml += '<td style="font-weight:600;color:#b71c1c">' + noLogrados + '</td>';
+      tblHtml += '<td style="font-weight:600;color:#2e7d32">P: ' + logrados + '</td>';
+      tblHtml += '<td style="font-weight:600;color:#0d47a1">AJ: ' + enProceso + '</td>';
+      tblHtml += '<td style="font-weight:600;color:#b71c1c">A: ' + noLogrados + '</td>';
       tblHtml += '</tr>';
 
-      totalsRow.L += logrados;
-      totalsRow.EP += enProceso;
-      totalsRow.NL += noLogrados;
+      totalsRow.P = (totalsRow.P || 0) + logrados;
+      totalsRow.A = (totalsRow.A || 0) + noLogrados;
+      totalsRow.AJ = (totalsRow.AJ || 0) + enProceso;
       totalsRow.habiles += habiles;
 
-      statsGlobal.L += logrados;
-      statsGlobal.EP += enProceso;
-      statsGlobal.NL += noLogrados;
+      statsGlobal.P = (statsGlobal.P || 0) + logrados;
+      statsGlobal.A = (statsGlobal.A || 0) + noLogrados;
+      statsGlobal.AJ = (statsGlobal.AJ || 0) + enProceso;
       statsGlobal.total += habiles;
     });
 
     guardarDatos();
 
-    var pctMes = totalsRow.habiles > 0 ? Math.round((totalsRow.L + totalsRow.EP) / totalsRow.habiles * 100) : 0;
+    var pctMes = totalsRow.habiles > 0 ? Math.round((totalsRow.P || 0) / totalsRow.habiles * 100) : 0;
     tblHtml += '<tr class="resumen-row">';
     tblHtml += '<td colspan="2" style="font-weight:700;text-align:right;padding-right:10px">Total Mes</td>';
     fechasMes.forEach(function(f) {
-      var diaTot = { L:0, EP:0, NL:0, J:0 };
+      var diaTot = { P:0, A:0, AJ:0, LT:0, SA:0 };
       STUDENTS.forEach(function(s) {
         var v = DATA[f.dateKey] ? DATA[f.dateKey]['s' + s.num] : '';
-        if (v === 'L') diaTot.L++;
-        else if (v === 'EP') diaTot.EP++;
-        else if (v === 'NL') diaTot.NL++;
-        else if (v === 'J') diaTot.J++;
+        var code = v ? v.split('|')[0] : '';
+        if (code === 'P') diaTot.P++;
+        else if (code === 'A') diaTot.A++;
+        else if (code === 'AJ') diaTot.AJ++;
+        else if (code === 'LT') diaTot.LT++;
+        else if (code === 'SA') diaTot.SA++;
       });
       tblHtml += '<td style="font-size:9px;font-weight:600;padding:2px">';
-      if (diaTot.L > 0) tblHtml += '<span class="total-l">L' + diaTot.L + '</span> ';
-      if (diaTot.EP > 0) tblHtml += '<span class="total-ep">EP' + diaTot.EP + '</span> ';
-      if (diaTot.NL > 0) tblHtml += '<span class="total-nl">NL' + diaTot.NL + '</span> ';
+      if (diaTot.P > 0) tblHtml += '<span style="color:#2e7d32">P' + diaTot.P + '</span> ';
+      if (diaTot.A > 0) tblHtml += '<span style="color:#b71c1c">A' + diaTot.A + '</span> ';
+      if (diaTot.AJ > 0) tblHtml += '<span style="color:#0d47a1">AJ' + diaTot.AJ + '</span> ';
+      if (diaTot.LT > 0) tblHtml += '<span style="color:#e65100">LT' + diaTot.LT + '</span> ';
+      if (diaTot.SA > 0) tblHtml += '<span style="color:#6a1b9a">SA' + diaTot.SA + '</span> ';
       tblHtml += '</td>';
     });
     tblHtml += '<td style="font-weight:700;font-size:13px;color:' + (pctMes >= 80 ? '#2e7d32' : pctMes >= 60 ? '#f57f17' : '#c62828') + '">' + pctMes + '%</td>';
-    tblHtml += '<td style="font-weight:700;color:#2e7d32">' + totalsRow.L + '</td>';
-    tblHtml += '<td style="font-weight:700;color:#f57f17">' + totalsRow.EP + '</td>';
-    tblHtml += '<td style="font-weight:700;color:#b71c1c">' + totalsRow.NL + '</td>';
+    tblHtml += '<td style="font-weight:700;color:#2e7d32">' + (totalsRow.P || 0) + '</td>';
+    tblHtml += '<td style="font-weight:700;color:#0d47a1">' + (totalsRow.AJ || 0) + '</td>';
+    tblHtml += '<td style="font-weight:700;color:#b71c1c">' + (totalsRow.A || 0) + '</td>';
     tblHtml += '</tr>';
     tblHtml += '</tbody></table></div>';
 
@@ -620,28 +659,87 @@ function renderizar() {
 
 function cambiarAsistencia(dateKey, sid, el) {
   if (!DATA[dateKey]) DATA[dateKey] = {};
-  DATA[dateKey][sid] = el.value;
+  var val = el.value;
+  if (val === 'LT') {
+    mostrarModalLT(dateKey, sid, el);
+    return;
+  }
+  if (val === 'SA') {
+    mostrarModalSA(dateKey, sid, el);
+    return;
+  }
+  DATA[dateKey][sid] = val;
   guardarDatos();
-  el.className = 'asis-select' + (el.value ? ' val-' + el.value : '');
+  el.className = 'asis-select' + (val ? ' val-' + val : '');
   actualizarStats();
 }
 
+// ---- Modal para LT (Llegada Tardía) ----
+var _ltCallback = null;
+function mostrarModalLT(dateKey, sid, el) {
+  _ltCallback = function(hora) {
+    DATA[dateKey][sid] = 'LT|' + hora;
+    guardarDatos();
+    el.className = 'asis-select val-LT';
+    el.value = 'LT';
+    actualizarStats();
+  };
+  document.getElementById('modalLTTime').value = new Date().toTimeString().slice(0,5);
+  document.getElementById('modalLT').style.display = 'flex';
+  document.getElementById('modalLTTime').focus();
+}
+function cerrarModalLT() { document.getElementById('modalLT').style.display = 'none'; }
+function guardarModalLT() {
+  var hora = document.getElementById('modalLTTime').value.trim();
+  if (!hora) { alert('Ingrese la hora de llegada.'); return; }
+  if (_ltCallback) _ltCallback(hora);
+  cerrarModalLT();
+}
+
+// ---- Modal para SA (Salida Anticipada) ----
+var _saCallback = null;
+function mostrarModalSA(dateKey, sid, el) {
+  _saCallback = function(hora, autorizacion) {
+    DATA[dateKey][sid] = 'SA|' + hora + '|' + autorizacion;
+    guardarDatos();
+    el.className = 'asis-select val-SA';
+    el.value = 'SA';
+    actualizarStats();
+  };
+  document.getElementById('modalSATime').value = new Date().toTimeString().slice(0,5);
+  document.getElementById('modalSAAuth').value = 'Madre';
+  document.getElementById('modalSA').style.display = 'flex';
+  document.getElementById('modalSATime').focus();
+}
+function cerrarModalSA() { document.getElementById('modalSA').style.display = 'none'; }
+function guardarModalSA() {
+  var hora = document.getElementById('modalSATime').value.trim();
+  var auth = document.getElementById('modalSAAuth').value;
+  if (!hora) { alert('Ingrese la hora de salida.'); return; }
+  if (_saCallback) _saCallback(hora, auth);
+  cerrarModalSA();
+}
+
 function actualizarStats() {
-  var stats = { L:0, EP:0, NL:0, total:0 };
+  var stats = { P:0, A:0, AJ:0, LT:0, SA:0, total:0 };
   Object.keys(DATA).forEach(function(dateKey) {
     Object.keys(DATA[dateKey]).forEach(function(sid) {
       var v = DATA[dateKey][sid];
-      if (v === 'L') stats.L++;
-      else if (v === 'EP') stats.EP++;
-      else if (v === 'NL') stats.NL++;
+      var code = v ? v.split('|')[0] : '';
+      if (code === 'P') stats.P++;
+      else if (code === 'A') stats.A++;
+      else if (code === 'AJ') stats.AJ++;
+      else if (code === 'LT') stats.LT++;
+      else if (code === 'SA') stats.SA++;
     });
   });
-  stats.total = stats.L + stats.EP + stats.NL;
-  document.getElementById('totalL').textContent = stats.L;
-  document.getElementById('totalEP').textContent = stats.EP;
-  document.getElementById('totalNL').textContent = stats.NL;
-  var pct = stats.total > 0 ? Math.round((stats.L + stats.EP) / stats.total * 100) : 0;
-  document.getElementById('pctLogro').textContent = pct + '% (sobre ' + stats.total + ' registros)';
+  stats.total = stats.P + stats.A + stats.AJ + stats.LT + stats.SA;
+  document.getElementById('totalP').textContent = stats.P;
+  document.getElementById('totalA').textContent = stats.A;
+  document.getElementById('totalAJ').textContent = stats.AJ;
+  document.getElementById('totalLT').textContent = stats.LT;
+  document.getElementById('totalSA').textContent = stats.SA;
+  document.getElementById('totalRegistros').textContent = stats.total;
 }
 
 function filtrarMes() {
@@ -723,48 +821,58 @@ function renderResumen() {
 
   var resumenHtml = '<div class="mes-section"><div class="mes-header">Resumen General' + (mActual ? ' — ' + mActual.nombre : '') + '</div><div class="tbl-wrap"><table><thead><tr>';
   resumenHtml += '<th>#</th><th class="stu-name">Apellidos y Nombres</th>';
-  resumenHtml += '<th>Total<br>Jornadas</th><th>L</th><th>EP</th><th>NL</th><th>% Logro</th><th>Barra</th>';
+  resumenHtml += '<th>Total<br>Jornadas</th><th>P</th><th>A</th><th>AJ</th><th>LT</th><th>SA</th><th>% Presente</th><th>Barra</th>';
   resumenHtml += '</tr></thead><tbody>';
 
-  var statsGlobal = { L:0, EP:0, NL:0, total:0 };
+  var statsGlobal = { P:0, A:0, AJ:0, LT:0, SA:0, total:0 };
 
   STUDENTS.forEach(function(s) {
     var sid = 's' + s.num;
-    var logrados = 0, enProceso = 0, noLogrados = 0, total = 0;
+    var p = 0, a = 0, aj = 0, lt = 0, sa = 0, total = 0;
 
     fechas.forEach(function(f) {
       var v = DATA[f.dateKey] ? DATA[f.dateKey][sid] : '';
-      if (v === 'L') { logrados++; total++; }
-      else if (v === 'EP') { enProceso++; total++; }
-      else if (v === 'NL') { noLogrados++; total++; }
+      var code = v ? v.split('|')[0] : '';
+      if (code === 'P') { p++; total++; }
+      else if (code === 'A') { a++; total++; }
+      else if (code === 'AJ') { aj++; total++; }
+      else if (code === 'LT') { lt++; total++; }
+      else if (code === 'SA') { sa++; total++; }
     });
 
-    var pct = total > 0 ? Math.round((logrados + enProceso) / total * 100) : 0;
+    var presentes = p + lt + sa;
+    var pct = total > 0 ? Math.round(presentes / total * 100) : 0;
     var colorBar = pct >= 80 ? '#2e7d32' : pct >= 60 ? '#f57f17' : '#c62828';
 
     resumenHtml += '<tr>';
     resumenHtml += '<td>' + s.num + '</td>';
     resumenHtml += '<td class="stu-name">' + s.name + '</td>';
     resumenHtml += '<td>' + total + '</td>';
-    resumenHtml += '<td style="font-weight:600;color:#2e7d32">' + logrados + '</td>';
-    resumenHtml += '<td style="font-weight:600;color:#f57f17">' + enProceso + '</td>';
-    resumenHtml += '<td style="font-weight:600;color:#b71c1c">' + noLogrados + '</td>';
+    resumenHtml += '<td style="font-weight:600;color:#2e7d32">' + p + '</td>';
+    resumenHtml += '<td style="font-weight:600;color:#b71c1c">' + a + '</td>';
+    resumenHtml += '<td style="font-weight:600;color:#0d47a1">' + aj + '</td>';
+    resumenHtml += '<td style="font-weight:600;color:#e65100">' + lt + '</td>';
+    resumenHtml += '<td style="font-weight:600;color:#6a1b9a">' + sa + '</td>';
     resumenHtml += '<td><span style="background:' + (pct >= 80 ? '#c8e6c9' : pct >= 60 ? '#fff9c4' : '#ffcdd2') + ';color:' + colorBar + ';padding:3px 8px;border-radius:4px;font-weight:700">' + pct + '%</span></td>';
     resumenHtml += '<td style="min-width:120px"><div style="background:#e8eaf6;border-radius:4px;height:12px;overflow:hidden"><div style="height:100%;width:' + pct + '%;background:' + colorBar + ';border-radius:4px;transition:width .3s"></div></div></td>';
     resumenHtml += '</tr>';
 
-    statsGlobal.L += logrados;
-    statsGlobal.EP += enProceso;
-    statsGlobal.NL += noLogrados;
+    statsGlobal.P += p;
+    statsGlobal.A += a;
+    statsGlobal.AJ += aj;
+    statsGlobal.LT += lt;
+    statsGlobal.SA += sa;
     statsGlobal.total += total;
   });
 
-  var pctGlobal = statsGlobal.total > 0 ? Math.round((statsGlobal.L + statsGlobal.EP) / statsGlobal.total * 100) : 0;
+  var pctGlobal = statsGlobal.total > 0 ? Math.round((statsGlobal.P + statsGlobal.LT + statsGlobal.SA) / statsGlobal.total * 100) : 0;
   resumenHtml += '<tr class="resumen-row"><td colspan="2" style="text-align:right;padding-right:10px">Totales</td>';
   resumenHtml += '<td>' + statsGlobal.total + '</td>';
-  resumenHtml += '<td class="total-l">' + statsGlobal.L + '</td>';
-  resumenHtml += '<td class="total-ep">' + statsGlobal.EP + '</td>';
-  resumenHtml += '<td class="total-nl">' + statsGlobal.NL + '</td>';
+  resumenHtml += '<td style="font-weight:600;color:#2e7d32">' + statsGlobal.P + '</td>';
+  resumenHtml += '<td style="font-weight:600;color:#b71c1c">' + statsGlobal.A + '</td>';
+  resumenHtml += '<td style="font-weight:600;color:#0d47a1">' + statsGlobal.AJ + '</td>';
+  resumenHtml += '<td style="font-weight:600;color:#e65100">' + statsGlobal.LT + '</td>';
+  resumenHtml += '<td style="font-weight:600;color:#6a1b9a">' + statsGlobal.SA + '</td>';
   resumenHtml += '<td><span style="font-size:14px;font-weight:700;color:' + (pctGlobal >= 80 ? '#2e7d32' : pctGlobal >= 60 ? '#f57f17' : '#c62828') + '">' + pctGlobal + '%</span></td>';
   resumenHtml += '<td></td></tr>';
 
@@ -773,10 +881,12 @@ function renderResumen() {
   resumenHtml += '<div class="mes-section"><div class="mes-header">Estadísticas del Curso</div><div style="padding:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px">';
   resumenHtml += '<div style="background:#e8f5e9;padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;color:#2e7d32;font-weight:600">Total Alumnos</div><div style="font-size:24px;font-weight:700;color:#1b5e20">' + STUDENTS.length + '</div></div>';
   resumenHtml += '<div style="background:#e8eaf6;padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;color:#283593;font-weight:600">Total Jornadas</div><div style="font-size:24px;font-weight:700;color:#1a237e">' + fechas.length + '</div></div>';
-  resumenHtml += '<div style="background:#c8e6c9;padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;color:#1b5e20;font-weight:600">Logrados (L)</div><div style="font-size:24px;font-weight:700;color:#1b5e20">' + statsGlobal.L + '</div></div>';
-  resumenHtml += '<div style="background:#fff9c4;padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;color:#f57f17;font-weight:600">En Proceso (EP)</div><div style="font-size:24px;font-weight:700;color:#e65100">' + statsGlobal.EP + '</div></div>';
-  resumenHtml += '<div style="background:#ffcdd2;padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;color:#b71c1c;font-weight:600">No Logrado (NL)</div><div style="font-size:24px;font-weight:700;color:#b71c1c">' + statsGlobal.NL + '</div></div>';
-  resumenHtml += '<div style="background:' + (pctGlobal >= 80 ? '#c8e6c9' : pctGlobal >= 60 ? '#fff9c4' : '#ffcdd2') + ';padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;font-weight:600;color:' + (pctGlobal >= 80 ? '#1b5e20' : pctGlobal >= 60 ? '#f57f17' : '#b71c1c') + '">% Logro General</div><div style="font-size:32px;font-weight:700;color:' + (pctGlobal >= 80 ? '#1b5e20' : pctGlobal >= 60 ? '#e65100' : '#b71c1c') + '">' + pctGlobal + '%</div></div>';
+  resumenHtml += '<div style="background:#c8e6c9;padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;color:#1b5e20;font-weight:600">Presentes (P)</div><div style="font-size:24px;font-weight:700;color:#1b5e20">' + statsGlobal.P + '</div></div>';
+  resumenHtml += '<div style="background:#ffcdd2;padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;color:#b71c1c;font-weight:600">Ausentes (A)</div><div style="font-size:24px;font-weight:700;color:#b71c1c">' + statsGlobal.A + '</div></div>';
+  resumenHtml += '<div style="background:#e3f2fd;padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;color:#0d47a1;font-weight:600">Aus. Justificados (AJ)</div><div style="font-size:24px;font-weight:700;color:#0d47a1">' + statsGlobal.AJ + '</div></div>';
+  resumenHtml += '<div style="background:#fff3e0;padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;color:#e65100;font-weight:600">Lleg. Tardías (LT)</div><div style="font-size:24px;font-weight:700;color:#e65100">' + statsGlobal.LT + '</div></div>';
+  resumenHtml += '<div style="background:#f3e5f5;padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;color:#6a1b9a;font-weight:600">Salidas Anticip. (SA)</div><div style="font-size:24px;font-weight:700;color:#6a1b9a">' + statsGlobal.SA + '</div></div>';
+  resumenHtml += '<div style="background:' + (pctGlobal >= 80 ? '#c8e6c9' : pctGlobal >= 60 ? '#fff9c4' : '#ffcdd2') + ';padding:12px;border-radius:8px;text-align:center"><div style="font-size:11px;font-weight:600;color:' + (pctGlobal >= 80 ? '#1b5e20' : pctGlobal >= 60 ? '#f57f17' : '#b71c1c') + '">% Asistencia General</div><div style="font-size:32px;font-weight:700;color:' + (pctGlobal >= 80 ? '#1b5e20' : pctGlobal >= 60 ? '#e65100' : '#b71c1c') + '">' + pctGlobal + '%</div></div>';
   resumenHtml += '</div></div>';
 
   container.innerHTML = resumenHtml;
@@ -786,7 +896,7 @@ function renderResumen() {
 // Arranque
 // ============================================================
 window.addEventListener('DOMContentLoaded', function() {
-  // Actualizar nombre del docente desde panel_institucional
+  // Actualizar nombre del docente desde Perfil Institucional
   document.getElementById('headerDocente').textContent = DOCENTE_NOMBRE;
 
   cargarCalendario();
@@ -795,6 +905,44 @@ window.addEventListener('DOMContentLoaded', function() {
   cargarScriptAlumnos();
 });
 </script>
+
+<!-- MODAL: Llegada Tardía -->
+<div id="modalLT" style="display:none;position:fixed;z-index:10000;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);align-items:center;justify-content:center" onclick="if(event.target===this)cerrarModalLT()">
+  <div style="background:#fff;border-radius:16px;padding:28px;max-width:360px;width:90%;box-shadow:0 24px 48px rgba(0,0,0,0.2)">
+    <h3 style="margin-bottom:16px">⏰ Llegada Tardía</h3>
+    <div class="form-group" style="margin-bottom:16px">
+      <label>Hora de llegada:</label>
+      <input type="time" id="modalLTTime" style="padding:10px;border:1px solid #b6c6da;border-radius:10px;font-size:16px;width:100%;margin-top:6px">
+    </div>
+    <div style="display:flex;gap:10px;justify-content:flex-end">
+      <button class="btn btn-outline" onclick="cerrarModalLT()">Cancelar</button>
+      <button class="btn btn-primary" onclick="guardarModalLT()">💾 Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Salida Anticipada -->
+<div id="modalSA" style="display:none;position:fixed;z-index:10000;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);align-items:center;justify-content:center" onclick="if(event.target===this)cerrarModalSA()">
+  <div style="background:#fff;border-radius:16px;padding:28px;max-width:380px;width:90%;box-shadow:0 24px 48px rgba(0,0,0,0.2)">
+    <h3 style="margin-bottom:16px">🚶 Salida Anticipada</h3>
+    <div class="form-group" style="margin-bottom:12px">
+      <label>Hora de salida:</label>
+      <input type="time" id="modalSATime" style="padding:10px;border:1px solid #b6c6da;border-radius:10px;font-size:16px;width:100%;margin-top:6px">
+    </div>
+    <div class="form-group" style="margin-bottom:16px">
+      <label>Autorización de:</label>
+      <select id="modalSAAuth" style="padding:10px;border:1px solid #b6c6da;border-radius:10px;font-size:14px;width:100%;margin-top:6px">
+        <option value="Madre">Madre</option>
+        <option value="Padre">Padre</option>
+        <option value="Otro">Otro</option>
+      </select>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:flex-end">
+      <button class="btn btn-outline" onclick="cerrarModalSA()">Cancelar</button>
+      <button class="btn btn-primary" onclick="guardarModalSA()">💾 Guardar</button>
+    </div>
+  </div>
+</div>
 
 <script src="nav/nav.js"></script>
 </body>

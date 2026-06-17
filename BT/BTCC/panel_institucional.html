@@ -590,11 +590,40 @@ function loadSTATE() {
 
 function saveSTATE() {
   if (!STATE) return false;
-  var estado = obtenerEstado();
+  // Intentar primero por sesión
   var idx = getInstitucionIndex();
-  if (idx < 0) return false;
+  if (idx < 0) {
+    // Fallback: buscar institución por id en STATE
+    var estado = obtenerEstado();
+    for (var i = 0; i < estado.instituciones.length; i++) {
+      if (estado.instituciones[i].id === STATE.id) { idx = i; break; }
+    }
+    if (idx < 0) return false;
+    // Re-establecer sesión
+    setSession(STATE.id, STATE.nombre);
+  }
+  var estado = obtenerEstado();
   estado.instituciones[idx] = STATE;
-  return guardarEstadoGlobal(estado);
+  var ok = guardarEstadoGlobal(estado);
+  if (ok) {
+    // Verificar que se guardó correctamente
+    var verif = localStorage.getItem(INST_KEY);
+    if (verif) {
+      try {
+        var parsed = JSON.parse(verif);
+        if (parsed.instituciones && Array.isArray(parsed.instituciones)) {
+          // Buscar nuestra institución en los datos verificados
+          var encontrada = false;
+          for (var vi = 0; vi < parsed.instituciones.length; vi++) {
+            if (parsed.instituciones[vi].id === STATE.id) { encontrada = true; break; }
+          }
+          if (encontrada) return true;
+        }
+      } catch(e) {}
+    }
+    return false;
+  }
+  return false;
 }
 
 // ---- Helper para obtener la institución activa (compatible con funciones existentes) ----
@@ -887,9 +916,13 @@ function editarAsignatura(idx) {
 }
 
 function guardarAsignaturas() {
-  saveSTATE();
-  mostrarAlerta('✅ Asignaturas y horarios guardados correctamente.', 'success');
-  renderHorario();
+  var ok = saveSTATE();
+  if (ok) {
+    mostrarAlerta('✅ Asignaturas y horarios guardados correctamente.', 'success');
+    renderHorario();
+  } else {
+    mostrarAlerta('❌ Error al guardar. Intente cerrar sesión y volver a acceder.', 'info');
+  }
 }
 
 function asignarDocente(idx) {
