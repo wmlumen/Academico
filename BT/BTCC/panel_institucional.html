@@ -106,18 +106,36 @@ body:not(.rol-alumno) .hide-docente{display:none !important}
 
   <!-- TITLE -->
   <div style="margin-bottom:20px">
-    <h1 style="font-size:28px" id="panelTitle">Panel Institucional</h1>
-    <p style="color:var(--muted);font-size:15px;margin-top:6px" id="panelSubtitle">Registro central institucional.</p>
-    <div id="institucionHeader" style="display:none;margin-top:10px;padding:10px 16px;background:var(--soft);border-radius:10px;border-left:4px solid var(--primary);font-size:16px;font-weight:600;color:var(--primary)"></div>
+    <h1 style="font-size:28px" id="panelTitle">Perfil Institucional</h1>
+    <p style="color:var(--muted);font-size:15px;margin-top:6px" id="panelSubtitle">Gestión de instituciones educativas.</p>
+    <div id="institucionHeader" style="display:none;margin-top:10px;padding:10px 16px;background:var(--soft);border-radius:10px;border-left:4px solid var(--primary);font-size:16px;font-weight:600;color:var(--primary)">
+      <span id="instHeaderNombre"></span>
+      <button id="btnCerrarInstitucion" class="btn btn-sm btn-outline" style="float:right;margin-top:-2px" onclick="cerrarSesionInstitucion()">✕ Cerrar sesión</button>
+    </div>
   </div>
 
-  <!-- TABS -->
-  <div class="tabs" id="tabBar">
-    <button class="tab-btn active" data-tab="tabDocente">👨‍🏫 Docente</button>
-    <button class="tab-btn" data-tab="tabAsignaturas">📚 Asignaturas</button>
-    <button class="tab-btn" data-tab="tabHorario">⏰ Horario</button>
-    <button class="tab-btn" data-tab="tabCalendario">📅 Calendario</button>
+  <!-- VISTA: LISTA DE INSTITUCIONES -->
+  <div id="vistaInstituciones" style="display:block">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px">
+      <h2 style="margin:0;font-size:20px">🏛️ Instituciones</h2>
+      <button class="btn btn-primary" id="btnNuevaInstitucion" onclick="mostrarModalInstitucion()">➕ Nueva institución</button>
+    </div>
+    <div id="institucionesContainer" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px"></div>
   </div>
+
+  <!-- VISTA: DETALLE DE INSTITUCIÓN -->
+  <div id="vistaDetalleInstitucion" style="display:none">
+    <div style="margin-bottom:16px">
+      <button class="btn btn-sm btn-outline" onclick="volverAInstituciones()">← Volver a instituciones</button>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs" id="tabBar">
+      <button class="tab-btn active" data-tab="tabDocente">👨‍🏫 Docente</button>
+      <button class="tab-btn" data-tab="tabAsignaturas">📚 Asignaturas</button>
+      <button class="tab-btn" data-tab="tabHorario">⏰ Horario</button>
+      <button class="tab-btn" data-tab="tabCalendario">📅 Calendario</button>
+    </div>
 
   <!-- ============================== TAB 1: DOCENTES ============================== -->
   <div id="tabDocente" class="tab-content active">
@@ -194,11 +212,40 @@ body:not(.rol-alumno) .hide-docente{display:none !important}
 
   <!-- Footer con estado -->
   <div style="margin-top:28px;padding:12px 16px;background:#f5f9ff;border:1px solid #d7dfeb;border-radius:10px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-    <span>💾 Datos sincronizados en <strong>JSON</strong> y espejo local · clave <code style="background:#eef3f9;padding:2px 6px;border-radius:4px">panel_institucional</code></span>
+    <span>💾 Datos guardados en <strong>localStorage</strong> · clave <code style="background:#eef3f9;padding:2px 6px;border-radius:4px">perfil_institucional</code></span>
     <span class="hide-alumno">
       <span id="storageStatus" style="color:#2e7d32">✓ Listo</span>
-      <button class="btn btn-sm btn-outline" onclick="verificarStorage()" style="margin-left:8px">🔍 Verificar</button>
     </span>
+  </div>
+</div> <!-- /vistaDetalleInstitucion -->
+
+</div> <!-- /page -->
+
+<!-- ============================== MODAL INSTITUCION ============================== -->
+<div id="modalInstitucion" style="display:none;position:fixed;z-index:10000;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);align-items:center;justify-content:center" onclick="if(event.target===this)cerrarModalInstitucion()">
+  <div style="background:#fff;border-radius:16px;padding:28px;max-width:420px;width:90%;box-shadow:0 24px 48px rgba(0,0,0,0.2)">
+    <h3 id="modalInstTitle" style="margin-bottom:16px">🏛️ Nueva institución</h3>
+    <div class="form-grid">
+      <div class="form-group"><label>Nombre de la institución</label><input type="text" id="modalInstNombre" placeholder="Ej: Colegio Nacional ..."></div>
+      <div class="form-group"><label>Contraseña de acceso</label><input type="password" id="modalInstPassword" placeholder="Contraseña"></div>
+    </div>
+    <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end">
+      <button class="btn btn-outline" onclick="cerrarModalInstitucion()">Cancelar</button>
+      <button class="btn btn-primary" id="btnGuardarInst" onclick="guardarInstitucion()">💾 Crear institución</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== MODAL ACCEDER ============================== -->
+<div id="modalAcceder" style="display:none;position:fixed;z-index:10000;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);align-items:center;justify-content:center" onclick="if(event.target===this)cerrarModalAcceder()">
+  <div style="background:#fff;border-radius:16px;padding:28px;max-width:380px;width:90%;box-shadow:0 24px 48px rgba(0,0,0,0.2)">
+    <h3 id="modalAccederTitle" style="margin-bottom:16px">🔐 Acceder a institución</h3>
+    <p id="modalAccederNombre" style="margin-bottom:12px;color:var(--muted)"></p>
+    <div class="form-group"><label>Contraseña</label><input type="password" id="modalAccederPassword" placeholder="Ingrese la contraseña" onkeydown="if(event.key==='Enter')accederInstitucion()"></div>
+    <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end">
+      <button class="btn btn-outline" onclick="cerrarModalAcceder()">Cancelar</button>
+      <button class="btn btn-primary" onclick="accederInstitucion()">🔓 Acceder</button>
+    </div>
   </div>
 </div>
 
@@ -223,139 +270,354 @@ body:not(.rol-alumno) .hide-docente{display:none !important}
 
 <script>
 // ============================================================
-// PANEL INSTITUCIONAL — lógica completa
+// PERFIL INSTITUCIONAL — multi-institución con contraseña
 // ============================================================
 
 window.BTCC_APP = (window.BTCCRuntime && window.BTCCRuntime.loadJson('/data/app_config.json', null)) || { branding: {}, defaults: {} };
 var BTCC_APP = window.BTCC_APP;
-var INST_KEY = 'panel_institucional';
+var INST_KEY = 'perfil_institucional';
+var SESSION_KEY = 'perfil_inst_session';
 var ES_ALUMNO = false;
 try {
   var login = JSON.parse(localStorage.getItem('alumno_login'));
   if (login && login.num) ES_ALUMNO = true;
 } catch(e) {}
-// Si el body tiene clase rol-alumno (forzado desde nav.js)
 if (document.body.classList.contains('rol-alumno')) ES_ALUMNO = true;
 
-// ---- Estado por defecto ----
-document.title = (BTCC_APP.branding.shortName || 'Portal') + ' - Panel Institucional';
-document.getElementById('panelTitle').textContent = 'Panel Institucional - ' + (BTCC_APP.branding.shortName || '');
-document.getElementById('panelSubtitle').textContent = 'Registro central del docente, asignaturas, horarios y calendario academico ' + (BTCC_APP.branding.shortName || '');
-function actualizarInstitucionHeader() {
-  var el = document.getElementById('institucionHeader');
-  if (!el) return;
-  try {
-    var s = JSON.parse(localStorage.getItem(INST_KEY));
-    if (s && s.institucion) { el.textContent = '🏫 ' + s.institucion; el.style.display = ''; return; }
-    if (s && s.docentes && s.docentes.length > 0 && s.docentes[0].institucion) {
-      el.textContent = '🏫 ' + s.docentes[0].institucion; el.style.display = '';
-      // Migrar a campo global
-      s.institucion = s.docentes[0].institucion;
-      localStorage.setItem(INST_KEY, JSON.stringify(s));
-      return;
-    }
-  } catch(e) {}
-  el.style.display = 'none';
-}
-var DEFAULT_STATE = null;
-function cargarDefaultState() {
-  if (DEFAULT_STATE) return;
-  // Intentar con BTCCRuntime (original)
+// ---- Inicializar datos por defecto ----
+var DEFAULT_INSTITUCIONES = null;
+function cargarInstitucionesDefault() {
+  if (DEFAULT_INSTITUCIONES) return;
   if (window.BTCCRuntime) {
     var d = BTCCRuntime.loadJson('/data/panel_institucional_default.json', null);
-    if (d) { DEFAULT_STATE = d; return; }
+    if (d) { DEFAULT_INSTITUCIONES = d; return; }
   }
-  // Intentar fetch del JSON directamente
   try {
     var x = new XMLHttpRequest();
     x.open('GET', 'data/panel_institucional_default.json', false);
     x.send();
     if (x.status === 200) {
       var d = JSON.parse(x.responseText);
-      if (d && d.docentes) {
-        // Extraer institucion global desde el primer docente
-        if (!d.institucion && d.docentes.length > 0 && d.docentes[0].institucion) {
-          d.institucion = d.docentes[0].institucion;
-        }
-        DEFAULT_STATE = d; return;
-      }
+      if (d && d.docentes) { DEFAULT_INSTITUCIONES = d; return; }
     }
   } catch(e) {}
-  // Fallback vacío
-  DEFAULT_STATE = { docentes: [], asignaturas: [], eventosCalendario: [], institucion: '' };
+  DEFAULT_INSTITUCIONES = null;
 }
-cargarDefaultState();
-function getDefaultState() {
-  return JSON.parse(JSON.stringify(DEFAULT_STATE));
-}
+cargarInstitucionesDefault();
 
-// ---- Cargar / guardar estado ----
-function cargarEstado() {
+// ---- Estado global: instituciones[] ----
+function obtenerEstado() {
   try {
     var s = localStorage.getItem(INST_KEY);
     if (s) {
       var parsed = JSON.parse(s);
-      var def = getDefaultState();
-      // Migración: si existe docente único → pasar a docentes[]
-      if (parsed.docente && !parsed.docentes) {
-        parsed.docentes = [{
-          id: 'd1',
-          nombre: parsed.docente.nombre || def.docentes[0].nombre,
-          cedula: parsed.docente.cedula || def.docentes[0].cedula,
-          especialidad: parsed.docente.especialidad || def.docentes[0].especialidad,
-          institucion: parsed.docente.institucion || def.docentes[0].institucion,
-          email: parsed.docente.email || '',
-          telefono: parsed.docente.telefono || ''
-        }];
-        delete parsed.docente;
-        // Asignar docenteId a las asignaturas existentes
-        if (parsed.asignaturas) {
-          parsed.asignaturas.forEach(function(a) { a.docenteId = 'd1'; });
-        }
-      }
-      if (!parsed.docentes || parsed.docentes.length === 0) parsed.docentes = def.docentes;
-      if (!parsed.asignaturas) parsed.asignaturas = def.asignaturas;
-      if (!parsed.eventosCalendario) parsed.eventosCalendario = def.eventosCalendario;
-      // Migrar institucion a campo global
-      if (!parsed.institucion && parsed.docentes && parsed.docentes.length > 0 && parsed.docentes[0].institucion) {
-        parsed.institucion = parsed.docentes[0].institucion;
-      }
-      return parsed;
+      if (parsed && parsed.instituciones && Array.isArray(parsed.instituciones)) return parsed;
     }
   } catch(e) {}
-  return getDefaultState();
+  return { instituciones: [] };
 }
 
-function guardarEstado(state) {
+function guardarEstadoGlobal(data) {
   try {
-    // Actualizar institucion global desde el primer docente
-    if (state.docentes && state.docentes.length > 0 && state.docentes[0].institucion) {
-      state.institucion = state.docentes[0].institucion;
-    }
-    var json = JSON.stringify(state);
-    localStorage.setItem(INST_KEY, json);
-    // Verificar que se guardó correctamente
-    var verif = localStorage.getItem(INST_KEY);
-    if (verif !== json) {
-      mostrarAlerta('⚠️ Error de verificación: los datos no se guardaron correctamente.', 'info');
-      return false;
-    }
-    actualizarInstitucionHeader();
+    localStorage.setItem(INST_KEY, JSON.stringify(data));
     return true;
-  } catch(e) {
-    mostrarAlerta('❌ Error al guardar en localStorage: ' + e.message + '\nVerifique que el almacenamiento no esté lleno.', 'info');
-    return false;
+  } catch(e) { return false; }
+}
+
+// ---- Migración desde formato anterior (panel_institucional) ----
+function migrarDesdeAnterior() {
+  try {
+    var old = localStorage.getItem('panel_institucional');
+    if (!old) return false;
+    var oldData = JSON.parse(old);
+    if (!oldData || oldData.instituciones) return false; // ya migrado
+    var nombreInst = oldData.institucion || (oldData.docentes && oldData.docentes[0] && oldData.docentes[0].institucion) || 'Institución';
+    var nuevaInst = {
+      id: 'inst_' + Date.now(),
+      nombre: nombreInst,
+      password: '1340130',
+      docentes: oldData.docentes || [],
+      asignaturas: oldData.asignaturas || [],
+      eventosCalendario: oldData.eventosCalendario || []
+    };
+    var estado = obtenerEstado();
+    estado.instituciones.push(nuevaInst);
+    guardarEstadoGlobal(estado);
+    // Limpiar vieja clave
+    localStorage.removeItem('panel_institucional');
+    return true;
+  } catch(e) { return false; }
+}
+
+// ---- Sesión activa ----
+function getSession() {
+  try {
+    var s = JSON.parse(localStorage.getItem(SESSION_KEY));
+    if (s && s.id) return s;
+  } catch(e) {}
+  return null;
+}
+
+function setSession(id, nombre) {
+  localStorage.setItem(SESSION_KEY, JSON.stringify({ id: id, nombre: nombre }));
+}
+
+function clearSession() {
+  localStorage.removeItem(SESSION_KEY);
+}
+
+function getInstitucionActual() {
+  var ses = getSession();
+  if (!ses) return null;
+  var estado = obtenerEstado();
+  var inst = null;
+  for (var i = 0; i < estado.instituciones.length; i++) {
+    if (estado.instituciones[i].id === ses.id) { inst = estado.instituciones[i]; break; }
+  }
+  return inst;
+}
+
+function getInstitucionIndex() {
+  var ses = getSession();
+  if (!ses) return -1;
+  var estado = obtenerEstado();
+  for (var i = 0; i < estado.instituciones.length; i++) {
+    if (estado.instituciones[i].id === ses.id) return i;
+  }
+  return -1;
+}
+
+// ---- Vista: instituciones list / detail ----
+function mostrarVistaInstituciones() {
+  document.getElementById('vistaInstituciones').style.display = 'block';
+  document.getElementById('vistaDetalleInstitucion').style.display = 'none';
+  document.getElementById('institucionHeader').style.display = 'none';
+  document.title = (BTCC_APP.branding.shortName || 'Portal') + ' - Perfil Institucional';
+  renderInstituciones();
+}
+
+function mostrarVistaDetalle() {
+  document.getElementById('vistaInstituciones').style.display = 'none';
+  document.getElementById('vistaDetalleInstitucion').style.display = 'block';
+  var ses = getSession();
+  if (ses) {
+    document.getElementById('institucionHeader').style.display = '';
+    document.getElementById('instHeaderNombre').textContent = '🏫 ' + ses.nombre;
+  }
+  document.title = ses ? (ses.nombre + ' - Perfil Institucional') : 'Perfil Institucional';
+  loadSTATE(); // Cargar datos de la institución actual
+  renderDocentes();
+  renderAsignaturas();
+  renderHorario();
+  renderCalendario();
+  // Activar primer tab
+  document.querySelectorAll('#tabBar .tab-btn').forEach(function(b,i){ b.classList.toggle('active',i===0); });
+  document.querySelectorAll('.tab-content').forEach(function(t,i){ t.classList.toggle('active',i===0); });
+}
+
+function volverAInstituciones() {
+  clearSession();
+  mostrarVistaInstituciones();
+}
+
+function cerrarSesionInstitucion() {
+  if (confirm('¿Cerrar sesión en esta institución?')) volverAInstituciones();
+}
+
+// ---- Renderizar lista de instituciones ----
+function renderInstituciones() {
+  var estado = obtenerEstado();
+  var container = document.getElementById('institucionesContainer');
+  container.innerHTML = '';
+  if (estado.instituciones.length === 0) {
+    // Si hay datos por defecto, migrar
+    var migrado = migrarDesdeAnterior();
+    if (!migrado && DEFAULT_INSTITUCIONES && DEFAULT_INSTITUCIONES.docentes) {
+      estado = obtenerEstado();
+      var nombreInst = DEFAULT_INSTITUCIONES.institucion || (DEFAULT_INSTITUCIONES.docentes[0] && DEFAULT_INSTITUCIONES.docentes[0].institucion) || 'Colegio Nacional Defensores del Chaco';
+      estado.instituciones.push({
+        id: 'inst_default',
+        nombre: nombreInst,
+        password: '1340130',
+        docentes: DEFAULT_INSTITUCIONES.docentes || [],
+        asignaturas: DEFAULT_INSTITUCIONES.asignaturas || [],
+        eventosCalendario: DEFAULT_INSTITUCIONES.eventosCalendario || []
+      });
+      guardarEstadoGlobal(estado);
+    }
+  }
+  if (estado.instituciones.length === 0) {
+    container.innerHTML = '<div style="padding:40px;text-align:center;color:var(--muted)">📭 No hay instituciones registradas. Cree una nueva institución para comenzar.</div>';
+    return;
+  }
+  for (var i = 0; i < estado.instituciones.length; i++) {
+    var inst = estado.instituciones[i];
+    var card = document.createElement('div');
+    card.style.cssText = 'border:1px solid var(--line);border-radius:14px;padding:20px;background:var(--panel);box-shadow:0 4px 12px rgba(27,47,74,0.06)';
+    card.innerHTML = '<div style="font-size:32px;margin-bottom:8px">🏛️</div>' +
+      '<h3 style="margin:0 0 6px;font-size:17px">' + inst.nombre + '</h3>' +
+      '<div style="font-size:13px;color:var(--muted);margin-bottom:14px">' +
+        (inst.docentes ? inst.docentes.length : 0) + ' docentes · ' +
+        (inst.asignaturas ? inst.asignaturas.length : 0) + ' asignaturas · ' +
+        (inst.eventosCalendario ? inst.eventosCalendario.length : 0) + ' eventos' +
+      '</div>' +
+      '<div style="display:flex;gap:8px">' +
+        '<button class="btn btn-primary btn-sm" onclick="pedirAcceso(\'' + inst.id + '\')">🔓 Acceder</button>' +
+        '<button class="btn btn-outline btn-sm" onclick="editarInstitucion(\'' + inst.id + '\')">✏️ Editar</button>' +
+        '<button class="btn btn-danger btn-sm" onclick="eliminarInstitucion(\'' + inst.id + '\')">🗑️</button>' +
+      '</div>';
+    container.appendChild(card);
   }
 }
 
-var STATE = cargarEstado();
-actualizarInstitucionHeader();
+// ---- Modal: nueva / editar institución ----
+var editingInstId = null;
+
+function mostrarModalInstitucion() {
+  editingInstId = null;
+  document.getElementById('modalInstTitle').textContent = '🏛️ Nueva institución';
+  document.getElementById('modalInstNombre').value = '';
+  document.getElementById('modalInstPassword').value = '';
+  document.getElementById('btnGuardarInst').textContent = '💾 Crear institución';
+  document.getElementById('modalInstitucion').style.display = 'flex';
+}
+
+function editarInstitucion(id) {
+  var estado = obtenerEstado();
+  var inst = null;
+  for (var i = 0; i < estado.instituciones.length; i++) {
+    if (estado.instituciones[i].id === id) { inst = estado.instituciones[i]; break; }
+  }
+  if (!inst) return;
+  editingInstId = id;
+  document.getElementById('modalInstTitle').textContent = '✏️ Editar institución';
+  document.getElementById('modalInstNombre').value = inst.nombre;
+  document.getElementById('modalInstPassword').value = inst.password || '';
+  document.getElementById('btnGuardarInst').textContent = '💾 Guardar';
+  document.getElementById('modalInstitucion').style.display = 'flex';
+}
+
+function cerrarModalInstitucion() {
+  document.getElementById('modalInstitucion').style.display = 'none';
+}
+
+function guardarInstitucion() {
+  var nombre = document.getElementById('modalInstNombre').value.trim();
+  var password = document.getElementById('modalInstPassword').value.trim();
+  if (!nombre) { mostrarAlerta('Ingrese el nombre de la institución.', 'info'); return; }
+  if (!password) { mostrarAlerta('Debe establecer una contraseña para acceder.', 'info'); return; }
+  var estado = obtenerEstado();
+  if (editingInstId) {
+    for (var i = 0; i < estado.instituciones.length; i++) {
+      if (estado.instituciones[i].id === editingInstId) {
+        estado.instituciones[i].nombre = nombre;
+        estado.instituciones[i].password = password;
+        break;
+      }
+    }
+  } else {
+    estado.instituciones.push({
+      id: 'inst_' + Date.now(),
+      nombre: nombre,
+      password: password,
+      docentes: [],
+      asignaturas: [],
+      eventosCalendario: []
+    });
+  }
+  guardarEstadoGlobal(estado);
+  cerrarModalInstitucion();
+  renderInstituciones();
+}
+
+function eliminarInstitucion(id) {
+  if (!confirm('¿Eliminar esta institución? Todos sus datos se perderán.')) return;
+  var estado = obtenerEstado();
+  estado.instituciones = estado.instituciones.filter(function(i){ return i.id !== id; });
+  guardarEstadoGlobal(estado);
+  renderInstituciones();
+}
+
+// ---- Acceso con contraseña ----
+var accediendoInstId = null;
+
+function pedirAcceso(id) {
+  accediendoInstId = id;
+  var estado = obtenerEstado();
+  var inst = null;
+  for (var i = 0; i < estado.instituciones.length; i++) {
+    if (estado.instituciones[i].id === id) { inst = estado.instituciones[i]; break; }
+  }
+  if (!inst) return;
+  document.getElementById('modalAccederNombre').textContent = 'Institución: ' + inst.nombre;
+  document.getElementById('modalAccederPassword').value = '';
+  document.getElementById('modalAcceder').style.display = 'flex';
+  setTimeout(function(){ document.getElementById('modalAccederPassword').focus(); }, 100);
+}
+
+function cerrarModalAcceder() {
+  document.getElementById('modalAcceder').style.display = 'none';
+}
+
+function accederInstitucion() {
+  if (!accediendoInstId) return;
+  var estado = obtenerEstado();
+  var inst = null;
+  for (var i = 0; i < estado.instituciones.length; i++) {
+    if (estado.instituciones[i].id === accediendoInstId) { inst = estado.instituciones[i]; break; }
+  }
+  if (!inst) { mostrarAlerta('Institución no encontrada.', 'info'); cerrarModalAcceder(); return; }
+  var pw = document.getElementById('modalAccederPassword').value.trim();
+  if (pw !== inst.password) {
+    mostrarAlerta('❌ Contraseña incorrecta.', 'info');
+    document.getElementById('modalAccederPassword').value = '';
+    document.getElementById('modalAccederPassword').focus();
+    return;
+  }
+  cerrarModalAcceder();
+  setSession(inst.id, inst.nombre);
+  mostrarVistaDetalle();
+}
+
+// ---- Helpers para compatibilidad con funciones existentes ----
+var STATE = null;
+
+function loadSTATE() {
+  var inst = getInstActual();
+  STATE = inst || { docentes: [], asignaturas: [], eventosCalendario: [] };
+  return STATE;
+}
+
+function saveSTATE() {
+  if (!STATE) return false;
+  var estado = obtenerEstado();
+  var idx = getInstitucionIndex();
+  if (idx < 0) return false;
+  estado.instituciones[idx] = STATE;
+  return guardarEstadoGlobal(estado);
+}
+
+// ---- Helper para obtener la institución activa (compatible con funciones existentes) ----
+function getInstActual() {
+  return getInstitucionActual();
+}
+
+// ---- INIT ----
+// Migrar datos viejos al iniciar
+migrarDesdeAnterior();
+// Mostrar vista según sesión
+var ses = getSession();
+if (ses) {
+  mostrarVistaDetalle();
+} else {
+  mostrarVistaInstituciones();
+}
 
 // ==============================
 // TAB 1: DOCENTES (listado)
 // ==============================
 function renderDocentes() {
-  STATE = cargarEstado();
+  STATE = loadSTATE();
   var container = document.getElementById('docentesContainer');
   container.innerHTML = '';
 
@@ -445,7 +707,7 @@ function guardarModalDocente() {
       email: document.getElementById('modalDocEmail').value.trim(),
       telefono: document.getElementById('modalDocTelefono').value.trim()
     };
-    guardarEstado(STATE);
+    saveSTATE();
     renderDocentes();
     cerrarModalDocente();
     mostrarAlerta('✅ Docente actualizado.', 'success');
@@ -460,7 +722,7 @@ function guardarModalDocente() {
       email: document.getElementById('modalDocEmail').value.trim(),
       telefono: document.getElementById('modalDocTelefono').value.trim()
     });
-    guardarEstado(STATE);
+    saveSTATE();
     renderDocentes();
     renderAsignaturas();
     cerrarModalDocente();
@@ -479,14 +741,14 @@ function eliminarDocente(idx) {
   STATE.asignaturas.forEach(function(a) {
     if (a.docenteId === doc.id) a.docenteId = '';
   });
-  guardarEstado(STATE);
+  saveSTATE();
   renderDocentes();
   renderAsignaturas();
   mostrarAlerta('🗑️ Docente eliminado.', 'info');
 }
 
 function guardarDocentes() {
-  guardarEstado(STATE);
+  saveSTATE();
   mostrarAlerta('✅ Docentes guardados correctamente.', 'success');
 }
 
@@ -497,7 +759,7 @@ var DIAS = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
 var COLORES = ['#2e7d32','#1565c0','#e65100','#6a1b9a','#00838f','#c62828','#558b2f','#283593','#f57f17','#4e342e'];
 
 function renderAsignaturas() {
-  STATE = cargarEstado();
+  STATE = loadSTATE();
   var container = document.getElementById('asignaturasContainer');
   container.innerHTML = '';
 
@@ -603,7 +865,7 @@ function agregarBloque(idx) {
   }
 
   STATE.asignaturas[idx].horario.push(nuevoBloque);
-  var ok = guardarEstado(STATE);
+  var ok = saveSTATE();
   renderAsignaturas();
   renderHorario();
   if (ok) mostrarAlerta('✅ Bloque horario agregado correctamente.', 'success');
@@ -611,7 +873,7 @@ function agregarBloque(idx) {
 
 function eliminarBloque(idx, hidx) {
   STATE.asignaturas[idx].horario.splice(hidx, 1);
-  guardarEstado(STATE);
+  saveSTATE();
   renderAsignaturas();
 }
 
@@ -619,13 +881,13 @@ function editarAsignatura(idx) {
   var nuevo = prompt('Nombre de la asignatura:', STATE.asignaturas[idx].nombre);
   if (nuevo && nuevo.trim()) {
     STATE.asignaturas[idx].nombre = nuevo.trim();
-    guardarEstado(STATE);
+    saveSTATE();
     renderAsignaturas();
   }
 }
 
 function guardarAsignaturas() {
-  guardarEstado(STATE);
+  saveSTATE();
   mostrarAlerta('✅ Asignaturas y horarios guardados correctamente.', 'success');
   renderHorario();
 }
@@ -645,13 +907,13 @@ function asignarDocente(idx) {
   var num = parseInt(opcion);
   if (num === 0) {
     STATE.asignaturas[idx].docenteId = '';
-    guardarEstado(STATE);
+    saveSTATE();
     renderAsignaturas();
     return;
   }
   if (num >= 1 && num <= STATE.docentes.length) {
     STATE.asignaturas[idx].docenteId = STATE.docentes[num - 1].id;
-    guardarEstado(STATE);
+    saveSTATE();
     renderAsignaturas();
   } else {
     mostrarAlerta('Opción no válida.', 'info');
@@ -676,7 +938,7 @@ function nuevaAsignatura() {
     color: color,
     horario: []
   });
-  guardarEstado(STATE);
+  saveSTATE();
   renderAsignaturas();
   renderHorario();
   mostrarAlerta('✅ Asignatura "' + nombre.trim() + '" creada.', 'success');
@@ -686,7 +948,7 @@ function eliminarAsignatura(idx) {
   var nombre = STATE.asignaturas[idx].nombre;
   if (!confirm('¿Eliminar la asignatura "' + nombre + '" y todos sus horarios?')) return;
   STATE.asignaturas.splice(idx, 1);
-  guardarEstado(STATE);
+  saveSTATE();
   renderAsignaturas();
   renderHorario();
   mostrarAlerta('🗑️ Asignatura "' + nombre + '" eliminada.', 'info');
@@ -697,7 +959,7 @@ function editarCurso(idx) {
   var nuevo = prompt('Curso de la asignatura:', actual);
   if (nuevo !== null) {
     STATE.asignaturas[idx].curso = nuevo.trim();
-    guardarEstado(STATE);
+    saveSTATE();
     renderAsignaturas();
   }
 }
@@ -723,7 +985,7 @@ function cambiarColor(idx) {
     }
   }
   STATE.asignaturas[idx].color = color;
-  guardarEstado(STATE);
+  saveSTATE();
   renderAsignaturas();
   renderHorario();
 }
@@ -732,7 +994,7 @@ function cambiarColor(idx) {
 // TAB 3: HORARIO SEMANAL
 // ==============================
 function renderHorario() {
-  STATE = cargarEstado();
+  STATE = loadSTATE();
   var grid = document.getElementById('horarioGrid');
 
   // Bloques horarios únicos ordenados
@@ -803,7 +1065,7 @@ function renderHorario() {
 // TAB 4: CALENDARIO
 // ==============================
 function renderCalendario() {
-  STATE = cargarEstado();
+  STATE = loadSTATE();
   var body = document.getElementById('eventosBody');
   body.innerHTML = '';
 
@@ -878,7 +1140,7 @@ function agregarEventoCalendario() {
   if (!desc) desc = '—';
 
   STATE.eventosCalendario.push({ fecha: fecha, tipo: tipo, desc: desc });
-  guardarEstado(STATE);
+  saveSTATE();
   renderCalendario();
   mostrarAlerta('✅ Evento agregado al calendario.', 'success');
 }
@@ -886,12 +1148,12 @@ function agregarEventoCalendario() {
 function eliminarEvento(idx) {
   if (!confirm('¿Eliminar este evento del calendario?')) return;
   STATE.eventosCalendario.splice(idx, 1);
-  guardarEstado(STATE);
+  saveSTATE();
   renderCalendario();
 }
 
 function guardarEventosCalendario() {
-  guardarEstado(STATE);
+  saveSTATE();
   mostrarAlerta('✅ Calendario guardado correctamente.', 'success');
 }
 
@@ -944,10 +1206,8 @@ function mostrarAlerta(msg, tipo) {
 // ==============================
 window.addEventListener('DOMContentLoaded', function() {
   initTabs();
-  renderDocentes();
-  renderAsignaturas();
-  renderHorario();
-  renderCalendario();
+  // Si estamos en vista detalle, los renders ya se llamaron desde mostrarVistaDetalle()
+  // Si estamos en vista instituciones, solo renderizar la lista
 
   // Modal docente: guardar con Enter y clic
   document.getElementById('modalDocenteGuardar').addEventListener('click', guardarModalDocente);
