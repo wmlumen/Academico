@@ -119,6 +119,7 @@ tr:hover td.stu-name{background:#f5f9ff}
   <select id="filterMonth" onchange="filtrarMes()"><option value="all">Todos</option></select>
   <button onclick="if(confirm('Resetear datos de asistencia de esta materia?')){var k=getStorageKey();localStorage.removeItem(k);cargarMateria()}" style="padding:7px 14px;border:none;border-radius:8px;background:#ffcdd2;color:#b71c1c;font-size:12px;font-weight:600;cursor:pointer">Limpiar</button>
   <button onclick="marcarTodosPresentesHastaHoy()" style="padding:7px 14px;border:none;border-radius:8px;background:#c8e6c9;color:#1b5e20;font-size:12px;font-weight:600;cursor:pointer">✅ Marcar todos Presentes hasta hoy</button>
+  <button onclick="sincronizarConCalendario()" style="padding:7px 14px;border:none;border-radius:8px;background:#e3f2fd;color:#0d47a1;font-size:12px;font-weight:600;cursor:pointer">🔄 Sincronizar con Calendario</button>
   <button onclick="window.print()" style="padding:7px 14px;border:none;border-radius:8px;background:#e3f2fd;color:#0d47a1;font-size:12px;font-weight:600;cursor:pointer">Imprimir</button>
   <div class="stats" id="statsBar">
     <span class="stat p">P: <strong id="totalP">0</strong></span>
@@ -743,6 +744,58 @@ function marcarTodosPresentesHastaHoy() {
 
   guardarDatos();
   alert('✅ ' + cP + ' presentes · 🔴 ' + cF + ' feriados/recesos\n\nLos alumnos que ya tenían otra marca no se modificaron.');
+  cargarMateria();
+}
+
+// ===== SINCRONIZAR CON CALENDARIO INSTITUCIONAL =====
+function sincronizarConCalendario() {
+  // Leer eventos del Perfil Institucional
+  var pi = obtenerPanelData();
+  if (!pi || !pi.eventosCalendario || !pi.eventosCalendario.length) {
+    alert('⚠️ La institución no tiene eventos de calendario cargados.\nVe a panel_institucional.html y agregá eventos.');
+    return;
+  }
+
+  // Tipos que implican SIN CLASES para alumnos → F
+  var TIPOS_SIN_CLASES = [
+    'Feriado Nacional', 'Asueto Departamental', 'Asueto Distrital',
+    'Receso', 'Vacaciones', 'Apertura Institucional', 'Retorno Docente',
+    'Actividad Institucional', 'Actividad Gremial'
+  ];
+
+  // Generar mapa día -> tipo de día desde eventos institucionales
+  var diaATipo = {};
+  pi.eventosCalendario.forEach(function(ev) {
+    if (!ev.fecha) return;
+    var parts = String(ev.fecha).split('-');
+    if (parts.length !== 3) return;
+    var m = Number(parts[1]);
+    var d = Number(parts[2]);
+    var key = m + '/' + d;
+    diaATipo[key] = ev.tipo;
+  });
+
+  var fechas = generarFechasClase();
+  var cP = 0, cF = 0;
+
+  fechas.forEach(function(f) {
+    if (!DATA[f.dateKey]) DATA[f.dateKey] = {};
+    var m = f.mes;
+    var d = f.diaNum;
+    var key = m + '/' + d;
+    var tipo = diaATipo[key];
+    var sinClases = tipo && TIPOS_SIN_CLASES.indexOf(tipo) !== -1;
+
+    STUDENTS.forEach(function(s) {
+      if (!DATA[f.dateKey]['s' + s.num]) {
+        DATA[f.dateKey]['s' + s.num] = sinClases ? 'F' : 'P';
+        if (sinClases) cF++; else cP++;
+      }
+    });
+  });
+
+  guardarDatos();
+  alert('🔄 Sincronización completada:\n✅ ' + cP + ' jornadas → Presente\n🔴 ' + cF + ' jornadas → Feriado/Sin Clases\n\n(Solo se llenaron celdas vacías; tus marcas manuales se conservan)');
   cargarMateria();
 }
 
